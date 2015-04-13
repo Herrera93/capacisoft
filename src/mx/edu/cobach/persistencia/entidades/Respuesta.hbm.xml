@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 13, 2015 12:14:31 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mx.edu.cobach.persistencia.entidades.Respuesta" table="respuesta" catalog="capacisoft" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empleado" class="mx.edu.cobach.persistencia.entidades.Empleado" fetch="select">
+            <column name="empleado_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="encuesta" class="mx.edu.cobach.persistencia.entidades.Encuesta" fetch="select">
+            <column name="encuesta_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pregunta" class="mx.edu.cobach.persistencia.entidades.Pregunta" fetch="select">
+            <column name="pregunta_id" not-null="true" />
+        </many-to-one>
+        <property name="antesCurso" type="int">
+            <column name="antes_curso" not-null="true" />
+        </property>
+        <property name="despuesCurso" type="int">
+            <column name="despues_curso" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

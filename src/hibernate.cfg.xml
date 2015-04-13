@@ -6,8 +6,33 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://148.231.83.12:3306/CapaciSoft?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">laherrera</property>
-    <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <property name="hibernate.show_sql">true</property>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionCurso.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Usuario.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoCuenta.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Zona.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Competencia.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Adscripcion.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoAlerta.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Proveedor.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Municipio.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Plantel.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Respuesta.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoProveedor.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Alerta.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Pregunta.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Encuesta.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/EnunciadoLogistica.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Puesto.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoEnunciado.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Enfoque.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Sede.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Telefono.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Curso.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoCurso.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Departamento.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Empleado.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
