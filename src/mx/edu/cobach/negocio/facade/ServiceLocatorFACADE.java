@@ -14,6 +14,7 @@ public class ServiceLocatorFACADE {
     private static BaseFACADE facade;
     
     public static BaseFACADE getInstance(){
+        int x = 10;
         if(facade == null){
             facade = new BaseFACADE();
         }
