@@ -4,17 +4,41 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import mx.edu.cobach.persistencia.entidades.Puesto;
+import mx.edu.cobach.vista.controlador.BaseControlador;
+import mx.edu.cobach.vista.controlador.HelperEntidad;
+
 /**
  *
  * @author liuts
  */
-public class PnlPuestos extends javax.swing.JPanel {
+public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
+    private DefaultTableModel model;
+    private String[] titulosTabla = {"Nombre", "Eliminar"};
+    private BaseControlador<Puesto> control;
+    
     /**
      * Creates new form PnlPuestos
      */
     public PnlPuestos() {
         initComponents();
+        model = new DefaultTableModel(titulosTabla, 4);
+        tablaPuestos_OE_Tbl.setModel(model);
+        control = new BaseControlador<Puesto>(this);
+        tablaPuestos_OE_Tbl.getSelectionModel().addListSelectionListener(
+            new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    tablaPuestos_OE_TblActionPerformed(e);
+                }
+        });
     }
 
     /**
@@ -64,7 +88,11 @@ public class PnlPuestos extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tablaPuestos_OE_Tbl.setColumnSelectionAllowed(true);
+        tablaPuestos_OE_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaPuestos_OE_Tbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaPuestos_OE_Tbl);
+        tablaPuestos_OE_Tbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tablaPuestos_OE_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaPuestos_OE_Tbl.getColumnModel().getColumn(0).setResizable(false);
             tablaPuestos_OE_Tbl.getColumnModel().getColumn(1).setResizable(false);
@@ -72,6 +100,11 @@ public class PnlPuestos extends javax.swing.JPanel {
 
         buscar_OD_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscar_OD_Btn.setText("Buscar");
+        buscar_OD_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_OD_BtnActionPerformed(evt);
+            }
+        });
 
         agregar_OD_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OD_Btn.setText("Agregar");
@@ -122,6 +155,11 @@ public class PnlPuestos extends javax.swing.JPanel {
 
         agregar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OP_Btn.setText("Guardar");
+        agregar_OP_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_OP_BtnActionPerformed(evt);
+            }
+        });
 
         nombrePuesto_IE_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -167,6 +205,22 @@ public class PnlPuestos extends javax.swing.JPanel {
             .addComponent(informacionPuesto_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OP_BtnActionPerformed
+        List<String> atr = new ArrayList<String>();
+        //Falta validar los campos
+        atr.add(nombrePuesto_IE_TFd.getText());
+        control.alta(HelperEntidad.getPuesto(atr));
+        nombrePuesto_IE_TFd.setText("");
+        control.buscarTodos(Puesto.class);
+    }//GEN-LAST:event_agregar_OP_BtnActionPerformed
+
+    private void buscar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OD_BtnActionPerformed
+        control.buscarTodos(Puesto.class);
+    }//GEN-LAST:event_buscar_OD_BtnActionPerformed
+
+    private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar_OD_Btn;
     private javax.swing.JButton agregar_OP_Btn;
@@ -180,4 +234,14 @@ public class PnlPuestos extends javax.swing.JPanel {
     private javax.swing.JPanel opcionPuesto_Pnl;
     private javax.swing.JTable tablaPuestos_OE_Tbl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    @Override
+    public void setTabla(String[][] info) {
+        model.setDataVector(info, titulosTabla);
+    }
 }
