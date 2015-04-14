@@ -28,6 +28,7 @@ public class HibernateUtil {
     }
     
     public static SessionFactory getSessionFactory() {
+        int y = 4;
         if(sessionFactory == null){
             createSessionFactory(); 
         }
