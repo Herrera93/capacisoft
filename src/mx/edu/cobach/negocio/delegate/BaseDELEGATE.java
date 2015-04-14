@@ -14,33 +14,30 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
  * @author Alex
  */
 public class BaseDELEGATE<T> implements InterfaceDELEGATE<T>{
-    
-    private BaseFACADE<T> facade;
 
     @Override
     public void saveOrUpdate(T t) {
-        facade.saveOrUpdate(t);
+        ((BaseFACADE<T>) ServiceLocatorFACADE.getInstance()).saveOrUpdate(t);
     }
 
     @Override
     public T find(int id) {
-        return facade.find(id);
+        return ((BaseFACADE<T>) ServiceLocatorFACADE.getInstance()).find(id);
     }
 
     @Override
     public List<T> findAll() {
-        return facade.findAll();
+        return ((BaseFACADE<T>) ServiceLocatorFACADE.getInstance()).findAll();
     }
 
     @Override
     public void delete(T t) {
-        facade.delete(t);
+        ((BaseFACADE<T>) ServiceLocatorFACADE.getInstance()).delete(t);
     }
 
     @Override
     public void setEntity(Class<T> cl) {
-        facade = ServiceLocatorFACADE.getInstance();
-        facade.setEntity(cl);
+        ((BaseFACADE<T>) ServiceLocatorFACADE.getInstance()).setEntity(cl);
     }   
     
 }

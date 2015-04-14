@@ -15,32 +15,29 @@ import mx.edu.cobach.persitencia.ServiceLocator;
  */
 public class BaseFACADE<T> implements InterfaceFACADE<T>{
     
-    private BaseDAO<T> dao;
-    
     @Override
     public void setEntity(Class<T> cl){
-        dao = ServiceLocator.getInstance();
-        dao.setEntity(cl);
+        ((BaseDAO<T>) ServiceLocator.getInstance()).setEntity(cl);
     }
 
     @Override
     public void saveOrUpdate(T t) {
-        dao.saveOrUpdate(t);
+        ((BaseDAO<T>) ServiceLocator.getInstance()).saveOrUpdate(t);
     }
 
     @Override
     public T find(int id) {
-        return dao.find(id);
+        return ((BaseDAO<T>) ServiceLocator.getInstance()).find(id);
     }
 
     @Override
     public List<T> findAll() {
-        return dao.findAll();
+        return ((BaseDAO<T>) ServiceLocator.getInstance()).findAll();
     }
 
     @Override
     public void delete(T t) {
-        dao.delete(t);
+        ((BaseDAO<T>) ServiceLocator.getInstance()).delete(t);
     }
     
 }
