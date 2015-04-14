@@ -17,6 +17,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
   int x = 10;
+  int z = 12;
     private static SessionFactory sessionFactory;
     
     private static void createSessionFactory(){
