@@ -16,7 +16,7 @@ import org.hibernate.cfg.Configuration;
  *de la fabrica de sesiones
  */
 public class HibernateUtil {
-
+  int x = 10;
     private static SessionFactory sessionFactory;
     
     private static void createSessionFactory(){
@@ -35,3 +35,4 @@ public class HibernateUtil {
         return sessionFactory;
     }
 }
+
