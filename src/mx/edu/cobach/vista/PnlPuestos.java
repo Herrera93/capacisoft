@@ -152,9 +152,11 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         nombrePuesto_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_IP_Lbl.setText("Nombre del puesto:");
+        nombrePuesto_IP_Lbl.setEnabled(false);
 
         agregar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OP_Btn.setText("Guardar");
+        agregar_OP_Btn.setEnabled(false);
         agregar_OP_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 agregar_OP_BtnActionPerformed(evt);
@@ -162,6 +164,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         });
 
         nombrePuesto_IE_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombrePuesto_IE_TFd.setEnabled(false);
 
         javax.swing.GroupLayout informacionPuesto_PnlLayout = new javax.swing.GroupLayout(informacionPuesto_Pnl);
         informacionPuesto_Pnl.setLayout(informacionPuesto_PnlLayout);
