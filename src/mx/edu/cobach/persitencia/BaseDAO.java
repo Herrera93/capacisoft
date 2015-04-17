@@ -36,6 +36,9 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
     public void saveOrUpdate(T t) {
         try{
             startOperation();
+            System.out.println("5: T: " + 
+                    ((mx.edu.cobach.persistencia.entidades.Departamento) t).getEnfoque().getNombre() 
+                    + "\t" + ((mx.edu.cobach.persistencia.entidades.Departamento) t).getNombre());
             session.saveOrUpdate(t);
             tx.commit();
             System.out.println("Guardado exitoso");
