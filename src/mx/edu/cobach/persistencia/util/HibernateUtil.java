@@ -6,7 +6,9 @@
 package mx.edu.cobach.persistencia.util;
 
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -16,24 +18,84 @@ import org.hibernate.cfg.Configuration;
  *de la fabrica de sesiones
  */
 public class HibernateUtil {
-  int x = 10;
-  int z = 12;
+    //Fabrica de sesiones
     private static SessionFactory sessionFactory;
+    //Sesion con la base de datos
+    private static Session session;
+    //Transaccion actual donde se hacen operaciones
+    private static Transaction tx;
     
-    private static void createSessionFactory(){
+    /**
+     * Inicializacion de la fabrica de sesiones
+     */
+    static {
         Configuration config = new Configuration();
         config.configure();
         StandardServiceRegistry sr = new StandardServiceRegistryBuilder().
                 applySettings(config.getProperties()).build();
-        sessionFactory = config.buildSessionFactory(sr);
+        sessionFactory = config.buildSessionFactory(sr);        
     }
     
-    public static SessionFactory getSessionFactory() {
-        int y = 4;
-        if(sessionFactory == null){
-            createSessionFactory(); 
+    /**
+     * Metodo para la obtencion de la sesion actual con la base de datos, si 
+     * esta no se encuentra abierta, la abrira.
+     * @return Sesion con la base de datos
+     */
+    public static Session getSession(){
+        if(session == null){
+            openSession();
         }
-        return sessionFactory;
+        return session;
+    }
+    
+    /**
+     * Crea y abre la sesion con la base de datos.
+     */
+    public static void openSession(){
+        if(session == null){
+            session = sessionFactory.openSession();
+        }
+    }
+    
+    /**
+     * Limpia y cierra la sesion actual, si esta esta abierta.
+     */
+    public static void closeSession(){
+        if(session != null && session.isOpen()){
+            session.flush();
+            session.close();
+        }
+    }
+    
+    /**
+     * Se comienza una transaccion en la sesion actual
+     */
+    public static void beginTransaction(){
+        if(tx == null && session.isOpen()){
+            tx = session.beginTransaction();
+        }
+    }
+    
+    /**
+     * Metodo para cometer la transaccion, haciendo los cambios en la 
+     * base de datos
+     */
+    public static void commitTransaction(){
+        if(tx != null && !tx.wasCommitted() && !tx.wasRolledBack()){
+            tx.commit();
+            tx = null;
+        }
+    }
+    
+    /**
+     * Metodo para retroceder a la transaccion, eliminando los cambios que se
+     * llevaron a cabo en la transaccion
+     */
+    public static void rollbackTransaction(){
+        if(tx != null && !tx.wasCommitted() && !tx.wasRolledBack()){
+            tx.rollback();
+            tx = null;
+        }        
     }
 }
 

@@ -9,93 +9,115 @@ package mx.edu.cobach.persitencia;
 import java.util.List;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
- *
+ * DAO generico utilizado para aquellas entidades que no requieran de mas 
+ * funcionalidad que no sean las operacion CRUD.
  * @author Alex
- * @param <T>
+ * @param <T> Generalidad para la clase que se utilizara
  */
 public class BaseDAO<T> implements InterfaceDAO<T> {
     
+    //Clase utilizada para la busqueda de objetos
     protected Class<T> entityClass;
-    protected Session session;
-    protected Transaction tx;
     
+    /**
+     * Contructor vacio
+     */
     public BaseDAO(){
     }
     
+    /**
+     * Asigna el tipo Class se la entidad que utilizara este DAO
+     * @param entityClass La clase que se utilizara en el DAO
+     */
     @Override
     public void setEntity(Class<T> entityClass){
         this.entityClass = entityClass;
     }
     
+    /**
+     * Metodo para el guardado y actualizacion de una entidad
+     * @param t Objeto a gurdar o actualizar
+     */
     @Override
     public void saveOrUpdate(T t) {
         try{
-            startOperation();
-            System.out.println("5: T: " + 
-                    ((mx.edu.cobach.persistencia.entidades.Departamento) t).getEnfoque().getNombre() 
-                    + "\t" + ((mx.edu.cobach.persistencia.entidades.Departamento) t).getNombre());
-            session.saveOrUpdate(t);
-            tx.commit();
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            HibernateUtil.getSession().saveOrUpdate(t);
+            HibernateUtil.commitTransaction();
             System.out.println("Guardado exitoso");
         }catch(HibernateException e){
-            tx.rollback();
+            HibernateUtil.rollbackTransaction();
         }finally{
-            session.close();
+            HibernateUtil.closeSession();
         }
     }
 
+    /**
+     * Metodo para la busqueda de un registro especifico de la tabla de la 
+     * entidad
+     * @param id Identificador del registro
+     * @return Regresa el objeto encontrado, en caso de no encontrarlo regresara
+     * null
+     */
     @Override
     public T find(int id) {
         T t = null;
         try{
-            startOperation();
-            t = (T) session.load(entityClass, id);
-            tx.commit();
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            t = (T) HibernateUtil.getSession().load(entityClass, id);
+            HibernateUtil.commitTransaction();
+            System.out.println("Buscando Object");
         }catch(HibernateException e){
-            tx.rollback();
+            HibernateUtil.rollbackTransaction();
         }finally{
-            session.close();
+            HibernateUtil.closeSession();
         }
         return t;
     }
 
+    /**
+     * Metodo para buscar todos los registros de una entidad
+     * @return Regresa una lista con los registros
+     */
     @Override
     public List<T> findAll() {
         List<T> ts = null;        
         try{
-            startOperation();
-            Query query = session.createQuery("from " + entityClass.getName());
-            ts = query.list();
-            tx.commit();
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            ts = (List<T>) HibernateUtil.getSession()
+                    .createCriteria(entityClass);
+            HibernateUtil.commitTransaction();
+            System.out.println("Buscar todos");
         }catch(HibernateException e){
-            tx.rollback();
+            HibernateUtil.rollbackTransaction();
         }finally{
-            session.close();
+            HibernateUtil.closeSession();
         }
         return ts;
     }
 
+    /**
+     * Metodo para la eliminacion de un registro en la entidad
+     * @param t Objeto para identificar el registro que se borrara
+     */
     @Override
-    public void delete(T t) {        
+    public void delete(T t) { 
         try{
-            startOperation();
-            session.delete(t);
-            tx.commit();
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            HibernateUtil.getSession().delete(t);
+            HibernateUtil.commitTransaction();
+            System.out.println("Elimar registro");
         }catch(HibernateException e){
-            tx.rollback();
+            HibernateUtil.rollbackTransaction();
         }finally{
-            session.close();
+            HibernateUtil.closeSession();
         }
-    }
-    
-    protected void startOperation() throws HibernateException{
-        session = HibernateUtil.getSessionFactory().openSession();
-        tx = session.beginTransaction();
     }
     
 }
