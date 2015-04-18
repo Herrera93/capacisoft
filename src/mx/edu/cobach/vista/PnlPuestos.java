@@ -108,6 +108,11 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         agregar_OD_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OD_Btn.setText("Agregar");
+        agregar_OD_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_OD_BtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout opcionPuesto_PnlLayout = new javax.swing.GroupLayout(opcionPuesto_Pnl);
         opcionPuesto_Pnl.setLayout(opcionPuesto_PnlLayout);
@@ -210,17 +215,28 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OP_BtnActionPerformed
-        List<String> atr = new ArrayList<String>();
+    /*    List<String> atr = new ArrayList<String>();
         //Falta validar los campos
         atr.add(nombrePuesto_IE_TFd.getText());
         control.alta(HelperEntidad.getPuesto(atr));
         nombrePuesto_IE_TFd.setText("");
-        control.buscarTodos(Puesto.class);
+        control.buscarTodos(Puesto.class);*/
+        agregar_OD_Btn.setEnabled(true);
+        nombrePuesto_IP_Lbl.setEnabled(false);
+        nombrePuesto_IE_TFd.setEnabled(false);
+        agregar_OP_Btn.setEnabled(false);
     }//GEN-LAST:event_agregar_OP_BtnActionPerformed
 
     private void buscar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OD_BtnActionPerformed
         control.buscarTodos(Puesto.class);
     }//GEN-LAST:event_buscar_OD_BtnActionPerformed
+
+    private void agregar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OD_BtnActionPerformed
+        nombrePuesto_IP_Lbl.setEnabled(true);
+        nombrePuesto_IE_TFd.setEnabled(true);
+        agregar_OP_Btn.setEnabled(true);
+        agregar_OD_Btn.setEnabled(false);
+    }//GEN-LAST:event_agregar_OD_BtnActionPerformed
 
     private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
     }
