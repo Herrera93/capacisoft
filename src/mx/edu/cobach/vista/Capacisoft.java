@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
  * @author liuts
  */
 public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// implements ActionListener{
-
     /**
      * Creates new form Capacisoft
      */
