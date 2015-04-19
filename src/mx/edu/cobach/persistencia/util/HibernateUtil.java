@@ -8,9 +8,11 @@ package mx.edu.cobach.persistencia.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.SessionFactoryObserver;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.boot.registry.internal.StandardServiceRegistryImpl;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -33,6 +35,18 @@ public class HibernateUtil {
         config.configure();
         StandardServiceRegistry sr = new StandardServiceRegistryBuilder().
                 applySettings(config.getProperties()).build();
+        config.setSessionFactoryObserver(new SessionFactoryObserver(){
+
+            @Override
+            public void sessionFactoryCreated(SessionFactory sf) {
+            }
+
+            @Override
+            public void sessionFactoryClosed(SessionFactory sf) {
+                ((StandardServiceRegistryImpl) sr).destroy();
+            }
+            
+        });
         sessionFactory = config.buildSessionFactory(sr);        
     }
     
@@ -96,6 +110,13 @@ public class HibernateUtil {
             tx.rollback();
             tx = null;
         }        
+    }
+    
+    /**
+     * Cierra la fabrica de sesiones
+     */
+    public static void closeFactory(){
+        sessionFactory.close();
     }
 }
 
