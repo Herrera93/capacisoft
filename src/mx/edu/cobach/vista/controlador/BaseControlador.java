@@ -6,57 +6,73 @@
 package mx.edu.cobach.vista.controlador;
 
 import java.util.List;
-import mx.edu.cobach.negocio.delegate.BaseDELEGATE;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
- *
+ * Clase con los metodos comunes en la entidades y realiza los cambios en la
+ * interfaz grafica a traves de la interfaz de comunicacion Comunicador
  * @author Alex
  */
-public class BaseControlador<T> implements InterfaceControlador<T> {
+public class BaseControlador{
 
+    //Comunicador con la interfaz grafica
     private final Comunicador com;
+    //Clase con la que estara trabajando la base de datos
+    private Class clazz;
     
-    public BaseControlador(Comunicador com){
+    /**
+     * Inicializa el controlador y asigna los atributos
+     * @param com Comunicador con la interfaz grafica
+     * @param clazz Clase con la que estara trabajando la base de datos
+     */
+    public BaseControlador(Comunicador com, Class clazz){
         this.com = com;
+        this.clazz = clazz;
     }
     
-    @Override
-    public void alta(T t) {
-        ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance())
-                .saveOrUpdate(t);
+    /**
+     * Metodo para dar de alta un objeto de un registro
+     * @param obj Objeto del registro a dar de alta
+     */
+    public void alta(Object obj) {
+        ServiceLocatorDELEGATE.getInstance().saveOrUpdate(obj, clazz);
         com.setMensaje("Se ha guardado existosamente");
     }
 
-    @Override
-    public void baja(T t) {
-        ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance()).delete(t);
+    /**
+     * Metodo para dar de baja un objeto de un registro
+     * @param obj Objeto del registro a dar de baja
+     */
+    public void baja(Object obj) {
+        ServiceLocatorDELEGATE.getInstance().delete(obj, clazz);
         com.setMensaje("Se ha eliminado exitosamente");
     }
 
-    @Override
-    public void modificacion(T t) {
-        ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance())
-                .saveOrUpdate(t);
+    /**
+     * Metodo para actualizar un objeto de un registro
+     * @param obj Objeto del registro a actualizar
+     */
+    public void modificacion(Object obj) {
+        ServiceLocatorDELEGATE.getInstance().saveOrUpdate(com, clazz);
         com.setMensaje("Se ha modificado existosamente");
     }
 
-    @Override
-    public void buscar(int id, Class<T> cl) {
-        ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance())
-                .setEntity(cl);
-        T t = ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance()).find(id);
-        com.setTabla(HelperEntidad.descomponerObjeto(t));
+    /**
+     * Metodo para buscar un registro especifico a traves de un identificador
+     * @param id Identificador de registro
+     */
+    public void buscar(int id) {
+        Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
+        com.setTabla(HelperEntidad.descomponerObjeto(o));
     }
 
-    @Override
-    public void buscarTodos(Class<T> cl) {
-        ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance())
-                .setEntity(cl);
-        List<T> ts = ((BaseDELEGATE<T>) ServiceLocatorDELEGATE.getInstance())
-                .findAll();
-        com.setTabla(HelperEntidad.descomponerObjetos((List<Object>) ts));
+    /**
+     * Metodo para buscar todos los registros
+     */
+    public void buscarTodos() {
+        List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
+        com.setTabla(HelperEntidad.descomponerObjetos(ls));
     }
         
 }

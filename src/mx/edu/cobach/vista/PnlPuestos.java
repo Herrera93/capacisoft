@@ -22,7 +22,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     private DefaultTableModel model;
     private String[] titulosTabla = {"Nombre", "Eliminar"};
-    private BaseControlador<Puesto> control;
+    private BaseControlador control;
     
     /**
      * Creates new form PnlPuestos
@@ -31,7 +31,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         initComponents();
         model = new DefaultTableModel(titulosTabla, 4);
         tablaPuestos_OE_Tbl.setModel(model);
-        control = new BaseControlador<Puesto>(this);
+        control = new BaseControlador(this, Puesto.class);
         tablaPuestos_OE_Tbl.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {
                 @Override
@@ -228,7 +228,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_agregar_OP_BtnActionPerformed
 
     private void buscar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OD_BtnActionPerformed
-        control.buscarTodos(Puesto.class);
+        control.buscarTodos();
     }//GEN-LAST:event_buscar_OD_BtnActionPerformed
 
     private void agregar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OD_BtnActionPerformed

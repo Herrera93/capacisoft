@@ -6,15 +6,19 @@
 package mx.edu.cobach.negocio.facade;
 
 /**
- *
+ * Clase para localizacion de servicios FACADE
  * @author Alex
  */
 public class ServiceLocatorFACADE {
     
+    //FACADE generico
     private static BaseFACADE facade;
     
+    /**
+     * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara
+     * @return Regresa FACADE generico
+     */
     public static BaseFACADE getInstance(){
-        int x = 10;
         if(facade == null){
             facade = new BaseFACADE();
         }
