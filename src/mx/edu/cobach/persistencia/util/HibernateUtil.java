@@ -79,6 +79,7 @@ public class HibernateUtil {
             session.flush();
             session.close();
         }
+        session=null;
     }
     
     /**
