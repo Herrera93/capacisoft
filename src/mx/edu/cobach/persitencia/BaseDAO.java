@@ -90,7 +90,7 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             ts = (List<T>) HibernateUtil.getSession()
-                    .createCriteria(entityClass);
+                    .createCriteria(entityClass).list();
             HibernateUtil.commitTransaction();
             System.out.println("Buscar todos");
         }catch(HibernateException e){
