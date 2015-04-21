@@ -4,17 +4,35 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.vista.controlador.BaseControlador;
+import mx.edu.cobach.vista.controlador.CursoControlador;
+import mx.edu.cobach.vista.controlador.HelperEntidad;
+
 /**
  *
  * @author liuts
  */
-public class PnlRegistrarCursos extends javax.swing.JPanel {
+public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicador{
+    
+    private BaseControlador control;
+    private CursoControlador cursoControl;
+    private DefaultTableModel model;
+    private String[] titulosTabla = {"Nombre","Tipo"};
 
     /**
      * Creates new form PnlRegistrarCursos
      */
     public PnlRegistrarCursos() {
         initComponents();
+        control = new BaseControlador(this, Curso.class);
+        cursoControl = new CursoControlador(this, Curso.class);
+        
     }
 
     /**
@@ -59,14 +77,22 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
                 "Nombre", "Tipo", "Eliminar"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tablaCursos_OC_Tbl.setEnabled(false);
         jScrollPane1.setViewportView(tablaCursos_OC_Tbl);
         if (tablaCursos_OC_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaCursos_OC_Tbl.getColumnModel().getColumn(0).setResizable(false);
@@ -76,12 +102,22 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
 
         agregar_OC_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OC_Btn.setText("Agregar");
+        agregar_OC_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_OC_BtnActionPerformed(evt);
+            }
+        });
 
         buscar_OC_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscar_OC_Btn.setText("Buscar");
+        buscar_OC_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_OC_BtnActionPerformed(evt);
+            }
+        });
 
         tipo_OC_CBx1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipo_OC_CBx1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipo_OC_CBx1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buscar Todos", "Conferencia", "Taller" }));
 
         javax.swing.GroupLayout opcionesCurso_PnlLayout = new javax.swing.GroupLayout(opcionesCurso_Pnl);
         opcionesCurso_Pnl.setLayout(opcionesCurso_PnlLayout);
@@ -131,16 +167,25 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
 
         guardar_IC_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_IC_Btn.setText("Guardar");
+        guardar_IC_Btn.setEnabled(false);
+        guardar_IC_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardar_IC_BtnActionPerformed(evt);
+            }
+        });
 
         descripcion_IC_TAa.setColumns(20);
         descripcion_IC_TAa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         descripcion_IC_TAa.setRows(5);
+        descripcion_IC_TAa.setEnabled(false);
         jScrollPane2.setViewportView(descripcion_IC_TAa);
 
         nombre_IC_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombre_IC_TFd.setEnabled(false);
 
         seleccion_IC_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        seleccion_IC_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        seleccion_IC_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia ", "Taller" }));
+        seleccion_IC_CBx.setEnabled(false);
 
         nombre_IC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombre_IC_Lbl.setText("Nombre del Curso:");
@@ -207,6 +252,32 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void guardar_IC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_IC_BtnActionPerformed
+        List<String> atr =  new ArrayList<String>();
+        atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+        atr.add(nombre_IC_TFd.getText());
+        atr.add(descripcion_IC_TAa.getText());
+        control.alta(HelperEntidad.getCurso(atr));
+    }//GEN-LAST:event_guardar_IC_BtnActionPerformed
+
+    private void agregar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OC_BtnActionPerformed
+        nombre_IC_TFd.setEnabled(true);
+        descripcion_IC_TAa.setEnabled(true);
+        seleccion_IC_CBx.setEnabled(true);
+        guardar_IC_Btn.setEnabled(true);
+    }//GEN-LAST:event_agregar_OC_BtnActionPerformed
+
+    private void buscar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OC_BtnActionPerformed
+       
+                model = new DefaultTableModel(titulosTabla, 4);
+        tablaCursos_OC_Tbl.setModel(model);
+        if(tipo_OC_CBx1.getSelectedIndex()== 0){
+            control.buscarTodos();        
+        }else if(tipo_OC_CBx1.getSelectedIndex() != 0){
+            cursoControl.buscar(tipo_OC_CBx1.getSelectedIndex());
+        }
+    }//GEN-LAST:event_buscar_OC_BtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar_OC_Btn;
     private javax.swing.JButton buscar_OC_Btn;
@@ -225,4 +296,19 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
     private javax.swing.JComboBox tipo_OC_CBx1;
     private javax.swing.JLabel tipo_OC_Lbl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    @Override
+    public void setTabla(String[][] info) {
+        model.setDataVector(info, titulosTabla);
+    }
+
+    @Override
+    public void setInfo(String[][] info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
