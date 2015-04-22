@@ -5,6 +5,8 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.List;
+
 /***
  * Esta interfaz permite la comunicacion entre la interfaz grafica y el o los
  * controladores que se utilicen.
@@ -27,4 +29,6 @@ public interface Comunicador {
      * @param info Informacion que se asignara a la tabla
      */
     void setTabla(String[][] info);
+
+    public void setLista(List info, int i);
 }

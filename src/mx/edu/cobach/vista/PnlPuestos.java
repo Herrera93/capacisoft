@@ -4,7 +4,6 @@
  */
 package mx.edu.cobach.vista;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -12,7 +11,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.BaseControlador;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
 
 /**
  *
@@ -263,4 +261,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     public void setTabla(String[][] info) {
         model.setDataVector(info, titulosTabla);
     }
+
+    @Override
+    public void setLista(List info, int i) {
+    }
+    
+    
 }
