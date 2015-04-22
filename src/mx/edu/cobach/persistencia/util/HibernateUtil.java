@@ -78,6 +78,7 @@ public class HibernateUtil {
         if(session != null && session.isOpen()){
             session.flush();
             session.close();
+            session = null;
         }
     }
     
