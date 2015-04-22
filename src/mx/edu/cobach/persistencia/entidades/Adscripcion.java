@@ -48,10 +48,9 @@ public class Adscripcion  implements java.io.Serializable {
     public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
     }
-
-
-
-
+    
+    @Override
+    public String toString(){
+        return this.descripcion;
+    }
 }
-
-
