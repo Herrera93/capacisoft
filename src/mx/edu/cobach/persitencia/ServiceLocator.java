@@ -13,6 +13,7 @@ public class ServiceLocator {
     
     //DAO generico
     private static BaseDAO baseDAO;    
+    private static PuestoDAO puestoDAO;
     private static EmpleadoDAO empleadoDAO;
     
     /**
@@ -31,5 +32,10 @@ public class ServiceLocator {
             empleadoDAO = new EmpleadoDAO();
         }
         return empleadoDAO;
+    public static PuestoDAO getPuesto(){
+        if(puestoDAO == null){
+            puestoDAO = new PuestoDAO();
+        }
+        return puestoDAO;
     }
 }

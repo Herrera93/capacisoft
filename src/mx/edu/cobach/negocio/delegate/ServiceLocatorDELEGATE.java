@@ -26,5 +26,10 @@ public class ServiceLocatorDELEGATE {
             empleadoDelegate = new EmpleadoDELEGATE();
         }
         return empleadoDelegate;
+    public static PuestoDELEGATE getPuesto(){
+        if(puestoDelegate == null){
+            puestoDelegate = new PuestoDELEGATE();
+        }        
+        return puestoDelegate;
     }
 }

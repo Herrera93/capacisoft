@@ -31,5 +31,10 @@ public class ServiceLocatorFACADE {
             empleadoFacade = new EmpleadoFACADE();
         }
         return empleadoFacade;
+    public static PuestoFACADE getPuesto(){
+        if(puestoFacade == null){
+            puestoFacade = new PuestoFACADE();
+        }
+        return puestoFacade;
     }
 }

@@ -29,6 +29,9 @@ public interface Comunicador {
      * @param info Informacion que se asignara a la tabla
      */
     void setTabla(String[][] info);
+    
+    void setInfo(String[][] info);
+    
 
     public void setLista(List info, int i);
 }

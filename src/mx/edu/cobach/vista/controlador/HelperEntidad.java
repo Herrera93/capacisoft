@@ -19,7 +19,10 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 public class HelperEntidad {
     
     public static Puesto getPuesto(List<String> atributos){
-        return new Puesto(atributos.get(0));        
+        Puesto puesto = new Puesto();
+        puesto.setId(Integer.parseInt(atributos.get(0)));
+        puesto.setNombre(atributos.get(1)+"");
+        return puesto;        
     }
     
     public static Object getEmpleado(List<Object> atributos) {
@@ -38,6 +41,9 @@ public class HelperEntidad {
         return e;
     }
     
+    public static Puesto getPuesto(String atributo){
+        return new Puesto(atributo);        
+    }
     public static String[][] descomponerObjeto(Object obj){
         if(obj instanceof Puesto){
             return descomponerPuesto((Puesto) obj);
@@ -62,12 +68,12 @@ public class HelperEntidad {
                 return descomponerEmpleados(emps);
             }
         }
-        return null;
     }
     
     private static String[][] descomponerPuesto(Puesto p){
-        String[][] info = new String[1][1];
+        String[][] info = new String[2][1];
         info[0][0] = p.getNombre();
+        info[1][0] = p.getId() + "";        
         return info;
     }
     
