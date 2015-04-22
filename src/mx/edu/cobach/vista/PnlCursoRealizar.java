@@ -39,12 +39,12 @@ public class PnlCursoRealizar extends javax.swing.JPanel {
         nombreCurso_G_TFd = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcionCurso_G_TAa = new javax.swing.JTextArea();
-        FechaInicial_G_TFd = new javax.swing.JTextField();
-        fechaTerminacion_G_TFd = new javax.swing.JTextField();
         tipo_G_CBx = new javax.swing.JComboBox();
         sede_G_CBx = new javax.swing.JComboBox();
         numero_G_CBx = new javax.swing.JComboBox();
         guardar_G_Btn = new javax.swing.JButton();
+        fechaInicio_G_DCh = new com.toedter.calendar.JDateChooser();
+        fechaTerminacion_G_DCh = new com.toedter.calendar.JDateChooser();
         lista_Pnl = new javax.swing.JPanel();
         seleccion_LA_Lbl = new javax.swing.JLabel();
         tipo_LA_CBx = new javax.swing.JComboBox();
@@ -96,15 +96,6 @@ public class PnlCursoRealizar extends javax.swing.JPanel {
         descripcionCurso_G_TAa.setRows(5);
         jScrollPane1.setViewportView(descripcionCurso_G_TAa);
 
-        FechaInicial_G_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        FechaInicial_G_TFd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FechaInicial_G_TFdActionPerformed(evt);
-            }
-        });
-
-        fechaTerminacion_G_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         tipo_G_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_G_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -125,19 +116,19 @@ public class PnlCursoRealizar extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(general_PnlLayout.createSequentialGroup()
-                        .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(general_PnlLayout.createSequentialGroup()
-                                .addComponent(nombreCurso_G_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nombreCurso_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(general_PnlLayout.createSequentialGroup()
-                                .addComponent(fechaInicial_G_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(FechaInicial_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(general_PnlLayout.createSequentialGroup()
+                        .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, general_PnlLayout.createSequentialGroup()
                                 .addComponent(fechaTerminacion_G_Lbl)
                                 .addGap(18, 18, 18)
-                                .addComponent(fechaTerminacion_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(fechaTerminacion_G_DCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(general_PnlLayout.createSequentialGroup()
+                                .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreCurso_G_Lbl)
+                                    .addComponent(fechaInicial_G_Lbl))
+                                .addGap(84, 84, 84)
+                                .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreCurso_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fechaInicio_G_DCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(59, 59, 59)
                         .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(general_PnlLayout.createSequentialGroup()
@@ -164,24 +155,25 @@ public class PnlCursoRealizar extends javax.swing.JPanel {
         general_PnlLayout.setVerticalGroup(
             general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(general_PnlLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(55, 55, 55)
                 .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreCurso_G_Lbl)
                     .addComponent(nombreCurso_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipo_G_Lbl)
                     .addComponent(tipo_G_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fechaInicial_G_Lbl)
-                    .addComponent(FechaInicial_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sede_G_Lbl)
-                    .addComponent(sede_G_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGap(72, 72, 72)
+                .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(fechaInicial_G_Lbl)
+                        .addComponent(sede_G_Lbl)
+                        .addComponent(sede_G_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaInicio_G_DCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fechaTerminacion_G_Lbl)
-                    .addComponent(fechaTerminacion_G_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(numero_G_Lbl)
-                    .addComponent(numero_G_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numero_G_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaTerminacion_G_DCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(general_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(general_PnlLayout.createSequentialGroup()
                         .addGap(107, 107, 107)
@@ -351,25 +343,21 @@ public class PnlCursoRealizar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FechaInicial_G_TFdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaInicial_G_TFdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaInicial_G_TFdActionPerformed
-
     private void nombreCurso_G_TFdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreCurso_G_TFdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreCurso_G_TFdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField FechaInicial_G_TFd;
     private javax.swing.JTextField SeleccionCampo_LA_TFd;
     private javax.swing.JButton agregarEmpleado_LA_Btn;
     private javax.swing.JButton agregarTodos_AL_Btn;
     private javax.swing.JTextArea descripcionCurso_G_TAa;
     private javax.swing.JLabel descripcion_G_Lbl;
     private javax.swing.JLabel fechaInicial_G_Lbl;
+    private com.toedter.calendar.JDateChooser fechaInicio_G_DCh;
+    private com.toedter.calendar.JDateChooser fechaTerminacion_G_DCh;
     private javax.swing.JLabel fechaTerminacion_G_Lbl;
-    private javax.swing.JTextField fechaTerminacion_G_TFd;
     private javax.swing.JPanel general_Pnl;
     private javax.swing.JButton guardar_G_Btn;
     private javax.swing.JButton guardar_LA_Btn;
