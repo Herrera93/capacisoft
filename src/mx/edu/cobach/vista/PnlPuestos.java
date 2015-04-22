@@ -6,10 +6,13 @@ package mx.edu.cobach.vista;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
@@ -25,7 +28,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private String[] titulosTabla = {"Nombre", "Eliminar"};
     private BaseControlador control;
     private PuestoControlador puestoControl;
-    
+    private int idPuesto;
     /**
      * Creates new form PnlPuestos
      */
@@ -39,26 +42,42 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             new ListSelectionListener() {
                 @Override
                 public void valueChanged(ListSelectionEvent e) {
+                    int dialogResult;
                     String nombreBusqu = null;
+                    //String nombreBusqu2 = null;
                     int[] selectedRow = tablaPuestos_OE_Tbl.getSelectedRows();
                     int[] selectedColumns = tablaPuestos_OE_Tbl.
                             getSelectedColumns();
                     for (int i = 0; i < selectedRow.length; i++) {
-                      for (int j = 0; j < selectedColumns.length; j++) {
-                        nombreBusqu = (String) tablaPuestos_OE_Tbl.
+                        for (int j = 0; j < selectedColumns.length; j++) {
+                            nombreBusqu = (String) tablaPuestos_OE_Tbl.
                                 getValueAt(selectedRow[i], selectedColumns[j]);
-                      }
+                       }
                     }
-                    System.out.println(nombreBusqu);
                     if(nombreBusqu!=null){
                         puestoControl.buscarMod(nombreBusqu);
-                        
                     }else{
+                        int dialogButton = JOptionPane.YES_NO_OPTION;
+                        nombreBusqu = (String) tablaPuestos_OE_Tbl.
+                            getValueAt(tablaPuestos_OE_Tbl.getSelectedRow(),0).toString();
+                        puestoControl.buscarMod(nombreBusqu);
+                        dialogResult = JOptionPane.showConfirmDialog 
+                            (null, "¿Desea eliminar el puesto "+nombreBusqu+"?",
+                                "Warning",dialogButton);
+                        if(dialogResult == JOptionPane.YES_OPTION){
+                            List<String> atr = new ArrayList<String>();
+                            atr.add(idPuesto+"");
+                            atr.add(nombrePuesto_IE_TFd.getText());
+                            control.baja(HelperEntidad.getPuesto(atr));
+                            //tablaPuestos_OE_Tbl.getSelectionModel().clearSelection();
+                            buscar_OD_Btn.doClick();
+                        }else{
+                            tablaPuestos_OE_Tbl.clearSelection();
+                        }
                     }
-                    
-                    tablaPuestos_OE_TblActionPerformed(e);
+                    //tablaPuestos_OE_TblActionPerformed(e);
                 }
-        });
+            });
     }
     
     /**
@@ -116,6 +135,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         });
         tablaPuestos_OE_Tbl.setColumnSelectionAllowed(true);
+        tablaPuestos_OE_Tbl.setEnabled(false);
         tablaPuestos_OE_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaPuestos_OE_Tbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaPuestos_OE_Tbl);
@@ -242,33 +262,29 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OP_BtnActionPerformed
-        if(agregar_OP_Btn.getText().equals("Guardar")){
-            
-            System.out.println("guarda");
-            control.alta(HelperEntidad.getPuesto(nombrePuesto_IE_TFd.getText()));
-            nombrePuesto_IE_TFd.setText("");
-            agregar_OD_Btn.setEnabled(true);
-            nombrePuesto_IP_Lbl.setEnabled(false);
-            nombrePuesto_IE_TFd.setEnabled(false);
-            agregar_OP_Btn.setEnabled(false);
-            buscar_OD_Btn.doClick();
-            
-            
-        }else if(agregar_OP_Btn.getText().equals("Modificar")){
-            System.out.println("Modi");
-            List<String> atr = new ArrayList<String>();
-            //Falta validar los campos
-            atr.add(idPuesto+"");
-            atr.add(nombrePuesto_IE_TFd.getText());
-            control.modificacion(HelperEntidad.getPuesto(atr));
-            nombrePuesto_IE_TFd.setText("");
-            agregar_OD_Btn.setEnabled(true);
-            nombrePuesto_IP_Lbl.setEnabled(false);
-            nombrePuesto_IE_TFd.setEnabled(false);
-            agregar_OP_Btn.setEnabled(false);
+        if(nombrePuesto_IE_TFd.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "El campo esta vacio");
+        }else{
+            if(agregar_OP_Btn.getText().equals("Guardar")){
+                control.alta(HelperEntidad.getPuesto(nombrePuesto_IE_TFd.getText()));
+                nombrePuesto_IE_TFd.setText("");
+                agregar_OD_Btn.setEnabled(true);
+                nombrePuesto_IP_Lbl.setEnabled(false);
+                nombrePuesto_IE_TFd.setEnabled(false);
+                agregar_OP_Btn.setEnabled(false);
+            }else if(agregar_OP_Btn.getText().equals("Modificar")){
+                List<String> atr = new ArrayList<String>();
+                atr.add(idPuesto+"");
+                atr.add(nombrePuesto_IE_TFd.getText());
+                control.modificacion(HelperEntidad.getPuesto(atr));
+                nombrePuesto_IE_TFd.setText("");
+                agregar_OD_Btn.setEnabled(true);
+                nombrePuesto_IP_Lbl.setEnabled(false);
+                nombrePuesto_IE_TFd.setEnabled(false);
+                agregar_OP_Btn.setEnabled(false);
+            }
             buscar_OD_Btn.doClick();
         }
-        
     }//GEN-LAST:event_agregar_OP_BtnActionPerformed
 
     private void buscar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OD_BtnActionPerformed
@@ -276,8 +292,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             control.buscarTodos();
         }else{
             puestoControl.buscar(nombrePuesto_OE_TFd.getText());
-        }
-        
+        }        
     }//GEN-LAST:event_buscar_OD_BtnActionPerformed
 
     private void agregar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OD_BtnActionPerformed
@@ -304,7 +319,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JPanel opcionPuesto_Pnl;
     private javax.swing.JTable tablaPuestos_OE_Tbl;
     // End of variables declaration//GEN-END:variables
-    private int idPuesto;
+    
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
@@ -312,7 +327,12 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     @Override
     public void setTabla(String[][] info) {
+        tablaPuestos_OE_Tbl.setEnabled(true);
+        //tablaPuestos_OE_Tbl.getSelectionModel().clearSelection();
         model.setDataVector(info, titulosTabla);
+        TableColumn tc = tablaPuestos_OE_Tbl.getColumnModel().getColumn(1);
+        tc.setCellEditor(tablaPuestos_OE_Tbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(tablaPuestos_OE_Tbl.getDefaultRenderer(Boolean.class));
     }
     
     @Override
