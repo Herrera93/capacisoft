@@ -167,8 +167,6 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
         barraMenu = new javax.swing.JMenuBar();
         mantenimientoCurso_Mn = new javax.swing.JMenu();
         usuario_MIt = new javax.swing.JMenuItem();
@@ -188,10 +186,6 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarCurso_MIt = new javax.swing.JMenuItem();
         encuesta_MIt = new javax.swing.JMenuItem();
         alertas_MIt = new javax.swing.JMenuItem();
-
-        jMenuItem17.setText("jMenuItem17");
-
-        jMenuItem18.setText("jMenuItem18");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -558,6 +552,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarPnl.setVisible(false);
         seguimientoPnl.setVisible(false);
         alertasPnl.setVisible(false);
+        empleadoPnl.llenarTodo();
     }//GEN-LAST:event_empleado_MItActionPerformed
 
     private void proveedores_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedores_MItActionPerformed
@@ -711,8 +706,6 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenuItem empleado_MIt;
     private javax.swing.JMenuItem encuesta_MIt;
     private javax.swing.JMenuItem evaluacionProveedor_MIt;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem kardex_MIt;
     private javax.swing.JMenuItem lista_MIt;
     private javax.swing.JMenu mantenimientoCurso_Mn;
