@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.vista.controlador.BaseControlador;
@@ -23,7 +25,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private BaseControlador control;
     private CursoControlador cursoControl;
     private DefaultTableModel model;
-    private String[] titulosTabla = {"Nombre","Tipo"};
+    private String[] titulosTabla = {"Nombre","Tipo","Eliminar"};
+    int id;
 
     /**
      * Creates new form PnlRegistrarCursos
@@ -32,6 +35,29 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         initComponents();
         control = new BaseControlador(this, Curso.class);
         cursoControl = new CursoControlador(this, Curso.class);
+        tablaCursos_OC_Tbl.getSelectionModel().addListSelectionListener(
+                new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    String nombreBusqu = null;
+                    int[] selectedRow = tablaCursos_OC_Tbl.getSelectedRows();
+                        int[] selectedColumns = tablaCursos_OC_Tbl.
+                                getSelectedColumns();
+                        for (int i = 0; i < selectedRow.length; i++) {
+                          for (int j = 0; j < selectedColumns.length; j++) {
+                            nombreBusqu = (String) tablaCursos_OC_Tbl.
+                                    getValueAt(selectedRow[i], selectedColumns[j]);
+                          }
+                        }
+                        if(nombreBusqu!=null){
+                            System.out.println(nombreBusqu);
+                            cursoControl.buscarNombre(nombreBusqu);
+
+                        }else{
+                        }
+                        tablaCursos_OE_TblActionPerformed(e);
+            }
+        });
         
     }
 
@@ -92,7 +118,9 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 return canEdit [columnIndex];
             }
         });
-        tablaCursos_OC_Tbl.setEnabled(false);
+        tablaCursos_OC_Tbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaCursos_OC_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablaCursos_OC_Tbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaCursos_OC_Tbl);
         if (tablaCursos_OC_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaCursos_OC_Tbl.getColumnModel().getColumn(0).setResizable(false);
@@ -253,14 +281,23 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardar_IC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_IC_BtnActionPerformed
-        List<String> atr =  new ArrayList<String>();
-        atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
-        atr.add(nombre_IC_TFd.getText());
-        atr.add(descripcion_IC_TAa.getText());
-        control.alta(HelperEntidad.getCurso(atr));
+        if(guardar_IC_Btn.getText() == "Guardar"){            
+            List<String> atr =  new ArrayList<String>();
+            atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+            atr.add(nombre_IC_TFd.getText());
+            atr.add(descripcion_IC_TAa.getText());
+            control.alta(HelperEntidad.getCurso(atr));
+        }else{
+            List<String> atr =  new ArrayList<String>();
+            atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+            atr.add(nombre_IC_TFd.getText());
+            atr.add(descripcion_IC_TAa.getText());
+            control.modificacion(HelperEntidad.getCurso(atr , id));
+        }
     }//GEN-LAST:event_guardar_IC_BtnActionPerformed
 
     private void agregar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OC_BtnActionPerformed
+        guardar_IC_Btn.setText("Guardar");
         nombre_IC_TFd.setEnabled(true);
         descripcion_IC_TAa.setEnabled(true);
         seleccion_IC_CBx.setEnabled(true);
@@ -269,8 +306,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
     private void buscar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OC_BtnActionPerformed
        
-                model = new DefaultTableModel(titulosTabla, 4);
-        tablaCursos_OC_Tbl.setModel(model);
+        
         if(tipo_OC_CBx1.getSelectedIndex()== 0){
             control.buscarTodos();        
         }else if(tipo_OC_CBx1.getSelectedIndex() != 0){
@@ -278,6 +314,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_buscar_OC_BtnActionPerformed
 
+    private void tablaCursos_OE_TblActionPerformed(ListSelectionEvent e){
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar_OC_Btn;
     private javax.swing.JButton buscar_OC_Btn;
@@ -304,11 +342,27 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
     @Override
     public void setTabla(String[][] info) {
+        model = new DefaultTableModel(titulosTabla, 4);
+        tablaCursos_OC_Tbl.setModel(model);
         model.setDataVector(info, titulosTabla);
     }
 
     @Override
     public void setInfo(String[][] info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        id = Integer.parseInt(info[0][0]);
+        System.out.println(id);
+        nombre_IC_TFd.setText(info[1][0]);
+        descripcion_IC_TAa.setText(info[2][0]);
+        if(info[3][0].equals("conferencia")){
+            seleccion_IC_CBx.setSelectedIndex(0);
+        }else{
+            seleccion_IC_CBx.setSelectedIndex(1);
+        }
+            
+        nombre_IC_TFd.setEnabled(true);
+        descripcion_IC_TAa.setEnabled(true);
+        seleccion_IC_CBx.setEnabled(true);
+        guardar_IC_Btn.setText("Modificar");
+        
     }
 }
