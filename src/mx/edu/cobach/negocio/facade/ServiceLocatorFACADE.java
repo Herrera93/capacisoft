@@ -13,6 +13,7 @@ public class ServiceLocatorFACADE {
     
     //FACADE generico
     private static BaseFACADE facade;
+    private static EmpleadoFACADE empleadoFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara
@@ -23,5 +24,12 @@ public class ServiceLocatorFACADE {
             facade = new BaseFACADE();
         }
         return facade;
+    }
+    
+    public static EmpleadoFACADE getEmpleadoFacade(){
+        if(empleadoFacade == null){
+            empleadoFacade = new EmpleadoFACADE();
+        }
+        return empleadoFacade;
     }
 }

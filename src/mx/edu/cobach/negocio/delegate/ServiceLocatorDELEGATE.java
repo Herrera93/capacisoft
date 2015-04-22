@@ -12,11 +12,19 @@ package mx.edu.cobach.negocio.delegate;
 public class ServiceLocatorDELEGATE {
     
     private static BaseDELEGATE delegate;
+    private static EmpleadoDELEGATE empleadoDelegate;
     
     public static BaseDELEGATE getInstance(){
         if(delegate == null){
             delegate = new BaseDELEGATE();
         }        
         return delegate;
+    }
+    
+    public static EmpleadoDELEGATE getEmpleadoDelegate(){
+        if(empleadoDelegate == null){
+            empleadoDelegate = new EmpleadoDELEGATE();
+        }
+        return empleadoDelegate;
     }
 }
