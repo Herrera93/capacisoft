@@ -533,4 +533,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         departamento_IE_CBx.setEnabled(b);
         guardar_IE_Btn.setEnabled(b);
     }
+
+    @Override
+    public void setInfo(String[][] info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

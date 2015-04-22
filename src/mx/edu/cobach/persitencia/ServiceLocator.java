@@ -32,6 +32,8 @@ public class ServiceLocator {
             empleadoDAO = new EmpleadoDAO();
         }
         return empleadoDAO;
+    }
+    
     public static PuestoDAO getPuesto(){
         if(puestoDAO == null){
             puestoDAO = new PuestoDAO();

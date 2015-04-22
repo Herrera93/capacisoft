@@ -54,7 +54,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
         programarCursoRealizar_RC_Btn = new javax.swing.JButton();
         registrarCursoRealizado_RC_Btn = new javax.swing.JButton();
         pnlcalendario_OC_Pnl = new javax.swing.JPanel();
-        jPCalendar2 = new com.jpcomponents.JPCalendar();
+        jPCalendar1 = new com.jpcomponents.JPCalendar();
         BuscarCurso_Pnl = new javax.swing.JPanel();
         nombre_BC_Lbl = new javax.swing.JLabel();
         sede_BC_Lbl = new javax.swing.JLabel();
@@ -98,15 +98,15 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
             pnlcalendario_OC_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlcalendario_OC_PnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPCalendar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPCalendar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlcalendario_OC_PnlLayout.setVerticalGroup(
             pnlcalendario_OC_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlcalendario_OC_PnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPCalendar2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(pnlcalendario_OC_PnlLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout registrarCurso_PnlLayout = new javax.swing.GroupLayout(registrarCurso_Pnl);
@@ -142,7 +142,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                     .addComponent(registrarCursoRealizado_RC_Btn))
                 .addGap(18, 18, 18)
                 .addComponent(pnlcalendario_OC_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         opcionesCurso_TP.addTab("Registrar curso de capacitación", registrarCurso_Pnl);
@@ -230,7 +230,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                     .addComponent(sede_BC_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         opcionesCurso_TP.addTab("Buscar Curso", BuscarCurso_Pnl);
@@ -278,7 +278,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BuscarCurso_Pnl;
     private javax.swing.JButton buscar_BC_Btn;
-    private com.jpcomponents.JPCalendar jPCalendar2;
+    private com.jpcomponents.JPCalendar jPCalendar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreCurso_RC_Lbl;

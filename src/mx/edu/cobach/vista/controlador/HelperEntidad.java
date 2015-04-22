@@ -68,6 +68,7 @@ public class HelperEntidad {
                 return descomponerEmpleados(emps);
             }
         }
+        return null;
     }
     
     private static String[][] descomponerPuesto(Puesto p){

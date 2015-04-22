@@ -13,6 +13,7 @@ public class ServiceLocatorFACADE {
     
     //FACADE generico
     private static BaseFACADE facade;
+    private static PuestoFACADE puestoFacade;
     private static EmpleadoFACADE empleadoFacade;
     
     /**
@@ -31,6 +32,8 @@ public class ServiceLocatorFACADE {
             empleadoFacade = new EmpleadoFACADE();
         }
         return empleadoFacade;
+    }
+    
     public static PuestoFACADE getPuesto(){
         if(puestoFacade == null){
             puestoFacade = new PuestoFACADE();
