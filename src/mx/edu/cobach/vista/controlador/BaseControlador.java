@@ -17,9 +17,9 @@ import mx.edu.cobach.vista.Comunicador;
 public class BaseControlador{
 
     //Comunicador con la interfaz grafica
-    private final Comunicador com;
+    protected final Comunicador com;
     //Clase con la que estara trabajando la base de datos
-    private Class clazz;
+    protected Class clazz;
     
     /**
      * Inicializa el controlador y asigna los atributos
@@ -68,11 +68,27 @@ public class BaseControlador{
     }
 
     /**
-     * Metodo para buscar todos los registros
+     * Metodo para buscar todos los registros y escribirlos en la tabla de 
+     * Comunicador
      */
     public void buscarTodos() {
         List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
         com.setTabla(HelperEntidad.descomponerObjetos(ls));
+    }
+    
+    /**
+     * Metodo para buscar todos los registros y escribirlos en la lista de 
+     * Comunicador
+     * @param lista Numero de identificador de lista donde se escribiran los
+     * registros
+     */
+    public void buscarTodosLista(int lista){
+        List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
+        com.setLista(ls, lista);
+    }
+    
+    public void setClass(Class clazz){
+        this.clazz = clazz;
     }
         
 }
