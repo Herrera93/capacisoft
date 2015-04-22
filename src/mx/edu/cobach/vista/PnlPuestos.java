@@ -116,6 +116,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         });
         tablaPuestos_OE_Tbl.setColumnSelectionAllowed(true);
+        tablaPuestos_OE_Tbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaPuestos_OE_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaPuestos_OE_Tbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaPuestos_OE_Tbl);
@@ -243,9 +244,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     private void agregar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OP_BtnActionPerformed
         if(agregar_OP_Btn.getText().equals("Guardar")){
-            
             System.out.println("guarda");
-            control.alta(HelperEntidad.getPuesto(nombrePuesto_IE_TFd.getText()));
+            //control.alta(HelperEntidad.getPuesto((nombrePuesto_IE_TFd.getText());
             nombrePuesto_IE_TFd.setText("");
             agregar_OD_Btn.setEnabled(true);
             nombrePuesto_IP_Lbl.setEnabled(false);
