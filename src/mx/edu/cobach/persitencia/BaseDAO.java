@@ -84,13 +84,13 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
      * @return Regresa una lista con los registros
      */
     @Override
-    public List<T> findAll() {
-        List<T> ts = null;        
+    public List<Object> findAll() {
+        List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            ts = (List<T>) HibernateUtil.getSession()
-                    .createCriteria(entityClass);
+            ts = HibernateUtil.getSession()
+                    .createCriteria(entityClass).list();
             HibernateUtil.commitTransaction();
             System.out.println("Buscar todos");
         }catch(HibernateException e){

@@ -14,7 +14,7 @@ import java.util.List;
 public interface InterfaceDAO<T> {
     void saveOrUpdate(T t);
     T find(int id);
-    List<T> findAll();
+    List<Object> findAll();
     void delete(T t);
     void setEntity(Class<T> cl);
 }
