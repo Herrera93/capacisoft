@@ -36,5 +36,22 @@ public class CursoDAO<T> extends BaseDAO{
         }
         return t;
     }
+    public List<T> findNombre(String nombre) {
+        List<T> t = null;
+        System.out.println(nombre);
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            t = (List<T>) HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("nombre", nombre)).list();
+            HibernateUtil.commitTransaction();
+            System.out.println("Buscando Object");
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();   
+        }
+        return t;
+    }
 }
 
