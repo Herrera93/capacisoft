@@ -23,13 +23,22 @@ public class HelperEntidad {
         return puesto;        
     }
     public static Puesto getPuesto(String atributo){
-        return new Puesto(atributo);        
+        return new Puesto(atributo);
     }
+    
     public static Curso getCurso(List<String> atributos){
         TipoCurso tc = new TipoCurso();
         tc.setId(Integer.parseInt(atributos.get(0)));
         return new Curso(tc,atributos.get(1),atributos.get(2));
     }
+    public static Curso getCurso(List<String> atributos, int id){
+        TipoCurso tc = new TipoCurso();
+        tc.setId(Integer.parseInt(atributos.get(0)));
+        Curso c = new Curso(tc,atributos.get(1),atributos.get(2));
+        c.setId(id);
+        return c;
+    }
+    
     public static String[][] descomponerObjeto(Object obj){
         if(obj instanceof Puesto){
             return descomponerPuesto((Puesto) obj);
@@ -75,14 +84,19 @@ public class HelperEntidad {
         return info;
     }
     private static String[][] descomponerCurso(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[][] info = new String[5][1];
+            info[0][0] = curso.getId() + "";
+            info[1][0] = curso.getNombre();
+            info[2][0]= curso.getDescripcion();
+            info[3][0] = curso.getTipoCurso().toString();
+        return info;
     }
 
     private static String[][] descomponerCursos(List<Curso> cr) {
         String[][] info = new String[cr.size()][2];
         for(int i = 0; i < cr.size(); i++){
             Curso c = cr.get(i);
-            info[i][0] = c.getDescripcion();
+            info[i][0] = c.getNombre();
             info[i][1] = c.getTipoCurso().toString();
         }
         return info;
