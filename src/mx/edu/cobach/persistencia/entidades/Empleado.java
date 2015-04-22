@@ -16,6 +16,7 @@ public class Empleado  implements java.io.Serializable {
      private Departamento departamento;
      private Plantel plantel;
      private Puesto puesto;
+     private String numero;
      private String primerNombre;
      private String segundoNombre;
      private String apellidoPaterno;
@@ -129,7 +130,15 @@ public class Empleado  implements java.io.Serializable {
         this.respuestas = respuestas;
     }
 
+    public String getNumero() {
+        return numero;
+    }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+    
+    
 
 
 }
