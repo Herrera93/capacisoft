@@ -54,7 +54,7 @@ public class BaseControlador{
      * @param obj Objeto del registro a actualizar
      */
     public void modificacion(Object obj) {
-        ServiceLocatorDELEGATE.getInstance().saveOrUpdate(com, clazz);
+        ServiceLocatorDELEGATE.getInstance().saveOrUpdate(obj, clazz);
         com.setMensaje("Se ha modificado existosamente");
     }
 
