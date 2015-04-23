@@ -274,7 +274,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         });
         mantenimientoCurso_Mn.add(empleado_MIt);
 
-        curso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        curso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK));
         curso_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         curso_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/curso.png"))); // NOI18N
         curso_MIt.setText("Cursos de capacitación");
@@ -292,7 +292,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         reportes_Mn.setIconTextGap(20);
         reportes_Mn.setPreferredSize(new java.awt.Dimension(100, 19));
 
-        kardex_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_MASK));
+        kardex_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.ALT_MASK));
         kardex_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         kardex_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/kardex.png"))); // NOI18N
         kardex_MIt.setText("Kardex");
@@ -340,7 +340,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         procesos_Mn.setIconTextGap(20);
         procesos_Mn.setPreferredSize(new java.awt.Dimension(80, 19));
 
-        programarCurso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        programarCurso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
         programarCurso_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         programarCurso_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/Calendar.png"))); // NOI18N
         programarCurso_MIt.setText("Programar Curso");
@@ -352,7 +352,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         });
         procesos_Mn.add(programarCurso_MIt);
 
-        encuesta_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        encuesta_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         encuesta_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         encuesta_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/encuesta.png"))); // NOI18N
         encuesta_MIt.setText("Realizar Encuesta");
@@ -363,7 +363,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         });
         procesos_Mn.add(encuesta_MIt);
 
-        alertas_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        alertas_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         alertas_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         alertas_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/alerta.png"))); // NOI18N
         alertas_MIt.setText("Administrar Alertas");
@@ -537,6 +537,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_curso_MItActionPerformed
 
     private void empleado_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleado_MItActionPerformed
+        this.setTitle("Capacisoft - Empleados Administrativos");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -592,6 +593,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_sedes_MItActionPerformed
 
     private void puestos_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puestos_MItActionPerformed
+        this.setTitle("Capacisoft - Puesto");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
