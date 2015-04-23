@@ -15,6 +15,7 @@ public class ServiceLocator {
     private static BaseDAO baseDAO;    
     private static PuestoDAO puestoDAO;
     private static CursoDAO cursoDAO;
+    private static EmpleadoDAO empleadoDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara
@@ -26,6 +27,14 @@ public class ServiceLocator {
         }
         return baseDAO;
     }
+    
+    public static EmpleadoDAO getEmpleado(){
+        if(empleadoDAO == null){
+            empleadoDAO = new EmpleadoDAO();
+        }
+        return empleadoDAO;
+    }
+    
     public static PuestoDAO getPuesto(){
         if(puestoDAO == null){
             puestoDAO = new PuestoDAO();

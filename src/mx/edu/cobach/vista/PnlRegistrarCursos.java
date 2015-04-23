@@ -72,7 +72,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         opcionesCurso_Pnl = new javax.swing.JPanel();
         tipo_OC_Lbl = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        cursos_OC_SPn = new javax.swing.JScrollPane();
         tablaCursos_OC_Tbl = new javax.swing.JTable();
         agregar_OC_Btn = new javax.swing.JButton();
         buscar_OC_Btn = new javax.swing.JButton();
@@ -80,7 +80,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         informacionCurso_Pnl = new javax.swing.JPanel();
         tipo_IC_Lbl = new javax.swing.JLabel();
         guardar_IC_Btn = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        descripcion_IC_SPn = new javax.swing.JScrollPane();
         descripcion_IC_TAa = new javax.swing.JTextArea();
         nombre_IC_TFd = new javax.swing.JTextField();
         seleccion_IC_CBx = new javax.swing.JComboBox();
@@ -121,7 +121,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         tablaCursos_OC_Tbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaCursos_OC_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaCursos_OC_Tbl.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tablaCursos_OC_Tbl);
+        cursos_OC_SPn.setViewportView(tablaCursos_OC_Tbl);
         if (tablaCursos_OC_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaCursos_OC_Tbl.getColumnModel().getColumn(0).setResizable(false);
             tablaCursos_OC_Tbl.getColumnModel().getColumn(1).setResizable(false);
@@ -155,7 +155,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addContainerGap()
                 .addGroup(opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(cursos_OC_SPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -184,7 +184,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                     .addComponent(agregar_OC_Btn)
                     .addComponent(buscar_OC_Btn))
                 .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cursos_OC_SPn, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -206,7 +206,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         descripcion_IC_TAa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         descripcion_IC_TAa.setRows(5);
         descripcion_IC_TAa.setEnabled(false);
-        jScrollPane2.setViewportView(descripcion_IC_TAa);
+        descripcion_IC_SPn.setViewportView(descripcion_IC_TAa);
 
         nombre_IC_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombre_IC_TFd.setEnabled(false);
@@ -235,7 +235,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                     .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                         .addComponent(descripcion_IC_Lbl)
                         .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(descripcion_IC_SPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                         .addComponent(nombre_IC_Lbl)
                         .addGap(28, 28, 28)
@@ -258,7 +258,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addGap(75, 75, 75)
                 .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descripcion_IC_Lbl)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(descripcion_IC_SPn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guardar_IC_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -319,12 +319,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar_OC_Btn;
     private javax.swing.JButton buscar_OC_Btn;
+    private javax.swing.JScrollPane cursos_OC_SPn;
     private javax.swing.JLabel descripcion_IC_Lbl;
+    private javax.swing.JScrollPane descripcion_IC_SPn;
     private javax.swing.JTextArea descripcion_IC_TAa;
     private javax.swing.JButton guardar_IC_Btn;
     private javax.swing.JPanel informacionCurso_Pnl;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel nombre_IC_Lbl;
     private javax.swing.JTextField nombre_IC_TFd;
     private javax.swing.JPanel opcionesCurso_Pnl;
@@ -364,5 +364,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         seleccion_IC_CBx.setEnabled(true);
         guardar_IC_Btn.setText("Modificar");
         
+    }
+
+    @Override
+    public void setLista(List info, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

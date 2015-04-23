@@ -34,7 +34,7 @@ public class PnlLogin extends javax.swing.JPanel {
         nombre_Lbl = new javax.swing.JLabel();
         contrasena_Lbl = new javax.swing.JLabel();
         nombre_TFd = new javax.swing.JTextField();
-        contrasena_TFd = new javax.swing.JPasswordField();
+        contrasena_PFd = new javax.swing.JPasswordField();
         ingresar_Btb = new javax.swing.JButton();
         salir_Btb = new javax.swing.JButton();
 
@@ -46,7 +46,7 @@ public class PnlLogin extends javax.swing.JPanel {
 
         nombre_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        contrasena_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        contrasena_PFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         ingresar_Btb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresar_Btb.setText("Ingresar");
@@ -77,7 +77,7 @@ public class PnlLogin extends javax.swing.JPanel {
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nombre_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contrasena_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contrasena_PFd, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ingresar_Btb, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(150, 150, 150))
         );
@@ -91,7 +91,7 @@ public class PnlLogin extends javax.swing.JPanel {
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contrasena_Lbl)
-                    .addComponent(contrasena_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(contrasena_PFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salir_Btb, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,7 +111,7 @@ public class PnlLogin extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel contrasena_Lbl;
-    private javax.swing.JPasswordField contrasena_TFd;
+    private javax.swing.JPasswordField contrasena_PFd;
     private javax.swing.JButton ingresar_Btb;
     private javax.swing.JLabel nombre_Lbl;
     private javax.swing.JTextField nombre_TFd;

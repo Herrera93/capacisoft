@@ -26,7 +26,7 @@
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="nombre_TFd" alignment="1" min="-2" pref="228" max="-2" attributes="0"/>
-                  <Component id="contrasena_TFd" min="-2" pref="228" max="-2" attributes="0"/>
+                  <Component id="contrasena_PFd" min="-2" pref="228" max="-2" attributes="0"/>
                   <Component id="ingresar_Btb" min="-2" pref="108" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
@@ -44,7 +44,7 @@
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="contrasena_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="contrasena_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="contrasena_PFd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -80,7 +80,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="contrasena_TFd">
+    <Component class="javax.swing.JPasswordField" name="contrasena_PFd">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>

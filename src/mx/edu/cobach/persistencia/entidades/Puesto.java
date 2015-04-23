@@ -31,7 +31,7 @@ public class Puesto  implements java.io.Serializable {
         return this.id;
     }
     
-    public void setId(Integer id) {
+    public void setId(Integer id) {     
         this.id = id;
     }
     public String getNombre() {
@@ -48,10 +48,11 @@ public class Puesto  implements java.io.Serializable {
     public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
     }
-
-
-
-
+    
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
 }
 
 

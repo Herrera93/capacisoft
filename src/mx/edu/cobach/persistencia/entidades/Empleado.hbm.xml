@@ -20,6 +20,9 @@
         <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select">
             <column name="puesto_id" not-null="true" />
         </many-to-one>
+        <property name="numero" type="string">
+            <column name="numero" length="10" not-null="true" unique="true" />
+        </property>
         <property name="primerNombre" type="string">
             <column name="primer_nombre" length="45" not-null="true" />
         </property>
