@@ -27,6 +27,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private BaseControlador control;
     private PuestoControlador puestoControl;
     private int idPuesto;
+
     /**
      * Creates new form PnlPuestos
      */
@@ -35,49 +36,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         model = new DefaultTableModel(titulosTabla, 4);
         tablaPuestos_OE_Tbl.setModel(model);
         control = new BaseControlador(this, Puesto.class);
-        puestoControl = new PuestoControlador(this,Puesto.class);
-        tablaPuestos_OE_Tbl.getSelectionModel().addListSelectionListener(
-            new ListSelectionListener() {
-                @Override
-                public void valueChanged(ListSelectionEvent e) {
-                    int dialogResult;
-                    String nombreBusqu = null;
-                    //String nombreBusqu2 = null;
-                    int[] selectedRow = tablaPuestos_OE_Tbl.getSelectedRows();
-                    int[] selectedColumns = tablaPuestos_OE_Tbl.
-                            getSelectedColumns();
-                    for (int i = 0; i < selectedRow.length; i++) {
-                        for (int j = 0; j < selectedColumns.length; j++) {
-                            nombreBusqu = (String) tablaPuestos_OE_Tbl.
-                                getValueAt(selectedRow[i], selectedColumns[j]);
-                       }
-                    }
-                    if(nombreBusqu!=null){
-                        puestoControl.buscarMod(nombreBusqu);
-                    }else{
-                        int dialogButton = JOptionPane.YES_NO_OPTION;
-                        nombreBusqu = (String) tablaPuestos_OE_Tbl.
-                            getValueAt(tablaPuestos_OE_Tbl.getSelectedRow(),0).toString();
-                        puestoControl.buscarMod(nombreBusqu);
-                        dialogResult = JOptionPane.showConfirmDialog 
-                            (null, "¿Desea eliminar el puesto "+nombreBusqu+"?",
-                                "Warning",dialogButton);
-                        if(dialogResult == JOptionPane.YES_OPTION){
-                            List<String> atr = new ArrayList<String>();
-                            atr.add(idPuesto+"");
-                            atr.add(nombrePuesto_IE_TFd.getText());
-                            control.baja(HelperEntidad.getPuesto(atr));
-                            //tablaPuestos_OE_Tbl.getSelectionModel().clearSelection();
-                            buscar_OD_Btn.doClick();
-                        }else{
-                            tablaPuestos_OE_Tbl.clearSelection();
-                        }
-                    }
-                    //tablaPuestos_OE_TblActionPerformed(e);
-                }
-            });
+        puestoControl = new PuestoControlador(this, Puesto.class);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,7 +50,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         opcionPuesto_Pnl = new javax.swing.JPanel();
         nombrePuesto_OP_Lbl = new javax.swing.JLabel();
-        nombrePuesto_OE_TFd = new javax.swing.JTextField();
+        nombrePuesto_OP_TFd = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPuestos_OE_Tbl = new javax.swing.JTable();
         buscar_OD_Btn = new javax.swing.JButton();
@@ -103,8 +64,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         nombrePuesto_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_OP_Lbl.setText("Nombre del puesto:");
+        nombrePuesto_OP_Lbl.setEnabled(false);
 
-        nombrePuesto_OE_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombrePuesto_OP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombrePuesto_OP_TFd.setEnabled(false);
 
         tablaPuestos_OE_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,7 +81,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -136,6 +99,11 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         tablaPuestos_OE_Tbl.setEnabled(false);
         tablaPuestos_OE_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tablaPuestos_OE_Tbl.getTableHeader().setReorderingAllowed(false);
+        tablaPuestos_OE_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPuestos_OE_TblMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaPuestos_OE_Tbl);
         tablaPuestos_OE_Tbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tablaPuestos_OE_Tbl.getColumnModel().getColumnCount() > 0) {
@@ -178,7 +146,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                         .addGap(21, 21, 21)
                         .addComponent(nombrePuesto_OP_Lbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombrePuesto_OE_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 78, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -188,7 +156,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 .addGap(40, 40, 40)
                 .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePuesto_OP_Lbl)
-                    .addComponent(nombrePuesto_OE_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscar_OD_Btn)
@@ -260,19 +228,19 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OP_BtnActionPerformed
-        if(nombrePuesto_IE_TFd.getText().equals("")){
+        if (nombrePuesto_IE_TFd.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
-        }else{
-            if(agregar_OP_Btn.getText().equals("Guardar")){
+        } else {
+            if (agregar_OP_Btn.getText().equals("Guardar")) {
                 control.alta(HelperEntidad.getPuesto(nombrePuesto_IE_TFd.getText()));
                 nombrePuesto_IE_TFd.setText("");
                 agregar_OD_Btn.setEnabled(true);
                 nombrePuesto_IP_Lbl.setEnabled(false);
                 nombrePuesto_IE_TFd.setEnabled(false);
                 agregar_OP_Btn.setEnabled(false);
-            }else if(agregar_OP_Btn.getText().equals("Modificar")){
+            } else if (agregar_OP_Btn.getText().equals("Modificar")) {
                 List<String> atr = new ArrayList<String>();
-                atr.add(idPuesto+"");
+                atr.add(idPuesto + "");
                 atr.add(nombrePuesto_IE_TFd.getText());
                 control.modificacion(HelperEntidad.getPuesto(atr));
                 nombrePuesto_IE_TFd.setText("");
@@ -286,11 +254,14 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_agregar_OP_BtnActionPerformed
 
     private void buscar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OD_BtnActionPerformed
-        if(nombrePuesto_OE_TFd.getText().equals("")){
+        if(nombrePuesto_OP_TFd.isEnabled()==false){
+            nombrePuesto_OP_Lbl.setEnabled(true);
+            nombrePuesto_OP_TFd.setEnabled(true);
+        } else if (nombrePuesto_OP_TFd.getText().equals("")) {
             control.buscarTodos();
-        }else{
-            puestoControl.buscar(nombrePuesto_OE_TFd.getText());
-        }        
+        } else {
+            puestoControl.buscar(nombrePuesto_OP_TFd.getText());
+        }
     }//GEN-LAST:event_buscar_OD_BtnActionPerformed
 
     private void agregar_OD_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OD_BtnActionPerformed
@@ -302,7 +273,40 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregar_OD_Btn.setEnabled(false);
     }//GEN-LAST:event_agregar_OD_BtnActionPerformed
 
-    private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
+    private void tablaPuestos_OE_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPuestos_OE_TblMouseClicked
+        int dialogResult;
+        Object nombreBusqu = null;
+        int[] selectedRow = tablaPuestos_OE_Tbl.getSelectedRows();
+        int[] selectedColumns = tablaPuestos_OE_Tbl.
+                getSelectedColumns();
+        for (int i = 0; i < selectedRow.length; i++) {
+            for (int j = 0; j < selectedColumns.length; j++) {
+                nombreBusqu = (Object) tablaPuestos_OE_Tbl.
+                        getValueAt(selectedRow[i], selectedColumns[j]);
+            }
+        }
+        if (nombreBusqu.toString()!="true") {
+            puestoControl.buscarMod(nombreBusqu.toString());
+        } else {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            nombreBusqu = (String) tablaPuestos_OE_Tbl.
+                    getValueAt(tablaPuestos_OE_Tbl.getSelectedRow(), 0).toString();
+            puestoControl.buscarMod(nombreBusqu.toString());
+            dialogResult = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el puesto " + nombreBusqu + "?",
+                    "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                List<String> atr = new ArrayList<String>();
+                atr.add(idPuesto + "");
+                atr.add(nombrePuesto_IE_TFd.getText());
+                control.baja(HelperEntidad.getPuesto(atr));
+                buscar_OD_Btn.doClick();
+            } else {
+                tablaPuestos_OE_Tbl.clearSelection();
+            }
+        }
+    }//GEN-LAST:event_tablaPuestos_OE_TblMouseClicked
+
+private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar_OD_Btn;
@@ -312,25 +316,34 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombrePuesto_IE_TFd;
     private javax.swing.JLabel nombrePuesto_IP_Lbl;
-    private javax.swing.JTextField nombrePuesto_OE_TFd;
     private javax.swing.JLabel nombrePuesto_OP_Lbl;
+    private javax.swing.JTextField nombrePuesto_OP_TFd;
     private javax.swing.JPanel opcionPuesto_Pnl;
     private javax.swing.JTable tablaPuestos_OE_Tbl;
     // End of variables declaration//GEN-END:variables
     
     @Override
-    public void setMensaje(String mensaje) {
+        public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
 
     @Override
-    public void setTabla(String[][] info) {
+        public void setTabla(String[][] info) {
         tablaPuestos_OE_Tbl.setEnabled(true);
         //tablaPuestos_OE_Tbl.getSelectionModel().clearSelection();
         model.setDataVector(info, titulosTabla);
         TableColumn tc = tablaPuestos_OE_Tbl.getColumnModel().getColumn(1);
-        tc.setCellEditor(tablaPuestos_OE_Tbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tablaPuestos_OE_Tbl.getDefaultRenderer(Boolean.class));
+        tc
+
+.setCellEditor(tablaPuestos_OE_Tbl.getDefaultEditor(Boolean.class  
+
+    ));
+    tc.setCellRenderer (tablaPuestos_OE_Tbl.getDefaultRenderer
+
+    (Boolean.class  
+    
+
+    ));
     }
     
     @Override
@@ -346,6 +359,5 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     @Override
     public void setLista(List info, int i) {
     }
-    
-    
+
 }
