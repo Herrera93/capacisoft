@@ -23,7 +23,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="773" max="32767" attributes="0"/>
+              <EmptySpace pref="736" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,7 +46,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="opcionesCurso_TP" alignment="0" pref="404" max="32767" attributes="0"/>
+              <Component id="opcionesCurso_TP" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -73,42 +73,49 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="nombreCurso_RC_Lbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="tipoCurso_RC_CBx" min="-2" pref="185" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="pnlcalendario_OC_Pnl" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="opciones_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="nombreCurso_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="tipoCurso_RC_CBx" min="-2" pref="185" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="registrarCursoRealizado_RC_Btn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="13" max="32767" attributes="0"/>
                                   <Component id="programarCursoRealizar_RC_Btn" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="pnlcalendario_OC_Pnl" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="opciones_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="nombreCurso_RC_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tipoCurso_RC_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="programarCursoRealizar_RC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="registrarCursoRealizado_RC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="registrarCursoRealizado_RC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="programarCursoRealizar_RC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="pnlcalendario_OC_Pnl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="75" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -162,8 +169,8 @@
                 <Container class="javax.swing.JPanel" name="pnlcalendario_OC_Pnl">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                        <EtchetBorder/>
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
                       </Border>
                     </Property>
                   </Properties>
@@ -173,26 +180,34 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPCalendar1" max="32767" attributes="0"/>
+                              <Component id="calendario_RC_Cal" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="jPCalendar1" min="-2" pref="321" max="-2" attributes="0"/>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <Component id="calendario_RC_Cal" pref="288" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="com.jpcomponents.JPCalendar" name="jPCalendar1">
+                    <Component class="com.jpcomponents.JPCalendar" name="calendario_RC_Cal">
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="opciones_RC_Lbl">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="18" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Opciones"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="BuscarCurso_Pnl">
@@ -216,44 +231,57 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nombre_BC_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="sede_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="buscar_BC_Btn" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="sede_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                                              <Component id="nombre_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="seleccion_BC_CBx" pref="163" max="32767" attributes="0"/>
+                                              <Component id="sede_BC_TFd" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane4" alignment="1" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="seleccion_BC_CBx" pref="163" max="32767" attributes="0"/>
-                              <Component id="sede_BC_TFd" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="buscar_BC_Btn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" pref="376" max="-2" attributes="0"/>
-                          <EmptySpace pref="19" max="32767" attributes="0"/>
+                          <Component id="opciones_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <Component id="opciones_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="nombre_BC_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="seleccion_BC_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="buscar_BC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="sede_BC_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="sede_BC_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" pref="357" max="-2" attributes="0"/>
-                          <EmptySpace pref="88" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="buscar_BC_Btn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" min="-2" pref="348" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -351,6 +379,14 @@
                         <StringItem index="3" value="Item 4"/>
                       </StringArray>
                     </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="opciones_BC_Lbl">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="18" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Opciones"/>
                   </Properties>
                 </Component>
               </SubComponents>
