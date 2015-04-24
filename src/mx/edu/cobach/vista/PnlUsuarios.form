@@ -60,13 +60,13 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="opciones_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="opciones_OU_Lbl" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Component id="nombreUsuario_OU_Lbl" min="-2" pref="122" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="nombreUsuario_OU_TFd" min="-2" pref="146" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="nota_OP_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nota_OU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="97" max="32767" attributes="0"/>
                               </Group>
@@ -81,9 +81,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="opciones_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opciones_OU_Lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="nota_OU_Lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreUsuario_OU_Lbl" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
@@ -179,7 +179,7 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="opciones_OU_Lbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -187,7 +187,7 @@
             <Property name="text" type="java.lang.String" value="Opciones "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="nota_OU_Lbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
           </Properties>
@@ -223,8 +223,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregar_IP_LBl" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="nota_IU_Lbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="agregar_IU_LBl" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -254,9 +254,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                  <Component id="agregar_IP_LBl" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregar_IU_LBl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="nota_IU_Lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreEmpleado_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -360,12 +360,12 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="nota_IU_Lbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="agregar_IP_LBl">
+        <Component class="javax.swing.JLabel" name="agregar_IU_LBl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>

@@ -33,8 +33,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
         nombreUsuario_OU_TFd = new javax.swing.JTextField();
         buscar_OU_Btn = new javax.swing.JButton();
         agregar_OU_Btn = new javax.swing.JButton();
-        opciones_OP_Lbl = new javax.swing.JLabel();
-        nota_OP_Lbl = new javax.swing.JLabel();
+        opciones_OU_Lbl = new javax.swing.JLabel();
+        nota_OU_Lbl = new javax.swing.JLabel();
         informacionUsuarios_Pnl = new javax.swing.JPanel();
         nombreEmpleado_IU_Lbl = new javax.swing.JLabel();
         nombreEmpleado_IU_TFd = new javax.swing.JTextField();
@@ -45,8 +45,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
         tipo_IU_Lbl = new javax.swing.JLabel();
         tipo_IU_CBx = new javax.swing.JComboBox();
         guardar_IU_Btn = new javax.swing.JButton();
-        nota_IP_Lbl = new javax.swing.JLabel();
-        agregar_IP_LBl = new javax.swing.JLabel();
+        nota_IU_Lbl = new javax.swing.JLabel();
+        agregar_IU_LBl = new javax.swing.JLabel();
 
         opcionUsuarios_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -89,10 +89,10 @@ public class PnlUsuarios extends javax.swing.JPanel {
         agregar_OU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OU_Btn.setText("Agregar");
 
-        opciones_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        opciones_OP_Lbl.setText("Opciones ");
+        opciones_OU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OU_Lbl.setText("Opciones ");
 
-        nota_OP_Lbl.setText("Ingrese el nombre para buscar la información especifica");
+        nota_OU_Lbl.setText("Ingrese el nombre para buscar la información especifica");
 
         javax.swing.GroupLayout opcionUsuarios_PnlLayout = new javax.swing.GroupLayout(opcionUsuarios_Pnl);
         opcionUsuarios_Pnl.setLayout(opcionUsuarios_PnlLayout);
@@ -113,12 +113,12 @@ public class PnlUsuarios extends javax.swing.JPanel {
                                 .addGap(13, 13, 13))
                             .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
                                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opciones_OP_Lbl)
+                                    .addComponent(opciones_OU_Lbl)
                                     .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
                                         .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(nota_OP_Lbl))
+                                    .addComponent(nota_OU_Lbl))
                                 .addGap(0, 97, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -126,9 +126,9 @@ public class PnlUsuarios extends javax.swing.JPanel {
             opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionUsuarios_PnlLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(opciones_OP_Lbl)
+                .addComponent(opciones_OU_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_OP_Lbl)
+                .addComponent(nota_OU_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,10 +174,10 @@ public class PnlUsuarios extends javax.swing.JPanel {
         guardar_IU_Btn.setText("Guardar");
         guardar_IU_Btn.setEnabled(false);
 
-        nota_IP_Lbl.setText("Ingrese la información a almacenar");
+        nota_IU_Lbl.setText("Ingrese la información a almacenar");
 
-        agregar_IP_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregar_IP_LBl.setText("Agregar");
+        agregar_IU_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregar_IU_LBl.setText("Agregar");
 
         javax.swing.GroupLayout informacionUsuarios_PnlLayout = new javax.swing.GroupLayout(informacionUsuarios_Pnl);
         informacionUsuarios_Pnl.setLayout(informacionUsuarios_PnlLayout);
@@ -197,8 +197,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
                     .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nota_IP_Lbl)
-                            .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(nota_IU_Lbl)
+                            .addComponent(agregar_IU_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
@@ -218,9 +218,9 @@ public class PnlUsuarios extends javax.swing.JPanel {
             informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(agregar_IP_LBl)
+                .addComponent(agregar_IU_LBl)
                 .addGap(18, 18, 18)
-                .addComponent(nota_IP_Lbl)
+                .addComponent(nota_IU_Lbl)
                 .addGap(28, 28, 28)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreEmpleado_IU_Lbl)
@@ -255,7 +255,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel agregar_IP_LBl;
+    private javax.swing.JLabel agregar_IU_LBl;
     private javax.swing.JButton agregar_OU_Btn;
     private javax.swing.JButton buscar_OU_Btn;
     private javax.swing.JLabel contrasena_IU_Lbl;
@@ -269,10 +269,10 @@ public class PnlUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField nombreUsuario_IU_TFd;
     private javax.swing.JLabel nombreUsuario_OU_Lbl;
     private javax.swing.JTextField nombreUsuario_OU_TFd;
-    private javax.swing.JLabel nota_IP_Lbl;
-    private javax.swing.JLabel nota_OP_Lbl;
+    private javax.swing.JLabel nota_IU_Lbl;
+    private javax.swing.JLabel nota_OU_Lbl;
     private javax.swing.JPanel opcionUsuarios_Pnl;
-    private javax.swing.JLabel opciones_OP_Lbl;
+    private javax.swing.JLabel opciones_OU_Lbl;
     private javax.swing.JTable tablaUsuarios_OU_Tbl;
     private javax.swing.JComboBox tipo_IU_CBx;
     private javax.swing.JLabel tipo_IU_Lbl;
