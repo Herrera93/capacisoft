@@ -48,7 +48,14 @@ public class PnlUsuarios extends javax.swing.JPanel {
         nota_IU_Lbl = new javax.swing.JLabel();
         agregar_IU_LBl = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1181, 587));
+        setMinimumSize(new java.awt.Dimension(1181, 587));
+        setPreferredSize(new java.awt.Dimension(1181, 587));
+
         opcionUsuarios_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionUsuarios_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionUsuarios_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionUsuarios_Pnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
         tablaUsuarios_OU_Tbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tablaUsuarios_OU_Tbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -70,6 +77,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tablaUsuarios_OU_Tbl.setMaximumSize(new java.awt.Dimension(225, 64));
+        tablaUsuarios_OU_Tbl.setMinimumSize(new java.awt.Dimension(225, 64));
         jScrollPane1.setViewportView(tablaUsuarios_OU_Tbl);
         if (tablaUsuarios_OU_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaUsuarios_OU_Tbl.getColumnModel().getColumn(0).setResizable(false);
@@ -107,19 +116,19 @@ public class PnlUsuarios extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                                .addComponent(agregar_OU_Btn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscar_OU_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13))
-                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
                                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(opciones_OU_Lbl)
                                     .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                                        .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nombreUsuario_OU_Lbl)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(nota_OU_Lbl))
-                                .addGap(0, 97, Short.MAX_VALUE)))))
+                                .addGap(0, 98, Short.MAX_VALUE))
+                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                                .addComponent(agregar_OU_Btn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buscar_OU_Btn)
+                                .addGap(21, 21, 21)))))
                 .addContainerGap())
         );
         opcionUsuarios_PnlLayout.setVerticalGroup(
@@ -131,7 +140,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
                 .addComponent(nota_OU_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreUsuario_OU_Lbl)
                     .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -143,6 +152,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
         );
 
         informacionUsuarios_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionUsuarios_Pnl.setMaximumSize(new java.awt.Dimension(767, 339));
+        informacionUsuarios_Pnl.setMinimumSize(new java.awt.Dimension(767, 339));
 
         nombreEmpleado_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreEmpleado_IU_Lbl.setText("Nombre del Empleado:");
@@ -243,14 +254,14 @@ public class PnlUsuarios extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
