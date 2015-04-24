@@ -33,12 +33,16 @@ public class PnlDepartamento extends javax.swing.JPanel {
         nombreDepartamento_OD_TFd = new javax.swing.JTextField();
         buscar_OD_Btn = new javax.swing.JButton();
         agregar_OD_Btn = new javax.swing.JButton();
+        opciones_OD_Lbl = new javax.swing.JLabel();
+        nota_OD_Lbl = new javax.swing.JLabel();
         informacionDepartamento_Pnl = new javax.swing.JPanel();
         nombreDepartamento_ID_Lbl = new javax.swing.JLabel();
         nombreDepartamento_ID_TFd = new javax.swing.JTextField();
         direccion_ID_Lbl = new javax.swing.JLabel();
         direccion_IE_CBx = new javax.swing.JComboBox();
         guardar_OD_Btn = new javax.swing.JButton();
+        nota_ID_Lbl = new javax.swing.JLabel();
+        agregar_ID_LBl = new javax.swing.JLabel();
 
         opcionDepartamento_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -72,12 +76,18 @@ public class PnlDepartamento extends javax.swing.JPanel {
         nombreDepartamento_OD_Lbl.setText("Nombre del deparmanto:");
 
         nombreDepartamento_OD_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreDepartamento_OD_TFd.setEnabled(false);
 
         buscar_OD_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscar_OD_Btn.setText("Buscar");
 
         agregar_OD_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OD_Btn.setText("Agregar");
+
+        opciones_OD_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OD_Lbl.setText("Opciones ");
+
+        nota_OD_Lbl.setText("Ingrese el nombre para buscar la información especifica");
 
         javax.swing.GroupLayout opcionDepartamento_PnlLayout = new javax.swing.GroupLayout(opcionDepartamento_Pnl);
         opcionDepartamento_Pnl.setLayout(opcionDepartamento_PnlLayout);
@@ -93,30 +103,38 @@ public class PnlDepartamento extends javax.swing.JPanel {
                         .addGap(8, 8, 8)
                         .addGroup(opcionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(opcionDepartamento_PnlLayout.createSequentialGroup()
-                                .addComponent(nombreDepartamento_OD_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombreDepartamento_OD_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 57, Short.MAX_VALUE))
-                            .addGroup(opcionDepartamento_PnlLayout.createSequentialGroup()
                                 .addComponent(agregar_OD_Btn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscar_OD_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))))
+                                .addGap(18, 18, 18))
+                            .addGroup(opcionDepartamento_PnlLayout.createSequentialGroup()
+                                .addGroup(opcionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(opciones_OD_Lbl)
+                                    .addGroup(opcionDepartamento_PnlLayout.createSequentialGroup()
+                                        .addComponent(nombreDepartamento_OD_Lbl)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(nombreDepartamento_OD_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nota_OD_Lbl))
+                                .addGap(0, 57, Short.MAX_VALUE))))))
         );
         opcionDepartamento_PnlLayout.setVerticalGroup(
             opcionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionDepartamento_PnlLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(32, 32, 32)
+                .addComponent(opciones_OD_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nota_OD_Lbl)
+                .addGap(21, 21, 21)
                 .addGroup(opcionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreDepartamento_OD_Lbl)
                     .addComponent(nombreDepartamento_OD_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(opcionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscar_OD_Btn)
-                    .addComponent(agregar_OD_Btn))
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(opcionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregar_OD_Btn)
+                    .addComponent(buscar_OD_Btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         informacionDepartamento_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -125,30 +143,45 @@ public class PnlDepartamento extends javax.swing.JPanel {
         nombreDepartamento_ID_Lbl.setText("Nombre del departamento:");
 
         nombreDepartamento_ID_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreDepartamento_ID_TFd.setEnabled(false);
 
         direccion_ID_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccion_ID_Lbl.setText("Dirección:");
 
         direccion_IE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccion_IE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Finanzas", "Administrativa", "Planeación", "Servicios Educativos", "General" }));
-        direccion_IE_CBx.setToolTipText("");
+        direccion_IE_CBx.setToolTipText("Seleccioné la zona del plantel");
+        direccion_IE_CBx.setEnabled(false);
 
         guardar_OD_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_OD_Btn.setText("Guardar");
+        guardar_OD_Btn.setEnabled(false);
+
+        nota_ID_Lbl.setText("Ingrese la información a almacenar");
+
+        agregar_ID_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregar_ID_LBl.setText("Agregar");
 
         javax.swing.GroupLayout informacionDepartamento_PnlLayout = new javax.swing.GroupLayout(informacionDepartamento_Pnl);
         informacionDepartamento_Pnl.setLayout(informacionDepartamento_PnlLayout);
         informacionDepartamento_PnlLayout.setHorizontalGroup(
             informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionDepartamento_PnlLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreDepartamento_ID_Lbl)
-                    .addComponent(direccion_ID_Lbl))
-                .addGap(18, 18, 18)
-                .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreDepartamento_ID_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccion_IE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(informacionDepartamento_PnlLayout.createSequentialGroup()
+                            .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombreDepartamento_ID_Lbl)
+                                .addComponent(direccion_ID_Lbl))
+                            .addGap(18, 18, 18)
+                            .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nombreDepartamento_ID_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(direccion_IE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(agregar_ID_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informacionDepartamento_PnlLayout.createSequentialGroup()
+                        .addComponent(nota_ID_Lbl)
+                        .addGap(185, 185, 185)))
                 .addContainerGap(384, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionDepartamento_PnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -158,11 +191,15 @@ public class PnlDepartamento extends javax.swing.JPanel {
         informacionDepartamento_PnlLayout.setVerticalGroup(
             informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionDepartamento_PnlLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(48, 48, 48)
+                .addComponent(agregar_ID_LBl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nota_ID_Lbl)
+                .addGap(39, 39, 39)
                 .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreDepartamento_ID_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreDepartamento_ID_Lbl)
                     .addComponent(nombreDepartamento_ID_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGap(63, 63, 63)
                 .addGroup(informacionDepartamento_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccion_ID_Lbl)
                     .addComponent(direccion_IE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,6 +224,7 @@ public class PnlDepartamento extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel agregar_ID_LBl;
     private javax.swing.JButton agregar_OD_Btn;
     private javax.swing.JButton buscar_OD_Btn;
     private javax.swing.JLabel direccion_ID_Lbl;
@@ -198,7 +236,10 @@ public class PnlDepartamento extends javax.swing.JPanel {
     private javax.swing.JTextField nombreDepartamento_ID_TFd;
     private javax.swing.JLabel nombreDepartamento_OD_Lbl;
     private javax.swing.JTextField nombreDepartamento_OD_TFd;
+    private javax.swing.JLabel nota_ID_Lbl;
+    private javax.swing.JLabel nota_OD_Lbl;
     private javax.swing.JPanel opcionDepartamento_Pnl;
+    private javax.swing.JLabel opciones_OD_Lbl;
     private javax.swing.JTable tablaDepartamentos_OE_tbl;
     // End of variables declaration//GEN-END:variables
 }
