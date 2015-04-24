@@ -27,14 +27,14 @@ public class PnlPlantel extends javax.swing.JPanel {
     private void initComponents() {
 
         opcionPlantel_Pnl = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         tablaPlanteles_OP_Tbl = new javax.swing.JTable();
         nombrePlantel_OP_Lbl = new javax.swing.JLabel();
         nombrePlantel_OP_TFd = new javax.swing.JTextField();
-        agregar_OP_Btn = new javax.swing.JButton();
-        buscar_OP_Btn = new javax.swing.JButton();
-        opciones_OP_Lbl = new javax.swing.JLabel();
-        nota_OP_Lbl = new javax.swing.JLabel();
+        agregar_OP_Btn2 = new javax.swing.JButton();
+        buscar_OP_Btn2 = new javax.swing.JButton();
+        opciones_OP_Lbl2 = new javax.swing.JLabel();
+        nota_OP_Lbl2 = new javax.swing.JLabel();
         informacionPlantel_Pnl = new javax.swing.JPanel();
         nombrePlantel_IP_Lbl = new javax.swing.JLabel();
         diraccion_IP_Lbl = new javax.swing.JLabel();
@@ -47,6 +47,8 @@ public class PnlPlantel extends javax.swing.JPanel {
         nota_IP_Lbl = new javax.swing.JLabel();
 
         opcionPlantel_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionPlantel_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionPlantel_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
 
         tablaPlanteles_OP_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,7 +69,9 @@ public class PnlPlantel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaPlanteles_OP_Tbl);
+        tablaPlanteles_OP_Tbl.setMaximumSize(new java.awt.Dimension(225, 64));
+        tablaPlanteles_OP_Tbl.setMinimumSize(new java.awt.Dimension(225, 64));
+        jScrollPane3.setViewportView(tablaPlanteles_OP_Tbl);
         if (tablaPlanteles_OP_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaPlanteles_OP_Tbl.getColumnModel().getColumn(0).setResizable(false);
             tablaPlanteles_OP_Tbl.getColumnModel().getColumn(1).setResizable(false);
@@ -80,16 +84,21 @@ public class PnlPlantel extends javax.swing.JPanel {
         nombrePlantel_OP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePlantel_OP_TFd.setEnabled(false);
 
-        agregar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregar_OP_Btn.setText("Agregar");
+        agregar_OP_Btn2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregar_OP_Btn2.setText("Agregar");
 
-        buscar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscar_OP_Btn.setText("Buscar");
+        buscar_OP_Btn2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscar_OP_Btn2.setText("Buscar");
+        buscar_OP_Btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar_OP_Btn2ActionPerformed(evt);
+            }
+        });
 
-        opciones_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        opciones_OP_Lbl.setText("Opciones ");
+        opciones_OP_Lbl2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OP_Lbl2.setText("Opciones ");
 
-        nota_OP_Lbl.setText("Ingrese el nombre para buscar la información especifica");
+        nota_OP_Lbl2.setText("Ingrese el nombre para buscar la información especifica");
 
         javax.swing.GroupLayout opcionPlantel_PnlLayout = new javax.swing.GroupLayout(opcionPlantel_Pnl);
         opcionPlantel_Pnl.setLayout(opcionPlantel_PnlLayout);
@@ -97,49 +106,50 @@ public class PnlPlantel extends javax.swing.JPanel {
             opcionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPlantel_PnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(opcionPlantel_PnlLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(opcionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPlantel_PnlLayout.createSequentialGroup()
-                        .addComponent(opciones_OP_Lbl)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(opcionPlantel_PnlLayout.createSequentialGroup()
-                        .addComponent(agregar_OP_Btn)
+                        .addComponent(agregar_OP_Btn2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscar_OP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscar_OP_Btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))
                     .addGroup(opcionPlantel_PnlLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addGroup(opcionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nota_OP_Lbl)
+                            .addComponent(nota_OP_Lbl2)
                             .addGroup(opcionPlantel_PnlLayout.createSequentialGroup()
                                 .addComponent(nombrePlantel_OP_Lbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(nombrePlantel_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 106, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombrePlantel_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(opciones_OP_Lbl2))
+                        .addGap(0, 94, Short.MAX_VALUE))))
         );
         opcionPlantel_PnlLayout.setVerticalGroup(
             opcionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPlantel_PnlLayout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(opciones_OP_Lbl)
+                .addComponent(opciones_OP_Lbl2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_OP_Lbl)
+                .addComponent(nota_OP_Lbl2)
                 .addGap(18, 18, 18)
                 .addGroup(opcionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePlantel_OP_Lbl)
                     .addComponent(nombrePlantel_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_OP_Btn)
-                    .addComponent(buscar_OP_Btn))
+                    .addComponent(agregar_OP_Btn2)
+                    .addComponent(buscar_OP_Btn2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
         informacionPlantel_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionPlantel_Pnl.setMaximumSize(new java.awt.Dimension(767, 394));
+        informacionPlantel_Pnl.setMinimumSize(new java.awt.Dimension(767, 394));
 
         nombrePlantel_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePlantel_IP_Lbl.setText("Nombre del plantel:");
@@ -180,36 +190,33 @@ public class PnlPlantel extends javax.swing.JPanel {
                 .addGap(18, 18, 18))
             .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
-                        .addComponent(nombrePlantel_IP_Lbl)
-                        .addGap(26, 26, 26)
-                        .addComponent(nombrePlantel_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
-                            .addComponent(diraccion_IP_Lbl)
-                            .addGap(18, 18, 18)
-                            .addComponent(direccion_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
-                            .addComponent(zona_OP_Lbl)
-                            .addGap(107, 107, 107)
-                            .addComponent(seleccion_IP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(167, 409, Short.MAX_VALUE))
-            .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nota_IP_Lbl)
-                    .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
+                            .addComponent(nombrePlantel_IP_Lbl)
+                            .addGap(26, 26, 26)
+                            .addComponent(nombrePlantel_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
+                                .addComponent(diraccion_IP_Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(direccion_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
+                                .addComponent(zona_OP_Lbl)
+                                .addGap(107, 107, 107)
+                                .addComponent(seleccion_IP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(407, Short.MAX_VALUE))
         );
         informacionPlantel_PnlLayout.setVerticalGroup(
             informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionPlantel_PnlLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(agregar_IP_LBl)
-                .addGap(18, 18, 18)
-                .addComponent(nota_IP_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nota_IP_Lbl)
+                .addGap(18, 18, 18)
                 .addGroup(informacionPlantel_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePlantel_IP_Lbl)
                     .addComponent(nombrePlantel_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,33 +241,38 @@ public class PnlPlantel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionPlantel_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionPlantel_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(informacionPlantel_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionPlantel_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(opcionPlantel_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(informacionPlantel_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscar_OP_Btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OP_Btn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscar_OP_Btn2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agregar_IP_LBl;
-    private javax.swing.JButton agregar_OP_Btn;
-    private javax.swing.JButton buscar_OP_Btn;
+    private javax.swing.JButton agregar_OP_Btn2;
+    private javax.swing.JButton buscar_OP_Btn2;
     private javax.swing.JLabel diraccion_IP_Lbl;
     private javax.swing.JTextField direccion_IP_TFd;
     private javax.swing.JButton guardar_IP_Btn;
     private javax.swing.JPanel informacionPlantel_Pnl;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel nombrePlantel_IP_Lbl;
     private javax.swing.JTextField nombrePlantel_IP_TFd;
     private javax.swing.JLabel nombrePlantel_OP_Lbl;
     private javax.swing.JTextField nombrePlantel_OP_TFd;
     private javax.swing.JLabel nota_IP_Lbl;
-    private javax.swing.JLabel nota_OP_Lbl;
+    private javax.swing.JLabel nota_OP_Lbl2;
     private javax.swing.JPanel opcionPlantel_Pnl;
-    private javax.swing.JLabel opciones_OP_Lbl;
+    private javax.swing.JLabel opciones_OP_Lbl2;
     private javax.swing.JComboBox seleccion_IP_CBx;
     private javax.swing.JTable tablaPlanteles_OP_Tbl;
     private javax.swing.JLabel zona_OP_Lbl;
