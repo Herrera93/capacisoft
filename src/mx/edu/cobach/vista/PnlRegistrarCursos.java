@@ -4,17 +4,61 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.vista.controlador.BaseControlador;
+import mx.edu.cobach.vista.controlador.CursoControlador;
+import mx.edu.cobach.vista.controlador.HelperEntidad;
+
 /**
  *
  * @author liuts
  */
-public class PnlRegistrarCursos extends javax.swing.JPanel {
+public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicador{
+    
+    private BaseControlador control;
+    private CursoControlador cursoControl;
+    private DefaultTableModel model;
+    private String[] titulosTabla = {"Nombre","Tipo","Eliminar"};
+    int id;
 
     /**
      * Creates new form PnlRegistrarCursos
      */
     public PnlRegistrarCursos() {
         initComponents();
+        control = new BaseControlador(this, Curso.class);
+        cursoControl = new CursoControlador(this, Curso.class);
+        tablaCursos_OC_Tbl.getSelectionModel().addListSelectionListener(
+                new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                    String nombreBusqu = null;
+                    int[] selectedRow = tablaCursos_OC_Tbl.getSelectedRows();
+                        int[] selectedColumns = tablaCursos_OC_Tbl.
+                                getSelectedColumns();
+                        for (int i = 0; i < selectedRow.length; i++) {
+                          for (int j = 0; j < selectedColumns.length; j++) {
+                            nombreBusqu = (String) tablaCursos_OC_Tbl.
+                                    getValueAt(selectedRow[i], selectedColumns[j]);
+                          }
+                        }
+                        if(nombreBusqu!=null){
+                            System.out.println(nombreBusqu);
+                            cursoControl.buscarNombre(nombreBusqu);
+
+                        }else{
+                        }
+                        tablaCursos_OE_TblActionPerformed(e);
+            }
+        });
+        
     }
 
     /**
@@ -126,19 +170,19 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
                                     .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
                                         .addGap(45, 45, 45)
                                         .addComponent(tipo_OC_CBx1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addContainerGap(98, Short.MAX_VALUE))))
                             .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
                                 .addGroup(opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(opciones_OC_Lbl)
                                     .addComponent(nota_OC_Lbl))
-                                .addGap(0, 118, Short.MAX_VALUE))))))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         opcionesCurso_PnlLayout.setVerticalGroup(
             opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(31, 31, 31)
                 .addComponent(opciones_OC_Lbl)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nota_OC_Lbl)
                 .addGap(18, 18, 18)
                 .addGroup(opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,6 +299,42 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void guardar_IC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_IC_BtnActionPerformed
+        if(guardar_IC_Btn.getText() == "Guardar"){            
+            List<String> atr =  new ArrayList<String>();
+            atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+            atr.add(nombre_IC_TFd.getText());
+            atr.add(descripcion_IC_TAa.getText());
+            control.alta(HelperEntidad.getCurso(atr));
+        }else{
+            List<String> atr =  new ArrayList<String>();
+            atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+            atr.add(nombre_IC_TFd.getText());
+            atr.add(descripcion_IC_TAa.getText());
+            control.modificacion(HelperEntidad.getCurso(atr , id));
+        }
+    }//GEN-LAST:event_guardar_IC_BtnActionPerformed
+
+    private void agregar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OC_BtnActionPerformed
+        guardar_IC_Btn.setText("Guardar");
+        nombre_IC_TFd.setEnabled(true);
+        descripcion_IC_TAa.setEnabled(true);
+        seleccion_IC_CBx.setEnabled(true);
+        guardar_IC_Btn.setEnabled(true);
+    }//GEN-LAST:event_agregar_OC_BtnActionPerformed
+
+    private void buscar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OC_BtnActionPerformed
+       
+        
+        if(tipo_OC_CBx1.getSelectedIndex()== 0){
+            control.buscarTodos();        
+        }else if(tipo_OC_CBx1.getSelectedIndex() != 0){
+            cursoControl.buscar(tipo_OC_CBx1.getSelectedIndex());
+        }
+    }//GEN-LAST:event_buscar_OC_BtnActionPerformed
+
+    private void tablaCursos_OE_TblActionPerformed(ListSelectionEvent e){
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agregar_IC_LBl;
     private javax.swing.JButton agregar_OC_Btn;
@@ -277,4 +357,40 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
     private javax.swing.JComboBox tipo_OC_CBx1;
     private javax.swing.JLabel tipo_OC_Lbl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    @Override
+    public void setTabla(String[][] info) {
+        model = new DefaultTableModel(titulosTabla, 4);
+        tablaCursos_OC_Tbl.setModel(model);
+        model.setDataVector(info, titulosTabla);
+    }
+
+    @Override
+    public void setInfo(String[][] info) {
+        id = Integer.parseInt(info[0][0]);
+        System.out.println(id);
+        nombre_IC_TFd.setText(info[1][0]);
+        descripcion_IC_TAa.setText(info[2][0]);
+        if(info[3][0].equals("conferencia")){
+            seleccion_IC_CBx.setSelectedIndex(0);
+        }else{
+            seleccion_IC_CBx.setSelectedIndex(1);
+        }
+            
+        nombre_IC_TFd.setEnabled(true);
+        descripcion_IC_TAa.setEnabled(true);
+        seleccion_IC_CBx.setEnabled(true);
+        guardar_IC_Btn.setText("Modificar");
+        
+    }
+
+    @Override
+    public void setLista(List info, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

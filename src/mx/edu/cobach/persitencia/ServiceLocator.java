@@ -14,6 +14,7 @@ public class ServiceLocator {
     //DAO generico
     private static BaseDAO baseDAO;    
     private static PuestoDAO puestoDAO;
+    private static CursoDAO cursoDAO;
     private static EmpleadoDAO empleadoDAO;
     
     /**
@@ -39,5 +40,11 @@ public class ServiceLocator {
             puestoDAO = new PuestoDAO();
         }
         return puestoDAO;
+    }
+    public static CursoDAO getCurso(){
+        if(cursoDAO == null){
+            cursoDAO = new CursoDAO();
+        }
+        return cursoDAO;
     }
 }

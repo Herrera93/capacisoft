@@ -14,6 +14,7 @@ public class ServiceLocatorFACADE {
     //FACADE generico
     private static BaseFACADE facade;
     private static PuestoFACADE puestoFacade;
+    private static CursoFACADE cursoFacade;
     private static EmpleadoFACADE empleadoFacade;
     
     /**
@@ -39,5 +40,12 @@ public class ServiceLocatorFACADE {
             puestoFacade = new PuestoFACADE();
         }
         return puestoFacade;
+    }
+    
+    public static CursoFACADE getCurso(){
+        if(cursoFacade == null){
+            cursoFacade = new CursoFACADE();
+        }
+        return cursoFacade;
     }
 }
