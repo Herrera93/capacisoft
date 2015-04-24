@@ -33,6 +33,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
         nombreUsuario_OU_TFd = new javax.swing.JTextField();
         buscar_OU_Btn = new javax.swing.JButton();
         agregar_OU_Btn = new javax.swing.JButton();
+        opciones_OP_Lbl = new javax.swing.JLabel();
+        nota_OP_Lbl = new javax.swing.JLabel();
         informacionUsuarios_Pnl = new javax.swing.JPanel();
         nombreEmpleado_IU_Lbl = new javax.swing.JLabel();
         nombreEmpleado_IU_TFd = new javax.swing.JTextField();
@@ -43,6 +45,8 @@ public class PnlUsuarios extends javax.swing.JPanel {
         tipo_IU_Lbl = new javax.swing.JLabel();
         tipo_IU_CBx = new javax.swing.JComboBox();
         guardar_IU_Btn = new javax.swing.JButton();
+        nota_IP_Lbl = new javax.swing.JLabel();
+        agregar_IP_LBl = new javax.swing.JLabel();
 
         opcionUsuarios_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -77,12 +81,18 @@ public class PnlUsuarios extends javax.swing.JPanel {
         nombreUsuario_OU_Lbl.setText("Nombre de usuario:");
 
         nombreUsuario_OU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreUsuario_OU_TFd.setEnabled(false);
 
         buscar_OU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscar_OU_Btn.setText("Buscar");
 
         agregar_OU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OU_Btn.setText("Agregar");
+
+        opciones_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OP_Lbl.setText("Opciones ");
+
+        nota_OP_Lbl.setText("Ingrese el nombre para buscar la información especifica");
 
         javax.swing.GroupLayout opcionUsuarios_PnlLayout = new javax.swing.GroupLayout(opcionUsuarios_Pnl);
         opcionUsuarios_Pnl.setLayout(opcionUsuarios_PnlLayout);
@@ -97,35 +107,39 @@ public class PnlUsuarios extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                                .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 97, Short.MAX_VALUE))
-                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
                                 .addComponent(agregar_OU_Btn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscar_OU_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))))
+                                .addGap(13, 13, 13))
+                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(opciones_OP_Lbl)
+                                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                                        .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nota_OP_Lbl))
+                                .addGap(0, 97, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         opcionUsuarios_PnlLayout.setVerticalGroup(
             opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionUsuarios_PnlLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(30, 30, 30)
+                .addComponent(opciones_OP_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nota_OP_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreUsuario_OU_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                        .addGap(26, 86, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buscar_OU_Btn)
-                            .addComponent(agregar_OU_Btn))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregar_OU_Btn)
+                    .addComponent(buscar_OU_Btn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         informacionUsuarios_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -134,63 +148,86 @@ public class PnlUsuarios extends javax.swing.JPanel {
         nombreEmpleado_IU_Lbl.setText("Nombre del Empleado:");
 
         nombreEmpleado_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreEmpleado_IU_TFd.setEnabled(false);
 
         nombreUsuario_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreUsuario_IU_Lbl.setText("Nombre de usuario:");
 
         nombreUsuario_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreUsuario_IU_TFd.setEnabled(false);
 
         contrasena_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contrasena_IU_Lbl.setText("Contraseña:");
 
         contrasena_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        contrasena_IU_TFd.setEnabled(false);
 
         tipo_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_IU_Lbl.setText("Tipo de cuenta:");
 
         tipo_IU_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_IU_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Analista", "Secretaria" }));
+        tipo_IU_CBx.setToolTipText("Seleccioné el tipo de usuario");
+        tipo_IU_CBx.setEnabled(false);
 
         guardar_IU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_IU_Btn.setText("Guardar");
+        guardar_IU_Btn.setEnabled(false);
+
+        nota_IP_Lbl.setText("Ingrese la información a almacenar");
+
+        agregar_IP_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregar_IP_LBl.setText("Agregar");
 
         javax.swing.GroupLayout informacionUsuarios_PnlLayout = new javax.swing.GroupLayout(informacionUsuarios_Pnl);
         informacionUsuarios_Pnl.setLayout(informacionUsuarios_PnlLayout);
         informacionUsuarios_PnlLayout.setHorizontalGroup(
             informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionUsuarios_PnlLayout.createSequentialGroup()
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreEmpleado_IU_Lbl)
-                    .addComponent(tipo_IU_Lbl))
-                .addGap(18, 18, 18)
-                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreEmpleado_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipo_IU_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreEmpleado_IU_Lbl)
+                            .addComponent(tipo_IU_Lbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipo_IU_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreEmpleado_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nota_IP_Lbl)
+                            .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nombreUsuario_IU_Lbl)
-                    .addComponent(contrasena_IU_Lbl))
-                .addGap(18, 18, 18)
-                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(contrasena_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionUsuarios_PnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardar_IU_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(guardar_IU_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombreUsuario_IU_Lbl)
+                            .addComponent(contrasena_IU_Lbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(contrasena_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19))
         );
         informacionUsuarios_PnlLayout.setVerticalGroup(
             informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(46, 46, 46)
+                .addComponent(agregar_IP_LBl)
+                .addGap(18, 18, 18)
+                .addComponent(nota_IP_Lbl)
+                .addGap(28, 28, 28)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreEmpleado_IU_Lbl)
                     .addComponent(nombreEmpleado_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreUsuario_IU_Lbl))
-                .addGap(73, 73, 73)
+                    .addComponent(nombreUsuario_IU_Lbl)
+                    .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contrasena_IU_Lbl)
                     .addComponent(contrasena_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,6 +255,7 @@ public class PnlUsuarios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel agregar_IP_LBl;
     private javax.swing.JButton agregar_OU_Btn;
     private javax.swing.JButton buscar_OU_Btn;
     private javax.swing.JLabel contrasena_IU_Lbl;
@@ -231,7 +269,10 @@ public class PnlUsuarios extends javax.swing.JPanel {
     private javax.swing.JTextField nombreUsuario_IU_TFd;
     private javax.swing.JLabel nombreUsuario_OU_Lbl;
     private javax.swing.JTextField nombreUsuario_OU_TFd;
+    private javax.swing.JLabel nota_IP_Lbl;
+    private javax.swing.JLabel nota_OP_Lbl;
     private javax.swing.JPanel opcionUsuarios_Pnl;
+    private javax.swing.JLabel opciones_OP_Lbl;
     private javax.swing.JTable tablaUsuarios_OU_Tbl;
     private javax.swing.JComboBox tipo_IU_CBx;
     private javax.swing.JLabel tipo_IU_Lbl;
