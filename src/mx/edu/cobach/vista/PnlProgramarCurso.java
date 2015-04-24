@@ -66,7 +66,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
         seleccion_BC_CBx = new javax.swing.JComboBox();
         opciones_BC_Lbl = new javax.swing.JLabel();
         nota_BC_Lbl = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        fechaInicio_BC_DCh = new com.toedter.calendar.JDateChooser();
 
         setPreferredSize(new java.awt.Dimension(1150, 576));
 
@@ -77,6 +77,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
 
         tipoCurso_RC_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoCurso_RC_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoCurso_RC_CBx.setEnabled(false);
 
         programarCursoRealizar_RC_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         programarCursoRealizar_RC_Btn.setText("Programar curso a realizar");
@@ -208,11 +209,14 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
 
         seleccion_BC_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         seleccion_BC_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        seleccion_BC_CBx.setEnabled(false);
 
         opciones_BC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opciones_BC_Lbl.setText("Opciones");
 
         nota_BC_Lbl.setText("Ingrese el o seleccione los campos para buscar la información especifica");
+
+        fechaInicio_BC_DCh.setEnabled(false);
 
         javax.swing.GroupLayout BuscarCurso_PnlLayout = new javax.swing.GroupLayout(BuscarCurso_Pnl);
         BuscarCurso_Pnl.setLayout(BuscarCurso_PnlLayout);
@@ -231,7 +235,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(seleccion_BC_CBx, 0, 163, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(fechaInicio_BC_DCh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BuscarCurso_PnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -252,7 +256,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sede_BC_Lbl)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaInicio_BC_DCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buscar_BC_Btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -306,7 +310,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
     private javax.swing.JPanel BuscarCurso_Pnl;
     private javax.swing.JButton buscar_BC_Btn;
     private com.jpcomponents.JPCalendar calendario_RC_Cal;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser fechaInicio_BC_DCh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreCurso_RC_Lbl;

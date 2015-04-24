@@ -144,6 +144,7 @@
                         <StringItem index="3" value="Item 4"/>
                       </StringArray>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="programarCursoRealizar_RC_Btn">
@@ -251,7 +252,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="seleccion_BC_CBx" pref="163" max="32767" attributes="0"/>
-                                      <Component id="jDateChooser1" max="32767" attributes="0"/>
+                                      <Component id="fechaInicio_BC_DCh" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -279,7 +280,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="sede_BC_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                              <Component id="fechaInicio_BC_DCh" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buscar_BC_Btn" min="-2" max="-2" attributes="0"/>
@@ -376,6 +377,7 @@
                         <StringItem index="3" value="Item 4"/>
                       </StringArray>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="opciones_BC_Lbl">
@@ -391,7 +393,10 @@
                     <Property name="text" type="java.lang.String" value="Ingrese el o seleccione los campos para buscar la informaci&#xf3;n especifica"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+                <Component class="com.toedter.calendar.JDateChooser" name="fechaInicio_BC_DCh">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
