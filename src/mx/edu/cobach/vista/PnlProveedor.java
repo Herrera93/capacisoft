@@ -65,7 +65,9 @@ public class PnlProveedor extends javax.swing.JPanel {
         eliminarCurso_OPL_Btn = new javax.swing.JButton();
 
         opcionProveedor_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        opcionProveedor_Pnl.setPreferredSize(new java.awt.Dimension(352, 400));
+        opcionProveedor_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionProveedor_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionProveedor_Pnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
         tablaProveedores_OP_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,7 +120,7 @@ public class PnlProveedor extends javax.swing.JPanel {
             .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                     .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,12 +157,16 @@ public class PnlProveedor extends javax.swing.JPanel {
                     .addComponent(buscar_OP_Btn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         informacionProveedor_TBn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionProveedor_TBn.setMaximumSize(new java.awt.Dimension(767, 587));
+        informacionProveedor_TBn.setMinimumSize(new java.awt.Dimension(767, 587));
 
         informacion_Proveedor_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacion_Proveedor_Pnl.setMaximumSize(new java.awt.Dimension(758, 555));
+        informacion_Proveedor_Pnl.setMinimumSize(new java.awt.Dimension(758, 555));
 
         nombreProveedor_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreProveedor_IP_Lbl.setText("Nombre del proveedor:");
@@ -229,7 +235,7 @@ public class PnlProveedor extends javax.swing.JPanel {
                 .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(calificacion_IP_Lbl)
                     .addComponent(correoElectronico_IP_Lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(calificacion_IP_CBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(correoElectronico_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,6 +283,9 @@ public class PnlProveedor extends javax.swing.JPanel {
         );
 
         informacionProveedor_TBn.addTab("General", informacion_Proveedor_Pnl);
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(758, 555));
+        jPanel1.setMinimumSize(new java.awt.Dimension(758, 555));
 
         agregarTodos_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarTodos_IPL_Btn.setText(">>");
@@ -380,7 +389,7 @@ public class PnlProveedor extends javax.swing.JPanel {
                             .addComponent(eliminarCurso_OPL_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(eliminarTodos_IPL_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -425,13 +434,13 @@ public class PnlProveedor extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionProveedor_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionProveedor_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionProveedor_TBn))
+                .addComponent(informacionProveedor_TBn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionProveedor_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+            .addComponent(opcionProveedor_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(informacionProveedor_TBn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
