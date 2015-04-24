@@ -43,7 +43,7 @@ public class HibernateUtil {
 
             @Override
             public void sessionFactoryClosed(SessionFactory sf) {
-                ((StandardServiceRegistryImpl) sr).destroy();
+                ((StandardServiceRegistryImpl) sf).destroy();
             }
             
         });
