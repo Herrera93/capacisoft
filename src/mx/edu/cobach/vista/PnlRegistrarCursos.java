@@ -47,7 +47,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
         agregar_IC_LBl = new javax.swing.JLabel();
         nota_IC_Lbl = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1181, 587));
+        setMinimumSize(new java.awt.Dimension(1181, 587));
+        setPreferredSize(new java.awt.Dimension(1181, 587));
+
         opcionesCurso_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionesCurso_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionesCurso_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionesCurso_Pnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
         tipo_OC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_OC_Lbl.setText("Tipo de curso:");
@@ -113,7 +120,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
                                     .addComponent(agregar_OC_Btn))
                                 .addGroup(opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(buscar_OC_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(24, 24, 24))
                                     .addGroup(opcionesCurso_PnlLayout.createSequentialGroup()
@@ -124,7 +131,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
                                 .addGroup(opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(opciones_OC_Lbl)
                                     .addComponent(nota_OC_Lbl))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addGap(0, 118, Short.MAX_VALUE))))))
         );
         opcionesCurso_PnlLayout.setVerticalGroup(
             opcionesCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,6 +154,9 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
         );
 
         informacionCurso_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionCurso_Pnl.setMaximumSize(new java.awt.Dimension(767, 391));
+        informacionCurso_Pnl.setMinimumSize(new java.awt.Dimension(767, 391));
+        informacionCurso_Pnl.setPreferredSize(new java.awt.Dimension(767, 391));
 
         tipo_IC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_IC_Lbl.setText("Tipo de curso:");
@@ -205,7 +215,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
                         .addComponent(tipo_IC_Lbl)
                         .addGap(28, 28, 28)
                         .addComponent(seleccion_IC_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         informacionCurso_PnlLayout.setVerticalGroup(
             informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,12 +246,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionesCurso_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(informacionCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(opcionesCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(informacionCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+            .addComponent(opcionesCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
