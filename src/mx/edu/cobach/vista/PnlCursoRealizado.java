@@ -284,22 +284,22 @@ public class PnlCursoRealizado extends javax.swing.JPanel {
 
         agregarEmpleado_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarEmpleado_IPL_Btn.setText(">");
-        agregarEmpleado_IPL_Btn.setToolTipText("Seleccioné un curso de capacitación a asignar");
+        agregarEmpleado_IPL_Btn.setToolTipText("Seleccioné un empleado para la lista de asistencia");
         agregarEmpleado_IPL_Btn.setEnabled(false);
 
         agregarTodos_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarTodos_IPL_Btn.setText(">>");
-        agregarTodos_IPL_Btn.setToolTipText("Agregar todos los cursos");
+        agregarTodos_IPL_Btn.setToolTipText("Agregar todos los empleados");
         agregarTodos_IPL_Btn.setEnabled(false);
 
         eliminarEmpleado_OPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarEmpleado_OPL_Btn.setText("<");
-        eliminarEmpleado_OPL_Btn.setToolTipText("Seleccioné un curso de capacitación a eliminar");
+        eliminarEmpleado_OPL_Btn.setToolTipText("Seleccioné un empleado a eliminar");
         eliminarEmpleado_OPL_Btn.setEnabled(false);
 
         eliminarTodos_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarTodos_IPL_Btn.setText("<<");
-        eliminarTodos_IPL_Btn.setToolTipText("Eliminar todos los cursos");
+        eliminarTodos_IPL_Btn.setToolTipText("Eliminar todos los empleados");
         eliminarTodos_IPL_Btn.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

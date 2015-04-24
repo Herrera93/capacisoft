@@ -563,7 +563,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&gt;"/>
-                <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; un curso de capacitaci&#xf3;n a asignar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; un empleado para la lista de asistencia"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -573,7 +573,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&gt;&gt;"/>
-                <Property name="toolTipText" type="java.lang.String" value="Agregar todos los cursos"/>
+                <Property name="toolTipText" type="java.lang.String" value="Agregar todos los empleados"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -583,7 +583,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;"/>
-                <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; un curso de capacitaci&#xf3;n a eliminar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; un empleado a eliminar"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -593,7 +593,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
-                <Property name="toolTipText" type="java.lang.String" value="Eliminar todos los cursos"/>
+                <Property name="toolTipText" type="java.lang.String" value="Eliminar todos los empleados"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
