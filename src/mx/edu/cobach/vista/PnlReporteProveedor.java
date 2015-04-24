@@ -32,12 +32,17 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
         calificacion_ORP_CBx = new javax.swing.JComboBox();
         hasta_ORP_CBx = new javax.swing.JComboBox();
         buscar_ORP_Btn = new javax.swing.JButton();
+        nota_OP_Lbl2 = new javax.swing.JLabel();
+        opciones_OP_Lbl2 = new javax.swing.JLabel();
         informacionReporteProveedor_Pnl = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProveedor_IRP_Tbl = new javax.swing.JTable();
         imprimir_IRP_Btn = new javax.swing.JButton();
+        info_IC_Lbl = new javax.swing.JLabel();
 
         opcionReporteProveedor_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionReporteProveedor_Pnl.setMaximumSize(new java.awt.Dimension(408, 356));
+        opcionReporteProveedor_Pnl.setMinimumSize(new java.awt.Dimension(408, 356));
 
         calificacion_ORP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         calificacion_ORP_Lbl.setText("Calificación de:");
@@ -54,6 +59,11 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
         buscar_ORP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscar_ORP_Btn.setText("Buscar");
 
+        nota_OP_Lbl2.setText("Ingrese el nombre para buscar la información especifica");
+
+        opciones_OP_Lbl2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OP_Lbl2.setText("Opciones ");
+
         javax.swing.GroupLayout opcionReporteProveedor_PnlLayout = new javax.swing.GroupLayout(opcionReporteProveedor_Pnl);
         opcionReporteProveedor_Pnl.setLayout(opcionReporteProveedor_PnlLayout);
         opcionReporteProveedor_PnlLayout.setHorizontalGroup(
@@ -63,13 +73,18 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
                     .addGroup(opcionReporteProveedor_PnlLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(opcionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calificacion_ORP_Lbl)
-                            .addComponent(hasta_ORP_Lbl))
-                        .addGap(60, 60, 60)
-                        .addGroup(opcionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(hasta_ORP_CBx, 0, 70, Short.MAX_VALUE)
-                            .addComponent(calificacion_ORP_CBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 136, Short.MAX_VALUE))
+                            .addComponent(nota_OP_Lbl2)
+                            .addComponent(opciones_OP_Lbl2)
+                            .addGroup(opcionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(opcionReporteProveedor_PnlLayout.createSequentialGroup()
+                                    .addComponent(hasta_ORP_Lbl)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(hasta_ORP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(opcionReporteProveedor_PnlLayout.createSequentialGroup()
+                                    .addComponent(calificacion_ORP_Lbl)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(calificacion_ORP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 88, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionReporteProveedor_PnlLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buscar_ORP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -78,20 +93,26 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
         opcionReporteProveedor_PnlLayout.setVerticalGroup(
             opcionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionReporteProveedor_PnlLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(51, 51, 51)
+                .addComponent(opciones_OP_Lbl2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nota_OP_Lbl2)
+                .addGap(43, 43, 43)
                 .addGroup(opcionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(calificacion_ORP_Lbl)
                     .addComponent(calificacion_ORP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
+                .addGap(63, 63, 63)
                 .addGroup(opcionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hasta_ORP_Lbl)
-                    .addComponent(hasta_ORP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(hasta_ORP_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hasta_ORP_Lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buscar_ORP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
 
         informacionReporteProveedor_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionReporteProveedor_Pnl.setMaximumSize(new java.awt.Dimension(767, 587));
+        informacionReporteProveedor_Pnl.setMinimumSize(new java.awt.Dimension(767, 587));
 
         tablaProveedor_IRP_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +145,9 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
         imprimir_IRP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         imprimir_IRP_Btn.setText("Imprimir");
 
+        info_IC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        info_IC_Lbl.setText("Información del los proveedores");
+
         javax.swing.GroupLayout informacionReporteProveedor_PnlLayout = new javax.swing.GroupLayout(informacionReporteProveedor_Pnl);
         informacionReporteProveedor_Pnl.setLayout(informacionReporteProveedor_PnlLayout);
         informacionReporteProveedor_PnlLayout.setHorizontalGroup(
@@ -131,17 +155,22 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
             .addGroup(informacionReporteProveedor_PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(informacionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionReporteProveedor_PnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(imprimir_IRP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(imprimir_IRP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informacionReporteProveedor_PnlLayout.createSequentialGroup()
+                        .addComponent(info_IC_Lbl)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         informacionReporteProveedor_PnlLayout.setVerticalGroup(
             informacionReporteProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionReporteProveedor_PnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(info_IC_Lbl)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(imprimir_IRP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
@@ -169,9 +198,12 @@ public class PnlReporteProveedor extends javax.swing.JPanel {
     private javax.swing.JComboBox hasta_ORP_CBx;
     private javax.swing.JLabel hasta_ORP_Lbl;
     private javax.swing.JButton imprimir_IRP_Btn;
+    private javax.swing.JLabel info_IC_Lbl;
     private javax.swing.JPanel informacionReporteProveedor_Pnl;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nota_OP_Lbl2;
     private javax.swing.JPanel opcionReporteProveedor_Pnl;
+    private javax.swing.JLabel opciones_OP_Lbl2;
     private javax.swing.JTable tablaProveedor_IRP_Tbl;
     // End of variables declaration//GEN-END:variables
 }
