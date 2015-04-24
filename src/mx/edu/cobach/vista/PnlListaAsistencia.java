@@ -141,6 +141,8 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
         );
 
         informacionListaAsistencia_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionListaAsistencia_Pnl.setMaximumSize(new java.awt.Dimension(767, 558));
+        informacionListaAsistencia_Pnl.setMinimumSize(new java.awt.Dimension(767, 558));
 
         tablaLista_ILA_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
