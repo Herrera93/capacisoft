@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1181, 587]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1181, 587]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1181, 587]"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -19,14 +30,14 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="opcionSede_Pnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="informacionSede_Pnl" max="32767" attributes="0"/>
+              <Component id="informacionSede_Pnl" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="opcionSede_Pnl" max="32767" attributes="0"/>
-          <Component id="informacionSede_Pnl" alignment="0" max="32767" attributes="0"/>
+          <Component id="opcionSede_Pnl" max="-2" attributes="0"/>
+          <Component id="informacionSede_Pnl" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -38,6 +49,15 @@
             <EtchetBorder/>
           </Border>
         </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[408, 587]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[408, 587]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[408, 587]"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -46,29 +66,31 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="390" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="agregar_OS_Btn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="buscar_OS_Btn" min="-2" pref="81" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="nombreSede_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="nombreSede_OS_TFd" min="-2" pref="143" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="opciones_OS_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="112" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="agregar_OS_Btn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="opciones_OS_Lbl" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="nombreSede_OS_Lbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="nombreSede_OS_TFd" min="-2" pref="143" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                  <Component id="buscar_OS_Btn" min="-2" pref="83" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -77,9 +99,9 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="opciones_OS_Lbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreSede_OS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreSede_OS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -89,8 +111,8 @@
                       <Component id="agregar_OS_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buscar_OS_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="383" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -131,6 +153,12 @@
                       <Renderer/>
                     </Column>
                   </TableColumnModel>
+                </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[225, 64]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[225, 64]"/>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -193,16 +221,20 @@
             <EtchetBorder/>
           </Border>
         </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[769, 587]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[769, 587]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[769, 587]"/>
+        </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="631" max="32767" attributes="0"/>
-                  <Component id="guardar_IS_Btn" min="-2" pref="108" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -225,11 +257,11 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="149" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="municipio_IS_Lbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                                   <Component id="seleccion_IS_CBx" min="-2" pref="151" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -237,7 +269,7 @@
                                       <Component id="numero_IS_Lbl" min="-2" max="-2" attributes="0"/>
                                       <Component id="cantidad_IS_Lbl" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="cantidad_IS_TFd" min="-2" pref="151" max="-2" attributes="0"/>
                                       <Component id="numero_IS_TFd" min="-2" pref="151" max="-2" attributes="0"/>
@@ -245,15 +277,15 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nota_IS_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregar_IS_LBl" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="nota_IS_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregar_IS_LBl" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="76" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="guardar_IS_Btn" min="-2" pref="108" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -285,7 +317,7 @@
                       <Component id="calle_IS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="calle_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="171" max="32767" attributes="0"/>
                   <Component id="guardar_IS_Btn" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
