@@ -19,14 +19,14 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="opcionSede_Pnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="cantidad_IS_Pnl" max="32767" attributes="0"/>
+              <Component id="informacionSede_Pnl" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="opcionSede_Pnl" max="32767" attributes="0"/>
-          <Component id="cantidad_IS_Pnl" alignment="0" max="32767" attributes="0"/>
+          <Component id="informacionSede_Pnl" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -60,8 +60,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nota_OP_Lbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="opciones_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="opciones_OS_Lbl" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="nombreSede_OS_Lbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -76,9 +76,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="opciones_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opciones_OS_Lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="nota_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreSede_OS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -171,7 +171,7 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="opciones_OS_Lbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -179,14 +179,14 @@
             <Property name="text" type="java.lang.String" value="Opciones "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="nota_OS_Lbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="cantidad_IS_Pnl">
+    <Container class="javax.swing.JPanel" name="informacionSede_Pnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -247,8 +247,8 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregar_IP_LBl" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="nota_IS_Lbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="agregar_IS_LBl" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -261,9 +261,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="agregar_IP_LBl" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregar_IS_LBl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="nota_IS_Lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreSede_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -407,7 +407,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="agregar_IP_LBl">
+        <Component class="javax.swing.JLabel" name="agregar_IS_LBl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -415,7 +415,7 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="nota_IS_Lbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
           </Properties>
