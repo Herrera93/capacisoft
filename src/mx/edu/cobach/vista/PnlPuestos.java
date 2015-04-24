@@ -64,7 +64,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregar_IP_LBl = new javax.swing.JLabel();
         nota_IP_Lbl = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1181, 587));
+        setMinimumSize(new java.awt.Dimension(1181, 587));
+        setPreferredSize(new java.awt.Dimension(1181, 587));
+
         opcionPuesto_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionPuesto_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionPuesto_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
 
         nombrePuesto_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_OP_Lbl.setText("Nombre del puesto:");
@@ -145,21 +151,20 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(agregar_OP_Btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buscar_OP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11))
                     .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(19, 19, 19)
                         .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregar_OP_Btn)
                             .addComponent(nota_OP_Lbl)
+                            .addComponent(opciones_OP_Lbl)
                             .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
                                 .addComponent(nombrePuesto_OP_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(opciones_OP_Lbl))
-                        .addGap(0, 64, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 72, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         opcionPuesto_PnlLayout.setVerticalGroup(
@@ -183,6 +188,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         );
 
         informacionPuesto_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionPuesto_Pnl.setMaximumSize(new java.awt.Dimension(726, 587));
+        informacionPuesto_Pnl.setMinimumSize(new java.awt.Dimension(726, 587));
 
         nombrePuesto_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_IP_Lbl.setText("Nombre del puesto:");
@@ -221,7 +228,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                         .addComponent(nombrePuesto_IP_Lbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
         informacionPuesto_PnlLayout.setVerticalGroup(
             informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
