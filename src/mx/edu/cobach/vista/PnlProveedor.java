@@ -33,6 +33,8 @@ public class PnlProveedor extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         nombreProveedor_OP_Lbl = new javax.swing.JLabel();
         agregar_OP_Btn = new javax.swing.JButton();
+        opciones_OP_Lbl = new javax.swing.JLabel();
+        nota_OP_Lbl = new javax.swing.JLabel();
         informacionProveedor_TBn = new javax.swing.JTabbedPane();
         informacion_Proveedor_Pnl = new javax.swing.JPanel();
         nombreProveedor_IP_Lbl = new javax.swing.JLabel();
@@ -47,6 +49,8 @@ public class PnlProveedor extends javax.swing.JPanel {
         correoElectronico_IP_Lbl = new javax.swing.JLabel();
         correoElectronico_IP_TFd = new javax.swing.JTextField();
         guardar_IP_Btn = new javax.swing.JButton();
+        agregar_IP_LBl = new javax.swing.JLabel();
+        nota_IP_Lbl = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         agregarcURSO_Btn = new javax.swing.JButton();
         agregarTodos_Btn = new javax.swing.JButton();
@@ -55,6 +59,10 @@ public class PnlProveedor extends javax.swing.JPanel {
         tablaCurso_Tb = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaTodos_Tb = new javax.swing.JTable();
+        agregar_IPL_LBl = new javax.swing.JLabel();
+        nota_IPL_Lbl = new javax.swing.JLabel();
+        agregarcURSO_Btn1 = new javax.swing.JButton();
+        agregarcURSO_Btn2 = new javax.swing.JButton();
 
         opcionProveedor_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionProveedor_Pnl.setPreferredSize(new java.awt.Dimension(352, 400));
@@ -90,12 +98,18 @@ public class PnlProveedor extends javax.swing.JPanel {
         buscar_OP_Btn.setActionCommand("Busca");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField1.setEnabled(false);
 
         nombreProveedor_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreProveedor_OP_Lbl.setText("Nombre del Proveedor:");
 
         agregar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OP_Btn.setText("Agregar");
+
+        opciones_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OP_Lbl.setText("Opciones ");
+
+        nota_OP_Lbl.setText("Ingrese el nombre para buscar la información especifica");
 
         javax.swing.GroupLayout opcionProveedor_PnlLayout = new javax.swing.GroupLayout(opcionProveedor_Pnl);
         opcionProveedor_Pnl.setLayout(opcionProveedor_PnlLayout);
@@ -104,36 +118,44 @@ public class PnlProveedor extends javax.swing.JPanel {
             .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                     .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
-                                .addComponent(nombreProveedor_OP_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 43, Short.MAX_VALUE))
-                            .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
                                 .addComponent(agregar_OP_Btn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscar_OP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)))))
+                                .addGap(11, 11, 11))
+                            .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
+                                .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(opciones_OP_Lbl)
+                                    .addGroup(opcionProveedor_PnlLayout.createSequentialGroup()
+                                        .addComponent(nombreProveedor_OP_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nota_OP_Lbl))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         opcionProveedor_PnlLayout.setVerticalGroup(
             opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionProveedor_PnlLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(27, 27, 27)
+                .addComponent(opciones_OP_Lbl)
+                .addGap(9, 9, 9)
+                .addComponent(nota_OP_Lbl)
+                .addGap(18, 18, 18)
                 .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreProveedor_OP_Lbl)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(opcionProveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar_OP_Btn)
                     .addComponent(buscar_OP_Btn))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         informacionProveedor_TBn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -144,12 +166,15 @@ public class PnlProveedor extends javax.swing.JPanel {
         nombreProveedor_IP_Lbl.setText("Nombre del proveedor:");
 
         nombreProveedor_IP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreProveedor_IP_TFd.setEnabled(false);
 
         calificacion_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         calificacion_IP_Lbl.setText("Calificación:");
 
         calificacion_IP_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         calificacion_IP_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1" }));
+        calificacion_IP_CBx.setToolTipText("Seleccioné la calificación del proveedor");
+        calificacion_IP_CBx.setEnabled(false);
 
         tipo_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_IP_Lbl.setText("Tipo de proveedor:");
@@ -158,29 +183,39 @@ public class PnlProveedor extends javax.swing.JPanel {
         telefono_IP_lBL.setText("Teléfono :");
 
         telefono_IP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefono_IP_TFd.setEnabled(false);
 
         interno_IP_RBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         interno_IP_RBtn.setText("Interno");
+        interno_IP_RBtn.setEnabled(false);
 
         externo_IP_RBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         externo_IP_RBtn.setText("Externo");
+        externo_IP_RBtn.setEnabled(false);
 
         correoElectronico_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         correoElectronico_IP_Lbl.setText("Correo electrónico :");
 
         correoElectronico_IP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        correoElectronico_IP_TFd.setEnabled(false);
 
         guardar_IP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_IP_Btn.setText("Guardar");
+        guardar_IP_Btn.setEnabled(false);
+
+        agregar_IP_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregar_IP_LBl.setText("Agregar");
+
+        nota_IP_Lbl.setText("Ingrese la información a almacenar");
 
         javax.swing.GroupLayout informacion_Proveedor_PnlLayout = new javax.swing.GroupLayout(informacion_Proveedor_Pnl);
         informacion_Proveedor_Pnl.setLayout(informacion_Proveedor_PnlLayout);
         informacion_Proveedor_PnlLayout.setHorizontalGroup(
             informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacion_Proveedor_PnlLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informacion_Proveedor_PnlLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreProveedor_IP_Lbl)
                             .addComponent(telefono_IP_lBL))
@@ -188,35 +223,38 @@ public class PnlProveedor extends javax.swing.JPanel {
                         .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreProveedor_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(telefono_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(informacion_Proveedor_PnlLayout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(tipo_IP_Lbl)
-                        .addGap(29, 29, 29)
-                        .addComponent(interno_IP_RBtn)))
+                    .addComponent(nota_IP_Lbl)
+                    .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
                 .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacion_Proveedor_PnlLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(externo_IP_RBtn)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(informacion_Proveedor_PnlLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calificacion_IP_Lbl)
-                            .addComponent(correoElectronico_IP_Lbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calificacion_IP_CBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(correoElectronico_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(70, 70, 70))))
+                    .addComponent(calificacion_IP_Lbl)
+                    .addComponent(correoElectronico_IP_Lbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calificacion_IP_CBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(correoElectronico_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacion_Proveedor_PnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guardar_IP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
+            .addGroup(informacion_Proveedor_PnlLayout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(tipo_IP_Lbl)
+                .addGap(30, 30, 30)
+                .addComponent(interno_IP_RBtn)
+                .addGap(42, 42, 42)
+                .addComponent(externo_IP_RBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         informacion_Proveedor_PnlLayout.setVerticalGroup(
             informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacion_Proveedor_PnlLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(24, 24, 24)
+                .addComponent(agregar_IP_LBl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nota_IP_Lbl)
+                .addGap(35, 35, 35)
                 .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreProveedor_IP_Lbl)
                     .addComponent(nombreProveedor_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,12 +266,12 @@ public class PnlProveedor extends javax.swing.JPanel {
                     .addComponent(telefono_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(correoElectronico_IP_Lbl)
                     .addComponent(correoElectronico_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(informacion_Proveedor_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipo_IP_Lbl)
                     .addComponent(interno_IP_RBtn)
                     .addComponent(externo_IP_RBtn))
-                .addGap(241, 241, 241)
+                .addGap(186, 186, 186)
                 .addComponent(guardar_IP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -241,13 +279,18 @@ public class PnlProveedor extends javax.swing.JPanel {
         informacionProveedor_TBn.addTab("General", informacion_Proveedor_Pnl);
 
         agregarcURSO_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregarcURSO_Btn.setText(">");
+        agregarcURSO_Btn.setText(">>");
+        agregarcURSO_Btn.setToolTipText("Seleccioné un curso de capacitación a asignar");
+        agregarcURSO_Btn.setEnabled(false);
 
         agregarTodos_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregarTodos_Btn.setText(">>");
+        agregarTodos_Btn.setText("<<");
+        agregarTodos_Btn.setToolTipText("Selecciona todos los cursos de capacitación");
+        agregarTodos_Btn.setEnabled(false);
 
         guardar_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_Btn.setText("Guardar");
+        guardar_Btn.setEnabled(false);
 
         tablaCurso_Tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -299,32 +342,61 @@ public class PnlProveedor extends javax.swing.JPanel {
             tablaTodos_Tb.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        agregar_IPL_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregar_IPL_LBl.setText("Agregar");
+
+        nota_IPL_Lbl.setText("Ingrese la información a almacenar");
+
+        agregarcURSO_Btn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarcURSO_Btn1.setText(">");
+        agregarcURSO_Btn1.setToolTipText("Seleccioné un curso de capacitación a asignar");
+        agregarcURSO_Btn1.setEnabled(false);
+
+        agregarcURSO_Btn2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarcURSO_Btn2.setText("<");
+        agregarcURSO_Btn2.setToolTipText("Seleccioné un curso de capacitación a asignar");
+        agregarcURSO_Btn2.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardar_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(agregarcURSO_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(agregarcURSO_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarcURSO_Btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(agregarTodos_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarcURSO_Btn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarTodos_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardar_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nota_IPL_Lbl)
+                    .addComponent(agregar_IPL_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(23, 23, 23)
+                .addComponent(agregar_IPL_LBl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nota_IPL_Lbl)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,10 +407,14 @@ public class PnlProveedor extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(agregarcURSO_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(143, 143, 143)
-                                .addComponent(agregarTodos_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(46, 46, 46)
+                                .addComponent(agregarcURSO_Btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(agregarcURSO_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(agregarcURSO_Btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(agregarTodos_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -362,8 +438,12 @@ public class PnlProveedor extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarTodos_Btn;
+    private javax.swing.JLabel agregar_IPL_LBl;
+    private javax.swing.JLabel agregar_IP_LBl;
     private javax.swing.JButton agregar_OP_Btn;
     private javax.swing.JButton agregarcURSO_Btn;
+    private javax.swing.JButton agregarcURSO_Btn1;
+    private javax.swing.JButton agregarcURSO_Btn2;
     private javax.swing.JButton buscar_OP_Btn;
     private javax.swing.JComboBox calificacion_IP_CBx;
     private javax.swing.JLabel calificacion_IP_Lbl;
@@ -383,7 +463,11 @@ public class PnlProveedor extends javax.swing.JPanel {
     private javax.swing.JLabel nombreProveedor_IP_Lbl;
     private javax.swing.JTextField nombreProveedor_IP_TFd;
     private javax.swing.JLabel nombreProveedor_OP_Lbl;
+    private javax.swing.JLabel nota_IPL_Lbl;
+    private javax.swing.JLabel nota_IP_Lbl;
+    private javax.swing.JLabel nota_OP_Lbl;
     private javax.swing.JPanel opcionProveedor_Pnl;
+    private javax.swing.JLabel opciones_OP_Lbl;
     private javax.swing.JTable tablaCurso_Tb;
     private javax.swing.JTable tablaProveedores_OP_Tbl;
     private javax.swing.JTable tablaTodos_Tb;
