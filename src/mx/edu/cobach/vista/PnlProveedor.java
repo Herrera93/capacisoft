@@ -52,8 +52,8 @@ public class PnlProveedor extends javax.swing.JPanel {
         agregar_IP_LBl = new javax.swing.JLabel();
         nota_IP_Lbl = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        agregarcURSO_Btn = new javax.swing.JButton();
-        agregarTodos_Btn = new javax.swing.JButton();
+        agregarTodos_IPL_Btn = new javax.swing.JButton();
+        eliminarTodos_IPL_Btn = new javax.swing.JButton();
         guardar_Btn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCurso_Tb = new javax.swing.JTable();
@@ -61,8 +61,8 @@ public class PnlProveedor extends javax.swing.JPanel {
         tablaTodos_Tb = new javax.swing.JTable();
         agregar_IPL_LBl = new javax.swing.JLabel();
         nota_IPL_Lbl = new javax.swing.JLabel();
-        agregarcURSO_Btn1 = new javax.swing.JButton();
-        agregarcURSO_Btn2 = new javax.swing.JButton();
+        agregarCurso_IPL_Btn = new javax.swing.JButton();
+        eliminarCurso_OPL_Btn = new javax.swing.JButton();
 
         opcionProveedor_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionProveedor_Pnl.setPreferredSize(new java.awt.Dimension(352, 400));
@@ -278,15 +278,15 @@ public class PnlProveedor extends javax.swing.JPanel {
 
         informacionProveedor_TBn.addTab("General", informacion_Proveedor_Pnl);
 
-        agregarcURSO_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregarcURSO_Btn.setText(">>");
-        agregarcURSO_Btn.setToolTipText("Seleccioné un curso de capacitación a asignar");
-        agregarcURSO_Btn.setEnabled(false);
+        agregarTodos_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarTodos_IPL_Btn.setText(">>");
+        agregarTodos_IPL_Btn.setToolTipText("Agregar todos los cursos");
+        agregarTodos_IPL_Btn.setEnabled(false);
 
-        agregarTodos_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregarTodos_Btn.setText("<<");
-        agregarTodos_Btn.setToolTipText("Selecciona todos los cursos de capacitación");
-        agregarTodos_Btn.setEnabled(false);
+        eliminarTodos_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eliminarTodos_IPL_Btn.setText("<<");
+        eliminarTodos_IPL_Btn.setToolTipText("Eliminar todos los cursos");
+        eliminarTodos_IPL_Btn.setEnabled(false);
 
         guardar_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_Btn.setText("Guardar");
@@ -347,15 +347,15 @@ public class PnlProveedor extends javax.swing.JPanel {
 
         nota_IPL_Lbl.setText("Ingrese la información a almacenar");
 
-        agregarcURSO_Btn1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregarcURSO_Btn1.setText(">");
-        agregarcURSO_Btn1.setToolTipText("Seleccioné un curso de capacitación a asignar");
-        agregarcURSO_Btn1.setEnabled(false);
+        agregarCurso_IPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarCurso_IPL_Btn.setText(">");
+        agregarCurso_IPL_Btn.setToolTipText("Seleccioné un curso de capacitación a asignar");
+        agregarCurso_IPL_Btn.setEnabled(false);
 
-        agregarcURSO_Btn2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregarcURSO_Btn2.setText("<");
-        agregarcURSO_Btn2.setToolTipText("Seleccioné un curso de capacitación a asignar");
-        agregarcURSO_Btn2.setEnabled(false);
+        eliminarCurso_OPL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eliminarCurso_OPL_Btn.setText("<");
+        eliminarCurso_OPL_Btn.setToolTipText("Seleccioné un curso de capacitación a eliminar");
+        eliminarCurso_OPL_Btn.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -372,13 +372,13 @@ public class PnlProveedor extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(agregarcURSO_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(agregarcURSO_Btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(agregarTodos_IPL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(agregarCurso_IPL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarcURSO_Btn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(agregarTodos_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(eliminarCurso_OPL_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eliminarTodos_IPL_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addContainerGap())
@@ -408,13 +408,13 @@ public class PnlProveedor extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addComponent(agregarcURSO_Btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(agregarCurso_IPL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(agregarcURSO_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(agregarTodos_IPL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23)
-                                .addComponent(agregarcURSO_Btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(eliminarCurso_OPL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(agregarTodos_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(eliminarTodos_IPL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -437,18 +437,18 @@ public class PnlProveedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregarTodos_Btn;
+    private javax.swing.JButton agregarCurso_IPL_Btn;
+    private javax.swing.JButton agregarTodos_IPL_Btn;
     private javax.swing.JLabel agregar_IPL_LBl;
     private javax.swing.JLabel agregar_IP_LBl;
     private javax.swing.JButton agregar_OP_Btn;
-    private javax.swing.JButton agregarcURSO_Btn;
-    private javax.swing.JButton agregarcURSO_Btn1;
-    private javax.swing.JButton agregarcURSO_Btn2;
     private javax.swing.JButton buscar_OP_Btn;
     private javax.swing.JComboBox calificacion_IP_CBx;
     private javax.swing.JLabel calificacion_IP_Lbl;
     private javax.swing.JLabel correoElectronico_IP_Lbl;
     private javax.swing.JTextField correoElectronico_IP_TFd;
+    private javax.swing.JButton eliminarCurso_OPL_Btn;
+    private javax.swing.JButton eliminarTodos_IPL_Btn;
     private javax.swing.JRadioButton externo_IP_RBtn;
     private javax.swing.JButton guardar_Btn;
     private javax.swing.JButton guardar_IP_Btn;
