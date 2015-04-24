@@ -71,8 +71,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         buscar_OE_Btn = new javax.swing.JButton();
         agregar_OE_Btn = new javax.swing.JButton();
         adscripcion_OE_CBx = new javax.swing.JComboBox();
-        nota_OP_Lbl = new javax.swing.JLabel();
-        opciones_OP_Lbl = new javax.swing.JLabel();
+        nota_OE_Lbl = new javax.swing.JLabel();
+        opciones_OE_Lbl = new javax.swing.JLabel();
         informacionEmpleado_Pnl = new javax.swing.JPanel();
         puesto_IE_Pnl = new javax.swing.JLabel();
         plantel_IE_Lbl = new javax.swing.JLabel();
@@ -95,8 +95,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         segundoApellido_IE_Lbl = new javax.swing.JLabel();
         primerApellido_IE_TFd = new javax.swing.JTextField();
         primerApellido_IE_Lbl = new javax.swing.JLabel();
-        agregar_IP_LBl = new javax.swing.JLabel();
-        nota_IP_Lbl = new javax.swing.JLabel();
+        agregar_IE_LBl = new javax.swing.JLabel();
+        nota_IE_Lbl = new javax.swing.JLabel();
 
         opcionEmpleado_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -162,10 +162,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscripcion_OE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
         adscripcion_OE_CBx.setEnabled(false);
 
-        nota_OP_Lbl.setText("Ingrese el nombre para buscar la información especifica");
+        nota_OE_Lbl.setText("Ingrese el nombre para buscar la información especifica");
 
-        opciones_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        opciones_OP_Lbl.setText("Opciones ");
+        opciones_OE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OE_Lbl.setText("Opciones ");
 
         javax.swing.GroupLayout opcionEmpleado_PnlLayout = new javax.swing.GroupLayout(opcionEmpleado_Pnl);
         opcionEmpleado_Pnl.setLayout(opcionEmpleado_PnlLayout);
@@ -201,17 +201,17 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                                         .addGap(23, 23, 23))))
                             .addGroup(opcionEmpleado_PnlLayout.createSequentialGroup()
                                 .addGroup(opcionEmpleado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opciones_OP_Lbl)
-                                    .addComponent(nota_OP_Lbl))
+                                    .addComponent(opciones_OE_Lbl)
+                                    .addComponent(nota_OE_Lbl))
                                 .addGap(0, 0, Short.MAX_VALUE))))))
         );
         opcionEmpleado_PnlLayout.setVerticalGroup(
             opcionEmpleado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionEmpleado_PnlLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(opciones_OP_Lbl)
+                .addComponent(opciones_OE_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_OP_Lbl)
+                .addComponent(nota_OE_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionEmpleado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreEmpleado_OE_Lbl)
@@ -244,7 +244,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         correoElectronico_IE_Lbl.setText("Correo electrónico :");
 
         adscripcion_IE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        adscripcion_IE_Lbl.setText("Adscripcion:");
+        adscripcion_IE_Lbl.setText("Adscripción ");
 
         departamento_IE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         departamento_IE_Lbl.setText("Departamento:");
@@ -257,18 +257,22 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
         puesto_IE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         puesto_IE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        puesto_IE_CBx.setToolTipText("Seleccioné el puesto que esta asigando el empleado");
         puesto_IE_CBx.setEnabled(false);
 
         plantel_IE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantel_IE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        plantel_IE_CBx.setToolTipText("Seleccioné el plantel que esta asigando el empleado");
         plantel_IE_CBx.setEnabled(false);
 
         adscripcion_IE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         adscripcion_IE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
+        adscripcion_IE_CBx.setToolTipText("Seleccioné la  adscripción que esta asigando el empleado");
         adscripcion_IE_CBx.setEnabled(false);
 
         departamento_IE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         departamento_IE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        departamento_IE_CBx.setToolTipText("Seleccioné el departamento que esta asigando el empleado");
         departamento_IE_CBx.setEnabled(false);
 
         guardar_IE_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -300,10 +304,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellido_IE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         primerApellido_IE_Lbl.setText("Primer apellido:");
 
-        agregar_IP_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregar_IP_LBl.setText("Agregar");
+        agregar_IE_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregar_IE_LBl.setText("Agregar");
 
-        nota_IP_Lbl.setText("Ingrese la información a almacenar");
+        nota_IE_Lbl.setText("Ingrese la información a almacenar");
 
         javax.swing.GroupLayout informacionEmpleado_PnlLayout = new javax.swing.GroupLayout(informacionEmpleado_Pnl);
         informacionEmpleado_Pnl.setLayout(informacionEmpleado_PnlLayout);
@@ -369,17 +373,17 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(informacionEmpleado_PnlLayout.createSequentialGroup()
                         .addGroup(informacionEmpleado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nota_IP_Lbl)
-                            .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nota_IE_Lbl)
+                            .addComponent(agregar_IE_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         informacionEmpleado_PnlLayout.setVerticalGroup(
             informacionEmpleado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionEmpleado_PnlLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(agregar_IP_LBl)
+                .addComponent(agregar_IE_LBl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_IP_Lbl)
+                .addComponent(nota_IE_Lbl)
                 .addGap(51, 51, 51)
                 .addGroup(informacionEmpleado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numero_IE_Lbl)
@@ -469,7 +473,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JComboBox adscripcion_IE_CBx;
     private javax.swing.JLabel adscripcion_IE_Lbl;
     private javax.swing.JComboBox adscripcion_OE_CBx;
-    private javax.swing.JLabel agregar_IP_LBl;
+    private javax.swing.JLabel agregar_IE_LBl;
     private javax.swing.JButton agregar_OE_Btn;
     private javax.swing.JButton buscar_OE_Btn;
     private javax.swing.JLabel correoElectronico_IE_Lbl;
@@ -481,12 +485,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreEmpleado_OE_Lbl;
     private javax.swing.JTextField nombreEmpleado_OE_TFd;
-    private javax.swing.JLabel nota_IP_Lbl;
-    private javax.swing.JLabel nota_OP_Lbl;
+    private javax.swing.JLabel nota_IE_Lbl;
+    private javax.swing.JLabel nota_OE_Lbl;
     private javax.swing.JLabel numero_IE_Lbl;
     private javax.swing.JTextField numero_IE_TFd;
     private javax.swing.JPanel opcionEmpleado_Pnl;
-    private javax.swing.JLabel opciones_OP_Lbl;
+    private javax.swing.JLabel opciones_OE_Lbl;
     private javax.swing.JLabel plantelEmpleado_OE_Lbl;
     private javax.swing.JComboBox plantel_IE_CBx;
     private javax.swing.JLabel plantel_IE_Lbl;
