@@ -24,10 +24,11 @@ public class CursoControlador {
         this.com=com;
     }
     
-    public void buscar(int id) {
+    public void buscarTipoCurso(int id) {
         List<Object> o = ServiceLocatorDELEGATE.getCurso().findTipoCurso(id, clazz);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
+    
     public void buscarNombre(String nombre) {
         List<Object> l = ServiceLocatorDELEGATE.getCurso().findNombre(nombre, clazz);
         Object o = l.get(0);

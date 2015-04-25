@@ -6,52 +6,46 @@
 package mx.edu.cobach.persitencia;
 
 import java.util.List;
+import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author fernando
+ * @author liuts
  */
-public class CursoDAO<T> extends BaseDAO{
+public class CursoDAO extends BaseDAO{
     
-    public CursoDAO(){
-        
-    }
- 
-    public List<T> findTipoCurso(int id) {
-        List <T> t = null;
+    public List<Object> findNombre(String nombre){
+        List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            t = (List<T>) HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("tipoCurso.id", id)).list();
-            HibernateUtil.commitTransaction();
-            System.out.println("Buscando Object");
+            ts = HibernateUtil.getSession().createCriteria(Curso.class)
+                    .add(Restrictions.ilike("nombre", nombre + "%")).list();
+            System.out.println("Buscar por nombre::CURSO");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
             HibernateUtil.closeSession();
         }
-        return t;
+        return ts;
     }
-    public List<T> findNombre(String nombre) {
-        List<T> t = null;
-        System.out.println(nombre);
+    
+    public List<Object> findTipoCurso(int id){
+        List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            t = (List<T>) HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("nombre", nombre)).list();
-            HibernateUtil.commitTransaction();
-            System.out.println("Buscando Object");
+            ts = HibernateUtil.getSession().createCriteria(Curso.class)
+                    .add(Restrictions.ilike("tipoCurso.id", id)).list();
+            System.out.println("Buscar por Tipo Curso::CURSO");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
-            HibernateUtil.closeSession();   
+            HibernateUtil.closeSession();
         }
-        return t;
+        return ts;
     }
 }
-

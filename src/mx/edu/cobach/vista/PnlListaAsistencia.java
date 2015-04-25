@@ -34,12 +34,18 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
         busar_OLA_Btn = new javax.swing.JButton();
         fechaInicial_OLA_TFd = new javax.swing.JTextField();
         fechaHasta_OLA_TFd = new javax.swing.JTextField();
+        opciones_OL_Lbl = new javax.swing.JLabel();
+        nota_OL_Lbl = new javax.swing.JLabel();
         informacionListaAsistencia_Pnl = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaLista_ILA_Tbl = new javax.swing.JTable();
         imprimir_ILA_Btn = new javax.swing.JButton();
+        opciones_IL_Lbl = new javax.swing.JLabel();
 
         opcionListaAsistencia_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionListaAsistencia_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionListaAsistencia_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionListaAsistencia_Pnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
         tablaFechas_OLA_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,6 +85,11 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
 
         fechaHasta_OLA_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        opciones_OL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OL_Lbl.setText("Opciones ");
+
+        nota_OL_Lbl.setText("Ingrese la fecha para buscar la información especifica");
+
         javax.swing.GroupLayout opcionListaAsistencia_PnlLayout = new javax.swing.GroupLayout(opcionListaAsistencia_Pnl);
         opcionListaAsistencia_Pnl.setLayout(opcionListaAsistencia_PnlLayout);
         opcionListaAsistencia_PnlLayout.setHorizontalGroup(
@@ -86,38 +97,52 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
             .addGroup(opcionListaAsistencia_PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opcionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionListaAsistencia_PnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(busar_OLA_Btn))
-                    .addGroup(opcionListaAsistencia_PnlLayout.createSequentialGroup()
-                        .addComponent(fechaInicial_OLA_Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fechaInicial_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fechaHasta_OLA_Lbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(fechaHasta_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 45, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 16, Short.MAX_VALUE)
+                        .addGroup(opcionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(opciones_OL_Lbl)
+                                .addGroup(opcionListaAsistencia_PnlLayout.createSequentialGroup()
+                                    .addGap(280, 280, 280)
+                                    .addComponent(busar_OLA_Btn)
+                                    .addGap(25, 25, 25))
+                                .addComponent(nota_OL_Lbl))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionListaAsistencia_PnlLayout.createSequentialGroup()
+                                .addComponent(fechaInicial_OLA_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaInicial_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaHasta_OLA_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaHasta_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionListaAsistencia_PnlLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         opcionListaAsistencia_PnlLayout.setVerticalGroup(
             opcionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionListaAsistencia_PnlLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(37, 37, 37)
+                .addComponent(opciones_OL_Lbl)
+                .addGap(10, 10, 10)
+                .addComponent(nota_OL_Lbl)
+                .addGap(29, 29, 29)
                 .addGroup(opcionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fechaInicial_OLA_Lbl)
                     .addComponent(fechaInicial_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaHasta_OLA_Lbl)
-                    .addComponent(fechaHasta_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(fechaHasta_OLA_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaInicial_OLA_Lbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(busar_OLA_Btn)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
 
         informacionListaAsistencia_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionListaAsistencia_Pnl.setMaximumSize(new java.awt.Dimension(767, 558));
+        informacionListaAsistencia_Pnl.setMinimumSize(new java.awt.Dimension(767, 558));
 
         tablaLista_ILA_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -150,6 +175,9 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
         imprimir_ILA_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         imprimir_ILA_Btn.setText("Imprimir");
 
+        opciones_IL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_IL_Lbl.setText("Información de los empleados");
+
         javax.swing.GroupLayout informacionListaAsistencia_PnlLayout = new javax.swing.GroupLayout(informacionListaAsistencia_Pnl);
         informacionListaAsistencia_Pnl.setLayout(informacionListaAsistencia_PnlLayout);
         informacionListaAsistencia_PnlLayout.setHorizontalGroup(
@@ -157,7 +185,10 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
             .addGroup(informacionListaAsistencia_PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(informacionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
+                    .addGroup(informacionListaAsistencia_PnlLayout.createSequentialGroup()
+                        .addComponent(opciones_IL_Lbl)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionListaAsistencia_PnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(imprimir_ILA_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -166,11 +197,13 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
         informacionListaAsistencia_PnlLayout.setVerticalGroup(
             informacionListaAsistencia_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionListaAsistencia_PnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(opciones_IL_Lbl)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(imprimir_ILA_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -198,7 +231,10 @@ public class PnlListaAsistencia extends javax.swing.JPanel {
     private javax.swing.JPanel informacionListaAsistencia_Pnl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel nota_OL_Lbl;
     private javax.swing.JPanel opcionListaAsistencia_Pnl;
+    private javax.swing.JLabel opciones_IL_Lbl;
+    private javax.swing.JLabel opciones_OL_Lbl;
     private javax.swing.JTable tablaFechas_OLA_Tbl;
     private javax.swing.JTable tablaLista_ILA_Tbl;
     // End of variables declaration//GEN-END:variables

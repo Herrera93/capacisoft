@@ -32,12 +32,18 @@ public class PnlKardex extends javax.swing.JPanel {
         guardar_OK_Btn = new javax.swing.JButton();
         numeroEmpleado_OK_TFd = new javax.swing.JTextField();
         nombreCompleto_OK_TFd = new javax.swing.JTextField();
+        opciones_OK_Lbl = new javax.swing.JLabel();
+        nota_OK_Lbl = new javax.swing.JLabel();
         informacionKardex_Pnl = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaKardex_IK_Tbl = new javax.swing.JTable();
         generar_IK_Btn = new javax.swing.JButton();
+        opciones_IK_Lbl = new javax.swing.JLabel();
 
         opcionKardex_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionKardex_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionKardex_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionKardex_Pnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
         numeroEmpleado_OK_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroEmpleado_OK_Lbl.setText("Numero del Empleado:");
@@ -52,29 +58,46 @@ public class PnlKardex extends javax.swing.JPanel {
 
         nombreCompleto_OK_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        opciones_OK_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_OK_Lbl.setText("Opciones ");
+
+        nota_OK_Lbl.setText("Ingrese los datos para buscar la información especifica");
+
         javax.swing.GroupLayout opcionKardex_PnlLayout = new javax.swing.GroupLayout(opcionKardex_Pnl);
         opcionKardex_Pnl.setLayout(opcionKardex_PnlLayout);
         opcionKardex_PnlLayout.setHorizontalGroup(
             opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionKardex_PnlLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(numeroEmpleado_OK_Lbl)
-                    .addComponent(nombreCompleto_OK_Lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(numeroEmpleado_OK_TFd)
-                    .addComponent(nombreCompleto_OK_TFd, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionKardex_PnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardar_OK_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionKardex_PnlLayout.createSequentialGroup()
+                        .addContainerGap(286, Short.MAX_VALUE)
+                        .addComponent(guardar_OK_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(opcionKardex_PnlLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(numeroEmpleado_OK_Lbl)
+                            .addComponent(nombreCompleto_OK_Lbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(numeroEmpleado_OK_TFd)
+                            .addComponent(nombreCompleto_OK_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(opcionKardex_PnlLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(opciones_OK_Lbl)
+                    .addComponent(nota_OK_Lbl))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         opcionKardex_PnlLayout.setVerticalGroup(
             opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionKardex_PnlLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(36, 36, 36)
+                .addComponent(opciones_OK_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nota_OK_Lbl)
+                .addGap(40, 40, 40)
                 .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroEmpleado_OK_Lbl)
                     .addComponent(numeroEmpleado_OK_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -82,12 +105,14 @@ public class PnlKardex extends javax.swing.JPanel {
                 .addGroup(opcionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreCompleto_OK_Lbl)
                     .addComponent(nombreCompleto_OK_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
                 .addComponent(guardar_OK_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
         informacionKardex_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionKardex_Pnl.setMaximumSize(new java.awt.Dimension(767, 566));
+        informacionKardex_Pnl.setMinimumSize(new java.awt.Dimension(767, 566));
 
         tablaKardex_IK_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +130,9 @@ public class PnlKardex extends javax.swing.JPanel {
         generar_IK_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         generar_IK_Btn.setText("Generar");
 
+        opciones_IK_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opciones_IK_Lbl.setText("Información del Kardex del empleado");
+
         javax.swing.GroupLayout informacionKardex_PnlLayout = new javax.swing.GroupLayout(informacionKardex_Pnl);
         informacionKardex_Pnl.setLayout(informacionKardex_PnlLayout);
         informacionKardex_PnlLayout.setHorizontalGroup(
@@ -112,17 +140,22 @@ public class PnlKardex extends javax.swing.JPanel {
             .addGroup(informacionKardex_PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(informacionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
                     .addGroup(informacionKardex_PnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(generar_IK_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(generar_IK_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informacionKardex_PnlLayout.createSequentialGroup()
+                        .addComponent(opciones_IK_Lbl)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         informacionKardex_PnlLayout.setVerticalGroup(
             informacionKardex_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionKardex_PnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(opciones_IK_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(generar_IK_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -150,9 +183,12 @@ public class PnlKardex extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreCompleto_OK_Lbl;
     private javax.swing.JTextField nombreCompleto_OK_TFd;
+    private javax.swing.JLabel nota_OK_Lbl;
     private javax.swing.JLabel numeroEmpleado_OK_Lbl;
     private javax.swing.JTextField numeroEmpleado_OK_TFd;
     private javax.swing.JPanel opcionKardex_Pnl;
+    private javax.swing.JLabel opciones_IK_Lbl;
+    private javax.swing.JLabel opciones_OK_Lbl;
     private javax.swing.JTable tablaKardex_IK_Tbl;
     // End of variables declaration//GEN-END:variables
 }

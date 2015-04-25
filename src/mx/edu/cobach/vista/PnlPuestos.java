@@ -62,8 +62,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregar_IP_Btn = new javax.swing.JButton();
         nombrePuesto_IP_TFd = new javax.swing.JTextField();
         agregar_IP_LBl = new javax.swing.JLabel();
+        nota_IP_Lbl = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(1181, 587));
+        setMinimumSize(new java.awt.Dimension(1181, 587));
+        setPreferredSize(new java.awt.Dimension(1181, 587));
 
         opcionPuesto_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionPuesto_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionPuesto_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
 
         nombrePuesto_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_OP_Lbl.setText("Nombre del puesto:");
@@ -142,24 +149,23 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(agregar_OP_Btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buscar_OP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPuesto_PnlLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opciones_OP_Lbl)
-                    .addComponent(nota_OP_Lbl)
+                        .addGap(11, 11, 11))
                     .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
-                        .addComponent(nombrePuesto_OP_Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(136, 136, 136))
+                        .addGap(19, 19, 19)
+                        .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregar_OP_Btn)
+                            .addComponent(nota_OP_Lbl)
+                            .addComponent(opciones_OP_Lbl)
+                            .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
+                                .addComponent(nombrePuesto_OP_Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 72, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         opcionPuesto_PnlLayout.setVerticalGroup(
             opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,6 +188,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         );
 
         informacionPuesto_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionPuesto_Pnl.setMaximumSize(new java.awt.Dimension(726, 587));
+        informacionPuesto_Pnl.setMinimumSize(new java.awt.Dimension(726, 587));
 
         nombrePuesto_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_IP_Lbl.setText("Nombre del puesto:");
@@ -201,6 +209,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregar_IP_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregar_IP_LBl.setText("Agregar");
 
+        nota_IP_Lbl.setText("Ingrese la información a almacenar");
+
         javax.swing.GroupLayout informacionPuesto_PnlLayout = new javax.swing.GroupLayout(informacionPuesto_Pnl);
         informacionPuesto_Pnl.setLayout(informacionPuesto_PnlLayout);
         informacionPuesto_PnlLayout.setHorizontalGroup(
@@ -212,23 +222,26 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             .addGroup(informacionPuesto_PnlLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nota_IP_Lbl)
                     .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(informacionPuesto_PnlLayout.createSequentialGroup()
                         .addComponent(nombrePuesto_IP_Lbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
         informacionPuesto_PnlLayout.setVerticalGroup(
             informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionPuesto_PnlLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(agregar_IP_LBl)
-                .addGap(54, 54, 54)
+                .addGap(18, 18, 18)
+                .addComponent(nota_IP_Lbl)
+                .addGap(22, 22, 22)
                 .addGroup(informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePuesto_IP_Lbl)
                     .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
                 .addComponent(agregar_IP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -254,13 +267,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
         } else {
             if (agregar_IP_Btn.getText().equals("Guardar")) {
-                control.alta(HelperEntidad.getPuesto(nombrePuesto_IP_TFd.getText()));
+                List<String> atr = new ArrayList<String>();
+                atr.add(nombrePuesto_IP_TFd.getText());
+                control.alta(HelperEntidad.getPuesto(atr,"Guardar"));
                 
             } else if (agregar_IP_Btn.getText().equals("Modificar")) {
                 List<String> atr = new ArrayList<String>();
                 atr.add(idPuesto + "");
                 atr.add(nombrePuesto_IP_TFd.getText());
-                control.modificacion(HelperEntidad.getPuesto(atr));
+                control.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
                 
             }
             nombrePuesto_IP_TFd.setText("");
@@ -317,7 +332,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 List<String> atr = new ArrayList<String>();
                 atr.add(idPuesto + "");
                 atr.add(nombrePuesto_IP_TFd.getText());
-                control.baja(HelperEntidad.getPuesto(atr));
+                control.baja(HelperEntidad.getPuesto(atr,"Mod/Eli"));
                 model.getDataVector().removeAllElements();
                 model.fireTableDataChanged();
                 nombrePuesto_OP_TFd.setEnabled(false);
@@ -343,6 +358,7 @@ private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
     private javax.swing.JTextField nombrePuesto_IP_TFd;
     private javax.swing.JLabel nombrePuesto_OP_Lbl;
     private javax.swing.JTextField nombrePuesto_OP_TFd;
+    private javax.swing.JLabel nota_IP_Lbl;
     private javax.swing.JLabel nota_OP_Lbl;
     private javax.swing.JPanel opcionPuesto_Pnl;
     private javax.swing.JLabel opciones_OP_Lbl;

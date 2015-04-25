@@ -159,7 +159,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                     .addComponent(programarCursoRealizar_RC_Btn))
                 .addGap(26, 26, 26)
                 .addComponent(pnlcalendario_OC_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         opcionesCurso_TP.addTab("Registrar curso de capacitación", registrarCurso_Pnl);
@@ -225,11 +225,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                 .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(BuscarCurso_PnlLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(buscar_BC_Btn)
                                 .addGroup(BuscarCurso_PnlLayout.createSequentialGroup()
-                                    .addContainerGap()
                                     .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(sede_BC_Lbl)
                                         .addComponent(nombre_BC_Lbl))
@@ -238,11 +238,8 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
                                         .addComponent(seleccion_BC_CBx, 0, 163, Short.MAX_VALUE)
                                         .addComponent(sede_BC_TFd))
                                     .addGap(70, 70, 70)))
-                            .addGroup(BuscarCurso_PnlLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(BuscarCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opciones_BC_Lbl)
-                                    .addComponent(nota_BC_Lbl))))
+                            .addComponent(opciones_BC_Lbl)
+                            .addComponent(nota_BC_Lbl))
                         .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
         );

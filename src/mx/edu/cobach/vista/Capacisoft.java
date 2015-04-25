@@ -393,6 +393,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }// </editor-fold>//GEN-END:initComponents
 
     private void encuesta_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encuesta_MItActionPerformed
+        this.setTitle("Capacisoft - Realizar Encuesta");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -411,6 +412,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_encuesta_MItActionPerformed
 
     private void kardex_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kardex_MItActionPerformed
+        this.setTitle("Capacisoft - Kardex");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -429,6 +431,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_kardex_MItActionPerformed
 
     private void registroCurso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroCurso_MItActionPerformed
+        this.setTitle("Capacisoft - Curso de capacitación");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -447,6 +450,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_registroCurso_MItActionPerformed
 
     private void evaluacionProveedor_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluacionProveedor_MItActionPerformed
+        this.setTitle("Capacisoft - Evaluación de proveedores");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -465,6 +469,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_evaluacionProveedor_MItActionPerformed
 
     private void lista_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_MItActionPerformed
+        this.setTitle("Capacisoft - Lista de asistencia");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -483,6 +488,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_lista_MItActionPerformed
 
     private void alertas_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alertas_MItActionPerformed
+        this.setTitle("Capacisoft - Administar Alertas");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -501,6 +507,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_alertas_MItActionPerformed
 
     private void programarCurso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programarCurso_MItActionPerformed
+        this.setTitle("Capacisoft - ProgramarCurso");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -519,6 +526,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_programarCurso_MItActionPerformed
 
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
+        this.setTitle("Capacisoft - Curso de capacitación");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -537,7 +545,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_curso_MItActionPerformed
 
     private void empleado_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleado_MItActionPerformed
-        this.setTitle("Capacisoft - Empleados Administrativos");
+        this.setTitle("Capacisoft - Empleado Administrativo");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -557,6 +565,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_empleado_MItActionPerformed
 
     private void proveedores_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedores_MItActionPerformed
+        this.setTitle("Capacisoft - Proveedor");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -575,6 +584,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_proveedores_MItActionPerformed
 
     private void sedes_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedes_MItActionPerformed
+        this.setTitle("Capacisoft - Sede");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -612,6 +622,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_puestos_MItActionPerformed
 
     private void departamentos_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departamentos_MItActionPerformed
+        this.setTitle("Capacisoft - Departamento");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(true);
@@ -630,6 +641,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_departamentos_MItActionPerformed
 
     private void planteles_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planteles_MItActionPerformed
+        this.setTitle("Capacisoft - Plantel");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(true);
         departamentoPnl.setVisible(false);
@@ -648,6 +660,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_planteles_MItActionPerformed
 
     private void usuario_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario_MItActionPerformed
+        this.setTitle("Capacisoft - Usuario");
         usuarioPnl.setVisible(true);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);

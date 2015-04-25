@@ -16,6 +16,7 @@ public class CursoDELEGATE {
     CursoDELEGATE(){
         
     }
+    
     public List<Object> findTipoCurso(int id, Class clazz) {
         return ServiceLocatorFACADE.getCurso().findTipoCurso(id, clazz);
     }
