@@ -36,6 +36,8 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
         agregarPregunta_RE_Btn = new javax.swing.JButton();
         agregaTodos_RE_Btn = new javax.swing.JButton();
         enviar_RE_Btn = new javax.swing.JButton();
+        borrarPregunta_RE_Btn = new javax.swing.JButton();
+        borrarTodos_RE_Btn = new javax.swing.JButton();
 
         realizarEncuesta_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -62,17 +64,17 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
 
         tablaTodos_RE_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Pregunta", "Eliminar"
+                "Pregunta"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -98,6 +100,12 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
             }
         });
 
+        borrarPregunta_RE_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        borrarPregunta_RE_Btn.setText("<");
+
+        borrarTodos_RE_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        borrarTodos_RE_Btn.setText("<<");
+
         javax.swing.GroupLayout realizarEncuesta_PnlLayout = new javax.swing.GroupLayout(realizarEncuesta_Pnl);
         realizarEncuesta_Pnl.setLayout(realizarEncuesta_PnlLayout);
         realizarEncuesta_PnlLayout.setHorizontalGroup(
@@ -113,9 +121,11 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
                     .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(agregaTodos_RE_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                            .addComponent(agregarPregunta_RE_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(borrarTodos_RE_Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(borrarPregunta_RE_Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                            .addComponent(agregarPregunta_RE_Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -127,9 +137,13 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, realizarEncuesta_PnlLayout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addComponent(agregarPregunta_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(agregaTodos_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(borrarPregunta_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(borrarTodos_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE))
                     .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(Elejir_RE_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,6 +181,8 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
     private javax.swing.JLabel Elejir_RE_Lbl;
     private javax.swing.JButton agregaTodos_RE_Btn;
     private javax.swing.JButton agregarPregunta_RE_Btn;
+    private javax.swing.JButton borrarPregunta_RE_Btn;
+    private javax.swing.JButton borrarTodos_RE_Btn;
     private javax.swing.JButton enviar_RE_Btn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

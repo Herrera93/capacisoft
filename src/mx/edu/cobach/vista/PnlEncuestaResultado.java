@@ -5,17 +5,57 @@
  */
 package mx.edu.cobach.vista;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author liuts
  */
 public class PnlEncuestaResultado extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form PnlRegistro
      */
     public PnlEncuestaResultado() {
         initComponents();
+        JFreeChart barChart = ChartFactory.createBarChart(
+                "Antes de la encuesta",
+                "Preguntas",
+                "Escala",
+                createDataset(),
+                PlotOrientation.VERTICAL,true, true, false);
+        JFreeChart barChart2 = ChartFactory.createBarChart(
+                "Despues de la encuesta",
+                "Preguntas",
+                "Escala",
+                createDataset(),
+                PlotOrientation.VERTICAL,true, true, false);
+        ChartPanel chartPanel = new ChartPanel(barChart);
+        ChartPanel chartPanel2 = new ChartPanel(barChart2);
+        
+        antesEncuesta_RE_Pnl.setLayout(new BorderLayout());
+        antesEncuesta_RE_Pnl.setPreferredSize(new Dimension(340, 255));
+        antesEncuesta_RE_Pnl.add(chartPanel);
+        
+        despuesEncuesta_RE_Pnl.setLayout(new BorderLayout());
+        despuesEncuesta_RE_Pnl.setPreferredSize(new Dimension(340, 255));
+        despuesEncuesta_RE_Pnl.add(chartPanel2);
+    }
+    
+    private CategoryDataset createDataset(){
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        for(int i = 1; i <= 5; i++){        
+            dataset.addValue( Math.random() * 10 + 1 , "Pregunta " + i, "Resultado");
+        }
+        return dataset; 
     }
 
     /**
@@ -31,6 +71,8 @@ public class PnlEncuestaResultado extends javax.swing.JPanel {
         tablaRegistro_Tbl = new javax.swing.JTable();
         antesEncuesta_RE_Pnl = new javax.swing.JPanel();
         despuesEncuesta_RE_Pnl = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -62,31 +104,34 @@ public class PnlEncuestaResultado extends javax.swing.JPanel {
             tablaRegistro_Tbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        antesEncuesta_RE_Pnl.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 3, true), "Antes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        antesEncuesta_RE_Pnl.setPreferredSize(new java.awt.Dimension(340, 255));
 
         javax.swing.GroupLayout antesEncuesta_RE_PnlLayout = new javax.swing.GroupLayout(antesEncuesta_RE_Pnl);
         antesEncuesta_RE_Pnl.setLayout(antesEncuesta_RE_PnlLayout);
         antesEncuesta_RE_PnlLayout.setHorizontalGroup(
             antesEncuesta_RE_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         antesEncuesta_RE_PnlLayout.setVerticalGroup(
             antesEncuesta_RE_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        despuesEncuesta_RE_Pnl.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 3, true), "Despues", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
-
         javax.swing.GroupLayout despuesEncuesta_RE_PnlLayout = new javax.swing.GroupLayout(despuesEncuesta_RE_Pnl);
         despuesEncuesta_RE_Pnl.setLayout(despuesEncuesta_RE_PnlLayout);
         despuesEncuesta_RE_PnlLayout.setHorizontalGroup(
             despuesEncuesta_RE_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         despuesEncuesta_RE_PnlLayout.setVerticalGroup(
             despuesEncuesta_RE_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+            .addGap(0, 247, Short.MAX_VALUE)
         );
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Resultado de encuestas");
+
+        jLabel2.setText("Seleccionar un empleado de la tabla para mostrar sus encuestas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,16 +146,26 @@ public class PnlEncuestaResultado extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(despuesEncuesta_RE_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(despuesEncuesta_RE_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(antesEncuesta_RE_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(antesEncuesta_RE_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -119,8 +174,8 @@ public class PnlEncuestaResultado extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel antesEncuesta_RE_Pnl;
     private javax.swing.JPanel despuesEncuesta_RE_Pnl;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaRegistro_Tbl;
     // End of variables declaration//GEN-END:variables

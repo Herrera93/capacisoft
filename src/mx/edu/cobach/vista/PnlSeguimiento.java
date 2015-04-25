@@ -16,7 +16,7 @@ public class PnlSeguimiento extends javax.swing.JPanel {
      * Creates new form PnlSeguimiento
      */
     
-    private PnlRegistro resultadoPnl;
+    private PnlEncuestaResultado resultadoPnl;
     private PnlRealizarEncuesta realizarEncuestaPnl;
     
     public PnlSeguimiento() {
@@ -25,7 +25,7 @@ public class PnlSeguimiento extends javax.swing.JPanel {
     }
 
     private void agregar(){
-        resultadoPnl = new PnlRegistro();
+        resultadoPnl = new PnlEncuestaResultado();
         
         resultadoPnl.setLocation(408,0);
         resultadoPnl.setSize(773,589);
@@ -54,6 +54,7 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         resultado_Pnl = new javax.swing.JPanel();
         cursoCapacitacion_R_Lbl = new javax.swing.JLabel();
         cursoCapacitacion_R_CBx = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         opcionSeguimiento_Tb.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -104,25 +105,33 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         cursoCapacitacion_R_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cursoCapacitacion_R_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout resultado_PnlLayout = new javax.swing.GroupLayout(resultado_Pnl);
         resultado_Pnl.setLayout(resultado_PnlLayout);
         resultado_PnlLayout.setHorizontalGroup(
             resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resultado_PnlLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(cursoCapacitacion_R_Lbl)
-                .addGap(18, 18, 18)
-                .addComponent(cursoCapacitacion_R_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(resultado_PnlLayout.createSequentialGroup()
+                        .addComponent(cursoCapacitacion_R_Lbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(cursoCapacitacion_R_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         resultado_PnlLayout.setVerticalGroup(
             resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resultado_PnlLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1)
+                .addGap(19, 19, 19)
                 .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cursoCapacitacion_R_Lbl)
                     .addComponent(cursoCapacitacion_R_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(488, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
 
         opcionSeguimiento_Tb.addTab("Resultados", resultado_Pnl);
@@ -154,6 +163,7 @@ public class PnlSeguimiento extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cursoCapacitacion_R_CBx;
     private javax.swing.JLabel cursoCapacitacion_R_Lbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTabbedPane opcionSeguimiento_Tb;
     private javax.swing.JPanel realizarEncuesta_Pnl;
     private javax.swing.JPanel resultado_Pnl;

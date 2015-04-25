@@ -472,6 +472,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         TableColumn tc = tablaEmpleados_OE_Tbl.getColumnModel().getColumn(2);
         tc.setCellEditor(tablaEmpleados_OE_Tbl.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(tablaEmpleados_OE_Tbl.getDefaultRenderer(Boolean.class));
+        tablaEmpleados_OE_Tbl.getColumnModel().removeColumn(tc);
     }
 
     @Override
