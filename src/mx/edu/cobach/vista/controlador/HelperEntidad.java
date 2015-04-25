@@ -20,11 +20,18 @@ import mx.edu.cobach.persistencia.entidades.TipoCurso;
  */
 public class HelperEntidad {
     
-    public static Puesto getPuesto(List<String> atributos){
-        Puesto puesto = new Puesto();
-        puesto.setId(Integer.parseInt(atributos.get(0)));
-        puesto.setNombre(atributos.get(1)+"");
-        return puesto;        
+    public static Puesto getPuesto(List<String> atributos,String direccion){
+        if(direccion.equals("Guardar")){
+            Puesto puesto = new Puesto();
+            puesto.setNombre(atributos.get(0)+"");
+            return puesto;
+        }
+        else{
+            Puesto puesto = new Puesto();
+            puesto.setId(Integer.parseInt(atributos.get(0)));
+            puesto.setNombre(atributos.get(1)+"");
+            return puesto;  
+        }
     }
     
     public static Object getEmpleado(List<Object> atributos) {
@@ -42,11 +49,6 @@ public class HelperEntidad {
         e.setDepartamento((Departamento) atributos.get(9));
         return e;
     }
-    
-    public static Puesto getPuesto(String atributo){
-        return new Puesto(atributo);
-    }
-    
     public static Curso getCurso(List<String> atributos){
         TipoCurso tc = new TipoCurso();
         tc.setId(Integer.parseInt(atributos.get(0)));
