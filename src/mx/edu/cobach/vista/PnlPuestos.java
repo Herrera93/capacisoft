@@ -267,13 +267,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
         } else {
             if (agregar_IP_Btn.getText().equals("Guardar")) {
-                control.alta(HelperEntidad.getPuesto(nombrePuesto_IP_TFd.getText()));
+                List<String> atr = new ArrayList<String>();
+                atr.add(nombrePuesto_IP_TFd.getText());
+                control.alta(HelperEntidad.getPuesto(atr,"Guardar"));
                 
             } else if (agregar_IP_Btn.getText().equals("Modificar")) {
                 List<String> atr = new ArrayList<String>();
                 atr.add(idPuesto + "");
                 atr.add(nombrePuesto_IP_TFd.getText());
-                control.modificacion(HelperEntidad.getPuesto(atr));
+                control.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
                 
             }
             nombrePuesto_IP_TFd.setText("");
@@ -330,7 +332,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 List<String> atr = new ArrayList<String>();
                 atr.add(idPuesto + "");
                 atr.add(nombrePuesto_IP_TFd.getText());
-                control.baja(HelperEntidad.getPuesto(atr));
+                control.baja(HelperEntidad.getPuesto(atr,"Mod/Eli"));
                 model.getDataVector().removeAllElements();
                 model.fireTableDataChanged();
                 nombrePuesto_OP_TFd.setEnabled(false);
