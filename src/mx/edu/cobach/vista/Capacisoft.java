@@ -263,7 +263,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         });
         mantenimientoCurso_Mn.add(proveedores_MIt);
 
-        empleado_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
+        empleado_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         empleado_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         empleado_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/empleado.png"))); // NOI18N
         empleado_MIt.setText("Empleado Administrativo");
@@ -274,7 +274,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         });
         mantenimientoCurso_Mn.add(empleado_MIt);
 
-        curso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK));
+        curso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         curso_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         curso_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/curso.png"))); // NOI18N
         curso_MIt.setText("Cursos de capacitación");
@@ -323,6 +323,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         });
         reportes_Mn.add(evaluacionProveedor_MIt);
 
+        lista_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
         lista_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lista_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/listasistencia.png"))); // NOI18N
         lista_MIt.setText("Lista de asistencia");
