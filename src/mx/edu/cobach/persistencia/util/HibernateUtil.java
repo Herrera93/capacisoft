@@ -15,6 +15,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.boot.registry.internal.StandardServiceRegistryImpl;
 import org.hibernate.cfg.Configuration;
 
+
 /**
  *Hibernate Util es una clase con un metodo conveniente para obtener un objeto 
  *de la fabrica de sesiones
