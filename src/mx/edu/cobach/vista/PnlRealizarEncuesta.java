@@ -38,6 +38,7 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
         enviar_RE_Btn = new javax.swing.JButton();
         borrarPregunta_RE_Btn = new javax.swing.JButton();
         borrarTodos_RE_Btn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         realizarEncuesta_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -83,7 +84,6 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaTodos_RE_Tbl);
 
-        Elejir_RE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Elejir_RE_Lbl.setText("Elija las preguntas para enviar a la encuesta ");
 
         agregarPregunta_RE_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -106,6 +106,9 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
         borrarTodos_RE_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         borrarTodos_RE_Btn.setText("<<");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Diseño de encuesta");
+
         javax.swing.GroupLayout realizarEncuesta_PnlLayout = new javax.swing.GroupLayout(realizarEncuesta_Pnl);
         realizarEncuesta_Pnl.setLayout(realizarEncuesta_PnlLayout);
         realizarEncuesta_PnlLayout.setHorizontalGroup(
@@ -117,6 +120,7 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
             .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addComponent(Elejir_RE_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,15 +147,17 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
                         .addComponent(borrarPregunta_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(borrarTodos_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE))
                     .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(Elejir_RE_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Elejir_RE_Lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 30, Short.MAX_VALUE)
                         .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(enviar_RE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -166,7 +172,7 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 587, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(realizarEncuesta_Pnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -184,6 +190,7 @@ public class PnlRealizarEncuesta extends javax.swing.JPanel {
     private javax.swing.JButton borrarPregunta_RE_Btn;
     private javax.swing.JButton borrarTodos_RE_Btn;
     private javax.swing.JButton enviar_RE_Btn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel realizarEncuesta_Pnl;
