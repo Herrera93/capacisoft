@@ -15,7 +15,6 @@ import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
-import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.EmpleadoControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 
@@ -35,7 +34,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      * Creates new form PnlEmpleadoAdministrativo
      */
     public PnlEmpleadoAdministrativo() {
-        this.titulosTabla = new String[]{"Numero", "Nombre", "Eliminar"};
+        this.titulosTabla = new String[]{"ID","Numero", "Nombre", "Eliminar"};
         initComponents();
         model = new DefaultTableModel(titulosTabla, 5);
         tablaEmpleados_OE_Tbl.setModel(model);
@@ -136,6 +135,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tablaEmpleados_OE_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEmpleados_OE_TblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tablaEmpleados_OE_Tbl);
@@ -474,6 +478,25 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         control.buscarPorNombre(nombre);
     }//GEN-LAST:event_buscar_OE_BtnActionPerformed
 
+    private void tablaEmpleados_OE_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpleados_OE_TblMouseClicked
+        //Obtenelos el renglon y columna donde se hizo click
+        int row = tablaEmpleados_OE_Tbl.rowAtPoint(evt.getPoint());
+        int col = tablaEmpleados_OE_Tbl.columnAtPoint(evt.getPoint());
+        if(col == 2) {
+            //System.out.println("ID: " + model.getValueAt(row, 0));
+            //Preguntamos si esta seguro de la eliminacion
+            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(op == 0){
+                //System.out.println("BORRAR");
+                //Obtenemos ID de la columna escondida
+                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                control.baja(id);
+                control.buscarTodos();
+            }
+        }
+    }//GEN-LAST:event_tablaEmpleados_OE_TblMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox adscripcion_IE_CBx;
     private javax.swing.JLabel adscripcion_IE_Lbl;
@@ -514,15 +537,18 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     @Override
     public void setMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(this, mensaje,
+                "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
     public void setTabla(String[][] info) {
         model.setDataVector(info, titulosTabla);
-        TableColumn tc = tablaEmpleados_OE_Tbl.getColumnModel().getColumn(2);
+        TableColumn tc = tablaEmpleados_OE_Tbl.getColumnModel().getColumn(3);
         tc.setCellEditor(tablaEmpleados_OE_Tbl.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(tablaEmpleados_OE_Tbl.getDefaultRenderer(Boolean.class));
+        //Esconder columna ID
+        tc = tablaEmpleados_OE_Tbl.getColumnModel().getColumn(0);
         tablaEmpleados_OE_Tbl.getColumnModel().removeColumn(tc);
     }
 
@@ -588,6 +614,5 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     @Override
     public void setInfo(String[][] info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

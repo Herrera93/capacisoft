@@ -42,10 +42,10 @@ public class BaseControlador{
 
     /**
      * Metodo para dar de baja un objeto de un registro
-     * @param obj Objeto del registro a dar de baja
+     * @param id Indentificador del objeto que se eliminara
      */
-    public void baja(Object obj) {
-        ServiceLocatorDELEGATE.getInstance().delete(obj, clazz);
+    public void baja(int id) {
+        ServiceLocatorDELEGATE.getInstance().delete(id, clazz);
         com.setMensaje("Se ha eliminado exitosamente");
     }
 

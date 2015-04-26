@@ -332,7 +332,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 List<String> atr = new ArrayList<String>();
                 atr.add(idPuesto + "");
                 atr.add(nombrePuesto_IP_TFd.getText());
-                control.baja(HelperEntidad.getPuesto(atr,"Mod/Eli"));
+                //control.baja(HelperEntidad.getPuesto(atr,"Mod/Eli"));
                 model.getDataVector().removeAllElements();
                 model.fireTableDataChanged();
                 nombrePuesto_OP_TFd.setEnabled(false);

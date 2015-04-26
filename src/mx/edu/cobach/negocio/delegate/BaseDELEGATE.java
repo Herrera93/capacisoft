@@ -51,7 +51,7 @@ public class BaseDELEGATE {
      * @param clazz Clase de la entidad a eliminar
      */
     public void delete(Object obj, Class clazz) {
-        ServiceLocatorFACADE.getInstance().delete(obj, clazz);
+        ServiceLocatorFACADE.getInstance().delete(find((int) obj, clazz), clazz);
     }  
     
 }
