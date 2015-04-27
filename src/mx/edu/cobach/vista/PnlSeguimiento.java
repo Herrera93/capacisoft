@@ -51,10 +51,18 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         realizarEncuesta_Pnl = new javax.swing.JPanel();
         tipo_RE_Lbl = new javax.swing.JLabel();
         seleccion_RE_CBx = new javax.swing.JComboBox();
-        resultado_Pnl = new javax.swing.JPanel();
-        cursoCapacitacion_R_Lbl = new javax.swing.JLabel();
-        cursoCapacitacion_R_CBx = new javax.swing.JComboBox();
+        titulo_RE_Lbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        resultado_Pnl = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        titulo_RE_Lbl1 = new javax.swing.JLabel();
+        seleccion_BC_CBx = new javax.swing.JComboBox();
+        nombre_BC_Lbl = new javax.swing.JLabel();
+        sede_BC_Lbl = new javax.swing.JLabel();
+        sede_BC_TFd = new javax.swing.JTextField();
+        buscar_BC_Btn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaCursos_BC_Tbl = new javax.swing.JTable();
 
         opcionSeguimiento_Tb.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -70,25 +78,38 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         seleccion_RE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         seleccion_RE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tecnología", "Comunicación", "Trabajo en equipo" }));
 
+        titulo_RE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        titulo_RE_Lbl.setText("Opciones");
+
+        jLabel1.setText("<html>Seleccionar un tipo de competencia para mostrar las preguntas de ese<br>tipo de competencia</html>");
+
         javax.swing.GroupLayout realizarEncuesta_PnlLayout = new javax.swing.GroupLayout(realizarEncuesta_Pnl);
         realizarEncuesta_Pnl.setLayout(realizarEncuesta_PnlLayout);
         realizarEncuesta_PnlLayout.setHorizontalGroup(
             realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(tipo_RE_Lbl)
-                .addGap(33, 33, 33)
-                .addComponent(seleccion_RE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titulo_RE_Lbl)
+                    .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
+                        .addComponent(tipo_RE_Lbl)
+                        .addGap(33, 33, 33)
+                        .addComponent(seleccion_RE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         realizarEncuesta_PnlLayout.setVerticalGroup(
             realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, realizarEncuesta_PnlLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(22, 22, 22)
+                .addComponent(titulo_RE_Lbl)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipo_RE_Lbl)
                     .addComponent(seleccion_RE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addContainerGap(446, Short.MAX_VALUE))
         );
 
         opcionSeguimiento_Tb.addTab("Realizar encuesta", realizarEncuesta_Pnl);
@@ -99,14 +120,50 @@ public class PnlSeguimiento extends javax.swing.JPanel {
             }
         });
 
-        cursoCapacitacion_R_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cursoCapacitacion_R_Lbl.setText("Curso de Capacitación:");
+        jLabel2.setText("<html>Buscar el curso a traves del nombre y sede, posteriormente <br>seleccionar el curso para mostrar los resultados de encuestas <html>");
 
-        cursoCapacitacion_R_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cursoCapacitacion_R_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        titulo_RE_Lbl1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        titulo_RE_Lbl1.setText("Opciones");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("jLabel1");
+        seleccion_BC_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        seleccion_BC_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        seleccion_BC_CBx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccion_BC_CBxActionPerformed(evt);
+            }
+        });
+
+        nombre_BC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombre_BC_Lbl.setText("Nombre del curso: ");
+
+        sede_BC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sede_BC_Lbl.setText("Sede del curso:");
+
+        sede_BC_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        buscar_BC_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscar_BC_Btn.setText("Buscar");
+
+        tablaCursos_BC_Tbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Fecha Inicial", "Nombre del curso", "Sede", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tablaCursos_BC_Tbl);
 
         javax.swing.GroupLayout resultado_PnlLayout = new javax.swing.GroupLayout(resultado_Pnl);
         resultado_Pnl.setLayout(resultado_PnlLayout);
@@ -115,23 +172,45 @@ public class PnlSeguimiento extends javax.swing.JPanel {
             .addGroup(resultado_PnlLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titulo_RE_Lbl1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultado_PnlLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buscar_BC_Btn)
                     .addGroup(resultado_PnlLayout.createSequentialGroup()
-                        .addComponent(cursoCapacitacion_R_Lbl)
+                        .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sede_BC_Lbl)
+                            .addComponent(nombre_BC_Lbl))
                         .addGap(18, 18, 18)
-                        .addComponent(cursoCapacitacion_R_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(seleccion_BC_CBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sede_BC_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)))
+                .addContainerGap())
         );
         resultado_PnlLayout.setVerticalGroup(
             resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resultado_PnlLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19)
+                .addComponent(titulo_RE_Lbl1)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cursoCapacitacion_R_Lbl)
-                    .addComponent(cursoCapacitacion_R_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(469, Short.MAX_VALUE))
+                    .addComponent(nombre_BC_Lbl)
+                    .addComponent(seleccion_BC_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(resultado_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sede_BC_Lbl)
+                    .addComponent(sede_BC_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buscar_BC_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         opcionSeguimiento_Tb.addTab("Resultados", resultado_Pnl);
@@ -160,14 +239,26 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         realizarEncuestaPnl.setVisible(false);
     }//GEN-LAST:event_resultado_PnlComponentShown
 
+    private void seleccion_BC_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccion_BC_CBxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seleccion_BC_CBxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cursoCapacitacion_R_CBx;
-    private javax.swing.JLabel cursoCapacitacion_R_Lbl;
+    private javax.swing.JButton buscar_BC_Btn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel nombre_BC_Lbl;
     private javax.swing.JTabbedPane opcionSeguimiento_Tb;
     private javax.swing.JPanel realizarEncuesta_Pnl;
     private javax.swing.JPanel resultado_Pnl;
+    private javax.swing.JLabel sede_BC_Lbl;
+    private javax.swing.JTextField sede_BC_TFd;
+    private javax.swing.JComboBox seleccion_BC_CBx;
     private javax.swing.JComboBox seleccion_RE_CBx;
+    private javax.swing.JTable tablaCursos_BC_Tbl;
     private javax.swing.JLabel tipo_RE_Lbl;
+    private javax.swing.JLabel titulo_RE_Lbl;
+    private javax.swing.JLabel titulo_RE_Lbl1;
     // End of variables declaration//GEN-END:variables
 }
