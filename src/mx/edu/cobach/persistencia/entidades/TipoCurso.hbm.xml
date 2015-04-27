@@ -11,7 +11,7 @@
         <property name="descripcion" type="string">
             <column name="descripcion" length="45" not-null="true" />
         </property>
-        <set name="cursos" table="curso" inverse="true" lazy="true" fetch="select">
+        <set name="cursos" table="curso" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="tipo_curso_id" not-null="true" />
             </key>

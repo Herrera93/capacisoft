@@ -11,7 +11,7 @@
         <many-to-one name="tipoCurso" class="mx.edu.cobach.persistencia.entidades.TipoCurso" fetch="select" lazy="false">
             <column name="tipo_curso_id" not-null="true" />
         </many-to-one>
-        <property name="nombre" type="string">
+        <property name="nombre" type="string" lazy="false">
             <column name="nombre" length="60" not-null="true" />
         </property>
         <property name="descripcion" type="string">
