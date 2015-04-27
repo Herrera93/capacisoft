@@ -22,8 +22,8 @@ public class CursoFACADE {
         return ServiceLocator.getCurso().findTipoCurso(id);
     }
     
-    public List<Object> findNombre(String nombre, Class clazz){
+    public Object findId(int id, Class clazz){
         ServiceLocator.getCurso().setEntity(clazz);
-        return ServiceLocator.getCurso().findNombre(nombre);
+        return ServiceLocator.getCurso().findId(id);
     }
 }
