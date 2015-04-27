@@ -29,10 +29,10 @@ public class CursoControlador {
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
     
-    public void buscarNombre(String nombre) {
-        List<Object> l = ServiceLocatorDELEGATE.getCurso().findNombre(nombre, clazz);
-        Object o = l.get(0);
-        com.setInfo(HelperEntidad.descomponerObjeto(o));
+    public void buscarId(int id) {
+        Object l = ServiceLocatorDELEGATE.getCurso().findId(id, clazz);
+        System.out.println(l.toString() + "vete mucho a la !#$!#$$%%#%#");
+        com.setInfo(HelperEntidad.descomponerObjeto(l));
     }
     
 }

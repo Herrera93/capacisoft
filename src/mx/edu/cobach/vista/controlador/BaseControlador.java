@@ -64,7 +64,7 @@ public class BaseControlador{
      */
     public void buscar(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        com.setTabla(HelperEntidad.descomponerObjeto(o));
+        com.setInfo(HelperEntidad.descomponerObjeto(o));
     }
 
     /**

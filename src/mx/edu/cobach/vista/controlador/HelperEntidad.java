@@ -127,11 +127,12 @@ public class HelperEntidad {
     }
 
     private static String[][] descomponerCursos(List<Curso> cr) {
-        String[][] info = new String[cr.size()][2];
+        String[][] info = new String[cr.size()][3];
         for(int i = 0; i < cr.size(); i++){
             Curso c = cr.get(i);
-            info[i][0] = c.getNombre();
-            info[i][1] = c.getTipoCurso().toString();
+            info[i][0] = c.getId().toString();
+            info[i][1] = c.getNombre();
+            info[i][2] = c.getTipoCurso().toString();
         }
         return info;
     }
