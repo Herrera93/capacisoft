@@ -68,13 +68,13 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            t = (T) HibernateUtil.getSession().load(entityClass, id);
+            t = (T) HibernateUtil.getSession().get(entityClass, id);
             HibernateUtil.commitTransaction();
             System.out.println("Buscando Object");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
-//            HibernateUtil.closeSession();
+            HibernateUtil.closeSession();
         }
         return t;
     }

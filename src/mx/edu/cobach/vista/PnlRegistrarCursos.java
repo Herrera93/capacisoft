@@ -355,27 +355,32 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 //        tablaCursos_OC_Tbl.getColumnModel().removeColumn(tc);
     }
 
-    @Override
-    public void setInfo(String[][] info) {
-        id = Integer.parseInt(info[0][0]);
-        System.out.println(id);
-        nombre_IC_TFd.setText(info[1][0]);
-        descripcion_IC_TAa.setText(info[2][0]);
-        if(info[3][0].equals("conferencia")){
-            seleccion_IC_CBx.setSelectedIndex(0);
-        }else{
-            seleccion_IC_CBx.setSelectedIndex(1);
-        }
-            
-        nombre_IC_TFd.setEnabled(true);
-        descripcion_IC_TAa.setEnabled(true);
-        seleccion_IC_CBx.setEnabled(true);
-        guardar_IC_Btn.setText("Modificar");
-        
-    }
+//    @Override
+//    public void setInfo(String[][] info) {
+//        id = Integer.parseInt(info[0][0]);
+//        System.out.println(id);
+//        nombre_IC_TFd.setText(info[1][0]);
+//        descripcion_IC_TAa.setText(info[2][0]);
+//        if(info[3][0].equals("conferencia")){
+//            seleccion_IC_CBx.setSelectedIndex(0);
+//        }else{
+//            seleccion_IC_CBx.setSelectedIndex(1);
+//        }
+//            
+//        nombre_IC_TFd.setEnabled(true);
+//        descripcion_IC_TAa.setEnabled(true);
+//        seleccion_IC_CBx.setEnabled(true);
+//        guardar_IC_Btn.setText("Modificar");
+//        
+//    }
 
     @Override
     public void setLista(List info, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setInfo(List info) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

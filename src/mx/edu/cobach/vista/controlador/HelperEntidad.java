@@ -14,6 +14,7 @@ import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.TipoCurso;
+import org.hibernate.Hibernate;
 
 /**
  *
@@ -47,6 +48,8 @@ public class HelperEntidad {
         e.setAdscripcion((Adscripcion) atributos.get(7));
         e.setPlantel((Plantel) atributos.get(8));
         e.setDepartamento((Departamento) atributos.get(9));
+        if(atributos.size() > 10)
+            e.setId((int) atributos.get(10));
         return e;
     }
     
@@ -55,6 +58,7 @@ public class HelperEntidad {
         tc.setId(Integer.parseInt(atributos.get(0)));
         return new Curso(tc,atributos.get(1),atributos.get(2));
     }
+    
     public static Object getCurso(List<String> atributos, int id){
         TipoCurso tc = new TipoCurso();
         tc.setId(Integer.parseInt(atributos.get(0)));
@@ -63,11 +67,13 @@ public class HelperEntidad {
         return c;
     }
     
-    public static String[][] descomponerObjeto(Object obj){
+    public static List<Object> descomponerObjeto(Object obj){
         if(obj instanceof Puesto){
             return descomponerPuesto((Puesto) obj);
         }else if(obj instanceof Curso){
             return descomponerCurso((Curso) obj);
+        }else if(obj instanceof Empleado){
+            return descomponerEmpleado((Empleado) obj);
         }
         else{
             return null;
@@ -101,10 +107,10 @@ public class HelperEntidad {
         return null;
     }
     
-    private static String[][] descomponerPuesto(Puesto p){
-        String[][] info = new String[2][1];
-        info[0][0] = p.getNombre();
-        info[1][0] = p.getId() + "";        
+    private static List<Object> descomponerPuesto(Puesto p){
+        List<Object> info = new ArrayList<>();
+        info.add(p.getNombre());
+        info.add(p.getId());
         return info;
     }
     
@@ -117,12 +123,12 @@ public class HelperEntidad {
         return info;
     }
 
-    private static String[][] descomponerCurso(Curso curso) {
-        String[][] info = new String[5][1];
-            info[0][0] = curso.getId() + "";
-            info[1][0] = curso.getNombre();
-            info[2][0]= curso.getDescripcion();
-            info[3][0] = curso.getTipoCurso().toString();
+    private static List<Object> descomponerCurso(Curso curso) {
+        List<Object> info = new ArrayList<>();
+        info.add(curso.getId());
+        info.add(curso.getNombre());
+        info.add(curso.getDescripcion());
+        info.add(curso.getTipoCurso().toString());
         return info;
     }
 
@@ -146,6 +152,23 @@ public class HelperEntidad {
             info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                     + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
         }
+        return info;
+    }
+
+    private static List<Object> descomponerEmpleado(Empleado empleado) {
+        List<Object> info = new ArrayList<>();
+        Hibernate.initialize(empleado);
+        info.add(empleado.getId());
+        info.add(empleado.getNumero());
+        info.add(empleado.getPrimerNombre());
+        info.add(empleado.getSegundoNombre());
+        info.add(empleado.getApellidoPaterno());
+        info.add(empleado.getApellidoMaterno());
+        info.add(empleado.getCorreo());
+        info.add(empleado.getPuesto());
+        info.add(empleado.getPlantel());
+        info.add(empleado.getAdscripcion());
+        info.add(empleado.getDepartamento());
         return info;
     }
 

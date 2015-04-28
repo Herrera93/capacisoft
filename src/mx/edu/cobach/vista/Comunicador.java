@@ -30,8 +30,7 @@ public interface Comunicador {
      */
     void setTabla(String[][] info);
     
-    void setInfo(String[][] info);
-    
+    void setInfo(List info);    
 
     public void setLista(List info, int i);
 }

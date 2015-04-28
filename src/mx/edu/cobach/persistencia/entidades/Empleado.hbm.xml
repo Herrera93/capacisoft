@@ -8,16 +8,16 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="adscripcion" class="mx.edu.cobach.persistencia.entidades.Adscripcion" fetch="select">
+        <many-to-one name="adscripcion" class="mx.edu.cobach.persistencia.entidades.Adscripcion" fetch="select" lazy="false">
             <column name="adscripcion_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="departamento" class="mx.edu.cobach.persistencia.entidades.Departamento" fetch="select">
+        <many-to-one name="departamento" class="mx.edu.cobach.persistencia.entidades.Departamento" fetch="select" lazy="false">
             <column name="departamento_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="plantel" class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select">
+        <many-to-one name="plantel" class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select" lazy="false">
             <column name="plantel_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select">
+        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select" lazy="false">
             <column name="puesto_id" not-null="true" />
         </many-to-one>
         <property name="numero" type="string">

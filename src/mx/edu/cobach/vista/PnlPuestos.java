@@ -386,18 +386,23 @@ private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
     ));
     }
     
-    @Override
-    public void setInfo(String[][] info) {
-        nombrePuesto_IP_TFd.setText(info[0][0]);
-        idPuesto = Integer.parseInt(info[1][0]);
-        nombrePuesto_IP_TFd.setEnabled(true);
-        agregar_IP_Btn.setEnabled(true);
-        agregar_IP_Btn.setText("Modificar");
-        agregar_IP_LBl.setText("Modificar");
-    }
+//    @Override
+//    public void setInfo(String[][] info) {
+//        nombrePuesto_IP_TFd.setText(info[0][0]);
+//        idPuesto = Integer.parseInt(info[1][0]);
+//        nombrePuesto_IP_TFd.setEnabled(true);
+//        agregar_IP_Btn.setEnabled(true);
+//        agregar_IP_Btn.setText("Modificar");
+//        agregar_IP_LBl.setText("Modificar");
+//    }
 
     @Override
     public void setLista(List info, int i) {
+    }
+
+    @Override
+    public void setInfo(List info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

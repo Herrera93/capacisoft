@@ -30,6 +30,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             adscripModel;
     private final String[] titulosTabla;
     private final EmpleadoControlador control;
+    private int idEmpleadoActual;
     /**
      * Creates new form PnlEmpleadoAdministrativo
      */
@@ -459,18 +460,34 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(adscripcion_IE_CBx.getSelectedItem());
         atributos.add(plantel_IE_CBx.getSelectedItem());
         atributos.add(departamento_IE_CBx.getSelectedItem());
-        control.alta(HelperEntidad.getEmpleado(atributos));
+        
         numero_IE_TFd.setText("");
         primerNombre_IE_TFd.setText("");
         segundoNombre_IE_TFd.setText("");
         primerApellido_IE_TFd.setText("");
         segundoApellido_IE_TFd.setText("");
         correoElectronico_IE_TFd.setText("");        
+        
+        if(!guardar_IE_Btn.getText().equalsIgnoreCase("modificar"))
+            control.alta(HelperEntidad.getEmpleado(atributos));
+        else{
+            atributos.add(idEmpleadoActual);
+            control.modificacion(HelperEntidad.getEmpleado(atributos));
+        }
+        
         control.buscarTodos();
     }//GEN-LAST:event_guardar_IE_BtnActionPerformed
 
     private void agregar_OE_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OE_BtnActionPerformed
-        setEnabledPanelInformacion(true);
+        int renglon = tablaEmpleados_OE_Tbl.getSelectedRow();
+        if(renglon == -1) {
+            //Activar el panel
+            setEnabledPanelInformacion(true);
+        }else{
+            //Llenar el panel
+            int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
+            control.buscar(id);            
+        }
     }//GEN-LAST:event_agregar_OE_BtnActionPerformed
 
     private void buscar_OE_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OE_BtnActionPerformed
@@ -478,6 +495,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         control.buscarPorNombre(nombre);
     }//GEN-LAST:event_buscar_OE_BtnActionPerformed
 
+    /**
+     * Evento ejecutado al hace click en la tabla, se calcula en que columna y 
+     * renglon se llevo a cabo el click, en caso de ser en la columna eliminar
+     * se presentara la opcion de eliminar el registro correspondiente al
+     * renglon.
+     * @param evt Evento al hacer click
+     */
     private void tablaEmpleados_OE_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEmpleados_OE_TblMouseClicked
         //Obtenelos el renglon y columna donde se hizo click
         int row = tablaEmpleados_OE_Tbl.rowAtPoint(evt.getPoint());
@@ -613,6 +637,19 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     }
 
     @Override
-    public void setInfo(String[][] info) {
+    public void setInfo(List info) {
+        setEnabledPanelInformacion(true);
+        idEmpleadoActual = (int) info.get(0);
+        numero_IE_TFd.setText((String) info.get(1));
+        primerNombre_IE_TFd.setText((String) info.get(2));
+        segundoNombre_IE_TFd.setText((String) info.get(3));
+        primerApellido_IE_TFd.setText((String) info.get(4));
+        segundoApellido_IE_TFd.setText((String) info.get(5));
+        correoElectronico_IE_TFd.setText((String) info.get(6));
+        puestoModel.setSelectedItem(info.get(7));
+        plantelModel.setSelectedItem(info.get(8));
+        adscripModel.setSelectedItem(info.get(9));
+        dptoModel.setSelectedItem(info.get(10));
+        guardar_IE_Btn.setText("Modificar");
     }
 }
