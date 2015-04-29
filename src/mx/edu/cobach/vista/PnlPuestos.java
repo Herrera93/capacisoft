@@ -23,10 +23,10 @@ import mx.edu.cobach.vista.controlador.PuestoControlador;
 public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     private DefaultTableModel model;
-    private String[] titulosTabla = {"Nombre", "Eliminar"};
+    private String[] titulosTabla = {"ID","Nombre", "Eliminar"};
     private BaseControlador control;
     private PuestoControlador puestoControl;
-    private int idPuesto;
+    private int ipPuesto;
 
     /**
      * Creates new form PnlPuestos
@@ -34,6 +34,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     public PnlPuestos() {
         initComponents();
         model = new DefaultTableModel(titulosTabla, 4);
+        tablaPuestos_OP_Tbl.setModel(model);
+        tablaPuestos_OP_Tbl.setColumnSelectionAllowed(false);
+        tablaPuestos_OP_Tbl.setDragEnabled(false);
         tablaPuestos_OP_Tbl.setModel(model);
         control = new BaseControlador(this, Puesto.class);
         puestoControl = new PuestoControlador(this, Puesto.class);
@@ -273,7 +276,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 
             } else if (agregar_IP_Btn.getText().equals("Modificar")) {
                 List<String> atr = new ArrayList<String>();
-                atr.add(idPuesto + "");
+                atr.add(ipPuesto+"");
                 atr.add(nombrePuesto_IP_TFd.getText());
                 control.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
                 
@@ -308,43 +311,29 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_agregar_OP_BtnActionPerformed
 
     private void tablaPuestos_OP_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPuestos_OP_TblMouseClicked
-        int dialogResult;
-        Object nombreBusqu = null;
-        int[] selectedRow = tablaPuestos_OP_Tbl.getSelectedRows();
-        int[] selectedColumns = tablaPuestos_OP_Tbl.
-                getSelectedColumns();
-        for (int i = 0; i < selectedRow.length; i++) {
-            for (int j = 0; j < selectedColumns.length; j++) {
-                nombreBusqu = (Object) tablaPuestos_OP_Tbl.
-                        getValueAt(selectedRow[i], selectedColumns[j]);
-            }
+        
+        int row = tablaPuestos_OP_Tbl.rowAtPoint(evt.getPoint());
+        int col = tablaPuestos_OP_Tbl.columnAtPoint(evt.getPoint());
+        if(col == 0){
+            int id = Integer.parseInt((String)model.getValueAt(row, 0));
+            puestoControl.buscarMod(id);
         }
-        if (nombreBusqu.toString()!="true") {
-            puestoControl.buscarMod(nombreBusqu.toString());
-        } else {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            nombreBusqu = (String) tablaPuestos_OP_Tbl.
-                    getValueAt(tablaPuestos_OP_Tbl.getSelectedRow(), 0).toString();
-            puestoControl.buscarMod(nombreBusqu.toString());
-            dialogResult = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el puesto " + nombreBusqu + "?",
-                    "Warning", dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                List<String> atr = new ArrayList<String>();
-                control.baja(idPuesto);
-                model.getDataVector().removeAllElements();
-                model.fireTableDataChanged();
+        else if(col == 1) {
+            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(op == 0){
+                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                control.baja(id);
+                control.buscarTodos();model.getDataVector().removeAllElements();
                 nombrePuesto_OP_TFd.setEnabled(false);
                 nombrePuesto_IP_TFd.setEnabled(false);
                 nombrePuesto_IP_TFd.setText("");
                 agregar_IP_Btn.setEnabled(false);
-            } else {
-                tablaPuestos_OP_Tbl.clearSelection();
             }
         }
+        
     }//GEN-LAST:event_tablaPuestos_OP_TblMouseClicked
 
-private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregar_IP_Btn;
     private javax.swing.JLabel agregar_IP_LBl;
@@ -372,37 +361,25 @@ private void tablaPuestos_OE_TblActionPerformed(ListSelectionEvent e){
         public void setTabla(String[][] info) {
         tablaPuestos_OP_Tbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
-        TableColumn tc = tablaPuestos_OP_Tbl.getColumnModel().getColumn(1);
-        tc
-
-.setCellEditor(tablaPuestos_OP_Tbl.getDefaultEditor(Boolean.class  
-
-    ));
-    tc.setCellRenderer (tablaPuestos_OP_Tbl.getDefaultRenderer
-
-    (Boolean.class  
-    
-
-    ));
+        TableColumn tc = tablaPuestos_OP_Tbl.getColumnModel().getColumn(2);
+        tc.setCellEditor(tablaPuestos_OP_Tbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer (tablaPuestos_OP_Tbl.getDefaultRenderer(Boolean.class));
+        tc = tablaPuestos_OP_Tbl.getColumnModel().getColumn(0);
+        tablaPuestos_OP_Tbl.getColumnModel().removeColumn(tc);
     }
-    
-//    @Override
-//    public void setInfo(String[][] info) {
-//        nombrePuesto_IP_TFd.setText(info[0][0]);
-//        idPuesto = Integer.parseInt(info[1][0]);
-//        nombrePuesto_IP_TFd.setEnabled(true);
-//        agregar_IP_Btn.setEnabled(true);
-//        agregar_IP_Btn.setText("Modificar");
-//        agregar_IP_LBl.setText("Modificar");
-//    }
-
     @Override
     public void setLista(List info, int i) {
     }
 
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        nombrePuesto_IP_TFd.setText(info.get(0).toString());
+        ipPuesto = Integer.parseInt(info.get(1).toString());
+        nombrePuesto_IP_TFd.setEnabled(true);
+        agregar_IP_Btn.setEnabled(true);
+        agregar_IP_Btn.setText("Modificar");
+        agregar_IP_LBl.setText("Modificar");
     }
 
 }
