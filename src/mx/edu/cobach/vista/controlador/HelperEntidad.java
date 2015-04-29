@@ -107,18 +107,20 @@ public class HelperEntidad {
         return null;
     }
     
-    private static List<Object> descomponerPuesto(Puesto p){
+    private static List<Object> descomponerPuesto(Puesto puesto){
         List<Object> info = new ArrayList<>();
-        info.add(p.getNombre());
-        info.add(p.getId());
+        Hibernate.initialize(puesto);
+        info.add(puesto.getNombre());
+        info.add(puesto.getId());
         return info;
     }
     
     private static String[][] descomponerPuestos(List<Puesto> ps){
-        String[][] info = new String[ps.size()][1];
+        String[][] info = new String[ps.size()][2];
         for(int i = 0; i < ps.size(); i++){
             Puesto p = ps.get(i);
-            info[i][0] = p.getNombre();
+            info[i][0] = p.getId()+"";
+            info[i][1] = p.getNombre();
         }
         return info;
     }
