@@ -34,13 +34,15 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlListaAsistencia listaAsistenciaPnl;
     private PnlLogin loginPnl;
     private final ImageIcon imageLogo;
+    private int idTipo;
     
-    
-    public Capacisoft() {
+    public Capacisoft(String tipo) {
         imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
         setTitle("CapaciSoft");
         
+        //this.tipo=tipo;
+        getIdTipo(tipo);
         initComponents();
         setLayout(new BorderLayout());
         agregar();
@@ -48,6 +50,18 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         setResizable(false);
         setLocationRelativeTo(null);
         setIconImage(imageLogo.getImage());
+        apagarLogin(true);
+    }
+    
+    private void getIdTipo(String tipo){
+        switch(tipo){
+            case "Administrador": idTipo=1; break;
+            case "Analista": idTipo=2; break;
+            case "Secretaria": idTipo=3; break;
+            default : idTipo=3; break;
+        }      
+        //System.out.println("tipo: "+idTipo);
+    
     }
     /*
         Se agregan las instancias de las clases, hacen invisible los paneles
@@ -681,38 +695,38 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   // public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       // try {
+       //     for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+      //          if ("Nimbus".equals(info.getName())) {
+      //              javax.swing.UIManager.setLookAndFeel(info.getClassName());
+      //              break;
+      //          }
+      //      }
+      //  } catch (ClassNotFoundException ex) {
+      //      java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  } catch (InstantiationException ex) {
+     //       java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  } catch (IllegalAccessException ex) {
+      //      java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      //      java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Capacisoft().setVisible(true);
-            }
-        });
-    }
+   //     java.awt.EventQueue.invokeLater(new Runnable() {
+   //         public void run() {
+    //            new Capacisoft().setVisible(true);
+    //        }
+    //    });
+    //}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alertas_MIt;
     private javax.swing.JMenuBar barraMenu;
