@@ -4,11 +4,17 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.vista.controlador.ProgramarControlador;
+
 /**
  *
  * @author liuts
  */
-public class PnlProgramarCurso extends javax.swing.JPanel {
+public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador{
 
     /**
      * Creates new form PnlProgramarCurso
@@ -17,9 +23,15 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
     private PnlCursoRealizar cursoRealizarPnl;
     private PnlCursoRealizado cursoRealizadoPnl;
     
-    public PnlProgramarCurso() {
+    private final ProgramarControlador control; 
+    private final DefaultComboBoxModel tipoCursoModel;
+    
+    public PnlProgramarCurso(){
+        control = new ProgramarControlador(this,ImplementacionCurso.class); 
         initComponents();
         agregar();
+        tipoCursoModel = new DefaultComboBoxModel();
+        tipoCurso_RC_CBx.setModel(tipoCursoModel);
     }
     
     private void agregar(){
@@ -35,6 +47,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
         cursoRealizadoPnl.setVisible(false);
         add(cursoRealizadoPnl);
         
+    }
+    
+    public void llenarTodo(){
+        control.setClass(Curso.class);
+        control.buscarTodosLista(1);
     }
     
     /**
@@ -330,4 +347,32 @@ public class PnlProgramarCurso extends javax.swing.JPanel {
     private javax.swing.JTable tablaCursos_BC_Tbl;
     private javax.swing.JComboBox tipoCurso_RC_CBx;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTabla(String[][] info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setInfo(List info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setLista(List info, int i) {
+        if(info.isEmpty()) return;
+        switch(i){
+            case 1:
+                tipoCursoModel.removeAllElements();
+                for(int j = 0; j < info.size(); j++){
+                    tipoCursoModel.addElement(info.get(j));
+                }
+            break;
+        }
+    }
 }
