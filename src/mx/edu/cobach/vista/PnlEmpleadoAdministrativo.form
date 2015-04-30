@@ -488,6 +488,9 @@
             <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; el puesto que esta asigando el empleado"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="PnlEmpleadoAdministrativo_puesto_IE_CBx"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="plantel_IE_CBx">
           <Properties>
