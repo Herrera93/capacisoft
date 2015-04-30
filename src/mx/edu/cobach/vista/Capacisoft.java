@@ -522,6 +522,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarPnl.setVisible(true);
         seguimientoPnl.setVisible(false);
         alertasPnl.setVisible(false);
+        programarPnl.llenarTodo();
     }//GEN-LAST:event_programarCurso_MItActionPerformed
 
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
