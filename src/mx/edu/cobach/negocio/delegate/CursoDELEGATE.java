@@ -20,9 +20,4 @@ public class CursoDELEGATE {
     public List<Object> findTipoCurso(int id, Class clazz) {
         return ServiceLocatorFACADE.getCurso().findTipoCurso(id, clazz);
     }
-    
-    public Object findId(int id, Class clazz){
-        return ServiceLocatorFACADE.getCurso().findId(id, clazz);
-    }
-    
 }
