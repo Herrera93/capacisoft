@@ -72,7 +72,7 @@ public class HelperEntidad {
         return u;
     }
     
-    public static Object getCurso(List<String> atributos){
+    public static Object getCurso(List<Object> atributos){
         TipoCurso tc = new TipoCurso();
         tc.setId((Integer) atributos.get(0));
         Curso c = new Curso();
