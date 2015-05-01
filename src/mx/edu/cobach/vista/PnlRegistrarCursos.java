@@ -24,10 +24,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private BaseControlador control;
     private CursoControlador cursoControl;
     private DefaultTableModel model;
-    int id;
-    
-    
     private String[] titulosTabla = {"ID","Nombre","Tipo","Eliminar"};
+    int id;
 
     /**
      * Creates new form PnlRegistrarCursos
@@ -265,22 +263,38 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardar_IC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_IC_BtnActionPerformed
-        if(guardar_IC_Btn.getText() == "Guardar"){            
-            List<String> atr =  new ArrayList<String>();
-            atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+        if(guardar_IC_Btn.getText().equals("Guardar")){     
+            if(nombre_IC_TFd.getText().isEmpty() || 
+                    descripcion_IC_Lbl.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Dejo Campos Vacios");
+            }else{
+            List<Object> atr =  new ArrayList<>();
+            atr.add(seleccion_IC_CBx.getSelectedIndex()+1);
             atr.add(nombre_IC_TFd.getText());
             atr.add(descripcion_IC_TAa.getText());
+            nombre_IC_TFd.setText("");
+            descripcion_IC_TAa.setText("");
+            seleccion_IC_CBx.setSelectedIndex(0);
             control.alta(HelperEntidad.getCurso(atr));
+            }
         }else{
-            List<String> atr =  new ArrayList<String>();
-            atr.add(seleccion_IC_CBx.getSelectedIndex()+1 + "");
+            List<Object> atr =  new ArrayList<>();
+            atr.add(seleccion_IC_CBx.getSelectedIndex()+1);
             atr.add(nombre_IC_TFd.getText());
             atr.add(descripcion_IC_TAa.getText());
-            control.modificacion(HelperEntidad.getCurso(atr , id));
+            atr.add(id);
+            nombre_IC_TFd.setText("");
+            descripcion_IC_TAa.setText("");
+            seleccion_IC_CBx.setSelectedIndex(0);
+            control.modificacion(HelperEntidad.getCurso(atr));
         }
     }//GEN-LAST:event_guardar_IC_BtnActionPerformed
 
     private void agregar_OC_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OC_BtnActionPerformed
+        nombre_IC_TFd.setText("");
+        descripcion_IC_TAa.setText("");
+        seleccion_IC_CBx.setSelectedIndex(0);
+        guardar_IC_Btn.setEnabled(true);
         guardar_IC_Btn.setText("Guardar");
         nombre_IC_TFd.setEnabled(true);
         descripcion_IC_TAa.setEnabled(true);
@@ -355,32 +369,27 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 //        tablaCursos_OC_Tbl.getColumnModel().removeColumn(tc);
     }
 
-//    @Override
-//    public void setInfo(String[][] info) {
-//        id = Integer.parseInt(info[0][0]);
-//        System.out.println(id);
-//        nombre_IC_TFd.setText(info[1][0]);
-//        descripcion_IC_TAa.setText(info[2][0]);
-//        if(info[3][0].equals("conferencia")){
-//            seleccion_IC_CBx.setSelectedIndex(0);
-//        }else{
-//            seleccion_IC_CBx.setSelectedIndex(1);
-//        }
-//            
-//        nombre_IC_TFd.setEnabled(true);
-//        descripcion_IC_TAa.setEnabled(true);
-//        seleccion_IC_CBx.setEnabled(true);
-//        guardar_IC_Btn.setText("Modificar");
-//        
-//    }
 
     @Override
     public void setLista(List info, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        id = (int) info.get(0);
+        System.out.println(id + "info");
+        nombre_IC_TFd.setText((String) info.get(1));
+        descripcion_IC_TAa.setText((String) info.get(2));
+        if(info.get(3).equals("conferencia")){
+            seleccion_IC_CBx.setSelectedIndex(0);
+        }else{
+            seleccion_IC_CBx.setSelectedIndex(1);
+        }
+        nombre_IC_TFd.setEnabled(true);
+        descripcion_IC_TAa.setEnabled(true);
+        seleccion_IC_CBx.setEnabled(true);
+        guardar_IC_Btn.setText("Modificar");
+        guardar_IC_Btn.setEnabled(true);
     }
 }
