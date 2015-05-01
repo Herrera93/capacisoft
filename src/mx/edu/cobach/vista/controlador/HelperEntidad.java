@@ -13,7 +13,9 @@ import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
+import mx.edu.cobach.persistencia.entidades.TipoCuenta;
 import mx.edu.cobach.persistencia.entidades.TipoCurso;
+import mx.edu.cobach.persistencia.entidades.Usuario;
 import org.hibernate.Hibernate;
 
 /**
@@ -53,6 +55,23 @@ public class HelperEntidad {
         return e;
     }
     
+    public static Usuario getUsuario(List<String> atributos){
+        TipoCuenta t =new TipoCuenta();
+        Usuario u= new Usuario();
+        
+        u.setPrimerNombre(atributos.get(0));
+        u.setSegundoNombre(atributos.get(1));
+        u.setApellidoPaterno(atributos.get(2));
+        u.setApellidoMaterno(atributos.get(3));
+        u.setUsuario(atributos.get(4));
+            t.setId(Integer.parseInt(atributos.get(5)));
+        u.setTipoCuenta(t);
+        u.setContrasena(atributos.get(6));
+        if(atributos.size() > 7)
+            u.setId(Integer.parseInt(atributos.get(7)));
+        return u;
+    }
+    
     public static Object getCurso(List<String> atributos){
         TipoCurso tc = new TipoCurso();
         tc.setId(Integer.parseInt(atributos.get(0)));
@@ -76,8 +95,24 @@ public class HelperEntidad {
             return descomponerEmpleado((Empleado) obj);
         }
         else{
-            return null;
+            if(obj instanceof Usuario){
+              return descomponerUsuario((Usuario)obj);
+            }else return null;
         }
+    }
+    
+    public static String[][] descomponerLogin(List<Object> objs){
+        if(objs != null && objs.size() > 0){
+            if(objs.get(0) instanceof Usuario){
+                List<Usuario> us = new ArrayList<>();
+                for(int i = 0; i < objs.size(); i++){
+                    us.add((Usuario) objs.get(i));
+                }
+                return descomponerLogins(us);
+            }
+      
+        }  
+        return null;
     }
     
     public static String[][] descomponerObjetos(List<Object> objs){
@@ -101,24 +136,35 @@ public class HelperEntidad {
                 }
                 return descomponerCursos(cr);
             }else{
+                if(objs.get(0) instanceof Usuario){
+           // System.out.println("descomponer Objetos 1");
+            List<Usuario> us = new ArrayList<Usuario>();
+            for(int i = 0; i < objs.size(); i++){
+                us.add((Usuario) objs.get(i));
+            }
+            //System.out.println("Descomponer Objetos 2");
+            return descomponerUsuarios(us);
+            }else
                 return null;
             }
         }
         return null;
     }
     
-    private static List<Object> descomponerPuesto(Puesto p){
+    private static List<Object> descomponerPuesto(Puesto puesto){
         List<Object> info = new ArrayList<>();
-        info.add(p.getNombre());
-        info.add(p.getId());
+        Hibernate.initialize(puesto);
+        info.add(puesto.getNombre());
+        info.add(puesto.getId());
         return info;
     }
     
     private static String[][] descomponerPuestos(List<Puesto> ps){
-        String[][] info = new String[ps.size()][1];
+        String[][] info = new String[ps.size()][2];
         for(int i = 0; i < ps.size(); i++){
             Puesto p = ps.get(i);
-            info[i][0] = p.getNombre();
+            info[i][0] = p.getId()+"";
+            info[i][1] = p.getNombre();
         }
         return info;
     }
@@ -169,6 +215,67 @@ public class HelperEntidad {
         info.add(empleado.getPlantel());
         info.add(empleado.getAdscripcion());
         info.add(empleado.getDepartamento());
+        return info;
+    }
+    
+    private static List<Object> descomponerUsuario(Usuario usuario){
+        //String[][] info = new String[1][7];
+        
+        List<Object> info = new ArrayList<>();
+        Hibernate.initialize(usuario);
+        
+        TipoCuenta t;
+        info.add(usuario.getPrimerNombre());
+        info.add(usuario.getSegundoNombre());
+        info.add(usuario.getApellidoPaterno());
+        info.add(usuario.getApellidoMaterno());
+        t=usuario.getTipoCuenta();
+        info.add(usuario.getUsuario());
+        info.add(t.getDescripcion());
+        
+        info.add(usuario.getContrasena());
+        System.out.println("descomponer Usuario 2");
+        return info;
+    }
+    
+    private static String[][] descomponerUsuarios(List<Usuario> us){
+        String[][] info = new String[us.size()][3];
+        for(int i = 0; i < us.size(); i++){
+            Usuario u = us.get(i);
+            TipoCuenta t;
+                t=u.getTipoCuenta();
+                info[i][0]= String.valueOf(u.getId());
+            info[i][1] = u.getUsuario();
+            info[i][2] = u.getPrimerNombre();
+            if(u.getSegundoNombre()!=null && u.getSegundoNombre().equals("")==false){
+                info[i][2] +=" "+ u.getSegundoNombre();}
+            info[i][2] +=" "+u.getApellidoPaterno()+" "+u.getApellidoMaterno();
+            
+            //info[i][2]= "false";
+            /*/System.out.println(t.getDescripcion());
+            
+            info[i][5] = t.getDescripcion();
+            info[i][6] = u.getContrasena();*/
+        }
+        return info;
+    }
+    
+    private static String[][] descomponerLogins(List<Usuario> us){
+        String[][] info = new String[us.size()][3];
+        for(int i = 0; i < us.size(); i++){
+            Usuario u = us.get(i);
+            TipoCuenta t;
+                t=u.getTipoCuenta();
+              //  System.out.println(t.getDescripcion());
+            info[i][0] = u.getUsuario();
+            info[i][1] = u.getContrasena();
+            info[i][2] = t.getDescripcion();
+            
+            /*/System.out.println(t.getDescripcion());
+            
+            info[i][5] = t.getDescripcion();
+            info[i][6] = u.getContrasena();*/
+        }
         return info;
     }
 

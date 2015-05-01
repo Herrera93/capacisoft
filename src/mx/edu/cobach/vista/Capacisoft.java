@@ -34,13 +34,15 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlListaAsistencia listaAsistenciaPnl;
     private PnlLogin loginPnl;
     private final ImageIcon imageLogo;
+    private int idTipo;
     
-    
-    public Capacisoft() {
+    public Capacisoft(String tipo) {
         imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
         setTitle("CapaciSoft");
         
+        //this.tipo=tipo;
+        getIdTipo(tipo);
         initComponents();
         setLayout(new BorderLayout());
         agregar();
@@ -48,57 +50,78 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         setResizable(false);
         setLocationRelativeTo(null);
         setIconImage(imageLogo.getImage());
+        apagarLogin(true);
+    }
+    
+    private void getIdTipo(String tipo){
+        switch(tipo){
+            case "Administrador": idTipo=1; break;
+            case "Analista": idTipo=2; break;
+            case "Secretaria": idTipo=3; break;
+            default : idTipo=3; break;
+        }      
+        //System.out.println("tipo: "+idTipo);
+    
     }
     /*
         Se agregan las instancias de las clases, hacen invisible los paneles
         se le da tamano y se agregan al frame
     */
-    private void agregar(){
+   private void agregar(){
         //Mantenimientos
         usuarioPnl = new PnlUsuarios();
         usuarioPnl.setVisible(false);
         usuarioPnl.setSize(1181,587);
-        add(usuarioPnl);
+        //if(idTipo==1)
+            add(usuarioPnl);
         
         plantelPnl = new PnlPlantel();
         plantelPnl.setVisible(false);
         plantelPnl.setSize(1181,587);
-        add(plantelPnl);
+        //if(idTipo!=3)
+            add(plantelPnl);
         
         departamentoPnl = new PnlDepartamento();
         departamentoPnl.setVisible(false);
         departamentoPnl.setSize(1181,587);
-        add(departamentoPnl);
+        //if(idTipo!=3)
+            add(departamentoPnl);
         
         puestoPnl = new PnlPuestos();
         puestoPnl.setVisible(false);
         puestoPnl.setSize(1181,587);
-        add(puestoPnl);
+        //if(idTipo!=3)
+            add(puestoPnl);
         
         sedePnl = new PnlSede();
         sedePnl.setVisible(false);
         sedePnl.setSize(1181,587);
-        add(sedePnl);
+        //if(idTipo!=3)
+            add(sedePnl);
         
         proveedorPnl = new PnlProveedor();
         proveedorPnl.setVisible(false);
         proveedorPnl.setSize(1181,587);
-        add(proveedorPnl);
+        //if(idTipo!=3)
+            add(proveedorPnl);
         
         empleadoPnl = new PnlEmpleadoAdministrativo();
         empleadoPnl.setVisible(false);
         empleadoPnl.setSize(1181,587);
-        add(empleadoPnl);
+        //if(idTipo!=3)
+            add(empleadoPnl);
         
         cursoPnl = new PnlRegistrarCursos();
         cursoPnl.setVisible(false);
         cursoPnl.setSize(1181,587);
-        add(cursoPnl);
+        //if(idTipo!=3)
+            add(cursoPnl);
         
         //Kardex
         kardexPnl = new PnlKardex();
         kardexPnl.setVisible(false);
         kardexPnl.setSize(1181,587);
+        
         add(kardexPnl);
         
         reporteCursoPnl = new PnlReporteCurso();
@@ -120,23 +143,33 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         alertasPnl = new PnlAlertas();
         alertasPnl.setVisible(false);
         alertasPnl.setSize(1181,587);
-        add(alertasPnl);
+        //if(idTipo!=3)
+            add(alertasPnl);
         
         seguimientoPnl = new PnlSeguimiento();
         seguimientoPnl.setVisible(false);
         seguimientoPnl.setSize(1181,587);
-        add(seguimientoPnl);
+        //if(idTipo!=3)
+            add(seguimientoPnl);/*preguntar*/
         
         programarPnl = new PnlProgramarCurso();
         programarPnl.setVisible(false);
         programarPnl.setSize(1181,587);
-        add(programarPnl);
+       // if(idTipo!=3)
+            add(programarPnl);
         
         //Login
         loginPnl = new PnlLogin(this);
         loginPnl.setVisible(false);
         loginPnl.setSize(1181,587);
         add(loginPnl);
+        
+        if(idTipo==2 || idTipo==3)
+            usuario_MIt.setVisible(false);
+        if(idTipo==3){
+            mantenimientoCurso_Mn.setVisible(false);
+            procesos_Mn.setVisible(false);
+        }
     }
     
     private void login(){
@@ -506,7 +539,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_alertas_MItActionPerformed
 
     private void programarCurso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programarCurso_MItActionPerformed
-        this.setTitle("Capacisoft - ProgramarCurso");
+        this.setTitle("Capacisoft - Programar Curso");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -522,6 +555,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarPnl.setVisible(true);
         seguimientoPnl.setVisible(false);
         alertasPnl.setVisible(false);
+        programarPnl.llenarTodo();
     }//GEN-LAST:event_programarCurso_MItActionPerformed
 
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
@@ -680,38 +714,38 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+   // public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       // try {
+       //     for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+      //          if ("Nimbus".equals(info.getName())) {
+      //              javax.swing.UIManager.setLookAndFeel(info.getClassName());
+      //              break;
+      //          }
+      //      }
+      //  } catch (ClassNotFoundException ex) {
+      //      java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  } catch (InstantiationException ex) {
+     //       java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  } catch (IllegalAccessException ex) {
+      //      java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      //      java.util.logging.Logger.getLogger(Capacisoft.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      //  }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Capacisoft().setVisible(true);
-            }
-        });
-    }
+   //     java.awt.EventQueue.invokeLater(new Runnable() {
+   //         public void run() {
+    //            new Capacisoft().setVisible(true);
+    //        }
+    //    });
+    //}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem alertas_MIt;
     private javax.swing.JMenuBar barraMenu;

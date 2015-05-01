@@ -31,13 +31,22 @@
               <Component id="opcionUsuarios_Pnl" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="informacionUsuarios_Pnl" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="informacionUsuarios_Pnl" max="32767" attributes="0"/>
-          <Component id="opcionUsuarios_Pnl" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="opcionUsuarios_Pnl" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="informacionUsuarios_Pnl" alignment="1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -64,28 +73,31 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="opciones_OU_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="nota_OU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="agregar_OU_Btn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                                  <Component id="Buscar_OU_Btn" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="nombreEmpleadoBusqueda_IU_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="nombreEmpleadoBusqueda_IU_TFd" min="-2" pref="151" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="opciones_OU_Lbl" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="nombreUsuario_OU_Lbl" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="nombreUsuario_OU_TFd" min="-2" pref="146" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="nota_OU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="98" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                                  <Component id="nombreUsuario_OU_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="nombreUsuario_OU_TFd" min="-2" pref="146" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="agregar_OU_Btn" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="buscar_OU_Btn" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -95,6 +107,11 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="380" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -102,19 +119,33 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="opciones_OU_Lbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="nota_OU_Lbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombreUsuario_OU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreUsuario_OU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace pref="9" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nombreUsuario_OU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreUsuario_OU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="agregar_OU_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="buscar_OU_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nombreEmpleadoBusqueda_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreEmpleadoBusqueda_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="Buscar_OU_Btn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="agregar_OU_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buscar_OU_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="389" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
@@ -136,9 +167,9 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
-                    <Column editable="false" title="Usuario" type="java.lang.Object"/>
+                    <Column editable="false" title="Numero" type="java.lang.Object"/>
                     <Column editable="false" title="Empleado" type="java.lang.Object"/>
-                    <Column editable="false" title="Eliminar" type="java.lang.Object"/>
+                    <Column editable="false" title="Eliminar" type="java.lang.Boolean"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -170,6 +201,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaUsuarios_OU_TblMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -204,6 +238,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_OU_BtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="opciones_OU_Lbl">
           <Properties>
@@ -217,6 +254,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nombreEmpleadoBusqueda_IU_TFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="nombreEmpleadoBusqueda_IU_Lbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nombre del Empleado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Buscar_OU_Btn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Buscar_OU_BtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -243,13 +307,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nombreEmpleado_IU_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="tipo_IU_Lbl" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tipo_IU_CBx" min="-2" pref="151" max="-2" attributes="0"/>
-                              <Component id="nombreEmpleado_IU_TFd" min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="tipo_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="nombreEmpleado_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ApellidoPaterno_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="apellidoPaterno_IU_TFd" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="tipo_IU_CBx" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
+                                          <Component id="nombreEmpleado_IU_TFd" min="-2" pref="151" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -260,23 +332,42 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <EmptySpace pref="107" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
-                          <Component id="guardar_IU_Btn" min="-2" pref="108" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nombreUsuario_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="contrasena_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="guardar_IU_Btn" alignment="1" min="-2" pref="108" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="contrasena_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreUsuario_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="SegundoNombre_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="ConfirmarContrasena_IU_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="confirmarContrasena_IU_Pfd" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="segundoNombre_IU_TFd" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                                          <Component id="apellidoMaterno_IU_TFd" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="contrasena_IU_Pfd" max="32767" attributes="0"/>
+                                              <Component id="nombreUsuario_IU_TFd" pref="151" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="contrasena_IU_TFd" min="-2" pref="148" max="-2" attributes="0"/>
-                              <Component id="nombreUsuario_IU_TFd" min="-2" pref="151" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
+                      <Component id="ApellidoMaterno_IU_Lbl" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
@@ -293,15 +384,32 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreEmpleado_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreEmpleado_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreUsuario_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreUsuario_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="segundoNombre_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SegundoNombre_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="contrasena_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="contrasena_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tipo_IU_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoPaterno_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ApellidoPaterno_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoMaterno_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ApellidoMaterno_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nombreUsuario_IU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreUsuario_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tipo_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipo_IU_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="contrasena_IU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="contrasena_IU_Pfd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="ConfirmarContrasena_IU_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarContrasena_IU_Pfd" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="guardar_IU_Btn" min="-2" pref="48" max="-2" attributes="0"/>
@@ -351,14 +459,6 @@
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="contrasena_IU_TFd">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="tipo_IU_Lbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -391,6 +491,9 @@
             <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardar_IU_BtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nota_IU_Lbl">
           <Properties>
@@ -403,6 +506,72 @@
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="segundoNombre_IU_TFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="SegundoNombre_IU_Lbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Segundo nombre:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="apellidoPaterno_IU_TFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ApellidoPaterno_IU_Lbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Apellido paterno:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="apellidoMaterno_IU_TFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ApellidoMaterno_IU_Lbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Apellido materno:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ConfirmarContrasena_IU_Lbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Confirmar Contrase&#xf1;a:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="contrasena_IU_Pfd">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="confirmarContrasena_IU_Pfd">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

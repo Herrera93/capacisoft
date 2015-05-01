@@ -383,4 +383,9 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     public void setInfo(List info) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void setLogin(String[][] login) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

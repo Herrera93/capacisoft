@@ -8,13 +8,45 @@ package mx.edu.cobach.vista;
  *
  * @author liuts
  */
-public class PnlUsuarios extends javax.swing.JPanel {
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Usuario;
+import mx.edu.cobach.persistencia.entidades.TipoCuenta;
+import mx.edu.cobach.vista.controlador.BaseControlador;
+import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.UsuarioControlador;
 
-    /**
-     * Creates new form PnlUsuarios
-     */
+public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
+
+    private DefaultTableModel model;
+    private String[] titulosTabla = {"Numero","Usuario","Nombre", "Eliminar"};
+   // private BaseControlador control;
+    //private Class Usuario = null;
+    private UsuarioControlador control;
+    private int idUsuarioActual;
+    
     public PnlUsuarios() {
         initComponents();
+        
+       //o informacionUsuarios_Pnl.setVisible(false);
+       model = new DefaultTableModel(titulosTabla, 4);
+        tablaUsuarios_OU_Tbl.setModel(model);
+        tablaUsuarios_OU_Tbl.setColumnSelectionAllowed(false);
+         tablaUsuarios_OU_Tbl.setDragEnabled(false);
+        
+        
+       // model = new DefaultTableModel(titulosTabla, 5);
+       // tablaUsuarios_OU_Tbl.setModel(model);
+        
+       // controlador = new UsuarioControlador(this, Usuario.class);
+        
+        control = new UsuarioControlador(this,Usuario.class);
+       nombreEmpleadoBusqueda_IU_TFd.setEnabled(true);
     }
 
     /**
@@ -35,18 +67,29 @@ public class PnlUsuarios extends javax.swing.JPanel {
         agregar_OU_Btn = new javax.swing.JButton();
         opciones_OU_Lbl = new javax.swing.JLabel();
         nota_OU_Lbl = new javax.swing.JLabel();
+        nombreEmpleadoBusqueda_IU_TFd = new javax.swing.JTextField();
+        nombreEmpleadoBusqueda_IU_Lbl = new javax.swing.JLabel();
+        Buscar_OU_Btn = new javax.swing.JButton();
         informacionUsuarios_Pnl = new javax.swing.JPanel();
         nombreEmpleado_IU_Lbl = new javax.swing.JLabel();
         nombreEmpleado_IU_TFd = new javax.swing.JTextField();
         nombreUsuario_IU_Lbl = new javax.swing.JLabel();
         nombreUsuario_IU_TFd = new javax.swing.JTextField();
         contrasena_IU_Lbl = new javax.swing.JLabel();
-        contrasena_IU_TFd = new javax.swing.JTextField();
         tipo_IU_Lbl = new javax.swing.JLabel();
         tipo_IU_CBx = new javax.swing.JComboBox();
         guardar_IU_Btn = new javax.swing.JButton();
         nota_IU_Lbl = new javax.swing.JLabel();
         agregar_IU_LBl = new javax.swing.JLabel();
+        segundoNombre_IU_TFd = new javax.swing.JTextField();
+        SegundoNombre_IU_Lbl = new javax.swing.JLabel();
+        apellidoPaterno_IU_TFd = new javax.swing.JTextField();
+        ApellidoPaterno_IU_Lbl = new javax.swing.JLabel();
+        apellidoMaterno_IU_TFd = new javax.swing.JTextField();
+        ApellidoMaterno_IU_Lbl = new javax.swing.JLabel();
+        ConfirmarContrasena_IU_Lbl = new javax.swing.JLabel();
+        contrasena_IU_Pfd = new javax.swing.JPasswordField();
+        confirmarContrasena_IU_Pfd = new javax.swing.JPasswordField();
 
         setMaximumSize(new java.awt.Dimension(1181, 587));
         setMinimumSize(new java.awt.Dimension(1181, 587));
@@ -66,12 +109,19 @@ public class PnlUsuarios extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Usuario", "Empleado", "Eliminar"
+                "Numero", "Empleado", "Eliminar"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -79,6 +129,11 @@ public class PnlUsuarios extends javax.swing.JPanel {
         });
         tablaUsuarios_OU_Tbl.setMaximumSize(new java.awt.Dimension(225, 64));
         tablaUsuarios_OU_Tbl.setMinimumSize(new java.awt.Dimension(225, 64));
+        tablaUsuarios_OU_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaUsuarios_OU_TblMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaUsuarios_OU_Tbl);
         if (tablaUsuarios_OU_Tbl.getColumnModel().getColumnCount() > 0) {
             tablaUsuarios_OU_Tbl.getColumnModel().getColumn(0).setResizable(false);
@@ -97,56 +152,92 @@ public class PnlUsuarios extends javax.swing.JPanel {
 
         agregar_OU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregar_OU_Btn.setText("Agregar");
+        agregar_OU_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregar_OU_BtnActionPerformed(evt);
+            }
+        });
 
         opciones_OU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opciones_OU_Lbl.setText("Opciones ");
 
         nota_OU_Lbl.setText("Ingrese el nombre para buscar la información especifica");
 
+        nombreEmpleadoBusqueda_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreEmpleadoBusqueda_IU_TFd.setEnabled(false);
+
+        nombreEmpleadoBusqueda_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreEmpleadoBusqueda_IU_Lbl.setText("Nombre del Empleado:");
+
+        Buscar_OU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Buscar_OU_Btn.setText("Buscar");
+        Buscar_OU_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Buscar_OU_BtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout opcionUsuarios_PnlLayout = new javax.swing.GroupLayout(opcionUsuarios_Pnl);
         opcionUsuarios_Pnl.setLayout(opcionUsuarios_PnlLayout);
         opcionUsuarios_PnlLayout.setHorizontalGroup(
             opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(opciones_OU_Lbl)
+                    .addComponent(nota_OU_Lbl)
                     .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opciones_OU_Lbl)
-                                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
-                                        .addComponent(nombreUsuario_OU_Lbl)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(nota_OU_Lbl))
-                                .addGap(0, 98, Short.MAX_VALUE))
+                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
                                 .addComponent(agregar_OU_Btn)
+                                .addGap(146, 146, 146)
+                                .addComponent(Buscar_OU_Btn))
+                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                                .addComponent(nombreEmpleadoBusqueda_IU_Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreEmpleadoBusqueda_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(nombreUsuario_OU_Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(buscar_OU_Btn)
                                 .addGap(21, 21, 21)))))
                 .addContainerGap())
+            .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         opcionUsuarios_PnlLayout.setVerticalGroup(
             opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionUsuarios_PnlLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(opciones_OU_Lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(nota_OU_Lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreUsuario_OU_Lbl)
-                    .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_OU_Btn)
-                    .addComponent(buscar_OU_Btn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreUsuario_OU_Lbl)
+                            .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(agregar_OU_Btn)
+                            .addComponent(buscar_OU_Btn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(opcionUsuarios_PnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(opcionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreEmpleadoBusqueda_IU_Lbl)
+                            .addComponent(nombreEmpleadoBusqueda_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Buscar_OU_Btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -170,9 +261,6 @@ public class PnlUsuarios extends javax.swing.JPanel {
         contrasena_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contrasena_IU_Lbl.setText("Contraseña:");
 
-        contrasena_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        contrasena_IU_TFd.setEnabled(false);
-
         tipo_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_IU_Lbl.setText("Tipo de cuenta:");
 
@@ -184,11 +272,41 @@ public class PnlUsuarios extends javax.swing.JPanel {
         guardar_IU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar_IU_Btn.setText("Guardar");
         guardar_IU_Btn.setEnabled(false);
+        guardar_IU_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardar_IU_BtnActionPerformed(evt);
+            }
+        });
 
         nota_IU_Lbl.setText("Ingrese la información a almacenar");
 
         agregar_IU_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregar_IU_LBl.setText("Agregar");
+
+        segundoNombre_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        segundoNombre_IU_TFd.setEnabled(false);
+
+        SegundoNombre_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        SegundoNombre_IU_Lbl.setText("Segundo nombre:");
+
+        apellidoPaterno_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoPaterno_IU_TFd.setEnabled(false);
+
+        ApellidoPaterno_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ApellidoPaterno_IU_Lbl.setText("Apellido paterno:");
+
+        apellidoMaterno_IU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoMaterno_IU_TFd.setEnabled(false);
+
+        ApellidoMaterno_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ApellidoMaterno_IU_Lbl.setText("Apellido materno:");
+
+        ConfirmarContrasena_IU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ConfirmarContrasena_IU_Lbl.setText("Confirmar Contraseña:");
+
+        contrasena_IU_Pfd.setEnabled(false);
+
+        confirmarContrasena_IU_Pfd.setEnabled(false);
 
         javax.swing.GroupLayout informacionUsuarios_PnlLayout = new javax.swing.GroupLayout(informacionUsuarios_Pnl);
         informacionUsuarios_Pnl.setLayout(informacionUsuarios_PnlLayout);
@@ -199,30 +317,48 @@ public class PnlUsuarios extends javax.swing.JPanel {
                     .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreEmpleado_IU_Lbl)
-                            .addComponent(tipo_IU_Lbl))
-                        .addGap(18, 18, 18)
-                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tipo_IU_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreEmpleado_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tipo_IU_Lbl)
+                            .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreEmpleado_IU_Lbl)
+                                    .addComponent(ApellidoPaterno_IU_Lbl))
+                                .addGap(18, 18, 18)
+                                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(apellidoPaterno_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tipo_IU_CBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nombreEmpleado_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nota_IU_Lbl)
                             .addComponent(agregar_IU_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(guardar_IU_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
-                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreUsuario_IU_Lbl)
-                            .addComponent(contrasena_IU_Lbl))
-                        .addGap(18, 18, 18)
-                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contrasena_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(guardar_IU_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionUsuarios_PnlLayout.createSequentialGroup()
+                            .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(contrasena_IU_Lbl)
+                                    .addComponent(nombreUsuario_IU_Lbl)
+                                    .addComponent(SegundoNombre_IU_Lbl))
+                                .addComponent(ConfirmarContrasena_IU_Lbl))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                                    .addComponent(confirmarContrasena_IU_Pfd)
+                                    .addGap(6, 6, 6))
+                                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(segundoNombre_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(apellidoMaterno_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(informacionUsuarios_PnlLayout.createSequentialGroup()
+                                        .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(contrasena_IU_Pfd)
+                                            .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                                        .addGap(3, 3, 3))))))
+                    .addComponent(ApellidoMaterno_IU_Lbl))
                 .addGap(19, 19, 19))
         );
         informacionUsuarios_PnlLayout.setVerticalGroup(
@@ -236,14 +372,28 @@ public class PnlUsuarios extends javax.swing.JPanel {
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreEmpleado_IU_Lbl)
                     .addComponent(nombreEmpleado_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreUsuario_IU_Lbl)
-                    .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
+                    .addComponent(segundoNombre_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SegundoNombre_IU_Lbl))
+                .addGap(18, 18, 18)
                 .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(contrasena_IU_Lbl)
-                    .addComponent(contrasena_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(apellidoPaterno_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ApellidoPaterno_IU_Lbl)
+                    .addComponent(apellidoMaterno_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ApellidoMaterno_IU_Lbl))
+                .addGap(40, 40, 40)
+                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreUsuario_IU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreUsuario_IU_Lbl))
+                .addGap(18, 18, 18)
+                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipo_IU_Lbl)
                     .addComponent(tipo_IU_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipo_IU_Lbl))
+                    .addComponent(contrasena_IU_Lbl)
+                    .addComponent(contrasena_IU_Pfd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(informacionUsuarios_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ConfirmarContrasena_IU_Lbl)
+                    .addComponent(confirmarContrasena_IU_Pfd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guardar_IU_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -256,24 +406,120 @@ public class PnlUsuarios extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(opcionUsuarios_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(informacionUsuarios_Pnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void agregar_OU_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OU_BtnActionPerformed
+        int renglon = tablaUsuarios_OU_Tbl.getSelectedRow();
+        if(renglon == -1) {
+            guardar_IU_Btn.setText("Guardar");
+        }else{
+             int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
+            idUsuarioActual=id;
+             control.buscar(id); 
+            
+            guardar_IU_Btn.setText("Modificar");
+        }
+        
+        setEnabledPanelInformacion(true);
+                                        
+    }//GEN-LAST:event_agregar_OU_BtnActionPerformed
+
+    private void Buscar_OU_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_OU_BtnActionPerformed
+        if(nombreEmpleadoBusqueda_IU_TFd.getText().equals("")==false)
+            control.buscarPorUsuario(nombreEmpleadoBusqueda_IU_TFd.getText());        // TODO add your handling code here:
+        else
+            control.buscarTodos();
+    }//GEN-LAST:event_Buscar_OU_BtnActionPerformed
+
+    private void guardar_IU_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_IU_BtnActionPerformed
+        if( contrasena_IU_Pfd.getText().equals(confirmarContrasena_IU_Pfd.getText()) ){
+        List<String> atr = new ArrayList<String>();
+        //List<String> arl = new ArrayList<String>();
+        //Falta validar los campos
+        atr.add(nombreEmpleado_IU_TFd.getText()); //# En lista 0
+        atr.add(segundoNombre_IU_TFd.getText());//# En lista 1
+        atr.add(apellidoPaterno_IU_TFd.getText());//# En lista 2
+        atr.add(apellidoMaterno_IU_TFd.getText());//# En lista 3
+        atr.add(nombreUsuario_IU_TFd.getText());//# En lista 4
+        //arl.add(String.valueOf(tipo_IU_CBx.getSelectedItem()));//# En lista 5
+        switch(String.valueOf(tipo_IU_CBx.getSelectedItem())){
+            case "Administrador": atr.add("1"); break;
+            case "Analista": atr.add("2"); break;
+            case "Secretaria": atr.add("3"); break;
+        }
+        
+        atr.add(contrasena_IU_Pfd.getText());//# En lista 6
+        //System.out.println("antes alta");
+       /*ESTA ES LA ORIGINAL MIA*/
+        
+       // control.alta(HelperEntidad.getUsuario(atr));        // TODO add your handling code here:
+        
+        if(!guardar_IU_Btn.getText().equalsIgnoreCase("Modificar")){
+          control.alta(HelperEntidad.getUsuario(atr));  
+        }else{
+            setMensaje("Modificar");
+            atr.add(String.valueOf(idUsuarioActual));
+            System.out.println("el id es: "+idUsuarioActual);
+            control.modificacion(HelperEntidad.getUsuario(atr));
+                
+        }
+        
+        }else
+            setMensaje("Usuario o Contraseña incorrectas");
+    }//GEN-LAST:event_guardar_IU_BtnActionPerformed
+
+    private void tablaUsuarios_OU_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuarios_OU_TblMouseClicked
+        int row = tablaUsuarios_OU_Tbl.rowAtPoint(evt.getPoint());
+        int col = tablaUsuarios_OU_Tbl.columnAtPoint(evt.getPoint());
+        if(col == 3) {
+            //System.out.println("ID: " + model.getValueAt(row, 0));
+            //Preguntamos si esta seguro de la eliminacion
+            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            
+            if(op == 0){
+                //System.out.println("BORRAR");
+                //Obtenemos ID de la columna escondida
+                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                System.out.println("el id es: "+id);
+                control.baja(id);
+                control.buscarPorUsuario(nombreEmpleadoBusqueda_IU_TFd.getText());
+            }
+        }
+    }//GEN-LAST:event_tablaUsuarios_OU_TblMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ApellidoMaterno_IU_Lbl;
+    private javax.swing.JLabel ApellidoPaterno_IU_Lbl;
+    private javax.swing.JButton Buscar_OU_Btn;
+    private javax.swing.JLabel ConfirmarContrasena_IU_Lbl;
+    private javax.swing.JLabel SegundoNombre_IU_Lbl;
     private javax.swing.JLabel agregar_IU_LBl;
     private javax.swing.JButton agregar_OU_Btn;
+    private javax.swing.JTextField apellidoMaterno_IU_TFd;
+    private javax.swing.JTextField apellidoPaterno_IU_TFd;
     private javax.swing.JButton buscar_OU_Btn;
+    private javax.swing.JPasswordField confirmarContrasena_IU_Pfd;
     private javax.swing.JLabel contrasena_IU_Lbl;
-    private javax.swing.JTextField contrasena_IU_TFd;
+    private javax.swing.JPasswordField contrasena_IU_Pfd;
     private javax.swing.JButton guardar_IU_Btn;
     private javax.swing.JPanel informacionUsuarios_Pnl;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nombreEmpleadoBusqueda_IU_Lbl;
+    private javax.swing.JTextField nombreEmpleadoBusqueda_IU_TFd;
     private javax.swing.JLabel nombreEmpleado_IU_Lbl;
     private javax.swing.JTextField nombreEmpleado_IU_TFd;
     private javax.swing.JLabel nombreUsuario_IU_Lbl;
@@ -284,8 +530,62 @@ public class PnlUsuarios extends javax.swing.JPanel {
     private javax.swing.JLabel nota_OU_Lbl;
     private javax.swing.JPanel opcionUsuarios_Pnl;
     private javax.swing.JLabel opciones_OU_Lbl;
+    private javax.swing.JTextField segundoNombre_IU_TFd;
     private javax.swing.JTable tablaUsuarios_OU_Tbl;
     private javax.swing.JComboBox tipo_IU_CBx;
     private javax.swing.JLabel tipo_IU_Lbl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {
+         JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    @Override
+    public void setTabla(String[][] info) {
+        model.setDataVector(info, titulosTabla);
+        TableColumn tc = tablaUsuarios_OU_Tbl.getColumnModel().getColumn(3);
+        tc.setCellEditor(tablaUsuarios_OU_Tbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(tablaUsuarios_OU_Tbl.getDefaultRenderer(Boolean.class));
+        //Esconder columna ID
+        tc = tablaUsuarios_OU_Tbl.getColumnModel().getColumn(0);
+       // tablaUsuarios_OU_Tbl.getColumnModel().removeColumn(tc);
+    }
+
+    @Override
+    public void setInfo(List info) {
+     System.out.println(info.get(0));
+     nombreEmpleado_IU_TFd.setText(info.get(0).toString());
+     segundoNombre_IU_TFd.setText(info.get(1).toString());
+     apellidoPaterno_IU_TFd.setText(info.get(2).toString());
+     apellidoMaterno_IU_TFd.setText(info.get(3).toString());
+     nombreUsuario_IU_TFd.setText(info.get(4).toString());
+     tipo_IU_CBx.setSelectedItem(info.get(5).toString());
+     contrasena_IU_Pfd.setText(info.get(6).toString());
+     confirmarContrasena_IU_Pfd.setText(info.get(6).toString());
+    }
+
+    @Override
+    public void setLista(List info, int i) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setLogin(String[][] login) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void setEnabledPanelInformacion(boolean b){
+        nombreEmpleado_IU_TFd.setEnabled(b);
+        apellidoPaterno_IU_TFd.setEnabled(b);
+        segundoNombre_IU_TFd.setEnabled(b);
+        apellidoMaterno_IU_TFd.setEnabled(b);
+        nombreUsuario_IU_TFd.setEnabled(b);
+        tipo_IU_CBx.setEnabled(b);
+        contrasena_IU_Pfd.setEnabled(b);
+        confirmarContrasena_IU_Pfd.setEnabled(b);
+        guardar_IU_Btn.setEnabled(b);
+        //agregar_OU_Btn.setEnabled(false);
+        //Buscar_OU_Btn.setEnabled(false);
+    }
 }
