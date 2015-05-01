@@ -67,52 +67,61 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         Se agregan las instancias de las clases, hacen invisible los paneles
         se le da tamano y se agregan al frame
     */
-    private void agregar(){
+   private void agregar(){
         //Mantenimientos
         usuarioPnl = new PnlUsuarios();
         usuarioPnl.setVisible(false);
         usuarioPnl.setSize(1181,587);
-        add(usuarioPnl);
+        //if(idTipo==1)
+            add(usuarioPnl);
         
         plantelPnl = new PnlPlantel();
         plantelPnl.setVisible(false);
         plantelPnl.setSize(1181,587);
-        add(plantelPnl);
+        //if(idTipo!=3)
+            add(plantelPnl);
         
         departamentoPnl = new PnlDepartamento();
         departamentoPnl.setVisible(false);
         departamentoPnl.setSize(1181,587);
-        add(departamentoPnl);
+        //if(idTipo!=3)
+            add(departamentoPnl);
         
         puestoPnl = new PnlPuestos();
         puestoPnl.setVisible(false);
         puestoPnl.setSize(1181,587);
-        add(puestoPnl);
+        //if(idTipo!=3)
+            add(puestoPnl);
         
         sedePnl = new PnlSede();
         sedePnl.setVisible(false);
         sedePnl.setSize(1181,587);
-        add(sedePnl);
+        //if(idTipo!=3)
+            add(sedePnl);
         
         proveedorPnl = new PnlProveedor();
         proveedorPnl.setVisible(false);
         proveedorPnl.setSize(1181,587);
-        add(proveedorPnl);
+        //if(idTipo!=3)
+            add(proveedorPnl);
         
         empleadoPnl = new PnlEmpleadoAdministrativo();
         empleadoPnl.setVisible(false);
         empleadoPnl.setSize(1181,587);
-        add(empleadoPnl);
+        //if(idTipo!=3)
+            add(empleadoPnl);
         
         cursoPnl = new PnlRegistrarCursos();
         cursoPnl.setVisible(false);
         cursoPnl.setSize(1181,587);
-        add(cursoPnl);
+        //if(idTipo!=3)
+            add(cursoPnl);
         
         //Kardex
         kardexPnl = new PnlKardex();
         kardexPnl.setVisible(false);
         kardexPnl.setSize(1181,587);
+        
         add(kardexPnl);
         
         reporteCursoPnl = new PnlReporteCurso();
@@ -134,23 +143,33 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         alertasPnl = new PnlAlertas();
         alertasPnl.setVisible(false);
         alertasPnl.setSize(1181,587);
-        add(alertasPnl);
+        //if(idTipo!=3)
+            add(alertasPnl);
         
         seguimientoPnl = new PnlSeguimiento();
         seguimientoPnl.setVisible(false);
         seguimientoPnl.setSize(1181,587);
-        add(seguimientoPnl);
+        //if(idTipo!=3)
+            add(seguimientoPnl);/*preguntar*/
         
         programarPnl = new PnlProgramarCurso();
         programarPnl.setVisible(false);
         programarPnl.setSize(1181,587);
-        add(programarPnl);
+       // if(idTipo!=3)
+            add(programarPnl);
         
         //Login
         loginPnl = new PnlLogin(this);
         loginPnl.setVisible(false);
         loginPnl.setSize(1181,587);
         add(loginPnl);
+        
+        if(idTipo==2 || idTipo==3)
+            usuario_MIt.setVisible(false);
+        if(idTipo==3){
+            mantenimientoCurso_Mn.setVisible(false);
+            procesos_Mn.setVisible(false);
+        }
     }
     
     private void login(){

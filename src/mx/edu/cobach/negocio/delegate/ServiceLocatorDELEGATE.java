@@ -17,12 +17,20 @@ public class ServiceLocatorDELEGATE {
     private static PuestoDELEGATE puestoDelegate;
     private static CursoDELEGATE cursoDelegate;
     private static EmpleadoDELEGATE empleadoDelegate;
+    private static UsuarioDELEGATE usuarioDelegate;
     
     public static BaseDELEGATE getInstance(){
         if(delegate == null){
             delegate = new BaseDELEGATE();
         }        
         return delegate;
+    }
+    
+    public static UsuarioDELEGATE getUsuarioDelegate(){
+        if(usuarioDelegate == null){
+            usuarioDelegate = new UsuarioDELEGATE();
+        }
+        return usuarioDelegate;
     }
     
     public static EmpleadoDELEGATE getEmpleadoDelegate(){

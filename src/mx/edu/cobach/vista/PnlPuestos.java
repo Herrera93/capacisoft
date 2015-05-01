@@ -382,4 +382,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregar_IP_LBl.setText("Modificar");
     }
 
+    @Override
+    public void setLogin(String[][] login) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
