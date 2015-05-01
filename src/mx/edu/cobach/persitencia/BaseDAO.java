@@ -59,7 +59,7 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
      * Metodo para la busqueda de un registro especifico de la tabla de la 
      * entidad
      * @param id Identificador del registro
-     * @return Regresa el objeto encontrado, en caso de no encontrarlo regresara
+   * @return Regresa el objeto encontrado, en caso de no encontrarlo regresara
      * null
      */
     @Override
