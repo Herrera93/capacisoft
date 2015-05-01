@@ -652,4 +652,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         dptoModel.setSelectedItem(info.get(10));
         guardar_IE_Btn.setText("Modificar");
     }
+
+    @Override
+    public void setLogin(String[][] login) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

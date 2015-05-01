@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.io.InputStream;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
@@ -34,9 +35,8 @@ public class PuestoControlador{
         List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre, clazz);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
-    public void buscarMod(String nombre) {
-        List<Object> l = ServiceLocatorDELEGATE.getPuesto().find(nombre, clazz);
-        Object o = l.get(0);
+    public void buscarMod(int id) {
+        Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
         com.setInfo(HelperEntidad.descomponerObjeto(o));
     }   
 }
