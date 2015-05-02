@@ -445,6 +445,19 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_Buscar_OU_BtnActionPerformed
 
     private void guardar_IU_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_IU_BtnActionPerformed
+        
+        if(nombreEmpleado_IU_TFd.getText().equals("") ||
+           segundoNombre_IU_TFd.getText().equals("")|| 
+           apellidoPaterno_IU_TFd.getText().equals("")||
+           apellidoMaterno_IU_TFd.getText().equals("")||
+           nombreUsuario_IU_TFd.getText().equals("")||
+           tipo_IU_CBx.getSelectedItem().equals("")||
+           contrasena_IU_Pfd.getText().equals("")||
+           confirmarContrasena_IU_Pfd.getText().equals("") ) 
+            
+            setMensaje("Debe ingresar los datos solicitados");
+        
+        else 
         if( contrasena_IU_Pfd.getText().equals(confirmarContrasena_IU_Pfd.getText()) ){
         List<String> atr = new ArrayList<String>();
         //List<String> arl = new ArrayList<String>();
@@ -477,6 +490,15 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 
         }
         
+        nombreEmpleado_IU_TFd.setText("");
+     segundoNombre_IU_TFd.setText("");
+     apellidoPaterno_IU_TFd.setText("");
+     apellidoMaterno_IU_TFd.setText("");
+     nombreUsuario_IU_TFd.setText("");
+     tipo_IU_CBx.setSelectedItem("");
+     contrasena_IU_Pfd.setText("");
+     confirmarContrasena_IU_Pfd.setText("");
+        setMensaje("Guardar");
         }else
             setMensaje("Usuario o Contraseña incorrectas");
     }//GEN-LAST:event_guardar_IU_BtnActionPerformed
@@ -554,7 +576,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setInfo(List info) {
-     System.out.println(info.get(0));
+    // System.out.println(info.get(0));
      nombreEmpleado_IU_TFd.setText(info.get(0).toString());
      segundoNombre_IU_TFd.setText(info.get(1).toString());
      apellidoPaterno_IU_TFd.setText(info.get(2).toString());
