@@ -28,21 +28,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="opcionPuesto_Pnl" min="-2" max="-2" attributes="0"/>
+              <Component id="opcionPnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="informacionPuesto_Pnl" max="32767" attributes="0"/>
+              <Component id="informacionPnl" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="opcionPuesto_Pnl" max="32767" attributes="0"/>
-          <Component id="informacionPuesto_Pnl" alignment="0" max="32767" attributes="0"/>
+          <Component id="opcionPnl" max="32767" attributes="0"/>
+          <Component id="informacionPnl" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="opcionPuesto_Pnl">
+    <Container class="javax.swing.JPanel" name="opcionPnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -64,23 +64,23 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                          <Component id="tablaSPn" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="buscar_OP_Btn" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="buscarBtn" min="-2" pref="81" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="agregar_OP_Btn" min="-2" max="-2" attributes="0"/>
-                              <Component id="nota_OP_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="opciones_OP_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="agregarBtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nombrePuesto_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreBuscarLbl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nombrePuesto_OP_TFd" min="-2" pref="164" max="-2" attributes="0"/>
+                                  <Component id="nombreBuscarTFd" min="-2" pref="164" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="72" max="32767" attributes="0"/>
@@ -94,28 +94,28 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="opciones_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombrePuesto_OP_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombrePuesto_OP_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="buscar_OP_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="agregar_OP_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="383" max="-2" attributes="0"/>
+                  <Component id="tablaSPn" min="-2" pref="383" max="-2" attributes="0"/>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="nombrePuesto_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="nombreBuscarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -123,7 +123,7 @@
             <Property name="text" type="java.lang.String" value="Nombre del puesto:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombrePuesto_OP_TFd">
+        <Component class="javax.swing.JTextField" name="nombreBuscarTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -131,14 +131,14 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="tablaSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaPuestos_OP_Tbl">
+            <Component class="javax.swing.JTable" name="tablaTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="2" rowCount="4">
@@ -170,12 +170,12 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaPuestos_OP_TblMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaTblMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="buscar_OP_Btn">
+        <Component class="javax.swing.JButton" name="buscarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -183,10 +183,10 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscar_OP_BtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="agregar_OP_Btn">
+        <Component class="javax.swing.JButton" name="agregarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -194,10 +194,10 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_OP_BtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="opcionLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -205,14 +205,14 @@
             <Property name="text" type="java.lang.String" value="Opciones "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="opcionMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="informacionPuesto_Pnl">
+    <Container class="javax.swing.JPanel" name="informacionPnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -232,16 +232,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="agregar_IP_Btn" min="-2" pref="108" max="-2" attributes="0"/>
+                  <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="agregar_IP_LBl" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLBl" min="-2" pref="200" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="nombrePuesto_IP_Lbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="nombrePuesto_IP_TFd" min="-2" pref="192" max="-2" attributes="0"/>
                       </Group>
@@ -254,23 +254,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="agregar_IP_LBl" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarLBl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombrePuesto_IP_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombrePuesto_IP_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="368" max="32767" attributes="0"/>
-                  <Component id="agregar_IP_Btn" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="guardarBtn" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="nombrePuesto_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="nombreLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -278,7 +278,7 @@
             <Property name="text" type="java.lang.String" value="Nombre del puesto:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="agregar_IP_Btn">
+        <Component class="javax.swing.JButton" name="guardarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -287,7 +287,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregar_IP_BtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="nombrePuesto_IP_TFd">
@@ -298,7 +298,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="agregar_IP_LBl">
+        <Component class="javax.swing.JLabel" name="agregarLBl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -306,7 +306,7 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="agregarMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
           </Properties>
