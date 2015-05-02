@@ -244,7 +244,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                     .addComponent(agregarLbl)
                     .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                         .addComponent(descripcionLbl)
-                        .addGap(30, 30, 30)
+                        .addGap(39, 39, 39)
                         .addComponent(descripcionCursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                         .addComponent(nombreLbl)
