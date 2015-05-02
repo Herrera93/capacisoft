@@ -89,7 +89,7 @@ public class Plantel  implements java.io.Serializable {
         this.empleados = empleados;
     }
     
-     @Override
+    @Override
     public String toString(){
         return this.nombre;
     }

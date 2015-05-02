@@ -72,18 +72,17 @@ public class HelperEntidad {
         return u;
     }
     
-    public static Object getCurso(List<String> atributos){
+    public static Object getCurso(List<Object> atributos){
         TipoCurso tc = new TipoCurso();
-        tc.setId(Integer.parseInt(atributos.get(0)));
-        return new Curso(tc,atributos.get(1),atributos.get(2));
-    }
-    
-    public static Object getCurso(List<String> atributos, int id){
-        TipoCurso tc = new TipoCurso();
-        tc.setId(Integer.parseInt(atributos.get(0)));
-        Curso c = new Curso(tc,atributos.get(1),atributos.get(2));
-        c.setId(id);
-        return c;
+        tc.setId((Integer) atributos.get(0));
+        Curso c = new Curso();
+        c.setTipoCurso(tc);
+        c.setNombre((String)atributos.get(1));
+        c.setDescripcion((String)atributos.get(2));
+        if(atributos.size()>3){
+            c.setId((Integer) atributos.get(3));
+        }
+        return  c;
     }
     
     public static List<Object> descomponerObjeto(Object obj){
@@ -210,8 +209,8 @@ public class HelperEntidad {
         info.add(empleado.getSegundoNombre());
         info.add(empleado.getApellidoPaterno());
         info.add(empleado.getApellidoMaterno());
-        info.add(empleado.getCorreo());
         info.add(empleado.getPuesto());
+        info.add(empleado.getCorreo());
         info.add(empleado.getPlantel());
         info.add(empleado.getAdscripcion());
         info.add(empleado.getDepartamento());

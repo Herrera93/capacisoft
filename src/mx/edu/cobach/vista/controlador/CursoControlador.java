@@ -27,5 +27,5 @@ public class CursoControlador {
     public void buscarTipoCurso(int id) {
         List<Object> o = ServiceLocatorDELEGATE.getCurso().findTipoCurso(id, clazz);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
-    }
+    }   
 }
