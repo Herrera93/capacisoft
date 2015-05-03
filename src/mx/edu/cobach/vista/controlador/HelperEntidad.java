@@ -17,12 +17,19 @@ import mx.edu.cobach.persistencia.entidades.TipoCuenta;
 import mx.edu.cobach.persistencia.entidades.TipoCurso;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.persistencia.entidades.Zona;
+import mx.edu.cobach.persistencia.entidades.Enfoque;
 import org.hibernate.Hibernate;
 
 /**
  *
  */
 public class HelperEntidad {
+    
+    public static Departamento getDepartamento(List<Object> atributos){
+        Enfoque enfoque = new Enfoque();
+        enfoque.setId((Integer)atributos.get(0));
+        return new Departamento(enfoque, (String)atributos.get(1));
+    }
     
     public static Plantel getPlantel(List<Object> atributos){
         Zona zona = new Zona();
