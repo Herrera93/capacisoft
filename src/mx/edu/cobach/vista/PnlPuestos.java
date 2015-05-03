@@ -32,10 +32,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     public PnlPuestos() {
         initComponents();
         model = new DefaultTableModel(titulosTabla, 4);
-        tablaPuestos_OP_Tbl.setModel(model);
-        tablaPuestos_OP_Tbl.setColumnSelectionAllowed(false);
-        tablaPuestos_OP_Tbl.setDragEnabled(false);
-        tablaPuestos_OP_Tbl.setModel(model);
+        puestosTbl.setModel(model);
+        puestosTbl.setColumnSelectionAllowed(false);
+        puestosTbl.setDragEnabled(false);
+        puestosTbl.setModel(model);
         control = new BaseControlador(this, Puesto.class);
         puestoControl = new PuestoControlador(this, Puesto.class);
     }
@@ -49,37 +49,37 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        opcionPuesto_Pnl = new javax.swing.JPanel();
-        nombrePuesto_OP_Lbl = new javax.swing.JLabel();
-        nombrePuesto_OP_TFd = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaPuestos_OP_Tbl = new javax.swing.JTable();
-        buscar_OP_Btn = new javax.swing.JButton();
-        agregar_OP_Btn = new javax.swing.JButton();
-        opciones_OP_Lbl = new javax.swing.JLabel();
-        nota_OP_Lbl = new javax.swing.JLabel();
-        informacionPuesto_Pnl = new javax.swing.JPanel();
-        nombrePuesto_IP_Lbl = new javax.swing.JLabel();
-        agregar_IP_Btn = new javax.swing.JButton();
+        opcionPnl = new javax.swing.JPanel();
+        nombreBuscarLbl = new javax.swing.JLabel();
+        nombreBuscarTFd = new javax.swing.JTextField();
+        tablaSPn = new javax.swing.JScrollPane();
+        puestosTbl = new javax.swing.JTable();
+        buscarBtn = new javax.swing.JButton();
+        agregarBtn = new javax.swing.JButton();
+        opcionLbl = new javax.swing.JLabel();
+        opcionMsjLbl = new javax.swing.JLabel();
+        informacionPnl = new javax.swing.JPanel();
+        nombreLbl = new javax.swing.JLabel();
+        guardarBtn = new javax.swing.JButton();
         nombrePuesto_IP_TFd = new javax.swing.JTextField();
-        agregar_IP_LBl = new javax.swing.JLabel();
-        nota_IP_Lbl = new javax.swing.JLabel();
+        agregarLBl = new javax.swing.JLabel();
+        agregarMsjLbl = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1181, 587));
         setMinimumSize(new java.awt.Dimension(1181, 587));
         setPreferredSize(new java.awt.Dimension(1181, 587));
 
-        opcionPuesto_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        opcionPuesto_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
-        opcionPuesto_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setMinimumSize(new java.awt.Dimension(408, 587));
 
-        nombrePuesto_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombrePuesto_OP_Lbl.setText("Nombre del puesto:");
+        nombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarLbl.setText("Nombre del puesto:");
 
-        nombrePuesto_OP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombrePuesto_OP_TFd.setEnabled(false);
+        nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarTFd.setEnabled(false);
 
-        tablaPuestos_OP_Tbl.setModel(new javax.swing.table.DefaultTableModel(
+        puestosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -105,145 +105,145 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        tablaPuestos_OP_Tbl.setColumnSelectionAllowed(true);
-        tablaPuestos_OP_Tbl.setEnabled(false);
-        tablaPuestos_OP_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaPuestos_OP_Tbl.getTableHeader().setReorderingAllowed(false);
-        tablaPuestos_OP_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        puestosTbl.setColumnSelectionAllowed(true);
+        puestosTbl.setEnabled(false);
+        puestosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        puestosTbl.getTableHeader().setReorderingAllowed(false);
+        puestosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaPuestos_OP_TblMouseClicked(evt);
+                puestosTblMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaPuestos_OP_Tbl);
-        tablaPuestos_OP_Tbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tablaPuestos_OP_Tbl.getColumnModel().getColumnCount() > 0) {
-            tablaPuestos_OP_Tbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaPuestos_OP_Tbl.getColumnModel().getColumn(1).setResizable(false);
+        tablaSPn.setViewportView(puestosTbl);
+        puestosTbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (puestosTbl.getColumnModel().getColumnCount() > 0) {
+            puestosTbl.getColumnModel().getColumn(0).setResizable(false);
+            puestosTbl.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        buscar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscar_OP_Btn.setText("Buscar");
-        buscar_OP_Btn.addActionListener(new java.awt.event.ActionListener() {
+        buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_OP_BtnActionPerformed(evt);
+                buscarBtnActionPerformed(evt);
             }
         });
 
-        agregar_OP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregar_OP_Btn.setText("Agregar");
-        agregar_OP_Btn.addActionListener(new java.awt.event.ActionListener() {
+        agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarBtn.setText("Agregar");
+        agregarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar_OP_BtnActionPerformed(evt);
+                agregarBtnActionPerformed(evt);
             }
         });
 
-        opciones_OP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        opciones_OP_Lbl.setText("Opciones ");
+        opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opcionLbl.setText("Opciones ");
 
-        nota_OP_Lbl.setText("Ingrese el nombre para buscar la información especifica");
+        opcionMsjLbl.setText("Ingrese el nombre para buscar la información especifica");
 
-        javax.swing.GroupLayout opcionPuesto_PnlLayout = new javax.swing.GroupLayout(opcionPuesto_Pnl);
-        opcionPuesto_Pnl.setLayout(opcionPuesto_PnlLayout);
-        opcionPuesto_PnlLayout.setHorizontalGroup(
-            opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
-                .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
+        opcionPnl.setLayout(opcionPnlLayout);
+        opcionPnlLayout.setHorizontalGroup(
+            opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionPnlLayout.createSequentialGroup()
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
+                        .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buscar_OP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11))
-                    .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregar_OP_Btn)
-                            .addComponent(nota_OP_Lbl)
-                            .addComponent(opciones_OP_Lbl)
-                            .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
-                                .addComponent(nombrePuesto_OP_Lbl)
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarBtn)
+                            .addComponent(opcionMsjLbl)
+                            .addComponent(opcionLbl)
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(nombreBuscarLbl)
                                 .addGap(18, 18, 18)
-                                .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 72, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        opcionPuesto_PnlLayout.setVerticalGroup(
-            opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionPuesto_PnlLayout.createSequentialGroup()
+        opcionPnlLayout.setVerticalGroup(
+            opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(opciones_OP_Lbl)
+                .addComponent(opcionLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_OP_Lbl)
+                .addComponent(opcionMsjLbl)
                 .addGap(17, 17, 17)
-                .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombrePuesto_OP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombrePuesto_OP_Lbl))
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreBuscarLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(opcionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscar_OP_Btn)
-                    .addComponent(agregar_OP_Btn))
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarBtn)
+                    .addComponent(agregarBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        informacionPuesto_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        informacionPuesto_Pnl.setMaximumSize(new java.awt.Dimension(726, 587));
-        informacionPuesto_Pnl.setMinimumSize(new java.awt.Dimension(726, 587));
+        informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionPnl.setMaximumSize(new java.awt.Dimension(726, 587));
+        informacionPnl.setMinimumSize(new java.awt.Dimension(726, 587));
 
-        nombrePuesto_IP_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombrePuesto_IP_Lbl.setText("Nombre del puesto:");
+        nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreLbl.setText("Nombre del puesto:");
 
-        agregar_IP_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregar_IP_Btn.setText("Guardar");
-        agregar_IP_Btn.setEnabled(false);
-        agregar_IP_Btn.addActionListener(new java.awt.event.ActionListener() {
+        guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        guardarBtn.setText("Guardar");
+        guardarBtn.setEnabled(false);
+        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregar_IP_BtnActionPerformed(evt);
+                guardarBtnActionPerformed(evt);
             }
         });
 
         nombrePuesto_IP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePuesto_IP_TFd.setEnabled(false);
 
-        agregar_IP_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregar_IP_LBl.setText("Agregar");
+        agregarLBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarLBl.setText("Agregar");
 
-        nota_IP_Lbl.setText("Ingrese la información a almacenar");
+        agregarMsjLbl.setText("Ingrese la información a almacenar");
 
-        javax.swing.GroupLayout informacionPuesto_PnlLayout = new javax.swing.GroupLayout(informacionPuesto_Pnl);
-        informacionPuesto_Pnl.setLayout(informacionPuesto_PnlLayout);
-        informacionPuesto_PnlLayout.setHorizontalGroup(
-            informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPuesto_PnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
+        informacionPnl.setLayout(informacionPnlLayout);
+        informacionPnlLayout.setHorizontalGroup(
+            informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(agregar_IP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
-            .addGroup(informacionPuesto_PnlLayout.createSequentialGroup()
+            .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nota_IP_Lbl)
-                    .addComponent(agregar_IP_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(informacionPuesto_PnlLayout.createSequentialGroup()
-                        .addComponent(nombrePuesto_IP_Lbl)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregarMsjLbl)
+                    .addComponent(agregarLBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                        .addComponent(nombreLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(405, Short.MAX_VALUE))
         );
-        informacionPuesto_PnlLayout.setVerticalGroup(
-            informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionPuesto_PnlLayout.createSequentialGroup()
+        informacionPnlLayout.setVerticalGroup(
+            informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(agregar_IP_LBl)
+                .addComponent(agregarLBl)
                 .addGap(18, 18, 18)
-                .addComponent(nota_IP_Lbl)
+                .addComponent(agregarMsjLbl)
                 .addGap(22, 22, 22)
-                .addGroup(informacionPuesto_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombrePuesto_IP_Lbl)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreLbl)
                     .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
-                .addComponent(agregar_IP_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -252,27 +252,27 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionPuesto_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionPuesto_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionPuesto_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(informacionPuesto_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void agregar_IP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_IP_BtnActionPerformed
+    private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
         if (nombrePuesto_IP_TFd.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
         } else {
-            if (agregar_IP_Btn.getText().equals("Guardar")) {
+            if (guardarBtn.getText().equals("Guardar")) {
                 List<String> atr = new ArrayList<String>();
                 atr.add(nombrePuesto_IP_TFd.getText());
                 control.alta(HelperEntidad.getPuesto(atr,"Guardar"));
                 
-            } else if (agregar_IP_Btn.getText().equals("Modificar")) {
+            } else if (guardarBtn.getText().equals("Modificar")) {
                 List<String> atr = new ArrayList<String>();
                 atr.add(ipPuesto+"");
                 atr.add(nombrePuesto_IP_TFd.getText());
@@ -280,38 +280,38 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 
             }
             nombrePuesto_IP_TFd.setText("");
-            agregar_OP_Btn.setEnabled(true);
-            nombrePuesto_OP_TFd.setEnabled(false);
+            agregarBtn.setEnabled(true);
+            nombreBuscarTFd.setEnabled(false);
             nombrePuesto_IP_TFd.setEnabled(false);
-            agregar_IP_Btn.setEnabled(false);
+            guardarBtn.setEnabled(false);
             model.getDataVector().removeAllElements();
             model.fireTableDataChanged();
         }
-    }//GEN-LAST:event_agregar_IP_BtnActionPerformed
+    }//GEN-LAST:event_guardarBtnActionPerformed
 
-    private void buscar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OP_BtnActionPerformed
-        if(nombrePuesto_OP_TFd.isEnabled()==false){
-            nombrePuesto_OP_TFd.setEnabled(true);
-        } else if (nombrePuesto_OP_TFd.getText().equals("")) {
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        if(nombreBuscarTFd.isEnabled()==false){
+            nombreBuscarTFd.setEnabled(true);
+        } else if (nombreBuscarTFd.getText().equals("")) {
             control.buscarTodos();
         } else {
-            puestoControl.buscar(nombrePuesto_OP_TFd.getText());
+            puestoControl.buscar(nombreBuscarTFd.getText());
         }
-    }//GEN-LAST:event_buscar_OP_BtnActionPerformed
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
-    private void agregar_OP_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OP_BtnActionPerformed
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         nombrePuesto_IP_TFd.setEnabled(true);
-        agregar_IP_Btn.setEnabled(true);
+        guardarBtn.setEnabled(true);
         nombrePuesto_IP_TFd.setText("");
-        agregar_IP_LBl.setText("Agregar");
-        agregar_IP_Btn.setText("Guardar");
-        agregar_OP_Btn.setEnabled(false);
-    }//GEN-LAST:event_agregar_OP_BtnActionPerformed
+        agregarLBl.setText("Agregar");
+        guardarBtn.setText("Guardar");
+        agregarBtn.setEnabled(false);
+    }//GEN-LAST:event_agregarBtnActionPerformed
 
-    private void tablaPuestos_OP_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPuestos_OP_TblMouseClicked
+    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puestosTblMouseClicked
         
-        int row = tablaPuestos_OP_Tbl.rowAtPoint(evt.getPoint());
-        int col = tablaPuestos_OP_Tbl.columnAtPoint(evt.getPoint());
+        int row = puestosTbl.rowAtPoint(evt.getPoint());
+        int col = puestosTbl.columnAtPoint(evt.getPoint());
         if(col == 0){
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
             puestoControl.buscarMod(id);
@@ -323,31 +323,31 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 int id = Integer.parseInt((String)model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarTodos();model.getDataVector().removeAllElements();
-                nombrePuesto_OP_TFd.setEnabled(false);
+                nombreBuscarTFd.setEnabled(false);
                 nombrePuesto_IP_TFd.setEnabled(false);
                 nombrePuesto_IP_TFd.setText("");
-                agregar_IP_Btn.setEnabled(false);
+                guardarBtn.setEnabled(false);
             }
         }
         
-    }//GEN-LAST:event_tablaPuestos_OP_TblMouseClicked
+    }//GEN-LAST:event_puestosTblMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregar_IP_Btn;
-    private javax.swing.JLabel agregar_IP_LBl;
-    private javax.swing.JButton agregar_OP_Btn;
-    private javax.swing.JButton buscar_OP_Btn;
-    private javax.swing.JPanel informacionPuesto_Pnl;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel nombrePuesto_IP_Lbl;
+    private javax.swing.JButton agregarBtn;
+    private javax.swing.JLabel agregarLBl;
+    private javax.swing.JLabel agregarMsjLbl;
+    private javax.swing.JButton buscarBtn;
+    private javax.swing.JButton guardarBtn;
+    private javax.swing.JPanel informacionPnl;
+    private javax.swing.JLabel nombreBuscarLbl;
+    private javax.swing.JTextField nombreBuscarTFd;
+    private javax.swing.JLabel nombreLbl;
     private javax.swing.JTextField nombrePuesto_IP_TFd;
-    private javax.swing.JLabel nombrePuesto_OP_Lbl;
-    private javax.swing.JTextField nombrePuesto_OP_TFd;
-    private javax.swing.JLabel nota_IP_Lbl;
-    private javax.swing.JLabel nota_OP_Lbl;
-    private javax.swing.JPanel opcionPuesto_Pnl;
-    private javax.swing.JLabel opciones_OP_Lbl;
-    private javax.swing.JTable tablaPuestos_OP_Tbl;
+    private javax.swing.JLabel opcionLbl;
+    private javax.swing.JLabel opcionMsjLbl;
+    private javax.swing.JPanel opcionPnl;
+    private javax.swing.JTable puestosTbl;
+    private javax.swing.JScrollPane tablaSPn;
     // End of variables declaration//GEN-END:variables
     
     @Override
@@ -357,13 +357,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     @Override
         public void setTabla(String[][] info) {
-        tablaPuestos_OP_Tbl.setEnabled(true);
+        puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
-        TableColumn tc = tablaPuestos_OP_Tbl.getColumnModel().getColumn(2);
-        tc.setCellEditor(tablaPuestos_OP_Tbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer (tablaPuestos_OP_Tbl.getDefaultRenderer(Boolean.class));
-        tc = tablaPuestos_OP_Tbl.getColumnModel().getColumn(0);
-        tablaPuestos_OP_Tbl.getColumnModel().removeColumn(tc);
+        TableColumn tc = puestosTbl.getColumnModel().getColumn(2);
+        tc.setCellEditor(puestosTbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer (puestosTbl.getDefaultRenderer(Boolean.class));
+        tc = puestosTbl.getColumnModel().getColumn(0);
+        puestosTbl.getColumnModel().removeColumn(tc);
     }
     @Override
     public void setLista(List info, int i) {
@@ -374,9 +374,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombrePuesto_IP_TFd.setText(info.get(0).toString());
         ipPuesto = Integer.parseInt(info.get(1).toString());
         nombrePuesto_IP_TFd.setEnabled(true);
-        agregar_IP_Btn.setEnabled(true);
-        agregar_IP_Btn.setText("Modificar");
-        agregar_IP_LBl.setText("Modificar");
+        agregarBtn.setEnabled(true);
+        agregarBtn.setText("Modificar");
+        agregarLBl.setText("Modificar");
+        guardarBtn.setEnabled(true);
+        guardarBtn.setText("Modificar");
+        agregarLBl.setText("Modificar");
     }
+
 
 }

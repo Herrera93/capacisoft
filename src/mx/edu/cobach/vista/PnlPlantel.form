@@ -17,21 +17,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="opcionPlantel_Pnl" max="-2" attributes="0"/>
+              <Component id="opcionPnl" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="informacionPlantel_Pnl" min="-2" max="-2" attributes="0"/>
+              <Component id="informacionPnl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="opcionPlantel_Pnl" max="-2" attributes="0"/>
-          <Component id="informacionPlantel_Pnl" alignment="0" max="32767" attributes="0"/>
+          <Component id="opcionPnl" max="-2" attributes="0"/>
+          <Component id="informacionPnl" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="opcionPlantel_Pnl">
+    <Container class="javax.swing.JPanel" name="opcionPnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -51,28 +52,28 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                  <Component id="tablaPlantelSPn" pref="0" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="agregar_OP_Btn2" min="-2" max="-2" attributes="0"/>
+                          <Component id="agregarTFd" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="buscar_OP_Btn2" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="BuscarBtn" min="-2" pref="81" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nota_OP_Lbl2" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="nombrePlantel_OP_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NombreBuscarLbl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="nombrePlantel_OP_TFd" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="nombreBuscarTFd" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="opciones_OP_Lbl2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="94" max="32767" attributes="0"/>
                       </Group>
@@ -84,35 +85,35 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="28" max="32767" attributes="0"/>
-                  <Component id="opciones_OP_Lbl2" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_OP_Lbl2" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombrePlantel_OP_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombrePlantel_OP_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="NombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="agregar_OP_Btn2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buscar_OP_Btn2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BuscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" min="-2" pref="389" max="-2" attributes="0"/>
+                  <Component id="tablaPlantelSPn" min="-2" pref="389" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+        <Container class="javax.swing.JScrollPane" name="tablaPlantelSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaPlanteles_OP_Tbl">
+            <Component class="javax.swing.JTable" name="tablaPlantelTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -153,23 +154,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="nombrePlantel_OP_Lbl">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nombre del plantel:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="nombrePlantel_OP_TFd">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="agregar_OP_Btn2">
+        <Component class="javax.swing.JButton" name="agregarTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -177,7 +162,22 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="buscar_OP_Btn2">
+        <Component class="javax.swing.JLabel" name="NombreBuscarLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nombre del plantel:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nombreBuscarTFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="BuscarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -185,10 +185,10 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscar_OP_Btn2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_OP_Lbl2">
+        <Component class="javax.swing.JLabel" name="opcionLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -196,14 +196,14 @@
             <Property name="text" type="java.lang.String" value="Opciones "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_OP_Lbl2">
+        <Component class="javax.swing.JLabel" name="opcionMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="informacionPlantel_Pnl">
+    <Container class="javax.swing.JPanel" name="informacionPnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -221,37 +221,46 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="guardar_IP_Btn" min="-2" pref="108" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="agregar_IP_LBl" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="nombreAgregarLbl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="nombreAgregarTFd" min="-2" pref="182" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="diraccionLbl" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="nombrePlantel_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="nombrePlantel_IP_TFd" min="-2" pref="182" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="diraccion_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="direccion_IP_TFd" min="-2" pref="183" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="calleLbl" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="coloniaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="zona_OP_Lbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="seleccion_IP_CBx" min="-2" pref="183" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="CalleTFd" pref="183" max="32767" attributes="0"/>
+                                  <Component id="coloniaTFd" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="zonaLbl" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="zonaCBx" min="-2" pref="183" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="numeroLbl" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="numeroTFd" min="-2" pref="183" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="407" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -259,39 +268,46 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                  <Component id="agregar_IP_LBl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_IP_Lbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="agregarLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombrePlantel_IP_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombrePlantel_IP_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreAgregarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreAgregarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="zona_OP_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="seleccion_IP_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="diraccionLbl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="calleLbl" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="diraccion_IP_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="direccion_IP_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CalleTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="numeroTFd" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="zonaCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="zonaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="coloniaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="coloniaTFd" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="guardar_IP_Btn" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Component id="guardarBtn" min="-2" pref="49" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="nombrePlantel_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="nombreAgregarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -299,15 +315,15 @@
             <Property name="text" type="java.lang.String" value="Nombre del plantel:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="diraccion_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="diraccionLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Direcci&#xf3;n del plantel:"/>
+            <Property name="text" type="java.lang.String" value="Direcci&#xf3;n del plantel"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="zona_OP_Lbl">
+        <Component class="javax.swing.JLabel" name="zonaLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -315,15 +331,14 @@
             <Property name="text" type="java.lang.String" value="Zona:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombrePlantel_IP_TFd">
+        <Component class="javax.swing.JTextField" name="nombreAgregarTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="seleccion_IP_CBx">
+        <Component class="javax.swing.JComboBox" name="zonaCBx">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -336,27 +351,27 @@
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; la zona del plantel"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="direccion_IP_TFd">
+        <Component class="javax.swing.JTextField" name="CalleTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="guardar_IP_Btn">
+        <Component class="javax.swing.JButton" name="guardarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="agregar_IP_LBl">
+        <Component class="javax.swing.JLabel" name="agregarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -364,9 +379,47 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_IP_Lbl">
+        <Component class="javax.swing.JLabel" name="agregarMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="calleLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Calle:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="numeroLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Numero:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="numeroTFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="coloniaLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Colonia:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="coloniaTFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

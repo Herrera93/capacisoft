@@ -16,12 +16,28 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.TipoCuenta;
 import mx.edu.cobach.persistencia.entidades.TipoCurso;
 import mx.edu.cobach.persistencia.entidades.Usuario;
+import mx.edu.cobach.persistencia.entidades.Zona;
+import mx.edu.cobach.persistencia.entidades.Enfoque;
 import org.hibernate.Hibernate;
 
 /**
  *
  */
 public class HelperEntidad {
+    
+    public static Departamento getDepartamento(List<Object> atributos){
+        Enfoque enfoque = new Enfoque();
+        enfoque.setId((Integer)atributos.get(0));
+        return new Departamento(enfoque, (String)atributos.get(1));
+    }
+    
+    public static Plantel getPlantel(List<Object> atributos){
+        Zona zona = new Zona();
+        zona.setId((Integer) atributos.get(0));
+        Plantel plantel = new Plantel(zona, (String)atributos.get(1), (String)atributos.get(2), 
+                (String)atributos.get(3), (String)atributos.get(4));
+        return plantel;
+    }
     
     public static Puesto getPuesto(List<String> atributos,String direccion){
         if(direccion.equals("Guardar")){
