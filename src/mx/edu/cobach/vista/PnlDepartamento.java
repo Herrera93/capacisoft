@@ -7,6 +7,7 @@ package mx.edu.cobach.vista;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
@@ -18,12 +19,16 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
 public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
     BaseControlador control;
+    private final DefaultTableModel model;
+    private final String[] titulosTabla;    
     /**
      * Creates new form PnlDepartamento
      */
     public PnlDepartamento() {
         initComponents();
         control = new BaseControlador(this, Departamento.class);
+        this.titulosTabla= new String[]{"ID", "Nombre", "Direccion", "Eliminar"};
+        model = new DefaultTableModel(titulosTabla, 5);
     }
 
     /**
