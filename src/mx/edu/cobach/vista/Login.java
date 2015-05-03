@@ -21,11 +21,12 @@ public class Login extends javax.swing.JFrame implements Comunicador{
      * Creates new form Login
      */
     private UsuarioControlador control;
+    
     public Login() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        control = new UsuarioControlador(this,Usuario.class);
+        control = new UsuarioControlador(this, Usuario.class);
         
         ImageIcon imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
@@ -67,12 +68,6 @@ public class Login extends javax.swing.JFrame implements Comunicador{
 
         Usuario_IL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Usuario_IL_Lbl.setText("Usuario:");
-
-        Usuario_IL_Tfd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Usuario_IL_TfdActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,14 +112,8 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     }// </editor-fold>//GEN-END:initComponents
 
     private void Ingresar_OL_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ingresar_OL_BtnActionPerformed
-       
-       control.buscarPorNombre(Usuario_IL_Tfd.getText());
-        
+       control.buscarPorUsuario(Usuario_IL_Tfd.getText());        
     }//GEN-LAST:event_Ingresar_OL_BtnActionPerformed
-
-    private void Usuario_IL_TfdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Usuario_IL_TfdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Usuario_IL_TfdActionPerformed
 
 /****/
     /**
@@ -174,37 +163,24 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setTabla(String[][] info) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    //@Override
-    public void setInfo(String[][] info) {
-      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setLogin(String[][] login) {
-        //System.out.println("contraseña  -> "+login[0][1]);
-      if(login[0][1].equals(Contrasena_IL_Pfd.getText())){
-          
-          new Capacisoft(login[0][2]).setVisible(true);
+        String contrasena = String.valueOf(Contrasena_IL_Pfd.getPassword());
+        System.out.println(info[0][1]);
+        if(info[0][1].equals(contrasena)){      
+          new Capacisoft(info[0][2]).setVisible(true);
           this.setVisible(false);
       }else
           setMensaje("Usuario o Contraseña incorrectas");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setLista(List info, int i) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setInfo(List info) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

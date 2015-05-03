@@ -7,7 +7,6 @@ package mx.edu.cobach.vista;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Curso;
@@ -25,17 +24,17 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private CursoControlador cursoControl;
     private DefaultTableModel model;
     private String[] titulosTabla = {"ID","Nombre","Tipo","Eliminar"};
-    int id;
+    private int id;
 
     /**
-     * Creates new form PnlRegistrarCursos
+     * Se crea la configuracion inicial del Panel
      */
     public PnlRegistrarCursos() {
         initComponents();
         control = new BaseControlador(this, Curso.class);
         cursoControl = new CursoControlador(this, Curso.class);
         model = new DefaultTableModel(titulosTabla, 4);
-        tablaCursoTbl.setModel(model);
+        cursosTbl.setModel(model);
     }
 
     /**
@@ -48,19 +47,19 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private void initComponents() {
 
         opcionCursoPnl = new javax.swing.JPanel();
-        tipo_OC_Lbl = new javax.swing.JLabel();
+        tipoCursoBuscarLbl = new javax.swing.JLabel();
         cursoSPn = new javax.swing.JScrollPane();
-        tablaCursoTbl = new javax.swing.JTable();
+        cursosTbl = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
         tipoCursoOpcionCursoCBx = new javax.swing.JComboBox();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
         informacionCurso_Pnl = new javax.swing.JPanel();
-        tipoCursoInfoCursoLbl = new javax.swing.JLabel();
+        tipoCursoLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
         descripcionCursoSPn = new javax.swing.JScrollPane();
-        descripcionCursoTAa = new javax.swing.JTextArea();
+        descripcionTAa = new javax.swing.JTextArea();
         nombreTFd = new javax.swing.JTextField();
         tipoCursoInfoCursoCBx = new javax.swing.JComboBox();
         nombreLbl = new javax.swing.JLabel();
@@ -70,10 +69,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         opcionCursoPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tipo_OC_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipo_OC_Lbl.setText("Tipo de curso:");
+        tipoCursoBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoCursoBuscarLbl.setText("Tipo de curso:");
 
-        tablaCursoTbl.setModel(new javax.swing.table.DefaultTableModel(
+        cursosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -99,22 +98,22 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 return canEdit [columnIndex];
             }
         });
-        tablaCursoTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaCursoTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaCursoTbl.getTableHeader().setReorderingAllowed(false);
-        tablaCursoTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        cursosTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cursosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        cursosTbl.getTableHeader().setReorderingAllowed(false);
+        cursosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaCursoTblMouseClicked(evt);
+                cursosTblMouseClicked(evt);
             }
         });
-        cursoSPn.setViewportView(tablaCursoTbl);
-        if (tablaCursoTbl.getColumnModel().getColumnCount() > 0) {
-            tablaCursoTbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaCursoTbl.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tablaCursoTbl.getColumnModel().getColumn(1).setResizable(false);
-            tablaCursoTbl.getColumnModel().getColumn(1).setPreferredWidth(60);
-            tablaCursoTbl.getColumnModel().getColumn(2).setResizable(false);
-            tablaCursoTbl.getColumnModel().getColumn(2).setPreferredWidth(20);
+        cursoSPn.setViewportView(cursosTbl);
+        if (cursosTbl.getColumnModel().getColumnCount() > 0) {
+            cursosTbl.getColumnModel().getColumn(0).setResizable(false);
+            cursosTbl.getColumnModel().getColumn(0).setPreferredWidth(100);
+            cursosTbl.getColumnModel().getColumn(1).setResizable(false);
+            cursosTbl.getColumnModel().getColumn(1).setPreferredWidth(60);
+            cursosTbl.getColumnModel().getColumn(2).setResizable(false);
+            cursosTbl.getColumnModel().getColumn(2).setPreferredWidth(20);
         }
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -154,7 +153,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                             .addComponent(opcionMsjLbl)
                             .addComponent(opcionLbl)
                             .addGroup(opcionCursoPnlLayout.createSequentialGroup()
-                                .addComponent(tipo_OC_Lbl)
+                                .addComponent(tipoCursoBuscarLbl)
                                 .addGap(32, 32, 32)
                                 .addComponent(tipoCursoOpcionCursoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,10 +174,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addComponent(opcionMsjLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(opcionCursoPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipo_OC_Lbl)
+                    .addComponent(tipoCursoBuscarLbl)
                     .addComponent(tipoCursoOpcionCursoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(opcionCursoPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(opcionCursoPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buscarBtn)
                     .addComponent(agregarBtn))
                 .addGap(27, 27, 27)
@@ -188,8 +187,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         informacionCurso_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tipoCursoInfoCursoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCursoInfoCursoLbl.setText("Tipo de curso:");
+        tipoCursoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoCursoLbl.setText("Tipo de curso:");
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
@@ -200,11 +199,11 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             }
         });
 
-        descripcionCursoTAa.setColumns(20);
-        descripcionCursoTAa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        descripcionCursoTAa.setRows(5);
-        descripcionCursoTAa.setEnabled(false);
-        descripcionCursoSPn.setViewportView(descripcionCursoTAa);
+        descripcionTAa.setColumns(20);
+        descripcionTAa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        descripcionTAa.setRows(5);
+        descripcionTAa.setEnabled(false);
+        descripcionCursoSPn.setViewportView(descripcionTAa);
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreTFd.setEnabled(false);
@@ -251,7 +250,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                         .addGap(28, 28, 28)
                         .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(tipoCursoInfoCursoLbl)
+                        .addComponent(tipoCursoLbl)
                         .addGap(28, 28, 28)
                         .addComponent(tipoCursoInfoCursoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(80, Short.MAX_VALUE))
@@ -267,7 +266,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
                     .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoCursoInfoCursoLbl)
+                    .addComponent(tipoCursoLbl)
                     .addComponent(tipoCursoInfoCursoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +312,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             List<Object> atr =  new ArrayList<>();
             atr.add(tipoCursoInfoCursoCBx.getSelectedIndex()+1);
             atr.add(nombreTFd.getText());
-            atr.add(descripcionCursoTAa.getText());
+            atr.add(descripcionTAa.getText());
             control.alta(HelperEntidad.getCurso(atr));
             }
             /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
@@ -323,7 +322,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             List<Object> atr =  new ArrayList<>();
             atr.add(tipoCursoInfoCursoCBx.getSelectedIndex()+1);
             atr.add(nombreTFd.getText());
-            atr.add(descripcionCursoTAa.getText());
+            atr.add(descripcionTAa.getText());
             atr.add(id);
             control.modificacion(HelperEntidad.getCurso(atr));
         }
@@ -335,7 +334,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             cursoControl.buscarTipoCurso(tipoCursoOpcionCursoCBx.getSelectedIndex());
         }
             nombreTFd.setText("");
-            descripcionCursoTAa.setText("");
+            descripcionTAa.setText("");
             tipoCursoInfoCursoCBx.setSelectedIndex(0);
     }//GEN-LAST:event_guardarBtnActionPerformed
 
@@ -346,7 +345,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se valida que no exista información en los campos antes de realizar la busqueda.
-        if(nombreTFd.getText().isEmpty() || descripcionCursoTAa.getText().
+        if(nombreTFd.getText().isEmpty() || descripcionTAa.getText().
                 isEmpty()){
             if(tipoCursoOpcionCursoCBx.getSelectedIndex()== 0){
                 control.buscarTodos();
@@ -361,7 +360,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                             WARNING_MESSAGE);
             if(op == 0){
                 nombreTFd.setText("");
-                descripcionCursoTAa.setText("");
+                descripcionTAa.setText("");
                 tipoCursoInfoCursoCBx.setSelectedIndex(0);
                 
                 if(tipoCursoOpcionCursoCBx.getSelectedIndex()== 0){
@@ -380,14 +379,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         nombreTFd.setText("");
-        descripcionCursoTAa.setText("");
+        descripcionTAa.setText("");
         tipoCursoInfoCursoCBx.setSelectedIndex(0);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
         agregarLbl.setText("Agregar");
         agregarMsjLbl.setText("Ingrese la información a Almacenar");
         nombreTFd.setEnabled(true);
-        descripcionCursoTAa.setEnabled(true);
+        descripcionTAa.setEnabled(true);
         tipoCursoInfoCursoCBx.setEnabled(true);
         guardarBtn.setEnabled(true);
     }//GEN-LAST:event_agregarBtnActionPerformed
@@ -399,10 +398,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
      * renglon.
      * @param evt Evento al hacer click
      */
-    private void tablaCursoTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaCursoTblMouseClicked
+    private void cursosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cursosTblMouseClicked
         //Obtenelos el renglon y columna donde se hizo click
-        int row = tablaCursoTbl.rowAtPoint(evt.getPoint());
-        int col = tablaCursoTbl.columnAtPoint(evt.getPoint());
+        int row = cursosTbl.rowAtPoint(evt.getPoint());
+        int col = cursosTbl.columnAtPoint(evt.getPoint());
         if(col == 0){
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
@@ -419,7 +418,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 control.buscarTodos();
             }
         }
-    }//GEN-LAST:event_tablaCursoTblMouseClicked
+    }//GEN-LAST:event_cursosTblMouseClicked
 
     private void tipoCursoInfoCursoCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCursoInfoCursoCBxActionPerformed
         // TODO add your handling code here:
@@ -432,9 +431,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JScrollPane cursoSPn;
+    private javax.swing.JTable cursosTbl;
     private javax.swing.JScrollPane descripcionCursoSPn;
-    private javax.swing.JTextArea descripcionCursoTAa;
     private javax.swing.JLabel descripcionLbl;
+    private javax.swing.JTextArea descripcionTAa;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionCurso_Pnl;
     private javax.swing.JLabel nombreLbl;
@@ -442,11 +442,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JPanel opcionCursoPnl;
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
-    private javax.swing.JTable tablaCursoTbl;
+    private javax.swing.JLabel tipoCursoBuscarLbl;
     private javax.swing.JComboBox tipoCursoInfoCursoCBx;
-    private javax.swing.JLabel tipoCursoInfoCursoLbl;
+    private javax.swing.JLabel tipoCursoLbl;
     private javax.swing.JComboBox tipoCursoOpcionCursoCBx;
-    private javax.swing.JLabel tipo_OC_Lbl;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -468,12 +467,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     public void setTabla(String[][] info) {
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
-        TableColumn tc = tablaCursoTbl.getColumnModel().getColumn(0);
-        tablaCursoTbl.getColumnModel().removeColumn(tc);
-        tablaCursoTbl.getColumnModel().getColumn(0).setPreferredWidth(170);
-        TableColumn t = tablaCursoTbl.getColumnModel().getColumn(2);
-        t.setCellEditor(tablaCursoTbl.getDefaultEditor(Boolean.class));
-        t.setCellRenderer (tablaCursoTbl.getDefaultRenderer(Boolean.class));
+        TableColumn idTbc = cursosTbl.getColumnModel().getColumn(0);
+        cursosTbl.getColumnModel().removeColumn(idTbc);
+        cursosTbl.getColumnModel().getColumn(0).setPreferredWidth(170);
+        TableColumn eliminarTbc = cursosTbl.getColumnModel().getColumn(2);
+        eliminarTbc.setCellEditor(cursosTbl.getDefaultEditor(Boolean.class));
+        eliminarTbc.setCellRenderer (cursosTbl.getDefaultRenderer(Boolean.class));
     }
 
     /**
@@ -497,7 +496,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         id = (int) info.get(0);
         System.out.println(id + "info");
         nombreTFd.setText((String) info.get(1));
-        descripcionCursoTAa.setText((String) info.get(2));
+        descripcionTAa.setText((String) info.get(2));
         if(info.get(3).equals("conferencia")){
             tipoCursoInfoCursoCBx.setSelectedIndex(0);
         }else{
@@ -506,18 +505,9 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         agregarLbl.setText("Modificar");
         agregarMsjLbl.setText("Ingrese la información a modificar");
         nombreTFd.setEnabled(true);
-        descripcionCursoTAa.setEnabled(true);
+        descripcionTAa.setEnabled(true);
         tipoCursoInfoCursoCBx.setEnabled(true);
         guardarBtn.setText("Modificar");
         guardarBtn.setEnabled(true);
-    }
-
-    /**
-     * Metodo sobrescrito de la clase Comunicador
-     * @param login 
-     */
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

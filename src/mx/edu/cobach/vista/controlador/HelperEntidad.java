@@ -92,11 +92,10 @@ public class HelperEntidad {
             return descomponerCurso((Curso) obj);
         }else if(obj instanceof Empleado){
             return descomponerEmpleado((Empleado) obj);
-        }
-        else{
-            if(obj instanceof Usuario){
+        }else if(obj instanceof Usuario){
               return descomponerUsuario((Usuario)obj);
-            }else return null;
+        }else{
+            return null;
         }
     }
     
@@ -129,22 +128,17 @@ public class HelperEntidad {
                 }
                 return descomponerEmpleados(emps);
             }else if(objs.get(0) instanceof Curso){
-                List<Curso> cr = new ArrayList<Curso>();
+                List<Curso> cr = new ArrayList();
                 for(int i = 0; i < objs.size(); i++){
                     cr.add((Curso) objs.get(i));
                 }
                 return descomponerCursos(cr);
-            }else{
-                if(objs.get(0) instanceof Usuario){
-           // System.out.println("descomponer Objetos 1");
-            List<Usuario> us = new ArrayList<Usuario>();
-            for(int i = 0; i < objs.size(); i++){
-                us.add((Usuario) objs.get(i));
-            }
-            //System.out.println("Descomponer Objetos 2");
-            return descomponerUsuarios(us);
-            }else
-                return null;
+            }else if(objs.get(0) instanceof Usuario){
+                List<Usuario> us = new ArrayList();
+                for(int i = 0; i < objs.size(); i++){
+                    us.add((Usuario) objs.get(i));
+                }
+                return descomponerUsuarios(us);
             }
         }
         return null;
@@ -202,7 +196,6 @@ public class HelperEntidad {
 
     private static List<Object> descomponerEmpleado(Empleado empleado) {
         List<Object> info = new ArrayList<>();
-        Hibernate.initialize(empleado);
         info.add(empleado.getId());
         info.add(empleado.getNumero());
         info.add(empleado.getPrimerNombre());
@@ -218,11 +211,7 @@ public class HelperEntidad {
     }
     
     private static List<Object> descomponerUsuario(Usuario usuario){
-        //String[][] info = new String[1][7];
-        
-        List<Object> info = new ArrayList<>();
-        Hibernate.initialize(usuario);
-        
+        List<Object> info = new ArrayList<>();        
         TipoCuenta t;
         info.add(usuario.getPrimerNombre());
         info.add(usuario.getSegundoNombre());
@@ -230,10 +219,8 @@ public class HelperEntidad {
         info.add(usuario.getApellidoMaterno());
         t=usuario.getTipoCuenta();
         info.add(usuario.getUsuario());
-        info.add(t.getDescripcion());
-        
+        info.add(t.getDescripcion());        
         info.add(usuario.getContrasena());
-        System.out.println("descomponer Usuario 2");
         return info;
     }
     
@@ -242,19 +229,15 @@ public class HelperEntidad {
         for(int i = 0; i < us.size(); i++){
             Usuario u = us.get(i);
             TipoCuenta t;
-                t=u.getTipoCuenta();
-                info[i][0]= String.valueOf(u.getId());
+            t = u.getTipoCuenta();
+            info[i][0] = String.valueOf(u.getId());
             info[i][1] = u.getUsuario();
             info[i][2] = u.getPrimerNombre();
-            if(u.getSegundoNombre()!=null && u.getSegundoNombre().equals("")==false){
-                info[i][2] +=" "+ u.getSegundoNombre();}
-            info[i][2] +=" "+u.getApellidoPaterno()+" "+u.getApellidoMaterno();
-            
-            //info[i][2]= "false";
-            /*/System.out.println(t.getDescripcion());
-            
-            info[i][5] = t.getDescripcion();
-            info[i][6] = u.getContrasena();*/
+            if(u.getSegundoNombre() != null && 
+                    u.getSegundoNombre().equals("") == false){
+                info[i][2] += " " + u.getSegundoNombre();
+            }
+            info[i][2] += " " + u.getApellidoPaterno() + " " + u.getApellidoMaterno();
         }
         return info;
     }
@@ -264,16 +247,10 @@ public class HelperEntidad {
         for(int i = 0; i < us.size(); i++){
             Usuario u = us.get(i);
             TipoCuenta t;
-                t=u.getTipoCuenta();
-              //  System.out.println(t.getDescripcion());
+            t=u.getTipoCuenta();
             info[i][0] = u.getUsuario();
             info[i][1] = u.getContrasena();
             info[i][2] = t.getDescripcion();
-            
-            /*/System.out.println(t.getDescripcion());
-            
-            info[i][5] = t.getDescripcion();
-            info[i][6] = u.getContrasena();*/
         }
         return info;
     }

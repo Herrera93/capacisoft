@@ -19,12 +19,10 @@ public class UsuarioDELEGATE extends BaseDELEGATE{
     }    
     
     public List<Object> findByUsuario(String usuario){
-        System.out.println("find by usuario usuario delgate");
         return ServiceLocatorFACADE.getUsuario().findByUsuario(usuario);
     }
     
     public List<Object> findByNombre(String nombre){
-        System.out.println("find by usuario usuario delgate");
         return ServiceLocatorFACADE.getUsuario().findByNombre(nombre);
     } 
     

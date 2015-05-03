@@ -7,8 +7,6 @@ package mx.edu.cobach.vista;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -372,19 +370,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }
 
     @Override
-    public void setInfo(List info) {
-        
+    public void setInfo(List info) {        
         nombrePuesto_IP_TFd.setText(info.get(0).toString());
         ipPuesto = Integer.parseInt(info.get(1).toString());
         nombrePuesto_IP_TFd.setEnabled(true);
         agregar_IP_Btn.setEnabled(true);
         agregar_IP_Btn.setText("Modificar");
         agregar_IP_LBl.setText("Modificar");
-    }
-
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

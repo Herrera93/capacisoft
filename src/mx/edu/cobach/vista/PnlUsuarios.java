@@ -478,8 +478,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         //System.out.println("antes alta");
        /*ESTA ES LA ORIGINAL MIA*/
         
-       // control.alta(HelperEntidad.getUsuario(atr));        // TODO add your handling code here:
-        
         if(!guardar_IU_Btn.getText().equalsIgnoreCase("Modificar")){
           control.alta(HelperEntidad.getUsuario(atr));  
         }else{
@@ -589,12 +587,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setLista(List info, int i) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setLogin(String[][] login) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void setEnabledPanelInformacion(boolean b){
