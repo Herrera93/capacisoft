@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.vista.controlador.BaseControlador;
+import mx.edu.cobach.vista.controlador.DepartamentoControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 
 /**
@@ -18,17 +20,19 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
  */
 public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
-    BaseControlador control;
+    DepartamentoControlador control;
     private final DefaultTableModel model;
-    private final String[] titulosTabla;    
+    private final String[] titulosTabla;   
+    private int id;
     /**
      * Creates new form PnlDepartamento
      */
     public PnlDepartamento() {
         initComponents();
-        control = new BaseControlador(this, Departamento.class);
+        control = new DepartamentoControlador(this, Departamento.class);
         this.titulosTabla= new String[]{"ID", "Nombre", "Direccion", "Eliminar"};
-        model = new DefaultTableModel(titulosTabla, 5);
+        model = new DefaultTableModel(titulosTabla, 10);
+        tablaTbl.setModel(model);
     }
 
     /**
@@ -42,7 +46,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
         opcionPnl = new javax.swing.JPanel();
         tablaSPn = new javax.swing.JScrollPane();
-        tablatbl = new javax.swing.JTable();
+        tablaTbl = new javax.swing.JTable();
         nombreBuscarLbl = new javax.swing.JLabel();
         nombreBuscarTFd = new javax.swing.JTextField();
         buscarBtn = new javax.swing.JButton();
@@ -62,10 +66,11 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         setMinimumSize(new java.awt.Dimension(1181, 587));
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionPnl.setEnabled(false);
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
         opcionPnl.setMinimumSize(new java.awt.Dimension(408, 587));
 
-        tablatbl.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -76,21 +81,33 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 "Nombre", "Dirección", "Eliminar"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tablatbl.setMaximumSize(new java.awt.Dimension(225, 64));
-        tablatbl.setMinimumSize(new java.awt.Dimension(225, 64));
-        tablaSPn.setViewportView(tablatbl);
-        if (tablatbl.getColumnModel().getColumnCount() > 0) {
-            tablatbl.getColumnModel().getColumn(0).setResizable(false);
-            tablatbl.getColumnModel().getColumn(1).setResizable(false);
-            tablatbl.getColumnModel().getColumn(2).setResizable(false);
+        tablaTbl.setMaximumSize(new java.awt.Dimension(225, 64));
+        tablaTbl.setMinimumSize(new java.awt.Dimension(225, 64));
+        tablaTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaTblMouseClicked(evt);
+            }
+        });
+        tablaSPn.setViewportView(tablaTbl);
+        if (tablaTbl.getColumnModel().getColumnCount() > 0) {
+            tablaTbl.getColumnModel().getColumn(0).setResizable(false);
+            tablaTbl.getColumnModel().getColumn(1).setResizable(false);
+            tablaTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
         nombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -101,9 +118,19 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText("Agregar");
+        agregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBtnActionPerformed(evt);
+            }
+        });
 
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones ");
@@ -159,6 +186,8 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionPnl.setEnabled(false);
+        informacionPnl.setFocusCycleRoot(true);
         informacionPnl.setMaximumSize(new java.awt.Dimension(767, 587));
         informacionPnl.setMinimumSize(new java.awt.Dimension(767, 587));
         informacionPnl.setPreferredSize(new java.awt.Dimension(767, 587));
@@ -167,6 +196,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         nombreLbl.setText("Nombre del departamento:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreTFd.setEnabled(false);
 
         direccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccionLbl.setText("Dirección:");
@@ -174,9 +204,11 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Finanzas", "Administrativa", "Planeación", "Servicios Educativos", "General" }));
         direccionCBx.setToolTipText("Seleccioné la zona del plantel");
+        direccionCBx.setEnabled(false);
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
+        guardarBtn.setEnabled(false);
         guardarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarBtnActionPerformed(evt);
@@ -247,12 +279,107 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+     /**
+     * Evento ejecutado al hacer click en el boton,obteniendo el texto de los 
+     * campos validando que estos no esten vacios, manda llamar un metodo 
+     * dependiendo del texto asignado al boton.
+     * @param evt Evento al presionar el boton 
+     */
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        List<Object> atr = new ArrayList<>();
-        atr.add(direccionCBx.getSelectedIndex()+1);
-        atr.add(nombreTFd.getText());
-        control.alta(HelperEntidad.getDepartamento(atr));
+        if(guardarBtn.getText().equals("Guardar")){
+            if(nombreTFd.getText().equals("")){
+                //Mensaje de Campos vacíos.
+                JOptionPane.showMessageDialog(null, "Dejo Campos Vacíos");
+            }else{
+                List<Object> atr = new ArrayList<>();
+                atr.add(direccionCBx.getSelectedIndex()+1);
+                atr.add(nombreTFd.getText());
+                control.alta(HelperEntidad.getDepartamento(atr));
+            }
+        }else{
+                /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
+                /*Se agregan los valores de los campos a la Lista,se mandan 
+                al metodo control.modificacion*/
+                List<Object> atr = new ArrayList<>();
+                atr.add(direccionCBx.getSelectedIndex()+1);
+                atr.add(nombreTFd.getText());
+                atr.add(id);
+                control.modificacion(HelperEntidad.getDepartamento(atr));
+        }
+        nombreTFd.setText("");
+        direccionCBx.setSelectedIndex(0);
+        nombreTFd.setEnabled(false);
+        direccionCBx.setEnabled(false);
+        guardarBtn.setEnabled(false);
+        control.buscarTodos();
     }//GEN-LAST:event_guardarBtnActionPerformed
+
+    /**
+     * Evento ejecutado al seleccionar el boton, Obteniendo un tipo de busqueda
+     * de un combobox, mandando llamar el metodo buscarTipoCurso o buscarTodos.
+     * @param evt Evento al presionar el boton
+     */
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        //Se valida que no exista información en los campos antes de realizar la busqueda.        
+        nombreTFd.setEnabled(false);
+        direccionCBx.setEnabled(false);
+        guardarBtn.setEnabled(false);
+        if(nombreBuscarTFd.isEnabled()==false){ 
+            nombreBuscarTFd.setEnabled(true);
+        } else if (nombreBuscarTFd.getText().equals("")) {
+            control.buscarTodos();
+        } else {
+            control.buscar(nombreBuscarTFd.getText());
+        }            
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    /**
+     * Evento ejecutado al hace click en la tabla, se calcula en que columna y 
+     * renglon se llevo a cabo el click, en caso de ser en la columna eliminar
+     * se presentara la opcion de eliminar el registro correspondiente al
+     * renglon.
+     * @param evt Evento al hacer click
+     */
+    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
+        //Obtenelos el renglon y columna donde se hizo click
+        int row = tablaTbl.rowAtPoint(evt.getPoint());
+        int col = tablaTbl.columnAtPoint(evt.getPoint());
+        if(col == 0){
+            //Se obtiene el id de la columna no visible para realizar una 
+            //busqueda especifica.
+            int id = Integer.parseInt((String)model.getValueAt(row, 0));
+            control.buscar(id);
+        //Manda un mensaje de Confirmación sobre la eliminacion
+             }else if(col == 2) {
+            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
+                "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(op == 0){
+                //Obtenemos ID de la columna escondida
+                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                control.baja(id);
+                control.buscarTodos();
+            }else{
+                model.setValueAt(false, row, 3);
+            }
+        }
+    }//GEN-LAST:event_tablaTblMouseClicked
+
+    /**
+     * Evento ejecutado al presionar el botón, habilita y limpia los campos para 
+     * realizar un nuevo registro, modifica el texto contenido en los labels.
+     * @param evt Evento al presionar el botón
+     */
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        nombreTFd.setText("");
+        direccionCBx.setSelectedIndex(0);
+        guardarBtn.setEnabled(true);
+        guardarBtn.setText("Guardar");
+        agregarLbl.setText("Agregar");
+        agregarMsjLbl.setText("Ingrese la información a Almacenar");
+        nombreTFd.setEnabled(true);
+        direccionCBx.setEnabled(true);
+        guardarBtn.setEnabled(true);
+    }//GEN-LAST:event_agregarBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
@@ -271,23 +398,55 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
     private javax.swing.JScrollPane tablaSPn;
-    private javax.swing.JTable tablatbl;
+    private javax.swing.JTable tablaTbl;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de 
+     * registro exitoso.
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje,
                 "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Metodo que recibe una matriz, donde se obtendran sus valores para 
+     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se 
+     * le dara se redefinira el ancho de la columna 0.
+     * @param info Matriz String para vaciar en tabla
+     */
     @Override
     public void setTabla(String[][] info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        model.setDataVector(info, titulosTabla);
+        TableColumn tc = tablaTbl.getColumnModel().getColumn(3);
+        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
+        //Esconder columna ID
+        tc = tablaTbl.getColumnModel().getColumn(0);
+        tablaTbl.getColumnModel().removeColumn(tc);
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la 
+     * los resultados de una busqueda especifica y vaciarlo en los campos y 
+     * checkbox
+     * @param info Lista de Objeto con información de búsqueda.
+     */
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        id = (int) info.get(0);
+        System.out.println(id + "info");
+        nombreTFd.setText((String) info.get(1));
+        direccionCBx.setSelectedItem(info.get(2));
+        nombreTFd.setEnabled(true);
+        direccionCBx.setEnabled(true);
+        guardarBtn.setEnabled(true);
+        agregarLbl.setText("Modificar");
+        agregarMsjLbl.setText("Ingrese la información a modificar");
+        guardarBtn.setText("Modificar");
     }
 
     @Override

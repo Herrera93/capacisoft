@@ -28,7 +28,7 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
     }
     
     /**
-     * Asigna el tipo Class se la entidad que utilizara este DAO
+     * Asigna el tipo Class se le da entidad que utilizara este DAO
      * @param entityClass La clase que se utilizara en el DAO
      */
     @Override

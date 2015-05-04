@@ -53,9 +53,9 @@
                               <Component id="opcionMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="tipoCursoBuscarLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tipoBuscarLbl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="tipoCursoBuscarCBx" min="-2" pref="153" max="-2" attributes="0"/>
+                                  <Component id="tipoBuscarCBx" min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -81,8 +81,8 @@
                   <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tipoCursoBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tipoCursoBuscarCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoBuscarCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -97,7 +97,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="tipoCursoBuscarLbl">
+        <Component class="javax.swing.JLabel" name="tipoBuscarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -178,7 +178,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="tipoCursoBuscarCBx">
+        <Component class="javax.swing.JComboBox" name="tipoBuscarCBx">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -226,22 +226,25 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="agregarLbl" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="descripcionLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="descripcionCursoSPn" min="-2" pref="360" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="nombreTFd" min="-2" pref="195" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="tipoCursoLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="tipoCursoCBx" min="-2" pref="168" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="agregarLbl" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="descripcionLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="descripcionSPn" min="-2" pref="360" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="nombreTFd" min="-2" pref="195" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="tipoLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="tipoCBx" min="-2" pref="168" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="80" max="32767" attributes="0"/>
@@ -259,13 +262,13 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tipoCursoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tipoCursoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tipoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="descripcionLbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="descripcionCursoSPn" min="-2" max="-2" attributes="0"/>
+                      <Component id="descripcionSPn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="guardarBtn" min="-2" pref="48" max="-2" attributes="0"/>
@@ -275,7 +278,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="tipoCursoLbl">
+        <Component class="javax.swing.JLabel" name="tipoLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -295,7 +298,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="descripcionCursoSPn">
+        <Container class="javax.swing.JScrollPane" name="descripcionSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -322,7 +325,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="tipoCursoCBx">
+        <Component class="javax.swing.JComboBox" name="tipoCBx">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -335,9 +338,6 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipoCursoCBxActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nombreLbl">
           <Properties>

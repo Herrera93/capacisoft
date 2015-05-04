@@ -2,6 +2,7 @@ package mx.edu.cobach.negocio.facade;
 
 import java.util.List;
 import mx.edu.cobach.persitencia.ServiceLocator;
+import mx.edu.cobach.vista.controlador.BaseControlador;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,13 +13,13 @@ import mx.edu.cobach.persitencia.ServiceLocator;
  *
  * @author fernando
  */
-public class CursoFACADE {
+public class CursoFACADE extends BaseFACADE{
     
     public CursoFACADE(){
+        super();
     }
     
-    public List<Object> findTipoCurso(int id, Class clazz) {
-        ServiceLocator.getCurso().setEntity(clazz);
+    public List<Object> findTipoCurso(int id) {
         return ServiceLocator.getCurso().findTipoCurso(id);
     }
 }

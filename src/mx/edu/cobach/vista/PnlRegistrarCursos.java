@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Curso;
-import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.CursoControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 
@@ -20,8 +19,7 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
  */
 public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicador{
     
-    private BaseControlador control;
-    private CursoControlador cursoControl;
+    private CursoControlador control;
     private DefaultTableModel model;
     private String[] titulosTabla = {"ID","Nombre","Tipo","Eliminar"};
     private int id;
@@ -31,8 +29,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
      */
     public PnlRegistrarCursos() {
         initComponents();
-        control = new BaseControlador(this, Curso.class);
-        cursoControl = new CursoControlador(this, Curso.class);
+        control = new CursoControlador(this, Curso.class);
         model = new DefaultTableModel(titulosTabla, 4);
         cursosTbl.setModel(model);
     }
@@ -47,21 +44,21 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private void initComponents() {
 
         opcionPnl = new javax.swing.JPanel();
-        tipoCursoBuscarLbl = new javax.swing.JLabel();
-        cursoSPn = new javax.swing.JScrollPane();
-        cursosTbl = new javax.swing.JTable();
+        tipoBuscarLbl = new javax.swing.JLabel();
+        tablaSPn = new javax.swing.JScrollPane();
+        tablaTbl = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
-        tipoCursoBuscarCBx = new javax.swing.JComboBox();
+        tipoBuscarCBx = new javax.swing.JComboBox();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
-        informacionCurso_Pnl = new javax.swing.JPanel();
-        tipoCursoLbl = new javax.swing.JLabel();
+        informacionPnl = new javax.swing.JPanel();
+        tipoLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
-        descripcionCursoSPn = new javax.swing.JScrollPane();
+        descripcionSPn = new javax.swing.JScrollPane();
         descripcionTAa = new javax.swing.JTextArea();
         nombreTFd = new javax.swing.JTextField();
-        tipoCursoCBx = new javax.swing.JComboBox();
+        tipoCBx = new javax.swing.JComboBox();
         nombreLbl = new javax.swing.JLabel();
         descripcionLbl = new javax.swing.JLabel();
         agregarLbl = new javax.swing.JLabel();
@@ -69,8 +66,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tipoCursoBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCursoBuscarLbl.setText("Tipo de curso:");
+        tipoBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoBuscarLbl.setText("Tipo de curso:");
 
         cursosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,8 +129,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             }
         });
 
-        tipoCursoBuscarCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCursoBuscarCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buscar Todos", "Conferencia", "Taller" }));
+        tipoBuscarCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoBuscarCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buscar Todos", "Conferencia", "Taller" }));
 
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones");
@@ -153,10 +150,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                             .addComponent(opcionMsjLbl)
                             .addComponent(opcionLbl)
                             .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(tipoCursoBuscarLbl)
+                                .addComponent(tipoBuscarLbl)
                                 .addGap(32, 32, 32)
-                                .addComponent(tipoCursoBuscarCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tipoBuscarCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -174,8 +171,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addComponent(opcionMsjLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipoCursoBuscarLbl)
-                    .addComponent(tipoCursoBuscarCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoBuscarLbl)
+                    .addComponent(tipoBuscarCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buscarBtn)
@@ -187,8 +184,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         informacionCurso_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tipoCursoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCursoLbl.setText("Tipo de curso:");
+        tipoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoLbl.setText("Tipo de curso:");
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
@@ -203,19 +200,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         descripcionTAa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         descripcionTAa.setRows(5);
         descripcionTAa.setEnabled(false);
-        descripcionCursoSPn.setViewportView(descripcionTAa);
+        descripcionSPn.setViewportView(descripcionTAa);
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreTFd.setEnabled(false);
 
-        tipoCursoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCursoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia ", "Taller" }));
-        tipoCursoCBx.setEnabled(false);
-        tipoCursoCBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoCursoCBxActionPerformed(evt);
-            }
-        });
+        tipoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia ", "Taller" }));
+        tipoCBx.setEnabled(false);
 
         nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLbl.setText("Nombre del Curso:");
@@ -238,22 +230,24 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addGap(18, 18, 18))
             .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarMsjLbl)
-                    .addComponent(agregarLbl)
-                    .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
-                        .addComponent(descripcionLbl)
-                        .addGap(39, 39, 39)
-                        .addComponent(descripcionCursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
-                        .addComponent(nombreLbl)
-                        .addGap(28, 28, 28)
-                        .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(tipoCursoLbl)
-                        .addGap(28, 28, 28)
-                        .addComponent(tipoCursoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(agregarMsjLbl)
+                        .addComponent(agregarLbl)
+                        .addGroup(informacionPnlLayout.createSequentialGroup()
+                            .addComponent(descripcionLbl)
+                            .addGap(39, 39, 39)
+                            .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(informacionPnlLayout.createSequentialGroup()
+                            .addComponent(nombreLbl)
+                            .addGap(28, 28, 28)
+                            .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(tipoLbl)
+                            .addGap(28, 28, 28)
+                            .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         informacionCurso_PnlLayout.setVerticalGroup(
             informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,12 +260,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
                     .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoCursoLbl)
-                    .addComponent(tipoCursoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoLbl)
+                    .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descripcionLbl)
-                    .addComponent(descripcionCursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -310,7 +304,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             se mandan al metodo control.alta.*/
             }else{
             List<Object> atr =  new ArrayList<>();
-            atr.add(tipoCursoCBx.getSelectedIndex()+1);
+            atr.add(tipoCBx.getSelectedIndex()+1);
             atr.add(nombreTFd.getText());
             atr.add(descripcionTAa.getText());
             control.alta(HelperEntidad.getCurso(atr));
@@ -320,7 +314,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             al metodo control.modificacion*/
         }else{
             List<Object> atr =  new ArrayList<>();
-            atr.add(tipoCursoCBx.getSelectedIndex()+1);
+            atr.add(tipoCBx.getSelectedIndex()+1);
             atr.add(nombreTFd.getText());
             atr.add(descripcionTAa.getText());
             atr.add(id);
@@ -328,14 +322,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         }
         /*Se selecciona por un ComboBox el Tipo de Valor que se utilizo para 
         guardar o modificar la información, para actualizar la tabla */
-        if(tipoCursoCBx.getSelectedIndex()== 0){
+        if(tipoBuscarCBx.getSelectedIndex()== 0){
             control.buscarTodos();
-        }else if(tipoCursoCBx.getSelectedIndex() != 0){
-            cursoControl.buscarTipoCurso(tipoCursoCBx.getSelectedIndex());
+        }else if(tipoBuscarCBx.getSelectedIndex() != 0){
+            control.buscarTipoCurso(tipoBuscarCBx.getSelectedIndex());
         }
             nombreTFd.setText("");
             descripcionTAa.setText("");
-            tipoCursoCBx.setSelectedIndex(0);
+            tipoCBx.setSelectedIndex(0);
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     /**
@@ -347,10 +341,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         //Se valida que no exista información en los campos antes de realizar la busqueda.
         if(nombreTFd.getText().isEmpty() || descripcionTAa.getText().
                 isEmpty()){
-            if(tipoCursoBuscarCBx.getSelectedIndex()== 0){
+            if(tipoBuscarCBx.getSelectedIndex()== 0){
                 control.buscarTodos();
-            }else if(tipoCursoBuscarCBx.getSelectedIndex() != 0){
-                cursoControl.buscarTipoCurso(tipoCursoBuscarCBx.getSelectedIndex());
+            }else if(tipoBuscarCBx.getSelectedIndex() != 0){
+                control.buscarTipoCurso(tipoBuscarCBx.getSelectedIndex());
             }
         //Se manda el mensaje que existe información en los campos
         }else{
@@ -361,12 +355,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             if(op == 0){
                 nombreTFd.setText("");
                 descripcionTAa.setText("");
-                tipoCursoCBx.setSelectedIndex(0);
+                tipoCBx.setSelectedIndex(0);
                 
-                if(tipoCursoBuscarCBx.getSelectedIndex()== 0){
+                if(tipoBuscarCBx.getSelectedIndex()== 0){
                     control.buscarTodos();
-                }else if(tipoCursoBuscarCBx.getSelectedIndex() != 0){
-                    cursoControl.buscarTipoCurso(tipoCursoBuscarCBx.getSelectedIndex());
+                }else if(tipoBuscarCBx.getSelectedIndex() != 0){
+                    control.buscarTipoCurso(tipoBuscarCBx.getSelectedIndex());
                 }
             }
         }
@@ -380,14 +374,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         nombreTFd.setText("");
         descripcionTAa.setText("");
-        tipoCursoCBx.setSelectedIndex(0);
+        tipoCBx.setSelectedIndex(0);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
         agregarLbl.setText("Agregar");
         agregarMsjLbl.setText("Ingrese la información a Almacenar");
         nombreTFd.setEnabled(true);
         descripcionTAa.setEnabled(true);
-        tipoCursoCBx.setEnabled(true);
+        tipoCBx.setEnabled(true);
         guardarBtn.setEnabled(true);
     }//GEN-LAST:event_agregarBtnActionPerformed
 
@@ -416,13 +410,11 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 int id = Integer.parseInt((String)model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarTodos();
+            }else{
+                model.setValueAt(false, row, 3);
             }
         }
-    }//GEN-LAST:event_cursosTblMouseClicked
-
-    private void tipoCursoCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCursoCBxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoCursoCBxActionPerformed
+    }//GEN-LAST:event_tablaTblMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -430,10 +422,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel agregarLbl;
     private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton buscarBtn;
-    private javax.swing.JScrollPane cursoSPn;
-    private javax.swing.JTable cursosTbl;
-    private javax.swing.JScrollPane descripcionCursoSPn;
     private javax.swing.JLabel descripcionLbl;
+    private javax.swing.JScrollPane descripcionSPn;
     private javax.swing.JTextArea descripcionTAa;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionCurso_Pnl;
@@ -442,10 +432,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
-    private javax.swing.JComboBox tipoCursoBuscarCBx;
-    private javax.swing.JLabel tipoCursoBuscarLbl;
-    private javax.swing.JComboBox tipoCursoCBx;
-    private javax.swing.JLabel tipoCursoLbl;
+    private javax.swing.JScrollPane tablaSPn;
+    private javax.swing.JTable tablaTbl;
+    private javax.swing.JComboBox tipoBuscarCBx;
+    private javax.swing.JLabel tipoBuscarLbl;
+    private javax.swing.JComboBox tipoCBx;
+    private javax.swing.JLabel tipoLbl;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -499,15 +491,15 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         nombreTFd.setText((String) info.get(1));
         descripcionTAa.setText((String) info.get(2));
         if(info.get(3).equals("conferencia")){
-            tipoCursoCBx.setSelectedIndex(0);
+            tipoCBx.setSelectedIndex(0);
         }else{
-            tipoCursoCBx.setSelectedIndex(1);
+            tipoCBx.setSelectedIndex(1);
         }
         agregarLbl.setText("Modificar");
         agregarMsjLbl.setText("Ingrese la información a modificar");
         nombreTFd.setEnabled(true);
         descripcionTAa.setEnabled(true);
-        tipoCursoCBx.setEnabled(true);
+        tipoCBx.setEnabled(true);
         guardarBtn.setText("Modificar");
         guardarBtn.setEnabled(true);
     }

@@ -17,7 +17,7 @@ public class ServiceLocatorFACADE {
     private static CursoFACADE cursoFacade;
     private static EmpleadoFACADE empleadoFacade;
     private static UsuarioFACADE usuarioFacade;
-    
+    private static DepartamentoFACADE departamentoFacade;
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara
      * @return Regresa FACADE generico
@@ -55,6 +55,12 @@ public class ServiceLocatorFACADE {
             usuarioFacade = new UsuarioFACADE();
         }
         return usuarioFacade;
+    }
+    public static DepartamentoFACADE getDepartamento(){
+        if(departamentoFacade == null){
+            departamentoFacade = new DepartamentoFACADE();
+        }
+        return departamentoFacade;
     }
     
 }
