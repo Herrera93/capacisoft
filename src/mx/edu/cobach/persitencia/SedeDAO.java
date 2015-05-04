@@ -5,36 +5,37 @@
  */
 package mx.edu.cobach.persitencia;
 
+import mx.edu.cobach.persistencia.entidades.Sede;
 import java.util.List;
-import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author liuts
+ * @author SALB
  */
-public class CursoDAO extends BaseDAO {
-    
-    public CursoDAO(){
-        setEntity(Curso.class);
+public class SedeDAO extends BaseDAO{
+    public SedeDAO(){
+        super();
+        super.entityClass = Sede.class;
     }
     
-    public List<Object> findTipoCurso(int id) {
-        List<Object> o = null;
+    public List<Object> findByNombre(String nombre){
+        List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            o = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("tipoCurso.id", 1)).list();
-            HibernateUtil.commitTransaction();
-            System.out.println(o.size());
+            ts = HibernateUtil.getSession().createCriteria(entityClass)
+                    .add(Restrictions.or(
+                            Restrictions.like("nombre", nombre + "%")))
+                    .list();
+            HibernateUtil.commitTransaction();            
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
-            HibernateUtil.closeSession();   
+            HibernateUtil.closeSession();            
         }
-        return o;
+        return ts;
     }
 }
