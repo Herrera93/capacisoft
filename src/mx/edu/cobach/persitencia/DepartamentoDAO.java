@@ -6,39 +6,38 @@
 package mx.edu.cobach.persitencia;
 
 import java.util.List;
-import mx.edu.cobach.persistencia.entidades.Puesto;
+import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author liuts
+ * @author fernando
  */
-public class PuestoDAO<T> extends BaseDAO{
+public class DepartamentoDAO extends BaseDAO{
     
-    
-    
-    public PuestoDAO(){
+    DepartamentoDAO(){
         super();
-        super.entityClass = Puesto.class;
+        super.entityClass = Departamento.class;
     }
     
-    public List<T> find(String nombre) {
-        List<T> t = null;
+    public List<Object> findByNombre(String nombre){        
+        List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            t = (List<T>) HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.like("nombre", "%"+nombre+"%")).list();
+            ts = HibernateUtil.getSession().createCriteria(entityClass)
+                    .add(Restrictions.or(
+                            Restrictions.like("nombre", nombre )))
+                    .list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscando Object");
+            System.out.println("Buscar por nombre::Departamento");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
-            HibernateUtil.closeSession();   
+            HibernateUtil.closeSession();
         }
-        return t;
+        return ts;
     }
- 
 }
