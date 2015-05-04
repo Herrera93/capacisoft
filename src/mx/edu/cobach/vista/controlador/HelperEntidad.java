@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -28,7 +28,13 @@ public class HelperEntidad {
     public static Departamento getDepartamento(List<Object> atributos){
         Enfoque enfoque = new Enfoque();
         enfoque.setId((Integer)atributos.get(0));
-        return new Departamento(enfoque, (String)atributos.get(1));
+        Departamento depto = new Departamento();
+        depto.setEnfoque(enfoque);
+        depto.setNombre((String)atributos.get(1));
+        if(atributos.size()>2){
+            depto.setId((Integer) atributos.get(2));
+        }
+        return depto;
     }
     
     public static Plantel getPlantel(List<Object> atributos){
@@ -108,12 +114,12 @@ public class HelperEntidad {
             return descomponerCurso((Curso) obj);
         }else if(obj instanceof Empleado){
             return descomponerEmpleado((Empleado) obj);
-        }
-        else{
-            if(obj instanceof Usuario){
+        }else if(obj instanceof Usuario){
               return descomponerUsuario((Usuario)obj);
-            }else return null;
+        }else if(obj instanceof Departamento){
+              return descomponerDepartamento((Departamento)obj);
         }
+        return null;
     }
     
     public static String[][] descomponerLogin(List<Object> objs){
@@ -150,25 +156,47 @@ public class HelperEntidad {
                     cr.add((Curso) objs.get(i));
                 }
                 return descomponerCursos(cr);
-            }else{
-                if(objs.get(0) instanceof Usuario){
+            }else if(objs.get(0) instanceof Usuario){
            // System.out.println("descomponer Objetos 1");
             List<Usuario> us = new ArrayList<Usuario>();
             for(int i = 0; i < objs.size(); i++){
                 us.add((Usuario) objs.get(i));
             }
-            //System.out.println("Descomponer Objetos 2");
-            return descomponerUsuarios(us);
-            }else
-                return null;
+                //System.out.println("Descomponer Objetos 2");
+                return descomponerUsuarios(us);
+            }else if(objs.get(0) instanceof Departamento){
+                // System.out.println("descomponer Objetos 1");
+                List<Departamento> dp = new ArrayList<Departamento>();
+                for(int i = 0; i < objs.size(); i++){
+                dp.add((Departamento) objs.get(i));
+                }   
+                return descomponerDepartamentos(dp);
             }
         }
         return null;
     }
+                
+    private static String[][] descomponerDepartamentos(List<Departamento> dp){
+        String[][] info = new String[dp.size()][3];
+        for(int i = 0; i < dp.size(); i++){
+            Departamento d = dp.get(i);
+            info[i][0] = d.getId() + "";
+            info[i][1] = d.getNombre();
+            info[i][2] = d.getEnfoque().toString();
+        }
+        return info;
+    }
     
+    private static List<Object> descomponerDepartamento
+        (Departamento departamento){
+            List<Object> info = new ArrayList<>();
+            info.add(departamento.getId());
+            info.add(departamento.getNombre());
+            info.add(departamento.getEnfoque().toString());
+            return info;
+        }
     private static List<Object> descomponerPuesto(Puesto puesto){
         List<Object> info = new ArrayList<>();
-        Hibernate.initialize(puesto);
         info.add(puesto.getNombre());
         info.add(puesto.getId());
         return info;
@@ -218,7 +246,6 @@ public class HelperEntidad {
 
     private static List<Object> descomponerEmpleado(Empleado empleado) {
         List<Object> info = new ArrayList<>();
-        Hibernate.initialize(empleado);
         info.add(empleado.getId());
         info.add(empleado.getNumero());
         info.add(empleado.getPrimerNombre());
@@ -237,8 +264,6 @@ public class HelperEntidad {
         //String[][] info = new String[1][7];
         
         List<Object> info = new ArrayList<>();
-        Hibernate.initialize(usuario);
-        
         TipoCuenta t;
         info.add(usuario.getPrimerNombre());
         info.add(usuario.getSegundoNombre());
