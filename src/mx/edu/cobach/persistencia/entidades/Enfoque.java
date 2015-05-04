@@ -48,9 +48,10 @@ public class Enfoque  implements java.io.Serializable {
     public void setDepartamentos(Set<Departamento> departamentos) {
         this.departamentos = departamentos;
     }
-
-
-
+    
+    public String toString(){
+        return this.nombre;
+    }
 
 }
 
