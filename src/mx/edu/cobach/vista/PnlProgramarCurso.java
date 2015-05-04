@@ -71,7 +71,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         programarCursoRealizar_RC_Btn = new javax.swing.JButton();
         registrarCursoRealizado_RC_Btn = new javax.swing.JButton();
         pnlcalendario_OC_Pnl = new javax.swing.JPanel();
-        calendario_RC_Cal = new com.jpcomponents.JPCalendar();
+        agendarCursosCal = new com.jpcomponents.JPCalendar();
         opciones_RC_Lbl = new javax.swing.JLabel();
         nota_RC_Lbl = new javax.swing.JLabel();
         BuscarCurso_Pnl = new javax.swing.JPanel();
@@ -119,14 +119,14 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             pnlcalendario_OC_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlcalendario_OC_PnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(calendario_RC_Cal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(agendarCursosCal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlcalendario_OC_PnlLayout.setVerticalGroup(
             pnlcalendario_OC_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlcalendario_OC_PnlLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(calendario_RC_Cal, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(agendarCursosCal, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -326,8 +326,8 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BuscarCurso_Pnl;
+    private com.jpcomponents.JPCalendar agendarCursosCal;
     private javax.swing.JButton buscar_BC_Btn;
-    private com.jpcomponents.JPCalendar calendario_RC_Cal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreCurso_RC_Lbl;
@@ -374,10 +374,5 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                 }
             break;
         }
-    }
-
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

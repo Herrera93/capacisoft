@@ -32,7 +32,6 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlReporteCurso reporteCursoPnl;
     private PnlReporteProveedor reporteProveedorPnl;
     private PnlListaAsistencia listaAsistenciaPnl;
-    private PnlLogin loginPnl;
     private final ImageIcon imageLogo;
     private int idTipo;
     
@@ -46,7 +45,6 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         initComponents();
         setLayout(new BorderLayout());
         agregar();
-        login();
         setResizable(false);
         setLocationRelativeTo(null);
         setIconImage(imageLogo.getImage());
@@ -156,13 +154,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarPnl.setVisible(false);
         programarPnl.setSize(1181,587);
        // if(idTipo!=3)
-            add(programarPnl);
-        
-        //Login
-        loginPnl = new PnlLogin(this);
-        loginPnl.setVisible(false);
-        loginPnl.setSize(1181,587);
-        add(loginPnl);
+            add(programarPnl); 
         
         if(idTipo==2 || idTipo==3)
             usuario_MIt.setVisible(false);
@@ -172,14 +164,9 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         }
     }
     
-    private void login(){
-        loginPnl.setVisible(true);
-    }
-    
     @Override
     public void apagarLogin(boolean valor){
         if(valor==true){
-            loginPnl.setVisible(false);
             mantenimientoCurso_Mn.setEnabled(true);
             reportes_Mn.setEnabled(true);
             procesos_Mn.setEnabled(true);

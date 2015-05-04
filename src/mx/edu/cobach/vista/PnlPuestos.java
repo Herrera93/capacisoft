@@ -7,8 +7,6 @@ package mx.edu.cobach.vista;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -34,10 +32,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     public PnlPuestos() {
         initComponents();
         model = new DefaultTableModel(titulosTabla, 4);
-        tablaTbl.setModel(model);
-        tablaTbl.setColumnSelectionAllowed(false);
-        tablaTbl.setDragEnabled(false);
-        tablaTbl.setModel(model);
+        puestosTbl.setModel(model);
+        puestosTbl.setColumnSelectionAllowed(false);
+        puestosTbl.setDragEnabled(false);
+        puestosTbl.setModel(model);
         control = new BaseControlador(this, Puesto.class);
         puestoControl = new PuestoControlador(this, Puesto.class);
     }
@@ -55,7 +53,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreBuscarLbl = new javax.swing.JLabel();
         nombreBuscarTFd = new javax.swing.JTextField();
         tablaSPn = new javax.swing.JScrollPane();
-        tablaTbl = new javax.swing.JTable();
+        puestosTbl = new javax.swing.JTable();
         buscarBtn = new javax.swing.JButton();
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
@@ -81,7 +79,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreBuscarTFd.setEnabled(false);
 
-        tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
+        puestosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -107,20 +105,20 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        tablaTbl.setColumnSelectionAllowed(true);
-        tablaTbl.setEnabled(false);
-        tablaTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaTbl.getTableHeader().setReorderingAllowed(false);
-        tablaTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        puestosTbl.setColumnSelectionAllowed(true);
+        puestosTbl.setEnabled(false);
+        puestosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        puestosTbl.getTableHeader().setReorderingAllowed(false);
+        puestosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaTblMouseClicked(evt);
+                puestosTblMouseClicked(evt);
             }
         });
-        tablaSPn.setViewportView(tablaTbl);
-        tablaTbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tablaTbl.getColumnModel().getColumnCount() > 0) {
-            tablaTbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaTbl.getColumnModel().getColumn(1).setResizable(false);
+        tablaSPn.setViewportView(puestosTbl);
+        puestosTbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (puestosTbl.getColumnModel().getColumnCount() > 0) {
+            puestosTbl.getColumnModel().getColumn(0).setResizable(false);
+            puestosTbl.getColumnModel().getColumn(1).setResizable(false);
         }
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -310,10 +308,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregarBtn.setEnabled(false);
     }//GEN-LAST:event_agregarBtnActionPerformed
 
-    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
+    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puestosTblMouseClicked
         
-        int row = tablaTbl.rowAtPoint(evt.getPoint());
-        int col = tablaTbl.columnAtPoint(evt.getPoint());
+        int row = puestosTbl.rowAtPoint(evt.getPoint());
+        int col = puestosTbl.columnAtPoint(evt.getPoint());
         if(col == 0){
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
             puestoControl.buscarMod(id);
@@ -332,7 +330,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         }
         
-    }//GEN-LAST:event_tablaTblMouseClicked
+    }//GEN-LAST:event_puestosTblMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
@@ -348,8 +346,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
+    private javax.swing.JTable puestosTbl;
     private javax.swing.JScrollPane tablaSPn;
-    private javax.swing.JTable tablaTbl;
     // End of variables declaration//GEN-END:variables
     
     @Override
@@ -359,32 +357,30 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     @Override
         public void setTabla(String[][] info) {
-        tablaTbl.setEnabled(true);
+        puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
-        TableColumn tc = tablaTbl.getColumnModel().getColumn(2);
-        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer (tablaTbl.getDefaultRenderer(Boolean.class));
-        tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
+        TableColumn tc = puestosTbl.getColumnModel().getColumn(2);
+        tc.setCellEditor(puestosTbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer (puestosTbl.getDefaultRenderer(Boolean.class));
+        tc = puestosTbl.getColumnModel().getColumn(0);
+        puestosTbl.getColumnModel().removeColumn(tc);
     }
     @Override
     public void setLista(List info, int i) {
     }
 
     @Override
-    public void setInfo(List info) {
-        
+    public void setInfo(List info) {        
         nombrePuesto_IP_TFd.setText(info.get(0).toString());
         ipPuesto = Integer.parseInt(info.get(1).toString());
         nombrePuesto_IP_TFd.setEnabled(true);
+        agregarBtn.setEnabled(true);
+        agregarBtn.setText("Modificar");
+        agregarLBl.setText("Modificar");
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Modificar");
         agregarLBl.setText("Modificar");
     }
 
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

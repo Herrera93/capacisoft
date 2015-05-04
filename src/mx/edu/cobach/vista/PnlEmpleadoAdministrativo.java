@@ -68,7 +68,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         nombreBuscarTFd = new javax.swing.JTextField();
         tablaSPn = new javax.swing.JScrollPane();
         tablaTbl = new javax.swing.JTable();
-        buscar_OE_Btn = new javax.swing.JButton();
+        buscarBtn = new javax.swing.JButton();
         agregar_OE_Btn = new javax.swing.JButton();
         adscBuscarCBx = new javax.swing.JComboBox();
         opcionMsjLbl = new javax.swing.JLabel();
@@ -150,11 +150,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             tablaTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        buscar_OE_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscar_OE_Btn.setText("Buscar");
-        buscar_OE_Btn.addActionListener(new java.awt.event.ActionListener() {
+        buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscar_OE_BtnActionPerformed(evt);
+                buscarBtnActionPerformed(evt);
             }
         });
 
@@ -205,7 +205,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                                                 .addContainerGap(61, Short.MAX_VALUE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(buscar_OE_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(23, 23, 23))))
                             .addGroup(opcionPnlLayout.createSequentialGroup()
                                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,7 +231,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregar_OE_Btn)
-                    .addComponent(buscar_OE_Btn))
+                    .addComponent(buscarBtn))
                 .addGap(18, 18, 18)
                 .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -479,19 +479,22 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private void agregar_OE_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregar_OE_BtnActionPerformed
         int renglon = tablaTbl.getSelectedRow();
         if(renglon == -1) {
-            //Activar el panel
             setEnabledPanelInformacion(true);
+            nombreBuscarTFd.setEnabled(false);
+            adscBuscarCBx.setEnabled(false);
         }else{
-            //Llenar el panel
             int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
             control.buscar(id);            
         }
     }//GEN-LAST:event_agregar_OE_BtnActionPerformed
 
-    private void buscar_OE_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar_OE_BtnActionPerformed
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        setEnabledPanelInformacion(false);
+        nombreBuscarTFd.setEnabled(true);
+        adscBuscarCBx.setEnabled(true);
         String nombre = nombreBuscarTFd.getText();
         control.buscarPorNombre(nombre);
-    }//GEN-LAST:event_buscar_OE_BtnActionPerformed
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
      * Evento ejecutado al hace click en la tabla, se calcula en que columna y 
@@ -527,7 +530,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JLabel agregarLbl;
     private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton agregar_OE_Btn;
-    private javax.swing.JButton buscar_OE_Btn;
+    private javax.swing.JButton buscarBtn;
     private javax.swing.JLabel correoELbl;
     private javax.swing.JTextField correoElectronico_IE_TFd;
     private javax.swing.JComboBox departamentoCBx;
@@ -649,10 +652,5 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
         guardarBtn.setText("Modificar");
-    }
-
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

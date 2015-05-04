@@ -12,7 +12,6 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
-import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.Comunicador;
 
 
@@ -23,20 +22,14 @@ public class UsuarioControlador extends BaseControlador{
     } 
     
     public void buscarPorUsuario (String usuario){
-        //System.out.println("buscar Usuario > controlador");
         List<Object> list = ServiceLocatorDELEGATE.getUsuarioDelegate()
                 .findByUsuario(usuario);
-        //System.out.println("service locator delegate");
-        com.setTabla(HelperEntidad.descomponerObjetos(list));
+        com.setTabla(HelperEntidad.descomponerLogin(list));
     }
     
     public void buscarPorNombre(String nombre){
-        //System.out.println("buscar Usuario > controlador");
         List<Object> list = ServiceLocatorDELEGATE.getUsuarioDelegate().findByNombre(nombre);
-        //System.out.println("service locator delegate");
-       com.setLogin( HelperEntidad.descomponerLogin(list));
-       // System.out.println("Nombre de la busqueda: "+usu[0][0]);
-        //com.setTabla(HelperEntidad.descomponerObjetos(list));
+       com.setTabla(HelperEntidad.descomponerObjetos(list));
     }
     
 }
