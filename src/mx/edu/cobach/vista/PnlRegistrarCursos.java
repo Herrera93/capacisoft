@@ -45,14 +45,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         opcionPnl = new javax.swing.JPanel();
         tipoBuscarLbl = new javax.swing.JLabel();
-        tablaSPn = new javax.swing.JScrollPane();
-        tablaTbl = new javax.swing.JTable();
+        cursoSPn = new javax.swing.JScrollPane();
+        cursosTbl = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
         tipoBuscarCBx = new javax.swing.JComboBox();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
-        informacionPnl = new javax.swing.JPanel();
+        informacionCurso_Pnl = new javax.swing.JPanel();
         tipoLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
         descripcionSPn = new javax.swing.JScrollPane();
@@ -153,7 +153,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                                 .addComponent(tipoBuscarLbl)
                                 .addGap(32, 32, 32)
                                 .addComponent(tipoBuscarCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -230,24 +230,22 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 .addGap(18, 18, 18))
             .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(agregarMsjLbl)
-                        .addComponent(agregarLbl)
-                        .addGroup(informacionPnlLayout.createSequentialGroup()
-                            .addComponent(descripcionLbl)
-                            .addGap(39, 39, 39)
-                            .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(informacionPnlLayout.createSequentialGroup()
-                            .addComponent(nombreLbl)
-                            .addGap(28, 28, 28)
-                            .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(30, 30, 30)
-                            .addComponent(tipoLbl)
-                            .addGap(28, 28, 28)
-                            .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(agregarMsjLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregarLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informacionCurso_PnlLayout.createSequentialGroup()
+                        .addComponent(descripcionLbl)
+                        .addGap(39, 39, 39)
+                        .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informacionCurso_PnlLayout.createSequentialGroup()
+                        .addComponent(nombreLbl)
+                        .addGap(28, 28, 28)
+                        .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tipoLbl)
+                        .addGap(28, 28, 28)
+                        .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         informacionCurso_PnlLayout.setVerticalGroup(
             informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +390,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
      * renglon.
      * @param evt Evento al hacer click
      */
-    private void cursosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cursosTblMouseClicked
+    private void cursosTblMouseClicked(java.awt.event.MouseEvent evt) {                                       
         //Obtenelos el renglon y columna donde se hizo click
         int row = cursosTbl.rowAtPoint(evt.getPoint());
         int col = cursosTbl.columnAtPoint(evt.getPoint());
@@ -414,7 +412,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 model.setValueAt(false, row, 3);
             }
         }
-    }//GEN-LAST:event_tablaTblMouseClicked
+    }                                     
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -422,6 +420,8 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel agregarLbl;
     private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton buscarBtn;
+    private javax.swing.JScrollPane cursoSPn;
+    private javax.swing.JTable cursosTbl;
     private javax.swing.JLabel descripcionLbl;
     private javax.swing.JScrollPane descripcionSPn;
     private javax.swing.JTextArea descripcionTAa;
@@ -432,8 +432,6 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
-    private javax.swing.JScrollPane tablaSPn;
-    private javax.swing.JTable tablaTbl;
     private javax.swing.JComboBox tipoBuscarCBx;
     private javax.swing.JLabel tipoBuscarLbl;
     private javax.swing.JComboBox tipoCBx;
