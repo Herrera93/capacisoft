@@ -13,15 +13,17 @@ import mx.edu.cobach.vista.Comunicador;
  *
  * @author fernando
  */
-public class CursoControlador extends BaseControlador{
+public class DepartamentoControlador extends BaseControlador {
     
     
-    public CursoControlador(Comunicador com, Class clazz){
+    
+    public DepartamentoControlador(Comunicador com, Class clazz){
         super(com, clazz);
     }
     
-    public void buscarTipoCurso(int id) {
-        List<Object> o = ServiceLocatorDELEGATE.getCurso().findTipoCurso(id);
+    public void buscar(String nombre) {
+        List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
+    
 }

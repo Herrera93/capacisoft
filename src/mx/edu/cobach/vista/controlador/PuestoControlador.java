@@ -16,23 +16,18 @@ import mx.edu.cobach.vista.Comunicador;
  * comunicacion Comunicador
  * @author Liuts
  */
-public class PuestoControlador{
-   
-    private Comunicador com;
-    
-    private Class clazz;
+public class PuestoControlador extends BaseControlador{
     
     public PuestoControlador(Comunicador com,Class clazz){
-        this.com = com;
-        this.clazz = clazz;
+        super(com, clazz);
     } 
     
     /**
      * Metodo para buscar un registro especifico a traves de un nombre
-     * @param id Identificador de registro
+     * @param nombre
     */
     public void buscar(String nombre) {
-        List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre, clazz);
+        List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
     public void buscarMod(int id) {
