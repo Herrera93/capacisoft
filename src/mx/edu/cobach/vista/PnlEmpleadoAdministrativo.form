@@ -261,80 +261,75 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="primerNombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="primerApellidoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="numeroLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="correoELbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="adscLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="plantelLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="plantelCBx" min="-2" pref="139" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                  <Component id="departamentoLbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="departamentoCBx" min="-2" pref="156" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="numeroTFd" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="primerNombreTFd" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="primerApellidoTFd" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="correoElectronico_IE_TFd" max="32767" attributes="0"/>
-                                      <Component id="adscCBx" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" min="-2" pref="139" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="segNombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="segApellidoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="segApellidoTFd" max="32767" attributes="0"/>
-                                                      <Component id="segNombreTFd" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="puestoLbll" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                  <Component id="puestoCBx" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="puestoLbll" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                              <Component id="puestoCBx" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="primerNombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="primerApellidoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="numeroLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="correoELbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="adscLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="correoElectronico_IE_TFd" max="32767" attributes="0"/>
+                                          <Component id="primerApellidoTFd" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="primerNombreTFd" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="numeroTFd" alignment="0" min="-2" pref="149" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="segNombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="segApellidoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="segNombreTFd" max="32767" attributes="0"/>
+                                                  <Component id="segApellidoTFd" min="-2" pref="151" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel1" min="-2" pref="139" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="departamentoLbl" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="departamentoCBx" min="-2" pref="156" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Component id="adscCBx" min="-2" pref="284" max="-2" attributes="0"/>
+                                  <Component id="plantelCBx" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="plantelLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="102" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -345,46 +340,49 @@
                   <Component id="agregarLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="segNombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                   <Component id="segNombreLbl" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="segNombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="primerNombreTFd" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="numeroTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="puestoLbll" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="puestoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="primerNombreLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="primerApellidoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="primerApellidoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="segApellidoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="primerApellidoTFd" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="segApellidoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="correoELbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="correoElectronico_IE_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="adscLbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="adscCBx" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="puestoLbll" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="puestoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="correoELbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="correoElectronico_IE_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="adscLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="adscCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -393,9 +391,9 @@
                       <Component id="departamentoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="departamentoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="guardarBtn" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
