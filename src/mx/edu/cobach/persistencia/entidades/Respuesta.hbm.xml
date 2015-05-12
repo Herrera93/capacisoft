@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 11, 2015 4:12:50 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 12, 2015 11:53:15 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="mx.edu.cobach.persistencia.entidades.Respuesta" table="respuesta" catalog="capacisoft">
         <id name="id" type="java.lang.Integer">

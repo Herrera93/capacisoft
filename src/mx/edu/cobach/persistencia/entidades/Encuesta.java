@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
+// Generated May 12, 2015 11:53:14 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -48,6 +48,8 @@ public class Encuesta  implements java.io.Serializable {
     public void setRespuestas(Set<Respuesta> respuestas) {
         this.respuestas = respuestas;
     }
+
+
 
 
 }
