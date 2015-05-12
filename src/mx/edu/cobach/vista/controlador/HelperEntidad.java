@@ -6,12 +6,14 @@
 package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
+import mx.edu.cobach.persistencia.entidades.Encuesta;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.TipoCuenta;
@@ -19,7 +21,10 @@ import mx.edu.cobach.persistencia.entidades.TipoCurso;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.persistencia.entidades.Zona;
 import mx.edu.cobach.persistencia.entidades.Enfoque;
+import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
 import mx.edu.cobach.persistencia.entidades.Municipio;
+import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import org.hibernate.Hibernate;
 
@@ -40,6 +45,51 @@ public class HelperEntidad {
             depto.setId((Integer) atributos.get(2));
         }
         return depto;
+    }
+    
+    public static ImplementacionCurso getProgramar(List<Object> atributos, String direccion, String tipo) {
+        if (direccion.equals("Guardar")) {
+            if (tipo.equals("Activo")) {
+                ImplementacionCurso implementaCurso = new ImplementacionCurso();
+                implementaCurso.setCurso((Curso) atributos.get(0));
+                implementaCurso.setFechaInicial((Date) atributos.get(1));
+                implementaCurso.setFechaFinal((Date) atributos.get(2));
+                implementaCurso.setActivo((boolean) atributos.get(3));
+                implementaCurso.setSede((Sede) atributos.get(4));
+                implementaCurso.setProveedor((Proveedor) atributos.get(5));
+                return implementaCurso;
+            } else if (tipo.equals("Finalizado")) {
+                ImplementacionCurso implementaCurso = new ImplementacionCurso();
+                implementaCurso.setCurso((Curso) atributos.get(0));
+                implementaCurso.setFechaInicial((Date) atributos.get(1));
+                implementaCurso.setFechaFinal((Date) atributos.get(2));
+                implementaCurso.setActivo((boolean) atributos.get(3));
+                implementaCurso.setSede((Sede) atributos.get(4));
+                implementaCurso.setProveedor((Proveedor) atributos.get(5));
+                return implementaCurso;
+            }
+        } else if (direccion.equals("Modificar")) {
+            if (tipo.equals("Activo")) {
+                ImplementacionCurso implementaCurso = new ImplementacionCurso();
+                implementaCurso.setCurso((Curso) atributos.get(0));
+                implementaCurso.setFechaInicial((Date) atributos.get(1));
+                implementaCurso.setFechaFinal((Date) atributos.get(2));
+                implementaCurso.setActivo((boolean) atributos.get(3));
+                implementaCurso.setSede((Sede) atributos.get(4));
+                implementaCurso.setProveedor((Proveedor) atributos.get(5));
+                return implementaCurso;
+            } else if (tipo.equals("Finalizado")) {
+                ImplementacionCurso implementaCurso = new ImplementacionCurso();
+                implementaCurso.setCurso((Curso) atributos.get(0));
+                implementaCurso.setFechaInicial((Date) atributos.get(1));
+                implementaCurso.setFechaFinal((Date) atributos.get(2));
+                implementaCurso.setActivo((boolean) atributos.get(3));
+                implementaCurso.setSede((Sede) atributos.get(4));
+                implementaCurso.setProveedor((Proveedor) atributos.get(5));
+                return implementaCurso;
+            }
+        }
+        return null;
     }
     
     public static Plantel getPlantel(List<Object> atributos){
@@ -262,6 +312,18 @@ public class HelperEntidad {
                     aspectos.add((Aspecto) objetos.get(i));
                 }
                 return descomponerAspectos(aspectos);
+            }else if(objetos.get(0) instanceof EnunciadoLogistica){
+                List<EnunciadoLogistica> enunciado = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    enunciado.add((EnunciadoLogistica) objetos.get(i));
+                }
+                return descomponerEnunciados(enunciado);
+            }else if(objetos.get(0) instanceof ImplementacionCurso){
+                List<ImplementacionCurso> programar = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    programar.add((ImplementacionCurso) objetos.get(i));
+                }
+                return descomponerProCursos(programar);
             }
         }
         return null;
@@ -376,4 +438,44 @@ public class HelperEntidad {
         }
         return info;
     }
+    
+    private static String[][] descomponerProCursos(List<ImplementacionCurso> cu) {
+        String[][] info = new String[cu.size()][4];
+        for (int i = 0; i < cu.size(); i++) {
+            ImplementacionCurso c = cu.get(i);
+            info[i][0] = c.getId().toString();
+            info[i][1] = c.getFechaInicial().toString();
+            if(c.isActivo()){
+                info[i][2] = "Activo";
+            }else{
+                info[i][2] = "Finalizado";
+            }
+            
+            info[i][3] = c.getCurso().toString();
+        }
+        return info;
+    }
+    
+    private static List<Object> descomponerProCurso(ImplementacionCurso cu) {
+        List<Object> info = new ArrayList<>();
+        info.add(cu.getCurso());
+        info.add(cu.getFechaInicial());
+        info.add(cu.getFechaFinal());
+        info.add(cu.getSede());
+        info.add(cu.getProveedor());
+        info.add(cu.isActivo());
+        return info;
+    }
+    
+    private static String[][] descomponerEnunciados(List<EnunciadoLogistica> en) {
+        String[][] info = new String[en.size()][3];
+        for (int i = 0; i < en.size(); i++) {
+            EnunciadoLogistica c = en.get(i);
+            info[i][0] = c.getId().toString();
+            info[i][1] = c.getDescripcion();
+            info[i][2] = c.getTipoEnunciado().toString();
+        }
+        return info;
+    }
+    
 }

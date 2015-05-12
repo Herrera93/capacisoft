@@ -69,9 +69,9 @@ public class Curso  implements java.io.Serializable {
         this.implementacionCursos = implementacionCursos;
     }
 
-
-
-
+    public String toString(){
+        return this.nombre;
+    }
 }
 
 

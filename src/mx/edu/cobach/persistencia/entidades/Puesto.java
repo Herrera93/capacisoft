@@ -49,7 +49,9 @@ public class Puesto  implements java.io.Serializable {
         this.empleados = empleados;
     }
 
-
+    public String toString(){
+        return this.nombre;
+    }
 
 
 }

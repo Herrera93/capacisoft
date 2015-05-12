@@ -89,7 +89,9 @@ public class Plantel  implements java.io.Serializable {
         this.empleados = empleados;
     }
 
-
+    public String toString(){
+        return this.nombre;
+    }
 
 
 }

@@ -48,8 +48,10 @@ public class TipoCurso  implements java.io.Serializable {
     public void setCursos(Set<Curso> cursos) {
         this.cursos = cursos;
     }
-
-
+    
+    public String toString(){
+        return this.descripcion;
+    }
 
 
 }
