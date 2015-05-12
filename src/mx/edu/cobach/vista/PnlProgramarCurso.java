@@ -60,7 +60,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         add(curRealizadoPnl);
         
     }
-    
+    /**
+     * Metodo que permite mandar a obtener la informacion de todos las 
+     * sedes y cursos registrados
+     * informacion o la modificque.
+     */
     public void llenarTodo(){
         control.setClass(Curso.class);
         control.buscarTodosLista(1);
@@ -368,22 +372,40 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     private javax.swing.JComboBox tipoRegCBx;
     private javax.swing.JComboBox tipoSedeCBx;
     // End of variables declaration//GEN-END:variables
-
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de 
+     * registro o modificacion exitosa.
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
     public void setMensaje(String mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo que recibe una matriz, donde se obtendran sus valores para 
+     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se 
+     * le dara se redefinira el ancho de la columna 0.
+     * @param info Matriz String para vaciar en tabla
+     */
     @Override
     public void setTabla(String[][] info) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo sobrescrito de la clase Comunicador
+     * @param info
+     * @param i 
+     */
     @Override
     public void setInfo(List info) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la 
+     * los resultados de una busqueda especifica y vaciarlo en los campos y 
+     * checkbox
+     * @param info Lista de Objeto con información de búsqueda.
+     */
     @Override
     public void setLista(List info, int i) {
         if(info.isEmpty()) return;
