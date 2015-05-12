@@ -56,18 +56,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="286" max="32767" attributes="0"/>
-                          <Component id="guardar_OK_Btn" min="-2" pref="108" max="-2" attributes="0"/>
+                          <Component id="buscarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="numeroEmpleado_OK_Lbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreCompleto_OK_Lbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="numeroLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="numeroEmpleado_OK_TFd" max="32767" attributes="0"/>
-                              <Component id="nombreCompleto_OK_TFd" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="numeroTFd" max="32767" attributes="0"/>
+                              <Component id="nombreTFd" min="-2" pref="157" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -77,8 +77,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="opciones_OK_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="nota_OK_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="opcionesLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="opcionMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -88,28 +88,28 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="opciones_OK_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionesLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="nota_OK_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="numeroEmpleado_OK_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="numeroEmpleado_OK_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombreCompleto_OK_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreCompleto_OK_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="285" max="32767" attributes="0"/>
-                  <Component id="guardar_OK_Btn" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="buscarBtn" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="numeroEmpleado_OK_Lbl">
+        <Component class="javax.swing.JLabel" name="numeroLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -117,7 +117,7 @@
             <Property name="text" type="java.lang.String" value="Numero del Empleado:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nombreCompleto_OK_Lbl">
+        <Component class="javax.swing.JLabel" name="nombreLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -125,29 +125,39 @@
             <Property name="text" type="java.lang.String" value="Nombre Completo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="guardar_OK_Btn">
+        <Component class="javax.swing.JButton" name="buscarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="numeroEmpleado_OK_TFd">
+        <Component class="javax.swing.JTextField" name="numeroTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroTFdActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroTFdKeyTyped"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombreCompleto_OK_TFd">
+        <Component class="javax.swing.JTextField" name="nombreTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreTFdKeyTyped"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_OK_Lbl">
+        <Component class="javax.swing.JLabel" name="opcionesLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -155,7 +165,7 @@
             <Property name="text" type="java.lang.String" value="Opciones "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_OK_Lbl">
+        <Component class="javax.swing.JLabel" name="opcionMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese los datos para buscar la informaci&#xf3;n especifica"/>
           </Properties>
@@ -183,13 +193,13 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" pref="743" max="32767" attributes="0"/>
+                      <Component id="tablaSPn" pref="743" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="generar_IK_Btn" min="-2" pref="108" max="-2" attributes="0"/>
+                          <Component id="generarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="opciones_IK_Lbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="informacionLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -201,25 +211,25 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="opciones_IK_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="informacionLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="411" max="-2" attributes="0"/>
+                  <Component id="tablaSPn" min="-2" pref="411" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="generar_IK_Btn" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="generarBtn" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="tablaSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaKardex_IK_Tbl">
+            <Component class="javax.swing.JTable" name="tablaTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="4">
@@ -266,7 +276,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="generar_IK_Btn">
+        <Component class="javax.swing.JButton" name="generarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -274,7 +284,7 @@
             <Property name="text" type="java.lang.String" value="Generar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_IK_Lbl">
+        <Component class="javax.swing.JLabel" name="informacionLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>

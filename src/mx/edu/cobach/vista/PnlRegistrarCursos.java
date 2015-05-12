@@ -4,6 +4,7 @@
  */
 package mx.edu.cobach.vista;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -200,10 +201,25 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         descripcionTAa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         descripcionTAa.setRows(5);
         descripcionTAa.setEnabled(false);
+        descripcionTAa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descripcionTAaKeyTyped(evt);
+            }
+        });
         descripcionSPn.setViewportView(descripcionTAa);
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreTFd.setEnabled(false);
+        nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nombreTFdFocusLost(evt);
+            }
+        });
+        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTFdKeyTyped(evt);
+            }
+        });
 
         tipoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia ", "Taller" }));
@@ -382,6 +398,67 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         tipoCBx.setEnabled(true);
         guardarBtn.setEnabled(true);
     }//GEN-LAST:event_agregarBtnActionPerformed
+
+    /**
+     * Evento que se activa cuando se escribre sobre el campo, validando
+     * que no se ingresen, delimitando el maximo de caracteres y permitir 
+     * letras con tilde.
+     * @param evt Evento al teclar sobre el campo
+     */
+    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
+       
+       char car = evt.getKeyChar();
+       if(nombreTFd.getText().length()>=20) evt.consume();
+       if((car<'a' || car>'z') && (car<'A' || car>'Z')             
+            && car !='á' //Minúsculas             
+            && car !='é'            
+            && car !='í'            
+            && car !='ó'           
+            && car !='ú'   
+            && car !='Á' //Mayúsculas             
+            && car !='É'            
+            && car !='Í'            
+            && car !='Ó'           
+            && car !='Ú'
+            && car !='ñ'           
+            && car !='Ñ'
+            && (car!=(char)KeyEvent.VK_SPACE))
+        {      
+          evt.consume();   
+        }
+    }//GEN-LAST:event_nombreTFdKeyTyped
+
+    /**
+     * Evento que se activa cuando se escribre sobre el campo, validando
+     * que no se ingresen, delimitando el maximo de caracteres y permitir 
+     * letras con tilde.
+     * @param evt Evento al teclar sobre el campo
+     */
+    private void descripcionTAaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descripcionTAaKeyTyped
+       char car = evt.getKeyChar();
+       if(descripcionTAa.getText().length()>=20) evt.consume();
+       if((car<'a' || car>'z') && (car<'A' || car>'Z')             
+            && car !='á' //Minúsculas             
+            && car !='é'            
+            && car !='í'            
+            && car !='ó'           
+            && car !='ú'   
+            && car !='Á' //Mayúsculas             
+            && car !='É'            
+            && car !='Í'            
+            && car !='Ó'           
+            && car !='Ú'
+            && car !='ñ'           
+            && car !='Ñ'
+            && (car!=(char)KeyEvent.VK_SPACE))
+        {      
+          evt.consume();   
+        }
+    }//GEN-LAST:event_descripcionTAaKeyTyped
+
+    private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        JOptionPane.showMessageDialog(this, "dfsadfsdfsdf");
+    }//GEN-LAST:event_nombreTFdFocusLost
 
     /**
      * Evento ejecutado al hace click en la tabla, se calcula en que columna y 

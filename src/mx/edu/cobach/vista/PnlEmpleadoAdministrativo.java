@@ -153,6 +153,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText("Agregar");
@@ -364,7 +369,6 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacioPnlLayout.createSequentialGroup()
                                                     .addComponent(departamentoLbl)
                                                     .addGap(25, 25, 25)))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -381,7 +385,6 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addComponent(agregarLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(agregarMsjLbl)
-                .addGap(18, 18, 18)
                 .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informacioPnlLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
@@ -523,6 +526,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }
         }
     }//GEN-LAST:event_tablaTblMouseClicked
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox adscBuscarCBx;
@@ -670,12 +677,4 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         guardarBtn.setText("Modificar");
     }
 
-    /**
-     * Metodo sobrescrito de la clase Comunicador
-     * @param login 
-     */
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
