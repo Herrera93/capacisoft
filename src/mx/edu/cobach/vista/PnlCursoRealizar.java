@@ -512,9 +512,13 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             .addComponent(informacionTP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Evento ejecutado al hacer click se buscara al empleado dependiendo de 
+     * del campo seleccionado 
+     * @param evt Evento al presionar el boton 
+     */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        String campo = (String) tipoLACBx.getSelectedItem();
+        String campo = (String) campoCBx.getSelectedItem();
         switch (campo) {
             case "Nombre":
                 controlProgramar.setClass(Empleado.class);
@@ -534,7 +538,11 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
-
+    /**
+     * Evento ejecutado al hacer seleccionar un campo de la lista de posibles
+     * busquedas por el usuario
+     * @param evt Evento al presionar el boton 
+     */
     private void campoCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_campoCBxItemStateChanged
         String campo = (String) campoCBx.getSelectedItem();
         switch (campo) {
@@ -562,7 +570,11 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                 break;
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
-
+    /**
+     * Evento ejecutado al hacer click agregara al empleado de la lista de
+     * posibles candidatos
+     * @param evt Evento al presionar el boton 
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
          int row = tablaLisITb.getSelectedRow();
         int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
@@ -570,7 +582,11 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         controlProgramar.setClass(Empleado.class);
         controlProgramar.buscarEmpId(id, Empleado.class);
     }//GEN-LAST:event_agregarBtnActionPerformed
-
+    /**
+     * Evento ejecutado al hacer click agregara a todos los empleados a la 
+     * lista de asistencia
+     * @param evt Evento al presionar el boton 
+     */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
         int nRow = tablaLisITb.getRowCount();
         for (int i = 0; i < nRow; i++) {
@@ -580,7 +596,11 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         }
 
     }//GEN-LAST:event_agregarTBtnActionPerformed
-
+    /**
+     * Evento ejecutado al hacer click eliminando al empleado seleccionado
+     * en la lista de asistenciatablaLisFTb.
+     * @param evt Evento al presionar el boton 
+     */
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
         int nRow = tablaLisFTb.getRowCount();
         int nCol = tablaLisFTb.getColumnCount();
@@ -601,18 +621,30 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         tablaLisFTb.getColumnModel().removeColumn(tc);
         visibilidadOpcT(true);
     }//GEN-LAST:event_eliminarBtnActionPerformed
-
+    /**
+     * Evento ejecutado al hacer click eliminando a todas las personas de la 
+     * lista de asistencia tablaLisFTb.
+     * @param evt Evento al presionar el boton 
+     */
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
         String[][] datosTabla = new String[0][0];
         modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
         TableColumn tc = tablaLisFTb.getColumnModel().getColumn(0);
         tablaLisFTb.getColumnModel().removeColumn(tc);
     }//GEN-LAST:event_eliminarTBtnActionPerformed
-
+    /**
+     * Evento ejecutado al hacer click mandando a un metodo que guarde la 
+     * informacion o la modificque.
+     * @param evt Evento al presionar el boton 
+     */
     private void guardarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarLABtnActionPerformed
         guarMod();
     }//GEN-LAST:event_guardarLABtnActionPerformed
-
+    /**
+     * Evento ejecutado al hacer click mandando a un metodo que guarde la 
+     * informacion o la modificque.
+     * @param evt Evento al presionar el boton 
+     */
     private void guardarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarGBtnActionPerformed
         guarMod();
     }//GEN-LAST:event_guardarGBtnActionPerformed
@@ -622,7 +654,12 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         System.out.println(curso.getId());
         controlProgramar.buscarCurId(curso.getId(), Curso.class);
     }
-
+    /**
+     * Metodo que permite mandar a obtener la informacion de todos las 
+     * sedes y proveedores registrados
+     * informacion o la modificque.
+     * @param evt Evento al presionar el boton 
+     */
     public void llenarTodo() {
         controlProgramar.setClass(Sede.class);
         controlProgramar.buscarTodosLista(1);
@@ -671,12 +708,21 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JComboBox tipoLACBx;
     private javax.swing.JComboBox tipossedeGCBx;
     // End of variables declaration//GEN-END:variables
-
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de 
+     * registro o modificacion exitosa.
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
+    /**
+     * Metodo que recibe una matriz, donde se obtendran sus valores para 
+     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se 
+     * le dara se redefinira el ancho de la columna 0.
+     * @param info Matriz String para vaciar en tabla
+     */
     @Override
     public void setTabla(String[][] info) {
     if (info[0][0].contains("TLE1")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
@@ -718,8 +764,13 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             } else {
 
             }
-        }}
-
+        }
+    }
+    /**
+     * Metodo sobrescrito de la clase Comunicador
+     * @param info
+     * @param i 
+     */
     @Override
     public void setInfo(List info) {
     cursoId = Integer.parseInt(info.get(0).toString());
@@ -730,8 +781,14 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             tipoGCBx.setSelectedIndex(0);
         } else {
             tipoGCBx.setSelectedIndex(1);
-        }}
-
+        }
+    }
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la 
+     * los resultados de una busqueda especifica y vaciarlo en los campos y 
+     * checkbox
+     * @param info Lista de Objeto con información de búsqueda.
+     */
     @Override
     public void setLista(List info, int i) {
     if (info.isEmpty()) {
@@ -798,6 +855,12 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         eliminarBtn.setEnabled(visibilidad);
         eliminarTBtn.setEnabled(visibilidad);
     }
+    /**
+     * Establece una opcion para guardar o modificar la informacion para
+     * mandarla a la base de datos
+     *
+     * @param visibilidad
+     */
     public void guarMod(){
         List<Object> atributos = new ArrayList<>();
         atributos.add(curso);
