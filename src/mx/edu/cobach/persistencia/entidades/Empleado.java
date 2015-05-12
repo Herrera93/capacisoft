@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
+// Generated May 12, 2015 11:53:14 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -23,6 +23,7 @@ public class Empleado  implements java.io.Serializable {
      private String apellidoMaterno;
      private String correo;
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
+     private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
 
     public Empleado() {
     }
@@ -40,7 +41,8 @@ public class Empleado  implements java.io.Serializable {
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
     }
-    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas) {
+    
+    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas, Set<ImplementacionCurso> implementacionCursos) {
        this.adscripcion = adscripcion;
        this.departamento = departamento;
        this.plantel = plantel;
@@ -52,6 +54,7 @@ public class Empleado  implements java.io.Serializable {
        this.apellidoMaterno = apellidoMaterno;
        this.correo = correo;
        this.respuestas = respuestas;
+       this.implementacionCursos = implementacionCursos;
     }
    
     public Integer getId() {
@@ -137,6 +140,13 @@ public class Empleado  implements java.io.Serializable {
     
     public void setRespuestas(Set<Respuesta> respuestas) {
         this.respuestas = respuestas;
+    }
+    public Set<ImplementacionCurso> getImplementacionCursos() {
+        return this.implementacionCursos;
+    }
+    
+    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
+        this.implementacionCursos = implementacionCursos;
     }
 
 

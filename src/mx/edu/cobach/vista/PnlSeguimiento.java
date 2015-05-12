@@ -4,13 +4,10 @@
  */
 package mx.edu.cobach.vista;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import mx.edu.cobach.persistencia.entidades.Aspecto;
-import mx.edu.cobach.persistencia.entidades.Competencia;
-import mx.edu.cobach.vista.controlador.BaseControlador;
-import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
  *
@@ -22,7 +19,8 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
      * Creates new form PnlSeguimiento
      */
     private PnlEncuestaResultado resultadoPnl;
-    private PnlRealizarEncuesta realizarEncuestaPnl;
+    private PnlAgregarAspectos agregarAspectosPnl;
+    private PnlAgregarEmpleados agregarEmpleadosPnl;
     
     public PnlSeguimiento() {
         initComponents();
@@ -41,11 +39,39 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         resultadoPnl.setVisible(false);
         add(resultadoPnl);
         
-        realizarEncuestaPnl = new PnlRealizarEncuesta();
-        realizarEncuestaPnl.setLocation(408,0);
-        realizarEncuestaPnl.setSize(773,589);
-        realizarEncuestaPnl.setVisible(true);
-        add(realizarEncuestaPnl);
+        agregarAspectosPnl = new PnlAgregarAspectos();
+        agregarAspectosPnl.setLocation(408,0);
+        agregarAspectosPnl.setSize(773,589);
+        agregarAspectosPnl.setVisible(true);
+        add(agregarAspectosPnl);
+        
+        agregarEmpleadosPnl = new PnlAgregarEmpleados();
+        agregarEmpleadosPnl.setLocation(408,0);
+        agregarEmpleadosPnl.setSize(773,589);
+        agregarEmpleadosPnl.setVisible(false);
+        add(agregarEmpleadosPnl);
+        
+        agregarAspectosPnl.addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentShown(ComponentEvent e){                
+            }
+            
+            @Override
+            public void componentHidden(ComponentEvent e){
+                agregarEmpleadosPnl.setVisible(true);
+            }
+        });
+        
+        agregarEmpleadosPnl.addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentShown(ComponentEvent e){                
+            }
+            
+            @Override
+            public void componentHidden(ComponentEvent e){
+                agregarAspectosPnl.setVisible(true);
+            }
+        });
     }
     
     /*
@@ -54,7 +80,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     entre se mostrara todos los datos correspondientes.
     */
     public void llenarTodo(){
-        realizarEncuestaPnl.llenarTodo();
+        agregarAspectosPnl.llenarTodo();
     }
     
     /**
@@ -234,12 +260,12 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
 
     private void realizarEncuesta_PnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_realizarEncuesta_PnlComponentShown
         resultadoPnl.setVisible(false);
-        realizarEncuestaPnl.setVisible(true);
+        agregarAspectosPnl.setVisible(true);
     }//GEN-LAST:event_realizarEncuesta_PnlComponentShown
 
     private void resultado_PnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_resultado_PnlComponentShown
         resultadoPnl.setVisible(true);
-        realizarEncuestaPnl.setVisible(false);
+        agregarAspectosPnl.setVisible(false);
     }//GEN-LAST:event_resultado_PnlComponentShown
 
     private void seleccion_BC_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccion_BC_CBxActionPerformed

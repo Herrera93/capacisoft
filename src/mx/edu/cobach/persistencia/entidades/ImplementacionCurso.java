@@ -1,6 +1,4 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
-
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,7 +9,6 @@ import java.util.Set;
  */
 public class ImplementacionCurso  implements java.io.Serializable {
 
-
      private Integer id;
      private Curso curso;
      private Proveedor proveedor;
@@ -19,6 +16,8 @@ public class ImplementacionCurso  implements java.io.Serializable {
      private Date fechaInicial;
      private Date fechaFinal;
      private boolean activo;
+     private Set<Empleado> empleados = new HashSet<Empleado>(0);
+     private Set<Alerta> alertas = new HashSet<Alerta>(0);
      private Set<Encuesta> encuestas = new HashSet<Encuesta>(0);
 
     public ImplementacionCurso() {
@@ -33,13 +32,16 @@ public class ImplementacionCurso  implements java.io.Serializable {
         this.fechaFinal = fechaFinal;
         this.activo = activo;
     }
-    public ImplementacionCurso(Curso curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo, Set<Encuesta> encuestas) {
+    
+    public ImplementacionCurso(Curso curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo, Set<Empleado> empleados, Set<Alerta> alertas, Set<Encuesta> encuestas) {
        this.curso = curso;
        this.proveedor = proveedor;
        this.sede = sede;
        this.fechaInicial = fechaInicial;
        this.fechaFinal = fechaFinal;
        this.activo = activo;
+       this.empleados = empleados;
+       this.alertas = alertas;
        this.encuestas = encuestas;
     }
    
@@ -92,6 +94,21 @@ public class ImplementacionCurso  implements java.io.Serializable {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+    public Set<Empleado> getEmpleados() {
+        return this.empleados;
+    }
+    
+    public void setEmpleados(Set<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+    
+    public Set<Alerta> getAlertas() {
+        return this.alertas;
+    }
+    
+    public void setAlertas(Set<Alerta> alertas) {
+        this.alertas = alertas;
+    }
     public Set<Encuesta> getEncuestas() {
         return this.encuestas;
     }
@@ -99,6 +116,10 @@ public class ImplementacionCurso  implements java.io.Serializable {
     public void setEncuestas(Set<Encuesta> encuestas) {
         this.encuestas = encuestas;
     }
+
+
+
+
 }
 
 
