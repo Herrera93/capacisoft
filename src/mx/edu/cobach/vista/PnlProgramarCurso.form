@@ -46,21 +46,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="opcionesCurso_TP" alignment="0" max="32767" attributes="0"/>
+              <Component id="opcionesTP" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="opcionesCurso_TP" alignment="0" max="32767" attributes="0"/>
+              <Component id="opcionesTP" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JTabbedPane" name="opcionesCurso_TP">
+        <Container class="javax.swing.JTabbedPane" name="opcionesTP">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="registrarCurso_Pnl">
+            <Container class="javax.swing.JPanel" name="registrarPnl">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Registrar curso de capacitaci&#xf3;n">
@@ -78,22 +78,22 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="opciones_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="opcionesRegLbl" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="nombreCurso_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                                          <Component id="nombreRegLbl" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="tipoCurso_RC_CBx" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="tipoRegCBx" min="-2" pref="185" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="nota_RC_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="notaRegLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="registrarCursoRealizado_RC_Btn" min="-2" max="-2" attributes="0"/>
+                                  <Component id="regRealizadoBtn" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="13" max="32767" attributes="0"/>
-                                  <Component id="programarCursoRealizar_RC_Btn" min="-2" max="-2" attributes="0"/>
+                                  <Component id="regRealizarBtn" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="pnlcalendario_OC_Pnl" alignment="0" max="32767" attributes="0"/>
+                              <Component id="calendarioPnl" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -103,28 +103,28 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="opciones_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="opcionesRegLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Component id="nota_RC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="notaRegLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nombreCurso_RC_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tipoCurso_RC_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreRegLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tipoRegCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="registrarCursoRealizado_RC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="programarCursoRealizar_RC_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="regRealizadoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="regRealizarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="pnlcalendario_OC_Pnl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="76" max="32767" attributes="0"/>
+                          <Component id="calendarioPnl" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="70" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="nombreCurso_RC_Lbl">
+                <Component class="javax.swing.JLabel" name="nombreRegLbl">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -132,7 +132,7 @@
                     <Property name="text" type="java.lang.String" value="Nombre del curso:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="tipoCurso_RC_CBx">
+                <Component class="javax.swing.JComboBox" name="tipoRegCBx">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -147,7 +147,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="programarCursoRealizar_RC_Btn">
+                <Component class="javax.swing.JButton" name="regRealizarBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -155,10 +155,10 @@
                     <Property name="text" type="java.lang.String" value="Programar curso a realizar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="programarCursoRealizar_RC_BtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regRealizarBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="registrarCursoRealizado_RC_Btn">
+                <Component class="javax.swing.JButton" name="regRealizadoBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -166,10 +166,10 @@
                     <Property name="text" type="java.lang.String" value="Registrar curso realizado"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarCursoRealizado_RC_BtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regRealizadoBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JPanel" name="pnlcalendario_OC_Pnl">
+                <Container class="javax.swing.JPanel" name="calendarioPnl">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -203,7 +203,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="opciones_RC_Lbl">
+                <Component class="javax.swing.JLabel" name="opcionesRegLbl">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="0"/>
@@ -211,21 +211,21 @@
                     <Property name="text" type="java.lang.String" value="Opciones"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="nota_RC_Lbl">
+                <Component class="javax.swing.JLabel" name="notaRegLbl">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="BuscarCurso_Pnl">
+            <Container class="javax.swing.JPanel" name="buscarPnl">
               <Properties>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[352, 400]"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="BuscarCurso_PnlComponentShown"/>
+                <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="buscarPnlComponentShown"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -245,22 +245,22 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="buscar_BC_Btn" min="-2" max="-2" attributes="0"/>
+                                          <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="sede_BC_Lbl" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="nombre_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="sedeLbl" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="nombreBusLbl" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="seleccion_BC_CBx" pref="163" max="32767" attributes="0"/>
-                                                  <Component id="sede_BC_TFd" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="tipoBusCBx" min="-2" pref="163" max="-2" attributes="0"/>
+                                                  <Component id="tipoSedeCBx" min="-2" pref="163" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Component id="opciones_BC_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="nota_BC_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="opcionesBusLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="notaBusLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
                               </Group>
@@ -273,21 +273,21 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="opciones_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="opcionesBusLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="nota_BC_Lbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="notaBusLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nombre_BC_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="seleccion_BC_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreBusLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tipoBusCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sede_BC_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="sede_BC_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sedeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tipoSedeCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buscar_BC_Btn" min="-2" max="-2" attributes="0"/>
+                          <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" pref="348" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
@@ -296,7 +296,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="nombre_BC_Lbl">
+                <Component class="javax.swing.JLabel" name="nombreBusLbl">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -304,19 +304,12 @@
                     <Property name="text" type="java.lang.String" value="Nombre del curso: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="sede_BC_Lbl">
+                <Component class="javax.swing.JLabel" name="sedeLbl">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Sede del curso:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="sede_BC_TFd">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="0"/>
-                    </Property>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane4">
@@ -326,7 +319,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="tablaCursos_BC_Tbl">
+                    <Component class="javax.swing.JTable" name="tablaTbl">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -367,7 +360,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="buscar_BC_Btn">
+                <Component class="javax.swing.JButton" name="buscarBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -375,7 +368,7 @@
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="seleccion_BC_CBx">
+                <Component class="javax.swing.JComboBox" name="tipoBusCBx">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -390,7 +383,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="opciones_BC_Lbl">
+                <Component class="javax.swing.JLabel" name="opcionesBusLbl">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="18" style="0"/>
@@ -398,9 +391,24 @@
                     <Property name="text" type="java.lang.String" value="Opciones"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="nota_BC_Lbl">
+                <Component class="javax.swing.JLabel" name="notaBusLbl">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="tipoSedeCBx">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="4">
+                        <StringItem index="0" value="Item 1"/>
+                        <StringItem index="1" value="Item 2"/>
+                        <StringItem index="2" value="Item 3"/>
+                        <StringItem index="3" value="Item 4"/>
+                      </StringArray>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
