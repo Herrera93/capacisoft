@@ -19,6 +19,9 @@ public class ServiceLocator {
     private static EmpleadoDAO empleadoDAO;
     private static UsuarioDAO usuarioDAO;
     private static AspectoDAO aspectoDAO;
+    private static DepartamentoDAO departamentoDAO;
+    private static SedeDAO sedeDAO;
+    private static ProgramarDAO programarDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
@@ -90,6 +93,35 @@ public class ServiceLocator {
             aspectoDAO = new AspectoDAO();
         }
         return aspectoDAO;
+    }
+    /**
+     * Obtiene el DAO especifico para Departamento, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de departamento
+     */
+    public static DepartamentoDAO getDepartamento(){
+        if(departamentoDAO == null){
+            departamentoDAO = new DepartamentoDAO();
+        }
+        return departamentoDAO;
+    }
+    /**
+     * Obtiene el DAO especifico para Sede, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de Sede
+     */
+    public static SedeDAO getSede(){
+        if(sedeDAO == null){
+            sedeDAO = new SedeDAO();
+        }
+        return sedeDAO;
+    }
+    
+    public static ProgramarDAO getPrograma(){
+        if(programarDAO == null){
+            programarDAO = new ProgramarDAO();
+        }
+        return programarDAO;
     }
     
 }
