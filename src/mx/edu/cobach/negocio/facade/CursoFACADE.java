@@ -13,12 +13,8 @@ import mx.edu.cobach.vista.controlador.BaseControlador;
  *
  * @author fernando
  */
-public class CursoFACADE extends BaseFACADE{
-    
-    public CursoFACADE(){
-        super();
-    }
-    
+public class CursoFACADE{
+
     public List<Object> findTipoCurso(int id) {
         return ServiceLocator.getCurso().findTipoCurso(id);
     }

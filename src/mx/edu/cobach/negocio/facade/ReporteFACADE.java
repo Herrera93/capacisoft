@@ -5,20 +5,23 @@
  */
 package mx.edu.cobach.negocio.facade;
 
-/**
- *
- * @author SALB
- */
 import java.util.List;
 import mx.edu.cobach.persitencia.ServiceLocator;
 
-public class UsuarioFACADE{
+/**
+ *
+ * @author fernando
+ */
+public class ReporteFACADE{
     
-    public List<Object> findByUsuario(String usuario){
-        return ServiceLocator.getUsuario().findByUsuario(usuario);
+    public List<Object> buscarPorNombre(String nombre){
+        return ServiceLocator.getReporte().buscarPorNombre(nombre);
     }
     
-    public List<Object> findByNombre(String nombre){
-        return ServiceLocator.getUsuario().findByNombre(nombre);
+    public List<Object> buscarPorNumero(int numero){
+        return ServiceLocator.getReporte().buscarPorNumero(numero);
     }
+     
+     
+     
 }

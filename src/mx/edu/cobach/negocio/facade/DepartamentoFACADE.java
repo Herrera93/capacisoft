@@ -12,7 +12,7 @@ import mx.edu.cobach.persitencia.ServiceLocator;
  *
  * @author fernando
  */
-public class DepartamentoFACADE extends BaseFACADE{
+public class DepartamentoFACADE{
     public List<Object> find(String nombre) {
         return ServiceLocator.getDepartamento().findByNombre(nombre);
     }

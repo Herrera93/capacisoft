@@ -13,13 +13,9 @@ import mx.edu.cobach.persitencia.ServiceLocator;
  *
  * @author liuts
  */
-public class PuestoFACADE extends PuestoDAO{
-    public PuestoFACADE(){
-        super();
-    }
+public class PuestoFACADE{
     
-    public List<Object> find(String nombre, Class clazz) {
-        ServiceLocator.getPuesto().setEntity(clazz);
+    public List<Object> find(String nombre) {
         return ServiceLocator.getPuesto().find(nombre);
     }
 

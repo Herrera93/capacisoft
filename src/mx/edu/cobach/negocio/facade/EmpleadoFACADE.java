@@ -13,10 +13,7 @@ import mx.edu.cobach.persitencia.ServiceLocator;
  *
  * @author Alex
  */
-public class EmpleadoFACADE extends BaseFACADE {
-    
-    public EmpleadoFACADE(){
-    }
+public class EmpleadoFACADE{
     
     public List<Object> findByNombre(String nombre){
         return ServiceLocator.getEmpleado().findByNombre(nombre);

@@ -12,9 +12,7 @@ package mx.edu.cobach.negocio.facade;
 import java.util.List;
 import mx.edu.cobach.persitencia.ServiceLocator;
 
-public class SedeFACADE extends BaseFACADE{
-    public SedeFACADE(){
-    }
+public class SedeFACADE{
     public List<Object> findByNombre(String nombre){
         return ServiceLocator.getSede().findByNombre(nombre);
     }
