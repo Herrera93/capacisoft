@@ -12,9 +12,15 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
  *
  * @author fernando
  */
-public class CursoDELEGATE{
+public class ReporteDELEGATE{
 
-    public List<Object> findTipoCurso(int id) {
-        return ServiceLocatorFACADE.getCurso().findTipoCurso(id);
-    }   
+    
+    public List<Object> buscarPorNombre(String nombre){
+        return ServiceLocatorFACADE.getReporteFacade().buscarPorNombre(nombre);
+    }
+    
+    public List<Object> buscarPorNumero(int numero){
+        return ServiceLocatorFACADE.getReporteFacade().buscarPorNumero(numero);
+    }
+    
 }

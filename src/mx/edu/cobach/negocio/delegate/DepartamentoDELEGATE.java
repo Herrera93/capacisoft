@@ -12,7 +12,7 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
  *
  * @author fernando
  */
-public class DepartamentoDELEGATE extends BaseDELEGATE{
+public class DepartamentoDELEGATE{
     
     public List<Object> find(String nombre) {
         return ServiceLocatorFACADE.getDepartamento().find(nombre);

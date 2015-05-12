@@ -13,9 +13,7 @@ import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 
 public class SedeDELEGATE {
-    public SedeDELEGATE(){
-        super();
-    }
+    
     
     public List<Object> findByNombre(String nombre){
         return ServiceLocatorFACADE.getSede().findByNombre(nombre);

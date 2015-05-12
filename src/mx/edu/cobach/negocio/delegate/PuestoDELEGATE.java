@@ -12,10 +12,7 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
  *
  * @author liuts
  */
-public class PuestoDELEGATE extends BaseDELEGATE {
-    public PuestoDELEGATE(){
-        super();
-    }
+public class PuestoDELEGATE {
     
     public List<Object> find(String nombre) {
         return ServiceLocatorFACADE.getPuesto().find(nombre);
