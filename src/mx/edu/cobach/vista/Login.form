@@ -27,19 +27,19 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="Contrasena_IL_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="contrasenaLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="18" max="32767" attributes="0"/>
-                      <Component id="Contrasena_IL_Pfd" min="-2" pref="186" max="-2" attributes="0"/>
+                      <Component id="contrasenaPFd" min="-2" pref="186" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="Salir_OL_Btn" min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="salirBtn" min="-2" pref="83" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="Ingresar_OL_Btn" min="-2" max="-2" attributes="0"/>
+                      <Component id="ingresarBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="Usuario_IL_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="Usuario_IL_Tfd" min="-2" pref="186" max="-2" attributes="0"/>
+                      <Component id="usuarioTfd" min="-2" pref="186" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -51,18 +51,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Usuario_IL_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Usuario_IL_Tfd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="usuarioLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="usuarioTfd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Contrasena_IL_Pfd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Contrasena_IL_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="contrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="contrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Salir_OL_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Ingresar_OL_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="salirBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ingresarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -70,7 +70,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Ingresar_OL_Btn">
+    <Component class="javax.swing.JButton" name="ingresarBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -79,15 +79,15 @@
         <Property name="name" type="java.lang.String" value="ingresar" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Ingresar_OL_BtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="Contrasena_IL_Pfd">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="contrasena" noResource="true"/>
-      </Properties>
+    <Component class="javax.swing.JPasswordField" name="contrasenaPFd">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contrasenaPFdKeyPressed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Contrasena_IL_Lbl">
+    <Component class="javax.swing.JLabel" name="contrasenaLbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -95,7 +95,7 @@
         <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Salir_OL_Btn">
+    <Component class="javax.swing.JButton" name="salirBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -103,8 +103,11 @@
         <Property name="text" type="java.lang.String" value="Salir"/>
         <Property name="name" type="java.lang.String" value="salir" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirBtnActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Usuario_IL_Lbl">
+    <Component class="javax.swing.JLabel" name="usuarioLbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -112,10 +115,10 @@
         <Property name="text" type="java.lang.String" value="Usuario:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Usuario_IL_Tfd">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="usuario" noResource="true"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="usuarioTfd">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="usuarioTfdKeyPressed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

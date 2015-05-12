@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Puesto;
-import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 import mx.edu.cobach.vista.controlador.PuestoControlador;
 
@@ -22,9 +21,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     private DefaultTableModel model;
     private String[] titulosTabla = {"ID","Nombre", "Eliminar"};
-    private BaseControlador control;
     private PuestoControlador puestoControl;
-    private int ipPuesto;
+    private int idPuesto;
 
     /**
      * Creates new form PnlPuestos
@@ -36,7 +34,6 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         puestosTbl.setColumnSelectionAllowed(false);
         puestosTbl.setDragEnabled(false);
         puestosTbl.setModel(model);
-        control = new BaseControlador(this, Puesto.class);
         puestoControl = new PuestoControlador(this);
     }
 
@@ -61,7 +58,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         informacionPnl = new javax.swing.JPanel();
         nombreLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
-        nombrePuesto_IP_TFd = new javax.swing.JTextField();
+        nombreTFd = new javax.swing.JTextField();
         agregarLBl = new javax.swing.JLabel();
         agregarMsjLbl = new javax.swing.JLabel();
 
@@ -204,8 +201,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         });
 
-        nombrePuesto_IP_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombrePuesto_IP_TFd.setEnabled(false);
+        nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreTFd.setEnabled(false);
 
         agregarLBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarLBl.setText("Agregar");
@@ -228,7 +225,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addComponent(nombreLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(405, Short.MAX_VALUE))
         );
         informacionPnlLayout.setVerticalGroup(
@@ -241,7 +238,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 .addGap(22, 22, 22)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
-                    .addComponent(nombrePuesto_IP_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
                 .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -263,74 +260,133 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evento ejecutado al hacer click en el boton,obteniendo el texto de los 
+     * campos validando que estos no esten vacios, manda llamar un metodo 
+     * dependiendo del texto asignado al boton.
+     * @param evt Evento al presionar el boton 
+     */
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        if (nombrePuesto_IP_TFd.getText().equals("")) {
+        if (nombreTFd.getText().equals("")) {
+            //Mensaje de Campos vacíos.
             JOptionPane.showMessageDialog(this, "El campo esta vacio");
         } else {
             if (guardarBtn.getText().equals("Guardar")) {
+                /*Se agregan los valores de los campos a la Lista, 
+                se mandan al metodo control.alta.*/
                 List<String> atr = new ArrayList<String>();
-                atr.add(nombrePuesto_IP_TFd.getText());
-                control.alta(HelperEntidad.getPuesto(atr,"Guardar"));
+                atr.add(nombreTFd.getText());
+                puestoControl.alta(HelperEntidad.getPuesto(atr,"Guardar"));
                 
             } else if (guardarBtn.getText().equals("Modificar")) {
+                /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
+                /*Se agregan los valores de los campos a la Lista,se mandan 
+                al metodo control.modificacion*/
                 List<String> atr = new ArrayList<String>();
-                atr.add(ipPuesto+"");
-                atr.add(nombrePuesto_IP_TFd.getText());
-                control.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
-                
+                atr.add(idPuesto+"");
+                atr.add(nombreTFd.getText());
+                puestoControl.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
             }
-            nombrePuesto_IP_TFd.setText("");
+            nombreTFd.setText("");
             agregarBtn.setEnabled(true);
             nombreBuscarTFd.setEnabled(false);
-            nombrePuesto_IP_TFd.setEnabled(false);
+            nombreTFd.setEnabled(false);
             guardarBtn.setEnabled(false);
-            model.getDataVector().removeAllElements();
-            model.fireTableDataChanged();
+            puestoControl.buscarTodos();
         }
     }//GEN-LAST:event_guardarBtnActionPerformed
 
+    /**
+     * Evento ejecutado al seleccionar el boton, Obteniendo un tipo de busqueda
+     * de un combobox, mandando llamar el metodo buscarTipoCurso o buscarTodos.
+     * @param evt Evento al presionar el boton
+     */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(nombreBuscarTFd.isEnabled()==false){
-            nombreBuscarTFd.setEnabled(true);
-        } else if (nombreBuscarTFd.getText().equals("")) {
-            control.buscarTodos();
-        } else {
-            puestoControl.buscar(nombreBuscarTFd.getText());
+        nombreTFd.setEnabled(false);
+        guardarBtn.setEnabled(false);
+        //Se valida que no exista información en los campos antes de realizar la busqueda.
+        if(nombreTFd.getText().isEmpty()){
+            //Se verifica que el campo este activo para agregar datos
+            if(nombreBuscarTFd.isEnabled()==false){ 
+                nombreBuscarTFd.setEnabled(true);
+            //Se verifica que el campo este vacio, de ser así se realiza una 
+            //busqueda general.
+            } else if (nombreBuscarTFd.getText().equals("")) {
+                puestoControl.buscarTodos();
+            } else {
+                //Se verifico el campo y se encontraron caracteres se obtienen
+                // para mandarse por un metodo de busqueda especifica.
+                puestoControl.buscar(nombreBuscarTFd.getText());
+            }
+        }else{
+            //Se manda el mensaje de que existe informacion en los campos
+            int op = JOptionPane.showConfirmDialog(this, "Tienes Informacion en "
+                    + "los campos deseas continuar?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.
+                            WARNING_MESSAGE);
+            if(op == 0){
+                nombreTFd.setText("");
+                if(nombreBuscarTFd.isEnabled()==false){ 
+                nombreBuscarTFd.setEnabled(true);
+                } else if (nombreBuscarTFd.getText().equals("")) {
+                    puestoControl.buscarTodos();
+                } else {
+                    puestoControl.buscar(nombreBuscarTFd.getText());
+                }
+            }
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
+    /**
+     * Evento ejecutado al presionar el botón, habilita y limpia los campos para 
+     * realizar un nuevo registro, modifica el texto contenido en los labels.
+     * @param evt Evento al presionar el botón
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        nombrePuesto_IP_TFd.setEnabled(true);
+        nombreTFd.setEnabled(true);
         guardarBtn.setEnabled(true);
-        nombrePuesto_IP_TFd.setText("");
+        nombreTFd.setText("");
         agregarLBl.setText("Agregar");
         guardarBtn.setText("Guardar");
         agregarBtn.setEnabled(false);
     }//GEN-LAST:event_agregarBtnActionPerformed
-
-    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puestosTblMouseClicked
-        
+    
+    /**
+     * Evento ejecutado al hace click en la tabla, se calcula en que columna y 
+     * renglon se llevo a cabo el click, en caso de ser en la columna eliminar
+     * se presentara la opcion de eliminar el registro correspondiente al
+     * renglon.
+     * @param evt Evento al hacer click
+     */
+    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {                                      
+        //Obtenelos el renglon y columna donde se hizo click
         int row = puestosTbl.rowAtPoint(evt.getPoint());
         int col = puestosTbl.columnAtPoint(evt.getPoint());
         if(col == 0){
+            //Se obtiene el id de la columna no visible para realizar una 
+            //busqueda especifica.
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
             puestoControl.buscarMod(id);
+            //Manda un mensaje de Confirmación sobre la eliminacion
         }
         else if(col == 1) {
             int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
                     "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if(op == 0){
+                //Obtenemos ID de la columna escondida
                 int id = Integer.parseInt((String)model.getValueAt(row, 0));
-                control.baja(id);
-                control.buscarTodos();model.getDataVector().removeAllElements();
+                puestoControl.baja(id);
+                puestoControl.buscarTodos();model.getDataVector().removeAllElements();
                 nombreBuscarTFd.setEnabled(false);
-                nombrePuesto_IP_TFd.setEnabled(false);
-                nombrePuesto_IP_TFd.setText("");
+                nombreTFd.setEnabled(false);
+                nombreTFd.setText("");
                 guardarBtn.setEnabled(false);
+            }else{
+                model.setValueAt(false, row, 2);
             }
         }
         
-    }//GEN-LAST:event_puestosTblMouseClicked
+    }                                       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
@@ -342,7 +398,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel nombreBuscarLbl;
     private javax.swing.JTextField nombreBuscarTFd;
     private javax.swing.JLabel nombreLbl;
-    private javax.swing.JTextField nombrePuesto_IP_TFd;
+    private javax.swing.JTextField nombreTFd;
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
@@ -350,37 +406,56 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JScrollPane tablaSPn;
     // End of variables declaration//GEN-END:variables
     
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de 
+     * registro exitoso.
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
         public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
+        
+    /**
+     * Metodo que recibe una matriz, donde se obtendran sus valores para 
+     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se 
+     * le dara se redefinira el ancho de la columna 0.
+     * @param info Matriz String para vaciar en tabla
+     */
     @Override
         public void setTabla(String[][] info) {
         puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
+        //Esconder columna ID
         TableColumn tc = puestosTbl.getColumnModel().getColumn(2);
         tc.setCellEditor(puestosTbl.getDefaultEditor(Boolean.class));
         tc.setCellRenderer (puestosTbl.getDefaultRenderer(Boolean.class));
         tc = puestosTbl.getColumnModel().getColumn(0);
         puestosTbl.getColumnModel().removeColumn(tc);
     }
+        
+    /**
+     * Metodo sobrescrito de la clase Comunicador
+     * @param info
+     * @param i 
+     */
     @Override
     public void setLista(List info, int i) {
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la 
+     * los resultados de una busqueda especifica y vaciarlo en los campos y 
+     * checkbox
+     * @param info Lista de Objeto con información de búsqueda.
+     */
     @Override
-    public void setInfo(List info) {        
-        nombrePuesto_IP_TFd.setText(info.get(0).toString());
-        ipPuesto = Integer.parseInt(info.get(1).toString());
-        nombrePuesto_IP_TFd.setEnabled(true);
-        agregarBtn.setEnabled(true);
-        agregarBtn.setText("Modificar");
-        agregarLBl.setText("Modificar");
+    public void setInfo(List info) {
+        nombreTFd.setText(info.get(0).toString());
+        idPuesto = Integer.parseInt(info.get(1).toString());
+        nombreTFd.setEnabled(true);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Modificar");
         agregarLBl.setText("Modificar");
     }
-
-
 }

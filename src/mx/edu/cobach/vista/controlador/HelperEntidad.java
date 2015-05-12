@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -19,6 +19,8 @@ import mx.edu.cobach.persistencia.entidades.TipoCurso;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.persistencia.entidades.Zona;
 import mx.edu.cobach.persistencia.entidades.Enfoque;
+import mx.edu.cobach.persistencia.entidades.Municipio;
+import mx.edu.cobach.persistencia.entidades.Sede;
 import org.hibernate.Hibernate;
 
 /**
@@ -26,10 +28,18 @@ import org.hibernate.Hibernate;
  */
 public class HelperEntidad {
     
+    //Obtencion de entidades
+    
     public static Departamento getDepartamento(List<Object> atributos){
         Enfoque enfoque = new Enfoque();
         enfoque.setId((Integer)atributos.get(0));
-        return new Departamento(enfoque, (String)atributos.get(1));
+        Departamento depto = new Departamento();
+        depto.setEnfoque(enfoque);
+        depto.setNombre((String)atributos.get(1));
+        if(atributos.size()>2){
+            depto.setId((Integer) atributos.get(2));
+        }
+        return depto;
     }
     
     public static Plantel getPlantel(List<Object> atributos){
@@ -89,6 +99,22 @@ public class HelperEntidad {
         return u;
     }
     
+    public static Sede getSede(List<String> atributos){
+        Sede s= new Sede();
+        Municipio m =new Municipio();  
+        s.setNombre(atributos.get(0));
+        m.setId(Integer.parseInt(atributos.get(1)));
+        s.setMunicipio(m);
+        s.setColonia(atributos.get(2));
+        s.setCalle(atributos.get(3));
+        s.setNumeroDireccion(atributos.get(4));
+        s.setCapacidad(Integer.parseInt(atributos.get(5)));
+        
+        if(atributos.size() >6)
+            s.setId(Integer.parseInt(atributos.get(6)));
+        return s;
+    }
+    
     public static Object getCurso(List<Object> atributos){
         TipoCurso tc = new TipoCurso();
         tc.setId((Integer) atributos.get(0));
@@ -101,10 +127,9 @@ public class HelperEntidad {
         }
         return  c;
     }
-    
+
     //Descomposicion de un solo objeto
-    
-    
+        
     public static List<Object> descomponerObjeto(Object obj){
         if(obj instanceof Puesto){
             return descomponerPuesto((Puesto) obj);
@@ -114,6 +139,10 @@ public class HelperEntidad {
             return descomponerEmpleado((Empleado) obj);
         }else if(obj instanceof Usuario){
               return descomponerUsuario((Usuario)obj);
+        }else if(obj instanceof Departamento){
+              return descomponerDepartamento((Departamento)obj);
+        }else if(obj instanceof Sede){
+              return descomponerSede((Sede)obj);
         }else{
             return null;
         }
@@ -133,6 +162,14 @@ public class HelperEntidad {
         return null;
     }
     
+    private static List<Object> descomponerDepartamento
+        (Departamento departamento){
+            List<Object> info = new ArrayList<>();
+            info.add(departamento.getId());
+            info.add(departamento.getNombre());
+            info.add(departamento.getEnfoque().toString());
+            return info;
+        }
     private static List<Object> descomponerPuesto(Puesto puesto){
         List<Object> info = new ArrayList<>();
         info.add(puesto.getNombre());
@@ -166,7 +203,7 @@ public class HelperEntidad {
     }
     
     private static List<Object> descomponerUsuario(Usuario usuario){
-        List<Object> info = new ArrayList<>();        
+        List<Object> info = new ArrayList<>();
         TipoCuenta t;
         info.add(usuario.getPrimerNombre());
         info.add(usuario.getSegundoNombre());
@@ -207,6 +244,18 @@ public class HelperEntidad {
                     us.add((Usuario) objetos.get(i));
                 }
                 return descomponerUsuarios(us);
+            }else if(objetos.get(0) instanceof Departamento){
+                List<Departamento> dp = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                dp.add((Departamento) objetos.get(i));
+                }   
+                return descomponerDepartamentos(dp);
+            }else if(objetos.get(0) instanceof Sede){
+                List<Sede> se = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    se.add((Sede) objetos.get(i));
+                }
+                return descomponerSedes(se);
             }else if(objetos.get(0) instanceof Aspecto){
                 List<Aspecto> aspectos = new ArrayList();
                 for(int i = 0; i < objetos.size(); i++){
@@ -216,6 +265,17 @@ public class HelperEntidad {
             }
         }
         return null;
+    }
+    
+    private static String[][] descomponerDepartamentos(List<Departamento> dp){
+        String[][] info = new String[dp.size()][3];
+        for(int i = 0; i < dp.size(); i++){
+            Departamento d = dp.get(i);
+            info[i][0] = d.getId() + "";
+            info[i][1] = d.getNombre();
+            info[i][2] = d.getEnfoque().toString();
+        }
+        return info;
     }
     
     private static String[][] descomponerPuestos(List<Puesto> ps){
@@ -268,6 +328,30 @@ public class HelperEntidad {
             info[i][2] += " " + u.getApellidoPaterno() + " " + u.getApellidoMaterno();
         }
         return info;
+    }
+    
+     private static List<Object> descomponerSede(Sede sede){
+        List<Object> info = new ArrayList<>();        
+        Municipio m;
+        info.add(sede.getNombre());
+        m=sede.getMunicipio();
+        info.add(m.getNombre());
+        info.add(sede.getColonia());
+        info.add(sede.getCalle());
+        info.add(sede.getNumeroDireccion());
+        info.add(sede.getCapacidad());
+        return info;
+    }
+    
+    private static String[][] descomponerSedes(List<Sede> se){
+        String[][] info = new String[se.size()][2];
+        for(int i = 0; i < se.size(); i++){
+            Sede s = se.get(i);
+            info[i][0] = String.valueOf(s.getId());
+            info[i][1] = s.getNombre();
+        }
+        return info;
+        
     }
     
     private static String[][] descomponerLogins(List<Usuario> us){

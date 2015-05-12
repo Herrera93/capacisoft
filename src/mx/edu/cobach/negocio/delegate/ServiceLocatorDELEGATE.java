@@ -19,6 +19,8 @@ public class ServiceLocatorDELEGATE {
     private static EmpleadoDELEGATE empleadoDelegate;
     private static UsuarioDELEGATE usuarioDelegate;
     private static AspectoDELEGATE aspectoDelegate;
+    private static DepartamentoDELEGATE departamentoDelegate;
+    private static SedeDELEGATE sedeDelegate;
     
     /**
      * Obtiene el DELEGATE generico, si este no ha sido inicilizado se instanciara.
@@ -43,6 +45,13 @@ public class ServiceLocatorDELEGATE {
             usuarioDelegate = new UsuarioDELEGATE();
         }
         return usuarioDelegate;
+    }
+    
+    public static SedeDELEGATE getSedeDelegate(){
+        if(sedeDelegate == null){
+            sedeDelegate = new SedeDELEGATE();
+        }
+        return sedeDelegate;
     }
     
     /**
@@ -96,4 +105,11 @@ public class ServiceLocatorDELEGATE {
         }
         return aspectoDelegate;
     } 
+    
+    public static DepartamentoDELEGATE getDepartamento(){
+        if(departamentoDelegate == null){
+            departamentoDelegate = new DepartamentoDELEGATE();
+        }
+        return departamentoDelegate;
+    }
 }

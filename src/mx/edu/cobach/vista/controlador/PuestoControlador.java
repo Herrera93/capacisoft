@@ -27,7 +27,7 @@ public class PuestoControlador extends BaseControlador{
      * @param nombre Nombre del puesto a buscar
     */
     public void buscar(String nombre) {
-        List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre, clazz);
+        List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
     

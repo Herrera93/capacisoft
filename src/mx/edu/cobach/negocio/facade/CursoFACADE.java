@@ -12,13 +12,13 @@ import mx.edu.cobach.persistencia.ServiceLocator;
  *
  * @author fernando
  */
-public class CursoFACADE {
+public class CursoFACADE extends BaseFACADE{
     
     public CursoFACADE(){
+        super();
     }
     
-    public List<Object> findTipoCurso(int id, Class clazz) {
-        ServiceLocator.getCurso().setEntity(clazz);
+    public List<Object> findTipoCurso(int id) {
         return ServiceLocator.getCurso().findTipoCurso(id);
     }
 }
