@@ -21,6 +21,7 @@ public class ServiceLocatorDELEGATE {
     private static AspectoDELEGATE aspectoDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
+    private static ProgramarDELEGATE programarDelegate;
     
     /**
      * Obtiene el DELEGATE generico, si este no ha sido inicilizado se instanciara.
@@ -112,4 +113,17 @@ public class ServiceLocatorDELEGATE {
         }
         return departamentoDelegate;
     }
+    /**
+     * Obtiene el DELEGATE especifico de la entidad ImplementacionCurso, si este
+     * no ha sido inicializado se instanciara. Este metodo utiliza el patron de
+     * diseno Singleton.
+     * @return Regresa el DELEGATE de Programar
+     */
+    public static ProgramarDELEGATE getPrograma(){
+        if(programarDelegate == null){
+            programarDelegate = new ProgramarDELEGATE();
+        }
+        return programarDelegate;
+    }
+    
 }
