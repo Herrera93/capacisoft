@@ -21,6 +21,7 @@ public class ServiceLocatorFACADE {
     private static AspectoFACADE aspectoFacade;
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
+    private static ProgramarFACADE programaFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -111,6 +112,18 @@ public class ServiceLocatorFACADE {
             departamentoFacade = new DepartamentoFACADE();
         }
         return departamentoFacade;
+    }
+    /**
+     * Obtiene el FACADE especifico de la entidad ImplementacionCurso, 
+     * si este no ha sido inicializado se instanciara. 
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el FACADE de Implementacion
+     */
+    public static ProgramarFACADE getPrograma(){
+        if(programaFacade == null){
+            programaFacade = new ProgramarFACADE();
+        }
+        return programaFacade;
     }
     
 }
