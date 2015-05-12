@@ -1,20 +1,33 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.edu.cobach.vista;
 
-/**
- *
- * @author liuts
- */
-public class PnlSede extends javax.swing.JPanel {
+import java.util.List;
 
-    /**
-     * Creates new form PnlSede
-     */
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Sede;
+import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.SedeControlador;
+import mx.edu.cobach.vista.controlador.UsuarioControlador;
+
+public class PnlSede extends javax.swing.JPanel implements Comunicador{
+    
+    private DefaultTableModel model;
+    private String[] titulosTabla;
+    private SedeControlador control;
+    private int idSedeActual;
+    
     public PnlSede() {
         initComponents();
+        titulosTabla= new String[]{"Numero","Nombre","Eliminar"};
+        model = new DefaultTableModel(titulosTabla, 3);
+        sedesTbl.setModel(model);
+        sedesTbl.setColumnSelectionAllowed(false);
+        sedesTbl.setDragEnabled(false);
+        control = new SedeControlador(this,Sede.class);
+        nombreBuscarTFd.setEnabled(true);
     }
 
     /**
@@ -26,42 +39,42 @@ public class PnlSede extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        opcionSede_Pnl = new javax.swing.JPanel();
+        opcionPnl = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaSedes_OS_Tbl = new javax.swing.JTable();
-        nombreSede_OS_Lbl = new javax.swing.JLabel();
-        nombreSede_OS_TFd = new javax.swing.JTextField();
-        agregar_OS_Btn = new javax.swing.JButton();
-        buscar_OS_Btn = new javax.swing.JButton();
-        opciones_OS_Lbl = new javax.swing.JLabel();
-        nota_OS_Lbl = new javax.swing.JLabel();
-        informacionSede_Pnl = new javax.swing.JPanel();
-        nombreSede_IS_Lbl = new javax.swing.JLabel();
-        colonia_IS_Lbl = new javax.swing.JLabel();
-        municipio_IS_Lbl = new javax.swing.JLabel();
-        guardar_IS_Btn = new javax.swing.JButton();
-        nombreSede_IS_TFd = new javax.swing.JTextField();
-        colonia_IS_TFd = new javax.swing.JTextField();
-        seleccion_IS_CBx = new javax.swing.JComboBox();
-        cantidad_IS_Lbl = new javax.swing.JLabel();
-        cantidad_IS_TFd = new javax.swing.JTextField();
-        calle_IS_Lbl = new javax.swing.JLabel();
-        numero_IS_Lbl = new javax.swing.JLabel();
-        calle_IS_TFd = new javax.swing.JTextField();
-        numero_IS_TFd = new javax.swing.JTextField();
-        agregar_IS_LBl = new javax.swing.JLabel();
-        nota_IS_Lbl = new javax.swing.JLabel();
+        sedesTbl = new javax.swing.JTable();
+        nombreBuscarLbl = new javax.swing.JLabel();
+        nombreBuscarTFd = new javax.swing.JTextField();
+        agregarBtn = new javax.swing.JButton();
+        buscarBtn = new javax.swing.JButton();
+        opcionesLbl = new javax.swing.JLabel();
+        opcionMsjLbl = new javax.swing.JLabel();
+        informacionPnl = new javax.swing.JPanel();
+        nombreLbl = new javax.swing.JLabel();
+        coloniaLbl = new javax.swing.JLabel();
+        municipioLbl = new javax.swing.JLabel();
+        guardarBtn = new javax.swing.JButton();
+        nombreTFd = new javax.swing.JTextField();
+        coloniaTFd = new javax.swing.JTextField();
+        seleccionCBx = new javax.swing.JComboBox();
+        cantidadLbl = new javax.swing.JLabel();
+        capacidadTFd = new javax.swing.JTextField();
+        calleLbl = new javax.swing.JLabel();
+        numeroLbl = new javax.swing.JLabel();
+        calleTFd = new javax.swing.JTextField();
+        numeroTFd = new javax.swing.JTextField();
+        agregarLbl = new javax.swing.JLabel();
+        agregarMsjLbl = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1181, 587));
         setMinimumSize(new java.awt.Dimension(1181, 587));
         setPreferredSize(new java.awt.Dimension(1181, 587));
 
-        opcionSede_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        opcionSede_Pnl.setMaximumSize(new java.awt.Dimension(408, 587));
-        opcionSede_Pnl.setMinimumSize(new java.awt.Dimension(408, 587));
-        opcionSede_Pnl.setPreferredSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
-        tablaSedes_OS_Tbl.setModel(new javax.swing.table.DefaultTableModel(
+        sedesTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -80,200 +93,221 @@ public class PnlSede extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tablaSedes_OS_Tbl.setMaximumSize(new java.awt.Dimension(225, 64));
-        tablaSedes_OS_Tbl.setMinimumSize(new java.awt.Dimension(225, 64));
-        jScrollPane1.setViewportView(tablaSedes_OS_Tbl);
-        if (tablaSedes_OS_Tbl.getColumnModel().getColumnCount() > 0) {
-            tablaSedes_OS_Tbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaSedes_OS_Tbl.getColumnModel().getColumn(1).setResizable(false);
-            tablaSedes_OS_Tbl.getColumnModel().getColumn(2).setResizable(false);
+        sedesTbl.setMaximumSize(new java.awt.Dimension(225, 64));
+        sedesTbl.setMinimumSize(new java.awt.Dimension(225, 64));
+        sedesTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sedesTblMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(sedesTbl);
+        if (sedesTbl.getColumnModel().getColumnCount() > 0) {
+            sedesTbl.getColumnModel().getColumn(0).setResizable(false);
+            sedesTbl.getColumnModel().getColumn(1).setResizable(false);
+            sedesTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        nombreSede_OS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreSede_OS_Lbl.setText("Nombre de la sede:");
+        nombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarLbl.setText("Nombre de la sede:");
 
-        nombreSede_OS_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreSede_OS_TFd.setEnabled(false);
+        nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarTFd.setEnabled(false);
 
-        agregar_OS_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        agregar_OS_Btn.setText("Agregar");
+        agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        agregarBtn.setText("Agregar");
+        agregarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBtnActionPerformed(evt);
+            }
+        });
 
-        buscar_OS_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscar_OS_Btn.setText("Buscar");
+        buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
 
-        opciones_OS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        opciones_OS_Lbl.setText("Opciones ");
+        opcionesLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opcionesLbl.setText("Opciones ");
 
-        nota_OS_Lbl.setText("Ingrese el nombre para buscar la información especifica");
+        opcionMsjLbl.setText("Ingrese el nombre para buscar la información especifica");
 
-        javax.swing.GroupLayout opcionSede_PnlLayout = new javax.swing.GroupLayout(opcionSede_Pnl);
-        opcionSede_Pnl.setLayout(opcionSede_PnlLayout);
-        opcionSede_PnlLayout.setHorizontalGroup(
-            opcionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionSede_PnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
+        opcionPnl.setLayout(opcionPnlLayout);
+        opcionPnlLayout.setHorizontalGroup(
+            opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(opcionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionSede_PnlLayout.createSequentialGroup()
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addGroup(opcionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nota_OS_Lbl)
-                            .addGroup(opcionSede_PnlLayout.createSequentialGroup()
-                                .addComponent(nombreSede_OS_Lbl)
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionMsjLbl)
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(nombreBuscarLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombreSede_OS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(opciones_OS_Lbl))
+                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(opcionesLbl))
                         .addContainerGap(112, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionSede_PnlLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionSede_PnlLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(agregar_OS_Btn)
+                .addComponent(agregarBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buscar_OS_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
-        opcionSede_PnlLayout.setVerticalGroup(
-            opcionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionSede_PnlLayout.createSequentialGroup()
+        opcionPnlLayout.setVerticalGroup(
+            opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(opciones_OS_Lbl)
+                .addComponent(opcionesLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_OS_Lbl)
+                .addComponent(opcionMsjLbl)
                 .addGap(13, 13, 13)
-                .addGroup(opcionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreSede_OS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreSede_OS_Lbl))
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreBuscarLbl))
                 .addGap(18, 18, 18)
-                .addGroup(opcionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar_OS_Btn)
-                    .addComponent(buscar_OS_Btn))
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregarBtn)
+                    .addComponent(buscarBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        informacionSede_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        informacionSede_Pnl.setMaximumSize(new java.awt.Dimension(769, 587));
-        informacionSede_Pnl.setMinimumSize(new java.awt.Dimension(769, 587));
-        informacionSede_Pnl.setPreferredSize(new java.awt.Dimension(769, 587));
+        informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionPnl.setMaximumSize(new java.awt.Dimension(769, 587));
+        informacionPnl.setMinimumSize(new java.awt.Dimension(769, 587));
+        informacionPnl.setPreferredSize(new java.awt.Dimension(769, 587));
 
-        nombreSede_IS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreSede_IS_Lbl.setText("Nombre de la sede:");
+        nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreLbl.setText("Nombre de la sede:");
 
-        colonia_IS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        colonia_IS_Lbl.setText("Colonia de la sede:");
+        coloniaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        coloniaLbl.setText("Colonia:");
 
-        municipio_IS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        municipio_IS_Lbl.setText("Municipio:");
+        municipioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        municipioLbl.setText("Municipio:");
 
-        guardar_IS_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        guardar_IS_Btn.setText("Guardar");
+        guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        guardarBtn.setText("Guardar");
+        guardarBtn.setEnabled(false);
+        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBtnActionPerformed(evt);
+            }
+        });
 
-        nombreSede_IS_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreSede_IS_TFd.setEnabled(false);
+        nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreTFd.setEnabled(false);
 
-        colonia_IS_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        colonia_IS_TFd.setEnabled(false);
+        coloniaTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        coloniaTFd.setEnabled(false);
 
-        seleccion_IS_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        seleccion_IS_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mexicali", "Tecate", "Tijuana", "Rosarito", "Ensenada" }));
-        seleccion_IS_CBx.setToolTipText("Seleccioné el municipio de la sede");
-        seleccion_IS_CBx.setEnabled(false);
+        seleccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        seleccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mexicali", "Tecate", "Tijuana", "Rosarito", "Ensenada" }));
+        seleccionCBx.setToolTipText("Seleccioné el municipio de la sede");
+        seleccionCBx.setEnabled(false);
 
-        cantidad_IS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cantidad_IS_Lbl.setText("Cantidad de la sede:");
+        cantidadLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cantidadLbl.setText("Capacidad:");
 
-        cantidad_IS_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cantidad_IS_TFd.setEnabled(false);
+        capacidadTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        capacidadTFd.setEnabled(false);
 
-        calle_IS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        calle_IS_Lbl.setText("Calle de la sede:");
+        calleLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        calleLbl.setText("Calle:");
 
-        numero_IS_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        numero_IS_Lbl.setText("Número de la sede:");
+        numeroLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        numeroLbl.setText("Número de direccion:");
 
-        calle_IS_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        calle_IS_TFd.setEnabled(false);
+        calleTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        calleTFd.setEnabled(false);
 
-        numero_IS_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        numero_IS_TFd.setEnabled(false);
+        numeroTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        numeroTFd.setEnabled(false);
 
-        agregar_IS_LBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregar_IS_LBl.setText("Agregar");
+        agregarLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarLbl.setText("Agregar");
 
-        nota_IS_Lbl.setText("Ingrese la información a almacenar");
+        agregarMsjLbl.setText("Ingrese la información a almacenar");
 
-        javax.swing.GroupLayout informacionSede_PnlLayout = new javax.swing.GroupLayout(informacionSede_Pnl);
-        informacionSede_Pnl.setLayout(informacionSede_PnlLayout);
-        informacionSede_PnlLayout.setHorizontalGroup(
-            informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionSede_PnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
+        informacionPnl.setLayout(informacionPnlLayout);
+        informacionPnlLayout.setHorizontalGroup(
+            informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacionSede_PnlLayout.createSequentialGroup()
-                        .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(informacionSede_PnlLayout.createSequentialGroup()
-                                .addComponent(nombreSede_IS_Lbl)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(informacionPnlLayout.createSequentialGroup()
+                                .addComponent(nombreLbl)
                                 .addGap(18, 18, 18)
-                                .addComponent(nombreSede_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(informacionSede_PnlLayout.createSequentialGroup()
-                                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(colonia_IS_Lbl)
-                                    .addComponent(calle_IS_Lbl))
-                                .addGap(23, 23, 23)
-                                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(calle_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(colonia_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(informacionPnlLayout.createSequentialGroup()
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(coloniaLbl)
+                                    .addComponent(calleLbl))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(coloniaTFd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(calleTFd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(105, 105, 105)
-                        .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(informacionSede_PnlLayout.createSequentialGroup()
-                                .addComponent(municipio_IS_Lbl)
+                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informacionPnlLayout.createSequentialGroup()
+                                .addComponent(municipioLbl)
                                 .addGap(64, 64, 64)
-                                .addComponent(seleccion_IS_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(informacionSede_PnlLayout.createSequentialGroup()
-                                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(numero_IS_Lbl)
-                                    .addComponent(cantidad_IS_Lbl))
+                                .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(informacionPnlLayout.createSequentialGroup()
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(numeroLbl)
+                                    .addComponent(cantidadLbl))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cantidad_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(numero_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(nota_IS_Lbl)
-                    .addComponent(agregar_IS_LBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(76, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionSede_PnlLayout.createSequentialGroup()
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(capacidadTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(agregarMsjLbl)
+                    .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardar_IS_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
-        informacionSede_PnlLayout.setVerticalGroup(
-            informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionSede_PnlLayout.createSequentialGroup()
+        informacionPnlLayout.setVerticalGroup(
+            informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(agregar_IS_LBl)
+                .addComponent(agregarLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_IS_Lbl)
+                .addComponent(agregarMsjLbl)
                 .addGap(38, 38, 38)
-                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreSede_IS_Lbl)
-                    .addComponent(nombreSede_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(municipio_IS_Lbl)
-                    .addComponent(seleccion_IS_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreLbl)
+                    .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(municipioLbl)
+                    .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77)
-                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(colonia_IS_Lbl)
-                    .addComponent(colonia_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantidad_IS_Lbl)
-                    .addComponent(cantidad_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(coloniaLbl)
+                    .addComponent(coloniaTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidadLbl)
+                    .addComponent(capacidadTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
-                .addGroup(informacionSede_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numero_IS_Lbl)
-                    .addComponent(numero_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calle_IS_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calle_IS_Lbl))
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroLbl)
+                    .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calleTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calleLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addComponent(guardar_IS_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -282,41 +316,164 @@ public class PnlSede extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionSede_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionSede_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(informacionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionSede_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(informacionSede_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(informacionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+    /**
+     * 
+     * @param evt 
+     */
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        int renglon = sedesTbl.getSelectedRow();
+        if(renglon == -1) {
+            guardarBtn.setText("Guardar");
+        }else{
+            int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
+            idSedeActual=id;
+            control.buscar(id); 
+            guardarBtn.setText("Modificar");
+        }
+        setEnabledPanelInformacion(true);
+    }//GEN-LAST:event_agregarBtnActionPerformed
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        if(nombreBuscarTFd.getText().equals("")==false)
+            control.buscarPorNombre(nombreBuscarTFd.getText());
+        else
+            control.buscarTodos();
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
+        if(nombreTFd.getText().equals("") ||
+           coloniaTFd.getText().equals("") ||
+           calleTFd.getText().equals("") ||
+           capacidadTFd.getText().equals("") ||
+           numeroTFd.getText().equals("") ) 
+            setMensaje("Debe ingresar los datos solicitados");
+        else{
+            List<String> atr = new ArrayList<String>();
+            atr.add(nombreTFd.getText());
+            switch(String.valueOf(seleccionCBx.getSelectedItem())){
+                case "Mexicali": atr.add("1"); break;
+                case "Tecate": atr.add("2"); break;
+                case "Tijuana": atr.add("3"); break;
+                case "Rosarito": atr.add("4"); break;
+                case "Ensenada": atr.add("5"); break;
+            }
+            atr.add(coloniaTFd.getText());
+            atr.add(calleTFd.getText());
+            atr.add(numeroTFd.getText());
+            atr.add(capacidadTFd.getText());
+            
+            if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
+                    control.alta(HelperEntidad.getSede(atr));  
+                }else{
+                    atr.add(String.valueOf(idSedeActual));
+                    control.modificacion(HelperEntidad.getSede(atr));
+                }
+            nombreTFd.setText("");
+           coloniaTFd.setText("");
+           calleTFd.setText("");
+           capacidadTFd.setText("");
+           numeroTFd.setText("");
+        }           
+    }//GEN-LAST:event_guardarBtnActionPerformed
+
+    private void sedesTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sedesTblMouseClicked
+        int row = sedesTbl.rowAtPoint(evt.getPoint());
+        int col = sedesTbl.columnAtPoint(evt.getPoint());
+        if(col == 2) {
+            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(op == 0){
+                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                control.baja(id);
+                control.buscarPorNombre(nombreBuscarTFd.getText());
+            }
+        }
+    }//GEN-LAST:event_sedesTblMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel agregar_IS_LBl;
-    private javax.swing.JButton agregar_OS_Btn;
-    private javax.swing.JButton buscar_OS_Btn;
-    private javax.swing.JLabel calle_IS_Lbl;
-    private javax.swing.JTextField calle_IS_TFd;
-    private javax.swing.JLabel cantidad_IS_Lbl;
-    private javax.swing.JTextField cantidad_IS_TFd;
-    private javax.swing.JLabel colonia_IS_Lbl;
-    private javax.swing.JTextField colonia_IS_TFd;
-    private javax.swing.JButton guardar_IS_Btn;
-    private javax.swing.JPanel informacionSede_Pnl;
+    private javax.swing.JButton agregarBtn;
+    private javax.swing.JLabel agregarLbl;
+    private javax.swing.JLabel agregarMsjLbl;
+    private javax.swing.JButton buscarBtn;
+    private javax.swing.JLabel calleLbl;
+    private javax.swing.JTextField calleTFd;
+    private javax.swing.JLabel cantidadLbl;
+    private javax.swing.JTextField capacidadTFd;
+    private javax.swing.JLabel coloniaLbl;
+    private javax.swing.JTextField coloniaTFd;
+    private javax.swing.JButton guardarBtn;
+    private javax.swing.JPanel informacionPnl;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel municipio_IS_Lbl;
-    private javax.swing.JLabel nombreSede_IS_Lbl;
-    private javax.swing.JTextField nombreSede_IS_TFd;
-    private javax.swing.JLabel nombreSede_OS_Lbl;
-    private javax.swing.JTextField nombreSede_OS_TFd;
-    private javax.swing.JLabel nota_IS_Lbl;
-    private javax.swing.JLabel nota_OS_Lbl;
-    private javax.swing.JLabel numero_IS_Lbl;
-    private javax.swing.JTextField numero_IS_TFd;
-    private javax.swing.JPanel opcionSede_Pnl;
-    private javax.swing.JLabel opciones_OS_Lbl;
-    private javax.swing.JComboBox seleccion_IS_CBx;
-    private javax.swing.JTable tablaSedes_OS_Tbl;
+    private javax.swing.JLabel municipioLbl;
+    private javax.swing.JLabel nombreBuscarLbl;
+    private javax.swing.JTextField nombreBuscarTFd;
+    private javax.swing.JLabel nombreLbl;
+    private javax.swing.JTextField nombreTFd;
+    private javax.swing.JLabel numeroLbl;
+    private javax.swing.JTextField numeroTFd;
+    private javax.swing.JLabel opcionMsjLbl;
+    private javax.swing.JPanel opcionPnl;
+    private javax.swing.JLabel opcionesLbl;
+    private javax.swing.JTable sedesTbl;
+    private javax.swing.JComboBox seleccionCBx;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {}
+
+    @Override
+    public void setTabla(String[][] info) {
+        if(info==null)
+            setMensaje("No se encontraron coincidencias");
+        else{
+            if( info.length > 0){
+            model.setDataVector(info, titulosTabla);
+            TableColumn tc = sedesTbl.getColumnModel().getColumn(2);
+            tc.setCellEditor(sedesTbl.getDefaultEditor(Boolean.class));
+            tc.setCellRenderer(sedesTbl.getDefaultRenderer(Boolean.class));
+            tc = sedesTbl.getColumnModel().getColumn(0);
+            }else
+                setMensaje("No se encontraron coincidencias");
+        }
+    }
+
+    @Override
+    public void setInfo(List info) {
+        if(info==null)
+            setMensaje("No se encontraron coincidencias");
+        else{
+            nombreTFd.setText(info.get(0).toString());
+            seleccionCBx.setSelectedItem(info.get(1).toString());
+            coloniaTFd.setText(info.get(2).toString());
+            calleTFd.setText(info.get(3).toString());
+            numeroTFd.setText(info.get(4).toString());
+            capacidadTFd.setText(info.get(5).toString());
+        }
+    }
+
+    
+
+    @Override
+    public void setLista(List info, int i) {}
+
+    private void setEnabledPanelInformacion(boolean b) {
+        nombreTFd.setEnabled(b);
+        seleccionCBx.setEnabled(b);
+        coloniaTFd.setEnabled(b);
+        capacidadTFd.setEnabled(b);
+        calleTFd.setEnabled(b);
+        numeroTFd.setEnabled(b);
+        guardarBtn.setEnabled(b);
+    }
 }

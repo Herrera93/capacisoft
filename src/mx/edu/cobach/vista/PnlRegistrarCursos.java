@@ -22,16 +22,16 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private CursoControlador control;
     private DefaultTableModel model;
     private String[] titulosTabla = {"ID","Nombre","Tipo","Eliminar"};
-    int id;
+    private int id;
 
     /**
-     * Creates new form PnlRegistrarCursos
+     * Se crea la configuracion inicial del Panel
      */
     public PnlRegistrarCursos() {
         initComponents();
         control = new CursoControlador(this, Curso.class);
         model = new DefaultTableModel(titulosTabla, 4);
-        tablaTbl.setModel(model);
+        cursosTbl.setModel(model);
     }
 
     /**
@@ -45,14 +45,14 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         opcionPnl = new javax.swing.JPanel();
         tipoBuscarLbl = new javax.swing.JLabel();
-        tablaSPn = new javax.swing.JScrollPane();
-        tablaTbl = new javax.swing.JTable();
+        cursoSPn = new javax.swing.JScrollPane();
+        cursosTbl = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
         tipoBuscarCBx = new javax.swing.JComboBox();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
-        informacionPnl = new javax.swing.JPanel();
+        informacionCurso_Pnl = new javax.swing.JPanel();
         tipoLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
         descripcionSPn = new javax.swing.JScrollPane();
@@ -69,7 +69,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         tipoBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoBuscarLbl.setText("Tipo de curso:");
 
-        tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
+        cursosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -95,22 +95,22 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 return canEdit [columnIndex];
             }
         });
-        tablaTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tablaTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaTbl.getTableHeader().setReorderingAllowed(false);
-        tablaTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        cursosTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cursosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        cursosTbl.getTableHeader().setReorderingAllowed(false);
+        cursosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaTblMouseClicked(evt);
+                cursosTblMouseClicked(evt);
             }
         });
-        tablaSPn.setViewportView(tablaTbl);
-        if (tablaTbl.getColumnModel().getColumnCount() > 0) {
-            tablaTbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tablaTbl.getColumnModel().getColumn(1).setResizable(false);
-            tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(60);
-            tablaTbl.getColumnModel().getColumn(2).setResizable(false);
-            tablaTbl.getColumnModel().getColumn(2).setPreferredWidth(20);
+        cursoSPn.setViewportView(cursosTbl);
+        if (cursosTbl.getColumnModel().getColumnCount() > 0) {
+            cursosTbl.getColumnModel().getColumn(0).setResizable(false);
+            cursosTbl.getColumnModel().getColumn(0).setPreferredWidth(100);
+            cursosTbl.getColumnModel().getColumn(1).setResizable(false);
+            cursosTbl.getColumnModel().getColumn(1).setPreferredWidth(60);
+            cursosTbl.getColumnModel().getColumn(2).setResizable(false);
+            cursosTbl.getColumnModel().getColumn(2).setPreferredWidth(20);
         }
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -153,7 +153,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                                 .addComponent(tipoBuscarLbl)
                                 .addGap(32, 32, 32)
                                 .addComponent(tipoBuscarCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
@@ -178,11 +178,11 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                     .addComponent(buscarBtn)
                     .addComponent(agregarBtn))
                 .addGap(27, 27, 27)
-                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        informacionCurso_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         tipoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoLbl.setText("Tipo de curso:");
@@ -220,51 +220,53 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
 
         agregarMsjLbl.setText("Ingrese la información a Almacenar");
 
-        javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
-        informacionPnl.setLayout(informacionPnlLayout);
-        informacionPnlLayout.setHorizontalGroup(
-            informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionPnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout informacionCurso_PnlLayout = new javax.swing.GroupLayout(informacionCurso_Pnl);
+        informacionCurso_Pnl.setLayout(informacionCurso_PnlLayout);
+        informacionCurso_PnlLayout.setHorizontalGroup(
+            informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionCurso_PnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+            .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(agregarMsjLbl)
-                        .addComponent(agregarLbl)
-                        .addGroup(informacionPnlLayout.createSequentialGroup()
-                            .addComponent(descripcionLbl)
-                            .addGap(39, 39, 39)
-                            .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(informacionPnlLayout.createSequentialGroup()
-                            .addComponent(nombreLbl)
-                            .addGap(28, 28, 28)
-                            .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(30, 30, 30)
-                            .addComponent(tipoLbl)
-                            .addGap(28, 28, 28)
-                            .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(agregarMsjLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregarLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informacionCurso_PnlLayout.createSequentialGroup()
+                        .addComponent(descripcionLbl)
+                        .addGap(39, 39, 39)
+                        .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informacionCurso_PnlLayout.createSequentialGroup()
+                        .addComponent(nombreLbl)
+                        .addGap(28, 28, 28)
+                        .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tipoLbl)
+                        .addGap(28, 28, 28)
+                        .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
-        informacionPnlLayout.setVerticalGroup(
-            informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionPnlLayout.createSequentialGroup()
+        informacionCurso_PnlLayout.setVerticalGroup(
+            informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacionCurso_PnlLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(agregarLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(agregarMsjLbl)
                 .addGap(85, 85, 85)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
                     .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipoLbl)
                     .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(informacionCurso_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descripcionLbl)
                     .addComponent(descripcionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -274,12 +276,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(informacionCurso_Pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(informacionCurso_Pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -388,10 +390,10 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
      * renglon.
      * @param evt Evento al hacer click
      */
-    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
+    private void cursosTblMouseClicked(java.awt.event.MouseEvent evt) {                                       
         //Obtenelos el renglon y columna donde se hizo click
-        int row = tablaTbl.rowAtPoint(evt.getPoint());
-        int col = tablaTbl.columnAtPoint(evt.getPoint());
+        int row = cursosTbl.rowAtPoint(evt.getPoint());
+        int col = cursosTbl.columnAtPoint(evt.getPoint());
         if(col == 0){
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
@@ -410,7 +412,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
                 model.setValueAt(false, row, 3);
             }
         }
-    }//GEN-LAST:event_tablaTblMouseClicked
+    }                                     
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,18 +420,18 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel agregarLbl;
     private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton buscarBtn;
+    private javax.swing.JScrollPane cursoSPn;
+    private javax.swing.JTable cursosTbl;
     private javax.swing.JLabel descripcionLbl;
     private javax.swing.JScrollPane descripcionSPn;
     private javax.swing.JTextArea descripcionTAa;
     private javax.swing.JButton guardarBtn;
-    private javax.swing.JPanel informacionPnl;
+    private javax.swing.JPanel informacionCurso_Pnl;
     private javax.swing.JLabel nombreLbl;
     private javax.swing.JTextField nombreTFd;
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
-    private javax.swing.JScrollPane tablaSPn;
-    private javax.swing.JTable tablaTbl;
     private javax.swing.JComboBox tipoBuscarCBx;
     private javax.swing.JLabel tipoBuscarLbl;
     private javax.swing.JComboBox tipoCBx;
@@ -456,12 +458,12 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     public void setTabla(String[][] info) {
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
-        TableColumn tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
-        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(170);
-        TableColumn t = tablaTbl.getColumnModel().getColumn(2);
-        t.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        t.setCellRenderer (tablaTbl.getDefaultRenderer(Boolean.class));
+        TableColumn idTbc = cursosTbl.getColumnModel().getColumn(0);
+        cursosTbl.getColumnModel().removeColumn(idTbc);
+        cursosTbl.getColumnModel().getColumn(0).setPreferredWidth(170);
+        TableColumn eliminarTbc = cursosTbl.getColumnModel().getColumn(2);
+        eliminarTbc.setCellEditor(cursosTbl.getDefaultEditor(Boolean.class));
+        eliminarTbc.setCellRenderer (cursosTbl.getDefaultRenderer(Boolean.class));
     }
 
     /**
@@ -498,14 +500,5 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         tipoCBx.setEnabled(true);
         guardarBtn.setText("Modificar");
         guardarBtn.setEnabled(true);
-    }
-
-    /**
-     * Metodo sobrescrito de la clase Comunicador
-     * @param login 
-     */
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

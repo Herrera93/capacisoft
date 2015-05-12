@@ -5,31 +5,21 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-/**
- *
- * @author SALB
- */
-
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
 
-
-public class UsuarioControlador extends BaseControlador{
-    
-    public UsuarioControlador(Comunicador com, Class clazz) {
+/**
+ *
+ * @author SALB
+ */
+public class SedeControlador extends BaseControlador{
+    public SedeControlador(Comunicador com, Class clazz) {
         super(com, clazz);
-    } 
-    
-    public void buscarPorUsuario (String usuario){
-        List<Object> list = ServiceLocatorDELEGATE.getUsuarioDelegate()
-                .findByUsuario(usuario);
-        com.setTabla(HelperEntidad.descomponerLogin(list));
     }
     
     public void buscarPorNombre(String nombre){
-        List<Object> list = ServiceLocatorDELEGATE.getUsuarioDelegate().findByNombre(nombre);
+        List<Object> list = ServiceLocatorDELEGATE.getSedeDelegate().findByNombre(nombre);
        com.setTabla(HelperEntidad.descomponerObjetos(list));
     }
-    
 }

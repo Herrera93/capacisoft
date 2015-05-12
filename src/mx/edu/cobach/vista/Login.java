@@ -21,11 +21,13 @@ public class Login extends javax.swing.JFrame implements Comunicador{
      * Creates new form Login
      */
     private UsuarioControlador control;
+    
     public Login() {
         initComponents();
+        setTitle("CapaciSoft - Login");
         setResizable(false);
         setLocationRelativeTo(null);
-        control = new UsuarioControlador(this,Usuario.class);
+        control = new UsuarioControlador(this, Usuario.class);
         
         ImageIcon imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
@@ -42,35 +44,46 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Ingresar_OL_Btn = new javax.swing.JButton();
-        Contrasena_IL_Pfd = new javax.swing.JPasswordField();
-        Contrasena_IL_Lbl = new javax.swing.JLabel();
-        Salir_OL_Btn = new javax.swing.JButton();
-        Usuario_IL_Lbl = new javax.swing.JLabel();
-        Usuario_IL_Tfd = new javax.swing.JTextField();
+        ingresarBtn = new javax.swing.JButton();
+        contrasenaPFd = new javax.swing.JPasswordField();
+        contrasenaLbl = new javax.swing.JLabel();
+        salirBtn = new javax.swing.JButton();
+        usuarioLbl = new javax.swing.JLabel();
+        usuarioTFd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Ingresar_OL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Ingresar_OL_Btn.setText("Ingresar");
-        Ingresar_OL_Btn.addActionListener(new java.awt.event.ActionListener() {
+        ingresarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ingresarBtn.setText("Ingresar");
+        ingresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ingresar_OL_BtnActionPerformed(evt);
+                ingresarBtnActionPerformed(evt);
             }
         });
 
-        Contrasena_IL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Contrasena_IL_Lbl.setText("Contraseña:");
+        contrasenaPFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                contrasenaPFdKeyPressed(evt);
+            }
+        });
 
-        Salir_OL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Salir_OL_Btn.setText("Salir");
+        contrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        contrasenaLbl.setText("Contraseña:");
 
-        Usuario_IL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Usuario_IL_Lbl.setText("Usuario:");
-
-        Usuario_IL_Tfd.addActionListener(new java.awt.event.ActionListener() {
+        salirBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        salirBtn.setText("Salir");
+        salirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Usuario_IL_TfdActionPerformed(evt);
+                salirBtnActionPerformed(evt);
+            }
+        });
+
+        usuarioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usuarioLbl.setText("Usuario:");
+
+        usuarioTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usuarioTFdKeyPressed(evt);
             }
         });
 
@@ -82,17 +95,17 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Contrasena_IL_Lbl)
+                        .addComponent(contrasenaLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(Contrasena_IL_Pfd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Salir_OL_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(salirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Ingresar_OL_Btn))
+                        .addComponent(ingresarBtn))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Usuario_IL_Lbl)
+                        .addComponent(usuarioLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Usuario_IL_Tfd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -100,32 +113,63 @@ public class Login extends javax.swing.JFrame implements Comunicador{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Usuario_IL_Lbl)
-                    .addComponent(Usuario_IL_Tfd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioLbl)
+                    .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Contrasena_IL_Pfd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Contrasena_IL_Lbl))
+                    .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contrasenaLbl))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Salir_OL_Btn)
-                    .addComponent(Ingresar_OL_Btn))
+                    .addComponent(salirBtn)
+                    .addComponent(ingresarBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Ingresar_OL_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ingresar_OL_BtnActionPerformed
-       
-       control.buscarPorNombre(Usuario_IL_Tfd.getText());
+    private void ingresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBtnActionPerformed
+       ingresar();
+    }//GEN-LAST:event_ingresarBtnActionPerformed
+
+    private void salirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirBtnActionPerformed
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_salirBtnActionPerformed
+
+    private void usuarioTFdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTFdKeyPressed
         
-    }//GEN-LAST:event_Ingresar_OL_BtnActionPerformed
+        if(evt.getKeyCode() ==10){
+           if(usuarioTFd.getText().equals("") != true)
+               if(usuarioTFd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
+                   ingresar();
+                else
+                    contrasenaPFd.grabFocus();
+            else
+               setMensaje("No se ha ingresado el usuario");
+                               
+        }
+    }//GEN-LAST:event_usuarioTFdKeyPressed
 
-    private void Usuario_IL_TfdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Usuario_IL_TfdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Usuario_IL_TfdActionPerformed
+    private void contrasenaPFdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contrasenaPFdKeyPressed
+       if(evt.getKeyCode() ==10){
+           if(contrasenaPFd.getText().equals("") != true)
+               if(usuarioTFd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
+                   ingresar();
+                else
+                    usuarioTFd.grabFocus();
+            else
+               setMensaje("No se ha ingresado la contraseña");
+                               
+        } 
+    }//GEN-LAST:event_contrasenaPFdKeyPressed
 
+    private void ingresar(){
+        if(usuarioTFd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
+            control.buscarPorUsuario(usuarioTFd.getText());        
+        else
+            setMensaje("No se ha ingresado usuario o contraseña");
+    }
 /****/
     /**
      * @param args the command line arguments
@@ -163,48 +207,41 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Contrasena_IL_Lbl;
-    private javax.swing.JPasswordField Contrasena_IL_Pfd;
-    private javax.swing.JButton Ingresar_OL_Btn;
-    private javax.swing.JButton Salir_OL_Btn;
-    private javax.swing.JLabel Usuario_IL_Lbl;
-    private javax.swing.JTextField Usuario_IL_Tfd;
+    private javax.swing.JLabel contrasenaLbl;
+    private javax.swing.JPasswordField contrasenaPFd;
+    private javax.swing.JButton ingresarBtn;
+    private javax.swing.JButton salirBtn;
+    private javax.swing.JLabel usuarioLbl;
+    private javax.swing.JTextField usuarioTFd;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * 
+     * @param info 
+     */
     @Override
     public void setTabla(String[][] info) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    //@Override
-    public void setInfo(String[][] info) {
-      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setLogin(String[][] login) {
-        //System.out.println("contraseña  -> "+login[0][1]);
-      if(login[0][1].equals(Contrasena_IL_Pfd.getText())){
-          
-          new Capacisoft(login[0][2]).setVisible(true);
-          this.setVisible(false);
-      }else
-          setMensaje("Usuario o Contraseña incorrectas");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String contrasena = String.valueOf(contrasenaPFd.getPassword());
+        if(info==null)
+            setMensaje("Usuario o contraseña incorrectos");
+        else
+            if(info[0][1].equals(contrasena)){      
+                new Capacisoft(info[0][2]).setVisible(true);
+                this.setVisible(false);
+            }else
+                setMensaje("Usuario o Contraseña incorrectas");
     }
 
     @Override
     public void setLista(List info, int i) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setInfo(List info) {
-    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

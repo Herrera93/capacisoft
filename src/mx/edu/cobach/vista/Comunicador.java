@@ -31,8 +31,6 @@ public interface Comunicador {
     void setTabla(String[][] info);
     
     void setInfo(List info);    
-    
-    void setLogin(String[][] login);
 
     public void setLista(List info, int i);
 }

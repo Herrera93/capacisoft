@@ -19,6 +19,7 @@ public class ServiceLocatorDELEGATE {
     private static EmpleadoDELEGATE empleadoDelegate;
     private static UsuarioDELEGATE usuarioDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
+    private static SedeDELEGATE sedeDelegate;
     
     public static BaseDELEGATE getInstance(){
         if(delegate == null){
@@ -32,6 +33,13 @@ public class ServiceLocatorDELEGATE {
             usuarioDelegate = new UsuarioDELEGATE();
         }
         return usuarioDelegate;
+    }
+    
+    public static SedeDELEGATE getSedeDelegate(){
+        if(sedeDelegate == null){
+            sedeDelegate = new SedeDELEGATE();
+        }
+        return sedeDelegate;
     }
     
     public static EmpleadoDELEGATE getEmpleadoDelegate(){

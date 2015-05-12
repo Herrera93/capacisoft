@@ -358,7 +358,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * renglon.
      * @param evt Evento al hacer click
      */
-    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
+    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {                                      
         //Obtenelos el renglon y columna donde se hizo click
         int row = tablaTbl.rowAtPoint(evt.getPoint());
         int col = tablaTbl.columnAtPoint(evt.getPoint());
@@ -386,7 +386,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         }
         
-    }//GEN-LAST:event_tablaTblMouseClicked
+    }                                       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
@@ -458,14 +458,4 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         guardarBtn.setText("Modificar");
         agregarLBl.setText("Modificar");
     }
-    
-    /**
-     * Metodo sobrescrito de la clase Comunicador
-     * @param login 
-     */
-    @Override
-    public void setLogin(String[][] login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

@@ -28,21 +28,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="opcionSede_Pnl" min="-2" max="-2" attributes="0"/>
+              <Component id="opcionPnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="informacionSede_Pnl" min="-2" max="-2" attributes="0"/>
+              <Component id="informacionPnl" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="opcionSede_Pnl" max="-2" attributes="0"/>
-          <Component id="informacionSede_Pnl" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Component id="opcionPnl" max="-2" attributes="0"/>
+          <Component id="informacionPnl" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="opcionSede_Pnl">
+    <Container class="javax.swing.JPanel" name="opcionPnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -69,13 +69,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="nombreSede_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreBuscarLbl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="nombreSede_OS_TFd" min="-2" pref="143" max="-2" attributes="0"/>
+                                  <Component id="nombreBuscarTFd" min="-2" pref="143" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="opciones_OS_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionesLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="112" max="32767" attributes="0"/>
                       </Group>
@@ -87,9 +87,9 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="agregar_OS_Btn" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="buscar_OS_Btn" min="-2" pref="83" max="-2" attributes="0"/>
+                  <Component id="buscarBtn" min="-2" pref="83" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -98,18 +98,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="opciones_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionesLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_OS_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombreSede_OS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreSede_OS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="agregar_OS_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buscar_OS_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaSedes_OS_Tbl">
+            <Component class="javax.swing.JTable" name="sedesTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -164,10 +164,13 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sedesTblMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="nombreSede_OS_Lbl">
+        <Component class="javax.swing.JLabel" name="nombreBuscarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -175,7 +178,7 @@
             <Property name="text" type="java.lang.String" value="Nombre de la sede:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombreSede_OS_TFd">
+        <Component class="javax.swing.JTextField" name="nombreBuscarTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -183,23 +186,29 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="agregar_OS_Btn">
+        <Component class="javax.swing.JButton" name="agregarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="buscar_OS_Btn">
+        <Component class="javax.swing.JButton" name="buscarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="opciones_OS_Lbl">
+        <Component class="javax.swing.JLabel" name="opcionesLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -207,14 +216,14 @@
             <Property name="text" type="java.lang.String" value="Opciones "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_OS_Lbl">
+        <Component class="javax.swing.JLabel" name="opcionMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="informacionSede_Pnl">
+    <Container class="javax.swing.JPanel" name="informacionPnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -239,52 +248,52 @@
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="nombreSede_IS_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nombreSede_IS_TFd" min="-2" pref="147" max="-2" attributes="0"/>
+                                  <Component id="nombreTFd" min="-2" pref="147" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="colonia_IS_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="calle_IS_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="coloniaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="calleLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="calle_IS_TFd" min="-2" pref="147" max="-2" attributes="0"/>
-                                      <Component id="colonia_IS_TFd" min="-2" pref="147" max="-2" attributes="0"/>
+                                      <Component id="coloniaTFd" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
+                                      <Component id="calleTFd" alignment="1" min="-2" pref="147" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="municipio_IS_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="municipioLbl" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Component id="seleccion_IS_CBx" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Component id="seleccionCBx" min="-2" pref="151" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="numero_IS_Lbl" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cantidad_IS_Lbl" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="numeroLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadLbl" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cantidad_IS_TFd" min="-2" pref="151" max="-2" attributes="0"/>
-                                      <Component id="numero_IS_TFd" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="capacidadTFd" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="numeroTFd" min="-2" pref="151" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="nota_IS_Lbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="agregar_IS_LBl" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="76" max="32767" attributes="0"/>
+                  <EmptySpace pref="68" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="guardar_IS_Btn" min="-2" pref="108" max="-2" attributes="0"/>
+                  <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -293,39 +302,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="agregar_IS_LBl" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nota_IS_Lbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nombreSede_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreSede_IS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="municipio_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="seleccion_IS_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="municipioLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="seleccionCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="colonia_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="colonia_IS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cantidad_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cantidad_IS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="coloniaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="coloniaTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cantidadLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="capacidadTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="numero_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="numero_IS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="calle_IS_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="calle_IS_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="calleTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="calleLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="171" max="32767" attributes="0"/>
-                  <Component id="guardar_IS_Btn" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="guardarBtn" min="-2" pref="48" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="nombreSede_IS_Lbl">
+        <Component class="javax.swing.JLabel" name="nombreLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -333,15 +342,15 @@
             <Property name="text" type="java.lang.String" value="Nombre de la sede:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="colonia_IS_Lbl">
+        <Component class="javax.swing.JLabel" name="coloniaLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Colonia de la sede:"/>
+            <Property name="text" type="java.lang.String" value="Colonia:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="municipio_IS_Lbl">
+        <Component class="javax.swing.JLabel" name="municipioLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -349,15 +358,19 @@
             <Property name="text" type="java.lang.String" value="Municipio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="guardar_IS_Btn">
+        <Component class="javax.swing.JButton" name="guardarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombreSede_IS_TFd">
+        <Component class="javax.swing.JTextField" name="nombreTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -365,7 +378,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="colonia_IS_TFd">
+        <Component class="javax.swing.JTextField" name="coloniaTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -373,7 +386,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="seleccion_IS_CBx">
+        <Component class="javax.swing.JComboBox" name="seleccionCBx">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -391,39 +404,15 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="cantidad_IS_Lbl">
+        <Component class="javax.swing.JLabel" name="cantidadLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cantidad de la sede:"/>
+            <Property name="text" type="java.lang.String" value="Capacidad:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="cantidad_IS_TFd">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="calle_IS_Lbl">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Calle de la sede:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="numero_IS_Lbl">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="N&#xfa;mero de la sede:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="calle_IS_TFd">
+        <Component class="javax.swing.JTextField" name="capacidadTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -431,7 +420,23 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="numero_IS_TFd">
+        <Component class="javax.swing.JLabel" name="calleLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Calle:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="numeroLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de direccion:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="calleTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -439,7 +444,15 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="agregar_IS_LBl">
+        <Component class="javax.swing.JTextField" name="numeroTFd">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="agregarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -447,7 +460,7 @@
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="nota_IS_Lbl">
+        <Component class="javax.swing.JLabel" name="agregarMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
           </Properties>
