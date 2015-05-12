@@ -163,7 +163,7 @@ public class HelperEntidad {
         return null;
     }
     
-    public static String[][] descomponerObjetos(List<Object> objs){
+    public static String[][] descomponerObjetos(List<Object> objs, int... a){
         if(objs.size() > 0){
             if(objs.get(0) instanceof Puesto){
                 List<Puesto> ps = new ArrayList<>();
@@ -176,7 +176,7 @@ public class HelperEntidad {
                 for(int i = 0; i <objs.size(); i++){
                     emps.add((Empleado) objs.get(i));
                 }
-                return descomponerEmpleados(emps);
+                return descomponerEmpleados(emps, a);
             }else if(objs.get(0) instanceof Curso){
                 List<Curso> cr = new ArrayList();
                 for(int i = 0; i < objs.size(); i++){
@@ -265,7 +265,8 @@ public class HelperEntidad {
         return info;
     }
 
-    private static String[][] descomponerEmpleados(List<Empleado> emps) {
+    private static String[][] descomponerEmpleados(List<Empleado> emps, int...a) {
+        if(a[0]== 0){
         String[][] info = new String[emps.size()][3];
         for(int i = 0; i < emps.size(); i++){
             Empleado e = emps.get(i);
@@ -275,6 +276,24 @@ public class HelperEntidad {
                     + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
         }
         return info;
+        }else{
+            String[][] info = new String[emps.size()][6];
+        for(int i = 0; i < emps.size(); i++){
+            Empleado e = emps.get(i);
+            info[i][0] = e.getId().toString();
+            info[i][1] = e.getNumero();
+            info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                    + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
+            info[i][3] = e.getPuesto().toString();
+            info[i][4] = e.getCorreo();
+            if(e.getDepartamento()!= null){
+                info[i][5] = e.getDepartamento().toString();
+            }else{
+                info[i][5] = e.getPlantel().toString();                
+            }
+        }
+        return info;
+        }
     }
 
     private static List<Object> descomponerEmpleado(Empleado empleado) {
