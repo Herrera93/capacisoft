@@ -3,40 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.cobach.persitencia;
+package mx.edu.cobach.persistencia;
 
 import java.util.List;
+import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author liuts
+ * @author fernando
  */
-public class PuestoDAO<T> extends BaseDAO{
+public class CursoDAO extends BaseDAO{
     
-    
-    
-    public PuestoDAO(){
-        
+    public CursoDAO(){
+        setEntity(Curso.class);
     }
     
-    public List<T> find(String nombre) {
-        List<T> t = null;
+    public List<Object> findTipoCurso(int id) {
+        List<Object> o = null;
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            t = (List<T>) HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.like("nombre", "%"+nombre+"%")).list();
+            o = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("tipoCurso.id", 1)).list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscando Object");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
             HibernateUtil.closeSession();   
         }
-        return t;
+        return o;
     }
- 
 }

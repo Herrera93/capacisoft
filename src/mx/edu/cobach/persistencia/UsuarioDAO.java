@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.cobach.persitencia;
+package mx.edu.cobach.persistencia;
 
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Usuario;

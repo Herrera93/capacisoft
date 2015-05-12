@@ -32,7 +32,7 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
     public PnlRegistrarCursos() {
         initComponents();
         control = new BaseControlador(this, Curso.class);
-        cursoControl = new CursoControlador(this, Curso.class);
+        cursoControl = new CursoControlador(this);
         model = new DefaultTableModel(titulosTabla, 4);
         cursosTbl.setModel(model);
     }

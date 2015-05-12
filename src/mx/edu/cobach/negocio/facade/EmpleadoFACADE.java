@@ -7,7 +7,7 @@ package mx.edu.cobach.negocio.facade;
 
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
-import mx.edu.cobach.persitencia.ServiceLocator;
+import mx.edu.cobach.persistencia.ServiceLocator;
 
 /**
  *

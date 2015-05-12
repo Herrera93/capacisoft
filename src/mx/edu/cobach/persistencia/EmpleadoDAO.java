@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.cobach.persitencia;
+package mx.edu.cobach.persistencia;
 
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
@@ -53,7 +53,6 @@ public class EmpleadoDAO extends BaseDAO{
             ts = HibernateUtil.getSession().createCriteria(entityClass).
                     add(Restrictions.eq("adscripcion", adscripcion)).list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscar por Adscripcion::Empleado");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{

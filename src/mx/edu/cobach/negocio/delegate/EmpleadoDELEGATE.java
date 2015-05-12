@@ -14,7 +14,7 @@ import mx.edu.cobach.persistencia.entidades.Adscripcion;
  * @author Alex
  */
 public class EmpleadoDELEGATE extends BaseDELEGATE {
-    
+        
     public EmpleadoDELEGATE(){
         super();
     }    

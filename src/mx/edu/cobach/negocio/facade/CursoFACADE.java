@@ -1,7 +1,7 @@
 package mx.edu.cobach.negocio.facade;
 
 import java.util.List;
-import mx.edu.cobach.persitencia.ServiceLocator;
+import mx.edu.cobach.persistencia.ServiceLocator;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

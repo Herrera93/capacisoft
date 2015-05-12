@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class TipoCuenta  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String descripcion;
      private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 
@@ -19,21 +19,19 @@ public class TipoCuenta  implements java.io.Serializable {
     }
 
 	
-    public TipoCuenta(int id, String descripcion) {
-        this.id = id;
+    public TipoCuenta(String descripcion) {
         this.descripcion = descripcion;
     }
-    public TipoCuenta(int id, String descripcion, Set<Usuario> usuarios) {
-       this.id = id;
+    public TipoCuenta(String descripcion, Set<Usuario> usuarios) {
        this.descripcion = descripcion;
        this.usuarios = usuarios;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getDescripcion() {

@@ -37,7 +37,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         puestosTbl.setDragEnabled(false);
         puestosTbl.setModel(model);
         control = new BaseControlador(this, Puesto.class);
-        puestoControl = new PuestoControlador(this, Puesto.class);
+        puestoControl = new PuestoControlador(this);
     }
 
     /**

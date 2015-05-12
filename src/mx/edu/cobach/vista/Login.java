@@ -24,6 +24,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     
     public Login() {
         initComponents();
+        setVisible(true);
         setResizable(false);
         setLocationRelativeTo(null);
         control = new UsuarioControlador(this, Usuario.class);
@@ -54,20 +55,26 @@ public class Login extends javax.swing.JFrame implements Comunicador{
 
         Ingresar_OL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Ingresar_OL_Btn.setText("Ingresar");
+        Ingresar_OL_Btn.setName("ingresar"); // NOI18N
         Ingresar_OL_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Ingresar_OL_BtnActionPerformed(evt);
             }
         });
 
+        Contrasena_IL_Pfd.setName("contrasena"); // NOI18N
+
         Contrasena_IL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Contrasena_IL_Lbl.setText("Contraseña:");
 
         Salir_OL_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Salir_OL_Btn.setText("Salir");
+        Salir_OL_Btn.setName("salir"); // NOI18N
 
         Usuario_IL_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Usuario_IL_Lbl.setText("Usuario:");
+
+        Usuario_IL_Tfd.setName("usuario"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

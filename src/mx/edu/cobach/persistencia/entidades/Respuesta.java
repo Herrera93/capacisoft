@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,19 +10,19 @@ public class Respuesta  implements java.io.Serializable {
 
 
      private Integer id;
+     private Aspecto aspecto;
      private Empleado empleado;
      private Encuesta encuesta;
-     private Pregunta pregunta;
      private int antesCurso;
      private int despuesCurso;
 
     public Respuesta() {
     }
 
-    public Respuesta(Empleado empleado, Encuesta encuesta, Pregunta pregunta, int antesCurso, int despuesCurso) {
+    public Respuesta(Aspecto aspecto, Empleado empleado, Encuesta encuesta, int antesCurso, int despuesCurso) {
+       this.aspecto = aspecto;
        this.empleado = empleado;
        this.encuesta = encuesta;
-       this.pregunta = pregunta;
        this.antesCurso = antesCurso;
        this.despuesCurso = despuesCurso;
     }
@@ -33,6 +33,13 @@ public class Respuesta  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    public Aspecto getAspecto() {
+        return this.aspecto;
+    }
+    
+    public void setAspecto(Aspecto aspecto) {
+        this.aspecto = aspecto;
     }
     public Empleado getEmpleado() {
         return this.empleado;
@@ -47,13 +54,6 @@ public class Respuesta  implements java.io.Serializable {
     
     public void setEncuesta(Encuesta encuesta) {
         this.encuesta = encuesta;
-    }
-    public Pregunta getPregunta() {
-        return this.pregunta;
-    }
-    
-    public void setPregunta(Pregunta pregunta) {
-        this.pregunta = pregunta;
     }
     public int getAntesCurso() {
         return this.antesCurso;

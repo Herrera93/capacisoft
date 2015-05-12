@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -48,9 +48,10 @@ public class Adscripcion  implements java.io.Serializable {
     public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
     }
-    
-    @Override
-    public String toString(){
-        return this.descripcion;
-    }
+
+
+
+
 }
+
+

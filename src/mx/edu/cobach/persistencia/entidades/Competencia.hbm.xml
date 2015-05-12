@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 13, 2015 12:14:31 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 11, 2015 4:12:50 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="mx.edu.cobach.persistencia.entidades.Competencia" table="competencia" catalog="capacisoft" optimistic-lock="version">
+    <class name="mx.edu.cobach.persistencia.entidades.Competencia" table="competencia" catalog="capacisoft">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <property name="nombre" type="string">
             <column name="nombre" length="45" not-null="true" />
         </property>
-        <set name="preguntas" table="pregunta" inverse="true" lazy="true" fetch="select">
+        <set name="aspectos" table="aspecto" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="competencia_id" not-null="true" />
             </key>
-            <one-to-many class="mx.edu.cobach.persistencia.entidades.Pregunta" />
+            <one-to-many class="mx.edu.cobach.persistencia.entidades.Aspecto" />
         </set>
     </class>
 </hibernate-mapping>
