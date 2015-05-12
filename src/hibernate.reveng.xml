@@ -12,7 +12,7 @@
   <table-filter match-name="sede"/>
   <table-filter match-name="municipio"/>
   <table-filter match-name="puesto"/>
-  <table-filter match-name="pregunta"/>
+  <table-filter match-name="aspecto"/>
   <table-filter match-name="empleado"/>
   <table-filter match-name="proveedor"/>
   <table-filter match-name="implementacion_curso"/>
