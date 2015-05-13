@@ -38,7 +38,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      */
     
     private static ProgramarControlador controlProgramar;
-    private int cursoId;
+    private int cursoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private final DefaultComboBoxModel campoModel;
@@ -117,7 +117,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         guardarLABtn = new javax.swing.JButton();
         nombreLATFd = new javax.swing.JTextField();
         nombreLALbl = new javax.swing.JLabel();
-        agregarLiLbl = new javax.swing.JLabel();
+        agregarLALbl = new javax.swing.JLabel();
         nota_LI_Lbl = new javax.swing.JLabel();
         agregarBtn = new javax.swing.JButton();
         agregarTBtn = new javax.swing.JButton();
@@ -130,7 +130,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         guardarCBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         enunciadoTb = new javax.swing.JTable();
-        agregarClLbl = new javax.swing.JLabel();
+        agregarCLbl = new javax.swing.JLabel();
         nota_CL_Lbl = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -368,8 +368,8 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLALbl.setText("Nombre del Empleado:");
 
-        agregarLiLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLiLbl.setText("Agregar");
+        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarLALbl.setText("Agregar");
 
         nota_LI_Lbl.setText("Ingrese la información a almacenar");
 
@@ -450,7 +450,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                         .addGap(38, 38, 38)
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nota_LI_Lbl)
-                            .addComponent(agregarLiLbl)))
+                            .addComponent(agregarLALbl)))
                     .addGroup(listaPnlLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(campoLbl)
@@ -483,7 +483,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listaPnlLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(agregarLiLbl)
+                .addComponent(agregarLALbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nota_LI_Lbl)
@@ -557,8 +557,8 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             enunciadoTb.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        agregarClLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarClLbl.setText("Agregar");
+        agregarCLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarCLbl.setText("Agregar");
 
         nota_CL_Lbl.setText("Ingrese la información a almacenar");
 
@@ -580,14 +580,14 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 .addGap(34, 34, 34)
                 .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nota_CL_Lbl)
-                    .addComponent(agregarClLbl))
+                    .addComponent(agregarCLbl))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         calificacionPnlLayout.setVerticalGroup(
             calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(agregarClLbl)
+                .addComponent(agregarCLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nota_CL_Lbl)
                 .addGap(30, 30, 30)
@@ -777,9 +777,9 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JLabel agregarClLbl;
+    private javax.swing.JLabel agregarCLbl;
     private javax.swing.JLabel agregarGLbl;
-    private javax.swing.JLabel agregarLiLbl;
+    private javax.swing.JLabel agregarLALbl;
     private javax.swing.JButton agregarTBtn;
     private javax.swing.JButton buscarLABtn;
     private javax.swing.JPanel calificacionPnl;
@@ -841,7 +841,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
     public void setTabla(String[][] info) {
     if (info[0][0].contains("TLE1")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
             info[0][0] = info[0][0].replaceAll("TLE1", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
-            System.out.println(info[0][0]);
             tablaLisITb.setEnabled(true);
             modelTablaEmI.setDataVector(info, titulosTablaEm);
             TableColumn tc = tablaLisITb.getColumnModel().getColumn(0);
@@ -881,7 +880,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         } else if (info[0][0].contains(
                 "TLE3")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
             info[0][0] = info[0][0].replaceAll("TLE3", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
-            System.out.println(info[0][0]);
             enunciadoTb.setEnabled(true);
             modelTablaEn.setDataVector(info, titulosTablaEn);
             JComboBox comboBox = new JComboBox();
@@ -911,16 +909,20 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      */
     @Override
     public void setInfo(List info) {
-        cursoId = Integer.parseInt(info.get(0).toString());
+        agregarGLbl.setText("Agregar");
+        agregarLALbl.setText("Agregar");
+        agregarCLbl.setText("Agregar");
+        guardarGBtn.setText("Guardar");
+        guardarLABtn.setText("Guardar");
+        guardarCBtn.setText("Guardar");
         nombreGTFd.setText(info.get(1).toString());
         descripcionGTAa.setText(info.get(2).toString());
-        System.out.println(info.get(3) + "");
         if (info.get(3).equals("conferencia") || info.get(3).equals("Conferencia")) {
             tipoGCBx.setSelectedIndex(0);
         } else {
             tipoGCBx.setSelectedIndex(1);
         }
-}
+    }
      /**
      * Metodo sobrescrito de la clase comunicador que recibe una Lista con la 
      * los resultados de una busqueda especifica y vaciarlo en los campos y 
@@ -1000,15 +1002,57 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      *
      * @param visibilidad
      */
-    public void guarMod(){
-        List<Object> atributos = new ArrayList();
-        atributos.add(curso);
-        atributos.add(fechaIDCh.getDate());
-        atributos.add(fechaTDCh.getDate());
-        atributos.add(false);
-        atributos.add(tipossedeGCBx.getSelectedItem());
-        atributos.add(nombreGCBx.getSelectedItem());
-        controlProgramar.setClass(ImplementacionCurso.class);
-        controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+    private void guarMod(){
+        if(guardarGBtn.getText().equals("Guardar")){
+            List<Object> atributos = new ArrayList();
+            atributos.add(curso);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(false);
+            atributos.add(tipossedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            controlProgramar.setClass(ImplementacionCurso.class);
+            controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+        }else if(guardarGBtn.getText().equals("Modificar")){
+            List<Object> atributos = new ArrayList();
+            atributos.add(cursoProgramarId);
+            atributos.add(curso);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(false);
+            atributos.add(tipossedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            controlProgramar.setClass(ImplementacionCurso.class);
+            controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Finalizado"));
+        }
+       
+        
     }
+    /**
+     * Este metodo obtiene la informacion del curso a realizar del 
+     * PnlProgramarCurso para que este la pueda modificar
+     * @param info 
+     */
+    public void obtenerMod(List info){
+        agregarGLbl.setText("Modificar");
+        agregarLALbl.setText("Modificar");
+        agregarCLbl.setText("Modificar");
+        guardarCBtn.setText("Modificar");
+        guardarGBtn.setText("Modificar");
+        guardarLABtn.setText("Modificar");
+        cursoProgramarId = Integer.parseInt(info.get(0).toString());
+        curso = (Curso) info.get(1);
+        nombreGTFd.setText(info.get(2).toString());
+        descripcionGTAa.setText(info.get(3).toString());
+        if (info.get(3).equals("conferencia") || info.get(4).equals("Conferencia")) {
+            tipoGCBx.setSelectedIndex(0);
+        } else {
+            tipoGCBx.setSelectedIndex(1);
+        }
+        fechaIDCh.setDate((Date) info.get(5));
+        fechaTDCh.setDate((Date) info.get(6));
+        sedeModel.setSelectedItem(info.get(7));
+        proveedorModel.setSelectedItem(info.get(8));
+    }
+    
 }
