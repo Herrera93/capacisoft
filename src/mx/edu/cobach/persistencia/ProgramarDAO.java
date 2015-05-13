@@ -31,7 +31,7 @@ public class ProgramarDAO<T> extends BaseDAO{
             ts = HibernateUtil.getSession().createCriteria(entityClass).
                     add(Restrictions.eq("curso", curso)).list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscar por nombre::Departamento");
+            System.out.println("Buscar por nombre::Curso");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
