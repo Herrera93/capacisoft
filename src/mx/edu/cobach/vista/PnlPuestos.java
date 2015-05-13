@@ -423,7 +423,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * @param info Matriz String para vaciar en tabla
      */
     @Override
-        public void setTabla(String[][] info) {
+    public void setTabla(String[][] info) {
         puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
