@@ -34,7 +34,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
      */
     
     private static ProgramarControlador controlProgramar;
-    private int cursoId;
+    private int cursoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private final DefaultComboBoxModel campoModel;
@@ -107,7 +107,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         guardarLABtn = new javax.swing.JButton();
         nombreLATFd = new javax.swing.JTextField();
         nombreLALbl = new javax.swing.JLabel();
-        agregarLiLbl = new javax.swing.JLabel();
+        agregarLALbl = new javax.swing.JLabel();
         nota_LI_Lbl = new javax.swing.JLabel();
         agregarBtn = new javax.swing.JButton();
         agregarTBtn = new javax.swing.JButton();
@@ -344,8 +344,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLALbl.setText("Nombre del Empleado:");
 
-        agregarLiLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLiLbl.setText("Agregar");
+        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarLALbl.setText("Agregar");
 
         nota_LI_Lbl.setText("Ingrese la información a almacenar");
 
@@ -433,7 +433,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                         .addGap(38, 38, 38)
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nota_LI_Lbl)
-                            .addComponent(agregarLiLbl)))
+                            .addComponent(agregarLALbl)))
                     .addGroup(listaPnlLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(campoLbl)
@@ -463,7 +463,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listaPnlLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(agregarLiLbl)
+                .addComponent(agregarLALbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nota_LI_Lbl)
@@ -578,7 +578,6 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
          int row = tablaLisITb.getSelectedRow();
         int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
-        System.out.println(id);
         controlProgramar.setClass(Empleado.class);
         controlProgramar.buscarEmpId(id, Empleado.class);
     }//GEN-LAST:event_agregarBtnActionPerformed
@@ -651,7 +650,6 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
 
     public void buscarCurso(Curso curso) {
         this.curso = curso;
-        System.out.println(curso.getId());
         controlProgramar.buscarCurId(curso.getId(), Curso.class);
     }
     /**
@@ -670,7 +668,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JLabel agregarGLbl;
-    private javax.swing.JLabel agregarLiLbl;
+    private javax.swing.JLabel agregarLALbl;
     private javax.swing.JButton agregarTBtn;
     private javax.swing.JButton buscarLABtn;
     private javax.swing.JComboBox campoCBx;
@@ -773,10 +771,12 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
      */
     @Override
     public void setInfo(List info) {
-    cursoId = Integer.parseInt(info.get(0).toString());
+        agregarGLbl.setText("Agregar");
+        agregarLALbl.setText("Agregar");
+        guardarGBtn.setText("Guardar");
+        guardarLABtn.setText("Guardar");
         nombreGTFd.setText(info.get(1).toString());
         descripcionGTAa.setText(info.get(2).toString());
-        System.out.println(info.get(3) + "");
         if (info.get(3).equals("conferencia") || info.get(3).equals("Conferencia")) {
             tipoGCBx.setSelectedIndex(0);
         } else {
@@ -830,7 +830,6 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         campoCBx.setEnabled(visibilidad);
         guardarLABtn.setEnabled(visibilidad);
     }
-
     /**
      * Establece una visibilidad al seleccionar que tipo de busqueda para el
      * empleado se realizara
@@ -861,15 +860,54 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
      *
      * @param visibilidad
      */
-    public void guarMod(){
-        List<Object> atributos = new ArrayList<>();
-        atributos.add(curso);
-        atributos.add(fechaIDCh.getDate());
-        atributos.add(fechaTDCh.getDate());
-        atributos.add(false);
-        atributos.add(tipossedeGCBx.getSelectedItem());
-        atributos.add(nombreGCBx.getSelectedItem());
-        controlProgramar.setClass(ImplementacionCurso.class);
-        controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+    private void guarMod(){
+        if(guardarGBtn.getText().equals("Guardar")){
+            List<Object> atributos = new ArrayList();
+            atributos.add(curso);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(false);
+            atributos.add(tipossedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            controlProgramar.setClass(ImplementacionCurso.class);
+            controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Activo"));
+        }else if(guardarGBtn.getText().equals("Modificar")){
+            List<Object> atributos = new ArrayList();
+            atributos.add(cursoProgramarId);
+            atributos.add(curso);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(false);
+            atributos.add(tipossedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            controlProgramar.setClass(ImplementacionCurso.class);
+            controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Activo"));
+        }
     }
+    
+    /**
+     * Este metodo obtiene la informacion del curso a realizar del 
+     * PnlProgramarCurso para que este la pueda modificar
+     * @param info 
+     */
+    public void obtenerMod(List info){
+        agregarGLbl.setText("Modificar");
+        agregarLALbl.setText("Modificar");
+        guardarGBtn.setText("Modificar");
+        guardarLABtn.setText("Modificar");
+        cursoProgramarId = Integer.parseInt(info.get(0).toString());
+        curso = (Curso) info.get(1);
+        nombreGTFd.setText(info.get(2).toString());
+        descripcionGTAa.setText(info.get(3).toString());
+        if (info.get(3).equals("conferencia") || info.get(4).equals("Conferencia")) {
+            tipoGCBx.setSelectedIndex(0);
+        } else {
+            tipoGCBx.setSelectedIndex(1);
+        }
+        fechaIDCh.setDate((Date) info.get(5));
+        fechaTDCh.setDate((Date) info.get(6));
+        sedeModel.setSelectedItem(info.get(7));
+        proveedorModel.setSelectedItem(info.get(8));
+    }
+    
 }
