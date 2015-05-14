@@ -124,9 +124,15 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         tipoRegCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoRegCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoRegCBx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tipoRegCBxItemStateChanged(evt);
+            }
+        });
 
         regRealizarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         regRealizarBtn.setText("Programar curso a realizar");
+        regRealizarBtn.setEnabled(false);
         regRealizarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regRealizarBtnActionPerformed(evt);
@@ -135,6 +141,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         regRealizadoBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         regRealizadoBtn.setText("Registrar curso realizado");
+        regRealizadoBtn.setEnabled(false);
         regRealizadoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regRealizadoBtnActionPerformed(evt);
@@ -260,6 +267,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
+        buscarBtn.setEnabled(false);
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -268,6 +276,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         tipoBusCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoBusCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoBusCBx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tipoBusCBxItemStateChanged(evt);
+            }
+        });
 
         opcionesBusLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionesBusLbl.setText("Opciones");
@@ -276,6 +289,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         tipoSedeCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoSedeCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoSedeCBx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tipoSedeCBxItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
@@ -375,7 +393,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         curRealizadoPnl.setVisible(false);
         curRealizarPnl.buscarCurso((Curso) tipoRegCBx.getSelectedItem());
         curRealizarPnl.llenarTodo();
-        curRealizadoPnl.visibilidad(true);
+        curRealizarPnl.visibilidad(true);
     }//GEN-LAST:event_regRealizarBtnActionPerformed
     /**
      * Metodo que al seleccionar click buscar el curso de capacitacion de los
@@ -428,11 +446,14 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
-        
-        if(campo.getNombre().compareTo("")!=0){
+        Curso campoCurso = (Curso)tipoBusCBx.getSelectedItem();
+        Sede campoSede = (Sede)tipoSedeCBx.getSelectedItem();
+        if(campoCurso.getNombre().compareTo("")!=0){
             control.setClass(ImplementacionCurso.class);
             control.buscarPorCurso((Curso) tipoBusCBx.getSelectedItem());
+        }else if(campoSede.getNombre().compareTo("")!=0){
+            control.setClass(ImplementacionCurso.class);
+            control.buscarPorSede((Sede) tipoSedeCBx.getSelectedItem());
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -440,6 +461,45 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         curRealizarPnl.setVisible(false);
         curRealizadoPnl.setVisible(false);  
     }//GEN-LAST:event_registrarPnlComponentShown
+
+    private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
+        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
+        if(campo.getNombre().compareTo("")!=0){
+            regRealizadoBtn.setEnabled(true);
+            regRealizarBtn.setEnabled(true);
+            buscarBtn.setEnabled(true);
+        }else{
+            regRealizadoBtn.setEnabled(false);
+            regRealizarBtn.setEnabled(false);
+            buscarBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_tipoRegCBxItemStateChanged
+
+    private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
+        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
+        if(campo.getNombre().compareTo("")!=0){
+            regRealizadoBtn.setEnabled(true);
+            regRealizarBtn.setEnabled(true);
+            buscarBtn.setEnabled(true);
+        }else{
+            regRealizadoBtn.setEnabled(false);
+            regRealizarBtn.setEnabled(false);
+            buscarBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_tipoBusCBxItemStateChanged
+
+    private void tipoSedeCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeCBxItemStateChanged
+        Sede campo = (Sede)tipoSedeCBx.getSelectedItem();
+        if(campo.getNombre().compareTo("")!=0){
+            regRealizadoBtn.setEnabled(true);
+            regRealizarBtn.setEnabled(true);
+            buscarBtn.setEnabled(true);
+        }else{
+            regRealizadoBtn.setEnabled(false);
+            regRealizarBtn.setEnabled(false);
+            buscarBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_tipoSedeCBxItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
@@ -534,12 +594,19 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         switch (i) {
             case 1:
                 tipoCursoModel.removeAllElements();
+                Curso curso = new Curso();
+                curso.setNombre("");
+                tipoCursoModel.addElement(curso);              
                 for (int j = 0; j < info.size(); j++) {
                     tipoCursoModel.addElement(info.get(j));
                 }
                 break;
             case 2:
+                
                 tipoSedeModel.removeAllElements();
+                Sede sede = new Sede();
+                sede.setNombre("");
+                tipoSedeModel.addElement(sede); 
                 for (int j = 0; j < info.size(); j++) {
                     tipoSedeModel.addElement(info.get(j));
                 }
