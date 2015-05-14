@@ -74,8 +74,8 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         nombreGCBx.setModel(proveedorModel);
         tipoLACBx.setModel(campoModel);
         controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
-        fechaIDCh.getJCalendar().setMaxSelectableDate(new Date()); // sets today as minimum selectable date
-        fechaTDCh.getJCalendar().setMaxSelectableDate(new Date()); // sets today as minimum selectable date
+        fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
+        fechaTDCh.getJCalendar().setMaxSelectableDate(new Date());
     }
 
     /**
@@ -768,10 +768,13 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         controlProgramar.setClass(EnunciadoLogistica.class);
         controlProgramar.buscarEncuesta();
     }
-
+    /**
+     * Metodo que recibe el curso del catalogo para llenar parte de la 
+     * informacion general del curso a llevar a cabo
+     * @param curso 
+     */
     public void buscarCurso(Curso curso) {
         this.curso = curso;
-        System.out.println(curso.getId());
         controlProgramar.buscarCurId(curso.getId(), Curso.class);
     }
     
@@ -882,17 +885,12 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             info[0][0] = info[0][0].replaceAll("TLE3", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
             enunciadoTb.setEnabled(true);
             modelTablaEn.setDataVector(info, titulosTablaEn);
+            //Contador que decrementa del 10 a 1 para agregarlos a la
+            //califiacion de logistica
             JComboBox comboBox = new JComboBox();
-            comboBox.addItem("10");
-            comboBox.addItem("9");
-            comboBox.addItem("8");
-            comboBox.addItem("7");
-            comboBox.addItem("6");
-            comboBox.addItem("5");
-            comboBox.addItem("4");
-            comboBox.addItem("3");
-            comboBox.addItem("2");
-            comboBox.addItem("1");
+            for(int numero=10;numero>0;numero--){
+                comboBox.addItem(numero+"");
+            }
             TableColumn tc = enunciadoTb.getColumnModel().getColumn(3);
             tc.setCellEditor(new DefaultCellEditor(comboBox));
             DefaultTableCellRenderer renderer
@@ -937,17 +935,27 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         switch (i) {
             case 1:
                 sedeModel.removeAllElements();
+                Sede sede = new Sede();
+                sede.setNombre("");
+                sedeModel.addElement(sede); 
                 for (int j = 0; j < info.size(); j++) {
                     sedeModel.addElement(info.get(j));
                 }
                 break;
             case 2:
                 proveedorModel.removeAllElements();
+                Proveedor proveedor = new Proveedor();
+                proveedor.setPrimerNombre("");
+                proveedor.setSegundoNombre("");
+                proveedor.setApellidoPaterno("");
+                proveedor.setApellidoMaterno("");
+                proveedorModel.addElement(proveedor);
                 for (int j = 0; j < info.size(); j++) {
                     proveedorModel.addElement(info.get(j));
                 }
                 break;
             case 3:
+                campoModel.removeAllElements();
                 campoModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
                     campoModel.addElement(info.get(j));
@@ -1054,5 +1062,4 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
     }
-    
 }
