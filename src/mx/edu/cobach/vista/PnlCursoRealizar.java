@@ -64,8 +64,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         tipoLACBx.setModel(campoModel);
         controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
         
-        fechaIDCh.getJCalendar().setMinSelectableDate(new Date()); // sets today as minimum selectable date
-        fechaTDCh.getJCalendar().setMinSelectableDate(new Date()); // sets today as minimum selectable date
+        fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
+        fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
     }
 
     /**
@@ -97,6 +97,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         fechaTDCh = new com.toedter.calendar.JDateChooser();
         agregarGLbl = new javax.swing.JLabel();
         notaGLbl = new javax.swing.JLabel();
+        cantidadSedeGLbl = new javax.swing.JLabel();
         listaPnl = new javax.swing.JPanel();
         campoLbl = new javax.swing.JLabel();
         campoCBx = new javax.swing.JComboBox();
@@ -183,6 +184,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
 
         notaGLbl.setText("Ingrese la información a almacenar");
 
+        cantidadSedeGLbl.setText("Cantidad de la sede:");
+        cantidadSedeGLbl.setEnabled(false);
+
         javax.swing.GroupLayout generalPnlLayout = new javax.swing.GroupLayout(generalPnl);
         generalPnl.setLayout(generalPnlLayout);
         generalPnlLayout.setHorizontalGroup(
@@ -228,8 +232,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tipossedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(19, Short.MAX_VALUE))))
+                                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantidadSedeGLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(17, Short.MAX_VALUE))))
         );
         generalPnlLayout.setVerticalGroup(
             generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,14 +249,16 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                     .addComponent(tipoGLbl)
                     .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreGLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaILbl)
                     .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(sedeGLbl)
                         .addComponent(tipossedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cantidadSedeGLbl)
+                .addGap(39, 39, 39)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(generalPnlLayout.createSequentialGroup()
                         .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -647,7 +654,11 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     private void guardarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarGBtnActionPerformed
         guarMod();
     }//GEN-LAST:event_guardarGBtnActionPerformed
-
+    /**
+     * Metodo que recibe el curso del catalogo para llenar parte de la 
+     * informacion general del curso a llevar a cabo
+     * @param curso 
+     */
     public void buscarCurso(Curso curso) {
         this.curso = curso;
         controlProgramar.buscarCurId(curso.getId(), Curso.class);
@@ -673,6 +684,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JButton buscarLABtn;
     private javax.swing.JComboBox campoCBx;
     private javax.swing.JLabel campoLbl;
+    private javax.swing.JLabel cantidadSedeGLbl;
     private javax.swing.JTextArea descripcionGTAa;
     private javax.swing.JLabel descripcionLbl;
     private javax.swing.JButton eliminarBtn;
@@ -797,12 +809,21 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         switch (i) {
             case 1:
                 sedeModel.removeAllElements();
+                Sede sede = new Sede();
+                sede.setNombre("");
+                sedeModel.addElement(sede); 
                 for (int j = 0; j < info.size(); j++) {
                     sedeModel.addElement(info.get(j));
                 }
                 break;
             case 2:
                 proveedorModel.removeAllElements();
+                Proveedor proveedor = new Proveedor();
+                proveedor.setPrimerNombre("");
+                proveedor.setSegundoNombre("");
+                proveedor.setApellidoPaterno("");
+                proveedor.setApellidoMaterno("");
+                proveedorModel.addElement(proveedor);
                 for (int j = 0; j < info.size(); j++) {
                     proveedorModel.addElement(info.get(j));
                 }
@@ -908,6 +929,5 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         fechaTDCh.setDate((Date) info.get(6));
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
-    }
-    
+    }   
 }

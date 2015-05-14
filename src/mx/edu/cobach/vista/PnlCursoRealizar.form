@@ -105,10 +105,11 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="tipossedeGCBx" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                                           <Component id="nombreGCBx" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                          <Component id="cantidadSedeGLbl" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -128,7 +129,7 @@
                           <Component id="nombreGTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="nombreGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="65" max="32767" attributes="0"/>
+                      <EmptySpace pref="68" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="fechaIDCh" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="fechaILbl" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -137,7 +138,9 @@
                               <Component id="tipossedeGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cantidadSedeGLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -329,6 +332,12 @@
             <Component class="javax.swing.JLabel" name="notaGLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="cantidadSedeGLbl">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cantidad de la sede:"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
