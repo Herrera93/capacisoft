@@ -27,43 +27,44 @@ import mx.edu.cobach.vista.controlador.ProgramarControlador;
  *
  * @author liuts
  */
-public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
+public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador {
 
     /**
      * Creates new form PnlCursoRealizar
      */
-    
     private static ProgramarControlador controlProgramar;
     private int cursoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
+    private final DefaultComboBoxModel tipoModel;
     private final DefaultComboBoxModel campoModel;
     private DefaultTableModel modelTablaEmI;
     private DefaultTableModel modelTablaEmF;
     private String[] titulosTablaEm = {"ID", "Numero del Empleado", "Nombre del Empleado"};
     private Curso curso;
-    
+
     public PnlCursoRealizar() {
         initComponents();
         sedeModel = new DefaultComboBoxModel();
         proveedorModel = new DefaultComboBoxModel();
+        tipoModel = new DefaultComboBoxModel();
         campoModel = new DefaultComboBoxModel();
-
-        modelTablaEmI = new DefaultTableModel(titulosTablaEm, 4);
+         
+        modelTablaEmI = new DefaultTableModel(titulosTablaEm, 0);
         tablaLisITb.setModel(modelTablaEmI);
         tablaLisITb.setColumnSelectionAllowed(false);
         tablaLisITb.setDragEnabled(false);
 
-        modelTablaEmF = new DefaultTableModel(titulosTablaEm, 4);
+        modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
         tablaLisFTb.setModel(modelTablaEmI);
         tablaLisFTb.setColumnSelectionAllowed(false);
         tablaLisFTb.setDragEnabled(false);
 
-        tipossedeGCBx.setModel(sedeModel);
+        tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
-        tipoLACBx.setModel(campoModel);
+        tipoLACBx.setModel(tipoModel);
         controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
-        
+
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
     }
@@ -90,7 +91,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcionGTAa = new javax.swing.JTextArea();
         tipoGCBx = new javax.swing.JComboBox();
-        tipossedeGCBx = new javax.swing.JComboBox();
+        tipoSedeGCBx = new javax.swing.JComboBox();
         nombreGCBx = new javax.swing.JComboBox();
         guardarGBtn = new javax.swing.JButton();
         fechaIDCh = new com.toedter.calendar.JDateChooser();
@@ -156,9 +157,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         tipoGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia", "Taller" }));
         tipoGCBx.setEnabled(false);
 
-        tipossedeGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipossedeGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tipossedeGCBx.setEnabled(false);
+        tipoSedeGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoSedeGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoSedeGCBx.setEnabled(false);
 
         nombreGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -231,7 +232,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                                     .addComponent(sedeGLbl))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tipossedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cantidadSedeGLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(17, Short.MAX_VALUE))))
@@ -255,7 +256,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                     .addComponent(fechaILbl)
                     .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(sedeGLbl)
-                        .addComponent(tipossedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cantidadSedeGLbl)
                 .addGap(39, 39, 39)
@@ -520,9 +521,10 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Evento ejecutado al hacer click se buscara al empleado dependiendo de 
-     * del campo seleccionado 
-     * @param evt Evento al presionar el boton 
+     * Evento ejecutado al hacer click se buscara al empleado dependiendo de del
+     * campo seleccionado
+     *
+     * @param evt Evento al presionar el boton
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
         String campo = (String) campoCBx.getSelectedItem();
@@ -548,11 +550,15 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     /**
      * Evento ejecutado al hacer seleccionar un campo de la lista de posibles
      * busquedas por el usuario
-     * @param evt Evento al presionar el boton 
+     *
+     * @param evt Evento al presionar el boton
      */
     private void campoCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_campoCBxItemStateChanged
         String campo = (String) campoCBx.getSelectedItem();
         switch (campo) {
+            case "":
+                visibilidadCam(false);
+                break;
             case "Nombre":
                 visibilidadCam(true);
                 nombreLALbl.setText("Nombre del Empleado:");
@@ -580,18 +586,20 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     /**
      * Evento ejecutado al hacer click agregara al empleado de la lista de
      * posibles candidatos
-     * @param evt Evento al presionar el boton 
+     *
+     * @param evt Evento al presionar el boton
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-         int row = tablaLisITb.getSelectedRow();
+        int row = tablaLisITb.getSelectedRow();
         int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
         controlProgramar.setClass(Empleado.class);
         controlProgramar.buscarEmpId(id, Empleado.class);
     }//GEN-LAST:event_agregarBtnActionPerformed
     /**
-     * Evento ejecutado al hacer click agregara a todos los empleados a la 
-     * lista de asistencia
-     * @param evt Evento al presionar el boton 
+     * Evento ejecutado al hacer click agregara a todos los empleados a la lista
+     * de asistencia
+     *
+     * @param evt Evento al presionar el boton
      */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
         int nRow = tablaLisITb.getRowCount();
@@ -603,9 +611,10 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
 
     }//GEN-LAST:event_agregarTBtnActionPerformed
     /**
-     * Evento ejecutado al hacer click eliminando al empleado seleccionado
-     * en la lista de asistenciatablaLisFTb.
-     * @param evt Evento al presionar el boton 
+     * Evento ejecutado al hacer click eliminando al empleado seleccionado en la
+     * lista de asistenciatablaLisFTb.
+     *
+     * @param evt Evento al presionar el boton
      */
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
         int nRow = tablaLisFTb.getRowCount();
@@ -628,9 +637,10 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         visibilidadOpcT(true);
     }//GEN-LAST:event_eliminarBtnActionPerformed
     /**
-     * Evento ejecutado al hacer click eliminando a todas las personas de la 
+     * Evento ejecutado al hacer click eliminando a todas las personas de la
      * lista de asistencia tablaLisFTb.
-     * @param evt Evento al presionar el boton 
+     *
+     * @param evt Evento al presionar el boton
      */
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
         String[][] datosTabla = new String[0][0];
@@ -639,41 +649,51 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         tablaLisFTb.getColumnModel().removeColumn(tc);
     }//GEN-LAST:event_eliminarTBtnActionPerformed
     /**
-     * Evento ejecutado al hacer click mandando a un metodo que guarde la 
+     * Evento ejecutado al hacer click mandando a un metodo que guarde la
      * informacion o la modificque.
-     * @param evt Evento al presionar el boton 
+     *
+     * @param evt Evento al presionar el boton
      */
     private void guardarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarLABtnActionPerformed
         guarMod();
     }//GEN-LAST:event_guardarLABtnActionPerformed
     /**
-     * Evento ejecutado al hacer click mandando a un metodo que guarde la 
+     * Evento ejecutado al hacer click mandando a un metodo que guarde la
      * informacion o la modificque.
-     * @param evt Evento al presionar el boton 
+     *
+     * @param evt Evento al presionar el boton
      */
     private void guardarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarGBtnActionPerformed
         guarMod();
     }//GEN-LAST:event_guardarGBtnActionPerformed
     /**
-     * Metodo que recibe el curso del catalogo para llenar parte de la 
+     * Metodo que recibe el curso del catalogo para llenar parte de la
      * informacion general del curso a llevar a cabo
-     * @param curso 
+     *
+     * @param curso
      */
     public void buscarCurso(Curso curso) {
         this.curso = curso;
         controlProgramar.buscarCurId(curso.getId(), Curso.class);
     }
+
     /**
-     * Metodo que permite mandar a obtener la informacion de todos las 
-     * sedes y proveedores registrados
-     * informacion o la modificque.
-     * @param evt Evento al presionar el boton 
+     * Metodo que permite mandar a obtener la informacion de todos las sedes y
+     * proveedores registrados informacion o la modificque.
+     *
+     * @param evt Evento al presionar el boton
      */
     public void llenarTodo() {
         controlProgramar.setClass(Sede.class);
         controlProgramar.buscarTodosLista(1);
         controlProgramar.setClass(Proveedor.class);
         controlProgramar.buscarTodosLista(2);
+        campoModel.addElement("");
+        campoModel.addElement("Nombre");
+        campoModel.addElement("Departamento");
+        campoModel.addElement("Puesto");
+        campoModel.addElement("Sede");
+        campoModel.addElement("Plantel");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -716,28 +736,30 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JComboBox tipoGCBx;
     private javax.swing.JLabel tipoGLbl;
     private javax.swing.JComboBox tipoLACBx;
-    private javax.swing.JComboBox tipossedeGCBx;
+    private javax.swing.JComboBox tipoSedeGCBx;
     // End of variables declaration//GEN-END:variables
     /**
-     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de 
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
      * registro o modificacion exitosa.
+     *
      * @param mensaje String con mensaje de confirmacion de registro.
      */
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
     /**
-     * Metodo que recibe una matriz, donde se obtendran sus valores para 
-     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se 
+     * Metodo que recibe una matriz, donde se obtendran sus valores para
+     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se
      * le dara se redefinira el ancho de la columna 0.
+     *
      * @param info Matriz String para vaciar en tabla
      */
     @Override
     public void setTabla(String[][] info) {
-    if (info[0][0].contains("TLE1")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+        if (info[0][0].contains("TLE1")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
             info[0][0] = info[0][0].replaceAll("TLE1", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
-            System.out.println(info[0][0]);
             tablaLisITb.setEnabled(true);
             modelTablaEmI.setDataVector(info, titulosTablaEm);
             TableColumn tc = tablaLisITb.getColumnModel().getColumn(0);
@@ -749,6 +771,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             int nCol = tablaLisFTb.getColumnCount();
             boolean bandera = false;
             tablaLisFTb.setEnabled(true);
+            //ciclo que identifica si ya existe el empleado en la lista de 
+            //asistencia, si se encuentra entonces la bandera cambiara a true y
+            //no se agregara
             for (int i = 0; i < nRow; i++) {
                 if (info[0][0].equals(modelTablaEmF.getValueAt(i, 0))) {
                     bandera = true;
@@ -758,6 +783,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                 nRow = modelTablaEmF.getRowCount();
                 nCol = modelTablaEmF.getColumnCount();
                 Object[][] tableData = new Object[nRow + 1][nCol];
+                //ciclo que pasa la informacion de la tabla de lista 
+                //final para que al final sea agregado el nuevo empleado a 
+                //esta matriz
                 for (int i = 0; i < nRow; i++) {
                     for (int j = 0; j < nCol; j++) {
                         tableData[i][j] = modelTablaEmF.getValueAt(i, j);
@@ -776,10 +804,12 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             }
         }
     }
+
     /**
      * Metodo sobrescrito de la clase Comunicador
+     *
      * @param info
-     * @param i 
+     * @param i
      */
     @Override
     public void setInfo(List info) {
@@ -795,15 +825,17 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
             tipoGCBx.setSelectedIndex(1);
         }
     }
+
     /**
-     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la 
-     * los resultados de una busqueda especifica y vaciarlo en los campos y 
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica y vaciarlo en los campos y
      * checkbox
+     *
      * @param info Lista de Objeto con información de búsqueda.
      */
     @Override
     public void setLista(List info, int i) {
-    if (info.isEmpty()) {
+        if (info.isEmpty()) {
             return;
         }
         switch (i) {
@@ -811,7 +843,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                 sedeModel.removeAllElements();
                 Sede sede = new Sede();
                 sede.setNombre("");
-                sedeModel.addElement(sede); 
+                sedeModel.addElement(sede);
                 for (int j = 0; j < info.size(); j++) {
                     sedeModel.addElement(info.get(j));
                 }
@@ -829,14 +861,14 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
                 }
                 break;
             case 3:
-                campoModel.removeAllElements();
+                tipoModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
-                    campoModel.addElement(info.get(j));
+                    tipoModel.addElement(info.get(j));
                 }
                 break;
         }
     }
-    
+
     /**
      * Establece una visibilidad de las opciones del panel del usuario
      *
@@ -845,12 +877,13 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
     public void visibilidad(boolean visibilidad) {
         fechaIDCh.setEnabled(visibilidad);
         fechaTDCh.setEnabled(visibilidad);
-        tipossedeGCBx.setEnabled(visibilidad);
+        tipoSedeGCBx.setEnabled(visibilidad);
         nombreGCBx.setEnabled(visibilidad);
         guardarGBtn.setEnabled(visibilidad);
         campoCBx.setEnabled(visibilidad);
         guardarLABtn.setEnabled(visibilidad);
     }
+
     /**
      * Establece una visibilidad al seleccionar que tipo de busqueda para el
      * empleado se realizara
@@ -875,43 +908,51 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         eliminarBtn.setEnabled(visibilidad);
         eliminarTBtn.setEnabled(visibilidad);
     }
+
     /**
      * Establece una opcion para guardar o modificar la informacion para
      * mandarla a la base de datos
      *
      * @param visibilidad
      */
-    private void guarMod(){
-        if(guardarGBtn.getText().equals("Guardar")){
-            List<Object> atributos = new ArrayList();
-            atributos.add(curso);
-            atributos.add(fechaIDCh.getDate());
-            atributos.add(fechaTDCh.getDate());
-            atributos.add(false);
-            atributos.add(tipossedeGCBx.getSelectedItem());
-            atributos.add(nombreGCBx.getSelectedItem());
-            controlProgramar.setClass(ImplementacionCurso.class);
-            controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Activo"));
-        }else if(guardarGBtn.getText().equals("Modificar")){
-            List<Object> atributos = new ArrayList();
-            atributos.add(cursoProgramarId);
-            atributos.add(curso);
-            atributos.add(fechaIDCh.getDate());
-            atributos.add(fechaTDCh.getDate());
-            atributos.add(false);
-            atributos.add(tipossedeGCBx.getSelectedItem());
-            atributos.add(nombreGCBx.getSelectedItem());
-            controlProgramar.setClass(ImplementacionCurso.class);
-            controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Activo"));
+    private void guarMod() {
+        if (validacion() == false) {
+            if (guardarGBtn.getText().equals("Guardar")) {
+                List<Object> atributos = new ArrayList();
+                atributos.add(curso);
+                atributos.add(fechaIDCh.getDate());
+                atributos.add(fechaTDCh.getDate());
+                atributos.add(true);
+                atributos.add(tipoSedeGCBx.getSelectedItem());
+                atributos.add(nombreGCBx.getSelectedItem());
+                controlProgramar
+                        .setClass(ImplementacionCurso.class
+                        );
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Activo"));
+            } else if (guardarGBtn.getText().equals("Modificar")) {
+                List<Object> atributos = new ArrayList();
+                atributos.add(cursoProgramarId);
+                atributos.add(curso);
+                atributos.add(fechaIDCh.getDate());
+                atributos.add(fechaTDCh.getDate());
+                atributos.add(true);
+                atributos.add(tipoSedeGCBx.getSelectedItem());
+                atributos.add(nombreGCBx.getSelectedItem());
+                controlProgramar
+                        .setClass(ImplementacionCurso.class
+                        );
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Activo"));
+            }
         }
     }
-    
+
     /**
-     * Este metodo obtiene la informacion del curso a realizar del 
+     * Este metodo obtiene la informacion del curso a realizar del
      * PnlProgramarCurso para que este la pueda modificar
-     * @param info 
+     *
+     * @param info
      */
-    public void obtenerMod(List info){
+    public void obtenerMod(List info) {
         agregarGLbl.setText("Modificar");
         agregarLALbl.setText("Modificar");
         guardarGBtn.setText("Modificar");
@@ -929,5 +970,38 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
         fechaTDCh.setDate((Date) info.get(6));
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
-    }   
+    }
+
+    /**
+     * Metodo que regresa un true si se encontraron informacion sin completar, o
+     * errores en la informacion, como es mostrado en el caso de prueba
+     *
+     * @return
+     */
+    private boolean validacion() {
+        Sede campoSede = (Sede) tipoSedeGCBx.getSelectedItem();
+        Proveedor campoProveedor = (Proveedor) nombreGCBx.getSelectedItem();
+
+        if (fechaIDCh.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
+                    + " inicial");
+            return true;
+        } else if (fechaTDCh.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
+                    + " Final");
+            return true;
+        } else if (campoSede.getNombre().equals("")) {
+            JOptionPane.showMessageDialog(this, "No selecciono una sede");
+            return true;
+        } else if (campoProveedor.toString().equals("")) {
+            JOptionPane.showMessageDialog(this, "No selecciono un proveedor");
+            return true;
+        } else if (tablaLisFTb.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No se encontraron empleados"
+                    + "en la lista de asistencia");
+            return true;
+        }
+        return false;
+    }
+
 }

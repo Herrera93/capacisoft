@@ -103,7 +103,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tipossedeGCBx" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                          <Component id="tipoSedeGCBx" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                                           <Component id="nombreGCBx" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                                           <Component id="cantidadSedeGLbl" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                                       </Group>
@@ -135,7 +135,7 @@
                           <Component id="fechaILbl" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="sedeGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tipossedeGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tipoSedeGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -265,7 +265,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="tipossedeGCBx">
+            <Component class="javax.swing.JComboBox" name="tipoSedeGCBx">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
