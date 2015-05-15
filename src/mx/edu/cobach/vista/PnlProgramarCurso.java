@@ -10,8 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Curso;
-import mx.edu.cobach.persistencia.entidades.Departamento;
-import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.ProgramarControlador;
