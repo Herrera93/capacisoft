@@ -19,6 +19,7 @@ public class ImplementacionCurso  implements java.io.Serializable {
      private Set<Empleado> empleados = new HashSet<Empleado>(0);
      private Set<Alerta> alertas = new HashSet<Alerta>(0);
      private Set<Encuesta> encuestas = new HashSet<Encuesta>(0);
+     private Set<EnunciadoLogistica> enunciado = new HashSet<EnunciadoLogistica>(0);
 
     public ImplementacionCurso() {
     }
@@ -33,7 +34,7 @@ public class ImplementacionCurso  implements java.io.Serializable {
         this.activo = activo;
     }
     
-    public ImplementacionCurso(Curso curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo, Set<Empleado> empleados, Set<Alerta> alertas, Set<Encuesta> encuestas) {
+    public ImplementacionCurso(Curso curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo, Set<Empleado> empleados, Set<Alerta> alertas, Set<Encuesta> encuestas, Set<EnunciadoLogistica> enunciado) {
        this.curso = curso;
        this.proveedor = proveedor;
        this.sede = sede;
@@ -43,6 +44,7 @@ public class ImplementacionCurso  implements java.io.Serializable {
        this.empleados = empleados;
        this.alertas = alertas;
        this.encuestas = encuestas;
+       this.enunciado = enunciado;
     }
    
     public Integer getId() {
@@ -100,6 +102,14 @@ public class ImplementacionCurso  implements java.io.Serializable {
     
     public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
+    }
+    
+    public Set<EnunciadoLogistica> getEnunciado() {
+        return this.enunciado;
+    }
+    
+    public void setEnunciado(Set<EnunciadoLogistica> enunciado) {
+        this.enunciado = enunciado;
     }
     
     public Set<Alerta> getAlertas() {
