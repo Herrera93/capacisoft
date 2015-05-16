@@ -49,9 +49,10 @@ public class TipoCurso  implements java.io.Serializable {
         this.cursos = cursos;
     }
 
-
-
-
+    @Override
+    public String toString(){
+        return descripcion;
+    }
 }
 
 

@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.persistencia;
 
+import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
@@ -31,7 +32,6 @@ public class ProgramarDAO<T> extends BaseDAO{
             ts = HibernateUtil.getSession().createCriteria(entityClass).
                     add(Restrictions.eq("curso", curso)).list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscar por nombre::Curso");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
@@ -48,13 +48,34 @@ public class ProgramarDAO<T> extends BaseDAO{
             ts = HibernateUtil.getSession().createCriteria(entityClass).
                     add(Restrictions.eq("sede", sede)).list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscar por nombre::Departamento");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
             HibernateUtil.closeSession();
         }
         return ts;
+    }
+    
+    /**
+     * Obtiene todas las implementaciones en un rango de fechas dado.
+     * @param de Fecha inicio de rango
+     * @param hasta Fecha final de rango
+     * @return Regresa la lista con las implementaciones
+     */
+    public List<Object> buscarPorFechas(Date de, Date hasta){   
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            ts = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.between("fechaInicial", ts, ts)).list();
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;        
     }
     
 }

@@ -49,9 +49,10 @@ public class Competencia  implements java.io.Serializable {
         this.aspectos = aspectos;
     }
 
-
-
-
+    @Override
+    public String toString(){
+        return nombre;
+    }
 }
 
 

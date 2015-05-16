@@ -58,10 +58,11 @@ public class Aspecto  implements java.io.Serializable {
     public void setRespuestas(Set<Respuesta> respuestas) {
         this.respuestas = respuestas;
     }
-
-
-
-
+    
+    @Override
+    public String toString(){
+        return aspecto;
+    }
 }
 
 

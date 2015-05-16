@@ -49,7 +49,10 @@ public class Enfoque  implements java.io.Serializable {
         this.departamentos = departamentos;
     }
 
-
+    @Override
+    public String toString(){
+        return nombre;
+    }
 
 
 }

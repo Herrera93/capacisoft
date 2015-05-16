@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.negocio.facade;
 
+import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.entidades.Sede;
@@ -20,6 +21,16 @@ public class ProgramarFACADE extends BaseFACADE{
     }
     public List<Object> findBySede(Sede sede) {
         return ServiceLocator.getPrograma().findBySede(sede);
+    }
+    
+    /**
+     * Obtiene todas las implementaciones en un rango de fechas dado.
+     * @param de Fecha inicio de rango
+     * @param hasta Fecha final de rango
+     * @return Regresa la lista con las implementaciones
+     */
+    public List<Object> buscarPorFechas(Date de, Date hasta){
+        return ServiceLocator.getPrograma().buscarPorFechas(de, hasta);
     }
 }
 

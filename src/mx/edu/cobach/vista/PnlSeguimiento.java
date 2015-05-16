@@ -6,9 +6,13 @@ package mx.edu.cobach.vista;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
@@ -18,7 +22,8 @@ import mx.edu.cobach.vista.controlador.EncuestaControlador;
 public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
 
     private final EncuestaControlador control;
-    private DefaultTableModel cursosModel;
+    private final DefaultTableModel cursosTblModel;
+    private final DefaultComboBoxModel cursosCBxModel;
     private final String[] titulosTabla = {"ID", "FechaInicial", "Nombre del curso",
         "Estado", "Eliminar"};
     private PnlEncuestaResultado resultadoPnl;
@@ -29,8 +34,14 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         initComponents();
         agregar();
         control = new EncuestaControlador(this);
-        cursosModel = new DefaultTableModel(titulosTabla, 10);
-        cursosTbl.setModel(cursosModel);
+        cursosTblModel = new DefaultTableModel(titulosTabla, 10);
+        cursosTbl.setModel(cursosTblModel);
+        
+        cursosCBxModel = new DefaultComboBoxModel();
+        cursoCBx.setModel(cursosCBxModel);
+        
+        TableColumn tc = cursosTbl.getColumnModel().getColumn(0);
+        cursosTbl.getColumnModel().removeColumn(tc);
     }
 
     /*
@@ -86,6 +97,8 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     entre se mostrara todos los datos correspondientes.
     */
     public void llenarTodo(){
+        control.setClass(Curso.class);
+        control.buscarTodosLista(1);
         agregarAspectosPnl.llenarTodo();
     }
     
@@ -357,22 +370,28 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
 
     private void realizarEncuesta_PnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_realizarEncuesta_PnlComponentShown
         resultadoPnl.setVisible(false);
-        add(agregarAspectosPnl);
-        add(agregarEmpleadosPnl);
+        agregarAspectosPnl.setVisible(true);
     }//GEN-LAST:event_realizarEncuesta_PnlComponentShown
 
     private void resultado_PnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_resultado_PnlComponentShown
         resultadoPnl.setVisible(true);
-        remove(agregarAspectosPnl);
-        remove(agregarEmpleadosPnl);
+        agregarAspectosPnl.setVisible(false);
     }//GEN-LAST:event_resultado_PnlComponentShown
 
     private void seleccion_BC_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccion_BC_CBxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_seleccion_BC_CBxActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        // TODO add your handling code here:
+        Object curso = cursoCBx.getSelectedItem();
+        Date de = deFechaDCh.getDate();
+        Date hasta = aFechaDCh.getDate();
+        if(cursoCBx.getSelectedIndex() != 0){
+            control.buscarImplementacion(curso);
+        }else{
+            control.buscarImplementacion(de, hasta);
+        }
+        
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -409,6 +428,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setTabla(String[][] info) {
+        cursosTblModel.setDataVector(info, titulosTabla);
     }
 
     @Override
@@ -418,6 +438,11 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setLista(List info, int i) {
-        
+        cursosCBxModel.removeAllElements();
+        for(int j = 0; j < info.size(); j++){
+            cursosCBxModel.addElement(info.get(j));
+        }
+        cursosCBxModel.insertElementAt(new Curso(), 0);
+        cursoCBx.setSelectedIndex(0);
     }
 }

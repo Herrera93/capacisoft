@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.negocio.delegate;
 
+import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Curso;
@@ -39,5 +40,15 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
     }
     public List<Object> findBySede(Sede sede) {
         return ServiceLocatorFACADE.getPrograma().findBySede(sede);
+    }
+    
+    /**
+     * Obtiene todas las implementaciones en un rango de fechas dado.
+     * @param de Fecha inicio de rango
+     * @param hasta Fecha final de rango
+     * @return Regresa la lista con las implementaciones
+     */
+    public List<Object> buscarPorFechas(Date de, Date hasta){
+        return ServiceLocatorFACADE.getPrograma().buscarPorFechas(de, hasta);
     }
 }

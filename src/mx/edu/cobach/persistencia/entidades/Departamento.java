@@ -59,9 +59,10 @@ public class Departamento  implements java.io.Serializable {
         this.empleados = empleados;
     }
 
-
-
-
+    @Override
+    public String toString(){
+        return nombre;
+    }
 }
 
 
