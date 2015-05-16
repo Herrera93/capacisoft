@@ -7,6 +7,7 @@ package mx.edu.cobach.vista;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
@@ -1056,6 +1057,8 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 fechaTDCh.setDate(fechaIDCh.getDate());
             }
             if (guardarGBtn.getText().equals("Guardar")) {
+                HashSet<Empleado> lisEmpleado = new HashSet();
+                HashSet<EnunciadoLogistica> lisEnunciado = new HashSet();
                 List<Object> atributos = new ArrayList();
                 atributos.add(curso);
                 atributos.add(fechaIDCh.getDate());
@@ -1063,10 +1066,24 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 atributos.add(false);
                 atributos.add(tipoSedeGCBx.getSelectedItem());
                 atributos.add(nombreGCBx.getSelectedItem());
+                for(int x =0; x< tablaLisFTbl.getRowCount() ; x++){
+                    Empleado empleado = new Empleado();
+                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
+                            getValueAt(x, 0)));
+                    lisEmpleado.add(empleado);
+                }
+                for(int x =0; x< enunciadoTbl.getRowCount() ; x++){
+                    EnunciadoLogistica logistica = new EnunciadoLogistica();
+                    logistica.setId(Integer.parseInt((String)modelTablaEmF.
+                            getValueAt(x, 0)));
+                    lisEnunciado.add(logistica);
+                }
                 controlProgramar.setClass(ImplementacionCurso.class);
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Guardar", "Finalizado"));
             } else if (guardarGBtn.getText().equals("Modificar")) {
+                HashSet<Empleado> lisEmpleado = new HashSet();
                 List<Object> atributos = new ArrayList();
+                HashSet<EnunciadoLogistica> lisEnunciado = new HashSet();
                 atributos.add(cursoProgramarId);
                 atributos.add(curso);
                 atributos.add(fechaIDCh.getDate());
@@ -1074,8 +1091,20 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 atributos.add(false);
                 atributos.add(tipoSedeGCBx.getSelectedItem());
                 atributos.add(nombreGCBx.getSelectedItem());
+                for(int x =0; x< tablaLisFTbl.getRowCount() ; x++){
+                    Empleado empleado = new Empleado();
+                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
+                            getValueAt(x, 0)));
+                    lisEmpleado.add(empleado);
+                }
+                for(int x =0; x< enunciadoTbl.getRowCount() ; x++){
+                    EnunciadoLogistica logistica = new EnunciadoLogistica();
+                    logistica.setId(Integer.parseInt((String)modelTablaEmF.
+                            getValueAt(x, 0)));
+                    lisEnunciado.add(logistica);
+                }
                 controlProgramar.setClass(ImplementacionCurso.class);
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Finalizado"));
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Modificar", "Finalizado"));
             }
         }
     }
