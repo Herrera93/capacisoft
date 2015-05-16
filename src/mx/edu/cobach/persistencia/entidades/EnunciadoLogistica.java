@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 12, 2015 11:53:14 AM by Hibernate Tools 4.3.1
+// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +16,8 @@ public class EnunciadoLogistica  implements java.io.Serializable {
      private Integer id;
      private TipoEnunciado tipoEnunciado;
      private String descripcion;
-     private Set<ImplementacionCurso> curso = new HashSet<ImplementacionCurso>(0);
+     private Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas = new HashSet<ImplementacionCursoEnunciadoLogistica>(0);
+
     public EnunciadoLogistica() {
     }
 
@@ -24,11 +25,13 @@ public class EnunciadoLogistica  implements java.io.Serializable {
        this.tipoEnunciado = tipoEnunciado;
        this.descripcion = descripcion;
     }
-    public EnunciadoLogistica(TipoEnunciado tipoEnunciado, String descripcion, Set<ImplementacionCurso> curso) {
+    
+    public EnunciadoLogistica(TipoEnunciado tipoEnunciado, String descripcion, Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
        this.tipoEnunciado = tipoEnunciado;
        this.descripcion = descripcion;
-       this.curso = curso;
+       this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
     }
+   
     public Integer getId() {
         return this.id;
     }
@@ -47,19 +50,17 @@ public class EnunciadoLogistica  implements java.io.Serializable {
         return this.descripcion;
     }
     
-    public Set<ImplementacionCurso> getCursos() {
-        return this.curso;
-    }
-    
-    public void setCursos(Set<ImplementacionCurso> curso) {
-        this.curso = curso;
-    }
-    
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-
+    public Set<ImplementacionCursoEnunciadoLogistica> getImplementacionCursoEnunciadoLogisticas() {
+        return this.implementacionCursoEnunciadoLogisticas;
+    }
+    
+    public void setImplementacionCursoEnunciadoLogisticas(Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
+        this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
+    }
 
 
 }

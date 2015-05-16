@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 12, 2015 11:53:15 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 16, 2015 9:04:03 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="mx.edu.cobach.persistencia.entidades.ImplementacionCurso" table="implementacion_curso" catalog="capacisoft">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity"></generator>
         </id>
-        <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select" lazy="false">
+        <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select">
             <column name="curso_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select" lazy="false">
+        <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select">
             <column name="proveedor_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="sede" class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select" lazy="false">
+        <many-to-one name="sede" class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select">
             <column name="sede_id" not-null="true" />
         </many-to-one>
         <property name="fechaInicial" type="date">
@@ -47,6 +47,12 @@
                 <column name="implementacion_curso_id" not-null="true" />
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.Encuesta" />
+        </set>
+        <set name="implementacionCursoEnunciadoLogisticas" table="implementacion_curso_enunciado_logistica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="implementacion_curso_id" not-null="true" />
+            </key>
+            <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica" />
         </set>
     </class>
 </hibernate-mapping>

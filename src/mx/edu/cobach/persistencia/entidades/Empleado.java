@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 12, 2015 11:53:14 AM by Hibernate Tools 4.3.1
+// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -41,7 +41,6 @@ public class Empleado  implements java.io.Serializable {
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
     }
-    
     public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas, Set<ImplementacionCurso> implementacionCursos) {
        this.adscripcion = adscripcion;
        this.departamento = departamento;
