@@ -7,6 +7,7 @@ package mx.edu.cobach.vista;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -56,13 +57,14 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         tablaLisITb.setDragEnabled(false);
 
         modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
-        tablaLisFTb.setModel(modelTablaEmI);
-        tablaLisFTb.setColumnSelectionAllowed(false);
-        tablaLisFTb.setDragEnabled(false);
+        tablaLisFTbl.setModel(modelTablaEmF);
+        tablaLisFTbl.setColumnSelectionAllowed(false);
+        tablaLisFTbl.setDragEnabled(false);
 
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
         tipoLACBx.setModel(tipoModel);
+        campoCBx.setModel(campoModel);
         controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
 
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
@@ -105,7 +107,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaLisITb = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tablaLisFTb = new javax.swing.JTable();
+        tablaLisFTbl = new javax.swing.JTable();
         guardarLABtn = new javax.swing.JButton();
         nombreLATFd = new javax.swing.JTextField();
         nombreLALbl = new javax.swing.JLabel();
@@ -314,7 +316,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         tablaLisITb.setEnabled(false);
         jScrollPane4.setViewportView(tablaLisITb);
 
-        tablaLisFTb.setModel(new javax.swing.table.DefaultTableModel(
+        tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -333,8 +335,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 return canEdit [columnIndex];
             }
         });
-        tablaLisFTb.setEnabled(false);
-        jScrollPane5.setViewportView(tablaLisFTb);
+        tablaLisFTbl.setEnabled(false);
+        jScrollPane5.setViewportView(tablaLisFTbl);
 
         guardarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarLABtn.setText("Guardar");
@@ -529,6 +531,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
         String campo = (String) campoCBx.getSelectedItem();
         switch (campo) {
+            
             case "Nombre":
                 controlProgramar.setClass(Empleado.class);
                 controlProgramar.buscarEmpN(nombreLATFd.getText());
@@ -617,9 +620,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
      * @param evt Evento al presionar el boton
      */
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        int nRow = tablaLisFTb.getRowCount();
-        int nCol = tablaLisFTb.getColumnCount();
-        int row = tablaLisFTb.getSelectedRow();
+        int nRow = tablaLisFTbl.getRowCount();
+        int nCol = tablaLisFTbl.getColumnCount();
+        int row = tablaLisFTbl.getSelectedRow();
         int cont = 0;
         String id = (String) modelTablaEmF.getValueAt(row, 0);
         Object[][] tableData = new Object[nRow - 1][nCol + 1];
@@ -632,8 +635,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
             }
         }
         modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-        TableColumn tc = tablaLisFTb.getColumnModel().getColumn(0);
-        tablaLisFTb.getColumnModel().removeColumn(tc);
+        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
         visibilidadOpcT(true);
     }//GEN-LAST:event_eliminarBtnActionPerformed
     /**
@@ -645,8 +648,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
         String[][] datosTabla = new String[0][0];
         modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
-        TableColumn tc = tablaLisFTb.getColumnModel().getColumn(0);
-        tablaLisFTb.getColumnModel().removeColumn(tc);
+        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
     }//GEN-LAST:event_eliminarTBtnActionPerformed
     /**
      * Evento ejecutado al hacer click mandando a un metodo que guarde la
@@ -731,7 +734,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
     private javax.swing.JLabel nota_LI_Lbl;
     private javax.swing.JLabel sedeGLbl;
     private javax.swing.JLabel seleccionLALbl;
-    private javax.swing.JTable tablaLisFTb;
+    private javax.swing.JTable tablaLisFTbl;
     private javax.swing.JTable tablaLisITb;
     private javax.swing.JComboBox tipoGCBx;
     private javax.swing.JLabel tipoGLbl;
@@ -767,10 +770,10 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
             visibilidadOpcT(true);
         } else if (info[0][0].contains("TLE2")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
             info[0][0] = info[0][0].replaceAll("TLE2", "");//Se elimina la palabra TLE1 para que solo quede el id puro
-            int nRow = tablaLisFTb.getRowCount();
-            int nCol = tablaLisFTb.getColumnCount();
+            int nRow = tablaLisFTbl.getRowCount();
+            int nCol = tablaLisFTbl.getColumnCount();
             boolean bandera = false;
-            tablaLisFTb.setEnabled(true);
+            tablaLisFTbl.setEnabled(true);
             //ciclo que identifica si ya existe el empleado en la lista de 
             //asistencia, si se encuentra entonces la bandera cambiara a true y
             //no se agregara
@@ -796,8 +799,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 tableData[nRow][2] = info[0][2];
                 modelTablaEmF.setDataVector(tableData, titulosTablaEm);
 
-                TableColumn tc = tablaLisFTb.getColumnModel().getColumn(0);
-                tablaLisFTb.getColumnModel().removeColumn(tc);
+                TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+                tablaLisFTbl.getColumnModel().removeColumn(tc);
                 visibilidadOpcT(true);
             } else {
 
@@ -917,20 +920,27 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
      */
     private void guarMod() {
         if (validacion() == false) {
+            int rowN = tablaLisFTbl.getRowCount();
             if (guardarGBtn.getText().equals("Guardar")) {
                 List<Object> atributos = new ArrayList();
+                HashSet<Empleado> lisEmpleado = new HashSet();
                 atributos.add(curso);
                 atributos.add(fechaIDCh.getDate());
                 atributos.add(fechaTDCh.getDate());
                 atributos.add(true);
                 atributos.add(tipoSedeGCBx.getSelectedItem());
                 atributos.add(nombreGCBx.getSelectedItem());
-                controlProgramar
-                        .setClass(ImplementacionCurso.class
-                        );
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Activo"));
+                for(int x =0; x< rowN ; x++){
+                    Empleado empleado = new Empleado();
+                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
+                            getValueAt(x, 0)));
+                    lisEmpleado.add(empleado);
+                }
+                controlProgramar.setClass(ImplementacionCurso.class);
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Guardar", "Activo"));
             } else if (guardarGBtn.getText().equals("Modificar")) {
                 List<Object> atributos = new ArrayList();
+                HashSet<Empleado> lisEmpleado = new HashSet();
                 atributos.add(cursoProgramarId);
                 atributos.add(curso);
                 atributos.add(fechaIDCh.getDate());
@@ -938,10 +948,14 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 atributos.add(true);
                 atributos.add(tipoSedeGCBx.getSelectedItem());
                 atributos.add(nombreGCBx.getSelectedItem());
-                controlProgramar
-                        .setClass(ImplementacionCurso.class
-                        );
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Activo"));
+                for(int x =0; x< rowN ; x++){
+                    Empleado empleado = new Empleado();
+                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
+                            getValueAt(x, 0)));
+                    lisEmpleado.add(empleado);
+                }
+                controlProgramar.setClass(ImplementacionCurso.class);
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Modificar", "Activo"));
             }
         }
     }
@@ -996,7 +1010,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         } else if (campoProveedor.toString().equals("")) {
             JOptionPane.showMessageDialog(this, "No selecciono un proveedor");
             return true;
-        } else if (tablaLisFTb.getRowCount() == 0) {
+        } else if (tablaLisFTbl.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + "en la lista de asistencia");
             return true;
