@@ -20,16 +20,16 @@ import mx.edu.cobach.persistencia.entidades.Sede;
 public class ProgramarDELEGATE extends BaseDELEGATE{
     
     public List<Object> findByNombre(String nombre) {
-        return ServiceLocatorFACADE.getEmpleadoFacade().findByNombre(nombre);
+        return ServiceLocatorFACADE.getEmpleado().findByNombre(nombre);
     }
     public List<Object> findByDepartamento(Departamento departamento) {
-        return ServiceLocatorFACADE.getEmpleadoFacade().findByDepartamento(departamento);
+        return ServiceLocatorFACADE.getEmpleado().findByDepartamento(departamento);
     }
     public List<Object> findByPuesto(Puesto puesto) {
-        return ServiceLocatorFACADE.getEmpleadoFacade().findByPuesto(puesto);
+        return ServiceLocatorFACADE.getEmpleado().findByPuesto(puesto);
     }
     public List<Object> findByPlantel(Plantel plantel) {
-        return ServiceLocatorFACADE.getEmpleadoFacade().findByPlantel(plantel);
+        return ServiceLocatorFACADE.getEmpleado().findByPlantel(plantel);
     }
     public List<Object> findEncuesta(Class encuesta) {
         return ServiceLocatorFACADE.getInstance().findAll(encuesta);

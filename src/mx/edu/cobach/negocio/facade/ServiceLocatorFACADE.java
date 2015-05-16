@@ -41,7 +41,7 @@ public class ServiceLocatorFACADE {
      * Singleton.
      * @return Regresa el FACADE de Empleado
      */
-    public static EmpleadoFACADE getEmpleadoFacade(){
+    public static EmpleadoFACADE getEmpleado(){
         if(empleadoFacade == null){
             empleadoFacade = new EmpleadoFACADE();
         }

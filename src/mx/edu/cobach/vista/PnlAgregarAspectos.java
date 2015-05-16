@@ -330,7 +330,7 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         int renglonIndice = aspectosAgregadosTbl.getSelectedRow();
         if(aspectosAgrTblModel.getRowCount() == 0){
             setMensaje("No hay aspectos que eliminar");
-        }if(renglonIndice == -1){
+        }else if(renglonIndice == -1){
             setMensaje("No se ha seleccionado un aspecto");
         }else{
             aspectosAgrTblModel.removeRow(renglonIndice);

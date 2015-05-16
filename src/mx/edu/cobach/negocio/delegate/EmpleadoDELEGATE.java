@@ -19,12 +19,13 @@ public class EmpleadoDELEGATE extends BaseDELEGATE {
         super();
     }    
     
-    public List<Object> findByNombre(String nombre){
-        return ServiceLocatorFACADE.getEmpleadoFacade().findByNombre(nombre);
+    public List<Object> buscarPorNombre(String nombre){
+        return ServiceLocatorFACADE.getEmpleado().findByNombre(nombre);
     }
     
-    public List<Object> findByAdscripcion(Adscripcion adscripcion){
-        return ServiceLocatorFACADE.getEmpleadoFacade().
+    public List<Object> buscarPorAdscripcion(Adscripcion adscripcion){
+        return ServiceLocatorFACADE.getEmpleado().
                 findByAdscripcion(adscripcion);
     }
+    
 }

@@ -619,7 +619,6 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador{
 
     public void buscarCurso(Curso curso) {
         this.curso = curso;
-        System.out.println(curso.getId());
         controlProgramar.buscarCurId(curso.getId(), Curso.class);
     }
 

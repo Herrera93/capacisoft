@@ -48,10 +48,11 @@ public class Competencia  implements java.io.Serializable {
     public void setAspectos(Set<Aspecto> aspectos) {
         this.aspectos = aspectos;
     }
-
-
-
-
+    
+    @Override
+    public String toString(){
+        return nombre;
+    }
 }
 
 

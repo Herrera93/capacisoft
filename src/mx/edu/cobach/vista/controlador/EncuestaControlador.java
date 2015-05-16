@@ -9,6 +9,9 @@ import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Competencia;
+import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Plantel;
+import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
@@ -33,5 +36,29 @@ public class EncuestaControlador extends BaseControlador {
         List<Object> aspectos = ServiceLocatorDELEGATE.getAspecto()
                 .buscarPorCompetencia((Competencia) competencia);
         com.setTabla(HelperEntidad.descomponerObjetos(aspectos));
+    }
+    
+    public void buscarPorPuesto(Object puesto){
+        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+                .findByPuesto((Puesto) puesto);
+        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+    }
+    
+    public void buscarPorPlantel(Object plantel){
+        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+                .findByPlantel((Plantel) plantel);
+        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+    }
+    
+    public void buscarPorDepartamento(Object departamento){
+        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+                .findByDepartamento((Departamento) departamento);
+        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+    }
+    
+    public void buscarPorNombre(String nombre){
+        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+                .findByNombre(nombre);
+        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
 }

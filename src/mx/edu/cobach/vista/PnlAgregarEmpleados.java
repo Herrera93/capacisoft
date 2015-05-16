@@ -32,7 +32,7 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     
     public PnlAgregarEmpleados() {
         control = new EncuestaControlador(this);
-        titulosTabla = new String[]{"ID", "Empleados"};
+        titulosTabla = new String[]{"ID", "Numero", "Empleados"};
         initComponents();
         empleadosTblModel = new DefaultTableModel(titulosTabla, 5);
         empleadosTbl.setModel(empleadosTblModel);
@@ -83,6 +83,7 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         busquedaLbl = new javax.swing.JLabel();
         busquedaCBx = new javax.swing.JComboBox();
         busquedaTFd = new javax.swing.JTextField();
+        busquedaBtn = new javax.swing.JButton();
 
         realizarEncuesta_Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -208,10 +209,16 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         busquedaLbl.setText("Nombre:");
 
         busquedaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        busquedaCBx.setPreferredSize(new java.awt.Dimension(270, 23));
+        busquedaCBx.setPreferredSize(new java.awt.Dimension(220, 23));
 
-        busquedaTFd.setPreferredSize(new java.awt.Dimension(270, 23));
-        busquedaTFd.setRequestFocusEnabled(false);
+        busquedaTFd.setPreferredSize(new java.awt.Dimension(220, 23));
+
+        busquedaBtn.setText("Buscar");
+        busquedaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busquedaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout realizarEncuesta_PnlLayout = new javax.swing.GroupLayout(realizarEncuesta_Pnl);
         realizarEncuesta_Pnl.setLayout(realizarEncuesta_PnlLayout);
@@ -248,7 +255,9 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
                                 .addGap(18, 18, 18)
                                 .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(busquedaCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(busquedaTFd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(busquedaTFd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(33, 33, 33)
+                                .addComponent(busquedaBtn)))
                         .addContainerGap(60, Short.MAX_VALUE))))
         );
         realizarEncuesta_PnlLayout.setVerticalGroup(
@@ -264,10 +273,11 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
                     .addComponent(tipoBusquedaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(busquedaLbl)
                     .addComponent(busquedaTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busquedaBtn)
                     .addComponent(busquedaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
+                        .addGap(81, 81, 81)
                         .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(agregaTodosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,11 +286,11 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
                         .addGap(18, 18, 18)
                         .addComponent(borrarTodosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, realizarEncuesta_PnlLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(33, 33, 33)
                         .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aspectosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -311,10 +321,12 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         int indice = tipoBusquedaCBx.getSelectedIndex();
         if(indice == 0){
             busquedaTFd.setVisible(true);
+            busquedaCBx.setEnabled(false);
             busquedaCBx.setVisible(false);
             busquedaLbl.setText(("Nombre: "));
         }else{
             busquedaTFd.setVisible(false);
+            busquedaCBx.setEnabled(true);
             busquedaCBx.setVisible(true);
             switch(indice){
                 case 1:
@@ -343,9 +355,10 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }else if(renglonIndice == -1){
             setMensaje("No se ha seleccionado un empleado");
         }else{
-            String[] renglon = new String[2];
+            String[] renglon = new String[3];
             renglon[0] = (String) empleadosTblModel.getValueAt(renglonIndice, 0);
             renglon[1] = (String) empleadosTblModel.getValueAt(renglonIndice, 1);
+            renglon[2] = (String) empleadosTblModel.getValueAt(renglonIndice, 2);
             empleadosAgrTblModel.addRow(renglon);
             removerAgregados();
         }
@@ -357,9 +370,10 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
             setMensaje("No hay empleados que agregar");
         }else{
             for(int i = 0; i < renglones; i++){
-                String[] aspecto = new String[2];
+                String[] aspecto = new String[3];
                 aspecto[0] = (String) empleadosTblModel.getValueAt(i, 0);
                 aspecto[1] = (String) empleadosTblModel.getValueAt(i, 1);
+                aspecto[2] = (String) empleadosTblModel.getValueAt(i, 2);
                 empleadosAgrTblModel.addRow(aspecto);
             }
             removerAgregados();
@@ -370,7 +384,7 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         int renglonIndice = empleadosAgrTbl.getSelectedRow();
         if(empleadosAgrTblModel.getRowCount() == 0){
             setMensaje("No hay empleados que eliminar");
-        }if(renglonIndice == -1){
+        }else if(renglonIndice == -1){
             setMensaje("No se ha seleccionado un empleado");
         }else{
             empleadosAgrTblModel.removeRow(renglonIndice);
@@ -400,6 +414,24 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         setVisible(false);
     }//GEN-LAST:event_aspectosBtnActionPerformed
 
+    private void busquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaBtnActionPerformed
+        int indice = tipoBusquedaCBx.getSelectedIndex();
+        switch(indice){
+            case 0:
+                control.buscarPorNombre(busquedaTFd.getText());
+                break;
+            case 1:
+                control.buscarPorPuesto(busquedaCBx.getSelectedItem());
+                break;
+            case 2:
+                control.buscarPorPlantel(busquedaCBx.getSelectedItem());
+                break;
+            case 3:
+                control.buscarPorDepartamento(busquedaCBx.getSelectedItem());
+                break;
+        }
+    }//GEN-LAST:event_busquedaBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregaTodosBtn;
@@ -407,6 +439,7 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     private javax.swing.JButton aspectosBtn;
     private javax.swing.JButton borrarBtn;
     private javax.swing.JButton borrarTodosBtn;
+    private javax.swing.JButton busquedaBtn;
     private javax.swing.JComboBox busquedaCBx;
     private javax.swing.JLabel busquedaLbl;
     private javax.swing.JTextField busquedaTFd;
@@ -472,7 +505,7 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
                 for(int j = 0; j < info.size(); j++){
                   busquedaModel.addElement(info.get(j));
                 }
-                busquedaModel.insertElementAt(new Object(), 0);
+                busquedaModel.insertElementAt(new Puesto(), 0);
                 busquedaCBx.setSelectedIndex(0);
                 break;
         }
