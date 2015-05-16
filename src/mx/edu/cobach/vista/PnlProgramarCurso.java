@@ -415,7 +415,8 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
             //int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            String activo = (String) model.getValueAt(row, 2);
+            String activo = (String) model.getValueAt(row, 3);
+            System.out.println(activo);
             //control.buscarMod(id);
             if(activo.equals("Activo")){
                 estado = "Activo";
