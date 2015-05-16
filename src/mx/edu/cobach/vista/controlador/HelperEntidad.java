@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
@@ -47,7 +48,8 @@ public class HelperEntidad {
         return depto;
     }
     
-    public static ImplementacionCurso getProgramar(List<Object> atributos, String direccion, String tipo) {
+    public static ImplementacionCurso getProgramar(List<Object> atributos,
+            HashSet<Empleado> empleado,String direccion, String tipo) {
         if (direccion.equals("Guardar")) {
             if (tipo.equals("Activo")) {
                 ImplementacionCurso implementaCurso = new ImplementacionCurso();
@@ -57,6 +59,7 @@ public class HelperEntidad {
                 implementaCurso.setActivo((boolean) atributos.get(3));
                 implementaCurso.setSede((Sede) atributos.get(4));
                 implementaCurso.setProveedor((Proveedor) atributos.get(5));
+                implementaCurso.setEmpleados(empleado);
                 return implementaCurso;
             } else if (tipo.equals("Finalizado")) {
                 ImplementacionCurso implementaCurso = new ImplementacionCurso();
@@ -66,6 +69,7 @@ public class HelperEntidad {
                 implementaCurso.setActivo((boolean) atributos.get(3));
                 implementaCurso.setSede((Sede) atributos.get(4));
                 implementaCurso.setProveedor((Proveedor) atributos.get(5));
+                implementaCurso.setEmpleados(empleado);
                 return implementaCurso;
             }
         } else if (direccion.equals("Modificar")) {
@@ -78,6 +82,7 @@ public class HelperEntidad {
                 implementaCurso.setActivo((boolean) atributos.get(4));
                 implementaCurso.setSede((Sede) atributos.get(5));
                 implementaCurso.setProveedor((Proveedor) atributos.get(6));
+                implementaCurso.setEmpleados(empleado);
                 return implementaCurso;
             } else if (tipo.equals("Finalizado")) {
                 ImplementacionCurso implementaCurso = new ImplementacionCurso();
@@ -88,6 +93,7 @@ public class HelperEntidad {
                 implementaCurso.setActivo((boolean) atributos.get(4));
                 implementaCurso.setSede((Sede) atributos.get(5));
                 implementaCurso.setProveedor((Proveedor) atributos.get(6));
+                implementaCurso.setEmpleados(empleado);
                 return implementaCurso;
             }
         }
