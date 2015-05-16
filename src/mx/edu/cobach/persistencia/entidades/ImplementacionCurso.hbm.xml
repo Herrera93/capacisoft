@@ -8,13 +8,13 @@
             <column name="id" />
             <generator class="identity"></generator>
         </id>
-        <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select">
+        <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select" lazy="false">
             <column name="curso_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select">
+        <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select" lazy="false">
             <column name="proveedor_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="sede" class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select">
+        <many-to-one name="sede" class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select" lazy="false">
             <column name="sede_id" not-null="true" />
         </many-to-one>
         <property name="fechaInicial" type="date">
