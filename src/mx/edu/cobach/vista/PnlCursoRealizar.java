@@ -948,9 +948,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
             atributos.add(lisEmpleado);
             controlProgramar.setClass(ImplementacionCurso.class);
             if (guardarGBtn.getText().equals("Guardar")) {
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Activo"));
             } else {
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Finalizado"));
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Activo"));
             }
         }
     }
