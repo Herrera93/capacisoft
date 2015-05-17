@@ -9,7 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.ProgramarControlador;
@@ -70,7 +70,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
      * cursos registrados informacion o la modificque.
      */
     public void llenarTodo() {
-        control.setClass(Curso.class);
+        control.setClass(Evento.class);
         control.buscarTodosLista(1);
         control.setClass(Sede.class);
         control.buscarTodosLista(2);
@@ -376,7 +376,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     private void regRealizadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizadoBtnActionPerformed
         curRealizarPnl.setVisible(false);
         curRealizadoPnl.setVisible(true);
-        curRealizadoPnl.buscarCurso((Curso) tipoRegCBx.getSelectedItem());
+        curRealizadoPnl.buscarCurso((Evento) tipoRegCBx.getSelectedItem());
         curRealizadoPnl.llenarTodo();
         curRealizadoPnl.visibilidad(true);
     }//GEN-LAST:event_regRealizadoBtnActionPerformed
@@ -389,7 +389,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     private void regRealizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizarBtnActionPerformed
         curRealizarPnl.setVisible(true);
         curRealizadoPnl.setVisible(false);
-        curRealizarPnl.buscarCurso((Curso) tipoRegCBx.getSelectedItem());
+        curRealizarPnl.buscarCurso((Evento) tipoRegCBx.getSelectedItem());
         curRealizarPnl.llenarTodo();
         curRealizarPnl.visibilidad(true);
     }//GEN-LAST:event_regRealizarBtnActionPerformed
@@ -445,11 +445,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        Curso campoCurso = (Curso)tipoBusCBx.getSelectedItem();
+        Evento campoCurso = (Evento)tipoBusCBx.getSelectedItem();
         Sede campoSede = (Sede)tipoSedeCBx.getSelectedItem();
         if(campoCurso.getNombre().compareTo("")!=0){
             control.setClass(ImplementacionCurso.class);
-            control.buscarPorCurso((Curso) tipoBusCBx.getSelectedItem());
+            control.buscarPorCurso((Evento) tipoBusCBx.getSelectedItem());
         }else if(campoSede.getNombre().compareTo("")!=0){
             control.setClass(ImplementacionCurso.class);
             control.buscarPorSede((Sede) tipoSedeCBx.getSelectedItem());
@@ -462,7 +462,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     }//GEN-LAST:event_registrarPnlComponentShown
 
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
-        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
+        Evento campo = (Evento)tipoBusCBx.getSelectedItem();
         if(campo.getNombre().compareTo("")!=0){
             regRealizadoBtn.setEnabled(true);
             regRealizarBtn.setEnabled(true);
@@ -475,7 +475,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
 
     private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
-        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
+        Evento campo = (Evento)tipoBusCBx.getSelectedItem();
         if(campo.getNombre().compareTo("")!=0){
             regRealizadoBtn.setEnabled(true);
             regRealizarBtn.setEnabled(true);
@@ -593,7 +593,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         switch (i) {
             case 1:
                 tipoCursoModel.removeAllElements();
-                Curso curso = new Curso();
+                Evento curso = new Evento();
                 curso.setNombre("");
                 tipoCursoModel.addElement(curso);              
                 for (int j = 0; j < info.size(); j++) {
