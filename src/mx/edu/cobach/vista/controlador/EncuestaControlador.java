@@ -10,7 +10,7 @@ import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Competencia;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -66,7 +66,7 @@ public class EncuestaControlador extends BaseControlador {
     
     public void buscarImplementacion(Object curso){
         List<Object> implementaciones = ServiceLocatorDELEGATE.getPrograma()
-                .findByCurso((Curso) curso);
+                .findByEvento((Evento) curso);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
     
