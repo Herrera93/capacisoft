@@ -449,7 +449,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         Sede campoSede = (Sede)tipoSedeCBx.getSelectedItem();
         if(campoCurso.getNombre().compareTo("")!=0){
             control.setClass(ImplementacionCurso.class);
-            control.buscarPorCurso((Evento) tipoBusCBx.getSelectedItem());
+            control.buscarPorEvento((Evento) tipoBusCBx.getSelectedItem());
         }else if(campoSede.getNombre().compareTo("")!=0){
             control.setClass(ImplementacionCurso.class);
             control.buscarPorSede((Sede) tipoSedeCBx.getSelectedItem());
