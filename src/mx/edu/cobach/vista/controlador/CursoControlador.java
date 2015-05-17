@@ -7,7 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
@@ -17,7 +17,7 @@ import mx.edu.cobach.vista.Comunicador;
 public class CursoControlador extends BaseControlador{
     
     public CursoControlador(Comunicador com){
-        super(com, Curso.class);
+        super(com, Evento.class);
     }
     
     public void buscarTipoCurso(int id) {
