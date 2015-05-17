@@ -13,7 +13,7 @@ public class ImplementacionCurso  implements java.io.Serializable {
 
 
      private Integer id;
-     private Curso curso;
+     private Evento curso;
      private Proveedor proveedor;
      private Sede sede;
      private Date fechaInicial;
@@ -22,13 +22,15 @@ public class ImplementacionCurso  implements java.io.Serializable {
      private Set<Empleado> empleados = new HashSet<Empleado>(0);
      private Set<Alerta> alertas = new HashSet<Alerta>(0);
      private Set<Encuesta> encuestas = new HashSet<Encuesta>(0);
-     private Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas = new HashSet<ImplementacionCursoEnunciadoLogistica>(0);
+     private Set<ImplementacionCursoEnunciadoLogistica> 
+             implementacionCursoEnunciadoLogisticas = 
+             new HashSet<ImplementacionCursoEnunciadoLogistica>(0);
 
     public ImplementacionCurso() {
     }
 
 	
-    public ImplementacionCurso(Curso curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo) {
+    public ImplementacionCurso(Evento curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo) {
         this.curso = curso;
         this.proveedor = proveedor;
         this.sede = sede;
@@ -36,7 +38,7 @@ public class ImplementacionCurso  implements java.io.Serializable {
         this.fechaFinal = fechaFinal;
         this.activo = activo;
     }
-    public ImplementacionCurso(Curso curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo, Set<Empleado> empleados, Set<Alerta> alertas, Set<Encuesta> encuestas, Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
+    public ImplementacionCurso(Evento curso, Proveedor proveedor, Sede sede, Date fechaInicial, Date fechaFinal, boolean activo, Set<Empleado> empleados, Set<Alerta> alertas, Set<Encuesta> encuestas, Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
        this.curso = curso;
        this.proveedor = proveedor;
        this.sede = sede;
@@ -56,11 +58,11 @@ public class ImplementacionCurso  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Curso getCurso() {
+    public Evento getCurso() {
         return this.curso;
     }
     
-    public void setCurso(Curso curso) {
+    public void setCurso(Evento curso) {
         this.curso = curso;
     }
     public Proveedor getProveedor() {
