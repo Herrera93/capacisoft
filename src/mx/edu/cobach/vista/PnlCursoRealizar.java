@@ -13,10 +13,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
+import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -42,7 +44,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
     private DefaultTableModel modelTablaEmI;
     private DefaultTableModel modelTablaEmF;
     private String[] titulosTablaEm = {"ID", "Numero del Empleado", "Nombre del Empleado"};
-    private Curso curso;
+    private Evento curso;
 
     public PnlCursoRealizar() {
         initComponents();
@@ -156,7 +158,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         jScrollPane1.setViewportView(descripcionGTAa);
 
         tipoGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia", "Taller" }));
+        tipoGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CONFERENCIA", "TALLER", "CURSO", "CURSO / TALLER", "PLATICA" }));
         tipoGCBx.setEnabled(false);
 
         tipoSedeGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -675,9 +677,9 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
      *
      * @param curso
      */
-    public void buscarCurso(Curso curso) {
+    public void buscarCurso(Evento curso) {
         this.curso = curso;
-        controlProgramar.buscarCurId(curso.getId(), Curso.class);
+        controlProgramar.buscarCurId(curso.getId(), Evento.class);
     }
 
     /**
@@ -822,10 +824,16 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         guardarLABtn.setText("Guardar");
         nombreGTFd.setText(info.get(1).toString());
         descripcionGTAa.setText(info.get(2).toString());
-        if (info.get(3).equals("conferencia") || info.get(3).equals("Conferencia")) {
+        if (info.get(3).equals("CONFERENCIA")) {
             tipoGCBx.setSelectedIndex(0);
-        } else {
+        }else if (info.get(3).equals("TALLER")) {
             tipoGCBx.setSelectedIndex(1);
+        }else if (info.get(3).equals("CURSO")){
+            tipoGCBx.setSelectedIndex(2);
+        }else if (info.get(3).equals("CURSO / TALLER")){
+            tipoGCBx.setSelectedIndex(3);
+        }else if (info.get(3).equals("PLATICA")){
+            tipoGCBx.setSelectedIndex(4);
         }
     }
 
@@ -919,43 +927,30 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
      * @param visibilidad
      */
     private void guarMod() {
+        HashSet<Empleado> lisEmpleado = new HashSet();
+        List<Object> atributos = new ArrayList();
         if (validacion() == false) {
-            int rowN = tablaLisFTbl.getRowCount();
-            if (guardarGBtn.getText().equals("Guardar")) {
-                List<Object> atributos = new ArrayList();
-                HashSet<Empleado> lisEmpleado = new HashSet();
-                atributos.add(curso);
-                atributos.add(fechaIDCh.getDate());
-                atributos.add(fechaTDCh.getDate());
-                atributos.add(true);
-                atributos.add(tipoSedeGCBx.getSelectedItem());
-                atributos.add(nombreGCBx.getSelectedItem());
-                for(int x =0; x< rowN ; x++){
-                    Empleado empleado = new Empleado();
-                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
-                            getValueAt(x, 0)));
-                    lisEmpleado.add(empleado);
-                }
-                controlProgramar.setClass(ImplementacionCurso.class);
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Guardar", "Activo"));
-            } else if (guardarGBtn.getText().equals("Modificar")) {
-                List<Object> atributos = new ArrayList();
-                HashSet<Empleado> lisEmpleado = new HashSet();
+            if (guardarGBtn.getText().equals("Modificar")) {
                 atributos.add(cursoProgramarId);
-                atributos.add(curso);
-                atributos.add(fechaIDCh.getDate());
-                atributos.add(fechaTDCh.getDate());
-                atributos.add(true);
-                atributos.add(tipoSedeGCBx.getSelectedItem());
-                atributos.add(nombreGCBx.getSelectedItem());
-                for(int x =0; x< rowN ; x++){
-                    Empleado empleado = new Empleado();
-                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
-                            getValueAt(x, 0)));
-                    lisEmpleado.add(empleado);
-                }
-                controlProgramar.setClass(ImplementacionCurso.class);
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Modificar", "Activo"));
+            }
+            atributos.add(curso);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(true);
+            atributos.add(tipoSedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
+                Empleado empleado = new Empleado();
+                empleado.setId(Integer.parseInt((String) modelTablaEmF.
+                        getValueAt(x, 0)));
+                lisEmpleado.add(empleado);
+            }
+            atributos.add(lisEmpleado);
+            controlProgramar.setClass(ImplementacionCurso.class);
+            if (guardarGBtn.getText().equals("Guardar")) {
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+            } else {
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Finalizado"));
             }
         }
     }
@@ -972,13 +967,19 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         guardarGBtn.setText("Modificar");
         guardarLABtn.setText("Modificar");
         cursoProgramarId = Integer.parseInt(info.get(0).toString());
-        curso = (Curso) info.get(1);
+        curso = (Evento) info.get(1);
         nombreGTFd.setText(info.get(2).toString());
         descripcionGTAa.setText(info.get(3).toString());
-        if (info.get(3).equals("conferencia") || info.get(4).equals("Conferencia")) {
+        if (info.get(4).equals("CONFERENCIA")) {
             tipoGCBx.setSelectedIndex(0);
-        } else {
+        }else if (info.get(4).equals("TALLER")) {
             tipoGCBx.setSelectedIndex(1);
+        }else if (info.get(4).equals("CURSO")){
+            tipoGCBx.setSelectedIndex(2);
+        }else if (info.get(4).equals("CURSO / TALLER")){
+            tipoGCBx.setSelectedIndex(3);
+        }else if (info.get(4).equals("PLATICA")){
+            tipoGCBx.setSelectedIndex(4);
         }
         fechaIDCh.setDate((Date) info.get(5));
         fechaTDCh.setDate((Date) info.get(6));
