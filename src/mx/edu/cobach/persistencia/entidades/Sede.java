@@ -109,7 +109,10 @@ public class Sede  implements java.io.Serializable {
         this.implementacionCursos = implementacionCursos;
     }
 
-
+     @Override
+    public String toString(){
+        return this.nombre;
+    }   
 
 
 }
