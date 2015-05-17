@@ -10,10 +10,10 @@
     <many-to-one class="mx.edu.cobach.persistencia.entidades.Evento" fetch="select" name="curso" lazy="false">
       <column name="curso_id" not-null="true"/>
     </many-to-one>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select" name="proveedor">
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select" name="proveedor" lazy="false">
       <column name="proveedor_id" not-null="true"/>
     </many-to-one>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select" name="sede">
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select" name="sede" lazy="false">
       <column name="sede_id" not-null="true"/>
     </many-to-one>
     <property name="fechaInicial" type="date">
