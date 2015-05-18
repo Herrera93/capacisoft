@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
 
 
 
@@ -36,23 +36,6 @@ public class TelefonoId  implements java.io.Serializable {
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof TelefonoId) ) return false;
-		 TelefonoId castOther = ( TelefonoId ) other; 
-         
-		 return (this.getId()==castOther.getId())
- && (this.getProveedorId()==castOther.getProveedorId());
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + this.getId();
-         result = 37 * result + this.getProveedorId();
-         return result;
-   }   
 
 
 }

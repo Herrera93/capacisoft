@@ -5,6 +5,10 @@
  */
 
 package mx.edu.cobach.persitencia;
+
+import mx.edu.cobach.persistencia.EmpleadoDAO;
+import mx.edu.cobach.persistencia.UsuarioDAO;
+
 /**
  * Clase para localizar los servicios de DAOs
  * @author Alex

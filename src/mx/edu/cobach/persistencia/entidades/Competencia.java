@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,7 +13,7 @@ public class Competencia  implements java.io.Serializable {
 
      private Integer id;
      private String nombre;
-     private Set<Pregunta> preguntas = new HashSet<Pregunta>(0);
+     private Set<Aspecto> aspectos = new HashSet<Aspecto>(0);
 
     public Competencia() {
     }
@@ -22,9 +22,9 @@ public class Competencia  implements java.io.Serializable {
     public Competencia(String nombre) {
         this.nombre = nombre;
     }
-    public Competencia(String nombre, Set<Pregunta> preguntas) {
+    public Competencia(String nombre, Set<Aspecto> aspectos) {
        this.nombre = nombre;
-       this.preguntas = preguntas;
+       this.aspectos = aspectos;
     }
    
     public Integer getId() {
@@ -41,12 +41,12 @@ public class Competencia  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public Set<Pregunta> getPreguntas() {
-        return this.preguntas;
+    public Set<Aspecto> getAspectos() {
+        return this.aspectos;
     }
     
-    public void setPreguntas(Set<Pregunta> preguntas) {
-        this.preguntas = preguntas;
+    public void setAspectos(Set<Aspecto> aspectos) {
+        this.aspectos = aspectos;
     }
 
 

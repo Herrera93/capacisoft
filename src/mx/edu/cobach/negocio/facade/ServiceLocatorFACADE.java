@@ -13,15 +13,18 @@ public class ServiceLocatorFACADE {
     
     //FACADE generico
     private static BaseFACADE facade;
+    //FACADE especificos
     private static PuestoFACADE puestoFacade;
     private static CursoFACADE cursoFacade;
     private static EmpleadoFACADE empleadoFacade;
     private static UsuarioFACADE usuarioFacade;
+    private static AspectoFACADE aspectoFacade;
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
     private static ReporteFACADE reporteFacade;
     /**
-     * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara
+     * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
+     * Este metodo utiliza el patron de diseno Singleton.
      * @return Regresa FACADE generico
      */
     public static BaseFACADE getInstance(){
@@ -31,6 +34,12 @@ public class ServiceLocatorFACADE {
         return facade;
     }
     
+    /**
+     * Obtiene el FACADE especifico de la entidad Empleado, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Empleado
+     */
     public static EmpleadoFACADE getEmpleadoFacade(){
         if(empleadoFacade == null){
             empleadoFacade = new EmpleadoFACADE();
@@ -38,6 +47,12 @@ public class ServiceLocatorFACADE {
         return empleadoFacade;
     }
     
+    /**
+     * Obtiene el FACADE especifico de la entidad Puesto, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Puesto
+     */
     public static PuestoFACADE getPuesto(){
         if(puestoFacade == null){
             puestoFacade = new PuestoFACADE();
@@ -45,6 +60,12 @@ public class ServiceLocatorFACADE {
         return puestoFacade;
     }
     
+    /**
+     * Obtiene el FACADE especifico de la entidad Curso, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Curso
+     */
     public static CursoFACADE getCurso(){
         if(cursoFacade == null){
             cursoFacade = new CursoFACADE();
@@ -52,11 +73,30 @@ public class ServiceLocatorFACADE {
         return cursoFacade;
     }
     
+    /**
+     * Obtiene el FACADE especifico de la entidad Usuario, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Usuario
+     */
     public static UsuarioFACADE getUsuario(){
-        if(usuarioFacade==null){
+        if(usuarioFacade == null){
             usuarioFacade = new UsuarioFACADE();
         }
         return usuarioFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad Aspecto, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Aspecto
+     */
+    public static AspectoFACADE getAspecto(){
+        if(aspectoFacade == null){
+            aspectoFacade = new AspectoFACADE();
+        }
+        return aspectoFacade;
     }
     
     public static SedeFACADE getSede(){

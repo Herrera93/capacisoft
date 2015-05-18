@@ -7,7 +7,7 @@ package mx.edu.cobach.negocio.facade;
 
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
-import mx.edu.cobach.persitencia.ServiceLocator;
+import mx.edu.cobach.persistencia.ServiceLocator;
 
 /**
  *
@@ -21,5 +21,9 @@ public class EmpleadoFACADE{
     
     public List<Object> findByAdscripcion(Adscripcion a){
         return ServiceLocator.getEmpleado().findByAdscripcion(a);
+    }
+    
+    public List<Object> buscarPorNumero(int numero){
+        return ServiceLocator.getEmpleado().buscarPorNumero(numero);
     }
 }

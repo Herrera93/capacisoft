@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.vista.controlador.ReporteControlador;
 
 /**
@@ -25,6 +26,9 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
      */
     public PnlKardex() {
         initComponents();
+        control = new ReporteControlador(this, Empleado.class);
+        model = new DefaultTableModel(titulosTabla, 30);
+        tablaTbl.setModel(model);
     }
 
     /**
@@ -277,7 +281,11 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
 
     @Override
     public void setTabla(String[][] info) {
-        model.setDataVector(info, titulosTabla);
+        if(info== null){
+            JOptionPane.showMessageDialog(null, "No se Encontro la busqueda");
+        }else
+            model.setDataVector(info, titulosTabla);        
+        
     }
 
     @Override

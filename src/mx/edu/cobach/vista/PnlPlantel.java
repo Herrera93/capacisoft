@@ -6,6 +6,7 @@ package mx.edu.cobach.vista;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
@@ -341,7 +342,8 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
 
     @Override
     public void setMensaje(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(this, mensaje,
+                "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override

@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 11, 2015 4:12:49 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -28,22 +28,24 @@ public class Empleado  implements java.io.Serializable {
     }
 
 	
-    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo) {
+    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo) {
         this.adscripcion = adscripcion;
         this.departamento = departamento;
         this.plantel = plantel;
         this.puesto = puesto;
+        this.numero = numero;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
     }
-    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas) {
+    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas) {
        this.adscripcion = adscripcion;
        this.departamento = departamento;
        this.plantel = plantel;
        this.puesto = puesto;
+       this.numero = numero;
        this.primerNombre = primerNombre;
        this.segundoNombre = segundoNombre;
        this.apellidoPaterno = apellidoPaterno;
@@ -86,6 +88,13 @@ public class Empleado  implements java.io.Serializable {
     
     public void setPuesto(Puesto puesto) {
         this.puesto = puesto;
+    }
+    public String getNumero() {
+        return this.numero;
+    }
+    
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
     public String getPrimerNombre() {
         return this.primerNombre;
@@ -130,15 +139,7 @@ public class Empleado  implements java.io.Serializable {
         this.respuestas = respuestas;
     }
 
-    public String getNumero() {
-        return numero;
-    }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-    
-    
 
 
 }

@@ -11,9 +11,6 @@
         <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select">
             <column name="curso_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="encuesta" class="mx.edu.cobach.persistencia.entidades.Encuesta" fetch="select">
-            <column name="encuesta_id" not-null="true" />
-        </many-to-one>
         <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select">
             <column name="proveedor_id" not-null="true" />
         </many-to-one>
@@ -29,5 +26,11 @@
         <property name="activo" type="boolean">
             <column name="activo" not-null="true" />
         </property>
+        <set name="encuestas" table="encuesta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="implementacion_curso_id" not-null="true" />
+            </key>
+            <one-to-many class="mx.edu.cobach.persistencia.entidades.Encuesta" />
+        </set>
     </class>
 </hibernate-mapping>

@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
@@ -15,13 +16,19 @@ import mx.edu.cobach.vista.Comunicador;
  */
 public class CursoControlador extends BaseControlador{
     
-    
-    public CursoControlador(Comunicador com, Class clazz){
-        super(com, clazz);
+    public CursoControlador(Comunicador com){
+        super(com, Curso.class);
     }
     
     public void buscarTipoCurso(int id) {
         List<Object> o = ServiceLocatorDELEGATE.getCurso().findTipoCurso(id);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
-    }   
+    }
+    
+    public void buscarPorNombre(String nombre){
+        List<Object> o = ServiceLocatorDELEGATE.getCurso().buscarPorNombre(nombre);
+        if(!o.isEmpty()){
+            com.setMensaje("El Nombre del Curso ya Existe");
+        }
+    }
 }

@@ -4,18 +4,23 @@
  */
 package mx.edu.cobach.vista;
 
-import java.awt.event.ItemEvent;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import mx.edu.cobach.persistencia.entidades.Aspecto;
+import mx.edu.cobach.persistencia.entidades.Competencia;
+import mx.edu.cobach.vista.controlador.BaseControlador;
+import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
  *
  * @author liuts
  */
-public class PnlSeguimiento extends javax.swing.JPanel {
+public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
 
     /**
      * Creates new form PnlSeguimiento
      */
-    
     private PnlEncuestaResultado resultadoPnl;
     private PnlRealizarEncuesta realizarEncuestaPnl;
     
@@ -24,6 +29,10 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         agregar();
     }
 
+    /*
+    En este metodos agregamos y configuramos lo paneles de Realizar Encuesta y
+    de Resultados. Este metodo se ejecuta al llamar el constructor.
+    */
     private void agregar(){
         resultadoPnl = new PnlEncuestaResultado();
         
@@ -38,6 +47,16 @@ public class PnlSeguimiento extends javax.swing.JPanel {
         realizarEncuestaPnl.setVisible(true);
         add(realizarEncuestaPnl);
     }
+    
+    /*
+    Este metodo es utilizado para llenar las listas con la informacion de la 
+    base de datos. Se ejecuta antes de entrar al panel para que una vez que se
+    entre se mostrara todos los datos correspondientes.
+    */
+    public void llenarTodo(){
+        realizarEncuestaPnl.llenarTodo();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,8 +68,6 @@ public class PnlSeguimiento extends javax.swing.JPanel {
 
         opcionSeguimiento_Tb = new javax.swing.JTabbedPane();
         realizarEncuesta_Pnl = new javax.swing.JPanel();
-        tipo_RE_Lbl = new javax.swing.JLabel();
-        seleccion_RE_CBx = new javax.swing.JComboBox();
         titulo_RE_Lbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         resultado_Pnl = new javax.swing.JPanel();
@@ -72,16 +89,10 @@ public class PnlSeguimiento extends javax.swing.JPanel {
             }
         });
 
-        tipo_RE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipo_RE_Lbl.setText("Tipo de Competencia:");
-
-        seleccion_RE_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        seleccion_RE_CBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tecnología", "Comunicación", "Trabajo en equipo" }));
-
         titulo_RE_Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        titulo_RE_Lbl.setText("Opciones");
+        titulo_RE_Lbl.setText("Competencia");
 
-        jLabel1.setText("<html>Seleccionar un tipo de competencia para mostrar las preguntas de ese<br>tipo de competencia</html>");
+        jLabel1.setText("<html>Al seleccionar un tipo de competencia se mostraran los aspectos<br>correspondientes en la secci&oacute;n de dise&ntilde;o de encuesta</html>");
 
         javax.swing.GroupLayout realizarEncuesta_PnlLayout = new javax.swing.GroupLayout(realizarEncuesta_Pnl);
         realizarEncuesta_Pnl.setLayout(realizarEncuesta_PnlLayout);
@@ -91,12 +102,8 @@ public class PnlSeguimiento extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titulo_RE_Lbl)
-                    .addGroup(realizarEncuesta_PnlLayout.createSequentialGroup()
-                        .addComponent(tipo_RE_Lbl)
-                        .addGap(33, 33, 33)
-                        .addComponent(seleccion_RE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(titulo_RE_Lbl))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         realizarEncuesta_PnlLayout.setVerticalGroup(
             realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,11 +112,7 @@ public class PnlSeguimiento extends javax.swing.JPanel {
                 .addComponent(titulo_RE_Lbl)
                 .addGap(3, 3, 3)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(realizarEncuesta_PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipo_RE_Lbl)
-                    .addComponent(seleccion_RE_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(446, Short.MAX_VALUE))
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         opcionSeguimiento_Tb.addTab("Realizar encuesta", realizarEncuesta_Pnl);
@@ -255,10 +258,28 @@ public class PnlSeguimiento extends javax.swing.JPanel {
     private javax.swing.JLabel sede_BC_Lbl;
     private javax.swing.JTextField sede_BC_TFd;
     private javax.swing.JComboBox seleccion_BC_CBx;
-    private javax.swing.JComboBox seleccion_RE_CBx;
     private javax.swing.JTable tablaCursos_BC_Tbl;
-    private javax.swing.JLabel tipo_RE_Lbl;
     private javax.swing.JLabel titulo_RE_Lbl;
     private javax.swing.JLabel titulo_RE_Lbl1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Advertencia", 
+                JOptionPane.WARNING_MESSAGE);
+    }
+
+    @Override
+    public void setTabla(String[][] info) {
+    }
+
+    @Override
+    public void setInfo(List info) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setLista(List info, int i) {
+        
+    }
 }

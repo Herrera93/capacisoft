@@ -49,12 +49,13 @@ public class Login extends javax.swing.JFrame implements Comunicador{
         contrasenaLbl = new javax.swing.JLabel();
         salirBtn = new javax.swing.JButton();
         usuarioLbl = new javax.swing.JLabel();
-        usuarioTFd = new javax.swing.JTextField();
+        usuarioTfd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ingresarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresarBtn.setText("Ingresar");
+        ingresarBtn.setName("ingresar"); // NOI18N
         ingresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarBtnActionPerformed(evt);
@@ -72,6 +73,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
 
         salirBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salirBtn.setText("Salir");
+        salirBtn.setName("salir"); // NOI18N
         salirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirBtnActionPerformed(evt);
@@ -81,9 +83,9 @@ public class Login extends javax.swing.JFrame implements Comunicador{
         usuarioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usuarioLbl.setText("Usuario:");
 
-        usuarioTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+        usuarioTfd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                usuarioTFdKeyPressed(evt);
+                usuarioTfdKeyPressed(evt);
             }
         });
 
@@ -105,7 +107,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(usuarioLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(usuarioTfd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -114,7 +116,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuarioLbl)
-                    .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioTfd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,11 +139,11 @@ public class Login extends javax.swing.JFrame implements Comunicador{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }//GEN-LAST:event_salirBtnActionPerformed
 
-    private void usuarioTFdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTFdKeyPressed
+    private void usuarioTfdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTfdKeyPressed
         
         if(evt.getKeyCode() ==10){
-           if(usuarioTFd.getText().equals("") != true)
-               if(usuarioTFd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
+           if(usuarioTfd.getText().equals("") != true)
+               if(usuarioTfd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
                    ingresar();
                 else
                     contrasenaPFd.grabFocus();
@@ -149,15 +151,15 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                setMensaje("No se ha ingresado el usuario");
                                
         }
-    }//GEN-LAST:event_usuarioTFdKeyPressed
+    }//GEN-LAST:event_usuarioTfdKeyPressed
 
     private void contrasenaPFdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contrasenaPFdKeyPressed
        if(evt.getKeyCode() ==10){
            if(contrasenaPFd.getText().equals("") != true)
-               if(usuarioTFd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
+               if(usuarioTfd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
                    ingresar();
                 else
-                    usuarioTFd.grabFocus();
+                    usuarioTfd.grabFocus();
             else
                setMensaje("No se ha ingresado la contraseña");
                                
@@ -165,8 +167,8 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     }//GEN-LAST:event_contrasenaPFdKeyPressed
 
     private void ingresar(){
-        if(usuarioTFd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
-            control.buscarPorUsuario(usuarioTFd.getText());        
+        if(usuarioTfd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
+            control.buscarPorUsuario(usuarioTfd.getText());        
         else
             setMensaje("No se ha ingresado usuario o contraseña");
     }
@@ -212,7 +214,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JButton salirBtn;
     private javax.swing.JLabel usuarioLbl;
-    private javax.swing.JTextField usuarioTFd;
+    private javax.swing.JTextField usuarioTfd;
     // End of variables declaration//GEN-END:variables
 
     @Override

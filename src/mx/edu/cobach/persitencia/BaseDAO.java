@@ -7,6 +7,7 @@
 package mx.edu.cobach.persitencia;
 
 import java.util.List;
+import mx.edu.cobach.persistencia.InterfaceDAO;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 
