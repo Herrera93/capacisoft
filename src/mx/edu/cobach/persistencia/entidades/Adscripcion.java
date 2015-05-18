@@ -49,7 +49,7 @@ public class Adscripcion  implements java.io.Serializable {
         this.empleados = empleados;
     }
     
-    @Override
+     @Override
     public String toString(){
         return descripcion;
     }

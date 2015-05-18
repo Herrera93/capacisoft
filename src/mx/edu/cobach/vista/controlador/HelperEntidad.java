@@ -416,7 +416,7 @@ public class HelperEntidad {
     }
 
     private static String[][] descomponerEmpleados(List<Empleado> emps, int...a) {
-        if(a[0]== 0){
+        if(a.length == 0){
         String[][] info = new String[emps.size()][3];
         for(int i = 0; i < emps.size(); i++){
             Empleado e = emps.get(i);

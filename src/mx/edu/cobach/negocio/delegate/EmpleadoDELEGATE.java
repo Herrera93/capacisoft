@@ -24,4 +24,8 @@ public class EmpleadoDELEGATE {
                 findByAdscripcion(adscripcion);
     }
     
+    public List<Object> buscarPorNumero(int numero){
+        return ServiceLocatorFACADE.getEmpleadoFacade().
+                buscarPorNumero(numero);
+    }
 }

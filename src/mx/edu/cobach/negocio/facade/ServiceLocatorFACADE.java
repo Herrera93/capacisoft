@@ -101,6 +101,19 @@ public class ServiceLocatorFACADE {
         return aspectoFacade;
     }
     
+    /**
+     * Obtiene el FACADE especifico de la entidad Aspecto, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Aspecto
+     */
+    public static AspectoFACADE getAspecto(){
+        if(aspectoFacade == null){
+            aspectoFacade = new AspectoFACADE();
+        }
+        return aspectoFacade;
+    }
+    
     public static SedeFACADE getSede(){
         if(sedeFacade==null){
             sedeFacade = new SedeFACADE();

@@ -8,9 +8,6 @@ package mx.edu.cobach.negocio.facade;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.ServiceLocator;
-import mx.edu.cobach.persistencia.entidades.Departamento;
-import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
  *
@@ -36,4 +33,7 @@ public class EmpleadoFACADE{
         return ServiceLocator.getEmpleado().findByPlantel(plantel);
     }
     
+    public List<Object> buscarPorNumero(int numero){
+        return ServiceLocator.getEmpleado().buscarPorNumero(numero);
+    }
 }
