@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,15 +12,19 @@ public class Encuesta  implements java.io.Serializable {
 
 
      private Integer id;
+     private ImplementacionCurso implementacionCurso;
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
-     private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
 
     public Encuesta() {
     }
 
-    public Encuesta(Set<Respuesta> respuestas, Set<ImplementacionCurso> implementacionCursos) {
+	
+    public Encuesta(ImplementacionCurso implementacionCurso) {
+        this.implementacionCurso = implementacionCurso;
+    }
+    public Encuesta(ImplementacionCurso implementacionCurso, Set<Respuesta> respuestas) {
+       this.implementacionCurso = implementacionCurso;
        this.respuestas = respuestas;
-       this.implementacionCursos = implementacionCursos;
     }
    
     public Integer getId() {
@@ -30,19 +34,19 @@ public class Encuesta  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+    public ImplementacionCurso getImplementacionCurso() {
+        return this.implementacionCurso;
+    }
+    
+    public void setImplementacionCurso(ImplementacionCurso implementacionCurso) {
+        this.implementacionCurso = implementacionCurso;
+    }
     public Set<Respuesta> getRespuestas() {
         return this.respuestas;
     }
     
     public void setRespuestas(Set<Respuesta> respuestas) {
         this.respuestas = respuestas;
-    }
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return this.implementacionCursos;
-    }
-    
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
     }
 
 

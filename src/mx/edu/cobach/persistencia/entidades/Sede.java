@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -18,27 +18,30 @@ public class Sede  implements java.io.Serializable {
      private String calle;
      private String numeroDireccion;
      private String colonia;
+     private String lugar;
      private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
 
     public Sede() {
     }
 
 	
-    public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia) {
+    public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia, String lugar) {
         this.municipio = municipio;
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.calle = calle;
         this.numeroDireccion = numeroDireccion;
         this.colonia = colonia;
+        this.lugar = lugar;
     }
-    public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia, Set<ImplementacionCurso> implementacionCursos) {
+    public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia, String lugar, Set<ImplementacionCurso> implementacionCursos) {
        this.municipio = municipio;
        this.nombre = nombre;
        this.capacidad = capacidad;
        this.calle = calle;
        this.numeroDireccion = numeroDireccion;
        this.colonia = colonia;
+       this.lugar = lugar;
        this.implementacionCursos = implementacionCursos;
     }
    
@@ -91,6 +94,13 @@ public class Sede  implements java.io.Serializable {
     public void setColonia(String colonia) {
         this.colonia = colonia;
     }
+    public String getLugar() {
+        return this.lugar;
+    }
+    
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
     public Set<ImplementacionCurso> getImplementacionCursos() {
         return this.implementacionCursos;
     }
@@ -99,7 +109,10 @@ public class Sede  implements java.io.Serializable {
         this.implementacionCursos = implementacionCursos;
     }
 
-
+     @Override
+    public String toString(){
+        return this.nombre;
+    }   
 
 
 }

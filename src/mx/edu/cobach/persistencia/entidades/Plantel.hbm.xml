@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 13, 2015 12:14:31 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 16, 2015 9:04:03 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="mx.edu.cobach.persistencia.entidades.Plantel" table="plantel" catalog="capacisoft" optimistic-lock="version">
+    <class name="mx.edu.cobach.persistencia.entidades.Plantel" table="plantel" catalog="capacisoft">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
-        <many-to-one name="zona" class="mx.edu.cobach.persistencia.entidades.Zona" fetch="select" lazy="false">
+        <many-to-one name="zona" class="mx.edu.cobach.persistencia.entidades.Zona" fetch="select">
             <column name="zona_id" not-null="true" />
         </many-to-one>
         <property name="nombre" type="string">

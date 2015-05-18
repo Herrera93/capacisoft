@@ -27,7 +27,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlSede sedePnl;
     private PnlProveedor proveedorPnl;
     private PnlEmpleadoAdministrativo empleadoPnl;
-    private PnlRegistrarCursos cursoPnl;
+    private PnlRegistrarEvento cursoPnl;
     private PnlKardex kardexPnl;
     private PnlReporteCurso reporteCursoPnl;
     private PnlReporteProveedor reporteProveedorPnl;
@@ -109,7 +109,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         //if(idTipo!=3)
             add(empleadoPnl);
         
-        cursoPnl = new PnlRegistrarCursos();
+        cursoPnl = new PnlRegistrarEvento();
         cursoPnl.setVisible(false);
         cursoPnl.setSize(1181,587);
         //if(idTipo!=3)
@@ -428,6 +428,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarPnl.setVisible(false);
         seguimientoPnl.setVisible(true);
         alertasPnl.setVisible(false);
+        seguimientoPnl.llenarTodo();
     }//GEN-LAST:event_encuesta_MItActionPerformed
 
     private void kardex_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kardex_MItActionPerformed

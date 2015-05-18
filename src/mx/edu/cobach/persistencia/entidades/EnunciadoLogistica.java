@@ -1,5 +1,9 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated Apr 13, 2015 12:14:29 PM by Hibernate Tools 4.3.1
+// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
+
+import java.util.HashSet;
+import java.util.Set;
+
 
 
 
@@ -12,6 +16,7 @@ public class EnunciadoLogistica  implements java.io.Serializable {
      private Integer id;
      private TipoEnunciado tipoEnunciado;
      private String descripcion;
+     private Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas = new HashSet<ImplementacionCursoEnunciadoLogistica>(0);
 
     public EnunciadoLogistica() {
     }
@@ -19,6 +24,12 @@ public class EnunciadoLogistica  implements java.io.Serializable {
     public EnunciadoLogistica(TipoEnunciado tipoEnunciado, String descripcion) {
        this.tipoEnunciado = tipoEnunciado;
        this.descripcion = descripcion;
+    }
+    
+    public EnunciadoLogistica(TipoEnunciado tipoEnunciado, String descripcion, Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
+       this.tipoEnunciado = tipoEnunciado;
+       this.descripcion = descripcion;
+       this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
     }
    
     public Integer getId() {
@@ -43,7 +54,13 @@ public class EnunciadoLogistica  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 
-
+    public Set<ImplementacionCursoEnunciadoLogistica> getImplementacionCursoEnunciadoLogisticas() {
+        return this.implementacionCursoEnunciadoLogisticas;
+    }
+    
+    public void setImplementacionCursoEnunciadoLogisticas(Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
+        this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
+    }
 
 
 }

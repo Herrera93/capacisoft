@@ -5,9 +5,9 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-import java.io.InputStream;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
@@ -18,18 +18,19 @@ import mx.edu.cobach.vista.Comunicador;
  */
 public class PuestoControlador extends BaseControlador{
     
-    public PuestoControlador(Comunicador com,Class clazz){
-        super(com, clazz);
+    public PuestoControlador(Comunicador com){
+        super(com, Puesto.class);
     } 
     
     /**
      * Metodo para buscar un registro especifico a traves de un nombre
-     * @param nombre
+     * @param nombre Nombre del puesto a buscar
     */
     public void buscar(String nombre) {
         List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
+    
     public void buscarMod(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
         com.setInfo(HelperEntidad.descomponerObjeto(o));

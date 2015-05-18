@@ -6,16 +6,17 @@
 package mx.edu.cobach.negocio.facade;
 
 import java.util.List;
-import mx.edu.cobach.persitencia.PuestoDAO;
-import mx.edu.cobach.persitencia.ServiceLocator;
+import mx.edu.cobach.persistencia.ServiceLocator;
+import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
  *
  * @author liuts
  */
-public class PuestoFACADE{
+public class PuestoFACADE extends BaseFACADE{
     
     public List<Object> find(String nombre) {
+        ServiceLocator.getPuesto().setEntity(Puesto.class);
         return ServiceLocator.getPuesto().find(nombre);
     }
 

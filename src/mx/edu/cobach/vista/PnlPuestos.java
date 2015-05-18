@@ -21,7 +21,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     private DefaultTableModel model;
     private String[] titulosTabla = {"ID","Nombre", "Eliminar"};
-    private PuestoControlador control;
+    private PuestoControlador puestoControl;
     private int idPuesto;
 
     /**
@@ -30,11 +30,11 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     public PnlPuestos() {
         initComponents();
         model = new DefaultTableModel(titulosTabla, 4);
-        tablaTbl.setModel(model);
-        tablaTbl.setColumnSelectionAllowed(false);
-        tablaTbl.setDragEnabled(false);
-        tablaTbl.setModel(model);
-        control = new PuestoControlador(this, Puesto.class);
+        puestosTbl.setModel(model);
+        puestosTbl.setColumnSelectionAllowed(false);
+        puestosTbl.setDragEnabled(false);
+        puestosTbl.setModel(model);
+        puestoControl = new PuestoControlador(this);
     }
 
     /**
@@ -50,7 +50,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreBuscarLbl = new javax.swing.JLabel();
         nombreBuscarTFd = new javax.swing.JTextField();
         tablaSPn = new javax.swing.JScrollPane();
-        tablaTbl = new javax.swing.JTable();
+        puestosTbl = new javax.swing.JTable();
         buscarBtn = new javax.swing.JButton();
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
@@ -76,7 +76,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreBuscarTFd.setEnabled(false);
 
-        tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
+        puestosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -102,20 +102,20 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        tablaTbl.setColumnSelectionAllowed(true);
-        tablaTbl.setEnabled(false);
-        tablaTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablaTbl.getTableHeader().setReorderingAllowed(false);
-        tablaTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        puestosTbl.setColumnSelectionAllowed(true);
+        puestosTbl.setEnabled(false);
+        puestosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        puestosTbl.getTableHeader().setReorderingAllowed(false);
+        puestosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaTblMouseClicked(evt);
+                puestosTblMouseClicked(evt);
             }
         });
-        tablaSPn.setViewportView(tablaTbl);
-        tablaTbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tablaTbl.getColumnModel().getColumnCount() > 0) {
-            tablaTbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaTbl.getColumnModel().getColumn(1).setResizable(false);
+        tablaSPn.setViewportView(puestosTbl);
+        puestosTbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (puestosTbl.getColumnModel().getColumnCount() > 0) {
+            puestosTbl.getColumnModel().getColumn(0).setResizable(false);
+            puestosTbl.getColumnModel().getColumn(1).setResizable(false);
         }
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -276,7 +276,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 se mandan al metodo control.alta.*/
                 List<String> atr = new ArrayList<String>();
                 atr.add(nombreTFd.getText());
-                control.alta(HelperEntidad.getPuesto(atr,"Guardar"));
+                puestoControl.alta(HelperEntidad.getPuesto(atr,"Guardar"));
                 
             } else if (guardarBtn.getText().equals("Modificar")) {
                 /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
@@ -285,14 +285,14 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 List<String> atr = new ArrayList<String>();
                 atr.add(idPuesto+"");
                 atr.add(nombreTFd.getText());
-                control.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
+                puestoControl.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
             }
             nombreTFd.setText("");
             agregarBtn.setEnabled(true);
             nombreBuscarTFd.setEnabled(false);
             nombreTFd.setEnabled(false);
             guardarBtn.setEnabled(false);
-            control.buscarTodos();
+            puestoControl.buscarTodos();
         }
     }//GEN-LAST:event_guardarBtnActionPerformed
 
@@ -312,11 +312,11 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             //Se verifica que el campo este vacio, de ser así se realiza una 
             //busqueda general.
             } else if (nombreBuscarTFd.getText().equals("")) {
-                control.buscarTodos();
+                puestoControl.buscarTodos();
             } else {
                 //Se verifico el campo y se encontraron caracteres se obtienen
                 // para mandarse por un metodo de busqueda especifica.
-                control.buscar(nombreBuscarTFd.getText());
+                puestoControl.buscar(nombreBuscarTFd.getText());
             }
         }else{
             //Se manda el mensaje de que existe informacion en los campos
@@ -329,9 +329,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 if(nombreBuscarTFd.isEnabled()==false){ 
                 nombreBuscarTFd.setEnabled(true);
                 } else if (nombreBuscarTFd.getText().equals("")) {
-                    control.buscarTodos();
+                    puestoControl.buscarTodos();
                 } else {
-                    control.buscar(nombreBuscarTFd.getText());
+                    puestoControl.buscar(nombreBuscarTFd.getText());
                 }
             }
         }
@@ -358,15 +358,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * renglon.
      * @param evt Evento al hacer click
      */
-    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {                                      
         //Obtenelos el renglon y columna donde se hizo click
-        int row = tablaTbl.rowAtPoint(evt.getPoint());
-        int col = tablaTbl.columnAtPoint(evt.getPoint());
+        int row = puestosTbl.rowAtPoint(evt.getPoint());
+        int col = puestosTbl.columnAtPoint(evt.getPoint());
         if(col == 0){
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            control.buscarMod(id);
+            puestoControl.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
         }
         else if(col == 1) {
@@ -375,8 +375,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             if(op == 0){
                 //Obtenemos ID de la columna escondida
                 int id = Integer.parseInt((String)model.getValueAt(row, 0));
-                control.baja(id);
-                control.buscarTodos();model.getDataVector().removeAllElements();
+                puestoControl.baja(id);
+                puestoControl.buscarTodos();model.getDataVector().removeAllElements();
                 nombreBuscarTFd.setEnabled(false);
                 nombreTFd.setEnabled(false);
                 nombreTFd.setText("");
@@ -402,8 +402,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
+    private javax.swing.JTable puestosTbl;
     private javax.swing.JScrollPane tablaSPn;
-    private javax.swing.JTable tablaTbl;
     // End of variables declaration//GEN-END:variables
     
     /**
@@ -423,15 +423,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * @param info Matriz String para vaciar en tabla
      */
     @Override
-        public void setTabla(String[][] info) {
-        tablaTbl.setEnabled(true);
+    public void setTabla(String[][] info) {
+        puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
-        TableColumn tc = tablaTbl.getColumnModel().getColumn(2);
-        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer (tablaTbl.getDefaultRenderer(Boolean.class));
-        tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
+        TableColumn tc = puestosTbl.getColumnModel().getColumn(2);
+        tc.setCellEditor(puestosTbl.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer (puestosTbl.getDefaultRenderer(Boolean.class));
+        tc = puestosTbl.getColumnModel().getColumn(0);
+        puestosTbl.getColumnModel().removeColumn(tc);
     }
         
     /**
