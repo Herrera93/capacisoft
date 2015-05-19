@@ -148,7 +148,9 @@ public class Empleado  implements java.io.Serializable {
         this.implementacionCursos = implementacionCursos;
     }
 
-
+    public String toString(){
+        return this.id+"";
+    }
 
 
 }
