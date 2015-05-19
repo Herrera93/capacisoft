@@ -4,6 +4,7 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -50,13 +51,13 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
      */
     private void agregar() {
         curRealizarPnl = new PnlCursoRealizar();
-        curRealizarPnl.setLocation(400, 0);
+        curRealizarPnl.setLocation(404, 0);
         curRealizarPnl.setSize(781, 589);
         curRealizarPnl.setVisible(false);
         add(curRealizarPnl);
 
         curRealizadoPnl = new PnlCursoRealizado();
-        curRealizadoPnl.setLocation(400, 0);
+        curRealizadoPnl.setLocation(404, 0);
         curRealizadoPnl.setSize(781, 589);
         curRealizadoPnl.setVisible(false);
         add(curRealizadoPnl);
@@ -105,12 +106,16 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         notaBusLbl = new javax.swing.JLabel();
         sedeLbl1 = new javax.swing.JLabel();
         fechaInicialDCh = new com.toedter.calendar.JDateChooser();
-        fechaTerminacionDTh = new com.toedter.calendar.JDateChooser();
+        fechaTerminacionDCh = new com.toedter.calendar.JDateChooser();
 
         setPreferredSize(new java.awt.Dimension(1150, 576));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        opcionesTP.setMaximumSize(new java.awt.Dimension(403, 588));
+        opcionesTP.setMinimumSize(new java.awt.Dimension(403, 588));
+
+        registrarPnl.setMaximumSize(new java.awt.Dimension(398, 560));
         registrarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 registrarPnlComponentShown(evt);
@@ -189,7 +194,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(registrarPnlLayout.createSequentialGroup()
                         .addComponent(regRealizadoBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(regRealizarBtn))
                     .addComponent(calendarioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -211,11 +216,12 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                     .addComponent(regRealizarBtn))
                 .addGap(26, 26, 26)
                 .addComponent(calendarioPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         opcionesTP.addTab("Registrar curso de capacitación", registrarPnl);
 
+        buscarPnl.setMaximumSize(new java.awt.Dimension(352, 400));
         buscarPnl.setPreferredSize(new java.awt.Dimension(352, 400));
         buscarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -288,64 +294,81 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         sedeLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sedeLbl1.setText("a:");
 
+        fechaInicialDCh.setDateFormatString("dd/MM/yyyy");
+        fechaInicialDCh.setMaximumSize(new java.awt.Dimension(91, 20));
+        fechaInicialDCh.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                fechaInicialDChInputMethodTextChanged(evt);
+            }
+        });
+
+        fechaTerminacionDCh.setMaximumSize(new java.awt.Dimension(91, 20));
+        fechaTerminacionDCh.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                fechaTerminacionDChInputMethodTextChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
         buscarPnlLayout.setHorizontalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarPnlLayout.createSequentialGroup()
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(buscarPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(buscarPnlLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buscarBtn)
-                                    .addGroup(buscarPnlLayout.createSequentialGroup()
-                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nombreBusLbl)
-                                            .addComponent(sedeLbl))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(buscarPnlLayout.createSequentialGroup()
-                                                .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(sedeLbl1)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(fechaTerminacionDTh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(buscarPnlLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
                                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(notaBusLbl)
-                                    .addComponent(opcionesBusLbl))))
-                        .addGap(0, 5, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(nombreBusLbl)
+                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(sedeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(sedeLbl)))
+                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarPnlLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(fechaInicialDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscarBtn))
+                            .addComponent(notaBusLbl)
+                            .addComponent(opcionesBusLbl))))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         buscarPnlLayout.setVerticalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarPnlLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(opcionesBusLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notaBusLbl)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreBusLbl)
                     .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(buscarPnlLayout.createSequentialGroup()
-                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(sedeLbl)
-                                .addComponent(sedeLbl1))
-                            .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(fechaTerminacionDTh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sedeLbl)
+                    .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(sedeLbl1)
+                        .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscarBtn))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
 
@@ -355,11 +378,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionesTP)
+            .addComponent(opcionesTP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionesTP)
+            .addComponent(opcionesTP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -368,7 +391,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(736, Short.MAX_VALUE))
+                .addGap(0, 743, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,6 +477,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         if (campoCurso.getNombre().compareTo("") != 0) {
             control.setClass(ImplementacionCurso.class);
             control.buscarPorEvento((Evento) tipoBusCBx.getSelectedItem());
+        }else if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
+            Date de = fechaInicialDCh.getDate();
+            Date hasta = fechaTerminacionDCh.getDate();
+            control.setClass(ImplementacionCurso.class);
+            control.buscarImplementacion(de, hasta);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -488,13 +516,29 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
 
+    private void fechaInicialDChInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fechaInicialDChInputMethodTextChanged
+        if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
+            buscarBtn.setEnabled(true);
+        }else if(fechaInicialDCh.getDate()==null&&fechaTerminacionDCh.getDate()==null){
+            buscarBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_fechaInicialDChInputMethodTextChanged
+
+    private void fechaTerminacionDChInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fechaTerminacionDChInputMethodTextChanged
+        if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
+            buscarBtn.setEnabled(true);
+        }else if(fechaInicialDCh.getDate()==null&&fechaTerminacionDCh.getDate()==null){
+            buscarBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_fechaTerminacionDChInputMethodTextChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JPanel buscarPnl;
     private javax.swing.JPanel calendarioPnl;
     private com.toedter.calendar.JDateChooser fechaInicialDCh;
-    private com.toedter.calendar.JDateChooser fechaTerminacionDTh;
+    private com.toedter.calendar.JDateChooser fechaTerminacionDCh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreBusLbl;
