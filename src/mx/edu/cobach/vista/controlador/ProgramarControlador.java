@@ -6,6 +6,7 @@
 package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Evento;
@@ -139,5 +140,15 @@ public class ProgramarControlador extends BaseControlador{
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz [0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);
+    }
+    /**
+     * Este metodo sirve para buscar la coincidencia de los cursos implementados
+     * @param de
+     * @param hasta 
+     */
+    public void buscarImplementacion(Date de, Date hasta){
+        List<Object> implementaciones = ServiceLocatorDELEGATE.getPrograma()
+                .buscarPorFechas(de, hasta);
+        com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
 }
