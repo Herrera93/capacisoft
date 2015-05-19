@@ -28,10 +28,10 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
     private final ProgramarControlador control;
     private final DefaultComboBoxModel tipoCursoModel;
-    private final DefaultComboBoxModel tipoSedeModel;
     private final DefaultTableModel model;
     private String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del curso", "Estado", "Eliminar"};
     private String estado;
+
     public PnlProgramarCurso() {
         control = new ProgramarControlador(this, ImplementacionCurso.class);
         initComponents();
@@ -41,10 +41,8 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         tablaTbl.setColumnSelectionAllowed(false);
         tablaTbl.setDragEnabled(false);
         tipoCursoModel = new DefaultComboBoxModel();
-        tipoSedeModel = new DefaultComboBoxModel();
         tipoRegCBx.setModel(tipoCursoModel);
         tipoBusCBx.setModel(tipoCursoModel);
-        tipoSedeCBx.setModel(tipoSedeModel);
     }
 
     /**
@@ -411,73 +409,66 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
      */
     private void buscarPnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_buscarPnlComponentShown
         curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(false);  
+        curRealizadoPnl.setVisible(false);
     }//GEN-LAST:event_buscarPnlComponentShown
 
-    
-    
-    
+
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
-    //Obtenelos el renglon y columna donde se hizo click
+        //Obtenelos el renglon y columna donde se hizo click
         int row = tablaTbl.rowAtPoint(evt.getPoint());
         int col = tablaTbl.columnAtPoint(evt.getPoint());
-        if(col == 0 || col==1|| col==2){
+        if (col == 0 || col == 1 || col == 2) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
             //int id = Integer.parseInt((String)model.getValueAt(row, 0));
             String activo = (String) model.getValueAt(row, 3);
             System.out.println(activo);
             //control.buscarMod(id);
-            if(activo.equals("Activo")){
+            if (activo.equals("Activo")) {
                 estado = "Activo";
-                
-            }else{
+
+            } else {
                 estado = "Finalizado";
             }
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
             control.setClass(ImplementacionCurso.class);
             control.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
-        }
-        else if(col == 3) {
+        } else if (col == 3) {
             int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
                     "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            if(op == 0){
+            if (op == 0) {
                 //Obtenemos ID de la columna escondida
-                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarTodos();
                 model.getDataVector().removeAllElements();
-            }else{
+            } else {
                 model.setValueAt(false, row, 2);
             }
         }
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        Evento campoCurso = (Evento)tipoBusCBx.getSelectedItem();
-        Sede campoSede = (Sede)tipoSedeCBx.getSelectedItem();
-        if(campoCurso.getNombre().compareTo("")!=0){
+        Evento campoCurso = (Evento) tipoBusCBx.getSelectedItem();
+        if (campoCurso.getNombre().compareTo("") != 0) {
             control.setClass(ImplementacionCurso.class);
             control.buscarPorEvento((Evento) tipoBusCBx.getSelectedItem());
-        }else if(campoSede.getNombre().compareTo("")!=0){
-            control.setClass(ImplementacionCurso.class);
-            control.buscarPorSede((Sede) tipoSedeCBx.getSelectedItem());
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void registrarPnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_registrarPnlComponentShown
         curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(false);  
+        curRealizadoPnl.setVisible(false);
     }//GEN-LAST:event_registrarPnlComponentShown
 
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
-        Evento campo = (Evento)tipoBusCBx.getSelectedItem();
-        if(campo.getNombre().compareTo("")!=0){
+        Evento campo = (Evento) tipoBusCBx.getSelectedItem();
+        if (campo.getNombre().compareTo("") != 0) {
             regRealizadoBtn.setEnabled(true);
             regRealizarBtn.setEnabled(true);
             buscarBtn.setEnabled(true);
-        }else{
+        } else {
             regRealizadoBtn.setEnabled(false);
             regRealizarBtn.setEnabled(false);
             buscarBtn.setEnabled(false);
@@ -485,12 +476,12 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
 
     private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
-        Evento campo = (Evento)tipoBusCBx.getSelectedItem();
-        if(campo.getNombre().compareTo("")!=0){
+        Evento campo = (Evento) tipoBusCBx.getSelectedItem();
+        if (campo.getNombre().compareTo("") != 0) {
             regRealizadoBtn.setEnabled(true);
             regRealizarBtn.setEnabled(true);
             buscarBtn.setEnabled(true);
-        }else{
+        } else {
             regRealizadoBtn.setEnabled(false);
             regRealizarBtn.setEnabled(false);
             buscarBtn.setEnabled(false);
@@ -554,7 +545,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
     /**
      * Metodo sobrescrito de la clase Comunicador que ayuda a mandar la
-     * informacion del curso a su respecivo panel, dependiendo del estado del 
+     * informacion del curso a su respecivo panel, dependiendo del estado del
      * curso
      *
      * @param info
@@ -562,13 +553,13 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
      */
     @Override
     public void setInfo(List info) {
-        if(estado.equals("Finalizado")){
+        if (estado.equals("Finalizado")) {
             curRealizarPnl.setVisible(false);
             curRealizadoPnl.setVisible(true);
             curRealizadoPnl.llenarTodo();
             curRealizadoPnl.obtenerMod(info);
             curRealizadoPnl.visibilidad(true);
-        }else{
+        } else {
             curRealizarPnl.setVisible(true);
             curRealizadoPnl.setVisible(false);
             curRealizarPnl.llenarTodo();
@@ -594,19 +585,9 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                 tipoCursoModel.removeAllElements();
                 Evento curso = new Evento();
                 curso.setNombre("");
-                tipoCursoModel.addElement(curso);              
+                tipoCursoModel.addElement(curso);
                 for (int j = 0; j < info.size(); j++) {
                     tipoCursoModel.addElement(info.get(j));
-                }
-                break;
-            case 2:
-                
-                tipoSedeModel.removeAllElements();
-                Sede sede = new Sede();
-                sede.setNombre("");
-                tipoSedeModel.addElement(sede); 
-                for (int j = 0; j < info.size(); j++) {
-                    tipoSedeModel.addElement(info.get(j));
                 }
                 break;
         }
