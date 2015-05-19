@@ -78,6 +78,12 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
         tipoLACBx.setModel(tipoModel);
+        campoModel.addElement("");
+        campoModel.addElement("Nombre");
+        campoModel.addElement("Departamento");
+        campoModel.addElement("Puesto");
+        campoModel.addElement("Sede");
+        campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
         controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
@@ -800,12 +806,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         controlProgramar.buscarTodosLista(2);
         controlProgramar.setClass(EnunciadoLogistica.class);
         controlProgramar.buscarEncuesta();
-        campoModel.addElement("");
-        campoModel.addElement("Nombre");
-        campoModel.addElement("Departamento");
-        campoModel.addElement("Puesto");
-        campoModel.addElement("Sede");
-        campoModel.addElement("Plantel");
+        
 
     }
 
@@ -1099,8 +1100,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                         getValueAt(x, 0)));
                 lisEmpleado.add(empleado);
             }
-            atributos.add(lisEmpleado);
-            System.out.println("Enunciado");
+            atributos.add(lisEmpleado);/*
             for (int x = 0; x < enunciadoTbl.getRowCount(); x++) {
                 System.out.println("Entre");
                 ImplementacionCursoEnunciadoLogistica calificacionLog
@@ -1115,7 +1115,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                         getValueAt(x, 3)));
                 System.out.println(calificacionLog.getCalificacion());
                 lisEnunciado.add(calificacionLog);
-            }
+            }*/
             atributos.add(lisEnunciado);
             controlProgramar.setClass(ImplementacionCurso.class);
             if (guardarGBtn.getText().equals("Guardar")) {
@@ -1159,8 +1159,19 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         fechaTDCh.setDate((Date) info.get(6));
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
+        
+        String[][] datosTabla = new String[0][0];
+        modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
+        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
+        tc = tablaLisFTbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        
         cursoImplementado.setEmpleados((Set<Empleado>)info.get(9));
-        Iterator itr = cursoImplementado.getEmpleados().iterator();
+        Iterator itr = cursoImplementado.getEmpleados().iterator();       
+        
+        
         for(int x=0;x < cursoImplementado.getEmpleados().size();x++){
             int id = Integer.parseInt(itr.next().toString());
             controlProgramar.setClass(Empleado.class);
@@ -1192,7 +1203,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + "en la lista de asistencia");
             return true;
-        } else {
+        } /*else {
             int rowN = enunciadoTbl.getRowCount();
             boolean band = false;
             for (int x = 0; x < rowN; x++) {
@@ -1205,7 +1216,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                         + "calificacion de la logistica");
                 return true;
             }
-        }
+        }*/
         return false;
     }
 }
