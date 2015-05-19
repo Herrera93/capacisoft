@@ -132,25 +132,25 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         informacionTP.setPreferredSize(new java.awt.Dimension(739, 472));
 
         nombreGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreGLbl.setText("Nombre del curso:");
+        nombreGLbl.setText("Nombre del evento:");
 
         fechaILbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaILbl.setText("Fecha inicial de curso:");
+        fechaILbl.setText("Fecha inicial de evento:");
 
         fechaTLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaTLbl.setText("Fecha de terminación  del curso:");
+        fechaTLbl.setText("Fecha de terminación del evento:");
 
         tipoGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoGLbl.setText("Tipo de curso:");
+        tipoGLbl.setText("Tipo de evento:");
 
         sedeGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sedeGLbl.setText("Sede del curso:");
+        sedeGLbl.setText("Sede del evento:");
 
         nombrePrLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePrLbl.setText("Nombre de Proveedor:");
 
         descripcionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        descripcionLbl.setText("Descripcion del curso:");
+        descripcionLbl.setText("Descripción del evento:");
 
         nombreGTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreGTFd.setEnabled(false);
@@ -209,8 +209,8 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 .addGap(37, 37, 37)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,7 +248,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                                     .addComponent(tipoSedeGCBx, 0, 153, Short.MAX_VALUE)
                                     .addComponent(nombreGCBx, 0, 153, Short.MAX_VALUE)
                                     .addComponent(capacidadSedeGLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         generalPnlLayout.setVerticalGroup(
             generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,7 +471,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listaPnlLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(23, Short.MAX_VALUE))
+                        .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(listaPnlLayout.createSequentialGroup()
@@ -499,7 +499,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 .addGroup(listaPnlLayout.createSequentialGroup()
                     .addGap(72, 72, 72)
                     .addComponent(listaCandidatosLALbl)
-                    .addContainerGap(480, Short.MAX_VALUE)))
+                    .addContainerGap(488, Short.MAX_VALUE)))
         );
         listaPnlLayout.setVerticalGroup(
             listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,7 +552,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
