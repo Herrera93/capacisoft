@@ -169,21 +169,7 @@ public class HelperEntidad {
         }
         return  c;
     }
-    private static List<Object> descomponerProCurso(ImplementacionCurso cu) {
-        List<Object> info = new ArrayList<>();
-        Evento curso = cu.getCurso();
-        TipoEvento tipocurso = curso.getTipoCurso();
-        info.add(cu.getId());
-        info.add(cu.getCurso());
-        info.add(curso.getNombre());
-        info.add(curso.getDescripcion());
-        info.add(tipocurso.toString());
-        info.add(cu.getFechaInicial());
-        info.add(cu.getFechaFinal());
-        info.add(cu.getSede());
-        info.add(cu.getProveedor());
-        return info;
-    }
+    
     //Descomposicion de un solo objeto
         
     public static List<Object> descomponerObjeto(Object obj){
@@ -272,6 +258,23 @@ public class HelperEntidad {
         info.add(usuario.getUsuario());
         info.add(t.getDescripcion());        
         info.add(usuario.getContrasena());
+        return info;
+    }
+    
+    private static List<Object> descomponerProCurso(ImplementacionCurso cu) {
+        List<Object> info = new ArrayList<>();
+        Evento curso = cu.getCurso();
+        TipoEvento tipocurso = curso.getTipoCurso();
+        info.add(cu.getId());
+        info.add(cu.getCurso());
+        info.add(curso.getNombre());
+        info.add(curso.getDescripcion());
+        info.add(tipocurso.toString());
+        info.add(cu.getFechaInicial());
+        info.add(cu.getFechaFinal());
+        info.add(cu.getSede());
+        info.add(cu.getProveedor());
+        info.add(cu.getEmpleados());
         return info;
     }
     
