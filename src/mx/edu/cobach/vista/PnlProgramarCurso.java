@@ -53,13 +53,13 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     private void agregar() {
         curRealizarPnl = new PnlCursoRealizar();
         curRealizarPnl.setLocation(400, 0);
-        curRealizarPnl.setSize(771, 589);
+        curRealizarPnl.setSize(781, 589);
         curRealizarPnl.setVisible(false);
         add(curRealizarPnl);
 
         curRealizadoPnl = new PnlCursoRealizado();
         curRealizadoPnl.setLocation(400, 0);
-        curRealizadoPnl.setSize(771, 589);
+        curRealizadoPnl.setSize(781, 589);
         curRealizadoPnl.setVisible(false);
         add(curRealizadoPnl);
 
