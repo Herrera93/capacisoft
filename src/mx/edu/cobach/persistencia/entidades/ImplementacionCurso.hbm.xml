@@ -25,7 +25,7 @@
     <property name="activo" type="boolean">
       <column name="activo" not-null="true"/>
     </property>
-    <set fetch="select" inverse="false" lazy="true" name="empleados" table="implementacion_curso_empleado">
+    <set fetch="select" inverse="false" lazy="false" name="empleados" table="implementacion_curso_empleado">
       <key>
         <column name="implementacion_curso_id" not-null="true"/>
       </key>
