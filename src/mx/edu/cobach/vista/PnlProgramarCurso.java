@@ -105,7 +105,9 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         tipoBusCBx = new javax.swing.JComboBox();
         opcionesBusLbl = new javax.swing.JLabel();
         notaBusLbl = new javax.swing.JLabel();
-        tipoSedeCBx = new javax.swing.JComboBox();
+        sedeLbl1 = new javax.swing.JLabel();
+        fechaInicialDCh = new com.toedter.calendar.JDateChooser();
+        fechaTerminacionDTh = new com.toedter.calendar.JDateChooser();
 
         setPreferredSize(new java.awt.Dimension(1150, 576));
 
@@ -118,7 +120,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         });
 
         nombreRegLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreRegLbl.setText("Nombre del curso:");
+        nombreRegLbl.setText("Nombre del evento:");
 
         tipoRegCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoRegCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -224,10 +226,10 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         });
 
         nombreBusLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreBusLbl.setText("Nombre del curso: ");
+        nombreBusLbl.setText("Nombre del evento: ");
 
         sedeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sedeLbl.setText("Sede del curso:");
+        sedeLbl.setText("Fecha del evento:");
 
         tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -285,13 +287,8 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         notaBusLbl.setText("Ingrese el nombre para buscar la información especifica");
 
-        tipoSedeCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoSedeCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tipoSedeCBx.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                tipoSedeCBxItemStateChanged(evt);
-            }
-        });
+        sedeLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sedeLbl1.setText("a:");
 
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
@@ -301,28 +298,36 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(buscarPnlLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(buscarBtn)
-                                .addGroup(buscarPnlLayout.createSequentialGroup()
-                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(sedeLbl)
-                                        .addComponent(nombreBusLbl))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tipoSedeCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(70, 70, 70)))
-                            .addComponent(opcionesBusLbl)
-                            .addComponent(notaBusLbl))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                            .addGroup(buscarPnlLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buscarBtn)
+                                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nombreBusLbl)
+                                            .addComponent(sedeLbl))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(buscarPnlLayout.createSequentialGroup()
+                                                .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(sedeLbl1)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(fechaTerminacionDTh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(buscarPnlLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(notaBusLbl)
+                                    .addComponent(opcionesBusLbl))))
+                        .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         buscarPnlLayout.setVerticalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(opcionesBusLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notaBusLbl)
@@ -331,13 +336,18 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                     .addComponent(nombreBusLbl)
                     .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sedeLbl)
-                    .addComponent(tipoSedeCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(sedeLbl)
+                                .addComponent(sedeLbl1))
+                            .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaTerminacionDTh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62))
         );
 
@@ -487,24 +497,13 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
 
-    private void tipoSedeCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeCBxItemStateChanged
-        Sede campo = (Sede)tipoSedeCBx.getSelectedItem();
-        if(campo.getNombre().compareTo("")!=0){
-            regRealizadoBtn.setEnabled(true);
-            regRealizarBtn.setEnabled(true);
-            buscarBtn.setEnabled(true);
-        }else{
-            regRealizadoBtn.setEnabled(false);
-            regRealizarBtn.setEnabled(false);
-            buscarBtn.setEnabled(false);
-        }
-    }//GEN-LAST:event_tipoSedeCBxItemStateChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JPanel buscarPnl;
     private javax.swing.JPanel calendarioPnl;
+    private com.toedter.calendar.JDateChooser fechaInicialDCh;
+    private com.toedter.calendar.JDateChooser fechaTerminacionDTh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreBusLbl;
@@ -518,10 +517,10 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     private javax.swing.JButton regRealizarBtn;
     private javax.swing.JPanel registrarPnl;
     private javax.swing.JLabel sedeLbl;
+    private javax.swing.JLabel sedeLbl1;
     private javax.swing.JTable tablaTbl;
     private javax.swing.JComboBox tipoBusCBx;
     private javax.swing.JComboBox tipoRegCBx;
-    private javax.swing.JComboBox tipoSedeCBx;
     // End of variables declaration//GEN-END:variables
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
