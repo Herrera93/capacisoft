@@ -416,7 +416,6 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
@@ -468,19 +467,14 @@
                       <Dimension value="[91, 20]"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="fechaInicialDChInputMethodTextChanged"/>
-                  </Events>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="fechaTerminacionDCh">
                   <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[91, 20]"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="fechaTerminacionDChInputMethodTextChanged"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

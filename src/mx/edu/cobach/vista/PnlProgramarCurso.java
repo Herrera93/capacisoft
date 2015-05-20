@@ -271,7 +271,6 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
-        buscarBtn.setEnabled(false);
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -296,22 +295,9 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         fechaInicialDCh.setDateFormatString("dd/MM/yyyy");
         fechaInicialDCh.setMaximumSize(new java.awt.Dimension(91, 20));
-        fechaInicialDCh.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                fechaInicialDChInputMethodTextChanged(evt);
-            }
-        });
 
+        fechaTerminacionDCh.setDateFormatString("dd/MM/yyyy");
         fechaTerminacionDCh.setMaximumSize(new java.awt.Dimension(91, 20));
-        fechaTerminacionDCh.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                fechaTerminacionDChInputMethodTextChanged(evt);
-            }
-        });
 
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
@@ -478,10 +464,14 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             control.setClass(ImplementacionCurso.class);
             control.buscarPorEvento((Evento) tipoBusCBx.getSelectedItem());
         }else if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
+            System.out.println("entre");
             Date de = fechaInicialDCh.getDate();
             Date hasta = fechaTerminacionDCh.getDate();
             control.setClass(ImplementacionCurso.class);
             control.buscarImplementacion(de, hasta);
+        }else{
+            control.setClass(ImplementacionCurso.class);
+            control.buscarTodos();
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -495,11 +485,9 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         if (campo.getNombre().compareTo("") != 0) {
             regRealizadoBtn.setEnabled(true);
             regRealizarBtn.setEnabled(true);
-            buscarBtn.setEnabled(true);
         } else {
             regRealizadoBtn.setEnabled(false);
             regRealizarBtn.setEnabled(false);
-            buscarBtn.setEnabled(false);
         }
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
 
@@ -508,29 +496,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         if (campo.getNombre().compareTo("") != 0) {
             regRealizadoBtn.setEnabled(true);
             regRealizarBtn.setEnabled(true);
-            buscarBtn.setEnabled(true);
         } else {
             regRealizadoBtn.setEnabled(false);
             regRealizarBtn.setEnabled(false);
-            buscarBtn.setEnabled(false);
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
-
-    private void fechaInicialDChInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fechaInicialDChInputMethodTextChanged
-        if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
-            buscarBtn.setEnabled(true);
-        }else if(fechaInicialDCh.getDate()==null&&fechaTerminacionDCh.getDate()==null){
-            buscarBtn.setEnabled(true);
-        }
-    }//GEN-LAST:event_fechaInicialDChInputMethodTextChanged
-
-    private void fechaTerminacionDChInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fechaTerminacionDChInputMethodTextChanged
-        if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
-            buscarBtn.setEnabled(true);
-        }else if(fechaInicialDCh.getDate()==null&&fechaTerminacionDCh.getDate()==null){
-            buscarBtn.setEnabled(true);
-        }
-    }//GEN-LAST:event_fechaTerminacionDChInputMethodTextChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
