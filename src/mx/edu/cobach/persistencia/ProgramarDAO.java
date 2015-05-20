@@ -76,7 +76,7 @@ public class ProgramarDAO<T> extends BaseDAO{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.between("fechaInicial", ts, ts)).list();
+                    add(Restrictions.between("fechaInicial", de, hasta)).list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
