@@ -38,6 +38,17 @@ public class HelperEntidad {
     
     //Obtencion de entidades
     
+    public static ImplementacionCursoEnunciadoLogistica getEnunciado
+        (List<Object> atributos){
+        ImplementacionCursoEnunciadoLogistica enunciado
+                = new ImplementacionCursoEnunciadoLogistica();
+        enunciado.setEnunciadoLogistica((EnunciadoLogistica) atributos.get(0));
+        enunciado.setCalificacion((int) atributos.get(1));
+        enunciado.setImplementacionCurso((ImplementacionCurso) atributos.get(2));
+        return enunciado;
+    }
+    
+    
     public static Departamento getDepartamento(List<Object> atributos){
         Enfoque enfoque = new Enfoque();
         enfoque.setId((Integer)atributos.get(0));
@@ -51,7 +62,7 @@ public class HelperEntidad {
     }
     
     public static ImplementacionCurso getProgramar(List<Object> atributos,
-            String direccion, String tipo) {
+            String direccion) {
         ImplementacionCurso implementaCurso = new ImplementacionCurso();
         if (direccion.equals("Guardar")) {
             implementaCurso.setCurso((Evento) atributos.get(0));
@@ -61,10 +72,6 @@ public class HelperEntidad {
             implementaCurso.setSede((Sede) atributos.get(4));
             implementaCurso.setProveedor((Proveedor) atributos.get(5));
             implementaCurso.setEmpleados((Set<Empleado>) atributos.get(6));
-            if (tipo.equals("Finalizado")) {
-                implementaCurso.
-                        setImplementacionCursoEnunciadoLogisticas((Set<ImplementacionCursoEnunciadoLogistica>)atributos.get(7));
-            }
             return implementaCurso;
         } else if (direccion.equals("Modificar")) {
             implementaCurso.setId(Integer.parseInt(atributos.get(0).toString()));
@@ -75,10 +82,6 @@ public class HelperEntidad {
             implementaCurso.setSede((Sede) atributos.get(5));
             implementaCurso.setProveedor((Proveedor) atributos.get(6));
             implementaCurso.setEmpleados((Set<Empleado>) atributos.get(7));
-            if (tipo.equals("Finalizado")) {
-                implementaCurso.
-                        setImplementacionCursoEnunciadoLogisticas((Set<ImplementacionCursoEnunciadoLogistica>)atributos.get(7));
-            }
             return implementaCurso;
         }
         return null;
@@ -336,6 +339,12 @@ public class HelperEntidad {
                     programar.add((ImplementacionCurso) objetos.get(i));
                 }
                 return descomponerProCursos(programar);
+            }else if(objetos.get(0) instanceof ImplementacionCursoEnunciadoLogistica){
+                List<ImplementacionCursoEnunciadoLogistica> calificacion = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    calificacion.add((ImplementacionCursoEnunciadoLogistica) objetos.get(i));
+                }
+                return descomponerCalificacion(calificacion);
             }
         }
         return null;
@@ -479,5 +488,20 @@ public class HelperEntidad {
         }
         return info;
     }
-    
+    private static String[][] descomponerCalificacion(List<ImplementacionCursoEnunciadoLogistica> en) {
+        String[][] info = new String[en.size()][4];
+        for (int i = 0; i < en.size(); i++) {
+            ImplementacionCursoEnunciadoLogistica c = en.get(i);
+            EnunciadoLogistica enunciado = new EnunciadoLogistica();
+            
+            enunciado = c.getEnunciadoLogistica();
+            
+            info[i][0] = c.getId().toString();
+            info[i][1] = enunciado.getDescripcion();
+            //info[1][2] = enunciado.getTipoEnunciado().toString();
+            info[i][3] = c.getCalificacion()+"";
+
+        }
+        return info;
+    }
 }
