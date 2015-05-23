@@ -14,7 +14,7 @@
         <property name="descripcion" type="string">
             <column name="descripcion" length="70" not-null="true" />
         </property>
-        <set name="implementacionCursoEnunciadoLogisticas" table="implementacion_curso_enunciado_logistica" inverse="true" lazy="true" fetch="select">
+        <set name="implementacionCursoEnunciadoLogisticas" table="implementacion_curso_enunciado_logistica" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="enunciado_logistica_id" not-null="true" />
             </key>
