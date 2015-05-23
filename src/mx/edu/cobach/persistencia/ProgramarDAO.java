@@ -28,7 +28,7 @@ public class ProgramarDAO<T> extends BaseDAO{
      * @param evento
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> findByEvento(Evento evento){        
+    public List<Object> buscarPorEvento(Evento evento){        
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();
@@ -48,7 +48,7 @@ public class ProgramarDAO<T> extends BaseDAO{
      * @param sede
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> findBySede(Sede sede){        
+    public List<Object> buscarPorSede(Sede sede){        
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();
@@ -85,6 +85,25 @@ public class ProgramarDAO<T> extends BaseDAO{
         }
         return ts;        
     }
-    
+    /**
+     * Metodo para el guardado y actualizacion de los cursos realizados
+     * opteniendo una id del este mismo
+     * @param t Objeto a gurdar
+     * @return 
+     */
+    public Object guardarEvento(T t) {
+        Object objeto = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            objeto = HibernateUtil.getSession().save(t);
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return objeto;
+    }
 }
 
