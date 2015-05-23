@@ -44,7 +44,7 @@ public class ProgramarDAO<T> extends BaseDAO{
         return ts;
     }
     /**
-     * * Obtiene todas las implementaciones relacionadas de una sede dado.
+     * Obtiene todas las implementaciones relacionadas de una sede dado.
      * @param sede
      * @return Regresa la lista con las implementaciones
      */
