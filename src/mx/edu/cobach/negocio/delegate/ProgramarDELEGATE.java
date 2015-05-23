@@ -85,4 +85,13 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
     public List<Object> buscarPorFechas(Date de, Date hasta){
         return ServiceLocatorFACADE.getPrograma().buscarPorFechas(de, hasta);
     }
+    /**
+     * Guarda un curso realizado y regresa un id del curso.
+     * @param impleEvento
+     * @param clazz
+     * @return 
+     */
+    public Object saveCurso(Object impleEvento, Class clazz) {
+        return ServiceLocatorFACADE.getPrograma().saveCurso(impleEvento, clazz);
+    }
 }
