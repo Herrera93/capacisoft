@@ -33,7 +33,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarEmPorDepartamento(Departamento departamento) {
-        return ServiceLocatorFACADE.getEmpleado().findByDepartamento(departamento);
+        return ServiceLocatorFACADE.getEmpleado().buscarPorDepartamento(departamento);
     }
     /**
      * Obtiene todos los empleados que estan relacionados a tal puesto
@@ -41,7 +41,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarEmPorPuesto(Puesto puesto) {
-        return ServiceLocatorFACADE.getEmpleado().findByPuesto(puesto);
+        return ServiceLocatorFACADE.getEmpleado().buscarPorPuesto(puesto);
     }
     /**
      * Obtiene todos los empleados que estan relacionados a tal plantel
@@ -49,7 +49,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarEmPorPlantel(Plantel plantel) {
-        return ServiceLocatorFACADE.getEmpleado().findByPlantel(plantel);
+        return ServiceLocatorFACADE.getEmpleado().buscarPorPlantel(plantel);
     }
     /**
      * Obtiene todas las encuestas de la logistica para el evento.
