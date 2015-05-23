@@ -806,7 +806,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         controlProgramar.buscarTodosLista(2);
         controlProgramar.setClass(EnunciadoLogistica.class);
         controlProgramar.buscarEncuesta();
-        
 
     }
 
@@ -953,6 +952,43 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             tc.setCellRenderer(renderer);
             tc = enunciadoTbl.getColumnModel().getColumn(0);
             enunciadoTbl.getColumnModel().removeColumn(tc);
+        } else if (info[0][0].contains(
+                "TLE4")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+            info[0][0] = info[0][0].replaceAll("TLE4", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
+            
+            int nRow = enunciadoTbl.getRowCount();
+            int nCol = enunciadoTbl.getColumnCount();
+            int row = enunciadoTbl.getSelectedRow();
+            int cont = 0;
+            String id = (String) modelTablaEn.getValueAt(row, 0);
+            Object[][] tableData = new Object[nRow][nCol];
+            for (int i = 0; i < nRow; i++) {
+                if (((String) modelTablaEn.getValueAt(i, 0)).compareTo(id) != 0) {
+                    tableData[cont][0] = modelTablaEn.getValueAt(i, 0);
+                    tableData[cont][1] = modelTablaEn.getValueAt(i, 1);
+                    tableData[cont][2] = modelTablaEn.getValueAt(i, 2);
+                    cont++;
+                }
+            }
+            modelTablaEmF.setDataVector(tableData, titulosTablaEm);
+            visibilidadOpcT(true);
+
+            enunciadoTbl.setEnabled(true);
+            modelTablaEn.setDataVector(info, titulosTablaEn);
+            //Contador que decrementa del 10 a 1 para agregarlos a la
+            //califiacion de logistica
+            JComboBox comboBox = new JComboBox();
+            for (int numero = 10; numero > 0; numero--) {
+                comboBox.addItem(numero + "");
+            }
+            TableColumn tc = enunciadoTbl.getColumnModel().getColumn(3);
+            tc.setCellEditor(new DefaultCellEditor(comboBox));
+            DefaultTableCellRenderer renderer
+                    = new DefaultTableCellRenderer();
+            renderer.setToolTipText("Califica a la logistica");
+            tc.setCellRenderer(renderer);
+            tc = enunciadoTbl.getColumnModel().getColumn(0);
+            enunciadoTbl.getColumnModel().removeColumn(tc);
         }
     }
 
@@ -1079,50 +1115,55 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      */
     private void guarMod() {
         HashSet<Empleado> lisEmpleado = new HashSet();
-        HashSet<ImplementacionCursoEnunciadoLogistica> lisEnunciado = new HashSet();
-        List<Object> atributos = new ArrayList();
+        List<Object> cursoImplementar = new ArrayList();
+        List<Object> calificacion = new ArrayList();
+        ImplementacionCurso implementacionCurso = new ImplementacionCurso();
+
         if (validacion() == false) {
             if (fechaTDCh.getDate() == null) {
                 fechaTDCh.setDate(fechaIDCh.getDate());
             }
             if (guardarGBtn.getText().equals("Modificar")) {
-                atributos.add(cursoProgramarId);
+                cursoImplementar.add(cursoProgramarId);
             }
-            atributos.add(curso);
-            atributos.add(fechaIDCh.getDate());
-            atributos.add(fechaTDCh.getDate());
-            atributos.add(false);
-            atributos.add(tipoSedeGCBx.getSelectedItem());
-            atributos.add(nombreGCBx.getSelectedItem());
+            cursoImplementar.add(curso);
+            cursoImplementar.add(fechaIDCh.getDate());
+            cursoImplementar.add(fechaTDCh.getDate());
+            cursoImplementar.add(false);
+            cursoImplementar.add(tipoSedeGCBx.getSelectedItem());
+            cursoImplementar.add(nombreGCBx.getSelectedItem());
             for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
                 Empleado empleado = new Empleado();
                 empleado.setId(Integer.parseInt((String) modelTablaEmF.
                         getValueAt(x, 0)));
                 lisEmpleado.add(empleado);
             }
-            atributos.add(lisEmpleado);/*
+            cursoImplementar.add(lisEmpleado);
+            controlProgramar.setClass(ImplementacionCurso.class);
+
             for (int x = 0; x < enunciadoTbl.getRowCount(); x++) {
-                System.out.println("Entre");
+
                 ImplementacionCursoEnunciadoLogistica calificacionLog
                         = new ImplementacionCursoEnunciadoLogistica();
                 EnunciadoLogistica enunciado = new EnunciadoLogistica();
-                System.out.println(enunciadoTbl.getRowCount());
                 enunciado.setId(Integer.parseInt((String) modelTablaEn.
                         getValueAt(x, 0)));
-                System.out.println(enunciado.getId());
                 calificacionLog.setEnunciadoLogistica(enunciado);
                 calificacionLog.setCalificacion(Integer.parseInt((String) modelTablaEn.
                         getValueAt(x, 3)));
-                System.out.println(calificacionLog.getCalificacion());
-                lisEnunciado.add(calificacionLog);
-            }*/
-            atributos.add(lisEnunciado);
-            controlProgramar.setClass(ImplementacionCurso.class);
-            if (guardarGBtn.getText().equals("Guardar")) {
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
-            } else {
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Finalizado"));
+                calificacion.add(calificacionLog);
             }
+
+            if (guardarGBtn.getText().equals("Guardar")) {
+                implementacionCurso = HelperEntidad.getProgramar(cursoImplementar, "Guardar");
+                controlProgramar.guardarOModificarEventoImplementado(implementacionCurso,
+                        calificacion);
+            } else {
+                implementacionCurso = HelperEntidad.getProgramar(cursoImplementar, "Modificar");
+                controlProgramar.guardarOModificarEventoImplementado(implementacionCurso,
+                        calificacion);
+            }
+
         }
     }
 
@@ -1159,7 +1200,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         fechaTDCh.setDate((Date) info.get(6));
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
-        
+
         String[][] datosTabla = new String[0][0];
         modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
         TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
@@ -1167,16 +1208,17 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
         tc = tablaLisFTbl.getColumnModel().getColumn(0);
         tablaLisFTbl.getColumnModel().removeColumn(tc);
-        
-        cursoImplementado.setEmpleados((Set<Empleado>)info.get(9));
-        Iterator itr = cursoImplementado.getEmpleados().iterator();       
-        
-        
-        for(int x=0;x < cursoImplementado.getEmpleados().size();x++){
+
+        cursoImplementado.setEmpleados((Set<Empleado>) info.get(9));
+        Iterator itr = cursoImplementado.getEmpleados().iterator();
+
+        for (int x = 0; x < cursoImplementado.getEmpleados().size(); x++) {
             int id = Integer.parseInt(itr.next().toString());
             controlProgramar.setClass(Empleado.class);
             controlProgramar.buscarEmpId(id, Empleado.class);
         }
+        controlProgramar.setClass(ImplementacionCursoEnunciadoLogistica.class);
+        controlProgramar.bucarCalificacionMod(cursoProgramarId);
     }
 
     /**
@@ -1204,19 +1246,20 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                     + "en la lista de asistencia");
             return true;
         } /*else {
-            int rowN = enunciadoTbl.getRowCount();
-            boolean band = false;
-            for (int x = 0; x < rowN; x++) {
-                if (((Object) modelTablaEn.getValueAt(x, 3)) == null) {
-                    band = true;
-                }
-            }
-            if (band == true) {
-                JOptionPane.showMessageDialog(this, "No se a completado la "
-                        + "calificacion de la logistica");
-                return true;
-            }
-        }*/
+         int rowN = enunciadoTbl.getRowCount();
+         boolean band = false;
+         for (int x = 0; x < rowN; x++) {
+         if (((Object) modelTablaEn.getValueAt(x, 3)) == null) {
+         band = true;
+         }
+         }
+         if (band == true) {
+         JOptionPane.showMessageDialog(this, "No se a completado la "
+         + "calificacion de la logistica");
+         return true;
+         }
+         }*/
+
         return false;
     }
 }
