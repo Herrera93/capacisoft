@@ -28,25 +28,25 @@ public class EncuestaControlador extends BaseControlador {
     
     public void buscarPorNombre(String nombre){
         List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByNombre(nombre);
+                .buscarEmPorNombre(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
     public void buscarPorPuesto(Object puesto){
         List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByPuesto((Puesto) puesto);
+                .buscarEmPorPuesto((Puesto) puesto);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
     public void buscarPorDepartamento(Object departamento){
         List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByDepartamento((Departamento) departamento);
+                .buscarEmPorDepartamento((Departamento) departamento);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
     public void buscarPorPlantel(Object plantel){
         List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByPlantel((Plantel) plantel);
+                .buscarEmPorPlantel((Plantel) plantel);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
         
@@ -66,7 +66,7 @@ public class EncuestaControlador extends BaseControlador {
     
     public void buscarImplementacion(Object curso){
         List<Object> implementaciones = ServiceLocatorDELEGATE.getPrograma()
-                .findByEvento((Evento) curso);
+                .buscarPorEvento((Evento) curso);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
     
