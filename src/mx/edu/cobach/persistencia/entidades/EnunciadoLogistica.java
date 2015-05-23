@@ -62,7 +62,9 @@ public class EnunciadoLogistica  implements java.io.Serializable {
         this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
     }
 
-
+    public String toString(){
+        return this.id+"";
+    }
 }
 
 
