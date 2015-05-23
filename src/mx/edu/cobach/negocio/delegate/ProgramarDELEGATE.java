@@ -24,7 +24,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param nombre
      * @return Regresa la lista de los empleados
      */
-    public List<Object> findByNombre(String nombre) {
+    public List<Object> buscarEmPorNombre(String nombre) {
         return ServiceLocatorFACADE.getEmpleado().findByNombre(nombre);
     }
     /**
@@ -32,7 +32,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param departamento
      * @return Regresa la lista de los empleados
      */
-    public List<Object> findByDepartamento(Departamento departamento) {
+    public List<Object> buscarEmPorDepartamento(Departamento departamento) {
         return ServiceLocatorFACADE.getEmpleado().findByDepartamento(departamento);
     }
     /**
@@ -40,7 +40,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param puesto
      * @return Regresa la lista de los empleados
      */
-    public List<Object> findByPuesto(Puesto puesto) {
+    public List<Object> buscarEmPorPuesto(Puesto puesto) {
         return ServiceLocatorFACADE.getEmpleado().findByPuesto(puesto);
     }
     /**
@@ -48,7 +48,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param plantel
      * @return Regresa la lista de los empleados
      */
-    public List<Object> findByPlantel(Plantel plantel) {
+    public List<Object> buscarEmPorPlantel(Plantel plantel) {
         return ServiceLocatorFACADE.getEmpleado().findByPlantel(plantel);
     }
     /**
@@ -56,7 +56,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param encuesta
      * @return Regresa la lista de los empleados
      */
-    public List<Object> findEncuesta(Class encuesta) {
+    public List<Object> buscarPorEncuesta(Class encuesta) {
         return ServiceLocatorFACADE.getInstance().findAll(encuesta);
     }
     /**
@@ -64,7 +64,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param evento
      * @return Regresa la lista de las encuestas
      */
-    public List<Object> findByEvento(Evento evento) {
+    public List<Object> buscarPorEvento(Evento evento) {
         return ServiceLocatorFACADE.getPrograma().findByEvento(evento);
     }
     /**
@@ -72,7 +72,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param sede
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> findBySede(Sede sede) {
+    public List<Object> buscarPorSede(Sede sede) {
         return ServiceLocatorFACADE.getPrograma().findBySede(sede);
     }
     
@@ -91,7 +91,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param clazz
      * @return 
      */
-    public Object saveCurso(Object impleEvento, Class clazz) {
-        return ServiceLocatorFACADE.getPrograma().saveCurso(impleEvento, clazz);
+    public Object guardarEvento(Object impleEvento, Class clazz) {
+        return ServiceLocatorFACADE.getPrograma().guardarEvento(impleEvento, clazz);
     }
 }
