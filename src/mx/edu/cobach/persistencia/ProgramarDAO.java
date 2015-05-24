@@ -20,7 +20,6 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ProgramarDAO<T> extends BaseDAO{
     public ProgramarDAO(){
-        super();
         super.entityClass = ImplementacionCurso.class;
     }
     /**
