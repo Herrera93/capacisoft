@@ -5,6 +5,8 @@
  */
 package mx.edu.cobach.negocio.facade;
 
+import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+
 /**
  * Clase para localizacion de servicios FACADE
  * @author Alex
@@ -22,6 +24,7 @@ public class ServiceLocatorFACADE {
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
     private static ProgramarFACADE programaFacade;
+    private static ImplementacionCursoEnunciadoLogisticaFACADE calificacionFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -125,5 +128,16 @@ public class ServiceLocatorFACADE {
         }
         return programaFacade;
     }
-    
+    /**
+     * Obtiene el FACADE especifico de la entidad 
+     * ImplementacionCursoEnunciadoLogistica, si este no ha sido inicializado se
+     * instanciara. 
+     * @return Regresa el facade de ImplementacionCursoEnunciadoLogistica
+     */
+    public static ImplementacionCursoEnunciadoLogisticaFACADE getEnunciadoCali(){
+        if(calificacionFacade == null){
+            calificacionFacade = new ImplementacionCursoEnunciadoLogisticaFACADE();
+        }
+        return calificacionFacade;
+    }
 }
