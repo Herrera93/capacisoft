@@ -129,7 +129,8 @@ public class ServiceLocatorFACADE {
         return programaFacade;
     }
     /**
-     * Obtiene el FACADE especifico de la entidad 
+     * Obtiene el FACADE especifico de la entidad denada
+     * 
      * ImplementacionCursoEnunciadoLogistica, si este no ha sido inicializado se
      * instanciara. 
      * @return Regresa el facade de ImplementacionCursoEnunciadoLogistica
