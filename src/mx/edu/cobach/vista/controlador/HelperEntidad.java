@@ -189,7 +189,7 @@ public class HelperEntidad {
         }else if(obj instanceof Sede){
               return descomponerSede((Sede)obj);
         }else if(obj instanceof ImplementacionCurso){
-              return descomponerProCurso((ImplementacionCurso)obj);
+              return descomponerProEvento((ImplementacionCurso)obj);
         }
         else{
             return null;
@@ -264,20 +264,20 @@ public class HelperEntidad {
         return info;
     }
     
-    private static List<Object> descomponerProCurso(ImplementacionCurso cu) {
+    private static List<Object> descomponerProEvento(ImplementacionCurso evento) {
         List<Object> info = new ArrayList<>();
-        Evento curso = cu.getCurso();
+        Evento curso = evento.getCurso();
         TipoEvento tipocurso = curso.getTipoCurso();
-        info.add(cu.getId());
-        info.add(cu.getCurso());
+        info.add(evento.getId());
+        info.add(evento.getCurso());
         info.add(curso.getNombre());
         info.add(curso.getDescripcion());
         info.add(tipocurso.toString());
-        info.add(cu.getFechaInicial());
-        info.add(cu.getFechaFinal());
-        info.add(cu.getSede());
-        info.add(cu.getProveedor());
-        info.add(cu.getEmpleados());
+        info.add(evento.getFechaInicial());
+        info.add(evento.getFechaFinal());
+        info.add(evento.getSede());
+        info.add(evento.getProveedor());
+        info.add(evento.getEmpleados());
         return info;
     }
     
