@@ -19,7 +19,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
 
     private PnlAlertas alertasPnl;
     private PnlSeguimiento seguimientoPnl;
-    private PnlProgramarCurso programarPnl;
+    private PnlProgramarEvento programarPnl;
     private PnlUsuarios usuarioPnl;
     private PnlPlantel plantelPnl;
     private PnlDepartamento departamentoPnl;
@@ -150,7 +150,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         //if(idTipo!=3)
             add(seguimientoPnl);/*preguntar*/
         
-        programarPnl = new PnlProgramarCurso();
+        programarPnl = new PnlProgramarEvento();
         programarPnl.setVisible(false);
         programarPnl.setSize(1181,587);
        // if(idTipo!=3)
