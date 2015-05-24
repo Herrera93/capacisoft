@@ -598,6 +598,9 @@
                   <Dimension value="[6, 23]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreLATFdKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="nombreLALbl">
               <Properties>

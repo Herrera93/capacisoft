@@ -364,6 +364,11 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         nombreLATFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLATFd.setEnabled(false);
         nombreLATFd.setMaximumSize(new java.awt.Dimension(6, 23));
+        nombreLATFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreLATFdKeyTyped(evt);
+            }
+        });
 
         nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLALbl.setText("Nombre del Empleado:");
@@ -722,6 +727,20 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
             }
         }
     }//GEN-LAST:event_tipoSedeGCBxItemStateChanged
+    /**
+     * Metodo que valida que el usuario no escriba numeros en el JTextField
+     * @param evt 
+     */
+    private void nombreLATFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreLATFdKeyTyped
+        char c;
+        c = evt.getKeyChar();
+        if(Character.isLetter(c) || Character.isISOControl(c) 
+                || Character.isWhitespace(c)){
+            evt = evt;
+        }else{
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreLATFdKeyTyped
     /**
      * Metodo que recibe el curso del catalogo para llenar parte de la
      * informacion general del curso a llevar a cabo
@@ -1082,16 +1101,20 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + "en la lista de asistencia");
             return true;
-        }else if(tablaLisFTbl.getRowCount() > campoSede.getCapacidad()){
+        } else if (tablaLisFTbl.getRowCount() > campoSede.getCapacidad()) {
             int op = JOptionPane.showConfirmDialog(this, "La lista de asistencia es mas "
                     + "grande que la capacidad que puede soportar la sede"
                     + "¿Desea aun así realizarla ahí ?", "Precaucion",
-                    JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (op == 0) {
                 return false;
-            }else {
+            } else {
                 return true;
             }
+        } else if (fechaIDCh.getDate().after(fechaTDCh.getDate())) {
+            JOptionPane.showMessageDialog(this, "Error en las fechas de curso."
+                    +"La fecha de inicio es mayor que la fecha de terminacion");
+            return true;
         }
         return false;
     }
