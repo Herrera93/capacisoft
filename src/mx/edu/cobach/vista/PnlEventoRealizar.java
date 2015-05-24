@@ -45,8 +45,10 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
     private final DefaultComboBoxModel campoModel;
     private DefaultTableModel modelTablaEmI;
     private DefaultTableModel modelTablaEmF;
-    private String[] titulosTablaEm = {"ID", "Numero del Empleado", "Nombre del Empleado"};
+    private String[] titulosTablaEm = {"ID", "Numero del Empleado",
+        "Nombre del Empleado"};
     private Evento evento;
+    private boolean cambio = false;
 
     public PnlEventoRealizar() {
         initComponents();
@@ -185,6 +187,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         nombreGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         nombreGCBx.setEnabled(false);
+        nombreGCBx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nombreGCBxItemStateChanged(evt);
+            }
+        });
 
         guardarGBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarGBtn.setText("Guardar");
@@ -197,9 +204,19 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         fechaIDCh.setDateFormatString("dd/MM/yyyy");
         fechaIDCh.setEnabled(false);
+        fechaIDCh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fechaIDChKeyTyped(evt);
+            }
+        });
 
         fechaTDCh.setDateFormatString("dd/MM/yyyy");
         fechaTDCh.setEnabled(false);
+        fechaTDCh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fechaTDChKeyTyped(evt);
+            }
+        });
 
         agregarGLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarGLbl.setText("Agregar");
@@ -459,7 +476,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         cancelarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarLABtn.setText("Cancelar");
-        cancelarLABtn.setEnabled(false);
         cancelarLABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarLABtnActionPerformed(evt);
@@ -667,6 +683,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        this.cambio = true;
         int row = tablaLisITbl.getSelectedRow();
         if (row >= 0) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
@@ -681,6 +698,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
+        this.cambio = true;
         int nRow = tablaLisITbl.getRowCount();
         for (int i = 0; i < nRow; i++) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(i, 0));
@@ -695,6 +713,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
+        this.cambio = true;
         int nRow = tablaLisFTbl.getRowCount();
         int nCol = tablaLisFTbl.getColumnCount();
         int row = tablaLisFTbl.getSelectedRow();
@@ -722,6 +741,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
+        this.cambio = true;
         String[][] datosTabla = new String[0][0];
         modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
         TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
@@ -751,6 +771,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt
      */
     private void tipoSedeGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeGCBxItemStateChanged
+        this.cambio = true;
         Sede sede = (Sede) tipoSedeGCBx.getSelectedItem();
         if (sede != null) {
             if (sede.getNombre().equals("")) {
@@ -820,6 +841,27 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         }
     }//GEN-LAST:event_cancelarLABtnActionPerformed
     /**
+     * Metodo para indicar que a habido un cambio en la el panel
+     * @param evt 
+     */
+    private void nombreGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreGCBxItemStateChanged
+        this.cambio = true;
+    }//GEN-LAST:event_nombreGCBxItemStateChanged
+    /**
+     * Metodo para indicar que a habido un cambio en la el panel
+     * @param evt 
+     */
+    private void fechaIDChKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaIDChKeyTyped
+        this.cambio = true;
+    }//GEN-LAST:event_fechaIDChKeyTyped
+    /**
+     * Metodo para indicar que a habido un cambio en la el panel
+     * @param evt 
+     */
+    private void fechaTDChKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaTDChKeyTyped
+        this.cambio = true;
+    }//GEN-LAST:event_fechaTDChKeyTyped
+    /**
      * Metodo que recibe el curso del catalogo para llenar parte de la
      * informacion general del curso a llevar a cabo
      *
@@ -841,6 +883,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         controlProgramar.buscarTodosLista(1);
         controlProgramar.setClass(Proveedor.class);
         controlProgramar.buscarTodosLista(2);
+        cambio = false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1101,6 +1144,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             } else {
                 controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar"));
             }
+            this.cambio = false;
             limpiarCampos();
         }
     }
@@ -1204,15 +1248,22 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * Este metodo sirve para limpiar los campos del panel de evento
      */
     public void limpiarCampos() {
+        this.cambio = false;
         this.setVisible(false);
         fechaIDCh.setDate(null);
         fechaTDCh.setDate(null);
         descripcionGTAa.setText("");
-        tipoGCBx.setSelectedIndex(0);
-        tipoSedeGCBx.setSelectedIndex(0);
-        nombreGCBx.setSelectedIndex(0);
         String[][] datosTabla = new String[0][0];
         modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
         modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
+    }
+    
+    /** 
+     * Variable que regresa un booleano si se le agrego informacion al evento o
+     * modifico
+     * @return regresa un booleano que indica si el evento sufrio cambios
+     */
+    public boolean isCambio(){
+        return this.cambio;
     }
 }
