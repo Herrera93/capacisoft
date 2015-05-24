@@ -497,8 +497,6 @@ public class HelperEntidad {
             enunciado = c.getEnunciadoLogistica();
             
             info[i][0] = c.getId().toString();
-            info[i][1] = enunciado.getDescripcion();
-            //info[1][2] = enunciado.getTipoEnunciado().toString();
             info[i][3] = c.getCalificacion()+"";
 
         }
