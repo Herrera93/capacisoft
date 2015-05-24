@@ -10,6 +10,7 @@ import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
@@ -56,8 +57,8 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @param encuesta
      * @return Regresa la lista de los empleados
      */
-    public List<Object> buscarPorEncuesta(Class encuesta) {
-        return ServiceLocatorFACADE.getInstance().findAll(encuesta);
+    public List<Object> buscarPorEncuesta(ImplementacionCurso eventoProgra) {
+        return ServiceLocatorFACADE.getEnunciadoCali().buscarEncuestaPorEvento(eventoProgra);
     }
     /**
      * Obtiene todas las implementaciones relacionadas de un evento dado.
