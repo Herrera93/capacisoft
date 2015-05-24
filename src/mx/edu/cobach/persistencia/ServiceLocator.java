@@ -5,6 +5,9 @@
  */
 
 package mx.edu.cobach.persistencia;
+
+import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+
 /**
  * Clase para localizar los servicios de DAOs
  * @author Alex
@@ -22,6 +25,7 @@ public class ServiceLocator {
     private static DepartamentoDAO departamentoDAO;
     private static SedeDAO sedeDAO;
     private static ProgramarDAO programarDAO;
+    private static ImplementacionCursoEnunciadoLogisticaDAO calificacionFacade;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
@@ -116,12 +120,27 @@ public class ServiceLocator {
         }
         return sedeDAO;
     }
-    
+    /**
+     * Obtiene el DAO especifico para ImplementacionCurso, si este no ha sido
+     * inicializado se instanciara.
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de ImplementacionCurso 
+     */
     public static ProgramarDAO getPrograma(){
         if(programarDAO == null){
             programarDAO = new ProgramarDAO();
         }
         return programarDAO;
     }
-    
+    /**
+     * Obtiene el DAO especifico para ImplementacionCursoEnunciadoLogistica,
+     * si este no ha sido inicializado se instanciara
+     * @return 
+     */
+    public static ImplementacionCursoEnunciadoLogisticaDAO getEnunciadoCali(){
+        if(calificacionFacade == null){
+            calificacionFacade = new ImplementacionCursoEnunciadoLogisticaDAO();
+        }
+        return calificacionFacade;
+    }
 }
