@@ -338,7 +338,7 @@ public class HelperEntidad {
                 for(int i = 0; i < objetos.size(); i++){
                     programar.add((ImplementacionCurso) objetos.get(i));
                 }
-                return descomponerProCursos(programar);
+                return descomponerProEventos(programar);
             }else if(objetos.get(0) instanceof ImplementacionCursoEnunciadoLogistica){
                 List<ImplementacionCursoEnunciadoLogistica> calificacion = new ArrayList();
                 for(int i = 0; i < objetos.size(); i++){
@@ -460,14 +460,15 @@ public class HelperEntidad {
         return info;
     }
     
-    private static String[][] descomponerProCursos(List<ImplementacionCurso> cu) {
-        String[][] info = new String[cu.size()][4];
-        for (int i = 0; i < cu.size(); i++) {
-            ImplementacionCurso c = cu.get(i);
-            info[i][0] = c.getId().toString();
-            info[i][1] = c.getFechaInicial().toString();
-            info[i][2] = c.getCurso().toString();
-            if(c.isActivo()==true){
+    private static String[][] descomponerProEventos
+        (List<ImplementacionCurso> eventoImplementado) {
+        String[][] info = new String[eventoImplementado.size()][4];
+        for (int i = 0; i < eventoImplementado.size(); i++) {
+            ImplementacionCurso eventoImp = eventoImplementado.get(i);
+            info[i][0] = eventoImp.getId().toString();
+            info[i][1] = eventoImp.getFechaInicial().toString();
+            info[i][2] = eventoImp.getCurso().toString();
+            if(eventoImp.isActivo()==true){
                 info[i][3] = "Activo";
             }else{
                 info[i][3] = "Finalizado";
@@ -478,26 +479,25 @@ public class HelperEntidad {
     
     
     
-    private static String[][] descomponerEnunciados(List<EnunciadoLogistica> en) {
-        String[][] info = new String[en.size()][3];
-        for (int i = 0; i < en.size(); i++) {
-            EnunciadoLogistica c = en.get(i);
-            info[i][0] = c.getId().toString();
-            info[i][1] = c.getDescripcion();
-            info[i][2] = c.getTipoEnunciado().toString();
+    private static String[][] descomponerEnunciados
+        (List<EnunciadoLogistica> enunciado) {
+        String[][] info = new String[enunciado.size()][3];
+        for (int i = 0; i < enunciado.size(); i++) {
+            EnunciadoLogistica enunciadoLogistica = enunciado.get(i);
+            info[i][0] = enunciadoLogistica.getId().toString();
+            info[i][1] = enunciadoLogistica.getDescripcion();
+            info[i][2] = enunciadoLogistica.getTipoEnunciado().toString();
         }
         return info;
     }
-    private static String[][] descomponerCalificacion(List<ImplementacionCursoEnunciadoLogistica> en) {
-        String[][] info = new String[en.size()][4];
-        for (int i = 0; i < en.size(); i++) {
-            ImplementacionCursoEnunciadoLogistica c = en.get(i);
-            EnunciadoLogistica enunciado = new EnunciadoLogistica();
+    private static String[][] descomponerCalificacion
+        (List<ImplementacionCursoEnunciadoLogistica> enunciado) {
+        String[][] info = new String[enunciado.size()][4];
+        for (int i = 0; i < enunciado.size(); i++) {
+            ImplementacionCursoEnunciadoLogistica calificacionEvento = enunciado.get(i);
             
-            enunciado = c.getEnunciadoLogistica();
-            
-            info[i][0] = c.getId().toString();
-            info[i][3] = c.getCalificacion()+"";
+            info[i][0] = calificacionEvento.getId().toString();
+            info[i][3] = calificacionEvento.getCalificacion()+"";
 
         }
         return info;
