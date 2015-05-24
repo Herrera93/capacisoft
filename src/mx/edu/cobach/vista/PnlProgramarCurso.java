@@ -114,6 +114,11 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         opcionesTP.setMaximumSize(new java.awt.Dimension(403, 588));
         opcionesTP.setMinimumSize(new java.awt.Dimension(403, 588));
+        opcionesTP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                opcionesTPMousePressed(evt);
+            }
+        });
 
         registrarPnl.setMaximumSize(new java.awt.Dimension(398, 560));
         registrarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -444,7 +449,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             control.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 3) {
-            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
+            int op = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este registro?",
                     "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (op == 0) {
                 //Obtenemos ID de la columna escondida
@@ -501,6 +506,12 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             regRealizarBtn.setEnabled(false);
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
+
+    private void opcionesTPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionesTPMousePressed
+        if(curRealizarPnl.isVisible()==true||curRealizadoPnl.isVisible()==true){
+            System.out.println("Hola");
+        }
+    }//GEN-LAST:event_opcionesTPMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
