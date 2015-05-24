@@ -10,6 +10,7 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.ServiceLocator;
+import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
 
 /**
  *
@@ -53,5 +54,7 @@ public class ProgramarFACADE extends BaseFACADE{
     public Object guardarEvento(Object impleEvento, Class clazz) {
         return ServiceLocator.getPrograma().guardarEvento(impleEvento);
     }
+
+    
 }
 
