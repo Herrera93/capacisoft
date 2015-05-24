@@ -119,6 +119,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         fechaTDCh = new com.toedter.calendar.JDateChooser();
         agregarGLbl = new javax.swing.JLabel();
         notaGLbl = new javax.swing.JLabel();
+        cancelarGBtn = new javax.swing.JButton();
         listaPnl = new javax.swing.JPanel();
         campoLbl = new javax.swing.JLabel();
         campoCBx = new javax.swing.JComboBox();
@@ -140,12 +141,14 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         buscarLABtn = new javax.swing.JButton();
         agregarLALbl = new javax.swing.JLabel();
         listaCandidatosLALbl = new javax.swing.JLabel();
+        cancelarLABtn = new javax.swing.JButton();
         calificacionPnl = new javax.swing.JPanel();
         guardarCBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         enunciadoTbl = new javax.swing.JTable();
         agregarCLbl = new javax.swing.JLabel();
         nota_CL_Lbl = new javax.swing.JLabel();
+        cancelarCBtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -214,6 +217,15 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
 
         notaGLbl.setText("Ingrese la información a almacenar");
 
+        cancelarGBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarGBtn.setText("Cancelar");
+        cancelarGBtn.setEnabled(false);
+        cancelarGBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarGBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout generalPnlLayout = new javax.swing.GroupLayout(generalPnl);
         generalPnl.setLayout(generalPnlLayout);
         generalPnlLayout.setHorizontalGroup(
@@ -224,10 +236,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                     .addGroup(generalPnlLayout.createSequentialGroup()
                         .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(generalPnlLayout.createSequentialGroup()
                         .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(generalPnlLayout.createSequentialGroup()
@@ -253,14 +262,19 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                                 .addGap(57, 57, 57)
                                 .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(generalPnlLayout.createSequentialGroup()
-                                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombrePrLbl)
-                                    .addComponent(sedeGLbl))
+                                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nombrePrLbl)
+                                        .addComponent(sedeGLbl)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generalPnlLayout.createSequentialGroup()
+                                        .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)))))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         generalPnlLayout.setVerticalGroup(
             generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,22 +297,21 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                         .addComponent(sedeGLbl)
                         .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(67, 67, 67)
+                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nombrePrLbl)
+                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fechaTLbl)
+                        .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(79, 79, 79)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nombrePrLbl)
-                            .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fechaTLbl)
-                                .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(79, 79, 79)
-                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descripcionLbl)))
-                    .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44))
+                    .addComponent(descripcionLbl)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         informacionTP.addTab("General", generalPnl);
@@ -455,6 +468,14 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         listaCandidatosLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         listaCandidatosLALbl.setText("Lista de posibles candidados");
 
+        cancelarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarLABtn.setText("Cancelar");
+        cancelarLABtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarLABtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout listaPnlLayout = new javax.swing.GroupLayout(listaPnl);
         listaPnl.setLayout(listaPnlLayout);
         listaPnlLayout.setHorizontalGroup(
@@ -500,6 +521,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                         .addGap(22, 22, 22))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
@@ -538,7 +561,9 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
                         .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -594,6 +619,15 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
 
         nota_CL_Lbl.setText("Ingrese la información a almacenar");
 
+        cancelarCBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarCBtn.setText("Cancelar");
+        cancelarCBtn.setEnabled(false);
+        cancelarCBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarCBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout calificacionPnlLayout = new javax.swing.GroupLayout(calificacionPnl);
         calificacionPnl.setLayout(calificacionPnlLayout);
         calificacionPnlLayout.setHorizontalGroup(
@@ -602,6 +636,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(calificacionPnlLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
                         .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(calificacionPnlLayout.createSequentialGroup()
@@ -625,7 +661,9 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -689,7 +727,11 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         controlProgramar.setClass(Empleado.class);
         switch (campo) {
             case "Nombre":
-                controlProgramar.buscarEmpN(nombreGTFd.getText());
+                if(nombreLATFd.getText().equals("")){
+                    controlProgramar.buscarEmpN(nombreLATFd.getText());
+                }else{
+                    controlProgramar.buscarTodos();
+                }
                 break;
             case "Departamento":
                 controlProgramar.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
@@ -804,15 +846,81 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      * @param evt 
      */
     private void nombreLATFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreLATFdKeyTyped
-        char c;
-        c = evt.getKeyChar();
-        if(Character.isLetter(c) || Character.isISOControl(c) 
-                || Character.isWhitespace(c)){
+        char caracter;
+        caracter = evt.getKeyChar();
+        if(Character.isLetter(caracter) || Character.isISOControl(caracter) 
+                || Character.isWhitespace(caracter)){
             evt = evt;
         }else{
             evt.consume();
         }
     }//GEN-LAST:event_nombreLATFdKeyTyped
+    /**
+     * Este metodo sirve para cancelar el registro o la modificacion de un
+     * evento
+     *
+     * @param evt
+     */
+    private void cancelarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarGBtnActionPerformed
+        int opcion;
+        if (guardarGBtn.getText() == "Guardar") {
+            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
+                    + "registro del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }else{
+             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
+                    + "modificacion del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }
+        if (opcion == 0) {
+            this.setVisible(false);
+            limpiarCampos();
+        }
+    }//GEN-LAST:event_cancelarGBtnActionPerformed
+    /**
+     * Este metodo sirve para cancelar el registro o la modificacion de un
+     * evento
+     *
+     * @param evt
+     */
+    private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
+        int opcion;
+        if (guardarGBtn.getText() == "Guardar") {
+            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
+                    + "registro del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }else{
+             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
+                    + "modificacion del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }
+        if (opcion == 0) {
+            this.setVisible(false);
+            limpiarCampos();
+        }
+    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    /**
+     * Este metodo sirve para cancelar el registro o la modificacion de un
+     * evento
+     *
+     * @param evt
+     */
+    private void cancelarCBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarCBtnActionPerformed
+        int opcion;
+        if (guardarGBtn.getText() == "Guardar") {
+            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
+                    + "registro del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }else{
+             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
+                    + "modificacion del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }
+        if (opcion == 0) {
+            this.setVisible(false);
+            limpiarCampos();
+        }
+    }//GEN-LAST:event_cancelarCBtnActionPerformed
     /**
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
      * proveedores registrados informacion o la modificque.
@@ -850,6 +958,9 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
     private javax.swing.JPanel calificacionPnl;
     private javax.swing.JComboBox campoCBx;
     private javax.swing.JLabel campoLbl;
+    private javax.swing.JButton cancelarCBtn;
+    private javax.swing.JButton cancelarGBtn;
+    private javax.swing.JButton cancelarLABtn;
     private javax.swing.JTextArea descripcionGTAa;
     private javax.swing.JLabel descripcionLbl;
     private javax.swing.JButton eliminarBtn;
@@ -1097,10 +1208,13 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         tipoSedeGCBx.setEnabled(visibilidad);
         nombreGCBx.setEnabled(visibilidad);
         guardarGBtn.setEnabled(visibilidad);
+        cancelarGBtn.setEnabled(visibilidad);
         campoCBx.setEnabled(visibilidad);
         guardarLABtn.setEnabled(visibilidad);
+        cancelarLABtn.setEnabled(visibilidad);
         enunciadoTbl.setEnabled(visibilidad);
         guardarCBtn.setEnabled(visibilidad);
+        cancelarCBtn.setEnabled(visibilidad);
     }
 
     /**
