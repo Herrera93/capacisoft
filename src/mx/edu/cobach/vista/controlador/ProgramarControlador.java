@@ -110,7 +110,7 @@ public class ProgramarControlador extends BaseControlador {
      * Este metodo sirve para buscar la encuesta para del curso finalizado
      */
     public void buscarEncuesta() {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorEncuesta(EnunciadoLogistica.class);
+        List<Object> o = ServiceLocatorDELEGATE.getPrograma().findAll(EnunciadoLogistica.class);
         System.out.println(o.size());
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE3"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
@@ -179,22 +179,28 @@ public class ProgramarControlador extends BaseControlador {
      * @param listacalificacion
      */
     public void guardarOModificarEventoImplementado(Object impleEvento,
-            List listacalificacion) {
+            List listaCalificacion, String envio) {
         Object object;
+        if (envio.equals("Guardar")) {
+            object = ServiceLocatorDELEGATE.getPrograma().guardarEvento(impleEvento, clazz);
+            for (int x = 0; x < listaCalificacion.size(); x++) {
+                ImplementacionCursoEnunciadoLogistica infoCalificacion
+                        = new ImplementacionCursoEnunciadoLogistica();
+                ImplementacionCurso implementacionCurso = new ImplementacionCurso();
+                implementacionCurso.setId(Integer.parseInt(object.toString()));
 
-        object = ServiceLocatorDELEGATE.getPrograma().guardarEvento(impleEvento, clazz);
-
-        for (int x = 0; x < listacalificacion.size(); x++) {
-            ImplementacionCursoEnunciadoLogistica infoCalificacion
-                    = new ImplementacionCursoEnunciadoLogistica();
-            ImplementacionCurso implementacionCurso = new ImplementacionCurso();
-            implementacionCurso.setId(Integer.parseInt(object.toString()));
-
-            infoCalificacion = (ImplementacionCursoEnunciadoLogistica) listacalificacion.get(x);
-            infoCalificacion.setImplementacionCurso(implementacionCurso);
-            ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
+                infoCalificacion = (ImplementacionCursoEnunciadoLogistica) listaCalificacion.get(x);
+                infoCalificacion.setImplementacionCurso(implementacionCurso);
+                ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
+            }
+        }else{
+            for (int x = 0; x < listaCalificacion.size(); x++) {
+                ImplementacionCursoEnunciadoLogistica infoCalificacion
+                        = new ImplementacionCursoEnunciadoLogistica();
+                infoCalificacion = (ImplementacionCursoEnunciadoLogistica) listaCalificacion.get(x);
+                ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
+            }
         }
-
         com.setMensaje("Se ha guardado existosamente");
     }
 
@@ -202,10 +208,10 @@ public class ProgramarControlador extends BaseControlador {
      * Este evento sirve para obtener una lista de la calificacion de logistica
      * implementada
      *
-     * @param cursoProgramarId
+     * @param impleEvento
      */
-    public void bucarCalificacionMod(int cursoProgramarId) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorEncuesta(ImplementacionCursoEnunciadoLogistica.class);
+    public void bucarCalificacionMod(ImplementacionCurso impleEvento) {
+        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorEncuesta(impleEvento);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE4"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);
