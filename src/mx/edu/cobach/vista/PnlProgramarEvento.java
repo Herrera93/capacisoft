@@ -109,23 +109,18 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         fechaTerminacionDCh = new com.toedter.calendar.JDateChooser();
 
         setPreferredSize(new java.awt.Dimension(1150, 576));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         opcionesTP.setMaximumSize(new java.awt.Dimension(403, 588));
         opcionesTP.setMinimumSize(new java.awt.Dimension(403, 588));
-        opcionesTP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                opcionesTPMousePressed(evt);
-            }
-        });
 
         registrarPnl.setMaximumSize(new java.awt.Dimension(398, 560));
-        registrarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                registrarPnlComponentShown(evt);
-            }
-        });
 
         nombreRegLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreRegLbl.setText("Nombre del evento:");
@@ -228,11 +223,6 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
         buscarPnl.setMaximumSize(new java.awt.Dimension(352, 400));
         buscarPnl.setPreferredSize(new java.awt.Dimension(352, 400));
-        buscarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                buscarPnlComponentShown(evt);
-            }
-        });
 
         nombreBusLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreBusLbl.setText("Nombre del evento: ");
@@ -396,11 +386,29 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
      * @param evt
      */
     private void regRealizadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizadoBtnActionPerformed
-        curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(true);
-        curRealizadoPnl.buscarCurso((Evento) tipoRegCBx.getSelectedItem());
-        curRealizadoPnl.llenarTodo();
-        curRealizadoPnl.visibilidad(true);
+        if (curRealizarPnl.isCambio() == true
+                || curRealizadoPnl.isCambio() == true) {
+            int op = JOptionPane.showConfirmDialog(this, "La información se"
+                    + " esta modificando,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (op == 0) {
+                curRealizarPnl.limpiarCampos();
+                curRealizadoPnl.limpiarCampos();
+                curRealizadoPnl.setVisible(true);
+                curRealizarPnl.setVisible(false);
+                curRealizadoPnl.buscarCurso((Evento) tipoRegCBx.
+                        getSelectedItem());
+                curRealizadoPnl.llenarTodo();
+                curRealizarPnl.visibilidad(true);
+            }
+        } else {
+            curRealizarPnl.setVisible(false);
+            curRealizadoPnl.setVisible(true);
+            curRealizadoPnl.buscarCurso((Evento) tipoRegCBx.getSelectedItem());
+            curRealizadoPnl.llenarTodo();
+            curRealizadoPnl.visibilidad(true);
+        }
     }//GEN-LAST:event_regRealizadoBtnActionPerformed
     /**
      * Metodo que al seleccionar click se colocara la interfaz del curso de
@@ -409,22 +417,32 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
      * @param evt
      */
     private void regRealizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizarBtnActionPerformed
-        curRealizarPnl.setVisible(true);
-        curRealizadoPnl.setVisible(false);
-        curRealizarPnl.buscarCurso((Evento) tipoRegCBx.getSelectedItem());
-        curRealizarPnl.llenarTodo();
-        curRealizarPnl.visibilidad(true);
+
+        if (curRealizarPnl.isCambio() == true
+                || curRealizadoPnl.isCambio() == true) {
+            int op = JOptionPane.showConfirmDialog(this, "La información se"
+                    + " esta modificando,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (op == 0) {
+                curRealizarPnl.limpiarCampos();
+                curRealizadoPnl.limpiarCampos();
+                curRealizarPnl.setVisible(true);
+                curRealizadoPnl.setVisible(false);
+                curRealizarPnl.buscarCurso((Evento) tipoRegCBx
+                        .getSelectedItem());
+                curRealizarPnl.llenarTodo();
+                curRealizarPnl.visibilidad(true);
+            }
+        } else {
+            curRealizadoPnl.setVisible(false);
+            curRealizarPnl.setVisible(true);
+            curRealizarPnl.buscarCurso((Evento) tipoRegCBx
+                    .getSelectedItem());
+            curRealizarPnl.llenarTodo();
+            curRealizarPnl.visibilidad(true);
+        }
     }//GEN-LAST:event_regRealizarBtnActionPerformed
-    /**
-     * Metodo que al seleccionar click buscar el curso de capacitacion de los
-     * dos tipos
-     *
-     * @param evt
-     */
-    private void buscarPnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_buscarPnlComponentShown
-        curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(false);
-    }//GEN-LAST:event_buscarPnlComponentShown
 
 
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
@@ -436,7 +454,6 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             //busqueda especifica.
             //int id = Integer.parseInt((String)model.getValueAt(row, 0));
             String activo = (String) model.getValueAt(row, 3);
-            System.out.println(activo);
             //control.buscarMod(id);
             if (activo.equals("Activo")) {
                 estado = "Activo";
@@ -445,7 +462,9 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 estado = "Finalizado";
             }
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            control.setClass(ImplementacionCurso.class);
+            control
+                    .setClass(ImplementacionCurso.class
+                    );
             control.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 3) {
@@ -465,53 +484,59 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         Evento campoCurso = (Evento) tipoBusCBx.getSelectedItem();
+
         if (campoCurso.getNombre().compareTo("") != 0) {
-            control.setClass(ImplementacionCurso.class);
-            control.buscarPorEvento((Evento) tipoBusCBx.getSelectedItem());
-        }else if(fechaInicialDCh.getDate()!=null&&fechaTerminacionDCh.getDate()!=null){
+            control.setClass(ImplementacionCurso.class
+            );
+            control.buscarPorEvento(
+                    (Evento) tipoBusCBx.getSelectedItem());
+        } else if (fechaInicialDCh.getDate() != null && fechaTerminacionDCh.getDate() != null) {
             System.out.println("entre");
             Date de = fechaInicialDCh.getDate();
             Date hasta = fechaTerminacionDCh.getDate();
-            control.setClass(ImplementacionCurso.class);
+            control
+                    .setClass(ImplementacionCurso.class
+                    );
             control.buscarImplementacion(de, hasta);
-        }else{
-            control.setClass(ImplementacionCurso.class);
+        } else {
+            control.setClass(ImplementacionCurso.class
+            );
             control.buscarTodos();
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
-    private void registrarPnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_registrarPnlComponentShown
-        curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(false);
-    }//GEN-LAST:event_registrarPnlComponentShown
-
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
         Evento campo = (Evento) tipoBusCBx.getSelectedItem();
-        if (campo.getNombre().compareTo("") != 0) {
-            regRealizadoBtn.setEnabled(true);
-            regRealizarBtn.setEnabled(true);
-        } else {
-            regRealizadoBtn.setEnabled(false);
-            regRealizarBtn.setEnabled(false);
+        if (campo != null) {
+            if (campo.getNombre().compareTo("") != 0) {
+                regRealizadoBtn.setEnabled(true);
+                regRealizarBtn.setEnabled(true);
+            } else {
+                regRealizadoBtn.setEnabled(false);
+                regRealizarBtn.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
 
     private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
         Evento campo = (Evento) tipoBusCBx.getSelectedItem();
-        if (campo.getNombre().compareTo("") != 0) {
-            regRealizadoBtn.setEnabled(true);
-            regRealizarBtn.setEnabled(true);
-        } else {
-            regRealizadoBtn.setEnabled(false);
-            regRealizarBtn.setEnabled(false);
+        if (campo != null) {
+            if (campo.getNombre().compareTo("") != 0) {
+                regRealizadoBtn.setEnabled(true);
+                regRealizarBtn.setEnabled(true);
+            } else {
+                regRealizadoBtn.setEnabled(false);
+                regRealizarBtn.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
 
-    private void opcionesTPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionesTPMousePressed
-        if(curRealizarPnl.isVisible()==true||curRealizadoPnl.isVisible()==true){
-            System.out.println("Hola");
-        }
-    }//GEN-LAST:event_opcionesTPMousePressed
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        regRealizadoBtn.setEnabled(false);
+        regRealizarBtn.setEnabled(false);
+        curRealizarPnl.limpiarCampos();
+        curRealizadoPnl.limpiarCampos();
+    }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
@@ -562,10 +587,15 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
         TableColumn tc = tablaTbl.getColumnModel().getColumn(4);
-        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
+        tc
+                .setCellEditor(tablaTbl.getDefaultEditor(Boolean.class
+                        ));
+        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class
+        ));
         tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
+
+        tablaTbl.getColumnModel()
+                .removeColumn(tc);
     }
 
     /**
