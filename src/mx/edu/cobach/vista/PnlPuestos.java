@@ -29,22 +29,12 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      */
     public PnlPuestos() {
         initComponents();
-        model = new DefaultTableModel(titulosTabla, 4){
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                if (col == 2) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        };
+        model = new DefaultTableModel(titulosTabla, 4);
         puestosTbl.setModel(model);
         puestosTbl.setColumnSelectionAllowed(false);
         puestosTbl.setDragEnabled(false);
         puestosTbl.setModel(model);
         puestoControl = new PuestoControlador(this);
-        puestoControl.buscarTodos();
     }
 
     /**
@@ -463,7 +453,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * @param info Matriz String para vaciar en tabla
      */
     @Override
-        public void setTabla(String[][] info) {
+    public void setTabla(String[][] info) {
         puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
@@ -472,7 +462,6 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         tc.setCellRenderer (puestosTbl.getDefaultRenderer(Boolean.class));
         tc = puestosTbl.getColumnModel().getColumn(0);
         puestosTbl.getColumnModel().removeColumn(tc);
-        puestosTbl.getColumnModel().getColumn(0).setPreferredWidth(300);
     }
         
     /**

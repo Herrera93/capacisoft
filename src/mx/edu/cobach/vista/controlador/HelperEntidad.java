@@ -38,6 +38,17 @@ public class HelperEntidad {
     
     //Obtencion de entidades
     
+    public static ImplementacionCursoEnunciadoLogistica getEnunciado
+        (List<Object> atributos){
+        ImplementacionCursoEnunciadoLogistica enunciado
+                = new ImplementacionCursoEnunciadoLogistica();
+        enunciado.setEnunciadoLogistica((EnunciadoLogistica) atributos.get(0));
+        enunciado.setCalificacion((int) atributos.get(1));
+        enunciado.setImplementacionCurso((ImplementacionCurso) atributos.get(2));
+        return enunciado;
+    }
+    
+    
     public static Departamento getDepartamento(List<Object> atributos){
         Enfoque enfoque = new Enfoque();
         enfoque.setId((Integer)atributos.get(0));
@@ -51,7 +62,7 @@ public class HelperEntidad {
     }
     
     public static ImplementacionCurso getProgramar(List<Object> atributos,
-            String direccion, String tipo) {
+            String direccion) {
         ImplementacionCurso implementaCurso = new ImplementacionCurso();
         if (direccion.equals("Guardar")) {
             implementaCurso.setCurso((Evento) atributos.get(0));
@@ -61,10 +72,6 @@ public class HelperEntidad {
             implementaCurso.setSede((Sede) atributos.get(4));
             implementaCurso.setProveedor((Proveedor) atributos.get(5));
             implementaCurso.setEmpleados((Set<Empleado>) atributos.get(6));
-            if (tipo.equals("Finalizado")) {
-                implementaCurso.
-                        setImplementacionCursoEnunciadoLogisticas((Set<ImplementacionCursoEnunciadoLogistica>)atributos.get(7));
-            }
             return implementaCurso;
         } else if (direccion.equals("Modificar")) {
             implementaCurso.setId(Integer.parseInt(atributos.get(0).toString()));
@@ -75,10 +82,6 @@ public class HelperEntidad {
             implementaCurso.setSede((Sede) atributos.get(5));
             implementaCurso.setProveedor((Proveedor) atributos.get(6));
             implementaCurso.setEmpleados((Set<Empleado>) atributos.get(7));
-            if (tipo.equals("Finalizado")) {
-                implementaCurso.
-                        setImplementacionCursoEnunciadoLogisticas((Set<ImplementacionCursoEnunciadoLogistica>)atributos.get(7));
-            }
             return implementaCurso;
         }
         return null;
@@ -157,7 +160,7 @@ public class HelperEntidad {
         return s;
     }
     
-    public static Object getEvento(List<Object> atributos){
+    public static Object getCurso(List<Object> atributos){
         TipoEvento tc = new TipoEvento();
         tc.setId((Integer) atributos.get(0));
         Evento c = new Evento();
@@ -169,21 +172,7 @@ public class HelperEntidad {
         }
         return  c;
     }
-    private static List<Object> descomponerProCurso(ImplementacionCurso cu) {
-        List<Object> info = new ArrayList<>();
-        Evento curso = cu.getCurso();
-        TipoEvento tipocurso = curso.getTipoCurso();
-        info.add(cu.getId());
-        info.add(cu.getCurso());
-        info.add(curso.getNombre());
-        info.add(curso.getDescripcion());
-        info.add(tipocurso.toString());
-        info.add(cu.getFechaInicial());
-        info.add(cu.getFechaFinal());
-        info.add(cu.getSede());
-        info.add(cu.getProveedor());
-        return info;
-    }
+    
     //Descomposicion de un solo objeto
         
     public static List<Object> descomponerObjeto(Object obj){
@@ -221,53 +210,8 @@ public class HelperEntidad {
         return null;
     }
     
-    public static String[][] descomponerObjetos(List<Object> objs, int... a){
-        if(objs.size() > 0){
-            if(objs.get(0) instanceof Puesto){
-                List<Puesto> ps = new ArrayList<>();
-                for(int i = 0; i < objs.size(); i++){
-                    ps.add((Puesto) objs.get(i));
-                }
-                return descomponerPuestos(ps);
-            }else if(objs.get(0) instanceof Empleado){
-                List<Empleado> emps = new ArrayList();
-                for(int i = 0; i <objs.size(); i++){
-                    emps.add((Empleado) objs.get(i));
-                }
-                return descomponerEmpleados(emps, a);
-            }else if(objs.get(0) instanceof Evento){
-                List<Evento> cr = new ArrayList();
-                for(int i = 0; i < objs.size(); i++){
-                    cr.add((Evento) objs.get(i));
-                }
-                return descomponerCursos(cr);
-            }else if(objs.get(0) instanceof Usuario){
-           // System.out.println("descomponer Objetos 1");
-            List<Usuario> us = new ArrayList<Usuario>();
-            for(int i = 0; i < objs.size(); i++){
-                us.add((Usuario) objs.get(i));
-            }
-                //System.out.println("Descomponer Objetos 2");
-                return descomponerUsuarios(us);
-            }else if(objs.get(0) instanceof Departamento){
-                // System.out.println("descomponer Objetos 1");
-                List<Departamento> dp = new ArrayList<Departamento>();
-                for(int i = 0; i < objs.size(); i++){
-                dp.add((Departamento) objs.get(i));
-                }   
-                return descomponerDepartamentos(dp);
-            }else if(objs.get(0) instanceof Sede){
-                List<Sede> se = new ArrayList();
-                for(int i = 0; i < objs.size(); i++){
-                    se.add((Sede) objs.get(i));
-                }
-                return descomponerSedes(se);
-            }
-        }
-        return null;
-    }
-    
-    private static List<Object> descomponerDepartamento(Departamento departamento){
+    private static List<Object> descomponerDepartamento
+        (Departamento departamento){
             List<Object> info = new ArrayList<>();
             info.add(departamento.getId());
             info.add(departamento.getNombre());
@@ -317,6 +261,23 @@ public class HelperEntidad {
         info.add(usuario.getUsuario());
         info.add(t.getDescripcion());        
         info.add(usuario.getContrasena());
+        return info;
+    }
+    
+    private static List<Object> descomponerProCurso(ImplementacionCurso cu) {
+        List<Object> info = new ArrayList<>();
+        Evento curso = cu.getCurso();
+        TipoEvento tipocurso = curso.getTipoCurso();
+        info.add(cu.getId());
+        info.add(cu.getCurso());
+        info.add(curso.getNombre());
+        info.add(curso.getDescripcion());
+        info.add(tipocurso.toString());
+        info.add(cu.getFechaInicial());
+        info.add(cu.getFechaFinal());
+        info.add(cu.getSede());
+        info.add(cu.getProveedor());
+        info.add(cu.getEmpleados());
         return info;
     }
     
@@ -378,6 +339,12 @@ public class HelperEntidad {
                     programar.add((ImplementacionCurso) objetos.get(i));
                 }
                 return descomponerProCursos(programar);
+            }else if(objetos.get(0) instanceof ImplementacionCursoEnunciadoLogistica){
+                List<ImplementacionCursoEnunciadoLogistica> calificacion = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    calificacion.add((ImplementacionCursoEnunciadoLogistica) objetos.get(i));
+                }
+                return descomponerCalificacion(calificacion);
             }
         }
         return null;
@@ -415,8 +382,7 @@ public class HelperEntidad {
         return info;
     }
 
-    private static String[][] descomponerEmpleados(List<Empleado> emps, int...a) {
-        if(a.length == 0){
+    private static String[][] descomponerEmpleados(List<Empleado> emps) {
         String[][] info = new String[emps.size()][3];
         for(int i = 0; i < emps.size(); i++){
             Empleado e = emps.get(i);
@@ -426,24 +392,6 @@ public class HelperEntidad {
                     + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
         }
         return info;
-        }else{
-            String[][] info = new String[emps.size()][6];
-        for(int i = 0; i < emps.size(); i++){
-            Empleado e = emps.get(i);
-            info[i][0] = e.getId().toString();
-            info[i][1] = e.getNumero();
-            info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
-                    + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-            info[i][3] = e.getPuesto().toString();
-            info[i][4] = e.getCorreo();
-            if(e.getDepartamento()!= null){
-                info[i][5] = e.getDepartamento().toString();
-            }else{
-                info[i][5] = e.getPlantel().toString();                
-            }
-        }
-        return info;
-        }
     }
     
     
@@ -540,5 +488,20 @@ public class HelperEntidad {
         }
         return info;
     }
-    
+    private static String[][] descomponerCalificacion(List<ImplementacionCursoEnunciadoLogistica> en) {
+        String[][] info = new String[en.size()][4];
+        for (int i = 0; i < en.size(); i++) {
+            ImplementacionCursoEnunciadoLogistica c = en.get(i);
+            EnunciadoLogistica enunciado = new EnunciadoLogistica();
+            
+            enunciado = c.getEnunciadoLogistica();
+            
+            info[i][0] = c.getId().toString();
+            info[i][1] = enunciado.getDescripcion();
+            //info[1][2] = enunciado.getTipoEnunciado().toString();
+            info[i][3] = c.getCalificacion()+"";
+
+        }
+        return info;
+    }
 }

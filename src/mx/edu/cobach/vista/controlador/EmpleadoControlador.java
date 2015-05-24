@@ -33,9 +33,4 @@ public class EmpleadoControlador extends BaseControlador {
         com.setTabla(HelperEntidad.descomponerObjetos(list));
     }    
     
-    public void buscarPorNumero(int numero){
-        List<Object> list = ServiceLocatorDELEGATE.getEmpleado().
-                buscarPorNumero(numero);
-        com.setMensaje("El numero de Empleado ya Existe");
-    }
 }

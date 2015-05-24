@@ -13,8 +13,12 @@ import mx.edu.cobach.persistencia.entidades.Adscripcion;
  *
  * @author Alex
  */
-public class EmpleadoDELEGATE {
-  
+public class EmpleadoDELEGATE extends BaseDELEGATE {
+        
+    public EmpleadoDELEGATE(){
+        super();
+    }    
+    
     public List<Object> buscarPorNombre(String nombre){
         return ServiceLocatorFACADE.getEmpleado().findByNombre(nombre);
     }
@@ -24,8 +28,4 @@ public class EmpleadoDELEGATE {
                 findByAdscripcion(adscripcion);
     }
     
-    public List<Object> buscarPorNumero(int numero){
-        return ServiceLocatorFACADE.getEmpleadoFacade().
-                buscarPorNumero(numero);
-    }
 }
