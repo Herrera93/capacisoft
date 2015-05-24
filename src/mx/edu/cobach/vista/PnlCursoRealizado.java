@@ -41,7 +41,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      * Creates new form PnlCursoRealizado
      */
     private static ProgramarControlador controlProgramar;
-    private int cursoProgramarId;
+    private int eventoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private final DefaultComboBoxModel tipoModel;
@@ -958,23 +958,16 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             
             int nRow = enunciadoTbl.getRowCount();
             int nCol = enunciadoTbl.getColumnCount();
-            int row = enunciadoTbl.getSelectedRow();
-            int cont = 0;
-            String id = (String) modelTablaEn.getValueAt(row, 0);
-            Object[][] tableData = new Object[nRow][nCol];
+            Object[][] tableData = new Object[nRow][nCol+1];
             for (int i = 0; i < nRow; i++) {
-                if (((String) modelTablaEn.getValueAt(i, 0)).compareTo(id) != 0) {
-                    tableData[cont][0] = modelTablaEn.getValueAt(i, 0);
-                    tableData[cont][1] = modelTablaEn.getValueAt(i, 1);
-                    tableData[cont][2] = modelTablaEn.getValueAt(i, 2);
-                    cont++;
-                }
+                    tableData[i][0] = info[i][0];
+                    tableData[i][1] = modelTablaEn.getValueAt(i, 1);
+                    tableData[i][2] = modelTablaEn.getValueAt(i, 2);
+                    tableData[i][3] = info[i][3];
             }
-            modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-            visibilidadOpcT(true);
 
             enunciadoTbl.setEnabled(true);
-            modelTablaEn.setDataVector(info, titulosTablaEn);
+            modelTablaEn.setDataVector(tableData, titulosTablaEn);
             //Contador que decrementa del 10 a 1 para agregarlos a la
             //califiacion de logistica
             JComboBox comboBox = new JComboBox();
@@ -1124,7 +1117,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 fechaTDCh.setDate(fechaIDCh.getDate());
             }
             if (guardarGBtn.getText().equals("Modificar")) {
-                cursoImplementar.add(cursoProgramarId);
+                cursoImplementar.add(eventoProgramarId);
             }
             cursoImplementar.add(curso);
             cursoImplementar.add(fechaIDCh.getDate());
@@ -1139,31 +1132,33 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 lisEmpleado.add(empleado);
             }
             cursoImplementar.add(lisEmpleado);
-            controlProgramar.setClass(ImplementacionCurso.class);
-
             for (int x = 0; x < enunciadoTbl.getRowCount(); x++) {
-
                 ImplementacionCursoEnunciadoLogistica calificacionLog
                         = new ImplementacionCursoEnunciadoLogistica();
                 EnunciadoLogistica enunciado = new EnunciadoLogistica();
-                enunciado.setId(Integer.parseInt((String) modelTablaEn.
-                        getValueAt(x, 0)));
+                ImplementacionCurso evento = new ImplementacionCurso();
+                enunciado.setId(x+1);
                 calificacionLog.setEnunciadoLogistica(enunciado);
                 calificacionLog.setCalificacion(Integer.parseInt((String) modelTablaEn.
                         getValueAt(x, 3)));
+                if(guardarGBtn.getText().equals("Modificar")){
+                    calificacionLog.setId(Integer.parseInt((String) modelTablaEn.
+                        getValueAt(x, 0)));
+                    evento.setId(eventoProgramarId);
+                    calificacionLog.setImplementacionCurso(evento);
+                }
                 calificacion.add(calificacionLog);
             }
-
+            controlProgramar.setClass(ImplementacionCurso.class);
             if (guardarGBtn.getText().equals("Guardar")) {
                 implementacionCurso = HelperEntidad.getProgramar(cursoImplementar, "Guardar");
                 controlProgramar.guardarOModificarEventoImplementado(implementacionCurso,
-                        calificacion);
+                        calificacion,"Guardar");
             } else {
                 implementacionCurso = HelperEntidad.getProgramar(cursoImplementar, "Modificar");
                 controlProgramar.guardarOModificarEventoImplementado(implementacionCurso,
-                        calificacion);
+                        calificacion,"Modificar");
             }
-
         }
     }
 
@@ -1181,7 +1176,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         guardarCBtn.setText("Modificar");
         guardarGBtn.setText("Modificar");
         guardarLABtn.setText("Modificar");
-        cursoProgramarId = Integer.parseInt(info.get(0).toString());
+        eventoProgramarId = Integer.parseInt(info.get(0).toString());
         curso = (Evento) info.get(1);
         nombreGTFd.setText(info.get(2).toString());
         descripcionGTAa.setText(info.get(3).toString());
@@ -1211,14 +1206,14 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
 
         cursoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = cursoImplementado.getEmpleados().iterator();
-
+        cursoImplementado.setId(eventoProgramarId);
         for (int x = 0; x < cursoImplementado.getEmpleados().size(); x++) {
             int id = Integer.parseInt(itr.next().toString());
             controlProgramar.setClass(Empleado.class);
             controlProgramar.buscarEmpId(id, Empleado.class);
         }
         controlProgramar.setClass(ImplementacionCursoEnunciadoLogistica.class);
-        controlProgramar.bucarCalificacionMod(cursoProgramarId);
+        controlProgramar.bucarCalificacionMod(cursoImplementado);
     }
 
     /**
