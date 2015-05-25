@@ -194,6 +194,7 @@ public class ProgramarControlador extends BaseControlador {
                 ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
             }
         }else{
+            ServiceLocatorDELEGATE.getInstance().saveOrUpdate(impleEvento, clazz);
             for (int x = 0; x < listaCalificacion.size(); x++) {
                 ImplementacionCursoEnunciadoLogistica infoCalificacion
                         = new ImplementacionCursoEnunciadoLogistica();
