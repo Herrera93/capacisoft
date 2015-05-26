@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
+// Generated May 26, 2015 1:34:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -53,7 +53,6 @@ public class Puesto  implements java.io.Serializable {
     public String toString(){
         return nombre;
     }
-
 }
 
 

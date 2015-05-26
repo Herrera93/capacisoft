@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 16, 2015 9:04:03 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 26, 2015 1:34:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="capacisoft" name="mx.edu.cobach.persistencia.entidades.Respuesta" table="respuesta">
-    <id name="id" type="java.lang.Integer">
-      <column name="id"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.Aspecto" fetch="select" lazy="false" name="aspecto">
-      <column name="aspecto_id" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.Empleado" fetch="select" name="empleado">
-      <column name="empleado_id" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.Encuesta" fetch="select" name="encuesta">
-      <column name="encuesta_id" not-null="true"/>
-    </many-to-one>
-    <property name="antesEvento" type="int">
-      <column name="antes_curso" not-null="true"/>
-    </property>
-    <property name="despuesEvento" type="int">
-      <column name="despues_curso" not-null="true"/>
-    </property>
-  </class>
+    <class name="mx.edu.cobach.persistencia.entidades.Respuesta" table="respuesta" catalog="capacisoft" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="aspecto" class="mx.edu.cobach.persistencia.entidades.Aspecto" fetch="select">
+            <column name="aspecto_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleado" class="mx.edu.cobach.persistencia.entidades.Empleado" fetch="select">
+            <column name="empleado_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="encuesta" class="mx.edu.cobach.persistencia.entidades.Encuesta" fetch="select">
+            <column name="encuesta_id" not-null="true" />
+        </many-to-one>
+        <property name="antesCurso" type="int">
+            <column name="antes_curso" not-null="true" />
+        </property>
+        <property name="despuesCurso" type="int">
+            <column name="despues_curso" not-null="true" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 16, 2015 9:04:03 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated May 26, 2015 1:34:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="mx.edu.cobach.persistencia.entidades.Encuesta" table="encuesta" catalog="capacisoft">
+    <class name="mx.edu.cobach.persistencia.entidades.Encuesta" table="encuesta" catalog="capacisoft" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity"></generator>
+            <generator class="identity" />
         </id>
-         <property name="jotformIdAntes" length="20" type="java.lang.Long">
+        <many-to-one name="implementacionEvento" class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento" fetch="select">
+            <column name="implementacion_evento_id" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="jotformIdAntes" type="long">
             <column name="jotform_id_antes" not-null="true" unique="true" />
         </property>
-        <property name="jotformIdDespues" length="20" type="java.lang.Long">
+        <property name="jotformIdDespues" type="long">
             <column name="jotform_id_despues" not-null="true" unique="true" />
         </property>
-        <many-to-one name="implementacionEventos" class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento"  unique="true" fetch="select">
-            <column name="implementacion_evento_id" not-null="true" />
-        </many-to-one>
         <set name="respuestas" table="respuesta" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="encuesta_id" not-null="true" />
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta" />
         </set>
-        <set name="aspectos" table="encuesta_aspecto" inverse="false" lazy="false" fetch="select">
+        <set name="aspectos" table="encuesta_aspecto" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="encuesta_id" not-null="true" />
             </key>

@@ -251,7 +251,7 @@ public class EncuestaDELEGATE {
                     respuesta.setEmpleado(empleado);
                     respuesta.setEncuesta(encuesta);
                     respuesta.setAspecto(preguntasId.get(idPregunta));
-                    respuesta.setAntesEvento(respuestaJson.getJSONObject(idPregunta)
+                    respuesta.setAntesCurso(respuestaJson.getJSONObject(idPregunta)
                         .getInt("answer"));
                     ServiceLocatorFACADE.getInstance().saveOrUpdate(respuesta, Respuesta.class);
                 }
@@ -346,8 +346,8 @@ public class EncuestaDELEGATE {
         List<Object> resultado = new ArrayList();
         for(Respuesta respuesta : respuestas){
             resultado.add(respuesta.getAspecto().getAspecto());
-            resultado.add(respuesta.getAntesEvento());
-            resultado.add(respuesta.getDespuesEvento());
+            resultado.add(respuesta.getAntesCurso());
+            resultado.add(respuesta.getDespuesCurso());
         }
         
         return resultado;

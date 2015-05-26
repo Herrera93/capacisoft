@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 16, 2015 9:04:03 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 26, 2015 1:34:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="capacisoft" name="mx.edu.cobach.persistencia.entidades.Sede" table="sede">
-    <id name="id" type="java.lang.Integer">
-      <column name="id"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.Municipio" fetch="select" name="municipio">
-      <column name="municipio_id" not-null="true"/>
-    </many-to-one>
-    <property name="nombre" type="string">
-      <column length="45" name="nombre" not-null="true"/>
-    </property>
-    <property name="capacidad" type="int">
-      <column name="capacidad" not-null="true"/>
-    </property>
-    <property name="calle" type="string">
-      <column length="45" name="calle" not-null="true"/>
-    </property>
-    <property name="numeroDireccion" type="string">
-      <column length="5" name="numero_direccion" not-null="true"/>
-    </property>
-    <property name="colonia" type="string">
-      <column length="45" name="colonia" not-null="true"/>
-    </property>
-    <property name="lugar" type="string">
-      <column length="45" name="lugar" not-null="true"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="implementacionEventos" table="implementacion_evento">
-      <key>
-        <column name="sede_id" not-null="true"/>
-      </key>
-      <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento"/>
-    </set>
-  </class>
+    <class name="mx.edu.cobach.persistencia.entidades.Sede" table="sede" catalog="capacisoft" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="municipio" class="mx.edu.cobach.persistencia.entidades.Municipio" fetch="select">
+            <column name="municipio_id" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="capacidad" type="int">
+            <column name="capacidad" not-null="true" />
+        </property>
+        <property name="calle" type="string">
+            <column name="calle" length="45" not-null="true" />
+        </property>
+        <property name="numeroDireccion" type="string">
+            <column name="numero_direccion" length="5" not-null="true" />
+        </property>
+        <property name="colonia" type="string">
+            <column name="colonia" length="45" not-null="true" />
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" length="45" not-null="true" />
+        </property>
+        <set name="implementacionEventos" table="implementacion_evento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sede_id" not-null="true" />
+            </key>
+            <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento" />
+        </set>
+    </class>
 </hibernate-mapping>
