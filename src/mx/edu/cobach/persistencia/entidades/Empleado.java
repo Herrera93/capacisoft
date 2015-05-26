@@ -147,10 +147,15 @@ public class Empleado  implements java.io.Serializable {
     public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
         this.implementacionCursos = implementacionCursos;
     }
-
-
-
-
+    
+     @Override
+    public String toString(){
+        if(segundoNombre != null)
+            return primerNombre + " " + segundoNombre + " " + 
+                    apellidoPaterno + " " + apellidoMaterno;
+        else
+            return primerNombre + " " + apellidoPaterno + " " + apellidoMaterno;
+    }
 }
 
 

@@ -8,6 +8,7 @@ package mx.edu.cobach.negocio.delegate;
 import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
+import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Curso;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
@@ -43,12 +44,16 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
     }
     
     /**
-     * Obtiene todas las implementaciones en un rango de fechas dado.
+     * Obtiene todas las implementaciones de un curso especifico en un rango
+     * de fechas dado. Si las fechas no estan inicializadas no se tomaran en 
+     * cuenta, solo se tomaran las fechas inicializadas, esto significa que 
+     * se puede dar la fecha 'de' sin dar 'hasta'.
+     * @param curso Curso especifico 
      * @param de Fecha inicio de rango
      * @param hasta Fecha final de rango
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> buscarPorFechas(Date de, Date hasta){
-        return ServiceLocatorFACADE.getPrograma().buscarPorFechas(de, hasta);
+    public List<Object> buscarCursoPorFechas(Curso curso, Date de, Date hasta){
+        return ServiceLocatorFACADE.getPrograma().buscarCursoPorFechas(curso, de, hasta);
     }
 }
