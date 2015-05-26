@@ -1194,9 +1194,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
-            int id = Integer.parseInt(itr.next().toString());
+            Empleado empleado = (Empleado) itr.next();
             control.setClass(Empleado.class);
-            control.buscarEmpId(id, Empleado.class);
+            control.buscarEmpId(empleado.getId(), Empleado.class);
         }
     }
 

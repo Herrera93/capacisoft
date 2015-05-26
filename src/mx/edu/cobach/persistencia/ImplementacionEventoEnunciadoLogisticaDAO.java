@@ -37,7 +37,7 @@ public class ImplementacionEventoEnunciadoLogisticaDAO extends BaseDAO{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("implementacionCurso", eventoProgra)).list();
+                    add(Restrictions.eq("implementacionEvento", eventoProgra)).list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();

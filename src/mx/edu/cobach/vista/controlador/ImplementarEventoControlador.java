@@ -192,11 +192,11 @@ public class ImplementarEventoControlador extends BaseControlador {
             for (int x = 0; x < listaCalificacion.size(); x++) {
                 ImplementacionEventoEnunciadoLogistica infoCalificacion
                         = new ImplementacionEventoEnunciadoLogistica();
-                ImplementacionEvento implementacionCurso = new ImplementacionEvento();
-                implementacionCurso.setId(Integer.parseInt(object.toString()));
+                ImplementacionEvento implementacionEvento = new ImplementacionEvento();
+                implementacionEvento.setId(Integer.parseInt(object.toString()));
 
                 infoCalificacion = (ImplementacionEventoEnunciadoLogistica) listaCalificacion.get(x);
-                infoCalificacion.setImplementacionEvento(implementacionCurso);
+                infoCalificacion.setImplementacionEvento(implementacionEvento);
                 ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
             }
         }else{

@@ -42,7 +42,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
     /**
      * Creates new form PnlEventoRealizado
      */
-    private static ImplementarEventoControlador eventoProgramar;
+    private static ImplementarEventoControlador control;
     private int eventoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
@@ -90,7 +90,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         campoModel.addElement("Sede");
         campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
-        eventoProgramar = new ImplementarEventoControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMaxSelectableDate(new Date());
     }
@@ -723,20 +723,20 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 break;
             case "Departamento":
                 visibilidadCam(true);
-                eventoProgramar.setClass(Departamento.class);
-                eventoProgramar.buscarTodosLista(3);
+                control.setClass(Departamento.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel":
                 visibilidadCam(true);
-                eventoProgramar.setClass(Plantel.class);
-                eventoProgramar.buscarTodosLista(3);
+                control.setClass(Plantel.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Plantel:");
                 break;
             case "Puesto":
                 visibilidadCam(true);
-                eventoProgramar.setClass(Puesto.class);
-                eventoProgramar.buscarTodosLista(3);
+                control.setClass(Puesto.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Puesto:");
                 break;
         }
@@ -749,23 +749,23 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
         String campo = (String) campoCBx.getSelectedItem();
-        eventoProgramar.setClass(Empleado.class);
+        control.setClass(Empleado.class);
         switch (campo) {
             case "Nombre":
                 if(nombreLATFd.getText().equals("")){
-                    eventoProgramar.buscarEmpN(nombreLATFd.getText());
+                    control.buscarEmpN(nombreLATFd.getText());
                 }else{
-                    eventoProgramar.buscarTodos();
+                    control.buscarTodos();
                 }
                 break;
             case "Departamento":
-                eventoProgramar.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
+                control.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
                 break;
             case "Plantel":
-                eventoProgramar.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
+                control.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
                 break;
             case "Puesto":
-                eventoProgramar.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
@@ -781,8 +781,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         if (row >= 0) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
             System.out.println(id);
-            eventoProgramar.setClass(Empleado.class);
-            eventoProgramar.buscarEmpId(id, Empleado.class);
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
     /**
@@ -825,8 +825,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         int nRow = tablaLisITbl.getRowCount();
         for (int i = 0; i < nRow; i++) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(i, 0));
-            eventoProgramar.setClass(Empleado.class);
-            eventoProgramar.buscarEmpId(id, Empleado.class);
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
     }//GEN-LAST:event_agregarTBtnActionPerformed
     /**
@@ -984,12 +984,12 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      * @param evt Evento al presionar el boton
      */
     public void llenarTodo() {
-        eventoProgramar.setClass(Sede.class);
-        eventoProgramar.buscarTodosLista(1);
-        eventoProgramar.setClass(Proveedor.class);
-        eventoProgramar.buscarTodosLista(2);
-        eventoProgramar.setClass(EnunciadoLogistica.class);
-        eventoProgramar.buscarEncuesta();
+        control.setClass(Sede.class);
+        control.buscarTodosLista(1);
+        control.setClass(Proveedor.class);
+        control.buscarTodosLista(2);
+        control.setClass(EnunciadoLogistica.class);
+        control.buscarEncuesta();
         cambio = false;
     }
 
@@ -1001,7 +1001,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      */
     public void buscarEvento(Evento evento) {
         this.evento = evento;
-        eventoProgramar.buscarCurId(evento.getId(), Evento.class);
+        control.buscarCurId(evento.getId(), Evento.class);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1347,14 +1347,14 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 }
                 calificacion.add(calificacionLog);
             }
-            eventoProgramar.setClass(ImplementacionEvento.class);
+            control.setClass(ImplementacionEvento.class);
             if (guardarGBtn.getText().equals("Guardar")) {
                 implementacionEvento = HelperEntidad.getImplementarEvento(eventoImplementar, "Guardar");
-                eventoProgramar.guardarOModificarEventoImplementado(implementacionEvento,
+                control.guardarOModificarEventoImplementado(implementacionEvento,
                         calificacion, "Guardar");
             } else {
                 implementacionEvento = HelperEntidad.getImplementarEvento(eventoImplementar, "Modificar");
-                eventoProgramar.guardarOModificarEventoImplementado(implementacionEvento,
+                control.guardarOModificarEventoImplementado(implementacionEvento,
                         calificacion, "Modificar");
             }
             limpiarCampos();
@@ -1408,12 +1408,12 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         Iterator itr = eventoImplementado.getEmpleados().iterator();
         eventoImplementado.setId(eventoProgramarId);
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
-            int id = Integer.parseInt(itr.next().toString());
-            eventoProgramar.setClass(Empleado.class);
-            eventoProgramar.buscarEmpId(id, Empleado.class);
+            Empleado empleado = (Empleado) itr.next();
+            control.setClass(Empleado.class);
+            control.buscarEmpId(empleado.getId(), Empleado.class);
         }
-        eventoProgramar.setClass(ImplementacionEventoEnunciadoLogistica.class);
-        eventoProgramar.bucarCalificacionMod(eventoImplementado);
+        control.setClass(ImplementacionEventoEnunciadoLogistica.class);
+        control.bucarCalificacionMod(eventoImplementado);
     }
     /**
      * Metodo que regresa un true si se encontraron informacion sin completar, o

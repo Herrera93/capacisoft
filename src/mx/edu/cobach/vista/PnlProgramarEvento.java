@@ -483,23 +483,25 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         Evento campoEvento = (Evento) tipoBusCBx.getSelectedItem();
-        if (campoEvento.getNombre().compareTo("") != 0) {
-            control.setClass(ImplementacionEvento.class);
-            control.buscarPorEvento(
-                    (Evento) tipoBusCBx.getSelectedItem());
-        } else if (fechaInicialDCh.getDate() != null &&
-                fechaTerminacionDCh.getDate() != null) {
-            System.out.println("entre");
-            Date de = fechaInicialDCh.getDate();
-            Date hasta = fechaTerminacionDCh.getDate();
-            control
-                    .setClass(ImplementacionEvento.class
-                    );
-            control.buscarImplementacion(de, hasta);
-        } else {
-            control.setClass(ImplementacionEvento.class
-            );
-            control.buscarTodos();
+        if (campoEvento != null) {
+            if (campoEvento.getNombre().compareTo("") != 0) {
+                control.setClass(ImplementacionEvento.class);
+                control.buscarPorEvento(
+                        (Evento) tipoBusCBx.getSelectedItem());
+            } else if (fechaInicialDCh.getDate() != null
+                    && fechaTerminacionDCh.getDate() != null) {
+                System.out.println("entre");
+                Date de = fechaInicialDCh.getDate();
+                Date hasta = fechaTerminacionDCh.getDate();
+                control
+                        .setClass(ImplementacionEvento.class
+                        );
+                control.buscarImplementacion(de, hasta);
+            } else {
+                control.setClass(ImplementacionEvento.class
+                );
+                control.buscarTodos();
+            }
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -612,7 +614,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             eventoRealizadoPnl.llenarTodo();
             eventoRealizadoPnl.obtenerMod(info);
             eventoRealizadoPnl.visibilidad(true);
-        }else {
+        } else {
             eventoRealizarPnl.setVisible(true);
             eventoRealizadoPnl.setVisible(false);
             eventoRealizarPnl.llenarTodo();

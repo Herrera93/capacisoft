@@ -34,7 +34,7 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("curso", evento)).list();
+                    add(Restrictions.eq("evento", evento)).list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
