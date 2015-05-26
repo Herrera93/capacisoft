@@ -13,7 +13,7 @@ import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
  *
  * @author liuts
  */
-public class ImplementacionCursoEnunciadoLogisticaFACADE{
+public class ImplementacionEventoEnunciadoLogisticaFACADE{
     public List<Object> buscarEncuestaPorEvento(ImplementacionEvento eventoProgra) {
         return ServiceLocator.getEnunciadoCali().buscarEncuestaPorEvento(eventoProgra);
     }

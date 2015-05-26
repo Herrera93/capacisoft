@@ -24,9 +24,9 @@ import mx.edu.cobach.vista.Comunicador;
  *
  * @author liuts
  */
-public class ProgramarControlador extends BaseControlador {
+public class ImplementarEventoControlador extends BaseControlador {
 
-    public ProgramarControlador(Comunicador com, Class clazz) {
+    public ImplementarEventoControlador(Comunicador com, Class clazz) {
         super(com, clazz);
     }
 
@@ -48,7 +48,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param eventoClase
      */
     public void buscarCurId(Integer id, Class<Evento> eventoClase) {
-        Object o = ServiceLocatorDELEGATE.getPrograma().find(id, eventoClase);
+        Object o = ServiceLocatorDELEGATE.getImplementarEvento().find(id, eventoClase);
         com.setInfo(HelperEntidad.descomponerObjeto(o));
     }
 
@@ -59,7 +59,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param eventoClase
      */
     public void buscarPorEvento(Evento evento) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorEvento(evento);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorEvento(evento);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
 
@@ -70,7 +70,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param eventoClase
      */
     public void buscarPorSede(Sede sede) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorSede(sede);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorSede(sede);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
 
@@ -82,7 +82,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param cursoClase
      */
     public void buscarEmpId(Integer id, Class<Empleado> empleado) {
-        Object o = ServiceLocatorDELEGATE.getPrograma().find(id, empleado);
+        Object o = ServiceLocatorDELEGATE.getImplementarEvento().find(id, empleado);
         System.out.println(o.toString());
         List<Object> atr = new ArrayList<Object>();
         atr.add(o);
@@ -98,7 +98,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param clave
      */
     public void buscarEmpN(String clave) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarEmPorNombre(clave);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorNombre(clave);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         //se agrega un string para hubicar a que direccion de las 
         //3 tablas se dirigira
@@ -110,7 +110,7 @@ public class ProgramarControlador extends BaseControlador {
      * Este metodo sirve para buscar la encuesta para del curso finalizado
      */
     public void buscarEncuesta() {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().findAll(EnunciadoLogistica.class);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().findAll(EnunciadoLogistica.class);
         System.out.println(o.size());
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE3"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
@@ -125,7 +125,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param cursoClase
      */
     public void buscarEmpD(Departamento departamento) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarEmPorDepartamento(departamento);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorDepartamento(departamento);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);
@@ -139,7 +139,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param cursoClase
      */
     public void buscarEmpPl(Plantel plantel) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarEmPorPlantel(plantel);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorPlantel(plantel);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);
@@ -153,7 +153,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param cursoClase
      */
     public void buscarEmpPu(Puesto puesto) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarEmPorPuesto(puesto);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorPuesto(puesto);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);
@@ -166,7 +166,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param hasta
      */
     public void buscarImplementacion(Date de, Date hasta) {
-        List<Object> implementaciones = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> implementaciones = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarPorFechas(de, hasta);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
@@ -182,7 +182,7 @@ public class ProgramarControlador extends BaseControlador {
             List listaCalificacion, String envio) {
         Object object;
         if (envio.equals("Guardar")) {
-            object = ServiceLocatorDELEGATE.getPrograma().guardarEvento(impleEvento, clazz);
+            object = ServiceLocatorDELEGATE.getImplementarEvento().guardarEvento(impleEvento, clazz);
             for (int x = 0; x < listaCalificacion.size(); x++) {
                 ImplementacionEventoEnunciadoLogistica infoCalificacion
                         = new ImplementacionEventoEnunciadoLogistica();
@@ -212,7 +212,7 @@ public class ProgramarControlador extends BaseControlador {
      * @param impleEvento
      */
     public void bucarCalificacionMod(ImplementacionEvento impleEvento) {
-        List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorEncuesta(impleEvento);
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorEncuesta(impleEvento);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE4"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);

@@ -18,8 +18,8 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author liuts
  */
-public class ProgramarDAO<T> extends BaseDAO{
-    public ProgramarDAO(){
+public class ImplementacionEventoDAO<T> extends BaseDAO{
+    public ImplementacionEventoDAO(){
         super.entityClass = ImplementacionEvento.class;
     }
     /**

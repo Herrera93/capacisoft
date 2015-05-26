@@ -13,7 +13,7 @@ import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Sede;
-import mx.edu.cobach.vista.controlador.ProgramarControlador;
+import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
  *
@@ -22,51 +22,52 @@ import mx.edu.cobach.vista.controlador.ProgramarControlador;
 public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicador {
 
     /**
-     * Creates new form PnlProgramarCurso
+     * Creates new form PnlProgramarEvento
      */
-    private PnlEventoRealizar curRealizarPnl;
-    private PnlEventoRealizado curRealizadoPnl;
+    private PnlEventoRealizar eventoRealizarPnl;
+    private PnlEventoRealizado eventoRealizadoPnl;
 
-    private final ProgramarControlador control;
-    private final DefaultComboBoxModel tipoCursoModel;
+    private final ImplementarEventoControlador control;
+    private final DefaultComboBoxModel tipoEventoModel;
     private final DefaultTableModel model;
-    private String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del curso", "Estado", "Eliminar"};
+    private String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
+        "Estado", "Eliminar"};
     private String estado;
 
     public PnlProgramarEvento() {
-        control = new ProgramarControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         initComponents();
         agregar();
         model = new DefaultTableModel(titulosTabla, 4);
         tablaTbl.setModel(model);
         tablaTbl.setColumnSelectionAllowed(false);
         tablaTbl.setDragEnabled(false);
-        tipoCursoModel = new DefaultComboBoxModel();
-        tipoRegCBx.setModel(tipoCursoModel);
-        tipoBusCBx.setModel(tipoCursoModel);
+        tipoEventoModel = new DefaultComboBoxModel();
+        tipoRegCBx.setModel(tipoEventoModel);
+        tipoBusCBx.setModel(tipoEventoModel);
     }
 
     /**
      * Metodo que permite agregar la interfaz de los paneles
      */
     private void agregar() {
-        curRealizarPnl = new PnlEventoRealizar();
-        curRealizarPnl.setLocation(404, 0);
-        curRealizarPnl.setSize(781, 589);
-        curRealizarPnl.setVisible(false);
-        add(curRealizarPnl);
+        eventoRealizarPnl = new PnlEventoRealizar();
+        eventoRealizarPnl.setLocation(404, 0);
+        eventoRealizarPnl.setSize(781, 589);
+        eventoRealizarPnl.setVisible(false);
+        add(eventoRealizarPnl);
 
-        curRealizadoPnl = new PnlEventoRealizado();
-        curRealizadoPnl.setLocation(404, 0);
-        curRealizadoPnl.setSize(781, 589);
-        curRealizadoPnl.setVisible(false);
-        add(curRealizadoPnl);
+        eventoRealizadoPnl = new PnlEventoRealizado();
+        eventoRealizadoPnl.setLocation(404, 0);
+        eventoRealizadoPnl.setSize(781, 589);
+        eventoRealizadoPnl.setVisible(false);
+        add(eventoRealizadoPnl);
 
     }
 
     /**
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
-     * cursos registrados informacion o la modificque.
+     * eventos registrados informacion o la modificque.
      */
     public void llenarTodo() {
         control.setClass(Evento.class);
@@ -134,7 +135,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         });
 
         regRealizarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        regRealizarBtn.setText("Programar curso a realizar");
+        regRealizarBtn.setText("Programar evento a realizar");
         regRealizarBtn.setEnabled(false);
         regRealizarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +144,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         });
 
         regRealizadoBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        regRealizadoBtn.setText("Registrar curso realizado");
+        regRealizadoBtn.setText("Registrar evento realizado");
         regRealizadoBtn.setEnabled(false);
         regRealizadoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +220,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        opcionesTP.addTab("Registrar curso de capacitación", registrarPnl);
+        opcionesTP.addTab("Registrar evento de capacitación", registrarPnl);
 
         buscarPnl.setMaximumSize(new java.awt.Dimension(352, 400));
         buscarPnl.setPreferredSize(new java.awt.Dimension(352, 400));
@@ -238,7 +239,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 {null, null, null, null}
             },
             new String [] {
-                "Fecha Inicial", "Nombre del curso", "Estado", "Eliminar"
+                "Fecha Inicial", "Nombre del evento", "Estado", "Eliminar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -325,7 +326,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                                 .addComponent(buscarBtn))
                             .addComponent(notaBusLbl)
                             .addComponent(opcionesBusLbl))))
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         buscarPnlLayout.setVerticalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,7 +354,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .addGap(62, 62, 62))
         );
 
-        opcionesTP.addTab("Buscar Curso", buscarPnl);
+        opcionesTP.addTab("Buscar Evento", buscarPnl);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -372,7 +373,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 743, Short.MAX_VALUE))
+                .addGap(0, 725, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,67 +381,64 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Metodo que al seleccionar click se colocara la interfaz del curso de
+     * Metodo que al seleccionar click se colocara la interfaz del evento de
      * capacitacion realizado
      *
      * @param evt
      */
     private void regRealizadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizadoBtnActionPerformed
-        if (curRealizarPnl.isCambio() == true
-                || curRealizadoPnl.isCambio() == true) {
+        if (eventoRealizarPnl.isCambio() == true
+                || eventoRealizadoPnl.isCambio() == true) {
             int op = JOptionPane.showConfirmDialog(this, "La información se"
                     + " esta modificando,¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
             if (op == 0) {
-                curRealizarPnl.limpiarCampos();
-                curRealizadoPnl.limpiarCampos();
-                curRealizadoPnl.setVisible(true);
-                curRealizarPnl.setVisible(false);
-                curRealizadoPnl.buscarCurso((Evento) tipoRegCBx.
+                eventoRealizarPnl.limpiarCampos();
+                eventoRealizadoPnl.limpiarCampos();
+                eventoRealizadoPnl.setVisible(true);
+                eventoRealizarPnl.setVisible(false);
+                eventoRealizadoPnl.buscarEvento((Evento) tipoRegCBx.
                         getSelectedItem());
-                curRealizadoPnl.llenarTodo();
-                curRealizarPnl.visibilidad(true);
+                eventoRealizadoPnl.llenarTodo();
+                eventoRealizarPnl.visibilidad(true);
             }
         } else {
-            curRealizarPnl.setVisible(false);
-            curRealizadoPnl.setVisible(true);
-            curRealizadoPnl.buscarCurso((Evento) tipoRegCBx.getSelectedItem());
-            curRealizadoPnl.llenarTodo();
-            curRealizadoPnl.visibilidad(true);
+            eventoRealizarPnl.setVisible(false);
+            eventoRealizadoPnl.setVisible(true);
+            eventoRealizadoPnl.buscarEvento((Evento) tipoRegCBx.getSelectedItem());
+            eventoRealizadoPnl.llenarTodo();
+            eventoRealizadoPnl.visibilidad(true);
         }
     }//GEN-LAST:event_regRealizadoBtnActionPerformed
     /**
-     * Metodo que al seleccionar click se colocara la interfaz del curso de
+     * Metodo que al seleccionar click se colocara la interfaz del evento de
      * capacitacion a realizar
      *
      * @param evt
      */
     private void regRealizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizarBtnActionPerformed
-
-        if (curRealizarPnl.isCambio() == true
-                || curRealizadoPnl.isCambio() == true) {
-            int op = JOptionPane.showConfirmDialog(this, "La información se"
-                    + " esta modificando,¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE);
-            if (op == 0) {
-                curRealizarPnl.limpiarCampos();
-                curRealizadoPnl.limpiarCampos();
-                curRealizarPnl.setVisible(true);
-                curRealizadoPnl.setVisible(false);
-                curRealizarPnl.buscarCurso((Evento) tipoRegCBx
-                        .getSelectedItem());
-                curRealizarPnl.llenarTodo();
-                curRealizarPnl.visibilidad(true);
-            }
-        } else {
-            curRealizadoPnl.setVisible(false);
-            curRealizarPnl.setVisible(true);
-            curRealizarPnl.buscarCurso((Evento) tipoRegCBx
+        int op = JOptionPane.showConfirmDialog(this, "La información se"
+                + " esta modificando,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+        if (op == 0) {
+            eventoRealizadoPnl.limpiarCampos();
+            eventoRealizarPnl.limpiarCampos();
+            eventoRealizadoPnl.limpiarCampos();
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.buscarEvento((Evento) tipoRegCBx
                     .getSelectedItem());
-            curRealizarPnl.llenarTodo();
-            curRealizarPnl.visibilidad(true);
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.visibilidad(true);
+        } else {
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizarPnl.buscarEvento((Evento) tipoRegCBx
+                    .getSelectedItem());
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.visibilidad(true);
         }
     }//GEN-LAST:event_regRealizarBtnActionPerformed
 
@@ -462,14 +460,15 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 estado = "Finalizado";
             }
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            control
-                    .setClass(ImplementacionEvento.class
-                    );
+            control.setClass(ImplementacionEvento.class);
             control.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 3) {
-            int op = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar este registro?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int op = JOptionPane.
+                    showConfirmDialog(this,
+                            "¿Esta seguro de eliminar este registro?",
+                            "Precaucion",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (op == 0) {
                 //Obtenemos ID de la columna escondida
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
@@ -483,14 +482,13 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        Evento campoCurso = (Evento) tipoBusCBx.getSelectedItem();
-
-        if (campoCurso.getNombre().compareTo("") != 0) {
-            control.setClass(ImplementacionEvento.class
-            );
+        Evento campoEvento = (Evento) tipoBusCBx.getSelectedItem();
+        if (campoEvento.getNombre().compareTo("") != 0) {
+            control.setClass(ImplementacionEvento.class);
             control.buscarPorEvento(
                     (Evento) tipoBusCBx.getSelectedItem());
-        } else if (fechaInicialDCh.getDate() != null && fechaTerminacionDCh.getDate() != null) {
+        } else if (fechaInicialDCh.getDate() != null &&
+                fechaTerminacionDCh.getDate() != null) {
             System.out.println("entre");
             Date de = fechaInicialDCh.getDate();
             Date hasta = fechaTerminacionDCh.getDate();
@@ -534,8 +532,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         regRealizadoBtn.setEnabled(false);
         regRealizarBtn.setEnabled(false);
-        curRealizarPnl.limpiarCampos();
-        curRealizadoPnl.limpiarCampos();
+        eventoRealizarPnl.limpiarCampos();
+        eventoRealizadoPnl.limpiarCampos();
     }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -600,8 +598,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
     /**
      * Metodo sobrescrito de la clase Comunicador que ayuda a mandar la
-     * informacion del curso a su respecivo panel, dependiendo del estado del
-     * curso
+     * informacion del evento a su respecivo panel, dependiendo del estado del
+     * evento
      *
      * @param info
      * @param i
@@ -609,17 +607,17 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     @Override
     public void setInfo(List info) {
         if (estado.equals("Finalizado")) {
-            curRealizarPnl.setVisible(false);
-            curRealizadoPnl.setVisible(true);
-            curRealizadoPnl.llenarTodo();
-            curRealizadoPnl.obtenerMod(info);
-            curRealizadoPnl.visibilidad(true);
-        } else {
-            curRealizarPnl.setVisible(true);
-            curRealizadoPnl.setVisible(false);
-            curRealizarPnl.llenarTodo();
-            curRealizarPnl.obtenerMod(info);
-            curRealizarPnl.visibilidad(true);
+            eventoRealizarPnl.setVisible(false);
+            eventoRealizadoPnl.setVisible(true);
+            eventoRealizadoPnl.llenarTodo();
+            eventoRealizadoPnl.obtenerMod(info);
+            eventoRealizadoPnl.visibilidad(true);
+        }else {
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.obtenerMod(info);
+            eventoRealizarPnl.visibilidad(true);
         }
     }
 
@@ -637,12 +635,12 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         }
         switch (i) {
             case 1:
-                tipoCursoModel.removeAllElements();
-                Evento curso = new Evento();
-                curso.setNombre("");
-                tipoCursoModel.addElement(curso);
+                tipoEventoModel.removeAllElements();
+                Evento evento = new Evento();
+                evento.setNombre("");
+                tipoEventoModel.addElement(evento);
                 for (int j = 0; j < info.size(); j++) {
-                    tipoCursoModel.addElement(info.get(j));
+                    tipoEventoModel.addElement(info.get(j));
                 }
                 break;
         }

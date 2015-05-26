@@ -27,25 +27,25 @@ public class EncuestaControlador extends BaseControlador {
     }
     
     public void buscarPorNombre(String nombre){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorNombre(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
     public void buscarPorPuesto(Object puesto){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorPuesto((Puesto) puesto);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
     public void buscarPorDepartamento(Object departamento){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorDepartamento((Departamento) departamento);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
     public void buscarPorPlantel(Object plantel){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorPlantel((Plantel) plantel);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
@@ -65,13 +65,13 @@ public class EncuestaControlador extends BaseControlador {
     }
     
     public void buscarImplementacion(Object curso){
-        List<Object> implementaciones = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> implementaciones = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarPorEvento((Evento) curso);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
     
     public void buscarImplementacion(Date de, Date hasta){
-        List<Object> implementaciones = ServiceLocatorDELEGATE.getPrograma()
+        List<Object> implementaciones = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarPorFechas(de, hasta);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }

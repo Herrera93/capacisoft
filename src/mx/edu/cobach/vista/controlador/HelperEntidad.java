@@ -61,28 +61,28 @@ public class HelperEntidad {
         return depto;
     }
     
-    public static ImplementacionEvento getProgramar(List<Object> atributos,
+    public static ImplementacionEvento getImplementarEvento(List<Object> atributos,
             String direccion) {
-        ImplementacionEvento implementaCurso = new ImplementacionEvento();
+        ImplementacionEvento implementaEvento = new ImplementacionEvento();
         if (direccion.equals("Guardar")) {
-            implementaCurso.setEvento((Evento) atributos.get(0));
-            implementaCurso.setFechaInicial((Date) atributos.get(1));
-            implementaCurso.setFechaFinal((Date) atributos.get(2));
-            implementaCurso.setActivo((boolean) atributos.get(3));
-            implementaCurso.setSede((Sede) atributos.get(4));
-            implementaCurso.setProveedor((Proveedor) atributos.get(5));
-            implementaCurso.setEmpleados((Set<Empleado>) atributos.get(6));
-            return implementaCurso;
+            implementaEvento.setEvento((Evento) atributos.get(0));
+            implementaEvento.setFechaInicial((Date) atributos.get(1));
+            implementaEvento.setFechaFinal((Date) atributos.get(2));
+            implementaEvento.setActivo((boolean) atributos.get(3));
+            implementaEvento.setSede((Sede) atributos.get(4));
+            implementaEvento.setProveedor((Proveedor) atributos.get(5));
+            implementaEvento.setEmpleados((Set<Empleado>) atributos.get(6));
+            return implementaEvento;
         } else if (direccion.equals("Modificar")) {
-            implementaCurso.setId(Integer.parseInt(atributos.get(0).toString()));
-            implementaCurso.setEvento((Evento) atributos.get(1));
-            implementaCurso.setFechaInicial((Date) atributos.get(2));
-            implementaCurso.setFechaFinal((Date) atributos.get(3));
-            implementaCurso.setActivo((boolean) atributos.get(4));
-            implementaCurso.setSede((Sede) atributos.get(5));
-            implementaCurso.setProveedor((Proveedor) atributos.get(6));
-            implementaCurso.setEmpleados((Set<Empleado>) atributos.get(7));
-            return implementaCurso;
+            implementaEvento.setId(Integer.parseInt(atributos.get(0).toString()));
+            implementaEvento.setEvento((Evento) atributos.get(1));
+            implementaEvento.setFechaInicial((Date) atributos.get(2));
+            implementaEvento.setFechaFinal((Date) atributos.get(3));
+            implementaEvento.setActivo((boolean) atributos.get(4));
+            implementaEvento.setSede((Sede) atributos.get(5));
+            implementaEvento.setProveedor((Proveedor) atributos.get(6));
+            implementaEvento.setEmpleados((Set<Empleado>) atributos.get(7));
+            return implementaEvento;
         }
         return null;
     }
@@ -264,20 +264,21 @@ public class HelperEntidad {
         return info;
     }
     
-    private static List<Object> descomponerProEvento(ImplementacionEvento evento) {
+    private static List<Object> descomponerProEvento(ImplementacionEvento
+            eventoImplementado) {
         List<Object> info = new ArrayList<>();
-        Evento curso = evento.getEvento();
-        TipoEvento tipocurso = curso.getTipoEvento();
-        info.add(evento.getId());
-        info.add(evento.getEvento());
-        info.add(curso.getNombre());
-        info.add(curso.getDescripcion());
+        Evento evento = eventoImplementado.getEvento();
+        TipoEvento tipocurso = evento.getTipoEvento();
+        info.add(eventoImplementado.getId());
+        info.add(eventoImplementado.getEvento());
+        info.add(evento.getNombre());
+        info.add(evento.getDescripcion());
         info.add(tipocurso.toString());
-        info.add(evento.getFechaInicial());
-        info.add(evento.getFechaFinal());
-        info.add(evento.getSede());
-        info.add(evento.getProveedor());
-        info.add(evento.getEmpleados());
+        info.add(eventoImplementado.getFechaInicial());
+        info.add(eventoImplementado.getFechaFinal());
+        info.add(eventoImplementado.getSede());
+        info.add(eventoImplementado.getProveedor());
+        info.add(eventoImplementado.getEmpleados());
         return info;
     }
     
@@ -334,11 +335,12 @@ public class HelperEntidad {
                 }
                 return descomponerEnunciados(enunciado);
             }else if(objetos.get(0) instanceof ImplementacionEvento){
-                List<ImplementacionEvento> programar = new ArrayList();
+                List<ImplementacionEvento> eventoImplementado = new ArrayList();
                 for(int i = 0; i < objetos.size(); i++){
-                    programar.add((ImplementacionEvento) objetos.get(i));
+                    eventoImplementado.
+                            add((ImplementacionEvento) objetos.get(i));
                 }
-                return descomponerProEventos(programar);
+                return descomponerProEventos(eventoImplementado);
             }else if(objetos.get(0) instanceof ImplementacionEventoEnunciadoLogistica){
                 List<ImplementacionEventoEnunciadoLogistica> calificacion = new ArrayList();
                 for(int i = 0; i < objetos.size(); i++){

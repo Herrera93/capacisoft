@@ -21,7 +21,7 @@ public class ServiceLocatorDELEGATE {
     private static AspectoDELEGATE aspectoDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
-    private static ProgramarDELEGATE programarDelegate;
+    private static ImplementarEventoDELEGATE implementarEventoDelegate;
     
     /**
      * Obtiene el DELEGATE generico, si este no ha sido inicilizado se instanciara.
@@ -119,11 +119,11 @@ public class ServiceLocatorDELEGATE {
      * diseno Singleton.
      * @return Regresa el DELEGATE de Programar
      */
-    public static ProgramarDELEGATE getPrograma(){
-        if(programarDelegate == null){
-            programarDelegate = new ProgramarDELEGATE();
+    public static ImplementarEventoDELEGATE getImplementarEvento(){
+        if(implementarEventoDelegate == null){
+            implementarEventoDelegate = new ImplementarEventoDELEGATE();
         }
-        return programarDelegate;
+        return implementarEventoDelegate;
     }
     
 }

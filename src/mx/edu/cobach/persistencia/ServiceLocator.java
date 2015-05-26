@@ -24,8 +24,8 @@ public class ServiceLocator {
     private static AspectoDAO aspectoDAO;
     private static DepartamentoDAO departamentoDAO;
     private static SedeDAO sedeDAO;
-    private static ProgramarDAO programarDAO;
-    private static ImplementacionCursoEnunciadoLogisticaDAO calificacionFacade;
+    private static ImplementacionEventoDAO implementarDAO;
+    private static ImplementacionEventoEnunciadoLogisticaDAO calificacionDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
@@ -126,21 +126,21 @@ public class ServiceLocator {
      * Este metodo utiliza el patron de diseno Singleton.
      * @return Regresa el DAO de ImplementacionCurso 
      */
-    public static ProgramarDAO getPrograma(){
-        if(programarDAO == null){
-            programarDAO = new ProgramarDAO();
+    public static ImplementacionEventoDAO getImplementacionEvento(){
+        if(implementarDAO == null){
+            implementarDAO = new ImplementacionEventoDAO();
         }
-        return programarDAO;
+        return implementarDAO;
     }
     /**
      * Obtiene el DAO especifico para ImplementacionCursoEnunciadoLogistica,
      * si este no ha sido inicializado se instanciara
      * @return 
      */
-    public static ImplementacionCursoEnunciadoLogisticaDAO getEnunciadoCali(){
-        if(calificacionFacade == null){
-            calificacionFacade = new ImplementacionCursoEnunciadoLogisticaDAO();
+    public static ImplementacionEventoEnunciadoLogisticaDAO getEnunciadoCali(){
+        if(calificacionDAO == null){
+            calificacionDAO = new ImplementacionEventoEnunciadoLogisticaDAO();
         }
-        return calificacionFacade;
+        return calificacionDAO;
     }
 }

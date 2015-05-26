@@ -16,9 +16,9 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author liuts
  */
-public class ImplementacionCursoEnunciadoLogisticaDAO extends BaseDAO{
+public class ImplementacionEventoEnunciadoLogisticaDAO extends BaseDAO{
     
-    public ImplementacionCursoEnunciadoLogisticaDAO(){
+    public ImplementacionEventoEnunciadoLogisticaDAO(){
         super();
         super.entityClass = ImplementacionEventoEnunciadoLogistica.class;
     }

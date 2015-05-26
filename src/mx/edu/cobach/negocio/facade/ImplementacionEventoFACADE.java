@@ -16,7 +16,7 @@ import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
  *
  * @author liuts
  */
-public class ProgramarFACADE extends BaseFACADE{
+public class ImplementacionEventoFACADE extends BaseFACADE{
     
     /**
      * * Obtiene todas las implementaciones relacionadas de un evento dado.
@@ -25,7 +25,7 @@ public class ProgramarFACADE extends BaseFACADE{
      */
     
     public List<Object> buscarPorEvento(Evento evento) {
-        return ServiceLocator.getPrograma().buscarPorEvento(evento);
+        return ServiceLocator.getImplementacionEvento().buscarPorEvento(evento);
     }
     /**
      * * Obtiene todas las implementaciones relacionadas de una sede dado.
@@ -33,7 +33,7 @@ public class ProgramarFACADE extends BaseFACADE{
      * @return Regresa la lista con las implementaciones
      */
     public List<Object> buscarPorSede(Sede sede) {
-        return ServiceLocator.getPrograma().buscarPorSede(sede);
+        return ServiceLocator.getImplementacionEvento().buscarPorSede(sede);
     }
     
     /**
@@ -43,7 +43,7 @@ public class ProgramarFACADE extends BaseFACADE{
      * @return Regresa la lista con las implementaciones
      */
     public List<Object> buscarPorFechas(Date de, Date hasta){
-        return ServiceLocator.getPrograma().buscarPorFechas(de, hasta);
+        return ServiceLocator.getImplementacionEvento().buscarPorFechas(de, hasta);
     }
     /**
      * Guarda un curso realizado y regresa un id del curso.
@@ -52,7 +52,7 @@ public class ProgramarFACADE extends BaseFACADE{
      * @return 
      */
     public Object guardarEvento(Object impleEvento, Class clazz) {
-        return ServiceLocator.getPrograma().guardarEvento(impleEvento);
+        return ServiceLocator.getImplementacionEvento().guardarEvento(impleEvento);
     }
 
     

@@ -26,7 +26,7 @@ import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
-import mx.edu.cobach.vista.controlador.ProgramarControlador;
+import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
  *
@@ -35,10 +35,10 @@ import mx.edu.cobach.vista.controlador.ProgramarControlador;
 public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador {
 
     /**
-     * Creates new form PnlCursoRealizar
+     * Creates new form PnlEventoRealizar
      */
-    private static ProgramarControlador controlProgramar;
-    private int cursoProgramarId;
+    private static ImplementarEventoControlador control;
+    private int eventoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private final DefaultComboBoxModel tipoModel;
@@ -77,7 +77,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         campoModel.addElement("Sede");
         campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
-        controlProgramar = new ProgramarControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
 
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
@@ -620,23 +620,23 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
         String campo = (String) campoCBx.getSelectedItem();
-        controlProgramar.setClass(Empleado.class);
+        control.setClass(Empleado.class);
         switch (campo) {
             case "Nombre":                
                 if(nombreLATFd.getText().equals("")){
-                    controlProgramar.buscarEmpN(nombreLATFd.getText());
+                    control.buscarEmpN(nombreLATFd.getText());
                 }else{
-                    controlProgramar.buscarTodos();
+                    control.buscarTodos();
                 }
                 break;
             case "Departamento":
-                controlProgramar.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
+                control.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
                 break;
             case "Plantel":
-                controlProgramar.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
+                control.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
                 break;
             case "Puesto":
-                controlProgramar.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
@@ -658,20 +658,20 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                 break;
             case "Departamento":
                 visibilidadCam(true);
-                controlProgramar.setClass(Departamento.class);
-                controlProgramar.buscarTodosLista(3);
+                control.setClass(Departamento.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel":
                 visibilidadCam(true);
-                controlProgramar.setClass(Plantel.class);
-                controlProgramar.buscarTodosLista(3);
+                control.setClass(Plantel.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Plantel:");
                 break;
             case "Puesto":
                 visibilidadCam(true);
-                controlProgramar.setClass(Puesto.class);
-                controlProgramar.buscarTodosLista(3);
+                control.setClass(Puesto.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Puesto:");
                 break;
         }
@@ -687,8 +687,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         int row = tablaLisITbl.getSelectedRow();
         if (row >= 0) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
-            controlProgramar.setClass(Empleado.class);
-            controlProgramar.buscarEmpId(id, Empleado.class);
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
     /**
@@ -702,8 +702,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         int nRow = tablaLisITbl.getRowCount();
         for (int i = 0; i < nRow; i++) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(i, 0));
-            controlProgramar.setClass(Empleado.class);
-            controlProgramar.buscarEmpId(id, Empleado.class);
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
     }//GEN-LAST:event_agregarTBtnActionPerformed
     /**
@@ -862,14 +862,14 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         this.cambio = true;
     }//GEN-LAST:event_fechaTDChKeyTyped
     /**
-     * Metodo que recibe el curso del catalogo para llenar parte de la
-     * informacion general del curso a llevar a cabo
+     * Metodo que recibe el evento del catalogo para llenar parte de la
+     * informacion general del evento a llevar a cabo
      *
      * @param evento
      */
-    public void buscarCurso(Evento evento) {
+    public void buscarEvento(Evento evento) {
         this.evento = evento;
-        controlProgramar.buscarCurId(evento.getId(), Evento.class);
+        control.buscarCurId(evento.getId(), Evento.class);
     }
 
     /**
@@ -879,10 +879,10 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     public void llenarTodo() {
-        controlProgramar.setClass(Sede.class);
-        controlProgramar.buscarTodosLista(1);
-        controlProgramar.setClass(Proveedor.class);
-        controlProgramar.buscarTodosLista(2);
+        control.setClass(Sede.class);
+        control.buscarTodosLista(1);
+        control.setClass(Proveedor.class);
+        control.buscarTodosLista(2);
         cambio = false;
     }
 
@@ -1123,7 +1123,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         List<Object> atributos = new ArrayList();
         if (validacion() == false) {
             if (guardarGBtn.getText().equals("Modificar")) {
-                atributos.add(cursoProgramarId);
+                atributos.add(eventoProgramarId);
             }
             atributos.add(evento);
             atributos.add(fechaIDCh.getDate());
@@ -1138,11 +1138,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                 lisEmpleado.add(empleado);
             }
             atributos.add(lisEmpleado);
-            controlProgramar.setClass(ImplementacionEvento.class);
+            control.setClass(ImplementacionEvento.class);
             if (guardarGBtn.getText().equals("Guardar")) {
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar"));
+                control.alta(HelperEntidad.getImplementarEvento(atributos, "Guardar"));
             } else {
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar"));
+                control.alta(HelperEntidad.getImplementarEvento(atributos, "Modificar"));
             }
             this.cambio = false;
             limpiarCampos();
@@ -1150,18 +1150,18 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
     }
 
     /**
-     * Este metodo obtiene la informacion del curso a realizar del
-     * PnlProgramarCurso para que este la pueda modificar
+     * Este metodo obtiene la informacion del evento a realizar del
+     * PnlProgramarEvento para que este la pueda modificar
      *
      * @param info
      */
     public void obtenerMod(List info) {
-        ImplementacionEvento cursoImplementado = new ImplementacionEvento();
+        ImplementacionEvento eventoImplementado = new ImplementacionEvento();
         agregarGLbl.setText("Modificar");
         agregarLALbl.setText("Modificar");
         guardarGBtn.setText("Modificar");
         guardarLABtn.setText("Modificar");
-        cursoProgramarId = Integer.parseInt(info.get(0).toString());
+        eventoProgramarId = Integer.parseInt(info.get(0).toString());
         evento = (Evento) info.get(1);
         nombreGTFd.setText(info.get(2).toString());
         descripcionGTAa.setText(info.get(3).toString());
@@ -1189,12 +1189,12 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         tc = tablaLisFTbl.getColumnModel().getColumn(0);
         tablaLisFTbl.getColumnModel().removeColumn(tc);
 
-        cursoImplementado.setEmpleados((Set<Empleado>) info.get(9));
-        Iterator itr = cursoImplementado.getEmpleados().iterator();
-        for (int x = 0; x < cursoImplementado.getEmpleados().size(); x++) {
+        eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
+        Iterator itr = eventoImplementado.getEmpleados().iterator();
+        for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             int id = Integer.parseInt(itr.next().toString());
-            controlProgramar.setClass(Empleado.class);
-            controlProgramar.buscarEmpId(id, Empleado.class);
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
     }
 
@@ -1237,7 +1237,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                 return true;
             }
         } else if (fechaIDCh.getDate().after(fechaTDCh.getDate())) {
-            JOptionPane.showMessageDialog(this, "Error en las fechas de curso."
+            JOptionPane.showMessageDialog(this, "Error en las fechas de evento."
                     + "La fecha de inicio es mayor que la fecha de terminacion");
             return true;
         }

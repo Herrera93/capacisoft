@@ -19,7 +19,7 @@ import mx.edu.cobach.persistencia.entidades.Sede;
  *
  * @author liuts
  */
-public class ProgramarDELEGATE extends BaseDELEGATE{
+public class ImplementarEventoDELEGATE extends BaseDELEGATE{
     /**
      * Obtiene todos los empleados que estan relacionados por el nombre
      * @param nombre
@@ -66,7 +66,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista de las encuestas
      */
     public List<Object> buscarPorEvento(Evento evento) {
-        return ServiceLocatorFACADE.getPrograma().buscarPorEvento(evento);
+        return ServiceLocatorFACADE.getImplementacionEvento().buscarPorEvento(evento);
     }
     /**
      * Obtiene todas las implementaciones relacionadas en una sede dada.
@@ -74,7 +74,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista con las implementaciones
      */
     public List<Object> buscarPorSede(Sede sede) {
-        return ServiceLocatorFACADE.getPrograma().buscarPorSede(sede);
+        return ServiceLocatorFACADE.getImplementacionEvento().buscarPorSede(sede);
     }
     
     /**
@@ -84,7 +84,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista con las implementaciones
      */
     public List<Object> buscarPorFechas(Date de, Date hasta){
-        return ServiceLocatorFACADE.getPrograma().buscarPorFechas(de, hasta);
+        return ServiceLocatorFACADE.getImplementacionEvento().buscarPorFechas(de, hasta);
     }
     /**
      * Guarda un curso realizado y regresa un id del curso.
@@ -93,6 +93,6 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return 
      */
     public Object guardarEvento(Object impleEvento, Class clazz) {
-        return ServiceLocatorFACADE.getPrograma().guardarEvento(impleEvento, clazz);
+        return ServiceLocatorFACADE.getImplementacionEvento().guardarEvento(impleEvento, clazz);
     }
 }
