@@ -129,7 +129,10 @@ public class Proveedor  implements java.io.Serializable {
         this.implementacionEventos = implementacionEventos;
     }
 
-
+    public String toString(){
+        return this.primerNombre+" "+this.segundoNombre+" "
+                + this.apellidoPaterno + this.apellidoMaterno;
+    }
 
 
 }

@@ -109,7 +109,9 @@ public class Sede  implements java.io.Serializable {
         this.implementacionEventos = implementacionEventos;
     }
 
-
+    public String toString(){
+        return this.nombre;
+    }
 
 
 }

@@ -87,7 +87,6 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         campoModel.addElement("Nombre");
         campoModel.addElement("Departamento");
         campoModel.addElement("Puesto");
-        campoModel.addElement("Sede");
         campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
