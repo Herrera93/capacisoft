@@ -20,8 +20,15 @@ public class EventoControlador extends BaseControlador{
         super(com, Evento.class);
     }
     
-    public void buscarTipoEvento(int id) {
+    public void buscarEvento(int id) {
         List<Object> o = ServiceLocatorDELEGATE.getEvento().buscarEvento(id);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
-    }   
+    }
+    
+    public void buscarPorNombre(String nombre){
+        List<Object> o = ServiceLocatorDELEGATE.getEvento().buscarPorNombre(nombre);
+    if(!o.isEmpty()){
+        com.setMensaje("El Nombre del Curso ya Existe");
+    }
+    }
 }

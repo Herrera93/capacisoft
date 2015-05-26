@@ -250,6 +250,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
         generalPnlLayout.setVerticalGroup(
             generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +265,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                     .addComponent(tipoGLbl)
                     .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreGLbl))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaILbl)
@@ -371,7 +372,8 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLALbl.setText("Nombre del Empleado:");
 
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarLALbl.setText("Agregar");
 
         nota_LI_Lbl.setText("Ingrese la información a almacenar");
 
@@ -432,8 +434,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             }
         });
 
-        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLALbl.setText("Agregar");
         javax.swing.GroupLayout listaPnlLayout = new javax.swing.GroupLayout(listaPnl);
         listaPnl.setLayout(listaPnlLayout);
         listaPnlLayout.setHorizontalGroup(
@@ -451,88 +451,12 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                             .addComponent(eliminarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(eliminarTBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(listaPnlLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-        );
-
-        informacionTP.addTab("Lista de asistencia", listaPnl);
-
-        guardarCBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        guardarCBtn.setText("Guardar");
-        guardarCBtn.setEnabled(false);
-        guardarCBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarCBtnActionPerformed(evt);
-            }
-        });
-
-        enunciadoTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Tipo", "Enunciado", "Calificación"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        enunciadoTbl.setEnabled(false);
-        jScrollPane2.setViewportView(enunciadoTbl);
-        if (enunciadoTbl.getColumnModel().getColumnCount() > 0) {
-            enunciadoTbl.getColumnModel().getColumn(0).setResizable(false);
-            enunciadoTbl.getColumnModel().getColumn(1).setResizable(false);
-            enunciadoTbl.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        agregarCLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarCLbl.setText("Agregar");
-
-        nota_CL_Lbl.setText("Ingrese la información a almacenar");
-
-        javax.swing.GroupLayout calificacionPnlLayout = new javax.swing.GroupLayout(calificacionPnl);
-        calificacionPnl.setLayout(calificacionPnlLayout);
-        calificacionPnlLayout.setHorizontalGroup(
-            calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
-                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(calificacionPnlLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(calificacionPnlLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGap(38, 38, 38)
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nota_LI_Lbl)
                             .addComponent(agregarLALbl)))
                     .addGroup(listaPnlLayout.createSequentialGroup()
-                .addContainerGap())
-            .addGroup(calificacionPnlLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nota_CL_Lbl)
-                    .addComponent(agregarCLbl))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        calificacionPnlLayout.setVerticalGroup(
-            calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(agregarCLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nota_CL_Lbl)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(campoLbl)
                         .addGap(18, 18, 18)
                         .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -599,15 +523,95 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                         .addGap(105, 105, 105))))
         );
 
+        informacionTP.addTab("Lista de asistencia", listaPnl);
+
+        guardarCBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        guardarCBtn.setText("Guardar");
+        guardarCBtn.setEnabled(false);
+        guardarCBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarCBtnActionPerformed(evt);
+            }
+        });
+
+        enunciadoTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Tipo", "Enunciado", "Calificación"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        enunciadoTbl.setEnabled(false);
+        jScrollPane2.setViewportView(enunciadoTbl);
+        if (enunciadoTbl.getColumnModel().getColumnCount() > 0) {
+            enunciadoTbl.getColumnModel().getColumn(0).setResizable(false);
+            enunciadoTbl.getColumnModel().getColumn(1).setResizable(false);
+            enunciadoTbl.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        agregarCLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregarCLbl.setText("Agregar");
+
+        nota_CL_Lbl.setText("Ingrese la información a almacenar");
+
+        javax.swing.GroupLayout calificacionPnlLayout = new javax.swing.GroupLayout(calificacionPnl);
+        calificacionPnl.setLayout(calificacionPnlLayout);
+        calificacionPnlLayout.setHorizontalGroup(
+            calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
+                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(calificacionPnlLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(calificacionPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(calificacionPnlLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nota_CL_Lbl)
+                    .addComponent(agregarCLbl))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        calificacionPnlLayout.setVerticalGroup(
+            calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(agregarCLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nota_CL_Lbl)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
         informacionTP.addTab("Calificación de logística ", calificacionPnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(informacionTP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
@@ -779,7 +783,12 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         controlProgramar.buscarTodosLista(2);
         controlProgramar.setClass(EnunciadoLogistica.class);
         controlProgramar.buscarEncuesta();
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)))
+        campoModel.addElement("");
+        campoModel.addElement("Nombre");
+        campoModel.addElement("Departamento");
+        campoModel.addElement("Puesto");
+        campoModel.addElement("Sede");
+        campoModel.addElement("Plantel");
 
     }
 
@@ -822,7 +831,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-                .addContainerGap(50, Short.MAX_VALUE))
     private javax.swing.JPanel listaPnl;
     private javax.swing.JComboBox nombreGCBx;
     private javax.swing.JLabel nombreGLbl;
@@ -925,8 +933,252 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             tc.setCellRenderer(renderer);
             tc = enunciadoTbl.getColumnModel().getColumn(0);
             enunciadoTbl.getColumnModel().removeColumn(tc);
-            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+        }
+    }
+
+    /**
+     * Metodo sobrescrito de la clase Comunicador
+     *
+     * @param info
+     * @param i
+     */
+    @Override
+    public void setInfo(List info) {
+        agregarGLbl.setText("Agregar");
+        agregarLALbl.setText("Agregar");
+        agregarCLbl.setText("Agregar");
+        guardarGBtn.setText("Guardar");
+        guardarLABtn.setText("Guardar");
+        guardarCBtn.setText("Guardar");
+        nombreGTFd.setText(info.get(1).toString());
+        descripcionGTAa.setText(info.get(2).toString());
+        if (info.get(3).equals("CONFERENCIA")) {
+            tipoGCBx.setSelectedIndex(0);
+        } else if (info.get(3).equals("TALLER")) {
+            tipoGCBx.setSelectedIndex(1);
+        } else if (info.get(3).equals("CURSO")) {
+            tipoGCBx.setSelectedIndex(2);
+        } else if (info.get(3).equals("CURSO / TALLER")) {
+            tipoGCBx.setSelectedIndex(3);
+        } else if (info.get(3).equals("PLATICA")) {
+            tipoGCBx.setSelectedIndex(4);
+        }
+    }
+
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica y vaciarlo en los campos y
+     * checkbox
+     *
+     * @param info Lista de Objeto con información de búsqueda.
+     */
+    @Override
+    public void setLista(List info, int i) {
+        if (info.isEmpty()) {
+            return;
+        }
+        switch (i) {
+            case 1:
+                sedeModel.removeAllElements();
+                Sede sede = new Sede();
+                sede.setNombre("");
+                sedeModel.addElement(sede);
+                for (int j = 0; j < info.size(); j++) {
+                    sedeModel.addElement(info.get(j));
+                }
+                break;
+            case 2:
+                proveedorModel.removeAllElements();
+                Proveedor proveedor = new Proveedor();
+                proveedor.setPrimerNombre("");
+                proveedor.setSegundoNombre("");
+                proveedor.setApellidoPaterno("");
+                proveedor.setApellidoMaterno("");
+                proveedorModel.addElement(proveedor);
+                for (int j = 0; j < info.size(); j++) {
+                    proveedorModel.addElement(info.get(j));
+                }
+                break;
+            case 3:
+                tipoModel.removeAllElements();
+                tipoModel.removeAllElements();
+                for (int j = 0; j < info.size(); j++) {
+                    tipoModel.addElement(info.get(j));
+                }
+                break;
+        }
+    }
+
+    /**
+     * Establece una visibilidad de las opciones del panel del usuario
+     *
+     * @param visibilidad
+     */
+    public void visibilidad(boolean visibilidad) {
+        fechaIDCh.setEnabled(visibilidad);
+        fechaTDCh.setEnabled(visibilidad);
+        tipoSedeGCBx.setEnabled(visibilidad);
+        nombreGCBx.setEnabled(visibilidad);
+        guardarGBtn.setEnabled(visibilidad);
+        campoCBx.setEnabled(visibilidad);
+        guardarLABtn.setEnabled(visibilidad);
+        enunciadoTbl.setEnabled(visibilidad);
+        guardarCBtn.setEnabled(visibilidad);
+    }
+
+    /**
+     * Establece una visibilidad al seleccionar que tipo de busqueda para el
+     * empleado se realizara
+     *
+     * @param visibilidad
+     */
+    private void visibilidadCam(boolean visibilidad) {
+        tipoLACBx.setEnabled(visibilidad);
+        nombreLATFd.setEnabled(visibilidad);
+        buscarLABtn.setEnabled(visibilidad);
+    }
+
+    /**
+     * Establece una visibilidad de las opciones de las flechas del panel para
+     * enviar la informacion del usuairo.
+     *
+     * @param visibilidad
+     */
+    private void visibilidadOpcT(boolean visibilidad) {
+        agregarBtn.setEnabled(visibilidad);
+        agregarTBtn.setEnabled(visibilidad);
+        eliminarBtn.setEnabled(visibilidad);
+        eliminarTBtn.setEnabled(visibilidad);
+    }
+
+    /**
+     * Establece una opcion para guardar o modificar la informacion para
+     * mandarla a la base de datos
+     *
+     * @param visibilidad
+     */
+    private void guarMod() {
+        HashSet<Empleado> lisEmpleado = new HashSet();
+        HashSet<ImplementacionCursoEnunciadoLogistica> lisEnunciado = new HashSet();
+        List<Object> atributos = new ArrayList();
+        if (validacion() == false) {
+            if (fechaTDCh.getDate() == null) {
+                fechaTDCh.setDate(fechaIDCh.getDate());
+            }
+            if (guardarGBtn.getText().equals("Modificar")) {
+                atributos.add(cursoProgramarId);
+            }
+            atributos.add(curso);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(false);
+            atributos.add(tipoSedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
+                Empleado empleado = new Empleado();
+                empleado.setId(Integer.parseInt((String) modelTablaEmF.
+                        getValueAt(x, 0)));
+                lisEmpleado.add(empleado);
+            }
+            atributos.add(lisEmpleado);
+            System.out.println("Enunciado");
+            for (int x = 0; x < enunciadoTbl.getRowCount(); x++) {
+                System.out.println("Entre");
+                ImplementacionCursoEnunciadoLogistica calificacionLog
+                        = new ImplementacionCursoEnunciadoLogistica();
+                EnunciadoLogistica enunciado = new EnunciadoLogistica();
+                System.out.println(enunciadoTbl.getRowCount());
+                enunciado.setId(Integer.parseInt((String) modelTablaEn.
+                        getValueAt(x, 0)));
+                System.out.println(enunciado.getId());
+                calificacionLog.setEnunciadoLogistica(enunciado);
+                calificacionLog.setCalificacion(Integer.parseInt((String) modelTablaEn.
+                        getValueAt(x, 3)));
+                System.out.println(calificacionLog.getCalificacion());
+                lisEnunciado.add(calificacionLog);
+            }
+            atributos.add(lisEnunciado);
+            controlProgramar.setClass(ImplementacionCurso.class);
+            if (guardarGBtn.getText().equals("Guardar")) {
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar", "Finalizado"));
+            } else {
+                controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Modificar", "Finalizado"));
+            }
+        }
+    }
+
+    /**
+     * Este metodo obtiene la informacion del curso a realizar del
+     * PnlProgramarCurso para que este la pueda modificar
+     *
+     * @param info
+     */
+    public void obtenerMod(List info) {
+        agregarGLbl.setText("Modificar");
+        agregarLALbl.setText("Modificar");
+        agregarCLbl.setText("Modificar");
+        guardarCBtn.setText("Modificar");
+        guardarGBtn.setText("Modificar");
+        guardarLABtn.setText("Modificar");
+        cursoProgramarId = Integer.parseInt(info.get(0).toString());
+        curso = (Evento) info.get(1);
+        nombreGTFd.setText(info.get(2).toString());
+        descripcionGTAa.setText(info.get(3).toString());
+        if (info.get(4).equals("CONFERENCIA")) {
+            tipoGCBx.setSelectedIndex(0);
+        } else if (info.get(4).equals("TALLER")) {
+            tipoGCBx.setSelectedIndex(1);
+        } else if (info.get(4).equals("CURSO")) {
+            tipoGCBx.setSelectedIndex(2);
+        } else if (info.get(4).equals("CURSO / TALLER")) {
+            tipoGCBx.setSelectedIndex(3);
+        } else if (info.get(4).equals("PLATICA")) {
+            tipoGCBx.setSelectedIndex(4);
+        }
+        fechaIDCh.setDate((Date) info.get(5));
+        fechaTDCh.setDate((Date) info.get(6));
+        sedeModel.setSelectedItem(info.get(7));
+        proveedorModel.setSelectedItem(info.get(8));
+    }
+
+    /**
+     * Metodo que regresa un true si se encontraron informacion sin completar, o
+     * errores en la informacion, como es mostrado en el caso de prueba
+     *
+     * @return
+     */
+    private boolean validacion() {
+        Sede campoSede = (Sede) tipoSedeGCBx.getSelectedItem();
+        Proveedor campoProveedor = (Proveedor) nombreGCBx.getSelectedItem();
+        System.out.println(tablaLisFTbl.getRowCount());
+        if (fechaIDCh.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
+                    + " inicial");
+            return true;
+        } else if (campoSede.getNombre().equals("")) {
+            JOptionPane.showMessageDialog(this, "No selecciono una sede");
+            return true;
+        } else if (campoProveedor.toString().equals("")) {
+            JOptionPane.showMessageDialog(this, "No selecciono un proveedor");
+            return true;
+        } else if (tablaLisFTbl.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No se encontraron empleados"
+                    + "en la lista de asistencia");
+            return true;
+        } else {
+            int rowN = enunciadoTbl.getRowCount();
+            boolean band = false;
+            for (int x = 0; x < rowN; x++) {
+                if (((Object) modelTablaEn.getValueAt(x, 3)) == null) {
+                    band = true;
+                }
+            }
+            if (band == true) {
+                JOptionPane.showMessageDialog(this, "No se a completado la "
+                        + "calificacion de la logistica");
+                return true;
+            }
+        }
         return false;
     }
 }
-            .addComponent(informacionTP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)

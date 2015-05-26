@@ -21,7 +21,7 @@ import mx.edu.cobach.vista.Comunicador;
  *
  * @author liuts
  */
-public class ProgramarControlador extends BaseControlador {
+public class ProgramarControlador extends BaseControlador{
 
     public ProgramarControlador(Comunicador com, Class clazz) {
         super(com, clazz);

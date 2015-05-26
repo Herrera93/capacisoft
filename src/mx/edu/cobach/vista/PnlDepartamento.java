@@ -241,7 +241,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionLbl.setText("Dirección:");
 
         direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Finanzas", "Administrativa", "Planeación", "Servicios Educativos", "General" }));
+        direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FINANZAS", "ADMINISTRATIVA", "PLANEACIÓN", "SERVICIOS EDUCATIVOS", "GENERAL", " " }));
         direccionCBx.setToolTipText("Seleccioné la zona del plantel");
         direccionCBx.setEnabled(false);
 
@@ -296,7 +296,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                             .addComponent(validNomLbl)
                             .addComponent(nombreTFd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
         informacionPnlLayout.setVerticalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

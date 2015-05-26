@@ -26,7 +26,7 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         Comunicador, FocusListener {
@@ -201,7 +201,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         });
 
         adscBuscarCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        adscBuscarCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
+        adscBuscarCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buscar Todos", "Plantel", "Departamento" }));
         adscBuscarCBx.setEnabled(false);
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
@@ -528,10 +528,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(13, 13, 13)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(correoELbl)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(correoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(correoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(correoELbl)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validCorreo_Lbl)
                 .addGap(8, 8, 8)
@@ -553,14 +554,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                             .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(departamentoLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addContainerGap(65, Short.MAX_VALUE))
+                        .addComponent(jLabel9))
                     .addGroup(informacioPnlLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -645,7 +645,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         int row = tablaTbl.rowAtPoint(evt.getPoint());
         int col = tablaTbl.columnAtPoint(evt.getPoint());
         if (col == 0) {
-            
+
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
             System.out.println(id);
             control.buscarPorNumero(id);
@@ -683,8 +683,17 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         validNombLbl.setForeground(new Color(213, 216, 222));
         validApellLbl.setForeground(new Color(213, 216, 222));
         validCorreo_Lbl.setForeground(new Color(213, 216, 222));
-
         setEnabledPanelInformacion(false);
+        if (!nombreBuscarTFd.isEnabled()) {
+            nombreBuscarTFd.setEnabled(true);
+            adscBuscarCBx.setEnabled(true);
+        } else if (!nombreBuscarTFd.getText().isEmpty()) {
+            control.buscarPorNombre(nombreBuscarTFd.getText());
+        }else if (adscBuscarCBx.getSelectedIndex()== 0) {
+            control.buscarTodos();
+        }else{
+            control.buscarPorAdscripcion((Adscripcion)adscBuscarCBx.getSelectedItem());
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
@@ -821,15 +830,18 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     @Override
     public void setMensaje(String mensaje) {
-        if (mensaje.equals("El numero de Empleado ya Existe")) {
-            numeroTFd.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
-                    BORDER_ORIGINAL));
-            validNumLbl.setText(mensaje);
-            validNumLbl.setForeground(new Color(240, 0, 0));
-        } else if (mensaje.equals("Se ha guardado existosamente")) {
-            JOptionPane.showMessageDialog(this, mensaje,
-                    "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        switch (mensaje) {
+            case "El numero de empleado ya existe":
+                numeroTFd.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                        BORDER_ORIGINAL));
+                validNumLbl.setText("El numero del empleado ya existe");
+                validNumLbl.setForeground(new Color(240, 0, 0));
+                break;
+            case "Se ha guardado existosamente":
+                JOptionPane.showMessageDialog(this, mensaje,
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                break;
         }
     }
 
@@ -970,8 +982,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 validNumLbl.setForeground(new Color(240, 0, 0));
             } else {
                 control.buscarPorNumero(Integer.parseInt(numeroTFd.getText()));
-                numeroTFd.setBorder(BORDER_ORIGINAL);
-                validNumLbl.setForeground(new Color(213, 216, 222));
+//                numeroTFd.setBorder(BORDER_ORIGINAL);
+//                validNumLbl.setForeground(new Color(213, 216, 222));
 
             }
         } else if (fuente == primerNombreTFd) {

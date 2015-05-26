@@ -17,4 +17,8 @@ public class EventoDELEGATE{
     public List<Object> buscarEvento(int id) {
         return ServiceLocatorFACADE.getEvento().buscarEvento(id);
     }   
+    
+    public List<Object> buscarPorNombre(String nombre){
+        return ServiceLocatorFACADE.getEvento().buscarPorNombre(nombre);
+    }
 }

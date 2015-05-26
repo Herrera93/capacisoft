@@ -178,7 +178,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         nombreAgregarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         zonaCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Oficinas Generales", "Zona Norte", "Zona Sur" }));
+        zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "OFICINAS GENERALES", "VALLE", "COSTA" }));
         zonaCBx.setToolTipText("Seleccioné la zona del plantel");
 
         CalleTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

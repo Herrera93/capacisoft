@@ -21,7 +21,6 @@ public class ServiceLocatorFACADE {
     private static AspectoFACADE aspectoFacade;
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
-    private static ReporteFACADE reporteFacade;
     private static ProgramarFACADE programaFacade;
     
     /**
@@ -107,13 +106,6 @@ public class ServiceLocatorFACADE {
      * Singleton.
      * @return Regresa el FACADE de Aspecto
      */
-    public static AspectoFACADE getAspecto(){
-        if(aspectoFacade == null){
-            aspectoFacade = new AspectoFACADE();
-        }
-        return aspectoFacade;
-    }
-    
     public static SedeFACADE getSede(){
         if(sedeFacade==null){
             sedeFacade = new SedeFACADE();
@@ -138,12 +130,5 @@ public class ServiceLocatorFACADE {
             programaFacade = new ProgramarFACADE();
         }
         return programaFacade;
-    }
-    
-    public static ReporteFACADE getReporteFacade(){
-        if(reporteFacade == null){
-            reporteFacade = new ReporteFACADE();
-        }
-        return reporteFacade;
     }
 }

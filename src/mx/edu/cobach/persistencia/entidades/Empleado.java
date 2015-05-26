@@ -147,10 +147,7 @@ public class Empleado  implements java.io.Serializable {
     public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
         this.implementacionCursos = implementacionCursos;
     }
-
-
-
-
+    
 }
 
 

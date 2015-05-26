@@ -128,11 +128,11 @@ public class ImplementacionCurso  implements java.io.Serializable {
     public void setImplementacionCursoEnunciadoLogisticas(Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
         this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
     }
-
+    
+     @Override
     public String toString(){
         return this.id+"";
     }
-
 }
 
 

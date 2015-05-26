@@ -5,9 +5,14 @@
 package mx.edu.cobach.vista;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.vista.controlador.ReporteControlador;
 
@@ -18,15 +23,17 @@ import mx.edu.cobach.vista.controlador.ReporteControlador;
 public class PnlKardex extends javax.swing.JPanel implements Comunicador {
 
     private ReporteControlador control;
+    private Empleado controlEmpleado;
     private DefaultTableModel model;
-    private String[] titulosTabla = {"Numero","Nombre","Puesto","Correo Electronico", "Plantel"};
-    
+    private String[] titulosTabla = {"ID","Numero", "Nombre", "Puesto", "Correo Electronico", "Plantel"};
+
     /**
      * Creates new form PnlKardex
      */
     public PnlKardex() {
         initComponents();
         control = new ReporteControlador(this, Empleado.class);
+        controlEmpleado = new Empleado();
         model = new DefaultTableModel(titulosTabla, 30);
         tablaTbl.setModel(model);
     }
@@ -159,10 +166,20 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                 "Numero", "Nombre", "Puesto", "Correo electrónico", "Plantel "
             }
         ));
+        tablaTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaTblMouseClicked(evt);
+            }
+        });
         tablaSPn.setViewportView(tablaTbl);
 
         generarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         generarBtn.setText("Generar");
+        generarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarBtnActionPerformed(evt);
+            }
+        });
 
         informacionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         informacionLbl.setText("Información del Kardex del empleado");
@@ -212,51 +229,68 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     }// </editor-fold>//GEN-END:initComponents
 
     private void numeroTFdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroTFdActionPerformed
-        
+
     }//GEN-LAST:event_numeroTFdActionPerformed
 
     private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
         char car = evt.getKeyChar();
-       if(nombreTFd.getText().length()>=20) evt.consume();
-       if((car<'0' || car>'9'))
-        {      
-          evt.consume();   
+        if (nombreTFd.getText().length() >= 20) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
         }
     }//GEN-LAST:event_numeroTFdKeyTyped
 
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
         char car = evt.getKeyChar();
-       if(nombreTFd.getText().length()>=20) evt.consume();
-       if((car<'a' || car>'z') && (car<'A' || car>'Z')             
-            && car !='á' //Minúsculas             
-            && car !='é'            
-            && car !='í'            
-            && car !='ó'           
-            && car !='ú'   
-            && car !='Á' //Mayúsculas             
-            && car !='É'            
-            && car !='Í'            
-            && car !='Ó'           
-            && car !='Ú'
-            && car !='ñ'           
-            && car !='Ñ'
-            && (car!=(char)KeyEvent.VK_SPACE))
-        {      
-          evt.consume();   
+        if (nombreTFd.getText().length() >= 20) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(!numeroTFd.getText().isEmpty() || !nombreTFd.getText().isEmpty()){
-            if(!numeroTFd.getText().isEmpty()){
+        if (!numeroTFd.getText().isEmpty() || !nombreTFd.getText().isEmpty()) {
+            if (!numeroTFd.getText().isEmpty()) {
                 control.buscarPorNumero(Integer.parseInt(numeroTFd.getText()));
-            }if(!nombreTFd.getText().isEmpty()){
+            }
+            if (!nombreTFd.getText().isEmpty()) {
                 control.buscarPorNombre(nombreTFd.getText());
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Tiene el Campos Vacios");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
+    int id;
+    private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
+        int row = tablaTbl.rowAtPoint(evt.getPoint());
+        id = Integer.parseInt((String) model.getValueAt(row, 0));
+        tablaTbl.clearSelection();
+    }//GEN-LAST:event_tablaTblMouseClicked
+
+    private void generarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBtnActionPerformed
+        try {
+            control.generarKardex(id);
+        } catch (IOException ex) {
+            Logger.getLogger(PnlKardex.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generarBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarBtn;
@@ -276,21 +310,29 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
 
     @Override
     public void setMensaje(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(this, mensaje,
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
     public void setTabla(String[][] info) {
-        if(info== null){
+        if (info == null) {
             JOptionPane.showMessageDialog(null, "No se Encontro la busqueda");
-        }else
-            model.setDataVector(info, titulosTabla);        
-        
+        } else {
+            model.setDataVector(info, titulosTabla);
+        }
+        model.setDataVector(info, titulosTabla);
+        //Esconder columna ID
+        TableColumn idTbc = tablaTbl.getColumnModel().getColumn(0);
+        tablaTbl.getColumnModel().removeColumn(idTbc);
+        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(170);
+
     }
 
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

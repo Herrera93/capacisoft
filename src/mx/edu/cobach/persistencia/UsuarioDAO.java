@@ -33,7 +33,7 @@ public class UsuarioDAO extends BaseDAO{
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{
-            HibernateUtil.closeSession();
+//            HibernateUtil.closeSession();
             
         }
         return ts;

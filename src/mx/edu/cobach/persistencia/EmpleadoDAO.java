@@ -26,7 +26,7 @@ public class EmpleadoDAO extends BaseDAO{
         super.entityClass = Empleado.class;
     }
     
-    public List<Object> findByNombre(String nombre){        
+    public List<Object> buscarPorNombre(String nombre){        
         List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
@@ -48,7 +48,7 @@ public class EmpleadoDAO extends BaseDAO{
         return ts;
     }
     
-    public List<Object> findByAdscripcion(Adscripcion adscripcion){
+    public List<Object> buscarPorAdscripcion(Adscripcion adscripcion){
         List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
@@ -63,11 +63,6 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
-    /**
-     * Obtiene todas las implementaciones relacionadas de un departamento dado.
-     * @param departamento
-     * @return 
-     */
     public List<Object> buscarPorDepartamento(Departamento departamento){        
         List<Object> ts = null;
         try{
@@ -84,11 +79,7 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
-    /**
-     * Obtiene todas las implementaciones relacionadas de un puesto dado.
-     * @param puesto
-     * @return 
-     */
+    
     public List<Object> buscarPorPuesto(Puesto puesto){        
         List<Object> ts = null;        
         try{
@@ -105,11 +96,7 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
-    /**
-     * Obtiene todas las implementaciones relacionadas de un plantel dado.
-     * @param plantel
-     * @return 
-     */
+    
     public List<Object> buscarPorPlantel(Plantel plantel){        
         List<Object> ts = null;        
         try{
@@ -118,7 +105,26 @@ public class EmpleadoDAO extends BaseDAO{
             ts = HibernateUtil.getSession().createCriteria(entityClass).
                     add(Restrictions.eq("plantel", plantel)).list();
             HibernateUtil.commitTransaction();
-            System.out.println("Buscar por nombre::Empleado");
+            System.out.println("Buscar por nombre::Plantel");
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
+
+    
+    public List<Object> buscarPorNumero(int numero){
+        List<Object> ts = null;        
+        String num = numero + "";
+        System.out.println(num);
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            ts = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("numero",num)).list();
+            HibernateUtil.commitTransaction();
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{

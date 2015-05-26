@@ -16,7 +16,6 @@ public class ServiceLocator {
     //DAO generico
     private static BaseDAO baseDAO;    
     //DAOS especificos
-    private static ReporteDAO reporteDAO;
     private static PuestoDAO puestoDAO;
     private static EventoDAO eventoDAO;
     private static EmpleadoDAO empleadoDAO;
@@ -126,12 +125,4 @@ public class ServiceLocator {
         }
         return programarDAO;
     }
-    
-    public static ReporteDAO getReporte(){
-        if(reporteDAO == null){
-            reporteDAO = new ReporteDAO();
-        }
-        return reporteDAO;
-    }
-    
 }

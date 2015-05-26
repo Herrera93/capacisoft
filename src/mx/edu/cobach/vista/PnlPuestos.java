@@ -29,12 +29,22 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      */
     public PnlPuestos() {
         initComponents();
-        model = new DefaultTableModel(titulosTabla, 4);
+        model = new DefaultTableModel(titulosTabla, 4){
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                if (col == 2) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
         puestosTbl.setModel(model);
         puestosTbl.setColumnSelectionAllowed(false);
         puestosTbl.setDragEnabled(false);
         puestosTbl.setModel(model);
         puestoControl = new PuestoControlador(this);
+        puestoControl.buscarTodos();
     }
 
     /**
@@ -60,9 +70,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
         nombreTFd = new javax.swing.JTextField();
-        agregarLBl = new javax.swing.JLabel();
-        agregarMsjLbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        registroLBl = new javax.swing.JLabel();
+        registroMsjLbl = new javax.swing.JLabel();
+        cancelarBtn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1181, 587));
         setMinimumSize(new java.awt.Dimension(1181, 587));
@@ -153,20 +163,24 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                         .addContainerGap()
                         .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11))
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarBtn)
-                            .addComponent(opcionLbl)
                             .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(nombreBuscarLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(opcionMsjLbl, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, opcionPnlLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(11, 11, 11))
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(agregarBtn)
+                                    .addComponent(opcionLbl)
+                                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                                        .addComponent(nombreBuscarLbl)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
@@ -191,7 +205,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -214,16 +228,17 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreTFd.setEnabled(false);
 
-        agregarLBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLBl.setText("Registro");
+        registroLBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        registroLBl.setText("Registro");
 
-        agregarMsjLbl.setText("Ingrese la información a almacenar");
+        registroMsjLbl.setText("Ingrese la información a almacenar");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.setEnabled(false);
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelarBtnActionPerformed(evt);
             }
         });
 
@@ -233,15 +248,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarMsjLbl)
-                    .addComponent(agregarLBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(registroMsjLbl)
+                    .addComponent(registroLBl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addComponent(nombreLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -252,16 +267,16 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(agregarLBl)
+                .addComponent(registroLBl)
                 .addGap(18, 18, 18)
-                .addComponent(agregarMsjLbl)
+                .addComponent(registroMsjLbl)
                 .addGap(22, 22, 22)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
                     .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(guardarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
         );
@@ -310,10 +325,6 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 puestoControl.modificacion(HelperEntidad.getPuesto(atr,"Mod/Eli"));
             }
             nombreTFd.setText("");
-            agregarBtn.setEnabled(true);
-            nombreBuscarTFd.setEnabled(false);
-            nombreTFd.setEnabled(false);
-            guardarBtn.setEnabled(false);
             puestoControl.buscarTodos();
         }
     }//GEN-LAST:event_guardarBtnActionPerformed
@@ -326,11 +337,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         nombreTFd.setEnabled(false);
         guardarBtn.setEnabled(false);
-        //Se valida que no exista información en los campos antes de realizar la busqueda.
-        if(nombreTFd.getText().isEmpty()){
             //Se verifica que el campo este activo para agregar datos
             if(nombreBuscarTFd.isEnabled()==false){ 
                 nombreBuscarTFd.setEnabled(true);
+                opcionMsjLbl.setText("<html> Ingrese el Puesto a buscar"
+                    + "y presione el boton Buscar para <br>"
+                    + " mostrar"
+                    + " la coincidencia en la tabla </html>");
             //Se verifica que el campo este vacio, de ser así se realiza una 
             //busqueda general.
             } else if (nombreBuscarTFd.getText().equals("")) {
@@ -339,24 +352,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 //Se verifico el campo y se encontraron caracteres se obtienen
                 // para mandarse por un metodo de busqueda especifica.
                 puestoControl.buscar(nombreBuscarTFd.getText());
+                nombreBuscarTFd.setText("");
             }
-        }else{
-            //Se manda el mensaje de que existe informacion en los campos
-            int op = JOptionPane.showConfirmDialog(this, "Tienes Informacion en "
-                    + "los campos deseas continuar?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.
-                            WARNING_MESSAGE);
-            if(op == 0){
-                nombreTFd.setText("");
-                if(nombreBuscarTFd.isEnabled()==false){ 
-                nombreBuscarTFd.setEnabled(true);
-                } else if (nombreBuscarTFd.getText().equals("")) {
-                    puestoControl.buscarTodos();
-                } else {
-                    puestoControl.buscar(nombreBuscarTFd.getText());
-                }
-            }
-        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
@@ -367,17 +364,28 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         nombreTFd.setEnabled(true);
         guardarBtn.setEnabled(true);
+        cancelarBtn.setEnabled(true);
         nombreTFd.setText("");
-        agregarLBl.setText("Agregar");
+        registroLBl.setText("Registro");
         guardarBtn.setText("Guardar");
         agregarBtn.setEnabled(false);
         buscarBtn.setEnabled(false);
         
     }//GEN-LAST:event_agregarBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        nombreTFd.setText("");
+        registroLBl.setText("Registro");
+        nombreTFd.setEnabled(false);
+        guardarBtn.setEnabled(false);
+        cancelarBtn.setEnabled(false);
+        buscarBtn.setEnabled(true);
+        agregarBtn.setEnabled(true);
+        nombreBuscarTFd.setEnabled(false);
+        opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para "
+                + "habilitar la sección de registro,<br>si desea  realizar "
+                + "una búsqueda seleccione el botón \"Buscar\"</html>");
+    }//GEN-LAST:event_cancelarBtnActionPerformed
     
     /**
      * Evento ejecutado al hace click en la tabla, se calcula en que columna y 
@@ -418,12 +426,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JLabel agregarLBl;
-    private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton buscarBtn;
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nombreBuscarLbl;
     private javax.swing.JTextField nombreBuscarTFd;
@@ -433,6 +439,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
     private javax.swing.JTable puestosTbl;
+    private javax.swing.JLabel registroLBl;
+    private javax.swing.JLabel registroMsjLbl;
     private javax.swing.JScrollPane tablaSPn;
     // End of variables declaration//GEN-END:variables
     
@@ -453,7 +461,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * @param info Matriz String para vaciar en tabla
      */
     @Override
-    public void setTabla(String[][] info) {
+        public void setTabla(String[][] info) {
         puestosTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
@@ -462,6 +470,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         tc.setCellRenderer (puestosTbl.getDefaultRenderer(Boolean.class));
         tc = puestosTbl.getColumnModel().getColumn(0);
         puestosTbl.getColumnModel().removeColumn(tc);
+        puestosTbl.getColumnModel().getColumn(0).setPreferredWidth(300);
     }
         
     /**
@@ -486,6 +495,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         nombreTFd.setEnabled(true);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Modificar");
-        agregarLBl.setText("Modificar");
+        registroLBl.setText("Modificar");
+        cancelarBtn.setEnabled(true);
     }
 }

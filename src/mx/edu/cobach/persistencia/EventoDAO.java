@@ -36,4 +36,20 @@ public class EventoDAO extends BaseDAO{
         }
         return o;
     }
+    
+    public List<Object> buscarPorNombre(String nombre) {
+        List<Object> o = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            o = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("nombre", nombre)).list();
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();   
+        }
+        return o;
+    }
 }
