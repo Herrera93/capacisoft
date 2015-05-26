@@ -5,7 +5,6 @@
  */
 package mx.edu.cobach.vista;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -18,24 +17,19 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
- * Clase de panel para agregar los diferentes empleados en una encuesta.
+ *
+ * @author liuts
  */
 public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicador{
 
-    //Controlador que permite la interaccion con las capas bajas
+    /**
+     * Creates new form PnlAgregarAspectos
+     */
     private final EncuestaControlador control;
-    //Modelo de la tabla empleados
-    private final DefaultTableModel empleadosTblModel;
-    //Modelo de la tabla de aspectos a empleados
-    private final DefaultTableModel empleadosAgrTblModel;    
-    //Titulos de la tablas (Ambas usan la misma)
-    private final String[] titulosTabla;
-    //Modelo del combo box de competencias    
+    private final DefaultTableModel empleadosTblModel, empleadosAgrTblModel;
+    private final String[] titulosTabla;    
     private final DefaultComboBoxModel busquedaModel;
     
-     /**
-     * Se inicializan la configuracion de los componentes  y los atributos.
-     */
     public PnlAgregarEmpleados() {
         control = new EncuestaControlador(this);
         titulosTabla = new String[]{"ID", "Numero", "Empleados"};
@@ -319,22 +313,10 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Metodo que se ejecuta al presionar el boton enviar. Este metodo toma
-     * el padre de esta panel y ejecuta el metodo enviarEncuesta();
-     * @param evt Evento ejecutado
-     */
     private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
-        PnlSeguimiento seguimientoPnl = (PnlSeguimiento) this.getParent();
-            seguimientoPnl.enviarEncuesta();
+        
     }//GEN-LAST:event_enviarBtnActionPerformed
 
-    /**
-     * Metodo que se ejectura al cambiar la seleccion del tipo de busqueda. Segun
-     * el tipo de busqueda seleccionada, se cambiaran los labels y se agregaran
-     * las listas con datos correspondientes.
-     * @param evt Evento ejecutado
-     */
     private void tipoBusquedaCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusquedaCBxItemStateChanged
         int indice = tipoBusquedaCBx.getSelectedIndex();
         if(indice == 0){
@@ -366,11 +348,6 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }
     }//GEN-LAST:event_tipoBusquedaCBxItemStateChanged
 
-    /**
-     * Metodo ejecutado al presionar el boton de agregar. Este metodo pasa el
-     * empleado a la tabla de empleados agregados y lo elimina de la tabla original.
-     * @param evt Evento ejecutado
-     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         int renglonIndice = empleadosTbl.getSelectedRow();
         if(empleadosTblModel.getRowCount() == 0){
@@ -387,12 +364,6 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
 
-    /**
-     * Metodo ejecutado al presionar el boton de agregar todos. Este metodo pasa
-     * todos los empleados a la tabla de empleados agregados y los elimina de la 
-     * tabla original.
-     * @param evt Evento ejecutado
-     */
     private void agregaTodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregaTodosBtnActionPerformed
         int renglones = empleadosTblModel.getRowCount();
         if(renglones == 0){
@@ -409,11 +380,6 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }
     }//GEN-LAST:event_agregaTodosBtnActionPerformed
 
-    /**
-     * Metodo ejecutado al presionar el boton de borrar. Este metodo pasa el
-     * empleado a la tabla de empleados y lo elimina de la tabla de empleados agregados.
-     * @param evt Evento ejecutado
-     */
     private void borrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarBtnActionPerformed
         int renglonIndice = empleadosAgrTbl.getSelectedRow();
         if(empleadosAgrTblModel.getRowCount() == 0){
@@ -429,12 +395,6 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }
     }//GEN-LAST:event_borrarBtnActionPerformed
 
-    /**
-     * Metodo ejecutado al presionar el boton de borrar todos. Este metodo pasa
-     * todos los empleados agregados a la tabla de empleados original y los 
-     * elimina de la tabla de empleados agregados.
-     * @param evt Evento ejecutado
-     */
     private void borrarTodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarTodosBtnActionPerformed
         if(empleadosAgrTblModel.getRowCount() == 0){
             setMensaje("No hay empleados que eliminar");
@@ -450,20 +410,10 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }
     }//GEN-LAST:event_borrarTodosBtnActionPerformed
 
-    /**
-     * Metodo ejecutado al presionar el boton de aspectos. Este metodo esconde
-     * el panel actual.
-     * @param evt 
-     */
     private void aspectosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aspectosBtnActionPerformed
         setVisible(false);
     }//GEN-LAST:event_aspectosBtnActionPerformed
 
-    /**
-     * Metodo ejecutado al presionar el boton de buscar. Segun el tipo
-     * de busqueda se ejecuta la busqueda del control correspondiente.
-     * @param evt Evento ejecutado
-     */
     private void busquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaBtnActionPerformed
         int indice = tipoBusquedaCBx.getSelectedIndex();
         switch(indice){
@@ -506,19 +456,6 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     // End of variables declaration//GEN-END:variables
 
     /**
-     * Obtiene una lista de los identificadores de los empleados agregados.
-     * @return Lista con los identificadores.
-     */
-    public List<Integer> getEmpleados(){
-        List<Integer> empleadosIds = new ArrayList();
-        for(int i = 0; i < empleadosAgrTblModel.getRowCount(); i++){
-            String id = (String) empleadosAgrTblModel.getValueAt(i, 0);
-            empleadosIds.add(Integer.parseInt(id));
-        }
-        return empleadosIds;
-    }
-    
-    /**
      * Metodo utilizado par actualizar las tablas de los aspectos, de esta manera
      * se eliminaran los aspectos que ya hayan sido agregados a evaluar en
      * la encuesta.
@@ -537,20 +474,12 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         }
     }
 
-    /**
-     * Metodo para mostrar un mensaje de advertencia por medio del JOptionPane.
-     * @param mensaje Mensaje a mostrar.
-     */
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Advertencia", 
                 JOptionPane.WARNING_MESSAGE);
     }
-    
-    /**
-     * Metodo asignar la informacion a la tabla de empleados.
-     * @param info Matriz con la informacion a asignar.
-     */
+
     @Override
     public void setTabla(String[][] info) {
         TableColumn columnaID;
@@ -562,20 +491,11 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
         removerAgregados();
     }
 
-     /**
-     * Metodo no implementado.
-     * @param info 
-     */
     @Override
     public void setInfo(List info) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    /**
-     * El metodo asigna la lista de informacion al combo box determinado.
-     * @param info Lista con la informacion
-     * @param i Indice de identificacion de combo box
-     */
+
     @Override
     public void setLista(List info, int i) {
         if(info.isEmpty()) return;
@@ -589,12 +509,5 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
                 busquedaCBx.setSelectedIndex(0);
                 break;
         }
-    }
-
-    /**
-     * El metodo limpia la tabla de empleados agregados.
-     */
-    public void limpiar() {
-        empleadosAgrTblModel.setDataVector(new String[0][3], titulosTabla);
     }
 }

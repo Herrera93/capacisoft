@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity"></generator>
         </id>
-        <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select" lazy="false">
+        <many-to-one name="curso" class="mx.edu.cobach.persistencia.entidades.Curso" fetch="select">
             <column name="curso_id" not-null="true" />
         </many-to-one>
         <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select">
@@ -26,7 +26,7 @@
         <property name="activo" type="boolean">
             <column name="activo" not-null="true" />
         </property>
-        <set name="empleados" table="implementacion_curso_empleado" inverse="false" lazy="false" fetch="select">
+        <set name="empleados" table="implementacion_curso_empleado" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="implementacion_curso_id" not-null="true" />
             </key>
@@ -42,7 +42,7 @@
                 <column name="alerta_id" not-null="true" />
             </many-to-many>
         </set>
-        <set name="encuestas" table="encuesta" inverse="true" lazy="false" fetch="select">
+        <set name="encuestas" table="encuesta" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="implementacion_curso_id" not-null="true" />
             </key>

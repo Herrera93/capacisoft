@@ -22,8 +22,6 @@ public class ServiceLocatorFACADE {
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
     private static ProgramarFACADE programaFacade;
-    private static EncuestaFACADE encuestaFacade;
-    private static RespuestaFACADE respuestaFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -102,12 +100,6 @@ public class ServiceLocatorFACADE {
         return aspectoFacade;
     }
     
-    /**
-     * Obtiene el FACADE especifico de la entidad Sede, 
-     * si este no ha sido inicializado se instanciara. 
-     * Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el FACADE de Sede
-     */
     public static SedeFACADE getSede(){
         if(sedeFacade==null){
             sedeFacade = new SedeFACADE();
@@ -115,19 +107,12 @@ public class ServiceLocatorFACADE {
         return sedeFacade;
     }
     
-     /**
-     * Obtiene el FACADE especifico de la entidad Departamento, 
-     * si este no ha sido inicializado se instanciara. 
-     * Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el FACADE de Departamento
-     */
     public static DepartamentoFACADE getDepartamento(){
         if(departamentoFacade == null){
             departamentoFacade = new DepartamentoFACADE();
         }
         return departamentoFacade;
     }
-    
     /**
      * Obtiene el FACADE especifico de la entidad ImplementacionCurso, 
      * si este no ha sido inicializado se instanciara. 
@@ -139,32 +124,6 @@ public class ServiceLocatorFACADE {
             programaFacade = new ProgramarFACADE();
         }
         return programaFacade;
-    }
-    
-    /**
-     * Obtiene el FACADE especifico de la entidad Encuesta, 
-     * si este no ha sido inicializado se instanciara. 
-     * Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el FACADE de Encuesta
-     */
-    public static EncuestaFACADE getEncuesta(){
-        if(encuestaFacade == null){
-            encuestaFacade = new EncuestaFACADE();
-        }
-        return encuestaFacade;
-    }
-    
-    /**
-     * Obtiene el FACADE especifico de la entidad Encuesta, 
-     * si este no ha sido inicializado se instanciara. 
-     * Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el FACADE de Encuesta
-     */
-    public static RespuestaFACADE getRespuesta(){
-        if(respuestaFacade == null){
-            respuestaFacade = new RespuestaFACADE();
-        }
-        return respuestaFacade;
     }
     
 }

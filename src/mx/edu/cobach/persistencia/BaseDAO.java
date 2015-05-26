@@ -13,6 +13,7 @@ import org.hibernate.HibernateException;
 /**
  * DAO generico utilizado para aquellas entidades que no requieran de mas 
  * funcionalidad que no sean las operacion CRUD.
+ * @author Alex
  * @param <T> Generalidad para la clase que se utilizara
  */
 public class BaseDAO<T> implements InterfaceDAO<T> {

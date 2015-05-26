@@ -1,9 +1,6 @@
 package mx.edu.cobach.persistencia.entidades;
 // Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
 
-import java.util.Set;
-
-
 
 
 /**
@@ -15,7 +12,6 @@ public class Alerta  implements java.io.Serializable {
      private Integer id;
      private TipoAlerta tipoAlerta;
      private String descripcion;
-     private Set<ImplementacionCurso> implementacionCursos;
 
     public Alerta() {
     }
@@ -47,15 +43,9 @@ public class Alerta  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return implementacionCursos;
-    }
 
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
-    }
 
-    
+
 }
 
 

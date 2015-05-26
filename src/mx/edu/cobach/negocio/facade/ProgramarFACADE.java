@@ -24,17 +24,13 @@ public class ProgramarFACADE extends BaseFACADE{
     }
     
     /**
-     * Obtiene todas las implementaciones de un curso especifico en un rango
-     * de fechas dado. Si las fechas no estan inicializadas no se tomaran en 
-     * cuenta, solo se tomaran las fechas inicializadas, esto significa que 
-     * se puede dar la fecha 'de' sin dar 'hasta'.
-     * @param curso Curso especifico 
+     * Obtiene todas las implementaciones en un rango de fechas dado.
      * @param de Fecha inicio de rango
      * @param hasta Fecha final de rango
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> buscarCursoPorFechas(Curso curso, Date de, Date hasta){
-        return ServiceLocator.getPrograma().buscarCursoPorFechas(curso, de, hasta);
+    public List<Object> buscarPorFechas(Date de, Date hasta){
+        return ServiceLocator.getPrograma().buscarPorFechas(de, hasta);
     }
 }
 

@@ -18,10 +18,10 @@ public class ServiceLocatorDELEGATE {
     private static CursoDELEGATE cursoDelegate;
     private static EmpleadoDELEGATE empleadoDelegate;
     private static UsuarioDELEGATE usuarioDelegate;
+    private static AspectoDELEGATE aspectoDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
     private static ProgramarDELEGATE programarDelegate;
-    private static EncuestaDELEGATE encuestaDelegate;
     
     /**
      * Obtiene el DELEGATE generico, si este no ha sido inicilizado se instanciara.
@@ -48,13 +48,7 @@ public class ServiceLocatorDELEGATE {
         return usuarioDelegate;
     }
     
-    /**
-     * Obtiene el DELEGATE especifico de la entidad Sede, si este no ha sido
-     * inicializado se instanciara. Este metodo utiliza el patron de diseno
-     * Singleton.
-     * @return Regresa el DELEGATE de Sede
-     */
-    public static SedeDELEGATE getSede(){
+    public static SedeDELEGATE getSedeDelegate(){
         if(sedeDelegate == null){
             sedeDelegate = new SedeDELEGATE();
         }
@@ -101,11 +95,18 @@ public class ServiceLocatorDELEGATE {
     }
     
     /**
-     * Obtiene el DELEGATE especifico de la entidad Departamento, si este no ha sido
+     * Obtiene el DELEGATE especifico de la entidad Aspecto, si este no ha sido
      * inicializado se instanciara. Este metodo utiliza el patron de diseno
      * Singleton.
-     * @return Regresa el DELEGATE de Departamento
+     * @return Regresa el DELEGATE de Aspecto
      */
+    public static AspectoDELEGATE getAspecto(){
+        if(aspectoDelegate == null){
+            aspectoDelegate = new AspectoDELEGATE();
+        }
+        return aspectoDelegate;
+    } 
+    
     public static DepartamentoDELEGATE getDepartamento(){
         if(departamentoDelegate == null){
             departamentoDelegate = new DepartamentoDELEGATE();
@@ -123,19 +124,6 @@ public class ServiceLocatorDELEGATE {
             programarDelegate = new ProgramarDELEGATE();
         }
         return programarDelegate;
-    }
-
-    /**
-     * Obtiene el DELEGATE especifico de la entidad Encuesta, si este
-     * no ha sido inicializado se instanciara. Este metodo utiliza el patron de
-     * diseno Singleton.
-     * @return Regresa el DELEGATE de encuesta
-     */
-    public static EncuestaDELEGATE getEncuesta() {
-        if(encuestaDelegate == null){
-            encuestaDelegate = new EncuestaDELEGATE();
-        }
-        return encuestaDelegate;
     }
     
 }

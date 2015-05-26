@@ -22,8 +22,6 @@ public class ServiceLocator {
     private static DepartamentoDAO departamentoDAO;
     private static SedeDAO sedeDAO;
     private static ProgramarDAO programarDAO;
-    private static EncuestaDAO encuestaDAO;
-    private static RespuestaDAO respuestaDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
@@ -107,7 +105,6 @@ public class ServiceLocator {
         }
         return departamentoDAO;
     }
-    
     /**
      * Obtiene el DAO especifico para Sede, si este no ha sido inicializado
      * se instanciara. Este metodo utiliza el patron de diseno Singleton.
@@ -120,40 +117,11 @@ public class ServiceLocator {
         return sedeDAO;
     }
     
-    /**
-     * Obtiene el DAO especifico para Programa, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Programa
-     */
     public static ProgramarDAO getPrograma(){
         if(programarDAO == null){
             programarDAO = new ProgramarDAO();
         }
         return programarDAO;
-    }
-    
-    /**
-     * Obtiene el DAO especifico para Encuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Encuesta
-     */
-    public static EncuestaDAO getEncuesta(){
-        if(encuestaDAO == null){
-            encuestaDAO = new EncuestaDAO();
-        }
-        return encuestaDAO;
-    }
-    
-    /**
-     * Obtiene el DAO especifico para Respuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Respuesta
-     */
-    public static RespuestaDAO getRespuesta(){
-        if(respuestaDAO == null){
-            respuestaDAO = new RespuestaDAO();
-        }
-        return respuestaDAO;
     }
     
 }

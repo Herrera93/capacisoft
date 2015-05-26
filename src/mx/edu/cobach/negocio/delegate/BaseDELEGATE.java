@@ -10,6 +10,7 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 
 /**
  * Clase DELEGATE generico con metodos comunes entre las entidades
+ * @author Alex
  */
 public class BaseDELEGATE {
 
