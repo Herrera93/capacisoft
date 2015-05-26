@@ -7,7 +7,7 @@
       <column name="id"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="mx.edu.cobach.persistencia.entidades.TipoEvento" fetch="select" name="tipoCurso" lazy="false">
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.TipoEvento" fetch="select" lazy="false" name="tipoEvento">
       <column name="tipo_evento_id" not-null="true"/>
     </many-to-one>
     <property name="nombre" type="string">
@@ -16,11 +16,11 @@
     <property name="descripcion" type="string">
       <column length="65535" name="descripcion" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="false" name="implementacionCursos" table="implementacion_curso">
+    <set fetch="select" inverse="true" lazy="false" name="implementacionEventos" table="implementacion_evento">
       <key>
-        <column name="curso_id" not-null="true"/>
+        <column name="evento_id" not-null="true"/>
       </key>
-      <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionCurso"/>
+      <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento"/>
     </set>
   </class>
 </hibernate-mapping>

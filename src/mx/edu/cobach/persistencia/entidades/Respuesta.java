@@ -13,18 +13,18 @@ public class Respuesta  implements java.io.Serializable {
      private Aspecto aspecto;
      private Empleado empleado;
      private Encuesta encuesta;
-     private int antesCurso;
-     private int despuesCurso;
+     private int antesEvento;
+     private int despuesEvento;
 
     public Respuesta() {
     }
 
-    public Respuesta(Aspecto aspecto, Empleado empleado, Encuesta encuesta, int antesCurso, int despuesCurso) {
+    public Respuesta(Aspecto aspecto, Empleado empleado, Encuesta encuesta, int antesEvento, int despuesEvento) {
        this.aspecto = aspecto;
        this.empleado = empleado;
        this.encuesta = encuesta;
-       this.antesCurso = antesCurso;
-       this.despuesCurso = despuesCurso;
+       this.antesEvento = antesEvento;
+       this.despuesEvento = despuesEvento;
     }
    
     public Integer getId() {
@@ -55,19 +55,19 @@ public class Respuesta  implements java.io.Serializable {
     public void setEncuesta(Encuesta encuesta) {
         this.encuesta = encuesta;
     }
-    public int getAntesCurso() {
-        return this.antesCurso;
+    public int getAntesEvento() {
+        return this.antesEvento;
     }
     
-    public void setAntesCurso(int antesCurso) {
-        this.antesCurso = antesCurso;
+    public void setAntesEvento(int antesEvento) {
+        this.antesEvento = antesEvento;
     }
-    public int getDespuesCurso() {
-        return this.despuesCurso;
+    public int getDespuesEvento() {
+        return this.despuesEvento;
     }
     
-    public void setDespuesCurso(int despuesCurso) {
-        this.despuesCurso = despuesCurso;
+    public void setDespuesEvento(int despuesEvento) {
+        this.despuesEvento = despuesEvento;
     }
 
 

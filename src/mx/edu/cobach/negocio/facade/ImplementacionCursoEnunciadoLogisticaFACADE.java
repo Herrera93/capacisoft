@@ -7,14 +7,14 @@ package mx.edu.cobach.negocio.facade;
 
 import java.util.List;
 import mx.edu.cobach.persistencia.ServiceLocator;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 
 /**
  *
  * @author liuts
  */
 public class ImplementacionCursoEnunciadoLogisticaFACADE{
-    public List<Object> buscarEncuestaPorEvento(ImplementacionCurso eventoProgra) {
+    public List<Object> buscarEncuestaPorEvento(ImplementacionEvento eventoProgra) {
         return ServiceLocator.getEnunciadoCali().buscarEncuestaPorEvento(eventoProgra);
     }
 }

@@ -22,8 +22,8 @@ import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -88,7 +88,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         campoModel.addElement("Sede");
         campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
-        controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
+        controlProgramar = new ProgramarControlador(this, ImplementacionEvento.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMaxSelectableDate(new Date());
     }
@@ -1306,7 +1306,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         HashSet<Empleado> lisEmpleado = new HashSet();
         List<Object> cursoImplementar = new ArrayList();
         List<Object> calificacion = new ArrayList();
-        ImplementacionCurso implementacionCurso = new ImplementacionCurso();
+        ImplementacionEvento implementacionCurso = new ImplementacionEvento();
 
         if (validacion() == false) {
             if (fechaTDCh.getDate() == null) {
@@ -1329,10 +1329,10 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             }
             cursoImplementar.add(lisEmpleado);
             for (int x = 0; x < enunciadoTbl.getRowCount(); x++) {
-                ImplementacionCursoEnunciadoLogistica calificacionLog
-                        = new ImplementacionCursoEnunciadoLogistica();
+                ImplementacionEventoEnunciadoLogistica calificacionLog
+                        = new ImplementacionEventoEnunciadoLogistica();
                 EnunciadoLogistica enunciado = new EnunciadoLogistica();
-                ImplementacionCurso evento = new ImplementacionCurso();
+                ImplementacionEvento evento = new ImplementacionEvento();
                 enunciado.setId(x + 1);
                 calificacionLog.setEnunciadoLogistica(enunciado);
                 calificacionLog.setCalificacion(Integer.parseInt((String) modelTablaEn.
@@ -1341,11 +1341,11 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                     calificacionLog.setId(Integer.parseInt((String) modelTablaEn.
                             getValueAt(x, 0)));
                     evento.setId(eventoProgramarId);
-                    calificacionLog.setImplementacionCurso(evento);
+                    calificacionLog.setImplementacionEvento(evento);
                 }
                 calificacion.add(calificacionLog);
             }
-            controlProgramar.setClass(ImplementacionCurso.class);
+            controlProgramar.setClass(ImplementacionEvento.class);
             if (guardarGBtn.getText().equals("Guardar")) {
                 implementacionCurso = HelperEntidad.getProgramar(cursoImplementar, "Guardar");
                 controlProgramar.guardarOModificarEventoImplementado(implementacionCurso,
@@ -1367,7 +1367,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      * @param info
      */
     public void obtenerMod(List info) {
-        ImplementacionCurso cursoImplementado = new ImplementacionCurso();
+        ImplementacionEvento cursoImplementado = new ImplementacionEvento();
         agregarGLbl.setText("Modificar");
         agregarLALbl.setText("Modificar");
         agregarCLbl.setText("Modificar");
@@ -1410,7 +1410,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             controlProgramar.setClass(Empleado.class);
             controlProgramar.buscarEmpId(id, Empleado.class);
         }
-        controlProgramar.setClass(ImplementacionCursoEnunciadoLogistica.class);
+        controlProgramar.setClass(ImplementacionEventoEnunciadoLogistica.class);
         controlProgramar.bucarCalificacionMod(cursoImplementado);
     }
     /**

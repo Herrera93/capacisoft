@@ -13,8 +13,8 @@ import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
@@ -184,21 +184,21 @@ public class ProgramarControlador extends BaseControlador {
         if (envio.equals("Guardar")) {
             object = ServiceLocatorDELEGATE.getPrograma().guardarEvento(impleEvento, clazz);
             for (int x = 0; x < listaCalificacion.size(); x++) {
-                ImplementacionCursoEnunciadoLogistica infoCalificacion
-                        = new ImplementacionCursoEnunciadoLogistica();
-                ImplementacionCurso implementacionCurso = new ImplementacionCurso();
+                ImplementacionEventoEnunciadoLogistica infoCalificacion
+                        = new ImplementacionEventoEnunciadoLogistica();
+                ImplementacionEvento implementacionCurso = new ImplementacionEvento();
                 implementacionCurso.setId(Integer.parseInt(object.toString()));
 
-                infoCalificacion = (ImplementacionCursoEnunciadoLogistica) listaCalificacion.get(x);
-                infoCalificacion.setImplementacionCurso(implementacionCurso);
+                infoCalificacion = (ImplementacionEventoEnunciadoLogistica) listaCalificacion.get(x);
+                infoCalificacion.setImplementacionEvento(implementacionCurso);
                 ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
             }
         }else{
             ServiceLocatorDELEGATE.getInstance().saveOrUpdate(impleEvento, clazz);
             for (int x = 0; x < listaCalificacion.size(); x++) {
-                ImplementacionCursoEnunciadoLogistica infoCalificacion
-                        = new ImplementacionCursoEnunciadoLogistica();
-                infoCalificacion = (ImplementacionCursoEnunciadoLogistica) listaCalificacion.get(x);
+                ImplementacionEventoEnunciadoLogistica infoCalificacion
+                        = new ImplementacionEventoEnunciadoLogistica();
+                infoCalificacion = (ImplementacionEventoEnunciadoLogistica) listaCalificacion.get(x);
                 ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
             }
         }
@@ -211,7 +211,7 @@ public class ProgramarControlador extends BaseControlador {
      *
      * @param impleEvento
      */
-    public void bucarCalificacionMod(ImplementacionCurso impleEvento) {
+    public void bucarCalificacionMod(ImplementacionEvento impleEvento) {
         List<Object> o = ServiceLocatorDELEGATE.getPrograma().buscarPorEncuesta(impleEvento);
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         matriz[0][0] = matriz[0][0] + "TLE4"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira

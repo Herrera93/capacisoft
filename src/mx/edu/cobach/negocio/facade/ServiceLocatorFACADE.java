@@ -5,7 +5,7 @@
  */
 package mx.edu.cobach.negocio.facade;
 
-import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 
 /**
  * Clase para localizacion de servicios FACADE

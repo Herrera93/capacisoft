@@ -16,7 +16,7 @@ public class EnunciadoLogistica  implements java.io.Serializable {
      private Integer id;
      private TipoEnunciado tipoEnunciado;
      private String descripcion;
-     private Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas = new HashSet<ImplementacionCursoEnunciadoLogistica>(0);
+     private Set<ImplementacionEventoEnunciadoLogistica> implementacionEventoEnunciadoLogisticas = new HashSet<ImplementacionEventoEnunciadoLogistica>(0);
 
     public EnunciadoLogistica() {
     }
@@ -26,10 +26,10 @@ public class EnunciadoLogistica  implements java.io.Serializable {
        this.descripcion = descripcion;
     }
     
-    public EnunciadoLogistica(TipoEnunciado tipoEnunciado, String descripcion, Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
+    public EnunciadoLogistica(TipoEnunciado tipoEnunciado, String descripcion, Set<ImplementacionEventoEnunciadoLogistica> implementacionEventoEnunciadoLogisticas) {
        this.tipoEnunciado = tipoEnunciado;
        this.descripcion = descripcion;
-       this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
+       this.implementacionEventoEnunciadoLogisticas = implementacionEventoEnunciadoLogisticas;
     }
    
     public Integer getId() {
@@ -54,12 +54,12 @@ public class EnunciadoLogistica  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 
-    public Set<ImplementacionCursoEnunciadoLogistica> getImplementacionCursoEnunciadoLogisticas() {
-        return this.implementacionCursoEnunciadoLogisticas;
+    public Set<ImplementacionEventoEnunciadoLogistica> getImplementacionEventoEnunciadoLogisticas() {
+        return this.implementacionEventoEnunciadoLogisticas;
     }
     
-    public void setImplementacionCursoEnunciadoLogisticas(Set<ImplementacionCursoEnunciadoLogistica> implementacionCursoEnunciadoLogisticas) {
-        this.implementacionCursoEnunciadoLogisticas = implementacionCursoEnunciadoLogisticas;
+    public void setImplementacionEventoEnunciadoLogisticas(Set<ImplementacionEventoEnunciadoLogistica> implementacionEventoEnunciadoLogisticas) {
+        this.implementacionEventoEnunciadoLogisticas = implementacionEventoEnunciadoLogisticas;
     }
 
     public String toString(){

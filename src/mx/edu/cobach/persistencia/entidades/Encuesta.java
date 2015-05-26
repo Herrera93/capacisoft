@@ -12,18 +12,18 @@ public class Encuesta  implements java.io.Serializable {
 
 
      private Integer id;
-     private ImplementacionCurso implementacionCurso;
+     private ImplementacionEvento implementacionEvento;
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
 
     public Encuesta() {
     }
 
 	
-    public Encuesta(ImplementacionCurso implementacionCurso) {
-        this.implementacionCurso = implementacionCurso;
+    public Encuesta(ImplementacionEvento implementacionEvento) {
+        this.implementacionEvento = implementacionEvento;
     }
-    public Encuesta(ImplementacionCurso implementacionCurso, Set<Respuesta> respuestas) {
-       this.implementacionCurso = implementacionCurso;
+    public Encuesta(ImplementacionEvento implementacionEvento, Set<Respuesta> respuestas) {
+       this.implementacionEvento= implementacionEvento;
        this.respuestas = respuestas;
     }
    
@@ -34,12 +34,12 @@ public class Encuesta  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public ImplementacionCurso getImplementacionCurso() {
-        return this.implementacionCurso;
+    public ImplementacionEvento getImplementacionEvento() {
+        return this.implementacionEvento;
     }
     
-    public void setImplementacionCurso(ImplementacionCurso implementacionCurso) {
-        this.implementacionCurso = implementacionCurso;
+    public void setImplementacionEvento(ImplementacionEvento implementacionEvento) {
+        this.implementacionEvento = implementacionEvento;
     }
     public Set<Respuesta> getRespuestas() {
         return this.respuestas;

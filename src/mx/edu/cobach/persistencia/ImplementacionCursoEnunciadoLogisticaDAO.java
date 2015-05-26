@@ -6,8 +6,8 @@
 package mx.edu.cobach.persistencia;
 
 import java.util.List;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
@@ -20,7 +20,7 @@ public class ImplementacionCursoEnunciadoLogisticaDAO extends BaseDAO{
     
     public ImplementacionCursoEnunciadoLogisticaDAO(){
         super();
-        super.entityClass = ImplementacionCursoEnunciadoLogistica.class;
+        super.entityClass = ImplementacionEventoEnunciadoLogistica.class;
     }
     /**
      * Metodo para la obtencion de la calificacion de la logistica de los 
@@ -28,7 +28,7 @@ public class ImplementacionCursoEnunciadoLogisticaDAO extends BaseDAO{
      * @param eventoProgra
      * @return 
      */
-    public List<Object> buscarEncuestaPorEvento(ImplementacionCurso eventoProgra) {
+    public List<Object> buscarEncuestaPorEvento(ImplementacionEvento eventoProgra) {
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();

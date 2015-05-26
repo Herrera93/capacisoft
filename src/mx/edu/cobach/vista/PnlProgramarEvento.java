@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Evento;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.ProgramarControlador;
 
@@ -34,7 +34,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     private String estado;
 
     public PnlProgramarEvento() {
-        control = new ProgramarControlador(this, ImplementacionCurso.class);
+        control = new ProgramarControlador(this, ImplementacionEvento.class);
         initComponents();
         agregar();
         model = new DefaultTableModel(titulosTabla, 4);
@@ -463,7 +463,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             }
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
             control
-                    .setClass(ImplementacionCurso.class
+                    .setClass(ImplementacionEvento.class
                     );
             control.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
@@ -486,7 +486,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         Evento campoCurso = (Evento) tipoBusCBx.getSelectedItem();
 
         if (campoCurso.getNombre().compareTo("") != 0) {
-            control.setClass(ImplementacionCurso.class
+            control.setClass(ImplementacionEvento.class
             );
             control.buscarPorEvento(
                     (Evento) tipoBusCBx.getSelectedItem());
@@ -495,11 +495,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             Date de = fechaInicialDCh.getDate();
             Date hasta = fechaTerminacionDCh.getDate();
             control
-                    .setClass(ImplementacionCurso.class
+                    .setClass(ImplementacionEvento.class
                     );
             control.buscarImplementacion(de, hasta);
         } else {
-            control.setClass(ImplementacionCurso.class
+            control.setClass(ImplementacionEvento.class
             );
             control.buscarTodos();
         }

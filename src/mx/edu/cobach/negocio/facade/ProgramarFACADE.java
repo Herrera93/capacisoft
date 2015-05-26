@@ -10,7 +10,7 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.ServiceLocator;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 
 /**
  *

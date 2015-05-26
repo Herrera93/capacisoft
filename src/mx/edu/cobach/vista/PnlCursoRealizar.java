@@ -19,8 +19,8 @@ import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -75,7 +75,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
         campoModel.addElement("Sede");
         campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
-        controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
+        controlProgramar = new ProgramarControlador(this, ImplementacionEvento.class);
 
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
@@ -1014,7 +1014,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
                 lisEmpleado.add(empleado);
             }
             atributos.add(lisEmpleado);
-            controlProgramar.setClass(ImplementacionCurso.class);
+            controlProgramar.setClass(ImplementacionEvento.class);
             if (guardarGBtn.getText().equals("Guardar")) {
                 controlProgramar.alta(HelperEntidad.getProgramar(atributos, "Guardar"));
             } else {
@@ -1031,7 +1031,7 @@ public class PnlCursoRealizar extends javax.swing.JPanel implements Comunicador 
      * @param info
      */
     public void obtenerMod(List info) {
-        ImplementacionCurso cursoImplementado = new ImplementacionCurso();
+        ImplementacionEvento cursoImplementado = new ImplementacionEvento();
         agregarGLbl.setText("Modificar");
         agregarLALbl.setText("Modificar");
         guardarGBtn.setText("Modificar");

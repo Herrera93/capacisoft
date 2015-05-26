@@ -6,7 +6,7 @@
 
 package mx.edu.cobach.persistencia;
 
-import mx.edu.cobach.persistencia.entidades.ImplementacionCursoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 
 /**
  * Clase para localizar los servicios de DAOs
