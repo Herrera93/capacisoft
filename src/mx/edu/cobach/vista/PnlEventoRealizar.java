@@ -206,19 +206,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         fechaIDCh.setDateFormatString("dd/MM/yyyy");
         fechaIDCh.setEnabled(false);
-        fechaIDCh.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                fechaIDChKeyTyped(evt);
-            }
-        });
 
         fechaTDCh.setDateFormatString("dd/MM/yyyy");
         fechaTDCh.setEnabled(false);
-        fechaTDCh.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                fechaTDChKeyTyped(evt);
-            }
-        });
 
         agregarGLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarGLbl.setText("Agregar");
@@ -773,12 +763,12 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt
      */
     private void tipoSedeGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeGCBxItemStateChanged
-        this.cambio = true;
         Sede sede = (Sede) tipoSedeGCBx.getSelectedItem();
         if (sede != null) {
             if (sede.getNombre().equals("")) {
                 capacidadSedeGLbl.setText("Capacidad de la sede: ");
             } else {
+                this.cambio = true;
                 capacidadSedeGLbl.setText("Capacidad de la sede: " + sede.getCapacidad());
             }
         }
@@ -847,23 +837,17 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt 
      */
     private void nombreGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreGCBxItemStateChanged
+        Proveedor proveedor = (Proveedor) nombreGCBx.getSelectedItem();
+        if (proveedor != null) {
+            if (proveedor.getPrimerNombre().equals("")) {
+            } else {
+                this.cambio = true;
+            }
+        }
         this.cambio = true;
     }//GEN-LAST:event_nombreGCBxItemStateChanged
-    /**
-     * Metodo para indicar que a habido un cambio en la el panel
-     * @param evt 
-     */
-    private void fechaIDChKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaIDChKeyTyped
-        this.cambio = true;
-    }//GEN-LAST:event_fechaIDChKeyTyped
-    /**
-     * Metodo para indicar que a habido un cambio en la el panel
-     * @param evt 
-     */
-    private void fechaTDChKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaTDChKeyTyped
-        this.cambio = true;
-    }//GEN-LAST:event_fechaTDChKeyTyped
-    /**
+
+   /**
      * Metodo que recibe el evento del catalogo para llenar parte de la
      * informacion general del evento a llevar a cabo
      *

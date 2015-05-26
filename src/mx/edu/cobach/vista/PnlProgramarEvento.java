@@ -418,20 +418,23 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
      * @param evt
      */
     private void regRealizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizarBtnActionPerformed
-        int op = JOptionPane.showConfirmDialog(this, "La información se"
-                + " esta modificando,¿Aun así desea cancelarla?",
-                "Precaucion", JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
-        if (op == 0) {
-            eventoRealizadoPnl.limpiarCampos();
-            eventoRealizarPnl.limpiarCampos();
-            eventoRealizadoPnl.limpiarCampos();
-            eventoRealizarPnl.setVisible(true);
-            eventoRealizadoPnl.setVisible(false);
-            eventoRealizarPnl.buscarEvento((Evento) tipoRegCBx
-                    .getSelectedItem());
-            eventoRealizarPnl.llenarTodo();
-            eventoRealizarPnl.visibilidad(true);
+        if (eventoRealizarPnl.isCambio() == true
+                || eventoRealizadoPnl.isCambio() == true) {
+            int op = JOptionPane.showConfirmDialog(this, "La información se"
+                    + " esta modificando,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (op == 0) {
+                eventoRealizadoPnl.limpiarCampos();
+                eventoRealizarPnl.limpiarCampos();
+                eventoRealizadoPnl.limpiarCampos();
+                eventoRealizarPnl.setVisible(true);
+                eventoRealizadoPnl.setVisible(false);
+                eventoRealizarPnl.buscarEvento((Evento) tipoRegCBx
+                        .getSelectedItem());
+                eventoRealizarPnl.llenarTodo();
+                eventoRealizarPnl.visibilidad(true);
+            }
         } else {
             eventoRealizadoPnl.setVisible(false);
             eventoRealizarPnl.setVisible(true);
