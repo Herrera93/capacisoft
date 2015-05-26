@@ -13,11 +13,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
+ *  Esta clase conecta es la encargada de la obtencio especifica para la tabla 
+ * ImplementacionEventoEnunciadoLogisticaDAO
  * @author liuts
  */
 public class ImplementacionEventoEnunciadoLogisticaDAO extends BaseDAO{
-    
+    /**
+     * Contructor de la clase ImplementacionEventoEnunciadoLogisticaDAO
+     */
     public ImplementacionEventoEnunciadoLogisticaDAO(){
         super();
         super.entityClass = ImplementacionEventoEnunciadoLogistica.class;

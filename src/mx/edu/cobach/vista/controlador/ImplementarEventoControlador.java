@@ -21,11 +21,17 @@ import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
- *
+ * Esta clase sirve para controlar la informacion de los eventos utilizando
+ * metodos para la obtencion de la informacion necesario y descomponerla en 
+ * listas y matrices para enviarlas a los pnl
  * @author liuts
  */
 public class ImplementarEventoControlador extends BaseControlador {
-
+    /**
+     * Controlador de la clase ImplementarEventoControlador
+     * @param com
+     * @param clazz 
+     */
     public ImplementarEventoControlador(Comunicador com, Class clazz) {
         super(com, clazz);
     }
