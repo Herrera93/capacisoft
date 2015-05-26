@@ -13,7 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
@@ -167,7 +167,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     * entre se mostrara todos los datos correspondientes.
     */
     public void llenarTodo(){
-        control.setClass(Curso.class);
+        control.setClass(Evento.class);
         control.buscarTodosLista(1);
         agregarAspectosPnl.llenarTodo();
     }

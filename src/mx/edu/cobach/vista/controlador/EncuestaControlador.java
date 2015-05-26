@@ -10,7 +10,8 @@ import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Competencia;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
 import mx.edu.cobach.persistencia.entidades.Plantel;
@@ -39,8 +40,8 @@ public class EncuestaControlador extends BaseControlador {
      * @param nombre Cade con el nombre a buscar
      */    
     public void buscarPorNombre(String nombre){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByNombre(nombre);
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
+                .buscarEmPorNombre(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
@@ -51,8 +52,8 @@ public class EncuestaControlador extends BaseControlador {
      * @param puesto Objeto del puesto para buscar coincidencias
      */
     public void buscarPorPuesto(Object puesto){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByPuesto((Puesto) puesto);
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
+                .buscarEmPorPuesto((Puesto) puesto);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
@@ -63,8 +64,8 @@ public class EncuestaControlador extends BaseControlador {
      * @param departamento Objeto del departamento para buscar coincidencias
      */
     public void buscarPorDepartamento(Object departamento){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByDepartamento((Departamento) departamento);
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
+                .buscarEmPorDepartamento((Departamento) departamento);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
     
@@ -75,8 +76,8 @@ public class EncuestaControlador extends BaseControlador {
      * @param plantel Objeto del plantel para buscar coincidencias
      */
     public void buscarPorPlantel(Object plantel){
-        List<Object> empleados = ServiceLocatorDELEGATE.getPrograma()
-                .findByPlantel((Plantel) plantel);
+        List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
+                .buscarEmPorPlantel((Plantel) plantel);
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }
         

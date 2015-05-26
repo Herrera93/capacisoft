@@ -5,6 +5,8 @@
  */
 package mx.edu.cobach.negocio.facade;
 
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
+
 /**
  * Clase para localizacion de servicios FACADE
  * @author Alex
@@ -24,6 +26,8 @@ public class ServiceLocatorFACADE {
     private static ProgramarFACADE programaFacade;
     private static EncuestaFACADE encuestaFacade;
     private static RespuestaFACADE respuestaFacade;
+    private static ImplementacionEventoFACADE implementacionEventoFacade;
+    private static ImplementacionEventoEnunciadoLogisticaFACADE calificacionFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -134,11 +138,11 @@ public class ServiceLocatorFACADE {
      * Este metodo utiliza el patron de diseno Singleton.
      * @return Regresa el FACADE de Implementacion
      */
-    public static ProgramarFACADE getPrograma(){
-        if(programaFacade == null){
-            programaFacade = new ProgramarFACADE();
+    public static ImplementacionEventoFACADE getImplementacionEvento(){
+        if(implementacionEventoFacade == null){
+            implementacionEventoFacade = new ImplementacionEventoFACADE();
         }
-        return programaFacade;
+        return implementacionEventoFacade;
     }
     
     /**
@@ -167,4 +171,17 @@ public class ServiceLocatorFACADE {
         return respuestaFacade;
     }
     
+    /**
+     * Obtiene el FACADE especifico de la entidad denada
+     * 
+     * ImplementacionCursoEnunciadoLogistica, si este no ha sido inicializado se
+     * instanciara. 
+     * @return Regresa el facade de ImplementacionCursoEnunciadoLogistica
+     */
+    public static ImplementacionEventoEnunciadoLogisticaFACADE getEnunciadoCali(){
+        if(calificacionFacade == null){
+            calificacionFacade = new ImplementacionEventoEnunciadoLogisticaFACADE();
+        }
+        return calificacionFacade;
+    }
 }

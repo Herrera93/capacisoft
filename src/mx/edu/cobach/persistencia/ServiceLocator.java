@@ -5,6 +5,9 @@
  */
 
 package mx.edu.cobach.persistencia;
+
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
+
 /**
  * Clase para localizar los servicios de DAOs
  * @author Alex
@@ -24,6 +27,8 @@ public class ServiceLocator {
     private static ProgramarDAO programarDAO;
     private static EncuestaDAO encuestaDAO;
     private static RespuestaDAO respuestaDAO;
+    private static ImplementacionEventoDAO implementarDAO;
+    private static ImplementacionEventoEnunciadoLogisticaDAO calificacionDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
@@ -128,32 +133,16 @@ public class ServiceLocator {
     public static ProgramarDAO getPrograma(){
         if(programarDAO == null){
             programarDAO = new ProgramarDAO();
-        }
-        return programarDAO;
-    }
-    
     /**
-     * Obtiene el DAO especifico para Encuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Encuesta
+     * Obtiene el DAO especifico para ImplementacionCurso, si este no ha sido
+     * inicializado se instanciara.
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de ImplementacionCurso 
      */
-    public static EncuestaDAO getEncuesta(){
-        if(encuestaDAO == null){
-            encuestaDAO = new EncuestaDAO();
+    public static ImplementacionEventoDAO getImplementacionEvento(){
+        if(implementarDAO == null){
+            implementarDAO = new ImplementacionEventoDAO();
         }
-        return encuestaDAO;
+        return implementarDAO;
     }
-    
-    /**
-     * Obtiene el DAO especifico para Respuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Respuesta
-     */
-    public static RespuestaDAO getRespuesta(){
-        if(respuestaDAO == null){
-            respuestaDAO = new RespuestaDAO();
-        }
-        return respuestaDAO;
-    }
-    
 }
