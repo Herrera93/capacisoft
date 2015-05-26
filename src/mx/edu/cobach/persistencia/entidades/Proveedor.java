@@ -19,7 +19,7 @@ public class Proveedor  implements java.io.Serializable {
      private String apellidoMaterno;
      private String correoElectronico;
      private double calificacion;
-     private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
+     private Set<ImplementacionEvento> implementacionEventos = new HashSet<ImplementacionEvento>(0);
      private Set<Telefono> telefonos = new HashSet<Telefono>(0);
 
     public Proveedor() {
@@ -35,7 +35,7 @@ public class Proveedor  implements java.io.Serializable {
         this.correoElectronico = correoElectronico;
         this.calificacion = calificacion;
     }
-    public Proveedor(TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, double calificacion, Set<ImplementacionCurso> implementacionCursos, Set<Telefono> telefonos) {
+    public Proveedor(TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, double calificacion, Set<ImplementacionEvento> implementacionEventos, Set<Telefono> telefonos) {
        this.tipoProveedor = tipoProveedor;
        this.primerNombre = primerNombre;
        this.segundoNombre = segundoNombre;
@@ -43,7 +43,7 @@ public class Proveedor  implements java.io.Serializable {
        this.apellidoMaterno = apellidoMaterno;
        this.correoElectronico = correoElectronico;
        this.calificacion = calificacion;
-       this.implementacionCursos = implementacionCursos;
+       this.implementacionEventos = implementacionEventos;
        this.telefonos = telefonos;
     }
    
@@ -103,12 +103,12 @@ public class Proveedor  implements java.io.Serializable {
     public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
     }
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return this.implementacionCursos;
+    public Set<ImplementacionEvento> getImplementacionEventos() {
+        return this.implementacionEventos;
     }
     
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
+    public void setImplementacionEventos(Set<ImplementacionEvento> implementacionEventos) {
+        this.implementacionEventos = implementacionEventos;
     }
     public Set<Telefono> getTelefonos() {
         return this.telefonos;
@@ -118,8 +118,12 @@ public class Proveedor  implements java.io.Serializable {
         this.telefonos = telefonos;
     }
 
-
-
+     @Override
+    public String toString(){
+        return this.primerNombre + " " + this.segundoNombre + " " + 
+                this.apellidoPaterno + " " + this.apellidoPaterno;
+    }
+    
 
 }
 

@@ -750,7 +750,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         for(int j = 0; j < info.size(); j++){
             eventosCBxModel.addElement(info.get(j));
         }
-        eventosCBxModel.insertElementAt(new Curso(), 0);
+        eventosCBxModel.insertElementAt(new Evento(), 0);
         eventoCBx.setSelectedIndex(0);
     }
 }

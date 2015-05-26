@@ -8,59 +8,54 @@ package mx.edu.cobach.vista;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import javax.swing.DefaultCellEditor;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
-import mx.edu.cobach.vista.controlador.ProgramarControlador;
+import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
  *
  * @author liuts
  */
-public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador {
+public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador {
 
     /**
-     * Creates new form PnlCursoRealizado
+     * Creates new form PnlEventoRealizar
      */
-    private static ProgramarControlador controlProgramar;
-    private int cursoProgramarId;
+    private static ImplementarEventoControlador control;
+    private int eventoProgramarId;
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private final DefaultComboBoxModel tipoModel;
     private final DefaultComboBoxModel campoModel;
-    private DefaultTableModel modelTablaEn;
     private DefaultTableModel modelTablaEmI;
     private DefaultTableModel modelTablaEmF;
-    private String[] titulosTablaEn = {"ID", "Tipo", "Enunciado", "Calificación"};
-    private String[] titulosTablaEm = {"ID", "Numero del Empleado", "Nombre del Empleado"};
-    private Curso curso;
+    private String[] titulosTablaEm = {"ID", "Numero del Empleado",
+        "Nombre del Empleado"};
+    private Evento evento;
+    private boolean cambio = false;
 
-    public PnlCursoRealizado() {
+    public PnlEventoRealizar() {
         initComponents();
         sedeModel = new DefaultComboBoxModel();
         proveedorModel = new DefaultComboBoxModel();
         tipoModel = new DefaultComboBoxModel();
         campoModel = new DefaultComboBoxModel();
-
-        modelTablaEn = new DefaultTableModel(titulosTablaEn, 0);
-        enunciadoTbl.setModel(modelTablaEn);
-        enunciadoTbl.setColumnSelectionAllowed(false);
-        enunciadoTbl.setDragEnabled(false);
 
         modelTablaEmI = new DefaultTableModel(titulosTablaEm, 0);
         tablaLisITbl.setModel(modelTablaEmI);
@@ -75,10 +70,17 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
         tipoLACBx.setModel(tipoModel);
+        campoModel.addElement("");
+        campoModel.addElement("Nombre");
+        campoModel.addElement("Departamento");
+        campoModel.addElement("Puesto");
+        campoModel.addElement("Sede");
+        campoModel.addElement("Plantel");
         campoCBx.setModel(campoModel);
-        controlProgramar = new ProgramarControlador(this, ImplementacionCurso.class);
-        fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
-        fechaTDCh.getJCalendar().setMaxSelectableDate(new Date());
+        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
+
+        fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
+        fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
     }
 
     /**
@@ -110,6 +112,8 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         fechaTDCh = new com.toedter.calendar.JDateChooser();
         agregarGLbl = new javax.swing.JLabel();
         notaGLbl = new javax.swing.JLabel();
+        capacidadSedeGLbl = new javax.swing.JLabel();
+        cancelarGBtn = new javax.swing.JButton();
         listaPnl = new javax.swing.JPanel();
         campoLbl = new javax.swing.JLabel();
         campoCBx = new javax.swing.JComboBox();
@@ -129,37 +133,34 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         seleccionLALbl = new javax.swing.JLabel();
         tipoLACBx = new javax.swing.JComboBox();
         buscarLABtn = new javax.swing.JButton();
-        calificacionPnl = new javax.swing.JPanel();
-        guardarCBtn = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        enunciadoTbl = new javax.swing.JTable();
-        agregarCLbl = new javax.swing.JLabel();
-        nota_CL_Lbl = new javax.swing.JLabel();
+        listaAsistenciaLALbl = new javax.swing.JLabel();
+        listaCandidatosLALbl = new javax.swing.JLabel();
+        cancelarLABtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         informacionTP.setPreferredSize(new java.awt.Dimension(739, 472));
 
         nombreGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreGLbl.setText("Nombre del curso:");
+        nombreGLbl.setText("Nombre del evento:");
 
         fechaILbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaILbl.setText("Fecha inicial de curso:");
+        fechaILbl.setText("Fecha inicial de evento:");
 
         fechaTLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaTLbl.setText("Fecha de terminación  del curso:");
+        fechaTLbl.setText("Fecha de terminación del evento:");
 
         tipoGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoGLbl.setText("Tipo de curso:");
+        tipoGLbl.setText("Tipo de evento:");
 
         sedeGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sedeGLbl.setText("Sede del curso:");
+        sedeGLbl.setText("Sede del evento:");
 
         nombrePrLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombrePrLbl.setText("Nombre de Proveedor:");
 
         descripcionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        descripcionLbl.setText("Descripcion del curso:");
+        descripcionLbl.setText("Descripción del evento:");
 
         nombreGTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreGTFd.setEnabled(false);
@@ -171,17 +172,26 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         jScrollPane1.setViewportView(descripcionGTAa);
 
         tipoGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia", "Taller" }));
+        tipoGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CONFERENCIA", "TALLER", "CURSO", "CURSO / TALLER", "PLATICA" }));
         tipoGCBx.setEnabled(false);
-        tipoGCBx.setMaximumSize(new java.awt.Dimension(100, 23));
 
         tipoSedeGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoSedeGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         tipoSedeGCBx.setEnabled(false);
+        tipoSedeGCBx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tipoSedeGCBxItemStateChanged(evt);
+            }
+        });
 
         nombreGCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreGCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         nombreGCBx.setEnabled(false);
+        nombreGCBx.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nombreGCBxItemStateChanged(evt);
+            }
+        });
 
         guardarGBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarGBtn.setText("Guardar");
@@ -194,14 +204,36 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
 
         fechaIDCh.setDateFormatString("dd/MM/yyyy");
         fechaIDCh.setEnabled(false);
+        fechaIDCh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fechaIDChKeyTyped(evt);
+            }
+        });
 
         fechaTDCh.setDateFormatString("dd/MM/yyyy");
         fechaTDCh.setEnabled(false);
+        fechaTDCh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fechaTDChKeyTyped(evt);
+            }
+        });
 
         agregarGLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarGLbl.setText("Agregar");
 
         notaGLbl.setText("Ingrese la información a almacenar");
+
+        capacidadSedeGLbl.setText("Capacidad de la sede:");
+        capacidadSedeGLbl.setEnabled(false);
+
+        cancelarGBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarGBtn.setText("Cancelar");
+        cancelarGBtn.setEnabled(false);
+        cancelarGBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarGBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout generalPnlLayout = new javax.swing.GroupLayout(generalPnl);
         generalPnl.setLayout(generalPnlLayout);
@@ -211,12 +243,18 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 .addGap(37, 37, 37)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                        .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(generalPnlLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))
+                            .addGroup(generalPnlLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(generalPnlLayout.createSequentialGroup()
                         .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(generalPnlLayout.createSequentialGroup()
@@ -227,29 +265,27 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                                 .addComponent(agregarGLbl)
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generalPnlLayout.createSequentialGroup()
-                                        .addComponent(fechaILbl)
+                                        .addComponent(fechaILbl, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generalPnlLayout.createSequentialGroup()
-                                        .addComponent(nombreGLbl)
+                                        .addComponent(nombreGLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(102, 102, 102)
                                         .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(notaGLbl)))
                         .addGap(59, 59, 59)
                         .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(generalPnlLayout.createSequentialGroup()
-                                .addComponent(tipoGLbl)
-                                .addGap(57, 57, 57)
-                                .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(generalPnlLayout.createSequentialGroup()
-                                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombrePrLbl)
-                                    .addComponent(sedeGLbl))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                            .addComponent(nombrePrLbl)
+                            .addComponent(sedeGLbl)
+                            .addComponent(tipoGLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tipoSedeGCBx, 0, 153, Short.MAX_VALUE)
+                                .addComponent(nombreGCBx, 0, 153, Short.MAX_VALUE)
+                                .addComponent(capacidadSedeGLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(17, Short.MAX_VALUE))))
         );
         generalPnlLayout.setVerticalGroup(
             generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,30 +300,31 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                     .addComponent(tipoGLbl)
                     .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreGLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaILbl)
                     .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(sedeGLbl)
                         .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(capacidadSedeGLbl)
+                .addGap(39, 39, 39)
+                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nombrePrLbl)
+                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fechaTLbl)
+                        .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(79, 79, 79)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nombrePrLbl)
-                            .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fechaTLbl)
-                                .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(79, 79, 79)
-                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descripcionLbl)))
-                    .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44))
+                    .addComponent(descripcionLbl)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         informacionTP.addTab("General", generalPnl);
@@ -325,10 +362,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         });
         tablaLisITbl.setEnabled(false);
         jScrollPane4.setViewportView(tablaLisITbl);
-        if (tablaLisITbl.getColumnModel().getColumnCount() > 0) {
-            tablaLisITbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaLisITbl.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -351,13 +384,10 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         });
         tablaLisFTbl.setEnabled(false);
         jScrollPane5.setViewportView(tablaLisFTbl);
-        if (tablaLisFTbl.getColumnModel().getColumnCount() > 0) {
-            tablaLisFTbl.getColumnModel().getColumn(0).setResizable(false);
-            tablaLisFTbl.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         guardarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarLABtn.setText("Guardar");
+        guardarLABtn.setEnabled(false);
         guardarLABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarLABtnActionPerformed(evt);
@@ -367,6 +397,11 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         nombreLATFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLATFd.setEnabled(false);
         nombreLATFd.setMaximumSize(new java.awt.Dimension(6, 23));
+        nombreLATFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreLATFdKeyTyped(evt);
+            }
+        });
 
         nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLALbl.setText("Nombre del Empleado:");
@@ -433,6 +468,20 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             }
         });
 
+        listaAsistenciaLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        listaAsistenciaLALbl.setText("Lista de asistencia");
+
+        listaCandidatosLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        listaCandidatosLALbl.setText("Lista de posibles candidatos");
+
+        cancelarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarLABtn.setText("Cancelar");
+        cancelarLABtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarLABtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout listaPnlLayout = new javax.swing.GroupLayout(listaPnl);
         listaPnl.setLayout(listaPnlLayout);
         listaPnlLayout.setHorizontalGroup(
@@ -440,47 +489,68 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listaPnlLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(agregarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(eliminarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eliminarTBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(listaPnlLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nota_LI_Lbl)
-                            .addComponent(agregarLALbl)))
+                            .addComponent(agregarLALbl)
+                            .addGroup(listaPnlLayout.createSequentialGroup()
+                                .addComponent(campoLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(listaPnlLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(campoLbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(listaPnlLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(listaPnlLayout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(agregarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(agregarTBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(eliminarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)))
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listaPnlLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(23, Short.MAX_VALUE))
+                        .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buscarLABtn)
+                            .addGroup(listaPnlLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(buscarLABtn))
                             .addGroup(listaPnlLayout.createSequentialGroup()
                                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(seleccionLALbl)
                                     .addComponent(nombreLALbl))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nombreLATFd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tipoLACBx, 0, 158, Short.MAX_VALUE))))
-                        .addGap(22, 22, 22))))
+                                    .addComponent(tipoLACBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(16, 16, 16))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(0, 496, Short.MAX_VALUE)
+                .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
+                        .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
+                        .addComponent(listaAsistenciaLALbl)
+                        .addGap(111, 111, 111))))
+            .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(listaPnlLayout.createSequentialGroup()
+                    .addGap(72, 72, 72)
+                    .addComponent(listaCandidatosLALbl)
+                    .addContainerGap(488, Short.MAX_VALUE)))
         );
         listaPnlLayout.setVerticalGroup(
             listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -500,119 +570,76 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                     .addComponent(tipoLACBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buscarLABtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(listaAsistenciaLALbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(listaPnlLayout.createSequentialGroup()
+                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
-                        .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(listaPnlLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(agregarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(eliminarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(105, 105, 105))))
+                        .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(agregarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(eliminarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129))))
+            .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(listaPnlLayout.createSequentialGroup()
+                    .addGap(170, 170, 170)
+                    .addComponent(listaCandidatosLALbl)
+                    .addContainerGap(363, Short.MAX_VALUE)))
         );
 
         informacionTP.addTab("Lista de asistencia", listaPnl);
-
-        guardarCBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        guardarCBtn.setText("Guardar");
-        guardarCBtn.setEnabled(false);
-        guardarCBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarCBtnActionPerformed(evt);
-            }
-        });
-
-        enunciadoTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Tipo", "Enunciado", "Calificación"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        enunciadoTbl.setEnabled(false);
-        jScrollPane2.setViewportView(enunciadoTbl);
-        if (enunciadoTbl.getColumnModel().getColumnCount() > 0) {
-            enunciadoTbl.getColumnModel().getColumn(0).setResizable(false);
-            enunciadoTbl.getColumnModel().getColumn(1).setResizable(false);
-            enunciadoTbl.getColumnModel().getColumn(2).setResizable(false);
-        }
-
-        agregarCLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarCLbl.setText("Agregar");
-
-        nota_CL_Lbl.setText("Ingrese la información a almacenar");
-
-        javax.swing.GroupLayout calificacionPnlLayout = new javax.swing.GroupLayout(calificacionPnl);
-        calificacionPnl.setLayout(calificacionPnlLayout);
-        calificacionPnlLayout.setHorizontalGroup(
-            calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
-                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(calificacionPnlLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(calificacionPnlLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(calificacionPnlLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nota_CL_Lbl)
-                    .addComponent(agregarCLbl))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        calificacionPnlLayout.setVerticalGroup(
-            calificacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, calificacionPnlLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(agregarCLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nota_CL_Lbl)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(guardarCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-
-        informacionTP.addTab("Calificación de logística ", calificacionPnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionTP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+            .addComponent(informacionTP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Evento ejecutado al hacer click se buscara al empleado dependiendo de del
+     * campo seleccionado
+     *
+     * @param evt Evento al presionar el boton
+     */
+    private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
+        String campo = (String) campoCBx.getSelectedItem();
+        control.setClass(Empleado.class);
+        switch (campo) {
+            case "Nombre":                
+                if(nombreLATFd.getText().equals("")){
+                    control.buscarEmpN(nombreLATFd.getText());
+                }else{
+                    control.buscarTodos();
+                }
+                break;
+            case "Departamento":
+                control.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
+                break;
+            case "Plantel":
+                control.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
+                break;
+            case "Puesto":
+                control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
+        }
+    }//GEN-LAST:event_buscarLABtnActionPerformed
     /**
      * Evento ejecutado al hacer seleccionar un campo de la lista de posibles
      * busquedas por el usuario
@@ -631,51 +658,24 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 break;
             case "Departamento":
                 visibilidadCam(true);
-                controlProgramar.setClass(Departamento.class);
-                controlProgramar.buscarTodosLista(3);
+                control.setClass(Departamento.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel":
                 visibilidadCam(true);
-                controlProgramar.setClass(Plantel.class);
-                controlProgramar.buscarTodosLista(3);
+                control.setClass(Plantel.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Plantel:");
                 break;
             case "Puesto":
                 visibilidadCam(true);
-                controlProgramar.setClass(Puesto.class);
-                controlProgramar.buscarTodosLista(3);
+                control.setClass(Puesto.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Puesto:");
                 break;
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
-    /**
-     * Evento ejecutado al hacer click se buscara al empleado dependiendo de del
-     * campo seleccionado
-     *
-     * @param evt Evento al presionar el boton
-     */
-    private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        String campo = (String) campoCBx.getSelectedItem();
-        switch (campo) {
-            case "Nombre":
-                controlProgramar.setClass(Empleado.class);
-                controlProgramar.buscarEmpN(nombreGTFd.getText());
-                break;
-            case "Departamento":
-                controlProgramar.setClass(Empleado.class);
-                controlProgramar.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
-                break;
-            case "Plantel":
-                controlProgramar.setClass(Empleado.class);
-                controlProgramar.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
-                break;
-            case "Puesto":
-                controlProgramar.setClass(Empleado.class);
-                controlProgramar.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
-                break;
-        }
-    }//GEN-LAST:event_buscarLABtnActionPerformed
     /**
      * Evento ejecutado al hacer click agregara al empleado de la lista de
      * posibles candidatos
@@ -683,39 +683,14 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        this.cambio = true;
         int row = tablaLisITbl.getSelectedRow();
-        int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
-        System.out.println(id);
-        controlProgramar.setClass(Empleado.class);
-        controlProgramar.buscarEmpId(id, Empleado.class);
-    }//GEN-LAST:event_agregarBtnActionPerformed
-    /**
-     * Evento ejecutado al hacer click eliminando al empleado seleccionado en la
-     * lista de asistenciatablaLisFTb.
-     *
-     * @param evt Evento al presionar el boton
-     */
-    private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        int nRow = tablaLisFTbl.getRowCount();
-        int nCol = tablaLisFTbl.getColumnCount();
-        int row = tablaLisFTbl.getSelectedRow();
-        int cont = 0;
-        String id = (String) modelTablaEmF.getValueAt(row, 0);
-        Object[][] tableData = new Object[nRow - 1][nCol + 1];
-        for (int i = 0; i < nRow; i++) {
-            if (((String) modelTablaEmF.getValueAt(i, 0)).compareTo(id) != 0) {
-                tableData[cont][0] = modelTablaEmF.getValueAt(i, 0);
-                tableData[cont][1] = modelTablaEmF.getValueAt(i, 1);
-                tableData[cont][2] = modelTablaEmF.getValueAt(i, 2);
-                cont++;
-            }
+        if (row >= 0) {
+            int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
-        modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
-        visibilidadOpcT(true);
-    }//GEN-LAST:event_eliminarBtnActionPerformed
-
+    }//GEN-LAST:event_agregarBtnActionPerformed
     /**
      * Evento ejecutado al hacer click agregara a todos los empleados a la lista
      * de asistencia
@@ -723,13 +698,42 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
+        this.cambio = true;
         int nRow = tablaLisITbl.getRowCount();
         for (int i = 0; i < nRow; i++) {
             int id = Integer.parseInt((String) modelTablaEmI.getValueAt(i, 0));
-            controlProgramar.setClass(Empleado.class);
-            controlProgramar.buscarEmpId(id, Empleado.class);
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
         }
     }//GEN-LAST:event_agregarTBtnActionPerformed
+    /**
+     * Evento ejecutado al hacer click eliminando al empleado seleccionado en la
+     * lista de asistenciatablaLisFTb.
+     *
+     * @param evt Evento al presionar el boton
+     */
+    private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
+        this.cambio = true;
+        int nRow = tablaLisFTbl.getRowCount();
+        int nCol = tablaLisFTbl.getColumnCount();
+        int row = tablaLisFTbl.getSelectedRow();
+        if (row >= 0) {
+            int cont = 0;
+            String id = (String) modelTablaEmF.getValueAt(row, 0);
+            Object[][] tableData = new Object[nRow - 1][nCol + 1];
+            for (int i = 0; i < nRow; i++) {
+                if (((String) modelTablaEmF.getValueAt(i, 0)).compareTo(id) != 0) {
+                    tableData[cont][0] = modelTablaEmF.getValueAt(i, 0);
+                    tableData[cont][1] = modelTablaEmF.getValueAt(i, 1);
+                    tableData[cont][2] = modelTablaEmF.getValueAt(i, 2);
+                    cont++;
+                }
+            }
+            modelTablaEmF.setDataVector(tableData, titulosTablaEm);
+            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+            tablaLisFTbl.getColumnModel().removeColumn(tc);
+        }
+    }//GEN-LAST:event_eliminarBtnActionPerformed
     /**
      * Evento ejecutado al hacer click eliminando a todas las personas de la
      * lista de asistencia tablaLisFTb.
@@ -737,6 +741,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
+        this.cambio = true;
         String[][] datosTabla = new String[0][0];
         modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
         TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
@@ -757,18 +762,116 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      *
      * @param evt Evento al presionar el boton
      */
-    private void guardarCBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCBtnActionPerformed
-        guarMod();
-    }//GEN-LAST:event_guardarCBtnActionPerformed
-    /**
-     * Evento ejecutado al hacer click mandando a un metodo que guarde la
-     * informacion o la modificque.
-     *
-     * @param evt Evento al presionar el boton
-     */
     private void guardarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarGBtnActionPerformed
         guarMod();
     }//GEN-LAST:event_guardarGBtnActionPerformed
+    /**
+     * Evento ejecutado para obtener y mostrar la capacidad de la sede
+     *
+     * @param evt
+     */
+    private void tipoSedeGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeGCBxItemStateChanged
+        this.cambio = true;
+        Sede sede = (Sede) tipoSedeGCBx.getSelectedItem();
+        if (sede != null) {
+            if (sede.getNombre().equals("")) {
+                capacidadSedeGLbl.setText("Capacidad de la sede: ");
+            } else {
+                capacidadSedeGLbl.setText("Capacidad de la sede: " + sede.getCapacidad());
+            }
+        }
+    }//GEN-LAST:event_tipoSedeGCBxItemStateChanged
+    /**
+     * Metodo que valida que el usuario no escriba numeros en el JTextField
+     *
+     * @param evt
+     */
+    private void nombreLATFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreLATFdKeyTyped
+        char caracter;
+        caracter = evt.getKeyChar();
+        if (Character.isLetter(caracter) || Character.isISOControl(caracter)
+                || Character.isWhitespace(caracter)) {
+            evt = evt;
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreLATFdKeyTyped
+    /**
+     * Este metodo sirve para cancelar el registro o la modificacion de un
+     * evento
+     *
+     * @param evt
+     */
+    private void cancelarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarGBtnActionPerformed
+        int opcion;
+        if (guardarGBtn.getText() == "Guardar") {
+            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
+                    + "modificacion del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }else{
+             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
+                    + "modificacion del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }
+        if (opcion == 0) {
+            this.setVisible(false);
+            limpiarCampos();
+        }
+    }//GEN-LAST:event_cancelarGBtnActionPerformed
+    /**
+     * Este metodo sirve para cancelar el registro o la modificacion de un
+     * evento
+     *
+     * @param evt
+     */
+    private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
+        int opcion;
+        if (guardarGBtn.getText() == "Guardar") {
+            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
+                    + "registro del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }else{
+             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
+                    + "modificacion del evento?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        }
+        if (opcion == 0) {
+            this.setVisible(false);
+            limpiarCampos();
+        }
+    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    /**
+     * Metodo para indicar que a habido un cambio en la el panel
+     * @param evt 
+     */
+    private void nombreGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreGCBxItemStateChanged
+        this.cambio = true;
+    }//GEN-LAST:event_nombreGCBxItemStateChanged
+    /**
+     * Metodo para indicar que a habido un cambio en la el panel
+     * @param evt 
+     */
+    private void fechaIDChKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaIDChKeyTyped
+        this.cambio = true;
+    }//GEN-LAST:event_fechaIDChKeyTyped
+    /**
+     * Metodo para indicar que a habido un cambio en la el panel
+     * @param evt 
+     */
+    private void fechaTDChKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fechaTDChKeyTyped
+        this.cambio = true;
+    }//GEN-LAST:event_fechaTDChKeyTyped
+    /**
+     * Metodo que recibe el evento del catalogo para llenar parte de la
+     * informacion general del evento a llevar a cabo
+     *
+     * @param evento
+     */
+    public void buscarEvento(Evento evento) {
+        this.evento = evento;
+        control.buscarCurId(evento.getId(), Evento.class);
+    }
+
     /**
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
      * proveedores registrados informacion o la modificque.
@@ -776,61 +879,41 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     public void llenarTodo() {
-        controlProgramar.setClass(Sede.class);
-        controlProgramar.buscarTodosLista(1);
-        controlProgramar.setClass(Proveedor.class);
-        controlProgramar.buscarTodosLista(2);
-        controlProgramar.setClass(EnunciadoLogistica.class);
-        controlProgramar.buscarEncuesta();
-        campoModel.addElement("");
-        campoModel.addElement("Nombre");
-        campoModel.addElement("Departamento");
-        campoModel.addElement("Puesto");
-        campoModel.addElement("Sede");
-        campoModel.addElement("Plantel");
-
-
-    }
-
-    /**
-     * Metodo que recibe el curso del catalogo para llenar parte de la
-     * informacion general del curso a llevar a cabo
-     *
-     * @param curso
-     */
-    public void buscarCurso(Curso curso) {
-        this.curso = curso;
-        controlProgramar.buscarCurId(curso.getId(), Curso.class);
+        control.setClass(Sede.class);
+        control.buscarTodosLista(1);
+        control.setClass(Proveedor.class);
+        control.buscarTodosLista(2);
+        cambio = false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JLabel agregarCLbl;
     private javax.swing.JLabel agregarGLbl;
     private javax.swing.JLabel agregarLALbl;
     private javax.swing.JButton agregarTBtn;
     private javax.swing.JButton buscarLABtn;
-    private javax.swing.JPanel calificacionPnl;
     private javax.swing.JComboBox campoCBx;
     private javax.swing.JLabel campoLbl;
+    private javax.swing.JButton cancelarGBtn;
+    private javax.swing.JButton cancelarLABtn;
+    private javax.swing.JLabel capacidadSedeGLbl;
     private javax.swing.JTextArea descripcionGTAa;
     private javax.swing.JLabel descripcionLbl;
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JButton eliminarTBtn;
-    private javax.swing.JTable enunciadoTbl;
     private com.toedter.calendar.JDateChooser fechaIDCh;
     private javax.swing.JLabel fechaILbl;
     private com.toedter.calendar.JDateChooser fechaTDCh;
     private javax.swing.JLabel fechaTLbl;
     private javax.swing.JPanel generalPnl;
-    private javax.swing.JButton guardarCBtn;
     private javax.swing.JButton guardarGBtn;
     private javax.swing.JButton guardarLABtn;
     private javax.swing.JTabbedPane informacionTP;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel listaAsistenciaLALbl;
+    private javax.swing.JLabel listaCandidatosLALbl;
     private javax.swing.JPanel listaPnl;
     private javax.swing.JComboBox nombreGCBx;
     private javax.swing.JLabel nombreGLbl;
@@ -839,7 +922,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
     private javax.swing.JTextField nombreLATFd;
     private javax.swing.JLabel nombrePrLbl;
     private javax.swing.JLabel notaGLbl;
-    private javax.swing.JLabel nota_CL_Lbl;
     private javax.swing.JLabel nota_LI_Lbl;
     private javax.swing.JLabel sedeGLbl;
     private javax.swing.JLabel seleccionLALbl;
@@ -870,15 +952,19 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      */
     @Override
     public void setTabla(String[][] info) {
-        if (info[0][0].contains("TLE1")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
-            info[0][0] = info[0][0].replaceAll("TLE1", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
+        if (info[0][0].contains("TLE1")) {
+            //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+            info[0][0] = info[0][0].replaceAll("TLE1", "");
+            //Se elimina la palabra TLE1 para que solo quede el id puro
             tablaLisITbl.setEnabled(true);
             modelTablaEmI.setDataVector(info, titulosTablaEm);
             TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
             tablaLisITbl.getColumnModel().removeColumn(tc);
             visibilidadOpcT(true);
-        } else if (info[0][0].contains("TLE2")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
-            info[0][0] = info[0][0].replaceAll("TLE2", "");//Se elimina la palabra TLE1 para que solo quede el id puro
+        } else if (info[0][0].contains("TLE2")) {
+            //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+            info[0][0] = info[0][0].replaceAll("TLE2", "");
+            //Se elimina la palabra TLE1 para que solo quede el id puro
             int nRow = tablaLisFTbl.getRowCount();
             int nCol = tablaLisFTbl.getColumnCount();
             boolean bandera = false;
@@ -911,28 +997,7 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
                 tablaLisFTbl.getColumnModel().removeColumn(tc);
                 visibilidadOpcT(true);
-            } else {
-
             }
-        } else if (info[0][0].contains(
-                "TLE3")) { //Se checa si la palabra TLE1 se encuentra dentro de la matriz
-            info[0][0] = info[0][0].replaceAll("TLE3", ""); //Se elimina la palabra TLE1 para que solo quede el id puro
-            enunciadoTbl.setEnabled(true);
-            modelTablaEn.setDataVector(info, titulosTablaEn);
-            //Contador que decrementa del 10 a 1 para agregarlos a la
-            //califiacion de logistica
-            JComboBox comboBox = new JComboBox();
-            for (int numero = 10; numero > 0; numero--) {
-                comboBox.addItem(numero + "");
-            }
-            TableColumn tc = enunciadoTbl.getColumnModel().getColumn(3);
-            tc.setCellEditor(new DefaultCellEditor(comboBox));
-            DefaultTableCellRenderer renderer
-                    = new DefaultTableCellRenderer();
-            renderer.setToolTipText("Califica a la logistica");
-            tc.setCellRenderer(renderer);
-            tc = enunciadoTbl.getColumnModel().getColumn(0);
-            enunciadoTbl.getColumnModel().removeColumn(tc);
         }
     }
 
@@ -946,16 +1011,20 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
     public void setInfo(List info) {
         agregarGLbl.setText("Agregar");
         agregarLALbl.setText("Agregar");
-        agregarCLbl.setText("Agregar");
         guardarGBtn.setText("Guardar");
         guardarLABtn.setText("Guardar");
-        guardarCBtn.setText("Guardar");
         nombreGTFd.setText(info.get(1).toString());
         descripcionGTAa.setText(info.get(2).toString());
-        if (info.get(3).equals("conferencia") || info.get(3).equals("Conferencia")) {
+        if (info.get(3).equals("CONFERENCIA")) {
             tipoGCBx.setSelectedIndex(0);
-        } else {
+        } else if (info.get(3).equals("TALLER")) {
             tipoGCBx.setSelectedIndex(1);
+        } else if (info.get(3).equals("CURSO")) {
+            tipoGCBx.setSelectedIndex(2);
+        } else if (info.get(3).equals("CURSO / TALLER")) {
+            tipoGCBx.setSelectedIndex(3);
+        } else if (info.get(3).equals("PLATICA")) {
+            tipoGCBx.setSelectedIndex(4);
         }
     }
 
@@ -995,7 +1064,6 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
                 break;
             case 3:
                 tipoModel.removeAllElements();
-                tipoModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
                     tipoModel.addElement(info.get(j));
                 }
@@ -1014,10 +1082,9 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
         tipoSedeGCBx.setEnabled(visibilidad);
         nombreGCBx.setEnabled(visibilidad);
         guardarGBtn.setEnabled(visibilidad);
+        cancelarGBtn.setEnabled(visibilidad);
         campoCBx.setEnabled(visibilidad);
         guardarLABtn.setEnabled(visibilidad);
-        enunciadoTbl.setEnabled(visibilidad);
-        guardarCBtn.setEnabled(visibilidad);
     }
 
     /**
@@ -1052,89 +1119,83 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
      * @param visibilidad
      */
     private void guarMod() {
+        HashSet<Empleado> lisEmpleado = new HashSet();
+        List<Object> atributos = new ArrayList();
         if (validacion() == false) {
-            if (fechaTDCh.getDate() == null) {
-                fechaTDCh.setDate(fechaIDCh.getDate());
+            if (guardarGBtn.getText().equals("Modificar")) {
+                atributos.add(eventoProgramarId);
             }
+            atributos.add(evento);
+            atributos.add(fechaIDCh.getDate());
+            atributos.add(fechaTDCh.getDate());
+            atributos.add(true);
+            atributos.add(tipoSedeGCBx.getSelectedItem());
+            atributos.add(nombreGCBx.getSelectedItem());
+            for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
+                Empleado empleado = new Empleado();
+                empleado.setId(Integer.parseInt((String) modelTablaEmF.
+                        getValueAt(x, 0)));
+                lisEmpleado.add(empleado);
+            }
+            atributos.add(lisEmpleado);
+            control.setClass(ImplementacionEvento.class);
             if (guardarGBtn.getText().equals("Guardar")) {
-                HashSet<Empleado> lisEmpleado = new HashSet();
-                HashSet<EnunciadoLogistica> lisEnunciado = new HashSet();
-                List<Object> atributos = new ArrayList();
-                atributos.add(curso);
-                atributos.add(fechaIDCh.getDate());
-                atributos.add(fechaTDCh.getDate());
-                atributos.add(false);
-                atributos.add(tipoSedeGCBx.getSelectedItem());
-                atributos.add(nombreGCBx.getSelectedItem());
-                for(int x =0; x< tablaLisFTbl.getRowCount() ; x++){
-                    Empleado empleado = new Empleado();
-                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
-                            getValueAt(x, 0)));
-                    lisEmpleado.add(empleado);
-                }
-                for(int x =0; x< enunciadoTbl.getRowCount() ; x++){
-                    EnunciadoLogistica logistica = new EnunciadoLogistica();
-                    logistica.setId(Integer.parseInt((String)modelTablaEmF.
-                            getValueAt(x, 0)));
-                    lisEnunciado.add(logistica);
-                }
-                controlProgramar.setClass(ImplementacionCurso.class);
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Guardar", "Finalizado"));
-            } else if (guardarGBtn.getText().equals("Modificar")) {
-                HashSet<Empleado> lisEmpleado = new HashSet();
-                List<Object> atributos = new ArrayList();
-                HashSet<EnunciadoLogistica> lisEnunciado = new HashSet();
-                atributos.add(cursoProgramarId);
-                atributos.add(curso);
-                atributos.add(fechaIDCh.getDate());
-                atributos.add(fechaTDCh.getDate());
-                atributos.add(false);
-                atributos.add(tipoSedeGCBx.getSelectedItem());
-                atributos.add(nombreGCBx.getSelectedItem());
-                for(int x =0; x< tablaLisFTbl.getRowCount() ; x++){
-                    Empleado empleado = new Empleado();
-                    empleado.setId(Integer.parseInt((String)modelTablaEmF.
-                            getValueAt(x, 0)));
-                    lisEmpleado.add(empleado);
-                }
-                for(int x =0; x< enunciadoTbl.getRowCount() ; x++){
-                    EnunciadoLogistica logistica = new EnunciadoLogistica();
-                    logistica.setId(Integer.parseInt((String)modelTablaEmF.
-                            getValueAt(x, 0)));
-                    lisEnunciado.add(logistica);
-                }
-                controlProgramar.setClass(ImplementacionCurso.class);
-                controlProgramar.alta(HelperEntidad.getProgramar(atributos,lisEmpleado, "Modificar", "Finalizado"));
+                control.alta(HelperEntidad.getImplementarEvento(atributos, "Guardar"));
+            } else {
+                control.alta(HelperEntidad.getImplementarEvento(atributos, "Modificar"));
             }
+            this.cambio = false;
+            limpiarCampos();
         }
     }
 
     /**
-     * Este metodo obtiene la informacion del curso a realizar del
-     * PnlProgramarCurso para que este la pueda modificar
+     * Este metodo obtiene la informacion del evento a realizar del
+     * PnlProgramarEvento para que este la pueda modificar
      *
      * @param info
      */
     public void obtenerMod(List info) {
+        ImplementacionEvento eventoImplementado = new ImplementacionEvento();
         agregarGLbl.setText("Modificar");
         agregarLALbl.setText("Modificar");
-        agregarCLbl.setText("Modificar");
-        guardarCBtn.setText("Modificar");
         guardarGBtn.setText("Modificar");
         guardarLABtn.setText("Modificar");
-        cursoProgramarId = Integer.parseInt(info.get(0).toString());
-        curso = (Curso) info.get(1);
+        eventoProgramarId = Integer.parseInt(info.get(0).toString());
+        evento = (Evento) info.get(1);
         nombreGTFd.setText(info.get(2).toString());
         descripcionGTAa.setText(info.get(3).toString());
-        if (info.get(3).equals("conferencia") || info.get(4).equals("Conferencia")) {
+        if (info.get(4).equals("CONFERENCIA")) {
             tipoGCBx.setSelectedIndex(0);
-        } else {
+        } else if (info.get(4).equals("TALLER")) {
             tipoGCBx.setSelectedIndex(1);
+        } else if (info.get(4).equals("CURSO")) {
+            tipoGCBx.setSelectedIndex(2);
+        } else if (info.get(4).equals("CURSO / TALLER")) {
+            tipoGCBx.setSelectedIndex(3);
+        } else if (info.get(4).equals("PLATICA")) {
+            tipoGCBx.setSelectedIndex(4);
         }
         fechaIDCh.setDate((Date) info.get(5));
         fechaTDCh.setDate((Date) info.get(6));
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
+
+        String[][] datosTabla = new String[0][0];
+        modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
+        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
+        tc = tablaLisFTbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
+
+        eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
+        Iterator itr = eventoImplementado.getEmpleados().iterator();
+        for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
+            int id = Integer.parseInt(itr.next().toString());
+            control.setClass(Empleado.class);
+            control.buscarEmpId(id, Empleado.class);
+        }
     }
 
     /**
@@ -1146,10 +1207,14 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
     private boolean validacion() {
         Sede campoSede = (Sede) tipoSedeGCBx.getSelectedItem();
         Proveedor campoProveedor = (Proveedor) nombreGCBx.getSelectedItem();
-        System.out.println(tablaLisFTbl.getRowCount());
+
         if (fechaIDCh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
                     + " inicial");
+            return true;
+        } else if (fechaTDCh.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
+                    + " Final");
             return true;
         } else if (campoSede.getNombre().equals("")) {
             JOptionPane.showMessageDialog(this, "No selecciono una sede");
@@ -1161,20 +1226,44 @@ public class PnlCursoRealizado extends javax.swing.JPanel implements Comunicador
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + "en la lista de asistencia");
             return true;
-        }else{
-            int rowN = enunciadoTbl.getRowCount();
-            boolean band = false;
-            for(int x=0;x<rowN;x++){
-                if(((Object) modelTablaEn.getValueAt(x, 3))==null){
-                    band=true;
-                }
-            }
-            if(band==true){
-                JOptionPane.showMessageDialog(this, "No se a completado la "
-                    + "calificacion de la logistica");
+        } else if (tablaLisFTbl.getRowCount() > campoSede.getCapacidad()) {
+            int op = JOptionPane.showConfirmDialog(this, "La lista de asistencia es mas "
+                    + "grande que la capacidad que puede soportar la sede"
+                    + "¿Desea aun así realizarla ahí ?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (op == 0) {
+                return false;
+            } else {
                 return true;
             }
+        } else if (fechaIDCh.getDate().after(fechaTDCh.getDate())) {
+            JOptionPane.showMessageDialog(this, "Error en las fechas de evento."
+                    + "La fecha de inicio es mayor que la fecha de terminacion");
+            return true;
         }
         return false;
+    }
+
+    /**
+     * Este metodo sirve para limpiar los campos del panel de evento
+     */
+    public void limpiarCampos() {
+        this.cambio = false;
+        this.setVisible(false);
+        fechaIDCh.setDate(null);
+        fechaTDCh.setDate(null);
+        descripcionGTAa.setText("");
+        String[][] datosTabla = new String[0][0];
+        modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
+        modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
+    }
+    
+    /** 
+     * Variable que regresa un booleano si se le agrego informacion al evento o
+     * modifico
+     * @return regresa un booleano que indica si el evento sufrio cambios
+     */
+    public boolean isCambio(){
+        return this.cambio;
     }
 }

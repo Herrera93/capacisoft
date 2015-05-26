@@ -6,7 +6,7 @@
 package mx.edu.cobach.persistencia;
 
 import java.util.List;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
@@ -15,19 +15,19 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author fernando
  */
-public class CursoDAO extends BaseDAO{
+public class EventoDAO extends BaseDAO{
     
-    public CursoDAO(){
-        setEntity(Curso.class);
+    public EventoDAO(){
+        setEntity(Evento.class);
     }
     
-    public List<Object> findTipoCurso(int id) {
+    public List<Object> buscarPorTipoEvento(int id) {
         List<Object> o = null;
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             o = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("tipoCurso.id", 1)).list();
+                    add(Restrictions.eq("tipoEvento.id", 1)).list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();

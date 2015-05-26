@@ -49,7 +49,10 @@ public class TipoEnunciado  implements java.io.Serializable {
         this.enunciadoLogisticas = enunciadoLogisticas;
     }
 
-
+     @Override
+    public String toString(){
+        return this.descripcion;
+    }   
 
 
 }

@@ -15,12 +15,11 @@ public class ServiceLocatorDELEGATE {
     private static BaseDELEGATE delegate;
     //DELEGATE especificos
     private static PuestoDELEGATE puestoDelegate;
-    private static CursoDELEGATE cursoDelegate;
+    private static EventoDELEGATE eventoDelegate;
     private static EmpleadoDELEGATE empleadoDelegate;
     private static UsuarioDELEGATE usuarioDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
-    private static ProgramarDELEGATE programarDelegate;
     private static EncuestaDELEGATE encuestaDelegate;
     private static ImplementarEventoDELEGATE implementarEventoDelegate;
     
@@ -89,16 +88,16 @@ public class ServiceLocatorDELEGATE {
     }
     
     /**
-     * Obtiene el DELEGATE especifico de la entidad curso, si este no ha sido
+     * Obtiene el DELEGATE especifico de la entidad evento, si este no ha sido
      * inicializado se instanciara. Este metodo utiliza el patron de diseno
      * Singleton.
-     * @return Regresa el DELEGATE de Curso
+     * @return Regresa el DELEGATE de Evento
      */
-    public static CursoDELEGATE getCurso(){
-        if(cursoDelegate == null){
-            cursoDelegate = new CursoDELEGATE();
+    public static EventoDELEGATE getEvento(){
+        if(eventoDelegate == null){
+            eventoDelegate = new EventoDELEGATE();
         }
-        return cursoDelegate;
+        return eventoDelegate;
     }
     
     /**
@@ -114,7 +113,7 @@ public class ServiceLocatorDELEGATE {
         return departamentoDelegate;
     }
     /**
-     * Obtiene el DELEGATE especifico de la entidad ImplementacionCurso, si este
+     * Obtiene el DELEGATE especifico de la entidad ImplementacionEvento, si este
      * no ha sido inicializado se instanciara. Este metodo utiliza el patron de
      * diseno Singleton.
      * @return Regresa el DELEGATE de Programar

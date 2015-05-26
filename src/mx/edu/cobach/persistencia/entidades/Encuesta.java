@@ -18,7 +18,7 @@ public class Encuesta  implements java.io.Serializable {
      //Identificador de JotForm la encuesta despues del evento
      private Long jotformIdDespues;
      //Implementacion de evento relacionada con la Encuesta
-     private ImplementacionCurso implementacionCurso;
+     private ImplementacionEvento implementacionEvento;
      //Conjunto de respuestas de la encuesta
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
      //Conjunto de aspectos de la encuesta
@@ -32,26 +32,26 @@ public class Encuesta  implements java.io.Serializable {
 	
     /**
      * Contructor donde se asignan todos lo atributos y relaciones de la entidad
-     * @param implementacionCurso Implementacion de curso
+     * @param implementacionEvento Implementacion de evento
      * @param jotformIdAntes Identificador JotForm antes de evento
      * @param jotformIdDespues Identificador JotForm antes de evento
      */
-    public Encuesta(ImplementacionCurso implementacionCurso, Long jotformIdAntes, Long jotformIdDespues) {
-        this.implementacionCurso = implementacionCurso;
+    public Encuesta(ImplementacionEvento implementacionEvento, Long jotformIdAntes, Long jotformIdDespues) {
+        this.implementacionEvento = implementacionEvento;
         this.jotformIdAntes = jotformIdAntes;
         this.jotformIdDespues = jotformIdDespues;
     }
     
     /**
      * Contructor donde se asignan todos lo atributos y relaciones de la entidad
-     * @param implementacionCurso Implementacion de curso
+     * @param implementacionEvento Implementacion de evento
      * @param jotformIdAntes Identificador JotForm antes de evento
      * @param jotformIdDespues Identificador JotForm antes de evento
      * @param respuestas Conjunto de respuestas
      * @param aspectos Conjunto de aspectos
      */
-    public Encuesta(ImplementacionCurso implementacionCurso, Long jotformIdAntes, Long jotformIdDespues, Set<Respuesta> respuestas, Set<Aspecto> aspectos) {
-       this.implementacionCurso = implementacionCurso;
+    public Encuesta(ImplementacionEvento implementacionEvento, Long jotformIdAntes, Long jotformIdDespues, Set<Respuesta> respuestas, Set<Aspecto> aspectos) {
+       this.implementacionEvento = implementacionEvento;
         this.jotformIdAntes = jotformIdAntes;
         this.jotformIdDespues = jotformIdDespues;
        this.respuestas = respuestas;
@@ -78,16 +78,16 @@ public class Encuesta  implements java.io.Serializable {
      * Obtencion de la implementacion del evento
      * @return La implementacion del evento
      */
-    public ImplementacionCurso getImplementacionCurso() {
-        return this.implementacionCurso;
+    public ImplementacionEvento getImplementacionCurso() {
+        return this.implementacionEvento;
     }
     
     /**
      * Asignacion de la implementacion de evento
-     * @param implementacionCurso La implementacion de evento
+     * @param implementacionEvento La implementacion de evento
      */
-    public void setImplementacionCurso(ImplementacionCurso implementacionCurso) {
-        this.implementacionCurso = implementacionCurso;
+    public void setImplementacionCurso(ImplementacionEvento implementacionEvento) {
+        this.implementacionEvento = implementacionEvento;
     }
     
     /**

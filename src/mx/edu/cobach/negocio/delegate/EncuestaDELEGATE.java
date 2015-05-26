@@ -20,10 +20,10 @@ import javax.mail.internet.MimeMessage;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Competencia;
-import mx.edu.cobach.persistencia.entidades.Curso;
+import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Encuesta;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Respuesta;
 import mx.edu.cobach.persistencia.util.GmailUtil;
 import mx.edu.cobach.persistencia.util.JotFormUtil;
@@ -44,7 +44,7 @@ public class EncuestaDELEGATE {
             "Estimado %s,\n" +
             "Me dirijo a usted con el fin de solicitar la respuesta de la encuesta "
             + "proporcionada en el enlace %s, esta encuesta esta relacionada "
-            + "con el curso %s y tiene el fin de obtener información sobre el desempeño "
+            + "con el evento %s y tiene el fin de obtener información sobre el desempeño "
             + "actual del empleado %s.\n"
             + "A la espera de su respuesta, lo saluda atentamente,\n\n"
             + "Departamento de Calidad y Mejora Continua/Programa de Capacitación";
@@ -136,8 +136,8 @@ public class EncuestaDELEGATE {
             //Se crea una copia de encuesta para realizarse posterior al evento
             JSONObject encuestaDespues = JotFormUtil.copiarEncuesta(encuestaAntes.getLong("id"));
             //Se guarda la encuesta en la base de datos
-            Encuesta encuestaGuardar = new Encuesta((ImplementacionCurso) ServiceLocatorFACADE.getInstance()
-                .find(Integer.parseInt(idEvento), ImplementacionCurso.class), 
+            Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
+                .find(Integer.parseInt(idEvento), ImplementacionEvento.class), 
                 encuestaAntes.getLong("id"), encuestaDespues.getLong("id"));
             encuestaGuardar.setAspectos(new HashSet<>(aspectos));
             ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);
@@ -149,7 +149,7 @@ public class EncuestaDELEGATE {
     }
     
     /**
-     * Se envian las encuestas de la implementacion de determinado curso a los
+     * Se envian las encuestas de la implementacion de determinado evento a los
      * empleados identificados en la lista.
      * @param encuesta Objeto JSON con la estructura de la encuesta, debe contener
      * un atributo 'id', 'title' y 'url'.
@@ -285,13 +285,13 @@ public class EncuestaDELEGATE {
      */
     public List<Object> buscarImplementaciones(Object evento, Date de, Date hasta){
         //Se obtienen las implementacion con los parametros
-        List<Object> implementaciones = ServiceLocatorFACADE.getPrograma()
-            .buscarCursoPorFechas((Curso) evento, de, hasta);
+        List<Object> implementaciones = ServiceLocatorFACADE.getImplementacionEvento()
+            .buscarEventoPorFechas((Evento) evento, de, hasta);
         //Se filtran las implementaciones que ya cuentan con encuesta
         List<Object> implementacionesSinEncuesta = new ArrayList();
         if(implementaciones != null){
             for(int i = 0; i < implementaciones.size(); i++){
-                ImplementacionCurso implementacion = (ImplementacionCurso) implementaciones.get(i);
+                ImplementacionEvento implementacion = (ImplementacionEvento) implementaciones.get(i);
                 if(implementacion.getEncuestas().isEmpty())
                     implementacionesSinEncuesta.add(implementacion);
             }
@@ -312,13 +312,13 @@ public class EncuestaDELEGATE {
      */
     public List<Object> buscarImplementacionesResultado(Object evento, Date de, Date hasta) {
         //Se obtienen las implementacion con los parametros
-        List<Object> implementaciones = ServiceLocatorFACADE.getPrograma()
-            .buscarCursoPorFechas((Curso) evento, de, hasta);
+        List<Object> implementaciones = ServiceLocatorFACADE.getImplementacionEvento()
+            .buscarEventoPorFechas((Evento) evento, de, hasta);
         //Se filtran las implementaciones que ya cuentan con encuesta
         List<Object> implementacionesConEncuesta = new ArrayList();
         if(implementaciones != null){
             for(int i = 0; i < implementaciones.size(); i++){
-                ImplementacionCurso implementacion = (ImplementacionCurso) implementaciones.get(i);
+                ImplementacionEvento implementacion = (ImplementacionEvento) implementaciones.get(i);
                 if(!implementacion.getEncuestas().isEmpty())
                     implementacionesConEncuesta.add(implementacion);
             }
@@ -336,8 +336,8 @@ public class EncuestaDELEGATE {
     public List<Object> getResultados(int idEmpleado, int idImplementacion) {
         Empleado empleado = (Empleado) ServiceLocatorFACADE.getInstance()
             .find(idEmpleado, Empleado.class);
-        ImplementacionCurso implementacion = (ImplementacionCurso) ServiceLocatorFACADE
-            .getInstance().find(idImplementacion, ImplementacionCurso.class);
+        ImplementacionEvento implementacion = (ImplementacionEvento) ServiceLocatorFACADE
+            .getInstance().find(idImplementacion, ImplementacionEvento.class);
         
         List<Respuesta> respuestas = ServiceLocatorFACADE.getRespuesta()
             .buscarPorEmpleadoEncuesta(empleado, (Encuesta) implementacion

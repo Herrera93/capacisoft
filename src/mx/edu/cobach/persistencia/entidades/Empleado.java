@@ -326,15 +326,6 @@ public class Empleado implements java.io.Serializable {
     public Set<ImplementacionEvento> getImplementacionEventos() {
         return this.implementacionEventos;
     }
-    
-     @Override
-    public String toString(){
-        if(segundoNombre != null)
-            return primerNombre + " " + segundoNombre + " " + 
-                    apellidoPaterno + " " + apellidoMaterno;
-        else
-            return primerNombre + " " + apellidoPaterno + " " + apellidoMaterno;
-    }
 
     /**
      * Obtiene un HashSet de la lista de asistencia de implementacionEventos
@@ -345,13 +336,12 @@ public class Empleado implements java.io.Serializable {
         this.implementacionEventos = implementacionEventos;
     }
 
-    /**
-     * Manda como toString un id del empleado
-     *
-     * @return manda id de empleado
-     */
-    public String toString() {
-        return this.id + "";
+     @Override
+    public String toString(){
+        if(segundoNombre != null)
+            return primerNombre + " " + segundoNombre + " " + 
+                    apellidoPaterno + " " + apellidoMaterno;
+        else
+            return primerNombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
-
 }

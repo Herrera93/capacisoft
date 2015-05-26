@@ -15,7 +15,7 @@ public class Alerta  implements java.io.Serializable {
      private Integer id;
      private TipoAlerta tipoAlerta;
      private String descripcion;
-     private Set<ImplementacionCurso> implementacionCursos;
+     private Set<ImplementacionEvento> implementacionEventos;
 
     public Alerta() {
     }
@@ -47,12 +47,12 @@ public class Alerta  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return implementacionCursos;
+    public Set<ImplementacionEvento> getImplementacionEventos() {
+        return implementacionEventos;
     }
 
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
+    public void setImplementacionEventos(Set<ImplementacionEvento> implementacionEventos) {
+        this.implementacionEventos = implementacionEventos;
     }
 
     

@@ -17,13 +17,12 @@ public class ServiceLocatorFACADE {
     private static BaseFACADE facade;
     //FACADE especificos
     private static PuestoFACADE puestoFacade;
-    private static CursoFACADE cursoFacade;
+    private static EventoFACADE eventoFacade;
     private static EmpleadoFACADE empleadoFacade;
     private static UsuarioFACADE usuarioFacade;
     private static AspectoFACADE aspectoFacade;
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
-    private static ProgramarFACADE programaFacade;
     private static EncuestaFACADE encuestaFacade;
     private static RespuestaFACADE respuestaFacade;
     private static ImplementacionEventoFACADE implementacionEventoFacade;
@@ -68,16 +67,16 @@ public class ServiceLocatorFACADE {
     }
     
     /**
-     * Obtiene el FACADE especifico de la entidad Curso, si este no ha sido
+     * Obtiene el FACADE especifico de la entidad Evento, si este no ha sido
      * inicializado se instanciara. Este metodo utiliza el patron de diseno
      * Singleton.
-     * @return Regresa el FACADE de Curso
+     * @return Regresa el FACADE de Evento
      */
-    public static CursoFACADE getCurso(){
-        if(cursoFacade == null){
-            cursoFacade = new CursoFACADE();
+    public static EventoFACADE getEvento(){
+        if(eventoFacade == null){
+            eventoFacade = new EventoFACADE();
         }
-        return cursoFacade;
+        return eventoFacade;
     }
     
     /**

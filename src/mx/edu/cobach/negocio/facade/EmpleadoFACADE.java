@@ -29,15 +29,29 @@ public class EmpleadoFACADE extends BaseFACADE {
     public List<Object> findByAdscripcion(Adscripcion a){
         return ServiceLocator.getEmpleado().findByAdscripcion(a);
     }
-    
-    public List<Object> findByDepartamento(Departamento departamento) {
-        return ServiceLocator.getEmpleado().findByDepartamento(departamento);
+    /**
+     * Obtiene todos los empleados que estan relacionados a tal departamento
+     * @param departamento
+     * @return Regresa la lista de los empleados
+     */
+    public List<Object> buscarPorDepartamento(Departamento departamento) {
+        return ServiceLocator.getEmpleado().buscarPorDepartamento(departamento);
     }
-    public List<Object> findByPuesto(Puesto puesto) {
-        return ServiceLocator.getEmpleado().findByPuesto(puesto);
+    /**
+     * Obtiene todos los empleados que estan relacionados a tal Puesto
+     * @param departamento
+     * @return Regresa la lista de los empleados
+     */
+    public List<Object> buscarPorPuesto(Puesto puesto) {
+        return ServiceLocator.getEmpleado().buscarPorPuesto(puesto);
     }
-    public List<Object> findByPlantel(Plantel plantel) {
-        return ServiceLocator.getEmpleado().findByPlantel(plantel);
+    /**
+     * Obtiene todos los empleados que estan relacionados a tal Plantel
+     * @param departamento
+     * @return Regresa la lista de los empleados
+     */
+    public List<Object> buscarPorPlantel(Plantel plantel) {
+        return ServiceLocator.getEmpleado().buscarPorPlantel(plantel);
     }
     
     /**

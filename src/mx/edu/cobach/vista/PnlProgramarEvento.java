@@ -4,73 +4,73 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Curso;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.Evento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Sede;
-import mx.edu.cobach.vista.controlador.ProgramarControlador;
+import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
  *
  * @author liuts
  */
-public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador {
+public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicador {
 
     /**
-     * Creates new form PnlProgramarCurso
+     * Creates new form PnlProgramarEvento
      */
-    private PnlCursoRealizar curRealizarPnl;
-    private PnlCursoRealizado curRealizadoPnl;
+    private PnlEventoRealizar eventoRealizarPnl;
+    private PnlEventoRealizado eventoRealizadoPnl;
 
-    private final ProgramarControlador control;
-    private final DefaultComboBoxModel tipoCursoModel;
-    private final DefaultComboBoxModel tipoSedeModel;
+    private final ImplementarEventoControlador control;
+    private final DefaultComboBoxModel tipoEventoModel;
     private final DefaultTableModel model;
-    private String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del curso", "Estado", "Eliminar"};
+    private String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
+        "Estado", "Eliminar"};
     private String estado;
-    public PnlProgramarCurso() {
-        control = new ProgramarControlador(this, ImplementacionCurso.class);
+
+    public PnlProgramarEvento() {
+        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         initComponents();
         agregar();
         model = new DefaultTableModel(titulosTabla, 4);
         tablaTbl.setModel(model);
         tablaTbl.setColumnSelectionAllowed(false);
         tablaTbl.setDragEnabled(false);
-        tipoCursoModel = new DefaultComboBoxModel();
-        tipoSedeModel = new DefaultComboBoxModel();
-        tipoRegCBx.setModel(tipoCursoModel);
-        tipoBusCBx.setModel(tipoCursoModel);
-        tipoSedeCBx.setModel(tipoSedeModel);
+        tipoEventoModel = new DefaultComboBoxModel();
+        tipoRegCBx.setModel(tipoEventoModel);
+        tipoBusCBx.setModel(tipoEventoModel);
     }
 
     /**
      * Metodo que permite agregar la interfaz de los paneles
      */
     private void agregar() {
-        curRealizarPnl = new PnlCursoRealizar();
-        curRealizarPnl.setLocation(400, 0);
-        curRealizarPnl.setSize(771, 589);
-        curRealizarPnl.setVisible(false);
-        add(curRealizarPnl);
+        eventoRealizarPnl = new PnlEventoRealizar();
+        eventoRealizarPnl.setLocation(404, 0);
+        eventoRealizarPnl.setSize(781, 589);
+        eventoRealizarPnl.setVisible(false);
+        add(eventoRealizarPnl);
 
-        curRealizadoPnl = new PnlCursoRealizado();
-        curRealizadoPnl.setLocation(400, 0);
-        curRealizadoPnl.setSize(771, 589);
-        curRealizadoPnl.setVisible(false);
-        add(curRealizadoPnl);
+        eventoRealizadoPnl = new PnlEventoRealizado();
+        eventoRealizadoPnl.setLocation(404, 0);
+        eventoRealizadoPnl.setSize(781, 589);
+        eventoRealizadoPnl.setVisible(false);
+        add(eventoRealizadoPnl);
 
     }
 
     /**
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
-     * cursos registrados informacion o la modificque.
+     * eventos registrados informacion o la modificque.
      */
     public void llenarTodo() {
-        control.setClass(Curso.class);
+        control.setClass(Evento.class);
         control.buscarTodosLista(1);
         control.setClass(Sede.class);
         control.buscarTodosLista(2);
@@ -105,20 +105,26 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         tipoBusCBx = new javax.swing.JComboBox();
         opcionesBusLbl = new javax.swing.JLabel();
         notaBusLbl = new javax.swing.JLabel();
-        tipoSedeCBx = new javax.swing.JComboBox();
+        sedeLbl1 = new javax.swing.JLabel();
+        fechaInicialDCh = new com.toedter.calendar.JDateChooser();
+        fechaTerminacionDCh = new com.toedter.calendar.JDateChooser();
 
         setPreferredSize(new java.awt.Dimension(1150, 576));
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        registrarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
+        addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                registrarPnlComponentShown(evt);
+                formComponentShown(evt);
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        opcionesTP.setMaximumSize(new java.awt.Dimension(403, 588));
+        opcionesTP.setMinimumSize(new java.awt.Dimension(403, 588));
+
+        registrarPnl.setMaximumSize(new java.awt.Dimension(398, 560));
+
         nombreRegLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreRegLbl.setText("Nombre del curso:");
+        nombreRegLbl.setText("Nombre del evento:");
 
         tipoRegCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoRegCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -129,7 +135,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         });
 
         regRealizarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        regRealizarBtn.setText("Programar curso a realizar");
+        regRealizarBtn.setText("Programar evento a realizar");
         regRealizarBtn.setEnabled(false);
         regRealizarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +144,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         });
 
         regRealizadoBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        regRealizadoBtn.setText("Registrar curso realizado");
+        regRealizadoBtn.setText("Registrar evento realizado");
         regRealizadoBtn.setEnabled(false);
         regRealizadoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +195,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(registrarPnlLayout.createSequentialGroup()
                         .addComponent(regRealizadoBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(regRealizarBtn))
                     .addComponent(calendarioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -211,23 +217,19 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                     .addComponent(regRealizarBtn))
                 .addGap(26, 26, 26)
                 .addComponent(calendarioPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        opcionesTP.addTab("Registrar curso de capacitación", registrarPnl);
+        opcionesTP.addTab("Registrar evento de capacitación", registrarPnl);
 
+        buscarPnl.setMaximumSize(new java.awt.Dimension(352, 400));
         buscarPnl.setPreferredSize(new java.awt.Dimension(352, 400));
-        buscarPnl.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                buscarPnlComponentShown(evt);
-            }
-        });
 
         nombreBusLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreBusLbl.setText("Nombre del curso: ");
+        nombreBusLbl.setText("Nombre del evento: ");
 
         sedeLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sedeLbl.setText("Sede del curso:");
+        sedeLbl.setText("Fecha del evento:");
 
         tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -237,7 +239,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
                 {null, null, null, null}
             },
             new String [] {
-                "Fecha Inicial", "Nombre del curso", "Estado", "Eliminar"
+                "Fecha Inicial", "Nombre del evento", "Estado", "Eliminar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -265,7 +267,6 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
-        buscarBtn.setEnabled(false);
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -285,13 +286,14 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
 
         notaBusLbl.setText("Ingrese el nombre para buscar la información especifica");
 
-        tipoSedeCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoSedeCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tipoSedeCBx.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                tipoSedeCBxItemStateChanged(evt);
-            }
-        });
+        sedeLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sedeLbl1.setText("a:");
+
+        fechaInicialDCh.setDateFormatString("dd/MM/yyyy");
+        fechaInicialDCh.setMaximumSize(new java.awt.Dimension(91, 20));
+
+        fechaTerminacionDCh.setDateFormatString("dd/MM/yyyy");
+        fechaTerminacionDCh.setMaximumSize(new java.awt.Dimension(91, 20));
 
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
@@ -299,59 +301,70 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarPnlLayout.createSequentialGroup()
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(buscarPnlLayout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(buscarBtn)
-                                .addGroup(buscarPnlLayout.createSequentialGroup()
-                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(sedeLbl)
-                                        .addComponent(nombreBusLbl))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tipoSedeCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(70, 70, 70)))
-                            .addComponent(opcionesBusLbl)
-                            .addComponent(notaBusLbl))
-                        .addGap(0, 17, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(buscarPnlLayout.createSequentialGroup()
+                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreBusLbl)
+                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(sedeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(sedeLbl)))
+                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarPnlLayout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(fechaInicialDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buscarBtn))
+                            .addComponent(notaBusLbl)
+                            .addComponent(opcionesBusLbl))))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         buscarPnlLayout.setVerticalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(opcionesBusLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notaBusLbl)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreBusLbl)
                     .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sedeLbl)
-                    .addComponent(tipoSedeCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buscarBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(sedeLbl1)
+                        .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscarBtn))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
 
-        opcionesTP.addTab("Buscar Curso", buscarPnl);
+        opcionesTP.addTab("Buscar Evento", buscarPnl);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionesTP)
+            .addComponent(opcionesTP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionesTP)
+            .addComponent(opcionesTP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -360,7 +373,7 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(736, Short.MAX_VALUE))
+                .addGap(0, 725, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,143 +381,168 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * Metodo que al seleccionar click se colocara la interfaz del curso de
+     * Metodo que al seleccionar click se colocara la interfaz del evento de
      * capacitacion realizado
      *
      * @param evt
      */
     private void regRealizadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizadoBtnActionPerformed
-        curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(true);
-        curRealizadoPnl.buscarCurso((Curso) tipoRegCBx.getSelectedItem());
-        curRealizadoPnl.llenarTodo();
-        curRealizadoPnl.visibilidad(true);
+        if (eventoRealizarPnl.isCambio() == true
+                || eventoRealizadoPnl.isCambio() == true) {
+            int op = JOptionPane.showConfirmDialog(this, "La información se"
+                    + " esta modificando,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (op == 0) {
+                eventoRealizarPnl.limpiarCampos();
+                eventoRealizadoPnl.limpiarCampos();
+                eventoRealizadoPnl.setVisible(true);
+                eventoRealizarPnl.setVisible(false);
+                eventoRealizadoPnl.buscarEvento((Evento) tipoRegCBx.
+                        getSelectedItem());
+                eventoRealizadoPnl.llenarTodo();
+                eventoRealizarPnl.visibilidad(true);
+            }
+        } else {
+            eventoRealizarPnl.setVisible(false);
+            eventoRealizadoPnl.setVisible(true);
+            eventoRealizadoPnl.buscarEvento((Evento) tipoRegCBx.getSelectedItem());
+            eventoRealizadoPnl.llenarTodo();
+            eventoRealizadoPnl.visibilidad(true);
+        }
     }//GEN-LAST:event_regRealizadoBtnActionPerformed
     /**
-     * Metodo que al seleccionar click se colocara la interfaz del curso de
+     * Metodo que al seleccionar click se colocara la interfaz del evento de
      * capacitacion a realizar
      *
      * @param evt
      */
     private void regRealizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizarBtnActionPerformed
-        curRealizarPnl.setVisible(true);
-        curRealizadoPnl.setVisible(false);
-        curRealizarPnl.buscarCurso((Curso) tipoRegCBx.getSelectedItem());
-        curRealizarPnl.llenarTodo();
-        curRealizarPnl.visibilidad(true);
+        int op = JOptionPane.showConfirmDialog(this, "La información se"
+                + " esta modificando,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
+        if (op == 0) {
+            eventoRealizadoPnl.limpiarCampos();
+            eventoRealizarPnl.limpiarCampos();
+            eventoRealizadoPnl.limpiarCampos();
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.buscarEvento((Evento) tipoRegCBx
+                    .getSelectedItem());
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.visibilidad(true);
+        } else {
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizarPnl.buscarEvento((Evento) tipoRegCBx
+                    .getSelectedItem());
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.visibilidad(true);
+        }
     }//GEN-LAST:event_regRealizarBtnActionPerformed
-    /**
-     * Metodo que al seleccionar click buscar el curso de capacitacion de los
-     * dos tipos
-     *
-     * @param evt
-     */
-    private void buscarPnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_buscarPnlComponentShown
-        curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(false);  
-    }//GEN-LAST:event_buscarPnlComponentShown
 
-    
-    
-    
+
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
-    //Obtenelos el renglon y columna donde se hizo click
+        //Obtenelos el renglon y columna donde se hizo click
         int row = tablaTbl.rowAtPoint(evt.getPoint());
         int col = tablaTbl.columnAtPoint(evt.getPoint());
-        if(col == 0 || col==1|| col==2){
+        if (col == 0 || col == 1 || col == 2) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
             //int id = Integer.parseInt((String)model.getValueAt(row, 0));
             String activo = (String) model.getValueAt(row, 3);
-            System.out.println(activo);
             //control.buscarMod(id);
-            if(activo.equals("Activo")){
+            if (activo.equals("Activo")) {
                 estado = "Activo";
-                
-            }else{
+
+            } else {
                 estado = "Finalizado";
             }
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            control.setClass(ImplementacionCurso.class);
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            control.setClass(ImplementacionEvento.class);
             control.buscarMod(id);
             //Manda un mensaje de Confirmación sobre la eliminacion
-        }
-        else if(col == 3) {
-            int op = JOptionPane.showConfirmDialog(this, "Esta seguro de eliminar este registro?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            if(op == 0){
+        } else if (col == 3) {
+            int op = JOptionPane.
+                    showConfirmDialog(this,
+                            "¿Esta seguro de eliminar este registro?",
+                            "Precaucion",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (op == 0) {
                 //Obtenemos ID de la columna escondida
-                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarTodos();
                 model.getDataVector().removeAllElements();
-            }else{
+            } else {
                 model.setValueAt(false, row, 2);
             }
         }
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        Curso campoCurso = (Curso)tipoBusCBx.getSelectedItem();
-        Sede campoSede = (Sede)tipoSedeCBx.getSelectedItem();
-        if(campoCurso.getNombre().compareTo("")!=0){
-            control.setClass(ImplementacionCurso.class);
-            control.buscarPorCurso((Curso) tipoBusCBx.getSelectedItem());
-        }else if(campoSede.getNombre().compareTo("")!=0){
-            control.setClass(ImplementacionCurso.class);
-            control.buscarPorSede((Sede) tipoSedeCBx.getSelectedItem());
+        Evento campoEvento = (Evento) tipoBusCBx.getSelectedItem();
+        if (campoEvento.getNombre().compareTo("") != 0) {
+            control.setClass(ImplementacionEvento.class);
+            control.buscarPorEvento(
+                    (Evento) tipoBusCBx.getSelectedItem());
+        } else if (fechaInicialDCh.getDate() != null &&
+                fechaTerminacionDCh.getDate() != null) {
+            System.out.println("entre");
+            Date de = fechaInicialDCh.getDate();
+            Date hasta = fechaTerminacionDCh.getDate();
+            control
+                    .setClass(ImplementacionEvento.class
+                    );
+            control.buscarImplementacion(de, hasta);
+        } else {
+            control.setClass(ImplementacionEvento.class
+            );
+            control.buscarTodos();
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
-    private void registrarPnlComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_registrarPnlComponentShown
-        curRealizarPnl.setVisible(false);
-        curRealizadoPnl.setVisible(false);  
-    }//GEN-LAST:event_registrarPnlComponentShown
-
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
-        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
-        if(campo.getNombre().compareTo("")!=0){
-            regRealizadoBtn.setEnabled(true);
-            regRealizarBtn.setEnabled(true);
-            buscarBtn.setEnabled(true);
-        }else{
-            regRealizadoBtn.setEnabled(false);
-            regRealizarBtn.setEnabled(false);
-            buscarBtn.setEnabled(false);
+        Evento campo = (Evento) tipoBusCBx.getSelectedItem();
+        if (campo != null) {
+            if (campo.getNombre().compareTo("") != 0) {
+                regRealizadoBtn.setEnabled(true);
+                regRealizarBtn.setEnabled(true);
+            } else {
+                regRealizadoBtn.setEnabled(false);
+                regRealizarBtn.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
 
     private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
-        Curso campo = (Curso)tipoBusCBx.getSelectedItem();
-        if(campo.getNombre().compareTo("")!=0){
-            regRealizadoBtn.setEnabled(true);
-            regRealizarBtn.setEnabled(true);
-            buscarBtn.setEnabled(true);
-        }else{
-            regRealizadoBtn.setEnabled(false);
-            regRealizarBtn.setEnabled(false);
-            buscarBtn.setEnabled(false);
+        Evento campo = (Evento) tipoBusCBx.getSelectedItem();
+        if (campo != null) {
+            if (campo.getNombre().compareTo("") != 0) {
+                regRealizadoBtn.setEnabled(true);
+                regRealizarBtn.setEnabled(true);
+            } else {
+                regRealizadoBtn.setEnabled(false);
+                regRealizarBtn.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
 
-    private void tipoSedeCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeCBxItemStateChanged
-        Sede campo = (Sede)tipoSedeCBx.getSelectedItem();
-        if(campo.getNombre().compareTo("")!=0){
-            regRealizadoBtn.setEnabled(true);
-            regRealizarBtn.setEnabled(true);
-            buscarBtn.setEnabled(true);
-        }else{
-            regRealizadoBtn.setEnabled(false);
-            regRealizarBtn.setEnabled(false);
-            buscarBtn.setEnabled(false);
-        }
-    }//GEN-LAST:event_tipoSedeCBxItemStateChanged
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        regRealizadoBtn.setEnabled(false);
+        regRealizarBtn.setEnabled(false);
+        eventoRealizarPnl.limpiarCampos();
+        eventoRealizadoPnl.limpiarCampos();
+    }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JPanel buscarPnl;
     private javax.swing.JPanel calendarioPnl;
+    private com.toedter.calendar.JDateChooser fechaInicialDCh;
+    private com.toedter.calendar.JDateChooser fechaTerminacionDCh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreBusLbl;
@@ -518,10 +556,10 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
     private javax.swing.JButton regRealizarBtn;
     private javax.swing.JPanel registrarPnl;
     private javax.swing.JLabel sedeLbl;
+    private javax.swing.JLabel sedeLbl1;
     private javax.swing.JTable tablaTbl;
     private javax.swing.JComboBox tipoBusCBx;
     private javax.swing.JComboBox tipoRegCBx;
-    private javax.swing.JComboBox tipoSedeCBx;
     // End of variables declaration//GEN-END:variables
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
@@ -547,34 +585,39 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         model.setDataVector(info, titulosTabla);
         //Esconder columna ID
         TableColumn tc = tablaTbl.getColumnModel().getColumn(4);
-        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
+        tc
+                .setCellEditor(tablaTbl.getDefaultEditor(Boolean.class
+                        ));
+        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class
+        ));
         tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
+
+        tablaTbl.getColumnModel()
+                .removeColumn(tc);
     }
 
     /**
      * Metodo sobrescrito de la clase Comunicador que ayuda a mandar la
-     * informacion del curso a su respecivo panel, dependiendo del estado del 
-     * curso
+     * informacion del evento a su respecivo panel, dependiendo del estado del
+     * evento
      *
      * @param info
      * @param i
      */
     @Override
     public void setInfo(List info) {
-        if(estado.equals("Finalizado")){
-            curRealizarPnl.setVisible(false);
-            curRealizadoPnl.setVisible(true);
-            curRealizadoPnl.llenarTodo();
-            curRealizadoPnl.obtenerMod(info);
-            curRealizadoPnl.visibilidad(true);
-        }else{
-            curRealizarPnl.setVisible(true);
-            curRealizadoPnl.setVisible(false);
-            curRealizarPnl.llenarTodo();
-            curRealizarPnl.obtenerMod(info);
-            curRealizarPnl.visibilidad(true);
+        if (estado.equals("Finalizado")) {
+            eventoRealizarPnl.setVisible(false);
+            eventoRealizadoPnl.setVisible(true);
+            eventoRealizadoPnl.llenarTodo();
+            eventoRealizadoPnl.obtenerMod(info);
+            eventoRealizadoPnl.visibilidad(true);
+        }else {
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.obtenerMod(info);
+            eventoRealizarPnl.visibilidad(true);
         }
     }
 
@@ -592,22 +635,12 @@ public class PnlProgramarCurso extends javax.swing.JPanel implements Comunicador
         }
         switch (i) {
             case 1:
-                tipoCursoModel.removeAllElements();
-                Curso curso = new Curso();
-                curso.setNombre("");
-                tipoCursoModel.addElement(curso);              
+                tipoEventoModel.removeAllElements();
+                Evento evento = new Evento();
+                evento.setNombre("");
+                tipoEventoModel.addElement(evento);
                 for (int j = 0; j < info.size(); j++) {
-                    tipoCursoModel.addElement(info.get(j));
-                }
-                break;
-            case 2:
-                
-                tipoSedeModel.removeAllElements();
-                Sede sede = new Sede();
-                sede.setNombre("");
-                tipoSedeModel.addElement(sede); 
-                for (int j = 0; j < info.size(); j++) {
-                    tipoSedeModel.addElement(info.get(j));
+                    tipoEventoModel.addElement(info.get(j));
                 }
                 break;
         }

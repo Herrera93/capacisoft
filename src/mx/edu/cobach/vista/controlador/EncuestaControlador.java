@@ -10,10 +10,9 @@ import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
-import mx.edu.cobach.persistencia.entidades.Competencia;
-import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.Evento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.Comunicador;
@@ -107,7 +106,7 @@ public class EncuestaControlador extends BaseControlador {
      */
     public void buscarImplementacion(Object evento, Date de, Date hasta){
         List<Object> implementaciones = ServiceLocatorDELEGATE.getEncuesta()
-                .buscarImplementaciones((Curso) evento, de, hasta);
+                .buscarImplementaciones((Evento) evento, de, hasta);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
     
@@ -140,7 +139,7 @@ public class EncuestaControlador extends BaseControlador {
      */
     public void buscarImplementacionResultado(Object evento, Date de, Date hasta) {
         List<Object> implementaciones = ServiceLocatorDELEGATE.getEncuesta()
-                .buscarImplementacionesResultado((Curso) evento, de, hasta);
+                .buscarImplementacionesResultado((Evento) evento, de, hasta);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
 
@@ -149,8 +148,8 @@ public class EncuestaControlador extends BaseControlador {
      * @param idImplementacion Identificador de la implementacion
      */
     public void buscarEmpleados(int idImplementacion) {
-        ImplementacionCurso implementacion =  (ImplementacionCurso) ServiceLocatorDELEGATE
-            .getInstance().find(idImplementacion, ImplementacionCurso.class);
+        ImplementacionEvento implementacion =  (ImplementacionEvento) ServiceLocatorDELEGATE
+            .getInstance().find(idImplementacion, ImplementacionEvento.class);
         List<Object> empleados = new ArrayList(implementacion.getEmpleados());
         com.setTabla(HelperEntidad.descomponerObjetos(empleados));
     }

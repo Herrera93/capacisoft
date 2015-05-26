@@ -65,7 +65,12 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
-    public List<Object> findByDepartamento(Departamento departamento){        
+    /**
+     * Obtiene todas las implementaciones relacionadas de un departamento dado.
+     * @param departamento
+     * @return 
+     */
+    public List<Object> buscarPorDepartamento(Departamento departamento){        
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();
@@ -81,8 +86,12 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
-    
-    public List<Object> findByPuesto(Puesto puesto){        
+    /**
+     * Obtiene todas las implementaciones relacionadas de un puesto dado.
+     * @param puesto
+     * @return 
+     */
+    public List<Object> buscarPorPuesto(Puesto puesto){        
         List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
@@ -98,8 +107,12 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
-    
-    public List<Object> findByPlantel(Plantel plantel){        
+    /**
+     * Obtiene todas las implementaciones relacionadas de un plantel dado.
+     * @param plantel
+     * @return 
+     */
+    public List<Object> buscarPorPlantel(Plantel plantel){        
         List<Object> ts = null;        
         try{
             HibernateUtil.openSession();

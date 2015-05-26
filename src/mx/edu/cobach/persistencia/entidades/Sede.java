@@ -19,7 +19,7 @@ public class Sede  implements java.io.Serializable {
      private String numeroDireccion;
      private String colonia;
      private String lugar;
-     private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
+     private Set<ImplementacionEvento> implementacionEventos = new HashSet<ImplementacionEvento>(0);
 
     public Sede() {
     }
@@ -34,7 +34,7 @@ public class Sede  implements java.io.Serializable {
         this.colonia = colonia;
         this.lugar = lugar;
     }
-    public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia, String lugar, Set<ImplementacionCurso> implementacionCursos) {
+    public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia, String lugar, Set<ImplementacionEvento> implementacionEventos) {
        this.municipio = municipio;
        this.nombre = nombre;
        this.capacidad = capacidad;
@@ -42,7 +42,7 @@ public class Sede  implements java.io.Serializable {
        this.numeroDireccion = numeroDireccion;
        this.colonia = colonia;
        this.lugar = lugar;
-       this.implementacionCursos = implementacionCursos;
+       this.implementacionEventos = implementacionEventos;
     }
    
     public Integer getId() {
@@ -101,15 +101,18 @@ public class Sede  implements java.io.Serializable {
     public void setLugar(String lugar) {
         this.lugar = lugar;
     }
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return this.implementacionCursos;
+    public Set<ImplementacionEvento> getImplementacionEventos() {
+        return this.implementacionEventos;
     }
     
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
+    public void setImplementacionEventos(Set<ImplementacionEvento> implementacionEventos) {
+        this.implementacionEventos = implementacionEventos;
     }
 
-
+     @Override
+    public String toString(){
+        return this.nombre;
+    }   
 
 
 }
