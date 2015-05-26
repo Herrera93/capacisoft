@@ -19,7 +19,7 @@ public class SedeControlador extends BaseControlador{
     }
     
     public void buscarPorNombre(String nombre){
-        List<Object> list = ServiceLocatorDELEGATE.getSedeDelegate().findByNombre(nombre);
+        List<Object> list = ServiceLocatorDELEGATE.getSede().findByNombre(nombre);
        com.setTabla(HelperEntidad.descomponerObjetos(list));
     }
 }

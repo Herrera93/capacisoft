@@ -8,7 +8,13 @@
             <column name="id" />
             <generator class="identity"></generator>
         </id>
-        <many-to-one name="implementacionCurso" class="mx.edu.cobach.persistencia.entidades.ImplementacionCurso" fetch="select">
+         <property name="jotformIdAntes" length="20" type="java.lang.Long">
+            <column name="jotform_id_antes" not-null="true" unique="true" />
+        </property>
+        <property name="jotformIdDespues" length="20" type="java.lang.Long">
+            <column name="jotform_id_despues" not-null="true" unique="true" />
+        </property>
+        <many-to-one name="implementacionCurso" class="mx.edu.cobach.persistencia.entidades.ImplementacionCurso"  unique="true" fetch="select">
             <column name="implementacion_curso_id" not-null="true" />
         </many-to-one>
         <set name="respuestas" table="respuesta" inverse="true" lazy="true" fetch="select">
@@ -16,6 +22,14 @@
                 <column name="encuesta_id" not-null="true" />
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta" />
+        </set>
+        <set name="aspectos" table="encuesta_aspecto" inverse="false" lazy="false" fetch="select">
+            <key>
+                <column name="encuesta_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="mx.edu.cobach.persistencia.entidades.Aspecto">
+                <column name="aspecto_id" not-null="true" />
+            </many-to-many>
         </set>
     </class>
 </hibernate-mapping>

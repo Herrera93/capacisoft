@@ -4,14 +4,10 @@
 <!-- Generated May 16, 2015 9:04:03 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="mx.edu.cobach.persistencia.entidades.Telefono" table="telefono" catalog="capacisoft">
-        <composite-id name="id" class="mx.edu.cobach.persistencia.entidades.TelefonoId">
-            <key-property name="id" type="int">
-                <column name="id" />
-            </key-property>
-            <key-property name="proveedorId" type="int">
-                <column name="proveedor_id" />
-            </key-property>
-        </composite-id>
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity"></generator>
+        </id>
         <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" update="false" insert="false" fetch="select">
             <column name="proveedor_id" not-null="true" />
         </many-to-one>
