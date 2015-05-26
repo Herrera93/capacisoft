@@ -16,7 +16,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
+ * Esta clase conecta es la encargada de la optencio especifica para la tabla 
+ * ImplementacionEventoEnunciadoLogisticaDAO
  * @author liuts
  */
 public class ImplementacionEventoDAO<T> extends BaseDAO{

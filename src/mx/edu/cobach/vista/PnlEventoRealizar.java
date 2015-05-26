@@ -29,7 +29,9 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
- *
+ * Esta clase mostrara la interfaz de los eventos a realizar, agregando 
+ * el proveedor del evento, la sede sus respectivas fechas igual o 
+ * superiores a la actual y la lista de asistencia
  * @author liuts
  */
 public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador {

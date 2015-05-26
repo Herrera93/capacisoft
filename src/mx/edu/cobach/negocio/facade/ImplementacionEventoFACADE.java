@@ -13,7 +13,9 @@ import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 
 /**
- *
+ * Esta clase de ImplementacionEventoFacade es utilizada para la tabla
+ * ImplementacionEvento,con la finalidad de ser de 
+ * comunicacion la base de datos
  * @author liuts
  */
 public class ImplementacionEventoFACADE extends BaseFACADE{

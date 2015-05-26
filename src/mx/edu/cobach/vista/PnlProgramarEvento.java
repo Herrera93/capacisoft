@@ -16,8 +16,8 @@ import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
- *
- * @author liuts
+ * Esta clase mostrara la interfaz de la busqueda del evento o la seleccion de
+ * un evento para llevarlo a implementar
  */
 public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicador {
 

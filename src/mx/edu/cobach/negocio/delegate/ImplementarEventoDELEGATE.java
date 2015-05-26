@@ -16,7 +16,9 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
 
 /**
- *
+ * Esta clase de ImplementacionEventoDelegate es utilizada para el caso de 
+ * uso ImplementacionEvento, con la finalidad de ser de comunicacion 
+ * la base de datos
  * @author liuts
  */
 public class ImplementarEventoDELEGATE extends BaseDELEGATE{
