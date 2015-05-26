@@ -56,7 +56,7 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
     }
     /**
      * Obtiene todas las encuestas de la logistica para el evento.
-     * @param encuesta
+     * @param eventoProgra
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarPorEncuesta(ImplementacionEvento eventoProgra) {
@@ -80,16 +80,22 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
     }
     
     /**
-     * Obtiene todas las implementaciones en un rango de fechas dado.
+     * Obtiene todas las implementaciones de un evento especifico en un rango
+     * de fechas dado. Si las fechas no estan inicializadas no se tomaran en 
+     * cuenta, solo se tomaran las fechas inicializadas, esto significa que 
+     * se puede dar la fecha 'de' sin dar 'hasta'.
+     * @param evento Evento especifico 
      * @param de Fecha inicio de rango
      * @param hasta Fecha final de rango
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> buscarPorFechas(Date de, Date hasta){
-        return ServiceLocatorFACADE.getImplementacionEvento().buscarPorFechas(de, hasta);
+    public List<Object> buscarEventoPorFechas(Evento evento, Date de, Date hasta){
+        return ServiceLocatorFACADE.getImplementacionEvento()
+                .buscarEventoPorFechas(evento, de, hasta);
     }
+    
     /**
-     * Guarda un curso realizado y regresa un id del curso.
+     * Guarda un evento realizado y regresa un id del evento.
      * @param impleEvento
      * @param clazz
      * @return 

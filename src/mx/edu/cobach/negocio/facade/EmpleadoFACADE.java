@@ -9,6 +9,7 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 
@@ -51,6 +52,15 @@ public class EmpleadoFACADE extends BaseFACADE {
      */
     public List<Object> buscarPorPlantel(Plantel plantel) {
         return ServiceLocator.getEmpleado().buscarPorPlantel(plantel);
+    }
+    
+    /**
+     * Busqueda del jefe de inmeadiato de un empleado dado
+     * @param empleado Objeto de empleado a buscar
+     * @return Regresa un objeto de un empleado perteneciente al jefe del empleado
+     */
+    public Object buscarJefeInmediato(Empleado empleado){
+        return ServiceLocator.getEmpleado().buscarJefeInmediato(empleado);
     }
     
 }

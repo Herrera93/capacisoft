@@ -9,24 +9,24 @@ package mx.edu.cobach.persistencia.entidades;
 public class Telefono  implements java.io.Serializable {
 
 
-     private TelefonoId id;
+     private int id;
      private Proveedor proveedor;
      private String telefono;
 
     public Telefono() {
     }
 
-    public Telefono(TelefonoId id, Proveedor proveedor, String telefono) {
+    public Telefono(int id, Proveedor proveedor, String telefono) {
        this.id = id;
        this.proveedor = proveedor;
        this.telefono = telefono;
     }
    
-    public TelefonoId getId() {
+    public int getId() {
         return this.id;
     }
     
-    public void setId(TelefonoId id) {
+    public void setId(int id) {
         this.id = id;
     }
     public Proveedor getProveedor() {

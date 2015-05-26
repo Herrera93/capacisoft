@@ -5,9 +5,9 @@
  */
 package mx.edu.cobach.vista;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,19 +16,24 @@ import mx.edu.cobach.persistencia.entidades.Competencia;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
- *
- * @author liuts
+ * Clase de panel para agregar los diferentes aspectos en una encuesta.
  */
 public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicador{
 
-    /**
-     * Creates new form PnlAgregarAspectos
-     */
+    //Controlador que permite la interaccion con las capas bajas
     private final EncuestaControlador control;
-    private final DefaultTableModel aspectosTblModel, aspectosAgrTblModel;
+    //Modelo de la tabla aspectos
+    private final DefaultTableModel aspectosTblModel;
+    //Modelo de la tabla de aspectos a agregados
+    private final DefaultTableModel aspectosAgrTblModel;
+    //Titulos de la tablas (Ambas usan la misma)
     private final String[] titulosTabla;    
+    //Modelo del combo box de competencias
     private final DefaultComboBoxModel competenciaModel;
     
+    /**
+     * Se inicializan la configuracion de los componentes  y los atributos.
+     */
     public PnlAgregarAspectos() {
         control = new EncuestaControlador(this);
         titulosTabla = new String[]{"ID", "Aspectos"};
@@ -39,8 +44,8 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         aspectosAgrTblModel = new DefaultTableModel(titulosTabla, 0);
         aspectosAgregadosTbl.setModel(aspectosAgrTblModel);
         
+        //Se esconden las columnas de ID de las tablas
         TableColumn columnaID;      
-        
         columnaID = aspectosTbl.getColumnModel().getColumn(0);
         aspectosTbl.getColumnModel().removeColumn(columnaID);        
         
@@ -51,10 +56,10 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         competenciaCBx.setModel(competenciaModel);
     }
     
-    /*
-    Este metodo es utilizado para llenar las listas con la informacion de la 
-    base de datos. Se ejecuta antes de entrar al panel para que una vez que se
-    entre se mostrara todos los datos correspondientes.
+    /**
+    * Este metodo es utilizado para llenar las listas con la informacion de la 
+    * base de datos. Se ejecuta antes de entrar al panel para que una vez que se
+    * entre se mostrara todos los datos correspondientes.
     */
     public void llenarTodo(){
         control.setClass(Competencia.class);
@@ -287,15 +292,32 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo que se ejecuta al presionar el boton enviar. Este metodo toma
+     * el padre de esta panel y ejecuta el metodo enviarEncuesta();
+     * @param evt Evento ejecutado
+     */
     private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
-        // TODO add your handling code here:
+        PnlSeguimiento seguimientoPnl = (PnlSeguimiento) this.getParent();
+        seguimientoPnl.enviarEncuesta();
     }//GEN-LAST:event_enviarBtnActionPerformed
 
+    /**
+     * Metodo que se ejecuta al cambiar de seleccion en el combo box competencia.
+     * Al cambiar la seleccion de competencia se obtienen los aspectos correspondientes
+     * a esa competencia.
+     * @param evt Evento ejecutado
+     */
     private void competenciaCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_competenciaCBxItemStateChanged
         if(competenciaCBx.getSelectedIndex() != 0)
         control.buscarPorCompetencia(competenciaCBx.getSelectedItem());
     }//GEN-LAST:event_competenciaCBxItemStateChanged
 
+    /**
+     * Metodo ejecutado al presionar el boton de agregar. Este metodo pasa el
+     * aspecto a la tabla de aspectos agregados y lo elimina de la tabla original.
+     * @param evt Evento ejecutado
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         int renglonIndice = aspectosTbl.getSelectedRow();
         if(aspectosTblModel.getRowCount() == 0){
@@ -311,6 +333,12 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
 
+    /**
+     * Metodo ejecutado al presionar el boton de agregar todos. Este metodo pasa
+     * todos los aspectos a la tabla de aspectos agregados y los elimina de la 
+     * tabla original.
+     * @param evt Evento ejecutado
+     */
     private void agregaTodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregaTodosBtnActionPerformed
         int renglones = aspectosTblModel.getRowCount();
         if(renglones == 0){
@@ -326,6 +354,11 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_agregaTodosBtnActionPerformed
 
+    /**
+     * Metodo ejecutado al presionar el boton de borrar. Este metodo pasa el
+     * aspecto a la tabla de aspectos y lo elimina de la tabla de aspectos agregados.
+     * @param evt Evento ejecutado
+     */
     private void borrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarBtnActionPerformed
         int renglonIndice = aspectosAgregadosTbl.getSelectedRow();
         if(aspectosAgrTblModel.getRowCount() == 0){
@@ -341,6 +374,12 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_borrarBtnActionPerformed
 
+    /**
+     * Metodo ejecutado al presionar el boton de borrar todos. Este metodo pasa
+     * todos los aspectos agregados a la tabla de aspectos original y los 
+     * elimina de la tabla de aspectos agregados.
+     * @param evt Evento ejecutado
+     */
     private void borrarTodosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarTodosBtnActionPerformed
         if(aspectosAgrTblModel.getRowCount() == 0){
             setMensaje("No hay aspectos que eliminar");
@@ -356,6 +395,11 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_borrarTodosBtnActionPerformed
 
+    /**
+     * Metodo ejecutado al presionar el boton de empleados. Este metodo esconde
+     * el panel actual.
+     * @param evt 
+     */
     private void empleadosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleadosBtnActionPerformed
         setVisible(false);
     }//GEN-LAST:event_empleadosBtnActionPerformed
@@ -380,6 +424,19 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
     // End of variables declaration//GEN-END:variables
 
     /**
+     * Obtiene una lista de los identificadores de los aspectos agregados.
+     * @return Lista con los identificadores.
+     */
+    public List<Integer> getAspectos(){
+        List<Integer> aspectosIds = new ArrayList();
+        for(int i = 0; i < aspectosAgrTblModel.getRowCount(); i++){
+            String id = (String) aspectosAgrTblModel.getValueAt(i, 0);
+            aspectosIds.add(Integer.parseInt(id));
+        }
+        return aspectosIds;
+    }
+    
+    /**
      * Metodo utilizado par actualizar las tablas de los aspectos, de esta manera
      * se eliminaran los aspectos que ya hayan sido agregados a evaluar en
      * la encuesta.
@@ -398,12 +455,20 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         }
     }
 
+    /**
+     * Metodo para mostrar un mensaje de advertencia por medio del JOptionPane.
+     * @param mensaje Mensaje a mostrar.
+     */
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Advertencia", 
                 JOptionPane.WARNING_MESSAGE);
     }
 
+    /**
+     * Metodo asignar la informacion a la tabla de aspectos.
+     * @param info Matriz con la informacion a asignar.
+     */
     @Override
     public void setTabla(String[][] info) {
         TableColumn columnaID;
@@ -415,11 +480,20 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
         removerAgregados();
     }
 
+    /**
+     * Metodo no implementado.
+     * @param info 
+     */
     @Override
     public void setInfo(List info) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * El metodo asigna la lista de informacion al combo box determinado.
+     * @param info Lista con la informacion
+     * @param i Indice de identificacion de combo box
+     */
     @Override
     public void setLista(List info, int i) {
         if(info.isEmpty()) return;
@@ -433,5 +507,12 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
                 competenciaCBx.setSelectedIndex(0);
                 break;
         }
+    }
+
+    /**
+     * El metodo limpia la tabla de aspectos agregados.
+     */
+    public void limpiar() {
+        aspectosAgrTblModel.setDataVector(new String[0][3], titulosTabla);
     }
 }

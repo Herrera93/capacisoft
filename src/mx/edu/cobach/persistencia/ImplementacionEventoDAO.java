@@ -11,6 +11,7 @@ import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
@@ -65,27 +66,6 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
     }
     
     /**
-     * Obtiene todas las implementaciones en un rango de fechas dado.
-     * @param de Fecha inicio de rango
-     * @param hasta Fecha final de rango
-     * @return Regresa la lista con las implementaciones
-     */
-    public List<Object> buscarPorFechas(Date de, Date hasta){   
-        List<Object> ts = null;
-        try{
-            HibernateUtil.openSession();
-            HibernateUtil.beginTransaction();
-            ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.between("fechaInicial", de, hasta)).list();
-            HibernateUtil.commitTransaction();
-        }catch(HibernateException e){
-            HibernateUtil.rollbackTransaction();
-        }finally{
-            HibernateUtil.closeSession();
-        }
-        return ts;        
-    }
-    /**
      * Metodo para el guardado y actualizacion de los cursos realizados
      * opteniendo una id del este mismo
      * @param t Objeto a gurdar
@@ -104,6 +84,38 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
             HibernateUtil.closeSession();
         }
         return objeto;
+    }
+    
+    /**
+     * Obtiene todas las implementaciones de un evento especifico en un rango
+     * de fechas dado. Si las fechas no estan inicializadas no se tomaran en 
+     * cuenta, solo se tomaran las fechas inicializadas, esto significa que 
+     * se puede dar la fecha 'de' sin dar 'hasta'.
+     * @param evento Evento especifico 
+     * @param de Fecha inicio de rango
+     * @param hasta Fecha final de rango
+     * @return Regresa la lista con las implementaciones
+     */
+    public List<Object> buscarEventoPorFechas(Evento evento, Date de, Date hasta){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria crit = HibernateUtil.getSession().createCriteria(entityClass);
+            if(evento != null)
+                crit.add(Restrictions.eq("evento", evento));
+            if(de != null)
+                crit.add(Restrictions.ge("fechaInicial", de));
+            if(hasta != null)
+                crit.add(Restrictions.lt("fechaInicial", hasta));
+            ts = crit.list();
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;        
     }
 }
 

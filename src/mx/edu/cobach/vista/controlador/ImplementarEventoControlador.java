@@ -37,7 +37,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Este metodo sirve para buscar el curso implementado a modificar
+     * Este metodo sirve para buscar el evento implementado a modificar
      *
      * @param id
      */
@@ -47,7 +47,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Sirve para buscar un evento especifico para agregarlo a los cursos a
+     * Sirve para buscar un evento especifico para agregarlo a los evento a
      * implementar
      *
      * @param id
@@ -61,8 +61,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     /**
      * Sirve para buscar todos los eventos que puedan implementarse implementar
      *
-     * @param id
-     * @param eventoClase
+     * @param evento Evento a buscar
      */
     public void buscarPorEvento(Evento evento) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorEvento(evento);
@@ -70,10 +69,9 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Sirve para buscar todos sedes donde se implanto un curso implementar
+     * Sirve para buscar todos sedes donde se implanto un evento implementar
      *
-     * @param id
-     * @param eventoClase
+     * @param sede Sede a buscar
      */
     public void buscarPorSede(Sede sede) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorSede(sede);
@@ -84,8 +82,8 @@ public class ImplementarEventoControlador extends BaseControlador {
      * Este metodo sirve para buscar el id del empleado y agregarlo a la lista
      * de asistencia para la lista de asistencia
      *
-     * @param id
-     * @param cursoClase
+     * @param id Identificador de empleado
+     * @param empleado Clase de empleado
      */
     public void buscarEmpId(Integer id, Class<Empleado> empleado) {
         Object o = ServiceLocatorDELEGATE.getImplementarEvento().find(id, empleado);
@@ -113,7 +111,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Este metodo sirve para buscar la encuesta para del curso finalizado
+     * Este metodo sirve para buscar la encuesta para del evento finalizado
      */
     public void buscarEncuesta() {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().findAll(EnunciadoLogistica.class);
@@ -141,8 +139,7 @@ public class ImplementarEventoControlador extends BaseControlador {
      * Este metodo sirve para buscar la coincidencia del Planteles de los
      * empleados para la lista de asistencia
      *
-     * @param id
-     * @param cursoClase
+     * @param plantel Plantel a buscar
      */
     public void buscarEmpPl(Plantel plantel) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorPlantel(plantel);
@@ -166,19 +163,19 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Este metodo sirve para buscar la coincidencia de los cursos implementados
+     * Este metodo sirve para buscar la coincidencia de los eventos implementados
      *
      * @param de
      * @param hasta
      */
     public void buscarImplementacion(Date de, Date hasta) {
         List<Object> implementaciones = ServiceLocatorDELEGATE.getImplementarEvento()
-                .buscarPorFechas(de, hasta);
+                .buscarEventoPorFechas(null, de, hasta);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
 
     /**
-     * Este metodo sirve para guardar o modificar la informacion de un curso
+     * Este metodo sirve para guardar o modificar la informacion de un evento
      * implementado
      *
      * @param impleEvento

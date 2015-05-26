@@ -1,6 +1,7 @@
 package mx.edu.cobach.persistencia.entidades;
 // Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -335,13 +336,12 @@ public class Empleado implements java.io.Serializable {
         this.implementacionEventos = implementacionEventos;
     }
 
-    /**
-     * Manda como toString un id del empleado
-     *
-     * @return manda id de empleado
-     */
-    public String toString() {
-        return this.id + "";
+     @Override
+    public String toString(){
+        if(segundoNombre != null)
+            return primerNombre + " " + segundoNombre + " " + 
+                    apellidoPaterno + " " + apellidoMaterno;
+        else
+            return primerNombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
-
 }

@@ -30,7 +30,7 @@ public class ImplementacionEventoFACADE extends BaseFACADE{
         return ServiceLocator.getImplementacionEvento().buscarPorEvento(evento);
     }
     /**
-     * * Obtiene todas las implementaciones relacionadas de una sede dado.
+     * Obtiene todas las implementaciones relacionadas de una sede dado.
      * @param sede
      * @return Regresa la lista con las implementaciones
      */
@@ -39,16 +39,22 @@ public class ImplementacionEventoFACADE extends BaseFACADE{
     }
     
     /**
-     * Obtiene todas las implementaciones en un rango de fechas dado.
+     * Obtiene todas las implementaciones de un evento especifico en un rango
+     * de fechas dado. Si las fechas no estan inicializadas no se tomaran en 
+     * cuenta, solo se tomaran las fechas inicializadas, esto significa que 
+     * se puede dar la fecha 'de' sin dar 'hasta'.
+     * @param evento Evento especifico 
      * @param de Fecha inicio de rango
      * @param hasta Fecha final de rango
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> buscarPorFechas(Date de, Date hasta){
-        return ServiceLocator.getImplementacionEvento().buscarPorFechas(de, hasta);
+    public List<Object> buscarEventoPorFechas(Evento evento, Date de, Date hasta){
+        return ServiceLocator.getImplementacionEvento()
+                .buscarEventoPorFechas(evento, de, hasta);
     }
+    
     /**
-     * Guarda un curso realizado y regresa un id del curso.
+     * Guarda un evento realizado y regresa un id del evento.
      * @param impleEvento
      * @param clazz
      * @return 

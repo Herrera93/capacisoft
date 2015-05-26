@@ -4,13 +4,13 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/capacisoft</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Capacisoft</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.connection.password">82047327l</property>
-    <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionEvento.hbm.xml"/>
+    <property name="hibernate.connection.password">1116291</property>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionCurso.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Usuario.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoCuenta.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Zona.hbm.xml"/>
@@ -31,10 +31,10 @@
     <mapping resource="mx/edu/cobach/persistencia/entidades/Enfoque.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Sede.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Telefono.hbm.xml"/>
-    <mapping resource="mx/edu/cobach/persistencia/entidades/Evento.hbm.xml"/>
-    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoEvento.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Curso.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/TipoCurso.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Departamento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Empleado.hbm.xml"/>
-    <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionEventoEnunciadoLogistica.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionCursoEnunciadoLogistica.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

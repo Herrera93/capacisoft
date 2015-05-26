@@ -21,7 +21,7 @@ public class CursoControlador extends BaseControlador{
     }
     
     public void buscarTipoCurso(int id) {
-        List<Object> o = ServiceLocatorDELEGATE.getCurso().findTipoCurso(id);
+        List<Object> o = ServiceLocatorDELEGATE.getEvento().buscarPorTipoCurso(id);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
 }
