@@ -116,8 +116,13 @@ public class HelperEntidad {
         e.setPuesto((Puesto) atributos.get(5));
         e.setCorreo((String) atributos.get(6));
         e.setAdscripcion((Adscripcion) atributos.get(7));
-        e.setPlantel((Plantel) atributos.get(8));
-        e.setDepartamento((Departamento) atributos.get(9));
+        Adscripcion ads = ((Adscripcion) atributos.get(7)); 
+        System.out.println(ads.getDescripcion());
+        if(ads.getDescripcion().equalsIgnoreCase("Plantel ")){
+            e.setPlantel((Plantel) atributos.get(8));
+        }else{
+            e.setDepartamento((Departamento) atributos.get(9));
+        }
         if (atributos.size() > 10) {
             e.setId((int) atributos.get(10));
         }
@@ -128,6 +133,7 @@ public class HelperEntidad {
         TipoCuenta t = new TipoCuenta();
         Usuario u = new Usuario();
 
+        
         u.setPrimerNombre(atributos.get(0));
         u.setSegundoNombre(atributos.get(1));
         u.setApellidoPaterno(atributos.get(2));
@@ -259,6 +265,12 @@ public class HelperEntidad {
                     se.add((Sede) objs.get(i));
                 }
                 return descomponerSedes(se);
+            }else if (objs.get(0) instanceof Empleado){
+                List<Empleado> emp = new ArrayList();
+                for (int i=0; i < objs.size(); i++){
+                    emp.add((Empleado) objs.get(i));
+                }
+                return descomponerEmpleados(emp);
             }
         }
         return null;
@@ -290,6 +302,7 @@ public class HelperEntidad {
 
     private static List<Object> descomponerEmpleado(Empleado empleado) {
         List<Object> info = new ArrayList<>();
+        System.out.println(empleado.getPrimerNombre());
         info.add(empleado.getId());
         info.add(empleado.getNumero());
         info.add(empleado.getPrimerNombre());
@@ -317,21 +330,7 @@ public class HelperEntidad {
         info.add(usuario.getContrasena());
         return info;
     }
-
-    //Descomposicion de lista de objetos
-    public static String[][] descomponerObjetos(List<Object> objetos, int... a) {
-        if (objetos.size() > 0) {
-            if (objetos.get(0) instanceof Empleado) {
-                List<Empleado> emps = new ArrayList();
-                for (int i = 0; i < objetos.size(); i++) {
-                    emps.add((Empleado) objetos.get(i));
-                }
-                return descomponerEmpleados(emps);
-            }
-        }
-        return null;
-    }
-
+    
     private static String[][] descomponerDepartamentos(List<Departamento> dp) {
         String[][] info = new String[dp.size()][3];
         for (int i = 0; i < dp.size(); i++) {
@@ -364,37 +363,16 @@ public class HelperEntidad {
         return info;
     }
 
-    private static String[][] descomponerEmpleados(List<Empleado> emps, int... a) {
-        if (a.length == 0) {
-            String[][] info = new String[emps.size()][6];
-            for (int i = 0; i < emps.size(); i++) {
-                Empleado e = emps.get(i);
-                info[i][0] = e.getId().toString();
-                info[i][1] = e.getNumero();
-                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
-                        + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-                info[i][3] = e.getPuesto().toString();
-                info[i][4] = e.getCorreo();
-                if (e.getAdscripcion().toString().equals("Departamento")) {
-                    info[i][5] = e.getDepartamento().toString();
-                } else {
-                    info[i][5] = e.getPlantel().toString();
-                }
-            }
-            return info;
-        } else {
-            String[][] info = new String[emps.size()][4];
-            for (int i = 0; i < emps.size(); i++) {
-                Empleado e = emps.get(i);
-                info[i][0] = e.getId().toString();
-                info[i][1] = e.getNumero();
-                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
-                        + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-                info[i][3] = e.getCorreo();
-            }
-            return info;
-
+    private static String[][] descomponerEmpleados(List<Empleado> emps) {
+        String[][] info = new String[emps.size()][3];
+        for (int i = 0; i < emps.size(); i++) {
+            Empleado e = emps.get(i);
+            info[i][0] = e.getId().toString();
+            info[i][1] = e.getNumero();
+            info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                    + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
         }
+        return info;
     }
 
     private static String[][] descomponerUsuarios(List<Usuario> us) {

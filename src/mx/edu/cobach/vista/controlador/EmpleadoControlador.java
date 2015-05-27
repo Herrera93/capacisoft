@@ -22,21 +22,21 @@ public class EmpleadoControlador extends BaseControlador {
         super(com, clazz);
     }    
     
-    public void buscarPorNombre (String nombre){
+    public void buscarPorNombre(String nombre) {
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado()
                 .buscarPorNombre(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(list));
     }
     
-    public void buscarPorAdscripcion (Adscripcion adscripcion){
+    public void buscarPorAdscripcion(Adscripcion adscripcion) {
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado().buscarPorAdscripcion(adscripcion);
         com.setTabla(HelperEntidad.descomponerObjetos(list));
     }    
     
-    public void buscarPorNumero(int numero){
+    public void validarPorNumero(int numero) {
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado().
-                buscarPorNumero(numero);
-        if(!list.isEmpty()){
+                validarPorNumero(numero);
+        if (!list.isEmpty()) {
             com.setMensaje("El numero de empleado ya existe");
         }
     }

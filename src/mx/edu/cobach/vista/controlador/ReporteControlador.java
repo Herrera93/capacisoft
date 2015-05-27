@@ -19,6 +19,7 @@ import mx.edu.cobach.vista.Comunicador;
  */
 public class ReporteControlador extends BaseControlador{
     
+    
     public ReporteControlador(Comunicador com, Class clazz){
         super(com, clazz);
     }
@@ -62,7 +63,7 @@ public class ReporteControlador extends BaseControlador{
      * implementados en el departamento 
      * @param departamento 
      */
-    public void generarEventosPorDepartamento(Departamento departamento){
+    public void generarReportePorDepartamento(Departamento departamento){
         String[][] reporteEvento = ServiceLocatorDELEGATE.getReporteDelegate()
                 .generarReportePorDepartamento(departamento);
         com.setTabla(reporteEvento);     
@@ -75,7 +76,7 @@ public class ReporteControlador extends BaseControlador{
      * 
      * @param plantel
      */
-    public void generarEventosPorPlantel(Plantel plantel){
+    public void generarReportePorPlantel(Plantel plantel){
         String[][] reporteEvento = ServiceLocatorDELEGATE.getReporteDelegate().
                 generarReportePorPlantel(plantel);
         com.setTabla(reporteEvento);
