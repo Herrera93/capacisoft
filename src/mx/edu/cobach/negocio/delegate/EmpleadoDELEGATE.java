@@ -23,8 +23,7 @@ public class EmpleadoDELEGATE {
         return ServiceLocatorFACADE.getEmpleado().buscarPorAdscripcion(adscripcion);
     }
     
-    public List<Object> buscarPorNumero(int numero){
-        return ServiceLocatorFACADE.getEmpleado().
-                buscarPorNumero(numero);
+    public List<Object> validarPorNumero(int numero){
+        return ServiceLocatorFACADE.getEmpleado().validarPorNumero(numero);
     }
 }

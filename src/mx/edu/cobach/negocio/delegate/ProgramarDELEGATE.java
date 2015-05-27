@@ -65,7 +65,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista de las encuestas
      */
     public List<Object> findByEvento(Evento evento) {
-        return ServiceLocatorFACADE.getPrograma().findByEvento(evento);
+        return ServiceLocatorFACADE.getPrograma().buscarPorEvento(evento);
     }
     /**
      * Obtiene todas las implementaciones relacionadas en una sede dada.
@@ -73,7 +73,7 @@ public class ProgramarDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista con las implementaciones
      */
     public List<Object> findBySede(Sede sede) {
-        return ServiceLocatorFACADE.getPrograma().findBySede(sede);
+        return ServiceLocatorFACADE.getPrograma().buscarPorSede(sede);
     }
     
     /**
