@@ -191,7 +191,7 @@ public class ReporteDELEGATE {
         
         int numEvento = 0;
         //instancia de la clase ApachePoiUtil
-        ApachePoiUtil word = new ApachePoiUtil();
+        ApachePoiUtil word;
         List <String> lista = new ArrayList();
         Empleado empleadoInfo = (Empleado) ServiceLocatorFACADE.getInstance().
                 find(numero, Empleado.class);
@@ -199,7 +199,7 @@ public class ReporteDELEGATE {
         Map<String, String> agregarInfo = new HashMap();
         String nombre = empleadoInfo.getPrimerNombre() + " " + empleadoInfo.getSegundoNombre()
                 + " " + empleadoInfo.getApellidoPaterno() + " " + empleadoInfo.getApellidoMaterno();
-
+        word = new ApachePoiUtil(nombre);
         //Se agregan los valores del empleado.
         agregarInfo.put("<@nombre>", nombre);
         agregarInfo.put("<@numero>", empleadoInfo.getNumero());

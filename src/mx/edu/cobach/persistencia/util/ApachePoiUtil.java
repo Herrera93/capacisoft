@@ -31,15 +31,22 @@ public class ApachePoiUtil {
     XWPFDocument doc;
     List<XWPFParagraph> xwpfParagraphs;
     FileOutputStream salida;
+    String nombre;
 
     /**
      * Constructor de la clase ApachePoi
      * @throws IOException 
      */
-    public ApachePoiUtil() throws IOException {
+    public ApachePoiUtil(String nombre) throws IOException {
+        this.nombre = nombre;
         this.doc = new XWPFDocument(new FileInputStream("nombre.docx"));
         this.xwpfParagraphs = doc.getParagraphs();
-        this.salida = new FileOutputStream("salida.docx");
+        String local = System.getProperty("user.home");
+        String separador = System.getProperty("file.separator");
+        this.salida = new FileOutputStream(local + separador +"Documents" 
+                + separador + "capacisoft" + separador + "kardex" + separador
+                        + nombre + ".docx");
+        
     }
 
     /**
