@@ -115,7 +115,7 @@ public class EmpleadoDAO extends BaseDAO{
     }
 
     
-    public List<Object> buscarPorNumero(int numero){
+    public List<Object> validarPorNumero(int numero){
         List<Object> ts = null;        
         String num = numero + "";
         System.out.println(num);
