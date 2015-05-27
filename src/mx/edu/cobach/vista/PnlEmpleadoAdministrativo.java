@@ -40,7 +40,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private final Border BORDER_ORIGINAL;
 
     /**
-     * Creates new form PnlEmpleadoAdministrativo
+     * Constructor del PnlEmpleadoAdministrativo
      */
     public PnlEmpleadoAdministrativo() {
         this.titulosTabla = new String[]{"ID", "Numero", "Nombre", "Eliminar"};
@@ -73,6 +73,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellidoTFd.addFocusListener(this);
         correoTFd.addFocusListener(this);
         BORDER_ORIGINAL = numeroTFd.getBorder();
+        control.buscarTodos();
 
     }
 
@@ -96,7 +97,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscBuscarCBx = new javax.swing.JComboBox();
         opcionMsjLbl = new javax.swing.JLabel();
         opcionLbl = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        tablaMsjLbl = new javax.swing.JLabel();
         informacioPnl = new javax.swing.JPanel();
         puestoLbll = new javax.swing.JLabel();
         plantelLbl = new javax.swing.JLabel();
@@ -209,7 +210,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones ");
 
-        jLabel2.setText("<html>Para Modificar seleccione un nombre de curso de la columna \"Nombre\"</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un numero de curso de la columna \"Numero\"</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -248,7 +249,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(tablaMsjLbl, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
         );
         opcionPnlLayout.setVerticalGroup(
@@ -271,7 +272,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     .addComponent(agregarBtn)
                     .addComponent(buscarBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -327,6 +328,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
         adscCBx.setToolTipText("Seleccioné la  adscripción que esta asigando el empleado");
         adscCBx.setEnabled(false);
+        adscCBx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adscCBxActionPerformed(evt);
+            }
+        });
 
         departamentoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         departamentoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -616,6 +622,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             atributos.add(idEmpleadoActual);
             control.modificacion(HelperEntidad.getEmpleado(atributos));
         }
+        guardarBtn.setText("Guardar");
         control.buscarTodos();
     }//GEN-LAST:event_guardarBtnActionPerformed
 
@@ -647,8 +654,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         if (col == 0) {
 
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            System.out.println(id);
-            control.buscarPorNumero(id);
+            control.buscar(id);
         } else if (col == 2) {
             //System.out.println("ID: " + model.getValueAt(row, 0));
             //Preguntamos si esta seguro de la eliminacion
@@ -667,6 +673,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_tablaTblMouseClicked
 
+    /**
+     * Evento que se ejecuta cuandore se presiona el boton Buscar, donde se 
+     * limpian los campos, se obtiene el valor por que se va a agregar.
+     * @param evt 
+     */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se limpian los campos
         numeroTFd.setText("");
@@ -689,13 +700,19 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             adscBuscarCBx.setEnabled(true);
         } else if (!nombreBuscarTFd.getText().isEmpty()) {
             control.buscarPorNombre(nombreBuscarTFd.getText());
-        }else if (adscBuscarCBx.getSelectedIndex()== 0) {
+        } else if (adscBuscarCBx.getSelectedIndex() == 0) {
             control.buscarTodos();
-        }else{
-            control.buscarPorAdscripcion((Adscripcion)adscBuscarCBx.getSelectedItem());
+        } else {
+            control.buscarPorAdscripcion((Adscripcion) adscBuscarCBx.getSelectedItem());
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
+    /**
+     * Evento que se ejecuta al presionar el boton Cancelar el cual va a limpiar
+     * todos lo campos del panel info y los desahabilitara para realizar otra 
+     * accion.
+     * @param evt 
+     */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         //Se limpian los campos
         numeroTFd.setText("");
@@ -704,6 +721,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellidoTFd.setText("");
         segApellidoTFd.setText("");
         correoTFd.setText("");
+        adscCBx.setSelectedIndex(0);
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        guardarBtn.setText("Guardar");
         numeroTFd.setBorder(BORDER_ORIGINAL);
         primerNombreTFd.setBorder(BORDER_ORIGINAL);
         primerApellidoTFd.setBorder(BORDER_ORIGINAL);
@@ -716,6 +737,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
+    /**
+     * El este evento se produce cuando se intenta teclear en el campo 
+     * numero, donde solo se permitira el uso de numeros.
+     * @param evt 
+     */
     private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
         char car = evt.getKeyChar();
         if (numeroTFd.getText().length() >= 10) {
@@ -727,6 +753,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_numeroTFdKeyTyped
 
+    /**
+     * Este evento se se produce cuando se intenta teclear en el campo
+     * primerNombre, donde solo se permitira el uso de letras y espacios.
+     * @param evt 
+     */
     private void primerNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerNombreTFdKeyTyped
         char car = evt.getKeyChar();
         if (primerNombreTFd.getText().length() >= 20) {
@@ -749,6 +780,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_primerNombreTFdKeyTyped
 
+    /**
+     * Este evento se se produce cuando se intenta teclear en el campo
+     * primerApellido, donde solo se permitira el uso de letras y espacios.
+     * @param evt 
+     */
     private void primerApellidoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerApellidoTFdKeyTyped
         char car = evt.getKeyChar();
         if (primerApellidoTFd.getText().length() >= 20) {
@@ -772,11 +808,29 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_primerApellidoTFdKeyTyped
 
+    /**
+     * El este evento se produce cuando se intenta teclear en el campo 
+     * numero, donde solo se permitira el uso de numeros.
+     * @param evt 
+     */
     private void correoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTFdKeyTyped
         if (correoTFd.getText().length() >= 45) {
             evt.consume();
         }
     }//GEN-LAST:event_correoTFdKeyTyped
+
+    private void adscCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adscCBxActionPerformed
+        if (adscCBx.getSelectedIndex() == 0) {
+            plantelCBx.setEnabled(false);
+            departamentoCBx.setEnabled(false);
+        } else if (adscCBx.getSelectedIndex() == 1) {
+            plantelCBx.setEnabled(false);
+            departamentoCBx.setEnabled(true);
+        } else if(adscCBx.getSelectedIndex() == 2) {
+            departamentoCBx.setEnabled(false);
+            plantelCBx.setEnabled(true);
+        }
+    }//GEN-LAST:event_adscCBxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -794,7 +848,6 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacioPnl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -820,6 +873,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JTextField segApellidoTFd;
     private javax.swing.JLabel segNombreLbl;
     private javax.swing.JTextField segNombreTFd;
+    private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JScrollPane tablaSPn;
     private javax.swing.JTable tablaTbl;
     private javax.swing.JLabel validApellLbl;
@@ -875,24 +929,32 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 for (int j = 0; j < info.size(); j++) {
                     puestoModel.addElement(info.get(j));
                 }
+                puestoModel.insertElementAt(new Puesto(), 0);
+                puestoCBx.setSelectedIndex(0);
                 break;
             case 2:
                 plantelModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
                     plantelModel.addElement(info.get(j));
                 }
+                plantelModel.insertElementAt(new Plantel(), 0);
+                plantelCBx.setSelectedIndex(0);
                 break;
             case 3:
                 dptoModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
                     dptoModel.addElement(info.get(j));
                 }
+                dptoModel.insertElementAt(new Departamento(), 0);
+                departamentoCBx.setSelectedIndex(0);
                 break;
             case 4:
                 adscripModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
                     adscripModel.addElement(info.get(j));
                 }
+                adscripModel.insertElementAt(new Departamento(), 0);
+                adscCBx.setSelectedIndex(0);
                 break;
         }
     }
@@ -921,9 +983,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         segApellidoTFd.setEnabled(b);
         correoTFd.setEnabled(b);
         puestoCBx.setEnabled(b);
-        plantelCBx.setEnabled(b);
         adscCBx.setEnabled(b);
-        departamentoCBx.setEnabled(b);
         guardarBtn.setEnabled(b);
         cancelarBtn.setEnabled(b);
     }
@@ -944,8 +1004,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         segNombreTFd.setText((String) info.get(3));
         primerApellidoTFd.setText((String) info.get(4));
         segApellidoTFd.setText((String) info.get(5));
-        correoTFd.setText((String) info.get(6));
-        puestoModel.setSelectedItem(info.get(7));
+        puestoModel.setSelectedItem(info.get(6));
+        correoTFd.setText((String) info.get(7));
         plantelModel.setSelectedItem(info.get(8));
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
@@ -981,7 +1041,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 validNumLbl.setText("Este campo es obligatorio");
                 validNumLbl.setForeground(new Color(240, 0, 0));
             } else {
-                control.buscarPorNumero(Integer.parseInt(numeroTFd.getText()));
+                control.validarPorNumero(Integer.parseInt(numeroTFd.getText()));
 //                numeroTFd.setBorder(BORDER_ORIGINAL);
 //                validNumLbl.setForeground(new Color(213, 216, 222));
 
