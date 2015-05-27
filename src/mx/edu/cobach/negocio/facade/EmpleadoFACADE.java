@@ -36,7 +36,7 @@ public class EmpleadoFACADE{
         return ServiceLocator.getEmpleado().buscarPorPlantel(plantel);
     }
     
-    public List<Object> buscarPorNumero(int numero){
-        return ServiceLocator.getEmpleado().buscarPorNumero(numero);
+    public List<Object> validarPorNumero(int numero){
+        return ServiceLocator.getEmpleado().validarPorNumero(numero);
     }
 }

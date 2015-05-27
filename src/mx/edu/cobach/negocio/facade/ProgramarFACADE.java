@@ -1,3 +1,4 @@
+ 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,6 +11,8 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.ServiceLocator;
+import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Plantel;
 
 /**
  *
@@ -23,16 +26,16 @@ public class ProgramarFACADE extends BaseFACADE{
      * @return Regresa la lista con las implementaciones
      */
     
-    public List<Object> findByEvento(Evento evento) {
-        return ServiceLocator.getPrograma().findByEvento(evento);
+    public List<Object> buscarPorEvento(Evento evento) {
+        return ServiceLocator.getPrograma().buscarPorEvento(evento);
     }
     /**
      * * Obtiene todas las implementaciones relacionadas de una sede dado.
      * @param sede
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> findBySede(Sede sede) {
-        return ServiceLocator.getPrograma().findBySede(sede);
+    public List<Object> buscarPorSede(Sede sede) {
+        return ServiceLocator.getPrograma().buscarPorSede(sede);
     }
     
     /**
@@ -44,5 +47,24 @@ public class ProgramarFACADE extends BaseFACADE{
     public List<Object> buscarPorFechas(Date de, Date hasta){
         return ServiceLocator.getPrograma().buscarPorFechas(de, hasta);
     }
+    
+    /**
+     * Guarda un curso realizado y regresa un id del curso.
+     * @param impleEvento
+     * @param clazz
+     * @return 
+     */
+    public Object guardarEvento(Object impleEvento, Class clazz) {
+        return ServiceLocator.getPrograma().guardarEvento(impleEvento);
+    }
+    
+    public List<Object> buscarEventosPorDepartamento(Departamento departamento){
+        return ServiceLocator.getPrograma().buscarPorDepartamento(departamento);
+    }
+    
+    public List<Object> buscarEventosPorPlantel(Plantel plantel){
+        return ServiceLocator.getPrograma().buscarPorPlantel(plantel);
+    }
+    
 }
 
