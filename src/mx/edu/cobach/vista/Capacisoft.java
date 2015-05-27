@@ -29,7 +29,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlEmpleadoAdministrativo empleadoPnl;
     private PnlRegistrarEvento cursoPnl;
     private PnlKardex kardexPnl;
-    private PnlReporteCurso reporteCursoPnl;
+    private PnlReporteEvento reporteCursoPnl;
     private PnlReporteProveedor reporteProveedorPnl;
     private PnlListaAsistencia listaAsistenciaPnl;
     private final ImageIcon imageLogo;
@@ -122,7 +122,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         
         add(kardexPnl);
         
-        reporteCursoPnl = new PnlReporteCurso();
+        reporteCursoPnl = new PnlReporteEvento();
         reporteCursoPnl.setVisible(false);
         reporteCursoPnl.setSize(1181,587);
         add(reporteCursoPnl);
@@ -451,7 +451,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_kardex_MItActionPerformed
 
     private void registroCurso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroCurso_MItActionPerformed
-        this.setTitle("Capacisoft - Curso de capacitación");
+        this.setTitle("Capacisoft - Evento de capacitación");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -467,6 +467,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         programarPnl.setVisible(false);
         seguimientoPnl.setVisible(false);
         alertasPnl.setVisible(false);
+        reporteCursoPnl.llenarTodo();
     }//GEN-LAST:event_registroCurso_MItActionPerformed
 
     private void evaluacionProveedor_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluacionProveedor_MItActionPerformed
