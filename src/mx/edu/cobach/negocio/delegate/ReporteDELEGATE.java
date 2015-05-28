@@ -1,4 +1,4 @@
-/*
+/*s
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -27,79 +27,94 @@ import mx.edu.cobach.persistencia.util.ApachePoiUtil;
 public class ReporteDELEGATE {
 
     /**
-     * Método que recibe un string, este envia el string por medio de la instancia
-     * del ServiceLocatorFACADE a EmpleadoFACADE, se manda el string para la busqueda
-     * por nombre del empleado donde este regresa las coincidencias, el método 
-     * devuelve una matriz con las coincidencia.
+     * Método que recibe un string, este envia el string por medio de la
+     * instancia del ServiceLocatorFACADE a EmpleadoFACADE, se manda el string
+     * para la busqueda por nombre del empleado donde este regresa las
+     * coincidencias, el método devuelve una matriz con las coincidencia.
+     *
      * @param nombre
-     * @return info 
+     * @return info
      */
     public String[][] buscarPorNombre(String nombre) {
         List<Object> emps = ServiceLocatorFACADE.getEmpleado().buscarPorNombre(nombre);
-            String[][] info = new String[emps.size()][5];
-            for (int i = 0; i < emps.size(); i++) {
-                Empleado e = (Empleado) emps.get(i);
-                info[i][0] = e.getId().toString();
-                info[i][1] = e.getNumero();
+        String[][] info = new String[emps.size()][5];
+        for (int i = 0; i < emps.size(); i++) {
+            Empleado e = (Empleado) emps.get(i);
+            info[i][0] = e.getId().toString();
+            info[i][1] = e.getNumero();
+            if (e.getSegundoNombre()== null) {
+                info[i][2] = e.getPrimerNombre() + " "+ e.getApellidoPaterno() +
+                        " " + e.getApellidoMaterno();
+            } else {
                 info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-                info[i][3] = e.getPuesto().toString();
-                info[i][4] = e.getCorreo();
             }
-            return info;
+            info[i][3] = e.getPuesto().toString();
+            info[i][4] = e.getCorreo();
+        }
+        return info;
     }
 
     /**
-     * Método que recibe un int, este envia el int por medio de la instancia
-     * del ServiceLocatorFACADE a EmpleadoFACADE, se manda int para la busqueda
-     * por numero del empleado donde este regresa las coincidencias, el método 
+     * Método que recibe un int, este envia el int por medio de la instancia del
+     * ServiceLocatorFACADE a EmpleadoFACADE, se manda int para la busqueda por
+     * numero del empleado donde este regresa las coincidencias, el método
      * devuelve una matriz con las coincidencia.
+     *
      * @param numero
-     * @return 
+     * @return
      */
     public String[][] buscarPorNumero(int numero) {
-        List<Object> emps =ServiceLocatorFACADE.getEmpleado().validarPorNumero(numero);
-            String[][] info = new String[emps.size()][5];
-            for (int i = 0; i < emps.size(); i++) {
-                Empleado e = (Empleado) emps.get(i);
-                info[i][0] = e.getId().toString();
-                info[i][1] = e.getNumero();
+        List<Object> emps = ServiceLocatorFACADE.getEmpleado().validarPorNumero(numero);
+        String[][] info = new String[emps.size()][5];
+        for (int i = 0; i < emps.size(); i++) {
+            Empleado e = (Empleado) emps.get(i);
+            info[i][0] = e.getId().toString();
+            info[i][1] = e.getNumero();
+            if (e.getSegundoNombre()== null) {
+                info[i][2] = e.getPrimerNombre() + " "+ e.getApellidoPaterno() +
+                        " " + e.getApellidoMaterno();
+            } else {
                 info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-                info[i][3] = e.getPuesto().toString();
-                info[i][4] = e.getCorreo();
             }
-            return info;
+            info[i][3] = e.getPuesto().toString();
+            info[i][4] = e.getCorreo();
+        }
+        return info;
     }
-    
+
     /**
-     * Método que se recibe un int, este int se envia se por medio de la instancia
-     * del ServiceLocatorFACADE a un BaseFACADE donde este regresara un objeto
-     * con la lista de asistencia de un evento implementado, el metodo generarReporteLista
-     * devolvera un objeto.
+     * Método que se recibe un int, este int se envia se por medio de la
+     * instancia del ServiceLocatorFACADE a un BaseFACADE donde este regresara
+     * un objeto con la lista de asistencia de un evento implementado, el metodo
+     * generarReporteLista devolvera un objeto.
+     *
      * @param numero
-     * @return listaAsistencia 
+     * @return listaAsistencia
      */
-    public Object generarReporteLista(int numero){
+    public Object generarReporteLista(int numero) {
         Object listaAsistencia = (ImplementacionEvento) ServiceLocatorFACADE.getInstance().
                 find(numero, ImplementacionEvento.class);
         return listaAsistencia;
     }
-    
+
     /**
-     * Método que recibe dos atributos de tipos date, esto los enviara a través de
-     * la instancia del ServiceLocatorFACADE a un donde este regresara una lista de
-     * objetos de los eventos que coincidan con las fechas enviadas, el metodo
-     * generarReportePorFecha devolvera una matriz con los eventos que se encontraron.
+     * Método que recibe dos atributos de tipos date, esto los enviara a través
+     * de la instancia del ServiceLocatorFACADE a un donde este regresara una
+     * lista de objetos de los eventos que coincidan con las fechas enviadas, el
+     * metodo generarReportePorFecha devolvera una matriz con los eventos que se
+     * encontraron.
+     *
      * @param de
      * @param hasta
-     * @return 
+     * @return
      */
-    public String[][] generarReportePorFechas(Date de, Date hasta){
-        List<Object> eventosPorFechas  =  ServiceLocatorFACADE.getImplementacionEvento()
+    public String[][] generarReportePorFechas(Date de, Date hasta) {
+        List<Object> eventosPorFechas = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventoPorFechas(null, de, hasta);
         String[][] evento = new String[eventosPorFechas.size()][5];
-        for (int i = 0; i < eventosPorFechas.size(); i++){
+        for (int i = 0; i < eventosPorFechas.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorFechas.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
@@ -109,21 +124,23 @@ public class ReporteDELEGATE {
         }
         return evento;
     }
-    
+
     /**
-     * Método que recibe dos atributos de tipos date, esto los enviara a través de
-     * la instancia del ServiceLocatorFACADE a un donde este regresara una lista de
-     * objetos de los eventos que coincidan con las fechas enviadas, el metodo
-     * generarReportePorFecha devolvera una matriz con los eventos que se encontraron.
+     * Método que recibe dos atributos de tipos date, esto los enviara a través
+     * de la instancia del ServiceLocatorFACADE a un donde este regresara una
+     * lista de objetos de los eventos que coincidan con las fechas enviadas, el
+     * metodo generarReportePorFecha devolvera una matriz con los eventos que se
+     * encontraron.
+     *
      * @param de
      * @param hasta
-     * @return 
+     * @return
      */
-    public String[][] buscarEventoPorFechas(Date de, Date hasta){
-        List<Object> eventosPorFechas  =  ServiceLocatorFACADE.getImplementacionEvento()
+    public String[][] buscarEventoPorFechas(Date de, Date hasta) {
+        List<Object> eventosPorFechas = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventoPorFechas(null, de, hasta);
         String[][] evento = new String[eventosPorFechas.size()][3];
-        for (int i = 0; i < eventosPorFechas.size(); i++){
+        for (int i = 0; i < eventosPorFechas.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorFechas.get(i);
             evento[i][0] = eD.getId() + "";
             evento[i][1] = eD.getFechaInicial() + "";
@@ -131,20 +148,22 @@ public class ReporteDELEGATE {
         }
         return evento;
     }
-    
+
     /**
-     * Método que recibe un atributo de tipo departamento, este los enviara a través de
-     * la instancia del ServiceLocatorFACADE a un donde este regresara una lista de
-     * objetos de los eventos que coincidan con las fechas enviadas, el método
-     * generarReportePorDepartamento devolvera una matriz con los eventos que se encontraron.
+     * Método que recibe un atributo de tipo departamento, este los enviara a
+     * través de la instancia del ServiceLocatorFACADE a un donde este regresara
+     * una lista de objetos de los eventos que coincidan con las fechas
+     * enviadas, el método generarReportePorDepartamento devolvera una matriz
+     * con los eventos que se encontraron.
+     *
      * @param departamento
-     * @return 
+     * @return
      */
-    public String[][] generarReportePorDepartamento(Departamento departamento){
-        List<Object> eventosPorDepartamento  =  ServiceLocatorFACADE.getImplementacionEvento()
+    public String[][] generarReportePorDepartamento(Departamento departamento) {
+        List<Object> eventosPorDepartamento = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorDepartamento(departamento);
         String[][] evento = new String[eventosPorDepartamento.size()][5];
-        for (int i = 0; i < eventosPorDepartamento.size(); i++){
+        for (int i = 0; i < eventosPorDepartamento.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorDepartamento.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
@@ -155,20 +174,22 @@ public class ReporteDELEGATE {
         }
         return evento;
     }
-    
+
     /**
-     * * Método que recibe un atributo de tipo plantel, este los enviara a través de
-     * la instancia del ServiceLocatorFACADE a un donde este regresara una lista de
-     * objetos de los eventos que coincidan con las fechas enviadas, el método
-     * generarReportePorPlantel devolvera una matriz con los eventos que se encontraron.
+     * * Método que recibe un atributo de tipo plantel, este los enviara a
+     * través de la instancia del ServiceLocatorFACADE a un donde este regresara
+     * una lista de objetos de los eventos que coincidan con las fechas
+     * enviadas, el método generarReportePorPlantel devolvera una matriz con los
+     * eventos que se encontraron.
+     *
      * @param plantel
-     * @return 
+     * @return
      */
-    public String[][] generarReportePorPlantel(Plantel plantel){
-        List<Object> eventosPorPlantel  =  ServiceLocatorFACADE.getImplementacionEvento()
+    public String[][] generarReportePorPlantel(Plantel plantel) {
+        List<Object> eventosPorPlantel = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorPlantel(plantel);
         String[][] evento = new String[eventosPorPlantel.size()][5];
-        for (int i = 0; i < eventosPorPlantel.size(); i++){
+        for (int i = 0; i < eventosPorPlantel.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorPlantel.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
@@ -181,21 +202,22 @@ public class ReporteDELEGATE {
     }
 
     /**
-     * Este método se utiliza para la creación del kardex del empleado, se conectara
-     * con la clase ApachePOIUTIL para utlizar sus metodos y mandar los registros del 
-     * empleado para la generacion del kardex
+     * Este método se utiliza para la creación del kardex del empleado, se
+     * conectara con la clase ApachePOIUTIL para utlizar sus metodos y mandar
+     * los registros del empleado para la generacion del kardex
+     *
      * @param numero
-     * @throws IOException 
+     * @throws IOException
      */
     public void generarKardex(int numero) throws IOException {
-        
+
         int numEvento = 0;
         //instancia de la clase ApachePoiUtil
         ApachePoiUtil word;
-        List <String> lista = new ArrayList();
+        List<String> lista = new ArrayList();
         Empleado empleadoInfo = (Empleado) ServiceLocatorFACADE.getInstance().
                 find(numero, Empleado.class);
-        
+
         Map<String, String> agregarInfo = new HashMap();
         String nombre = empleadoInfo.getPrimerNombre() + " " + empleadoInfo.getSegundoNombre()
                 + " " + empleadoInfo.getApellidoPaterno() + " " + empleadoInfo.getApellidoMaterno();
@@ -204,9 +226,9 @@ public class ReporteDELEGATE {
         agregarInfo.put("<@nombre>", nombre);
         agregarInfo.put("<@numero>", empleadoInfo.getNumero());
         agregarInfo.put("<@puesto>", empleadoInfo.getPuesto().toString());
-        agregarInfo.put("","");
+        agregarInfo.put("", "");
         word.reemplazarValores(agregarInfo);
-        
+
         for (Iterator it = empleadoInfo.getImplementacionEventos().iterator(); it.hasNext();) {
             numEvento++;
             ImplementacionEvento impEvento = (ImplementacionEvento) it.next();
