@@ -374,6 +374,16 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             control.modificacion(HelperEntidad.getDepartamento(atr));
         }
         nombreTFd.setText("");
+        nombreTFd.setBorder(BORDER_ORIGINAL);
+        validNomLbl.setForeground(new Color(213, 216, 222));
+        cancelarBtn.setEnabled(false);
+        agregarBtn.setEnabled(true);
+        guardarBtn.setEnabled(false);
+        buscarBtn.setEnabled(true);
+        guardarBtn.setText("Guardar");
+        registroLbl.setText("Registro");
+        nombreTFd.setText("");
+        agregarMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
         direccionCBx.setSelectedIndex(0);
         control.buscarTodos();
     }//GEN-LAST:event_guardarBtnActionPerformed
@@ -456,8 +466,8 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionCBx.setSelectedIndex(0);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
-        registroLbl.setText("Agregar");
-        agregarMsjLbl.setText("Ingrese la información a Almacenar");
+        registroLbl.setText("Registro");
+        agregarMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
         nombreTFd.setEnabled(true);
         direccionCBx.setEnabled(true);
         guardarBtn.setEnabled(true);
@@ -485,13 +495,15 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         nombreTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
-        nombreTFd.setEnabled(false);
-        direccionCBx.setEnabled(false);
         cancelarBtn.setEnabled(false);
         agregarBtn.setEnabled(true);
         guardarBtn.setEnabled(false);
         buscarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
+        nombreTFd.setEnabled(false);
+        direccionCBx.setEnabled(false);
+        registroLbl.setText("Registro");
+        agregarMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
@@ -598,9 +610,10 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionCBx.setEnabled(true);
         guardarBtn.setEnabled(true);
         registroLbl.setText("Modificar");
-        agregarMsjLbl.setText("Ingrese la información a modificar");
+        agregarMsjLbl.setText("Ingrese la información a modificar, para salir o cancelar el registro presione el botón Cancelar");
         guardarBtn.setText("Modificar");
         cancelarBtn.setEnabled(true);
+        
     }
 
     @Override
