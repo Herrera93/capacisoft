@@ -431,7 +431,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
         registroLbl.setText("Agregar");
-        registroMsjLbl.setText("Ingrese la información a Almacenar");
+        registroMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
         nombreTFd.setEnabled(true);
         descripcionTAa.setEnabled(true);
         tipoCBx.setEnabled(true);
@@ -489,7 +489,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         tipoCBx.setSelectedIndex(0);
         guardarBtn.setText("Guardar");
         registroLbl.setText("Agregar");
-        registroMsjLbl.setText("Ingrese la información a Almacenar");
+        registroMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
         guardarBtn.setEnabled(false);
         agregarBtn.setEnabled(true);
         nombreTFd.setEnabled(false);
@@ -659,7 +659,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             tipoCBx.setSelectedIndex(1);
         }
         registroLbl.setText("Modificar");
-        registroMsjLbl.setText("Ingrese la información a modificar");
+        registroMsjLbl.setText("Ingrese la información a modificar, para salir o cancelar el registro presione el botón Cancelar");
         nombreTFd.setEnabled(true);
         descripcionTAa.setEnabled(true);
         tipoCBx.setEnabled(true);
