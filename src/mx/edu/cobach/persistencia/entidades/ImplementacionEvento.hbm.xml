@@ -48,7 +48,7 @@
                 <column name="alerta_id" not-null="true" />
             </many-to-many>
         </set>
-        <set name="encuestas" table="encuesta" inverse="true" lazy="true" fetch="select">
+        <set name="encuestas" table="encuesta" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="implementacion_evento_id" not-null="true" unique="true" />
             </key>
