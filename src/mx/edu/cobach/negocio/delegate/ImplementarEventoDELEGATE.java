@@ -28,7 +28,7 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarEmPorNombre(String nombre) {
-        return ServiceLocatorFACADE.getEmpleado().findByNombre(nombre);
+        return ServiceLocatorFACADE.getEmpleado().buscarPorNombre(nombre);
     }
     /**
      * Obtiene todos los empleados que estan relacionados a tal departamento

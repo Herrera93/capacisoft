@@ -12,22 +12,20 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
  *
  * @author fernando
  */
-public class EventoDELEGATE extends BaseDELEGATE{
+public class EventoDELEGATE {
 
     public EventoDELEGATE() {
-        super();
     }
-    
+
     public List<Object> buscarPorTipoCurso(int id) {
         return ServiceLocatorFACADE.getEvento().buscarPorTipoEvento(id);
-    }   
-public class EventoDELEGATE{
+    }
 
     public List<Object> buscarEvento(int id) {
         return ServiceLocatorFACADE.getEvento().buscarEvento(id);
-    }   
-    
-    public List<Object> buscarPorNombre(String nombre){
+    }
+
+    public List<Object> buscarPorNombre(String nombre) {
         return ServiceLocatorFACADE.getEvento().buscarPorNombre(nombre);
     }
 }

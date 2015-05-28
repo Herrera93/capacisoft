@@ -16,7 +16,7 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Evento;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.util.ApachePoiUtil;
 
@@ -81,8 +81,8 @@ public class ReporteDELEGATE {
      * @return listaAsistencia 
      */
     public Object generarReporteLista(int numero){
-        Object listaAsistencia = (ImplementacionCurso) ServiceLocatorFACADE.getInstance().
-                find(numero, ImplementacionCurso.class);
+        Object listaAsistencia = (ImplementacionEvento) ServiceLocatorFACADE.getInstance().
+                find(numero, ImplementacionEvento.class);
         return listaAsistencia;
     }
     
@@ -96,14 +96,14 @@ public class ReporteDELEGATE {
      * @return 
      */
     public String[][] generarReportePorFechas(Date de, Date hasta){
-        List<Object> eventosPorFechas  =  ServiceLocatorFACADE.getPrograma()
-                .buscarPorFechas(de, hasta);
+        List<Object> eventosPorFechas  =  ServiceLocatorFACADE.getImplementacionEvento()
+                .buscarEventoPorFechas(null, de, hasta);
         String[][] evento = new String[eventosPorFechas.size()][5];
         for (int i = 0; i < eventosPorFechas.size(); i++){
-            ImplementacionCurso eD = (ImplementacionCurso) eventosPorFechas.get(i);
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorFechas.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getCurso().toString();
+            evento[i][2] = eD.getEvento().toString();
             evento[i][3] = eD.getSede().toString();
             evento[i][4] = eD.getProveedor().toString();
         }
@@ -120,14 +120,14 @@ public class ReporteDELEGATE {
      * @return 
      */
     public String[][] buscarEventoPorFechas(Date de, Date hasta){
-        List<Object> eventosPorFechas  =  ServiceLocatorFACADE.getPrograma()
-                .buscarPorFechas(de, hasta);
+        List<Object> eventosPorFechas  =  ServiceLocatorFACADE.getImplementacionEvento()
+                .buscarEventoPorFechas(null, de, hasta);
         String[][] evento = new String[eventosPorFechas.size()][3];
         for (int i = 0; i < eventosPorFechas.size(); i++){
-            ImplementacionCurso eD = (ImplementacionCurso) eventosPorFechas.get(i);
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorFechas.get(i);
             evento[i][0] = eD.getId() + "";
             evento[i][1] = eD.getFechaInicial() + "";
-            evento[i][2] = eD.getCurso().toString();
+            evento[i][2] = eD.getEvento().toString();
         }
         return evento;
     }
@@ -141,14 +141,14 @@ public class ReporteDELEGATE {
      * @return 
      */
     public String[][] generarReportePorDepartamento(Departamento departamento){
-        List<Object> eventosPorDepartamento  =  ServiceLocatorFACADE.getPrograma()
+        List<Object> eventosPorDepartamento  =  ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorDepartamento(departamento);
         String[][] evento = new String[eventosPorDepartamento.size()][5];
         for (int i = 0; i < eventosPorDepartamento.size(); i++){
-            ImplementacionCurso eD = (ImplementacionCurso) eventosPorDepartamento.get(i);
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorDepartamento.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getCurso().toString();
+            evento[i][2] = eD.getEvento().toString();
             evento[i][3] = eD.getSede().toString();
             evento[i][4] = eD.getProveedor().toString();
             System.out.println(eD.getFechaFinal() + "");
@@ -165,14 +165,14 @@ public class ReporteDELEGATE {
      * @return 
      */
     public String[][] generarReportePorPlantel(Plantel plantel){
-        List<Object> eventosPorPlantel  =  ServiceLocatorFACADE.getPrograma()
+        List<Object> eventosPorPlantel  =  ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorPlantel(plantel);
         String[][] evento = new String[eventosPorPlantel.size()][5];
         for (int i = 0; i < eventosPorPlantel.size(); i++){
-            ImplementacionCurso eD = (ImplementacionCurso) eventosPorPlantel.get(i);
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorPlantel.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getCurso().toString();
+            evento[i][2] = eD.getEvento().toString();
             evento[i][3] = eD.getSede().toString();
             evento[i][4] = eD.getProveedor().toString();
             System.out.println(eD.getFechaFinal() + "");
@@ -207,10 +207,10 @@ public class ReporteDELEGATE {
         agregarInfo.put("","");
         word.reemplazarValores(agregarInfo);
         
-        for (Iterator it = empleadoInfo.getImplementacionCursos().iterator(); it.hasNext();) {
+        for (Iterator it = empleadoInfo.getImplementacionEventos().iterator(); it.hasNext();) {
             numEvento++;
-            ImplementacionCurso impEvento = (ImplementacionCurso) it.next();
-            Evento evento = impEvento.getCurso();
+            ImplementacionEvento impEvento = (ImplementacionEvento) it.next();
+            Evento evento = impEvento.getEvento();
             lista.add(evento.toString());
             lista.add(impEvento.getFechaInicial() + "");
             lista.add(impEvento.getFechaFinal() + "");

@@ -22,7 +22,6 @@ public class ServiceLocatorDELEGATE {
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
     private static ReporteDELEGATE reporteDelegate;
-    private static ProgramarDELEGATE programarDelegate;
     private static EncuestaDELEGATE encuestaDelegate;
     private static ImplementarEventoDELEGATE implementarEventoDelegate;
     
@@ -104,11 +103,6 @@ public class ServiceLocatorDELEGATE {
     }
     
     /**
-     * Obtiene el DELEGATE especifico de la entidad Departamento, si este no ha sido
-     * inicializado se instanciara. Este metodo utiliza el patron de diseno
-     * Singleton.
-     * @return Regresa el DELEGATE de Departamento
-     */
      * Obtiene el DELEGATE especifico de la entidad Aspecto, si este no ha sido
      * inicializado se instanciara. Este metodo utiliza el patron de diseno
      * Singleton.
@@ -121,6 +115,12 @@ public class ServiceLocatorDELEGATE {
         return aspectoDelegate;
     } 
     
+    /**
+     * Obtiene el DELEGATE especifico de la entidad Departamento, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el DELEGATE de Departamento
+     */
     public static DepartamentoDELEGATE getDepartamento(){
         if(departamentoDelegate == null){
             departamentoDelegate = new DepartamentoDELEGATE();
@@ -151,6 +151,19 @@ public class ServiceLocatorDELEGATE {
             encuestaDelegate = new EncuestaDELEGATE();
         }
         return encuestaDelegate;
+    }
+    
+    /**
+     * Obtiene el DELEGATE especifico para el caso de uso Generar Reporte, si este
+     * no ha sido inicializado se instanciara. Este metodo utiliza el patron de
+     * diseno Singleton.
+     * @return Regresa el DELEGATE de Geenerar Reporte
+     */
+    public static ReporteDELEGATE getReporte() {
+        if(reporteDelegate == null){
+            reporteDelegate = new ReporteDELEGATE();
+        }
+        return reporteDelegate;
     }
     
 }

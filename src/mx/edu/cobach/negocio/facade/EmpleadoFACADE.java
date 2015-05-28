@@ -27,16 +27,6 @@ public class EmpleadoFACADE{
         return ServiceLocator.getEmpleado().buscarPorAdscripcion(a);
     }
     
-    public List<Object> buscaPorDepartamento(Departamento departamento) {
-        return ServiceLocator.getEmpleado().buscarPorDepartamento(departamento);
-    }
-    public List<Object> buscarPorPuesto(Puesto puesto) {
-        return ServiceLocator.getEmpleado().buscarPorPuesto(puesto);
-    }
-    public List<Object> buscarPorPlantel(Plantel plantel) {
-        return ServiceLocator.getEmpleado().buscarPorPlantel(plantel);
-    }
-    
     public List<Object> validarPorNumero(int numero){
         return ServiceLocator.getEmpleado().validarPorNumero(numero);
     }

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Empleado;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.vista.controlador.ReporteControlador;
 
 /**
@@ -48,7 +48,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             }
         };
         listaAsistenciaTbl.setModel(modelLista);
-        control = new ReporteControlador(this, ImplementacionCurso.class);
+        control = new ReporteControlador(this, ImplementacionEvento.class);
     }
 
     /**
@@ -408,7 +408,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
     @Override
     public void setInfo(List info) {
         int x = -1;
-            ImplementacionCurso listaAsistencia = (ImplementacionCurso) info.get(0);
+            ImplementacionEvento listaAsistencia = (ImplementacionEvento) info.get(0);
             System.out.println(listaAsistencia.getFechaFinal() + "");
             String[][] lista = new String[listaAsistencia.getEmpleados().size()][6];
             for (Iterator it = listaAsistencia.getEmpleados().iterator(); it.hasNext();) {

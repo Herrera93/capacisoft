@@ -17,7 +17,7 @@
         <many-to-one name="plantel" class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select">
             <column name="plantel_id" />
         </many-to-one>
-        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select">
+        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select" lazy="false">
             <column name="puesto_id" not-null="true" />
         </many-to-one>
         <property name="numero" type="string">
@@ -27,7 +27,7 @@
             <column name="primer_nombre" length="45" not-null="true" />
         </property>
         <property name="segundoNombre" type="string">
-            <column name="segundo_nombre" length="45" />
+            <column name="segundo_nombre" length="45" not-null="false"/>
         </property>
         <property name="apellidoPaterno" type="string">
             <column name="apellido_paterno" length="45" not-null="true" />

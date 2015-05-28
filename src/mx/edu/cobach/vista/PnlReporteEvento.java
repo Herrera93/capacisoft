@@ -12,9 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.cobach.persistencia.entidades.Departamento;
-import mx.edu.cobach.persistencia.entidades.ImplementacionCurso;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.ReporteControlador;
 
 /**
@@ -43,7 +42,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
             }
         };
         eventoTbl.setModel(model);
-        control = new ReporteControlador(this, ImplementacionCurso.class);
+        control = new ReporteControlador(this, ImplementacionEvento.class);
         departamentoModel = new DefaultComboBoxModel();
         plantelModel = new DefaultComboBoxModel();
         departamentoCBx.setModel(departamentoModel);

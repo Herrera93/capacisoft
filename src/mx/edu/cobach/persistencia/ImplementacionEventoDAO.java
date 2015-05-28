@@ -7,8 +7,10 @@ package mx.edu.cobach.persistencia;
 
 import java.util.Date;
 import java.util.List;
+import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.Criteria;
@@ -107,7 +109,7 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
             if(de != null)
                 crit.add(Restrictions.ge("fechaInicial", de));
             if(hasta != null)
-                crit.add(Restrictions.lt("fechaInicial", hasta));
+                crit.add(Restrictions.lt("fechaFinal", hasta));
             ts = crit.list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
@@ -116,6 +118,42 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
             HibernateUtil.closeSession();
         }
         return ts;        
+    }
+    
+    public List<Object> buscarPorDepartamento(Departamento departamento){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria criteria = HibernateUtil.getSession().createCriteria(entityClass, "implementacion");
+            Criteria critEmpleados = criteria.createCriteria("empleados");
+            critEmpleados.add(Restrictions.eq("departamento", departamento));
+            ts = criteria.list(); 
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
+    
+    public List<Object> buscarPorPlantel(Plantel plantel){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria criteria = HibernateUtil.getSession().createCriteria(entityClass, "implementacion");
+            Criteria critEmpleados = criteria.createCriteria("empleados");
+            critEmpleados.add(Restrictions.eq("plantel", plantel));
+            ts = criteria.list(); 
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
     }
 }
 

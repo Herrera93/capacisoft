@@ -30,7 +30,7 @@ public class ReporteControlador extends BaseControlador{
      * @param nombre 
      */
     public void buscarPorNombre(String nombre){
-        String[][] empleado = ServiceLocatorDELEGATE.getReporteDelegate()
+        String[][] empleado = ServiceLocatorDELEGATE.getReporte()
                 .buscarPorNombre(nombre);
         com.setTabla(empleado);
     }
@@ -41,7 +41,7 @@ public class ReporteControlador extends BaseControlador{
      * @param numero 
      */
     public void buscarPorNumero(int numero){
-        String[][] empleado = ServiceLocatorDELEGATE.getReporteDelegate()
+        String[][] empleado = ServiceLocatorDELEGATE.getReporte()
                 .buscarPorNumero(numero);
         com.setTabla(empleado);
     }
@@ -53,7 +53,7 @@ public class ReporteControlador extends BaseControlador{
      * @throws IOException 
      */
     public void generarKardex(int numero) throws IOException{
-        ServiceLocatorDELEGATE.getReporteDelegate().generarKardex(numero);
+        ServiceLocatorDELEGATE.getReporte().generarKardex(numero);
         com.setMensaje("El Kardex fue generado Exitosamente");
     }
     
@@ -64,7 +64,7 @@ public class ReporteControlador extends BaseControlador{
      * @param departamento 
      */
     public void generarReportePorDepartamento(Departamento departamento){
-        String[][] reporteEvento = ServiceLocatorDELEGATE.getReporteDelegate()
+        String[][] reporteEvento = ServiceLocatorDELEGATE.getReporte()
                 .generarReportePorDepartamento(departamento);
         com.setTabla(reporteEvento);     
     }
@@ -77,7 +77,7 @@ public class ReporteControlador extends BaseControlador{
      * @param plantel
      */
     public void generarReportePorPlantel(Plantel plantel){
-        String[][] reporteEvento = ServiceLocatorDELEGATE.getReporteDelegate().
+        String[][] reporteEvento = ServiceLocatorDELEGATE.getReporte().
                 generarReportePorPlantel(plantel);
         com.setTabla(reporteEvento);
                         
@@ -91,7 +91,7 @@ public class ReporteControlador extends BaseControlador{
      * @param hasta 
      */
     public void generarEventosPorFecha(Date de, Date hasta){
-        String [][] reporteEvento = ServiceLocatorDELEGATE.getReporteDelegate()
+        String [][] reporteEvento = ServiceLocatorDELEGATE.getReporte()
                 .generarReportePorFechas(de, hasta);
         com.setTabla(reporteEvento);
     }
@@ -104,7 +104,7 @@ public class ReporteControlador extends BaseControlador{
      * @param hasta 
      */
     public void buscarEventosPorFecha(Date de, Date hasta){
-        String [][] buscarEvento = ServiceLocatorDELEGATE.getReporteDelegate()
+        String [][] buscarEvento = ServiceLocatorDELEGATE.getReporte()
                 .buscarEventoPorFechas(de, hasta);
         com.setTabla(buscarEvento);
     }
@@ -116,7 +116,7 @@ public class ReporteControlador extends BaseControlador{
      * @param numero
      */
     public void generarReporteLista(int numero){
-        Object lista = ServiceLocatorDELEGATE.getReporteDelegate()
+        Object lista = ServiceLocatorDELEGATE.getReporte()
                 .generarReporteLista(numero);
         List <Object> listaAsistencia = new ArrayList();
         listaAsistencia.add(lista);

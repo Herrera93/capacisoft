@@ -36,7 +36,7 @@ public class EventoDAO extends BaseDAO{
         }
         return o;
     }
-}
+    
     public List<Object> buscarEvento(int id) {
         List<Object> o = null;
         try{
