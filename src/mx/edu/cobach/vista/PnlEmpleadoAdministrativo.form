@@ -98,7 +98,7 @@
                           <Component id="tablaSPn" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
-                      <Component id="tablaMsjLbl" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tablaMsjLbl" alignment="0" pref="394" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -128,8 +128,8 @@
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tablaSPn" min="-2" pref="324" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <Component id="tablaSPn" min="-2" pref="306" max="-2" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -256,7 +256,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="tablaMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un n&#xfa;mero del empleado de la columna&lt;br&gt; &quot;Numero&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del&lt;br&gt; empleado que desee&lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un n&#xfa;mero del empleado de la columna&lt;br&gt; &quot;Numero&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del empleado que desee&lt;/html&gt; "/>
           </Properties>
         </Component>
       </SubComponents>

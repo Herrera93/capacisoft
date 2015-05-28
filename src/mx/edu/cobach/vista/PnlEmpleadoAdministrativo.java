@@ -210,7 +210,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones ");
 
-        tablaMsjLbl.setText("<html>Para Modificar seleccione un número del empleado de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del<br> empleado que desee</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un número del empleado de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del empleado que desee</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -249,7 +249,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addComponent(tablaMsjLbl)))
+                    .addComponent(tablaMsjLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)))
         );
         opcionPnlLayout.setVerticalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,8 +273,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addGap(13, 13, 13)
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         informacioPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1012,6 +1012,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelModel.setSelectedItem(info.get(8));
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
+        adscCBx.setEnabled(true);
+        puestoCBx.setEnabled(true);
         guardarBtn.setText("Modificar");
     }
 
