@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
@@ -504,9 +505,13 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
 
     @Override
     public void setTabla(String[][] info) {
+        if (info.length==0) {
+            JOptionPane.showMessageDialog(null, "No se Encontro la busqueda");
+        } else {
         model.setDataVector(info, titulosTabla);
         eventoTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(10);
+        }
     }
 
     @Override
