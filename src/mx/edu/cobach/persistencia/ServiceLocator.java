@@ -6,10 +6,10 @@
 
 package mx.edu.cobach.persistencia;
 
-import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
+
 
 /**
- * Clase para localizar los servicios de DAOs
+ * Clase para localizar los servicios de DAOs.
  * @author Alex
  */
 public class ServiceLocator {
@@ -28,10 +28,11 @@ public class ServiceLocator {
     private static RespuestaDAO respuestaDAO;
     private static ImplementacionEventoDAO implementarDAO;
     private static ImplementacionEventoEnunciadoLogisticaDAO calificacionDAO;
+    private static AlertaDAO alertaDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
-     * Este metodo utiliza el patro de diseno Singleton.
+     * Este metodo utiliza el patro de diseño Singleton.
      * @return Regresa DAO generico
      */
     public static BaseDAO getInstance(){
@@ -43,7 +44,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Empleados, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Empleados
      */
     public static EmpleadoDAO getEmpleado(){
@@ -55,7 +56,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Puesto, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Puesto
      */
     public static PuestoDAO getPuesto(){
@@ -67,7 +68,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Evento, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Evento
      */
     public static EventoDAO getEvento(){
@@ -79,7 +80,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Usuarios, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Usuarios
      */
     public static UsuarioDAO getUsuario(){
@@ -91,7 +92,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Aspectos, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de aspectos
      */
     public static AspectoDAO getAspecto(){
@@ -101,8 +102,9 @@ public class ServiceLocator {
         return aspectoDAO;
     }
     /**
-     * Obtiene el DAO especifico para Departamento, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * Obtiene el DAO especifico para Departamento, si este no ha sido 
+     * inicializado se instanciara. Este metodo utiliza el patron de 
+     * diseño Singleton.
      * @return Regresa el DAO de departamento
      */
     public static DepartamentoDAO getDepartamento(){
@@ -114,7 +116,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Sede, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Sede
      */
     public static SedeDAO getSede(){
@@ -125,8 +127,8 @@ public class ServiceLocator {
     }
     
     /**
-     * Obtiene el DAO especifico para ImplementacionCursoEvento, si este no ha sido
-     * inicializado se instanciara.
+     * Obtiene el DAO especifico para ImplementacionCursoEvento, si este no ha 
+     * sido inicializado se instanciara.
      * Este metodo utiliza el patron de diseno Singleton.
      * @return Regresa el DAO de ImplementacionEvento 
      */
@@ -139,7 +141,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Encuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Encuesta
      */
     public static EncuestaDAO getEncuesta(){
@@ -151,7 +153,7 @@ public class ServiceLocator {
     
     /**
      * Obtiene el DAO especifico para Respuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * se instanciara. Este metodo utiliza el patron de diseño Singleton.
      * @return Regresa el DAO de Respuesta
      */
     public static RespuestaDAO getRespuesta(){
@@ -162,14 +164,26 @@ public class ServiceLocator {
     }
     
     /**
-     * Obtiene el DAO especifico para Respuesta, si este no ha sido inicializado
-     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Respuesta
+     * Obtiene el DAO específico para Respuesta, si este no ha sido inicializado
+     * se instanciará. Este método utiliza el patron de diseño Singleton.
+     * @return Regresa el DAO de EnunciadoLogistica
      */
     public static ImplementacionEventoEnunciadoLogisticaDAO getEnunciadoCali(){
         if(calificacionDAO == null){
             calificacionDAO = new ImplementacionEventoEnunciadoLogisticaDAO();
         }
         return calificacionDAO;
+    }
+    
+    /**
+     * Obtiene el DAO específico para Alerta, si este no ha sido inicializado
+     * se instanciará. Este método utiliza el patrón de diseño Sigleton.
+     * @return Regresa el DAO de Alerta
+     */
+    public static AlertaDAO getAlerta(){
+        if(alertaDAO == null){
+            alertaDAO = new AlertaDAO();
+        }
+        return alertaDAO;
     }
 }

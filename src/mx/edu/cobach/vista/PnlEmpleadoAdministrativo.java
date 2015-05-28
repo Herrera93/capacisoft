@@ -484,7 +484,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     }//GEN-LAST:event_guardarBtnActionPerformed
 
      
-    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         int renglon = tablaTbl.getSelectedRow();
         if(renglon == -1) {
             setEnabledPanelInformacion(true);
@@ -494,7 +494,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
             control.buscar(id);            
         }
-    }//GEN-LAST:event_agregar_OE_BtnActionPerformed
+    }                                              
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         setEnabledPanelInformacion(false);
@@ -677,5 +677,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
         guardarBtn.setText("Modificar");
+    }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

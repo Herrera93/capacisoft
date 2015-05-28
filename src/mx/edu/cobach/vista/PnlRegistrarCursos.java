@@ -501,4 +501,9 @@ public class PnlRegistrarCursos extends javax.swing.JPanel implements Comunicado
         guardarBtn.setText("Modificar");
         guardarBtn.setEnabled(true);
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

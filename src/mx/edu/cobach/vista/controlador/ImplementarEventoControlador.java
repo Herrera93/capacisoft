@@ -27,6 +27,7 @@ import mx.edu.cobach.vista.Comunicador;
  * @author liuts
  */
 public class ImplementarEventoControlador extends BaseControlador {
+    
     /**
      * Controlador de la clase ImplementarEventoControlador
      * @param com

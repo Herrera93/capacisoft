@@ -21,6 +21,7 @@ public class BaseDELEGATE {
      */
     public void saveOrUpdate(Object obj, Class clazz) {
         ServiceLocatorFACADE.getInstance().saveOrUpdate(obj, clazz);
+        System.out.println("Alerta");
     }
 
     /**

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Evento;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
@@ -651,7 +652,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JPanel realizarEncuestaPnl;
+    public javax.swing.JPanel realizarEncuestaPnl;
     private javax.swing.JPanel resultadoEncuestaPnl;
     private javax.swing.JTabbedPane seguimientoTpnl;
     // End of variables declaration//GEN-END:variables
@@ -736,7 +737,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
      */
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported.");
     }
 
     /**
@@ -752,5 +753,25 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         }
         eventosCBxModel.insertElementAt(new Evento(), 0);
         eventoCBx.setSelectedIndex(0);
+    }
+    
+    @Override
+    public void llenarDatos(Object evento){
+        System.out.println("Alta encuesta");
+        llenarTodo();
+        this.setVisible(true);
+        System.out.println(((ImplementacionEvento) evento)
+                .getEvento().getNombre());
+        deFechaDCh.setDate(((ImplementacionEvento) evento).getFechaInicial());
+        aFechaDCh.setDate(((ImplementacionEvento) evento).getFechaFinal());
+        eventoCBx.setSelectedIndex(((ImplementacionEvento) evento)
+                .getEvento().getId());
+        try{
+            this.getParent().getClass().getMethod("visualizarEncuesta", null);
+        } catch(NoSuchMethodException e){
+            System.out.println("No existe el método para visualizar la encuesta.");
+        }
+        realizarEncuestaPnl.updateUI();
+        this.updateUI();
     }
 }

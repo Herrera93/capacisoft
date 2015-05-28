@@ -458,4 +458,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         guardarBtn.setText("Modificar");
         agregarLBl.setText("Modificar");
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

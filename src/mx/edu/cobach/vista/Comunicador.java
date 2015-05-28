@@ -33,4 +33,6 @@ public interface Comunicador {
     void setInfo(List info);    
 
     public void setLista(List info, int i);
+    
+    public void llenarDatos(Object evento);
 }

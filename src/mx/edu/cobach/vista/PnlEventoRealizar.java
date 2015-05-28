@@ -1251,4 +1251,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
     public boolean isCambio(){
         return this.cambio;
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

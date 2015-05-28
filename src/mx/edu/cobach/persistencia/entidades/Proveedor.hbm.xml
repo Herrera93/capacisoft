@@ -8,9 +8,6 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="evento" class="mx.edu.cobach.persistencia.entidades.Evento" fetch="select">
-            <column name="evento_id" not-null="true" />
-        </many-to-one>
         <many-to-one name="tipoProveedor" class="mx.edu.cobach.persistencia.entidades.TipoProveedor" fetch="select">
             <column name="tipo_proveedor_id" not-null="true" />
         </many-to-one>

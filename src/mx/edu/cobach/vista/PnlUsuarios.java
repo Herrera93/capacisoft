@@ -558,4 +558,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         confirmarContrasenaPFd.setEnabled(b);
         guardarBtn.setEnabled(b);
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
