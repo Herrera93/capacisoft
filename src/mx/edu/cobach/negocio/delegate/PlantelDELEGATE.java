@@ -5,20 +5,15 @@
  */
 package mx.edu.cobach.negocio.delegate;
 
-/**
- *
- * @author SALB
- */
 import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 
-public class SedeDELEGATE {
-    public SedeDELEGATE(){
+public class PlantelDELEGATE {
+    public PlantelDELEGATE(){
         super();
     }
     
     public List<Object> findByNombre(String nombre){
-        return ServiceLocatorFACADE.getSede().findByNombre(nombre);
+        return ServiceLocatorFACADE.getPlantel().findByNombre(nombre);
     }
-    
 }

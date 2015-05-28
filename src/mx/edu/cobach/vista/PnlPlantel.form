@@ -61,7 +61,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="agregarTFd" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="BuscarBtn" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="buscarBtn" min="-2" pref="81" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -75,7 +75,7 @@
                               </Group>
                               <Component id="opcionLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="94" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -84,19 +84,19 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="NombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarTFd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="agregarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BuscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="tablaPlantelSPn" min="-2" pref="389" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaPlantelTbl">
+            <Component class="javax.swing.JTable" name="plantelesTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -151,6 +151,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="plantelesTblMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -161,6 +164,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarTFdActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="NombreBuscarLbl">
           <Properties>
@@ -177,7 +183,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="BuscarBtn">
+        <Component class="javax.swing.JButton" name="buscarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -185,7 +191,7 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="opcionLbl">
@@ -198,7 +204,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="opcionMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese el nombre para buscar la informaci&#xf3;n especifica"/>
+            <Property name="text" type="java.lang.String" value="&lt;HTML&gt;Seleccione el boton &quot;Agregar&quot; para habilitar la seccion de registro&lt;BR&gt;Si desea realizar una busqueda, seleccione el boton &quot;Buscar&quot;&lt;/HTML&gt;"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -224,11 +230,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="nombreAgregarLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="nombreAgregarTFd" min="-2" pref="182" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
                       <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
                       <Component id="diraccionLbl" min="-2" max="-2" attributes="0"/>
@@ -239,12 +240,7 @@
                                   <Component id="calleLbl" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
                                   <Component id="coloniaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="CalleTFd" pref="183" max="32767" attributes="0"/>
-                                  <Component id="coloniaTFd" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="339" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="zonaLbl" min="-2" max="-2" attributes="0"/>
@@ -254,13 +250,22 @@
                                   <Group type="102" attributes="0">
                                       <Component id="numeroLbl" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                      <Component id="numeroTFd" min="-2" pref="183" max="-2" attributes="0"/>
+                                      <Component id="numeroTFd" min="-2" pref="182" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Component id="calleTFd" min="-2" pref="183" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="nombreAgregarLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="nombreTFd" min="-2" pref="182" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="coloniaTFd" alignment="1" min="-2" pref="183" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="64" max="32767" attributes="0"/>
+                  <EmptySpace pref="65" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -274,7 +279,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreAgregarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreAgregarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreTFd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -286,18 +291,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="CalleTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="calleTFd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="numeroTFd" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="numeroTFd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="zonaCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="zonaCBx" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="zonaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="coloniaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="coloniaTFd" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="coloniaTFd" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="guardarBtn" min="-2" pref="49" max="-2" attributes="0"/>
@@ -328,15 +333,18 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Zona:"/>
+            <Property name="text" type="java.lang.String" value="Area:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nombreAgregarTFd">
+        <Component class="javax.swing.JTextField" name="nombreTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="zonaCBx">
           <Properties>
@@ -345,15 +353,15 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="OFICINAS GENERALES"/>
-                <StringItem index="1" value="VALLE"/>
-                <StringItem index="2" value="COSTA"/>
+                <StringItem index="0" value="Zona Costa"/>
+                <StringItem index="1" value="Zona Valle"/>
+                <StringItem index="2" value="CEMSAD&#xb4;S"/>
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; la zona del plantel"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="CalleTFd">
+        <Component class="javax.swing.JTextField" name="calleTFd">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
