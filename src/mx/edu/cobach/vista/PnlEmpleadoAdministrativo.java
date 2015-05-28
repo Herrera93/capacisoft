@@ -1078,4 +1078,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

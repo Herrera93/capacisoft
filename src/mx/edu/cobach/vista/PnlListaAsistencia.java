@@ -443,4 +443,9 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
     public void setLista(List info, int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -29,6 +29,7 @@ public class ServiceLocatorFACADE {
     private static ImplementacionEventoEnunciadoLogisticaFACADE calificacionFacade;
     private static ProveedorFACADE proveedorFacade;
     private static PlantelFACADE plantelFacade;
+    private static AlertaFACADE alertaFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -210,5 +211,12 @@ public class ServiceLocatorFACADE {
             calificacionFacade = new ImplementacionEventoEnunciadoLogisticaFACADE();
         }
         return calificacionFacade;
+    }
+    
+    public static AlertaFACADE getAlerta(){
+        if(alertaFacade == null){
+            alertaFacade = new AlertaFACADE();
+        }
+        return alertaFacade;
     }
 }

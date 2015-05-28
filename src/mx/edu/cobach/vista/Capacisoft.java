@@ -132,17 +132,13 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         add(listaAsistenciaPnl);
         
         //Procesos
-        alertasPnl = new PnlAlertas();
-        alertasPnl.setVisible(false);
-        alertasPnl.setSize(1181,587);
-        //if(idTipo!=3)
-            add(alertasPnl);
         
         seguimientoPnl = new PnlSeguimiento();
         seguimientoPnl.setVisible(false);
         seguimientoPnl.setSize(1181,587);
         //if(idTipo!=3)
             add(seguimientoPnl);/*preguntar*/
+            
         
         programarPnl = new PnlProgramarEvento();
         programarPnl.setVisible(false);
@@ -150,6 +146,11 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
        // if(idTipo!=3)
             add(programarPnl); 
         
+        alertasPnl = new PnlAlertas(programarPnl, seguimientoPnl);
+        alertasPnl.setVisible(false);
+        alertasPnl.setSize(1181,587);
+        //if(idTipo!=3)
+            add(alertasPnl);
         if(idTipo==2 || idTipo==3)
             usuario_MIt.setVisible(false);
         if(idTipo==3){
@@ -413,6 +414,10 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         seguimientoPnl.llenarTodo();
     }//GEN-LAST:event_encuesta_MItActionPerformed
 
+    public void visualizarEncuesta(){
+        encuesta_MItActionPerformed(null);
+    }
+    
     private void kardex_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kardex_MItActionPerformed
         this.setTitle("Capacisoft - Kardex");
         usuarioPnl.setVisible(false);
@@ -504,6 +509,10 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         alertasPnl.setVisible(false);
     }//GEN-LAST:event_curso_MItActionPerformed
 
+    public void visualizarEvento(){
+        this.curso_MItActionPerformed(null);
+    }
+    
     private void empleado_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleado_MItActionPerformed
         this.setTitle("Capacisoft - Empleado Administrativo");
         usuarioPnl.setVisible(false);
@@ -697,7 +706,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenu mantenimientoCurso_Mn;
     private javax.swing.JMenuItem planteles_MIt;
     private javax.swing.JMenu procesos_Mn;
-    private javax.swing.JMenuItem programarEvento_MIt;
+    public javax.swing.JMenuItem programarEvento_MIt;
     private javax.swing.JMenuItem proveedores_MIt;
     private javax.swing.JMenuItem puestos_MIt;
     private javax.swing.JMenuItem registroCurso_MIt;

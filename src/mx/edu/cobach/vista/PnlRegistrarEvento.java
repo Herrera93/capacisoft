@@ -673,4 +673,9 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         agregarBtn.setEnabled(false);
         
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

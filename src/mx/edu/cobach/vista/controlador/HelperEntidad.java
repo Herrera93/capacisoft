@@ -30,6 +30,7 @@ import mx.edu.cobach.persistencia.entidades.Municipio;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.entidades.TipoProveedor;
+import mx.edu.cobach.persistencia.entidades.Alerta;
 import org.hibernate.Hibernate;
 
 /**
@@ -236,7 +237,10 @@ public class HelperEntidad {
               return descomponerProveedor((Proveedor)obj);
         }else if(obj instanceof Plantel){
               return descomponerPlantel((Plantel)obj);
-        }else{
+        }else if(obj instanceof Alerta){
+            return descomponerAlerta((Alerta) obj);
+        }
+        else{
             return null;
         }
     }
@@ -326,6 +330,15 @@ public class HelperEntidad {
         info.add(eventoImplementado.getSede());
         info.add(eventoImplementado.getProveedor());
         info.add(eventoImplementado.getEmpleados());
+        return info;
+    }
+    
+    public static List<Object> descomponerAlerta(Alerta alerta){
+        List<Object> info = new ArrayList();
+        info.add(alerta.getId());
+        info.add(alerta.getPeriodo());
+        info.add(alerta.getDescripcion());
+        info.add(alerta.getImplementacionEventos());
         return info;
     }
     

@@ -16,7 +16,6 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Departamento;
-import mx.edu.cobach.vista.controlador.BaseControlador;
 import mx.edu.cobach.vista.controlador.DepartamentoControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 
@@ -618,6 +617,11 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
     @Override
     public void setLista(List info, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -25,6 +25,7 @@ public class ServiceLocatorDELEGATE {
     private static ImplementarEventoDELEGATE implementarEventoDelegate;
     private static ProveedorDELEGATE proveedorDelegate;
     private static PlantelDELEGATE plantelDelegate;
+    private static AlertaDELEGATE alertaDelegate;
     
     /**
      * Obtiene el DELEGATE generico, si este no ha sido inicilizado se instanciara.
@@ -179,6 +180,13 @@ public class ServiceLocatorDELEGATE {
             reporteDelegate = new ReporteDELEGATE();
         }
         return reporteDelegate;
+    }
+    
+    public static AlertaDELEGATE getAlerta(){
+        if(alertaDelegate == null){
+            alertaDelegate = new AlertaDELEGATE();
+        }
+        return alertaDelegate;
     }
     
 }

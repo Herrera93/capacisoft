@@ -4,6 +4,9 @@
  */
 package mx.edu.cobach.vista;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -24,15 +27,15 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     /**
      * Creates new form PnlProgramarEvento
      */
-    private PnlEventoRealizar eventoRealizarPnl;
-    private PnlEventoRealizado eventoRealizadoPnl;
+    public PnlEventoRealizar eventoRealizarPnl;
+    public PnlEventoRealizado eventoRealizadoPnl;
 
-    private final ImplementarEventoControlador control;
-    private final DefaultComboBoxModel tipoEventoModel;
-    private final DefaultTableModel model;
-    private String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
+    public final ImplementarEventoControlador control;
+    public final DefaultComboBoxModel tipoEventoModel;
+    public final DefaultTableModel model;
+    public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
         "Estado", "Eliminar"};
-    private String estado;
+    public String estado;
 
     public PnlProgramarEvento() {
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
@@ -543,11 +546,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.jpcomponents.JPCalendar agendarCursosCal;
-    private javax.swing.JButton buscarBtn;
+    public javax.swing.JButton buscarBtn;
     private javax.swing.JPanel buscarPnl;
     private javax.swing.JPanel calendarioPnl;
-    private com.toedter.calendar.JDateChooser fechaInicialDCh;
-    private com.toedter.calendar.JDateChooser fechaTerminacionDCh;
+    public com.toedter.calendar.JDateChooser fechaInicialDCh;
+    public com.toedter.calendar.JDateChooser fechaTerminacionDCh;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel nombreBusLbl;
@@ -563,7 +566,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel sedeLbl;
     private javax.swing.JLabel sedeLbl1;
     private javax.swing.JTable tablaTbl;
-    private javax.swing.JComboBox tipoBusCBx;
+    public javax.swing.JComboBox tipoBusCBx;
     private javax.swing.JComboBox tipoRegCBx;
     // End of variables declaration//GEN-END:variables
     /**
@@ -649,5 +652,21 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 }
                 break;
         }
+    }
+    
+    @Override
+    public void llenarDatos(Object evento){
+        System.out.println("Programar evento");
+        llenarTodo();
+        System.out.println(((ImplementacionEvento) evento)
+                .getEvento().getNombre());
+        tipoRegCBx.setSelectedIndex(((ImplementacionEvento) evento)
+                .getEvento().getId());
+        try{
+        this.getParent().getClass().getMethod("visualizarEvento", null);
+        } catch(NoSuchMethodException e){
+            System.out.println("No existe el método para visualizar el evento.");
+        }
+        this.updateUI();
     }
 }
