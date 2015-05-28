@@ -214,7 +214,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         diraccionLbl.setText("Dirección del plantel");
 
         zonaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        zonaLbl.setText("Area:");
+        zonaLbl.setText("Zona:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -224,7 +224,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         });
 
         zonaCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Zona Costa", "Zona Valle", "CEMSAD´S" }));
+        zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Valle", "Costa Norte", "Costa Sur" }));
         zonaCBx.setToolTipText("Seleccioné la zona del plantel");
 
         calleTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -362,6 +362,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
         setEnabledPanelOpcion(false);
            setEnabledPanelInformacion(false);
+           boolean salida=false;
         if(nombreTFd.getText().equals("") && coloniaTFd.getText().equals(""))
             setMensaje("Debe ingresar los datos solicitados");
             else
@@ -378,10 +379,13 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                         atr.add(coloniaTFd.getText());            
                         atr.add(numeroTFd.getText());
                         switch(String.valueOf(zonaCBx.getSelectedItem())){
-                            case "Zona Costa": atr.add("1"); break;
-                            case "Zona Valle": atr.add("2"); break;
-                            case "CEMSAD´S": atr.add("3"); break;
+                            case "Valle": atr.add("1"); break;
+                                case "Costa Norte": atr.add("2"); break;
+                            case "Costa Sur": atr.add("3"); break;
+                            default: salida=true; break;
+                            
                         } 
+                        if(!salida)
                         if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
                             setEnabledPanelInformacion(false);
                             setEnabledPanelOpcion(false);    
