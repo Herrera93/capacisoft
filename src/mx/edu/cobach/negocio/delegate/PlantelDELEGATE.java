@@ -13,7 +13,7 @@ public class PlantelDELEGATE {
         super();
     }
     
-    public List<Object> findByNombre(String nombre){
-        return ServiceLocatorFACADE.getPlantel().findByNombre(nombre);
+    public List<Object> buscarPorNombre(String nombre){
+        return ServiceLocatorFACADE.getPlantel().buscarPorNombre(nombre);
     }
 }

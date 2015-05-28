@@ -9,9 +9,11 @@ import java.util.List;
 import mx.edu.cobach.persistencia.ServiceLocator;
 
 public class PlantelFACADE extends BaseFACADE{
+    
     public PlantelFACADE(){
     }
-    public List<Object> findByNombre(String nombre){
+    
+    public List<Object> buscarPorNombre(String nombre){
         return ServiceLocator.getPlantel().findByNombre(nombre);
     }
 }
