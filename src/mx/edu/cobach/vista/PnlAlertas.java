@@ -580,52 +580,6 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     @Override
     public void setInfo(List info) {// method
-//        if(info != null){// if
-//            System.out.println(info);
-//            generarPanelAlerta(info);
-//        }// if
-//        else{// else
-//            // colocando paneles vacios
-//            javax.swing.JPanel vacio1[] = new javax.swing.JPanel[3];
-//            for(int k = 0; k < 3; k++){// for
-//                vacio1[k] = new javax.swing.JPanel();
-//                vacio1[k].setBackground(java.awt.Color.white);
-//                vacio1[k].setSize(WIDTH, 150);
-//                vacio1[k].setBorder(javax.swing.BorderFactory.createLineBorder(
-//                    new java.awt.Color(0, 0, 0)));
-//                if(k == 0){// if
-//                    vacio1[k].setLocation(0, 0);
-//                }// if
-//                else{// else
-//                    int y = vacio1[k - 1].getLocation().y 
-//                            + vacio1[k].getSize().height;
-//                    vacio1[k].setLocation(0, y);
-//                }// else
-//                
-//                alertasPnl.add(vacio1[k]);
-//                alertasPnl.updateUI();
-//            }// for
-//            alertasPnl.setToolTipText("Se muestran las alertas "
-//                    + "programadas");
-//            switch(seleccionCBx.getSelectedIndex()){// switch
-//                case 1:// evento programado
-//                    setMensaje("No existen alertas de evento programado por "
-//                            + "el momento.");
-//                    break;
-//                case 2:// evento diagnosticado
-//                    setMensaje("No existen alertas de evento diagnosticado "
-//                            + "por el momento.");
-//                    break;
-//                case 3:// informacion pendiente
-//                    setMensaje("No existen eventos con informacion pendiente"
-//                            + " por el momento.");
-//                    break;
-//                case 4:// encuesta pendiente
-//                    setMensaje("No existen eventos con evaluacion pendiente "
-//                            + "por el momento.");
-//                    break;
-//            }// switch
-//        }// else
     }// method
 
     /**
@@ -753,7 +707,6 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 tamaño = tamaño + 1;
             }
         }
-        System.out.println(tamaño);
         totalAlertas = tamaño;
         panelesPnl = new JPanel[tamaño];
         titulosLbl = new JLabel[tamaño];
@@ -762,7 +715,6 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         int j = 0;
         for(Object obj : info){// for each
             Alerta a = (Alerta) obj;
-            System.out.println(a.getDescripcion());
             switch(a.getId()){// switch
                 case 1:// evento programado
                     for(ImplementacionEvento ic : 
