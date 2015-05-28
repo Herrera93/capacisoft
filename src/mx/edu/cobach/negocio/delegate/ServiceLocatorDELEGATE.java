@@ -180,6 +180,8 @@ public class ServiceLocatorDELEGATE {
             reporteDelegate = new ReporteDELEGATE();
         }
         return reporteDelegate;
+    }
+    
     public static AlertaDELEGATE getAlerta(){
         if(alertaDelegate == null){
             alertaDelegate = new AlertaDELEGATE();

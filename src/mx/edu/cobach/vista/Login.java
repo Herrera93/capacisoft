@@ -310,4 +310,9 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     @Override
     public void setInfo(List info) {
     }
+
+    @Override
+    public void llenarDatos(Object evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
