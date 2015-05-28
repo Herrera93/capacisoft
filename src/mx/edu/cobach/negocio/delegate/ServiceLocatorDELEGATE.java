@@ -24,6 +24,8 @@ public class ServiceLocatorDELEGATE {
     private static ReporteDELEGATE reporteDelegate;
     private static EncuestaDELEGATE encuestaDelegate;
     private static ImplementarEventoDELEGATE implementarEventoDelegate;
+    private static ProveedorDELEGATE proveedorDelegate;
+    private static PlantelDELEGATE plantelDelegate;
     
     /**
      * Obtiene el DELEGATE generico, si este no ha sido inicilizado se instanciara.
@@ -87,6 +89,33 @@ public class ServiceLocatorDELEGATE {
             puestoDelegate = new PuestoDELEGATE();
         }        
         return puestoDelegate;
+    }
+    
+    
+    /**
+     * Obtiene el DELEGATE especifico de la entidad Proveedor, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el DELEGATE de Proveedor
+     */
+    public static ProveedorDELEGATE getProveedorDelegate(){
+        if(proveedorDelegate == null){
+            proveedorDelegate = new ProveedorDELEGATE();
+        }        
+        return proveedorDelegate;
+    }
+    
+    /**
+     * Obtiene el DELEGATE especifico de la entidad Plantel, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el DELEGATE de Plantel
+     */
+    public static PlantelDELEGATE getPlantelDelegate(){
+        if(plantelDelegate == null){
+            plantelDelegate = new PlantelDELEGATE();
+        }        
+        return plantelDelegate;
     }
     
     /**

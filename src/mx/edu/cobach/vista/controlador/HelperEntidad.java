@@ -29,6 +29,7 @@ import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogisti
 import mx.edu.cobach.persistencia.entidades.Municipio;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
+import mx.edu.cobach.persistencia.entidades.TipoProveedor;
 import org.hibernate.Hibernate;
 
 /**
@@ -61,6 +62,47 @@ public class HelperEntidad {
         return depto;
     }
     
+    /**
+     * getPlantel
+     * @param List<String> atributos
+     * @return Plantel
+     */
+    public static Plantel getPlantel(List<String> atributos){
+        Plantel plantel= new Plantel();
+        Zona z =new Zona();
+        plantel.setNombre(atributos.get(0));
+        plantel.setCalle(atributos.get(1));
+        plantel.setColonia(atributos.get(2));
+        plantel.setNumeroDireccion(atributos.get(3));
+        z.setId(Integer.parseInt(atributos.get(4)));
+        plantel.setZona(z);
+        if(atributos.size() >5)
+            plantel.setId(Integer.parseInt(atributos.get(5)));
+        return plantel;
+    }
+    
+    /**
+     * getProveedor
+     * @param List<String> atributos
+     * @return Proveedor
+     */
+    public static Proveedor getProveedor(List<Object> atributos){
+        Proveedor p= new Proveedor();
+        TipoProveedor t =new TipoProveedor();
+        p.setPrimerNombre(atributos.get(0).toString());
+        p.setSegundoNombre(atributos.get(1).toString());
+        p.setApellidoPaterno(atributos.get(2).toString());
+        p.setApellidoMaterno(atributos.get(3).toString());
+        p.setCorreoElectronico(atributos.get(4).toString());
+        p.setTelefono(atributos.get(5).toString());
+        t.setId(Integer.parseInt(atributos.get(6).toString()));
+        p.setTipoProveedor(t);
+        p.setEventos((Set<Evento>)atributos.get(7));
+        if(atributos.size() >8)
+            p.setId(Integer.parseInt(atributos.get(8).toString()));
+        return p;
+    }
+    
     public static ImplementacionEvento getImplementarEvento(List<Object> atributos,
             String direccion) {
         ImplementacionEvento implementaEvento = new ImplementacionEvento();
@@ -85,14 +127,6 @@ public class HelperEntidad {
             return implementaEvento;
         }
         return null;
-    }
-
-    public static Plantel getPlantel(List<Object> atributos) {
-        Zona zona = new Zona();
-        zona.setId((Integer) atributos.get(0));
-        Plantel plantel = new Plantel(zona, (String) atributos.get(1), (String) atributos.get(2),
-                (String) atributos.get(3), (String) atributos.get(4));
-        return plantel;
     }
 
     public static Puesto getPuesto(List<String> atributos, String direccion) {
@@ -198,8 +232,11 @@ public class HelperEntidad {
               return descomponerSede((Sede)obj);
         }else if(obj instanceof ImplementacionEvento){
               return descomponerProEvento((ImplementacionEvento)obj);
-        }
-        else{
+        }else if(obj instanceof Proveedor){
+              return descomponerProveedor((Proveedor)obj);
+        }else if(obj instanceof Plantel){
+              return descomponerPlantel((Plantel)obj);
+        }else{
             return null;
         }
     }
@@ -357,9 +394,94 @@ public class HelperEntidad {
                     calificacion.add((ImplementacionEventoEnunciadoLogistica) objetos.get(i));
                 }
                 return descomponerCalificacion(calificacion);
+            }else if(objetos.get(0) instanceof Proveedor){
+                List<Proveedor> pr = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    pr.add((Proveedor) objetos.get(i));
+                }
+                return descomponerProveedores(pr);
+            }else if(objetos.get(0) instanceof Plantel){
+                List<Plantel> pl = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    pl.add((Plantel) objetos.get(i));
+                }
+                return descomponerPlanteles(pl);
             }
         }
         return null;
+    }
+    
+    /**
+     * descomponerProveedor
+     * @param proveedor
+     * @return 
+     */
+    private static List<Object> descomponerProveedor(Proveedor proveedor){
+        List<Object> info = new ArrayList<>();        
+        TipoProveedor m;
+        info.add(proveedor.getPrimerNombre());
+        info.add(proveedor.getSegundoNombre());
+        info.add(proveedor.getApellidoPaterno());
+        info.add(proveedor.getApellidoMaterno());
+        info.add(proveedor.getCorreoElectronico());
+        m=proveedor.getTipoProveedor();
+        info.add(m.getDescripcion());
+        info.add(proveedor.getEventos());
+        return info;
+    }
+    
+    /**
+     * descomponerProveedores
+     * @param pr
+     * @return 
+     */
+    private static String[][] descomponerProveedores(List<Proveedor> pr){
+        String[][] info = new String[pr.size()][2];
+        for(int i = 0; i < pr.size(); i++){
+            Proveedor p = pr.get(i);
+            info[i][0] = String.valueOf(p.getId());
+            info[i][1] = p.getPrimerNombre();
+            if(p.getSegundoNombre() != null)
+                info[i][1] +=" "+p.getSegundoNombre();
+            info[i][1] +=" "+p.getApellidoPaterno();
+            info[i][1] +=" "+p.getApellidoMaterno();
+        }
+        return info;
+    }
+    
+    /**
+     * 
+     * @param plantel
+     * @return 
+     */
+    private static List<Object> descomponerPlantel(Plantel plantel){
+        List<Object> info = new ArrayList<>();        
+        Zona z;
+        info.add(plantel.getNombre());
+        info.add(plantel.getCalle());
+        info.add(plantel.getColonia());
+        info.add(plantel.getNumeroDireccion());
+        z=plantel.getZona();
+        info.add(z.getNombre());
+        return info;
+    }
+    
+    /**
+     * 
+     * @param pl
+     * @return 
+     */
+    private static String[][] descomponerPlanteles(List<Plantel> pl){
+        String[][] info = new String[pl.size()][3];
+        for(int i = 0; i < pl.size(); i++){
+            Plantel p = pl.get(i);
+            info[i][0] = String.valueOf(p.getId());
+            info[i][1] = p.getNombre();
+            info[i][2] =p.getCalle()+" ";
+            info[i][2] +=p.getColonia()+" ";
+            info[i][2] +=p.getNumeroDireccion();
+        }
+        return info;
     }
     
     private static String[][] descomponerDepartamentos(List<Departamento> dp){

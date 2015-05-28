@@ -18,7 +18,6 @@
   <table-filter match-name="implementacion_curso"/>
   <table-filter match-name="departamento"/>
   <table-filter match-name="tipo_cuenta"/>
-  <table-filter match-name="telefono"/>
   <table-filter match-name="competencia"/>
   <table-filter match-name="enunciado_logistica"/>
   <table-filter match-name="zona"/>

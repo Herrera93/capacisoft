@@ -5,20 +5,16 @@
  */
 package mx.edu.cobach.persistencia;
 
-import mx.edu.cobach.persistencia.entidades.Sede;
+import mx.edu.cobach.persistencia.entidades.Plantel;
 import java.util.List;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
-/**
- *
- * @author SALB
- */
-public class SedeDAO extends BaseDAO{
-    public SedeDAO(){
+public class PlantelDAO extends BaseDAO{
+    public PlantelDAO(){
         super();
-        super.entityClass = Sede.class;
+        super.entityClass = Plantel.class;
     }
     
     public List<Object> findByNombre(String nombre){

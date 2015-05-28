@@ -3,22 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.cobach.negocio.delegate;
+package mx.edu.cobach.negocio.facade;
 
-/**
- *
- * @author SALB
- */
 import java.util.List;
-import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
+import mx.edu.cobach.persistencia.ServiceLocator;
 
-public class SedeDELEGATE {
-    public SedeDELEGATE(){
-        super();
+public class ProveedorFACADE extends BaseFACADE{
+    public ProveedorFACADE(){
     }
-    
     public List<Object> findByNombre(String nombre){
-        return ServiceLocatorFACADE.getSede().findByNombre(nombre);
+        return ServiceLocator.getProveedor().findByNombre(nombre);
     }
-    
 }

@@ -1,39 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.edu.cobach.vista;
 
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.vista.controlador.UsuarioControlador;
 
-/**
- *
- * @author SALB
- */
 public class Login extends javax.swing.JFrame implements Comunicador{
-
-    /**
-     * Creates new form Login
-     */
-    private UsuarioControlador control;
     
+    private UsuarioControlador control;
+    private boolean habilitar=true;
+    private KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+    
+    /**
+     * Login, Se inicializan los componentes y se asigna el icono de la ventana.
+     */
     public Login() {
         initComponents();
         setTitle("CapaciSoft - Login");
         setResizable(false);
         setLocationRelativeTo(null);
         control = new UsuarioControlador(this, Usuario.class);
-        
-        ImageIcon imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
-                + "vista/recursos/logo.png"));
+        ImageIcon imageLogo = new ImageIcon(Capacisoft.class.getResource(
+            "/mx/edu/cobach/"+ "vista/recursos/logo.png"));
         setIconImage(imageLogo.getImage());
         
+        /**
+         * Metodo que sirve para validar que solo se admitan letras mayusculas
+         * en los campos de texto.
+         */
+        manager.addKeyEventDispatcher(new KeyEventDispatcher(){
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if(e.getID() == KeyEvent.KEY_TYPED){
+                    if(e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'){
+                        e.setKeyChar((char)(((int)e.getKeyChar()) - 32));
+                    }
+                }
+                return false;
+            }
+        });
     }
+    
+    
+
+//y enseguida registramos nuestro dispatcher
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,19 +63,19 @@ public class Login extends javax.swing.JFrame implements Comunicador{
         contrasenaLbl = new javax.swing.JLabel();
         salirBtn = new javax.swing.JButton();
         usuarioLbl = new javax.swing.JLabel();
-        usuarioTfd = new javax.swing.JTextField();
+        usuarioTFd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ingresarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ingresarBtn.setText("Ingresar");
-        ingresarBtn.setName("ingresar"); // NOI18N
         ingresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresarBtnActionPerformed(evt);
             }
         });
 
+        contrasenaPFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contrasenaPFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 contrasenaPFdKeyPressed(evt);
@@ -73,7 +87,6 @@ public class Login extends javax.swing.JFrame implements Comunicador{
 
         salirBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         salirBtn.setText("Salir");
-        salirBtn.setName("salir"); // NOI18N
         salirBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirBtnActionPerformed(evt);
@@ -83,9 +96,10 @@ public class Login extends javax.swing.JFrame implements Comunicador{
         usuarioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usuarioLbl.setText("Usuario:");
 
-        usuarioTfd.addKeyListener(new java.awt.event.KeyAdapter() {
+        usuarioTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usuarioTFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                usuarioTfdKeyPressed(evt);
+                usuarioTFdKeyPressed(evt);
             }
         });
 
@@ -97,17 +111,18 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(contrasenaLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(salirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ingresarBtn))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(usuarioLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(usuarioTfd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(contrasenaLbl)
+                            .addComponent(usuarioLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -116,12 +131,12 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usuarioLbl)
-                    .addComponent(usuarioTfd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contrasenaLbl))
-                .addGap(18, 18, 18)
+                    .addComponent(contrasenaLbl)
+                    .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salirBtn)
                     .addComponent(ingresarBtn))
@@ -130,49 +145,80 @@ public class Login extends javax.swing.JFrame implements Comunicador{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Al accionar el boton de ingresar.
+     */
     private void ingresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBtnActionPerformed
-       ingresar();
+       validar();
     }//GEN-LAST:event_ingresarBtnActionPerformed
 
+    /**
+     * Al accionar el boton de salir.
+     */
     private void salirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirBtnActionPerformed
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        System.exit(0);    
     }//GEN-LAST:event_salirBtnActionPerformed
-
-    private void usuarioTfdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTfdKeyPressed
-        
-        if(evt.getKeyCode() ==10){
-           if(usuarioTfd.getText().equals("") != true)
-               if(usuarioTfd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
-                   ingresar();
-                else
-                    contrasenaPFd.grabFocus();
-            else
-               setMensaje("No se ha ingresado el usuario");
-                               
-        }
-    }//GEN-LAST:event_usuarioTfdKeyPressed
-
+    
+    /**
+     * Al precionar cualquier tecla en el campo de texto de usuario.
+     * Se valida que la tecla precionada sea la tecla enter para poder validar
+     * los campos de texto.
+     */
+    private void usuarioTFdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTFdKeyPressed
+        if(evt.getKeyCode() ==10)
+            validar();
+    }//GEN-LAST:event_usuarioTFdKeyPressed
+    
+    /**
+     * Al precionar cualquier tecla en el campo de texto de contraseña.
+     * Se valida que la tecla precionada sea la tecla enter para poder validar
+     * los campos de texto.
+     */
     private void contrasenaPFdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contrasenaPFdKeyPressed
-       if(evt.getKeyCode() ==10){
-           if(contrasenaPFd.getText().equals("") != true)
-               if(usuarioTfd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
-                   ingresar();
-                else
-                    usuarioTfd.grabFocus();
-            else
-               setMensaje("No se ha ingresado la contraseña");
-                               
-        } 
+       if(evt.getKeyCode() ==10)
+           validar();                      
+        
     }//GEN-LAST:event_contrasenaPFdKeyPressed
-
-    private void ingresar(){
-        if(usuarioTfd.getText().equals("") != true && contrasenaPFd.getText().equals("") != true)
-            control.buscarPorUsuario(usuarioTfd.getText());        
-        else
-            setMensaje("No se ha ingresado usuario o contraseña");
+    
+    /**
+     * validar, este metodo valida que los campo de texto contengan informacion
+     * antes de poder ingresar al sistema.
+     */
+    public void validar(){
+        if(usuarioTFd.getText().equals("") &&
+            contrasenaPFd.getText().equals("")){
+            setMensaje("No se ha ingresado el nombre de usuario ni la contraseña");
+            usuarioTFd.grabFocus();
+        }else 
+            if(usuarioTFd.getText().equals("")){
+                setMensaje("No se ha ingresado el nombre de usuario");
+                usuarioTFd.grabFocus();
+            }else        
+                if(contrasenaPFd.getText().equals("")){
+                    setMensaje("No se ha ingresado la contraseña");
+                    contrasenaPFd.grabFocus();
+                }else
+                    if(usuarioTFd.getText().equals("") != true &&
+                        contrasenaPFd.getText().equals("") != true)
+                        ingresar();
     }
-/****/
+    
+    /**
+     * ingresar, este metodo deshabilita los campos de texto y los botones, para
+     * que no puedan ser utilizados por el usuario mientras se esta buscando
+     * el nombre de usuario en la base de datos.
+     */
+    private void ingresar(){
+        if(habilitar==true){
+            habilitar=false;
+            ingresarBtn.setEnabled(false);
+            salirBtn.setEnabled(false);  
+            String usuario=usuarioTFd.getText();
+            control.buscarPorUsuario(usuario);        
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -199,6 +245,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -214,29 +261,46 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     private javax.swing.JButton ingresarBtn;
     private javax.swing.JButton salirBtn;
     private javax.swing.JLabel usuarioLbl;
-    private javax.swing.JTextField usuarioTfd;
+    private javax.swing.JTextField usuarioTFd;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * este metodo muestra un mensaje en pantalla con el contenido de 
+     * mensaje.
+     * @param String mensaje 
+     */
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
 
     /**
-     * 
-     * @param info 
+     * Este metodo recibe la informacion del usuario que se haya obtenido de la
+     * base de datos, si el usuario y contraseña son corectos entonces podra
+     * ingresar al sistema, de lo contrario mostrara un mensaje y lo regresara
+     * a modificar los datos ingresados.
+     * @param String[][] info 
      */
     @Override
     public void setTabla(String[][] info) {
         String contrasena = String.valueOf(contrasenaPFd.getPassword());
-        if(info==null)
-            setMensaje("Usuario o contraseña incorrectos");
-        else
+        if(info==null){
+            setMensaje("Nombre de usuario incorrecto");
+            habilitar=true;
+            ingresarBtn.setEnabled(true);
+            salirBtn.setEnabled(true);
+        }else{
             if(info[0][1].equals(contrasena)){      
                 new Capacisoft(info[0][2]).setVisible(true);
                 this.setVisible(false);
-            }else
-                setMensaje("Usuario o Contraseña incorrectas");
+            }else{
+                setMensaje("Contraseña incorrecta");
+                habilitar=true;
+                ingresarBtn.setEnabled(true);
+                salirBtn.setEnabled(true);
+                contrasenaPFd.grabFocus();
+            }
+        }
     }
 
     @Override
