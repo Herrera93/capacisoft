@@ -41,8 +41,8 @@ import java.util.Set;
 
 public class JotForm {
 
-    private static String baseUrl = "https://api.jotform.com/";
-    private static String version = "v1";
+    private static final String BASE_URL = "https://api.jotform.com/";
+    private static final String VERSION = "v1";
     
     private String apiKey;
     private boolean debugMode;
@@ -85,7 +85,7 @@ public class JotForm {
         HttpResponse resp;
 
         if (method.equals("GET")){
-        	req = new HttpGet(JotForm.baseUrl + JotForm.version + path);
+        	req = new HttpGet(JotForm.BASE_URL + JotForm.VERSION + path);
             req.addHeader("apiKey", this.apiKey);
             
             if(params != null) {
@@ -103,7 +103,7 @@ public class JotForm {
             	((HttpRequestBase) req).setURI(uri);
             }
         } else if (method.equals("POST")) {
-            req = new HttpPost(JotForm.baseUrl + path);
+            req = new HttpPost(JotForm.BASE_URL + path);
             req.addHeader("apiKey", this.apiKey);
 
             if (params != null) {
@@ -119,7 +119,7 @@ public class JotForm {
 	            ((HttpPost) req).setEntity(entity);
             }
         } else if (method.equals("DELETE")) {
-            req = new HttpDelete(JotForm.baseUrl + JotForm.version + path);
+            req = new HttpDelete(JotForm.BASE_URL + JotForm.VERSION + path);
             req.addHeader("apiKey", this.apiKey);
         } else {
         	req = null;
@@ -152,7 +152,7 @@ public class JotForm {
         HttpUriRequest req;
         HttpResponse resp;
         
-    	req = new HttpPut(JotForm.baseUrl + JotForm.version + path);
+    	req = new HttpPut(JotForm.BASE_URL + JotForm.VERSION + path);
         req.addHeader("apiKey", this.apiKey);
         
         if (params != null) {

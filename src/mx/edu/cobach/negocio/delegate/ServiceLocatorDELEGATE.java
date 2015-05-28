@@ -18,7 +18,6 @@ public class ServiceLocatorDELEGATE {
     private static EventoDELEGATE eventoDelegate;
     private static EmpleadoDELEGATE empleadoDelegate;
     private static UsuarioDELEGATE usuarioDelegate;
-    private static AspectoDELEGATE aspectoDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
     private static ReporteDELEGATE reporteDelegate;
@@ -130,19 +129,6 @@ public class ServiceLocatorDELEGATE {
         }
         return eventoDelegate;
     }
-    
-    /**
-     * Obtiene el DELEGATE especifico de la entidad Aspecto, si este no ha sido
-     * inicializado se instanciara. Este metodo utiliza el patron de diseno
-     * Singleton.
-     * @return Regresa el DELEGATE de Aspecto
-     */
-    public static AspectoDELEGATE getAspecto(){
-        if(aspectoDelegate == null){
-            aspectoDelegate = new AspectoDELEGATE();
-        }
-        return aspectoDelegate;
-    } 
     
     /**
      * Obtiene el DELEGATE especifico de la entidad Departamento, si este no ha sido

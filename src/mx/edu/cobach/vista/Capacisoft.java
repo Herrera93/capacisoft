@@ -52,9 +52,9 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     
     private void getIdTipo(String tipo){
         switch(tipo){
-            case "Administrador": idTipo=1; break;
-            case "Analista": idTipo=2; break;
-            case "Secretaria": idTipo=3; break;
+            case "ADMINISTRADOR": idTipo=1; break;
+            case "ANALISTA": idTipo=2; break;
+            case "SECRETARIA": idTipo=3; break;
             default : idTipo=3; break;
         }      
         //System.out.println("tipo: "+idTipo);
