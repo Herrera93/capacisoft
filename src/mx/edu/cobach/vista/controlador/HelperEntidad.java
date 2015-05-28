@@ -237,7 +237,6 @@ public class HelperEntidad {
               return descomponerProveedor((Proveedor)obj);
         }else if(obj instanceof Plantel){
               return descomponerPlantel((Plantel)obj);
-        }else{
         }else if(obj instanceof Alerta){
             return descomponerAlerta((Alerta) obj);
         }
