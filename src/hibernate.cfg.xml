@@ -5,11 +5,11 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Capacisoft</property>
-    <property name="hibernate.connection.username">capacisoft</property>
+    <property name="hibernate.connection.username">root</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.connection.password">12345</property>
+    <property name="hibernate.connection.password">1116291</property>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Usuario.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoCuenta.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Zona.hbm.xml"/>

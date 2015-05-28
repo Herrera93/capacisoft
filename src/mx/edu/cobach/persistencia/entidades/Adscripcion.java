@@ -55,5 +55,3 @@ public class Adscripcion  implements java.io.Serializable {
     }
 
 }
-
-
