@@ -247,7 +247,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionLbl.setText("Dirección:");
 
         direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FINANZAS", "ADMINISTRATIVA", "PLANEACIÓN", "SERVICIOS EDUCATIVOS", "GENERAL", " " }));
+        direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FINANZAS", "ADMINISTRATIVA", "PLANEACIÓN", "SERVICIOS EDUCATIVOS", "GENERAL" }));
         direccionCBx.setToolTipText("Seleccioné la zona del plantel");
         direccionCBx.setEnabled(false);
 
