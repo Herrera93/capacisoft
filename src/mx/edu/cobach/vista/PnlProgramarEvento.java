@@ -537,6 +537,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
 
+    public void visualizarEvento(){
+        formComponentShown(null);
+    }
+    
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         regRealizadoBtn.setEnabled(false);
         regRealizarBtn.setEnabled(false);
@@ -657,16 +661,17 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     @Override
     public void llenarDatos(Object evento){
         System.out.println("Programar evento");
-        llenarTodo();
+           llenarTodo();
         System.out.println(((ImplementacionEvento) evento)
                 .getEvento().getNombre());
         tipoRegCBx.setSelectedIndex(((ImplementacionEvento) evento)
                 .getEvento().getId());
         try{
-        this.getParent().getClass().getMethod("visualizarEvento", null);
+            this.getParent().getClass().getMethod("visualizarEvento", null);
         } catch(NoSuchMethodException e){
             System.out.println("No existe el método para visualizar el evento.");
         }
+        this.setVisible(true);
         this.updateUI();
     }
 }

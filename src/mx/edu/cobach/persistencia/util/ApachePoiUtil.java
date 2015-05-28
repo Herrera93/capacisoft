@@ -1,5 +1,6 @@
 package mx.edu.cobach.persistencia.util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,9 +44,13 @@ public class ApachePoiUtil {
         this.xwpfParagraphs = doc.getParagraphs();
         String local = System.getProperty("user.home");
         String separador = System.getProperty("file.separator");
-        this.salida = new FileOutputStream(local + separador +"Documents" 
-                + separador + "capacisoft" + separador + "kardex" + separador
-                        + nombre + ".docx");
+        File folderKardex = new File(local + separador +"Documents" +
+                separador + "kardex");
+        if(!folderKardex.exists()){
+            folderKardex.mkdir();
+        }        
+        this.salida = new FileOutputStream(local + separador +"Documents" +
+                separador + "kardex" + separador + nombre + ".docx");
         
     }
 
