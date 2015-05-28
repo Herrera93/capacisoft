@@ -200,6 +200,12 @@ public class EncuestaDELEGATE {
     public void guardarRespuestas(long idEncuesta){
         //Se obtiene un Arreglo de JSON con las respuestas  de una encuesta
         JSONArray respuestas = JotFormUtil.getRespuestas(idEncuesta);
+        try {
+            if(respuestas.getJSONObject(0).getString("id").equalsIgnoreCase("#SampleSubmissionID"))
+                return;
+        } catch (JSONException ex) {
+            Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int idAsignado = JotFormUtil.getIdPregunta(idEncuesta, "asignado");
         
         Encuesta encuesta = ServiceLocatorFACADE.getEncuesta()
@@ -242,7 +248,7 @@ public class EncuestaDELEGATE {
                 //Se verifica si las respuestas de este empleado ya han sido registradas
                 List<Respuesta> respuestaVerificacion = ServiceLocatorFACADE.getRespuesta()
                     .buscarPorEmpleadoEncuesta(empleado, encuesta);
-                if(respuestaVerificacion != null)
+                if(respuestaVerificacion.size() > 0)
                     continue;
                 
                 //Se guarda cada respuesta en la base  de datos

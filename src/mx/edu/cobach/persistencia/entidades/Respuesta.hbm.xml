@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity"></generator>
         </id>
-        <many-to-one name="aspecto" class="mx.edu.cobach.persistencia.entidades.Aspecto" fetch="select">
+        <many-to-one name="aspecto" class="mx.edu.cobach.persistencia.entidades.Aspecto" fetch="select" lazy="false">
             <column name="aspecto_id" not-null="true" />
         </many-to-one>
         <many-to-one name="empleado" class="mx.edu.cobach.persistencia.entidades.Empleado" fetch="select">
@@ -18,10 +18,10 @@
             <column name="encuesta_id" not-null="true" />
         </many-to-one>
         <property name="antesCurso" type="int">
-            <column name="antes_curso" not-null="true" />
+            <column name="antes_evento" not-null="true" />
         </property>
         <property name="despuesCurso" type="int">
-            <column name="despues_curso" not-null="true" />
+            <column name="despues_evento" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
