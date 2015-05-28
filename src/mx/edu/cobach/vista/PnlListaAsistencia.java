@@ -70,6 +70,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
         opcionMsjLbl = new javax.swing.JLabel();
         fechaInicioDCh = new com.toedter.calendar.JDateChooser();
         fechaHastaDCh = new com.toedter.calendar.JDateChooser();
+        fechaLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         listaAsistenciaSPn = new javax.swing.JScrollPane();
         listaAsistenciaTbl = new javax.swing.JTable();
@@ -107,8 +108,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
         });
         eventoSPn.setViewportView(eventoTbl);
         if (eventoTbl.getColumnModel().getColumnCount() > 0) {
-            eventoTbl.getColumnModel().getColumn(0).setResizable(false);
-            eventoTbl.getColumnModel().getColumn(1).setResizable(false);
+            eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
         fechaInicialLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -146,26 +146,20 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             }
         });
 
+        fechaLbl.setText("<HTML>Si deseas ingresar la fecha con el teclado sigue el formato<BR> D/M/A. Ejem. 01/12/2015 </HTML>");
+
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
         opcionPnlLayout.setHorizontalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buscarBtn)
+                .addGap(24, 24, 24))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
-                        .addGap(0, 20, Short.MAX_VALUE)
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(opcionLbl)
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addGap(280, 280, 280)
-                                .addComponent(buscarBtn))
-                            .addComponent(opcionMsjLbl))
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
-                        .addComponent(eventoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addComponent(fechaInicialLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,28 +167,42 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
                         .addComponent(fechaHastaLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eventoSPn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(opcionLbl)
+                                    .addComponent(opcionMsjLbl)
+                                    .addComponent(fechaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         opcionPnlLayout.setVerticalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addComponent(opcionLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(opcionMsjLbl)
+                .addGap(18, 18, 18)
+                .addComponent(fechaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fechaHastaLbl)
+                        .addComponent(fechaInicialLbl))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(opcionLbl)
-                        .addGap(10, 10, 10)
-                        .addComponent(opcionMsjLbl)
-                        .addGap(32, 32, 32)
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaHastaLbl, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(fechaInicialLbl)))
-                    .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
+                .addGap(10, 10, 10)
                 .addComponent(buscarBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(eventoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addComponent(eventoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -363,6 +371,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel fechaHastaLbl;
     private javax.swing.JLabel fechaInicialLbl;
     private com.toedter.calendar.JDateChooser fechaInicioDCh;
+    private javax.swing.JLabel fechaLbl;
     private javax.swing.JButton imprimirBtn;
     private javax.swing.JLabel informacionLbl;
     private javax.swing.JPanel informacionPnl;
@@ -395,6 +404,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             //Esconder columna ID
             TableColumn idTbc = eventoTbl.getColumnModel().getColumn(0);
             eventoTbl.getColumnModel().removeColumn(idTbc);
+            eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(250);
         }
     }
 
@@ -427,7 +437,6 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             //Esconder columna ID
             TableColumn idTbc = listaAsistenciaTbl.getColumnModel().getColumn(0);
             listaAsistenciaTbl.getColumnModel().removeColumn(idTbc);
-            listaAsistenciaTbl.getColumnModel().getColumn(0).setPreferredWidth(30);
     }
 
     @Override

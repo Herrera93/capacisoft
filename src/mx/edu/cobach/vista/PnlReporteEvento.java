@@ -67,6 +67,12 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         opcionDeptoLbl = new javax.swing.JLabel();
         opcionDeptoMsjLbl = new javax.swing.JLabel();
         buscarDepartamentoBtnl = new javax.swing.JButton();
+        plantelPnl = new javax.swing.JPanel();
+        plantelLbl = new javax.swing.JLabel();
+        plantelCBx = new javax.swing.JComboBox();
+        opcionPlantelMsjLbl = new javax.swing.JLabel();
+        opcionLbl = new javax.swing.JLabel();
+        buscarPlantelBtn = new javax.swing.JButton();
         fechaPnl = new javax.swing.JPanel();
         fechaInicioLbl = new javax.swing.JLabel();
         fechaHastaLbl = new javax.swing.JLabel();
@@ -75,12 +81,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         opcionFechaLbl = new javax.swing.JLabel();
         fechaInicioDCh = new com.toedter.calendar.JDateChooser();
         fechaHastaDCh = new com.toedter.calendar.JDateChooser();
-        plantelPnl = new javax.swing.JPanel();
-        plantelLbl = new javax.swing.JLabel();
-        plantelCBx = new javax.swing.JComboBox();
-        opcionPlantelMsjLbl = new javax.swing.JLabel();
-        opcionLbl = new javax.swing.JLabel();
-        buscarPlantelBtn = new javax.swing.JButton();
+        fechaLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         eventoSPn = new javax.swing.JScrollPane();
         eventoTbl = new javax.swing.JTable();
@@ -104,7 +105,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         opcionDeptoLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionDeptoLbl.setText("Opciones ");
 
-        opcionDeptoMsjLbl.setText("Ingrese el nombre para buscar la información especifica");
+        opcionDeptoMsjLbl.setText("Seleccione el departamento y presione el botón Buscar ");
 
         buscarDepartamentoBtnl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarDepartamentoBtnl.setText("Buscar");
@@ -128,7 +129,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                         .addGroup(departamentoPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(opcionDeptoMsjLbl)
                             .addComponent(opcionDeptoLbl))
-                        .addGap(0, 90, Short.MAX_VALUE))
+                        .addGap(0, 91, Short.MAX_VALUE))
                     .addGroup(departamentoPnlLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(departamentoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,94 +155,13 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
 
         reporteCursoTb.addTab("Por Departamento", departamentoPnl);
 
-        fechaInicioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaInicioLbl.setText("Fecha de:");
-
-        fechaHastaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaHastaLbl.setText("a:");
-
-        buscarFechaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscarFechaBtn.setText("Buscar");
-        buscarFechaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarFechaBtnActionPerformed(evt);
-            }
-        });
-
-        opcionFechaMsjLbl.setText("Ingrese el nombre para buscar la información especifica");
-
-        opcionFechaLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        opcionFechaLbl.setText("Opciones ");
-
-        fechaInicioDCh.setDateFormatString("dd/MM/yyyy");
-        fechaInicioDCh.setFocusable(false);
-        fechaInicioDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fechaInicioDChPropertyChange(evt);
-            }
-        });
-
-        fechaHastaDCh.setDateFormatString("dd/MM/yyyy");
-        fechaHastaDCh.setFocusable(false);
-        fechaHastaDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fechaHastaDChPropertyChange(evt);
-            }
-        });
-
-        javax.swing.GroupLayout fechaPnlLayout = new javax.swing.GroupLayout(fechaPnl);
-        fechaPnl.setLayout(fechaPnlLayout);
-        fechaPnlLayout.setHorizontalGroup(
-            fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fechaPnlLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opcionFechaMsjLbl)
-                    .addComponent(opcionFechaLbl)
-                    .addGroup(fechaPnlLayout.createSequentialGroup()
-                        .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaInicioLbl)
-                            .addComponent(fechaHastaLbl))
-                        .addGap(18, 18, 18)
-                        .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fechaPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buscarFechaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        fechaPnlLayout.setVerticalGroup(
-            fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fechaPnlLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(opcionFechaLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(fechaPnlLayout.createSequentialGroup()
-                        .addComponent(opcionFechaMsjLbl)
-                        .addGap(32, 32, 32)
-                        .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechaInicioLbl)
-                            .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52)
-                        .addComponent(fechaHastaLbl))
-                    .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
-                .addComponent(buscarFechaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        reporteCursoTb.addTab("Por fechas", fechaPnl);
-
         plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelLbl.setText("Plantel:");
 
         plantelCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        opcionPlantelMsjLbl.setText("Ingrese el nombre para buscar la información especifica");
+        opcionPlantelMsjLbl.setText("Seleccion el plante y presione el botón buscar");
 
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones ");
@@ -265,7 +185,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                         .addGroup(plantelPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(opcionPlantelMsjLbl)
                             .addComponent(opcionLbl))
-                        .addGap(0, 87, Short.MAX_VALUE))
+                        .addGap(0, 135, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plantelPnlLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buscarPlantelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -287,12 +207,99 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 .addGroup(plantelPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(plantelLbl)
                     .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addComponent(buscarPlantelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(36, 36, 36))
         );
 
         reporteCursoTb.addTab("Por plantel", plantelPnl);
+
+        fechaInicioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        fechaInicioLbl.setText("Fecha de:");
+
+        fechaHastaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        fechaHastaLbl.setText("a:");
+
+        buscarFechaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarFechaBtn.setText("Buscar");
+        buscarFechaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarFechaBtnActionPerformed(evt);
+            }
+        });
+
+        opcionFechaMsjLbl.setText("Seleccione el rango de fechas y presione el botón buscar ");
+
+        opcionFechaLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opcionFechaLbl.setText("Opciones ");
+
+        fechaInicioDCh.setDateFormatString("dd/MM/yyyy");
+        fechaInicioDCh.setFocusable(false);
+        fechaInicioDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaInicioDChPropertyChange(evt);
+            }
+        });
+
+        fechaHastaDCh.setDateFormatString("dd/MM/yyyy");
+        fechaHastaDCh.setFocusable(false);
+        fechaHastaDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaHastaDChPropertyChange(evt);
+            }
+        });
+
+        fechaLbl.setText("<HTML>Si deseas ingresar la fecha con el teclado sigue el formato<BR> D/M/A. Ejem. 01/12/2015 </HTML>");
+
+        javax.swing.GroupLayout fechaPnlLayout = new javax.swing.GroupLayout(fechaPnl);
+        fechaPnl.setLayout(fechaPnlLayout);
+        fechaPnlLayout.setHorizontalGroup(
+            fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fechaPnlLayout.createSequentialGroup()
+                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fechaPnlLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buscarFechaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fechaPnlLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionFechaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(opcionFechaLbl)
+                            .addGroup(fechaPnlLayout.createSequentialGroup()
+                                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(fechaInicioLbl)
+                                    .addComponent(fechaHastaLbl))
+                                .addGap(18, 18, 18)
+                                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fechaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        fechaPnlLayout.setVerticalGroup(
+            fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fechaPnlLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(opcionFechaLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionFechaMsjLbl)
+                .addGap(12, 12, 12)
+                .addComponent(fechaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaInicioLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fechaHastaLbl)
+                    .addComponent(fechaHastaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                .addComponent(buscarFechaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        reporteCursoTb.addTab("Por fechas", fechaPnl);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -402,14 +409,24 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
 
     private void buscarPlantelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPlantelBtnActionPerformed
         control.generarReportePorPlantel((Plantel) plantelCBx.getSelectedItem());
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
     }//GEN-LAST:event_buscarPlantelBtnActionPerformed
 
     private void buscarDepartamentoBtnlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDepartamentoBtnlActionPerformed
         control.generarReportePorDepartamento((Departamento) departamentoCBx.getSelectedItem());
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
     }//GEN-LAST:event_buscarDepartamentoBtnlActionPerformed
 
     private void buscarFechaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFechaBtnActionPerformed
         control.generarEventosPorFecha(fechaInicioDCh.getDate(), fechaHastaDCh.getDate());
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
     }//GEN-LAST:event_buscarFechaBtnActionPerformed
 
     /**
@@ -457,6 +474,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     private com.toedter.calendar.JDateChooser fechaIDCh1;
     private com.toedter.calendar.JDateChooser fechaInicioDCh;
     private javax.swing.JLabel fechaInicioLbl;
+    private javax.swing.JLabel fechaLbl;
     private javax.swing.JPanel fechaPnl;
     private javax.swing.JButton imprimirBtn;
     private javax.swing.JLabel infoLbl;
