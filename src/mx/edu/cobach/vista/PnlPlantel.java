@@ -446,6 +446,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      * con algun plantel.
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(nombreTFd.getText().equals("")==false){
             buscando=true;
             control.buscarPorNombre(nombreTFd.getText());

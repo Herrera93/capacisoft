@@ -827,6 +827,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_quitarTodoBtnActionPerformed
 
     private void primerNombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_primerNombreTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(primerNombreTFd.getText().equals("")==false){
             buscando=true;
             control.buscarPorNombre(primerNombreTFd.getText());
@@ -836,13 +837,15 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_primerNombreTFdFocusLost
 
     private void segundoNombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_segundoNombreTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar")){
         buscando=true;
         control.buscarPorNombre(segundoNombreTFd.getText());
         buscando=false;
-        
+        }
     }//GEN-LAST:event_segundoNombreTFdFocusLost
 
     private void apellidoPaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(apellidoPaternoTFd.getText().equals("")==false){
             buscando=true;
             control.buscarPorNombre(apellidoPaternoTFd.getText());
@@ -851,6 +854,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_apellidoPaternoTFdFocusLost
 
     private void apellidoMaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(apellidoMaternoTFd.getText().equals("")==false){
             buscando=true;
             control.buscarPorNombre(apellidoMaternoTFd.getText());
