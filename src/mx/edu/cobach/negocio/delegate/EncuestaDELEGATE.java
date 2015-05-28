@@ -180,10 +180,10 @@ public class EncuestaDELEGATE {
                 
                 try {
                     //Se crea el correo por medio del API de Gmail
-                    MimeMessage correo = GmailUtil.createEmail(jefe.getCorreo(),
+                    MimeMessage correo = GmailUtil.crearEmail(jefe.getCorreo(),
                             CORREO, asunto, mensaje);
                     //Se envia el correo por medio del API de Gmail
-                    GmailUtil.sendMessage(GmailUtil.getGmailService(), CORREO, correo);
+                    GmailUtil.enviarMensaje(GmailUtil.getServicioGmail(), CORREO, correo);
                 } catch (MessagingException | IOException ex) {
                     Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
                 }
