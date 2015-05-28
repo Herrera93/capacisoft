@@ -11,6 +11,7 @@ import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Encuesta;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
@@ -165,5 +166,18 @@ public class EncuestaControlador extends BaseControlador {
         List<Object> respuestas = ServiceLocatorDELEGATE.getEncuesta()
                 .getResultados(idEmpleado, idImplementacion);
         return respuestas;
+    }
+    
+    public void guardarResultados(){
+        List<Object> encuestas = ServiceLocatorDELEGATE.getInstance()
+                .findAll(Encuesta.class);
+                
+        for(int i = 0; i < encuestas.size(); i++){
+            Encuesta encuesta = (Encuesta) encuestas.get(i);
+            ServiceLocatorDELEGATE.getEncuesta()
+                    .guardarRespuestas(encuesta.getJotformIdAntes());
+            ServiceLocatorDELEGATE.getEncuesta()
+                    .guardarRespuestas(encuesta.getJotformIdDespues());
+        }
     }
 }
