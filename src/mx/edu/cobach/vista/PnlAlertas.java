@@ -580,6 +580,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     @Override
     public void setInfo(List info) {// method
+        throw new UnsupportedOperationException("Not supported.");
     }// method
 
     /**
@@ -701,12 +702,12 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     private void generarPanelAlerta(List<Object> info){// method
         int tamaño = 0;
-        for(int l = 0; l < info.size(); l++){
+        for(int l = 0; l < info.size(); l++){// for
             Alerta a = (Alerta) info.get(l);
-            for(ImplementacionEvento obj : a.getImplementacionEventos()){
+            for(ImplementacionEvento obj : a.getImplementacionEventos()){// for
                 tamaño = tamaño + 1;
-            }
-        }
+            }// for
+        }// for
         totalAlertas = tamaño;
         panelesPnl = new JPanel[tamaño];
         titulosLbl = new JLabel[tamaño];
