@@ -40,7 +40,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             }
         };
         eventoTbl.setModel(modelEvento);
-        this.titulosTablaLista = new String[]{"ID", "Numero empleado", "Nombre del empleado", "Puesto", "Correo Electronico"};
+        this.titulosTablaLista = new String[]{"ID", "Núm. de empleado", "Nombre del empleado", "Puesto"};
         modelLista = new DefaultTableModel(titulosTablaLista, 6) {
             @Override
             public boolean isCellEditable(int row, int col) {
@@ -211,17 +211,17 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
 
         listaAsistenciaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Numero del empleado", "Nombre del empleado", "Puesto", "Correo electrónico "
+                "Núm. de empleado", "Nombre del empleado", "Puesto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -233,7 +233,6 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             listaAsistenciaTbl.getColumnModel().getColumn(0).setResizable(false);
             listaAsistenciaTbl.getColumnModel().getColumn(1).setResizable(false);
             listaAsistenciaTbl.getColumnModel().getColumn(2).setResizable(false);
-            listaAsistenciaTbl.getColumnModel().getColumn(3).setResizable(false);
         }
 
         imprimirBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -420,7 +419,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
         int x = -1;
             ImplementacionEvento listaAsistencia = (ImplementacionEvento) info.get(0);
             System.out.println(listaAsistencia.getFechaFinal() + "");
-            String[][] lista = new String[listaAsistencia.getEmpleados().size()][6];
+            String[][] lista = new String[listaAsistencia.getEmpleados().size()][5];
             for (Iterator it = listaAsistencia.getEmpleados().iterator(); it.hasNext();) {
                 x++;
                 Empleado empleado = (Empleado) it.next();
@@ -430,13 +429,14 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
                         + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
                 lista[x][3] = empleado
                         .getPuesto().toString();
-                lista[x][4] = empleado.getCorreo();
             }
 
             modelLista.setDataVector(lista, titulosTablaLista);
             //Esconder columna ID
             TableColumn idTbc = listaAsistenciaTbl.getColumnModel().getColumn(0);
             listaAsistenciaTbl.getColumnModel().removeColumn(idTbc);
+            listaAsistenciaTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
+            listaAsistenciaTbl.getColumnModel().getColumn(2).setPreferredWidth(220);
     }
 
     @Override
