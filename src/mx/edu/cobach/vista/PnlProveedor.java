@@ -933,12 +933,13 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             correoTFd.setText("");
             modelEventos.setRowCount(0);
             modelAsignados.setRowCount(0);
-        }
+        
         setEnabledPanelInformacion(false);
           buscandoCursos=true; 
             controlCurso.buscarTodos();
             
             buscandoCursos=false;
+        }
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -391,8 +391,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
         }else{
             int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
             idSedeActual=id;
+        try{
             control.buscar(id); 
+        
             guardarBtn.setText("Modificar");
+            }catch(Exception ex){}
         }
         setEnabledPanelInformacion(true);
         setEnabledPanelOpcion(false);
