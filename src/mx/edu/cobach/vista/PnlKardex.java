@@ -28,7 +28,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     private String[] titulosTabla = {"ID","Numero", "Nombre", "Puesto", "Correo Electronico"};
 
     /**
-     * Creates new form PnlKardex
+     * Constructor de PnlKardex
      */
     public PnlKardex() {
         initComponents();
@@ -281,7 +281,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
         if (numeroTFd.getText().length() >= 5) {
             evt.consume();
         }
-        if ((car < '0' || car > '9')) {
+        if ((car < '0' || car > '5')) {
             evt.consume();
         }
     }//GEN-LAST:event_numeroTFdKeyTyped

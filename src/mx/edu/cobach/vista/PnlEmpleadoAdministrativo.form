@@ -95,12 +95,10 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tablaSPn" pref="0" max="32767" attributes="0"/>
-                              <Component id="tablaMsjLbl" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="tablaSPn" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
+                      <Component id="tablaMsjLbl" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -127,11 +125,11 @@
                       <Component id="agregarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="tablaMsjLbl" min="-2" pref="21" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tablaSPn" min="-2" pref="336" max="-2" attributes="0"/>
-                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="tablaSPn" min="-2" pref="324" max="-2" attributes="0"/>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -258,7 +256,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="tablaMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un numero de curso de la columna &quot;Numero&quot;&lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un n&#xfa;mero del empleado de la columna&lt;br&gt; &quot;Numero&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del&lt;br&gt; empleado que desee&lt;/html&gt; "/>
           </Properties>
         </Component>
       </SubComponents>

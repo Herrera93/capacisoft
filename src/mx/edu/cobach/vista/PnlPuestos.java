@@ -231,7 +231,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         registroLBl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         registroLBl.setText("Registro");
 
-        registroMsjLbl.setText("Ingrese la información a almacenar");
+        registroMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón Cancelar");
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");
@@ -261,7 +261,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                         .addComponent(nombreLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         informacionPnlLayout.setVerticalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

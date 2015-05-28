@@ -26,7 +26,7 @@ public class DepartamentoControlador extends BaseControlador {
         } else {
             List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
             if(!o.isEmpty()){
-            com.setMensaje("Este puesto ya esta registrado");
+            com.setMensaje("Este departamento ya esta registrado");
             }
         }
     }

@@ -5,6 +5,7 @@
 package mx.edu.cobach.vista;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -158,7 +159,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        jLabel1.setText("<html>Para Modificar seleccione un nombre de curso de la columna \"Nombre\"</html> ");
+        jLabel1.setText("<html>Para Modificar seleccione un departamento de columna \"Nombre\", <br>para eliminar seleccione el cuadro de la columna Eliminar del depto. que desea.</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -201,8 +202,8 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 .addGap(18, 18, 18)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreBuscarLbl)
-                    .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 14, Short.MAX_VALUE)
+                    .addComponent(nombreBuscarTFd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregarBtn)
                     .addComponent(buscarBtn))
@@ -236,6 +237,11 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 nombreTFdFocusLost(evt);
             }
         });
+        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTFdKeyTyped(evt);
+            }
+        });
 
         direccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccionLbl.setText("Dirección:");
@@ -254,7 +260,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             }
         });
 
-        agregarMsjLbl.setText("Ingrese la información a almacenar");
+        agregarMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón Cancelar");
 
         registroLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         registroLbl.setText("Registro");
@@ -285,18 +291,19 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarMsjLbl)
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreLbl)
                             .addComponent(direccionLbl))
                         .addGap(18, 18, 18)
-                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(direccionCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(direccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(validNomLbl)
-                            .addComponent(nombreTFd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(369, Short.MAX_VALUE))
+                            .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(agregarMsjLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(registroLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         informacionPnlLayout.setVerticalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,6 +494,29 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         guardarBtn.setText("Guardar");
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
+    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreTFdKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JLabel agregarMsjLbl;
@@ -518,7 +548,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setMensaje(String mensaje) {
-        if (!mensaje.equals("Este puesto ya esta registrado")) {
+        if (!mensaje.equals("Este departamento ya esta registrado")) {
             JOptionPane.showMessageDialog(this, mensaje,
                     "Informacion", JOptionPane.INFORMATION_MESSAGE);
         } else {

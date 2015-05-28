@@ -28,7 +28,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
     private final ReporteControlador control;
 
     /**
-     * Creates new form PnlListaAsistencia
+     * Constructor de PnlListaAsistencia
      */
     public PnlListaAsistencia() {
         initComponents();

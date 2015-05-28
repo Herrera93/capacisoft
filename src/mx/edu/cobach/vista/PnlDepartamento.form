@@ -106,9 +106,9 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nombreBuscarTFd" alignment="3" pref="30" max="32767" attributes="0"/>
+                      <Component id="nombreBuscarTFd" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" pref="14" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="agregarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -227,7 +227,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un nombre de curso de la columna &quot;Nombre&quot;&lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un departamento de columna &quot;Nombre&quot;, &lt;br&gt;para eliminar seleccione el cuadro de la columna Eliminar del depto. que desea.&lt;/html&gt; "/>
           </Properties>
         </Component>
       </SubComponents>
@@ -265,22 +265,24 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
                               <Component id="direccionLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="direccionCBx" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="direccionCBx" min="-2" max="-2" attributes="0"/>
                               <Component id="validNomLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreTFd" alignment="0" max="32767" attributes="0"/>
+                              <Component id="nombreTFd" alignment="0" min="-2" pref="365" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="registroLbl" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="agregarMsjLbl" alignment="0" max="32767" attributes="0"/>
+                          <Component id="registroLbl" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="369" max="32767" attributes="0"/>
+                  <EmptySpace pref="186" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -339,6 +341,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="direccionLbl">
@@ -382,7 +385,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="agregarMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
+            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n Cancelar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="registroLbl">
