@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
+// Generated May 26, 2015 1:34:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,19 +12,27 @@ public class Encuesta  implements java.io.Serializable {
 
 
      private Integer id;
-     private ImplementacionCurso implementacionCurso;
+     private ImplementacionEvento implementacionEvento;
+     private long jotformIdAntes;
+     private long jotformIdDespues;
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
+     private Set<Aspecto> aspectos = new HashSet<Aspecto>(0);
 
     public Encuesta() {
     }
 
 	
-    public Encuesta(ImplementacionCurso implementacionCurso) {
-        this.implementacionCurso = implementacionCurso;
+    public Encuesta(ImplementacionEvento implementacionEvento, long jotformIdAntes, long jotformIdDespues) {
+        this.implementacionEvento = implementacionEvento;
+        this.jotformIdAntes = jotformIdAntes;
+        this.jotformIdDespues = jotformIdDespues;
     }
-    public Encuesta(ImplementacionCurso implementacionCurso, Set<Respuesta> respuestas) {
-       this.implementacionCurso = implementacionCurso;
+    public Encuesta(ImplementacionEvento implementacionEvento, long jotformIdAntes, long jotformIdDespues, Set<Respuesta> respuestas, Set<Aspecto> aspectos) {
+       this.implementacionEvento = implementacionEvento;
+       this.jotformIdAntes = jotformIdAntes;
+       this.jotformIdDespues = jotformIdDespues;
        this.respuestas = respuestas;
+       this.aspectos = aspectos;
     }
    
     public Integer getId() {
@@ -34,12 +42,26 @@ public class Encuesta  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public ImplementacionCurso getImplementacionCurso() {
-        return this.implementacionCurso;
+    public ImplementacionEvento getImplementacionEvento() {
+        return this.implementacionEvento;
     }
     
-    public void setImplementacionCurso(ImplementacionCurso implementacionCurso) {
-        this.implementacionCurso = implementacionCurso;
+    public void setImplementacionEvento(ImplementacionEvento implementacionEvento) {
+        this.implementacionEvento = implementacionEvento;
+    }
+    public long getJotformIdAntes() {
+        return this.jotformIdAntes;
+    }
+    
+    public void setJotformIdAntes(long jotformIdAntes) {
+        this.jotformIdAntes = jotformIdAntes;
+    }
+    public long getJotformIdDespues() {
+        return this.jotformIdDespues;
+    }
+    
+    public void setJotformIdDespues(long jotformIdDespues) {
+        this.jotformIdDespues = jotformIdDespues;
     }
     public Set<Respuesta> getRespuestas() {
         return this.respuestas;
@@ -47,6 +69,13 @@ public class Encuesta  implements java.io.Serializable {
     
     public void setRespuestas(Set<Respuesta> respuestas) {
         this.respuestas = respuestas;
+    }
+    public Set<Aspecto> getAspectos() {
+        return this.aspectos;
+    }
+    
+    public void setAspectos(Set<Aspecto> aspectos) {
+        this.aspectos = aspectos;
     }
 
 

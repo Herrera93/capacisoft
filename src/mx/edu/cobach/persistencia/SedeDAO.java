@@ -8,6 +8,7 @@ package mx.edu.cobach.persistencia;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import java.util.List;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
+import mx.edu.cobach.persistencia.BaseDAO;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 

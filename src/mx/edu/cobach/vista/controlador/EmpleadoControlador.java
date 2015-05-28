@@ -22,13 +22,13 @@ public class EmpleadoControlador extends BaseControlador {
         super(com, clazz);
     }    
     
-    public void buscarPorNombre(String nombre) {
+    public void buscarPorNombre (String nombre){
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado()
                 .buscarPorNombre(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(list));
     }
     
-    public void buscarPorAdscripcion(Adscripcion adscripcion) {
+    public void buscarPorAdscripcion (Adscripcion adscripcion){
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado().buscarPorAdscripcion(adscripcion);
         com.setTabla(HelperEntidad.descomponerObjetos(list));
     }    

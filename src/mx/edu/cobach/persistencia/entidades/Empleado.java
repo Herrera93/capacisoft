@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
+// Generated May 26, 2015 1:34:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -23,25 +23,22 @@ public class Empleado  implements java.io.Serializable {
      private String apellidoMaterno;
      private String correo;
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
-     private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
+     private Set<ImplementacionEvento> implementacionEventos = new HashSet<ImplementacionEvento>(0);
 
     public Empleado() {
     }
 
 	
-    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo) {
+    public Empleado(Adscripcion adscripcion, Puesto puesto, String numero, String primerNombre, String apellidoPaterno, String apellidoMaterno, String correo) {
         this.adscripcion = adscripcion;
-        this.departamento = departamento;
-        this.plantel = plantel;
         this.puesto = puesto;
         this.numero = numero;
         this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
     }
-    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas, Set<ImplementacionCurso> implementacionCursos) {
+    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas, Set<ImplementacionEvento> implementacionEventos) {
        this.adscripcion = adscripcion;
        this.departamento = departamento;
        this.plantel = plantel;
@@ -53,7 +50,7 @@ public class Empleado  implements java.io.Serializable {
        this.apellidoMaterno = apellidoMaterno;
        this.correo = correo;
        this.respuestas = respuestas;
-       this.implementacionCursos = implementacionCursos;
+       this.implementacionEventos = implementacionEventos;
     }
    
     public Integer getId() {
@@ -140,14 +137,23 @@ public class Empleado  implements java.io.Serializable {
     public void setRespuestas(Set<Respuesta> respuestas) {
         this.respuestas = respuestas;
     }
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return this.implementacionCursos;
+    public Set<ImplementacionEvento> getImplementacionEventos() {
+        return this.implementacionEventos;
     }
     
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
+    public void setImplementacionEventos(Set<ImplementacionEvento> implementacionEventos) {
+        this.implementacionEventos = implementacionEventos;
     }
-    
+
+    @Override
+    public String toString(){
+        if(segundoNombre.isEmpty()){
+            return primerNombre + " " + apellidoPaterno + " " + apellidoMaterno;
+        }else{
+            return primerNombre + " " + segundoNombre + " " + apellidoPaterno +
+                    " " + apellidoMaterno;
+        }
+    }
 }
 
 

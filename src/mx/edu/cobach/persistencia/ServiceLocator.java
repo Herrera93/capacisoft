@@ -6,6 +6,7 @@
 
 package mx.edu.cobach.persistencia;
 
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 
 /**
  * Clase para localizar los servicios de DAOs
@@ -23,7 +24,10 @@ public class ServiceLocator {
     private static AspectoDAO aspectoDAO;
     private static DepartamentoDAO departamentoDAO;
     private static SedeDAO sedeDAO;
-    private static ProgramarDAO programarDAO;
+    private static EncuestaDAO encuestaDAO;
+    private static RespuestaDAO respuestaDAO;
+    private static ImplementacionEventoDAO implementarDAO;
+    private static ImplementacionEventoEnunciadoLogisticaDAO calificacionDAO;
     
     /**
      * Obtiene el DAO generico, si este no ha sido inicializado se instanciara.
@@ -62,9 +66,9 @@ public class ServiceLocator {
     }
     
     /**
-     * Obtiene el DAO especifico para Curso, si este no ha sido inicializado
+     * Obtiene el DAO especifico para Evento, si este no ha sido inicializado
      * se instanciara. Este metodo utiliza el patron de diseno Singleton.
-     * @return Regresa el DAO de Curso
+     * @return Regresa el DAO de Evento
      */
     public static EventoDAO getEvento(){
         if(eventoDAO == null){
@@ -107,6 +111,7 @@ public class ServiceLocator {
         }
         return departamentoDAO;
     }
+    
     /**
      * Obtiene el DAO especifico para Sede, si este no ha sido inicializado
      * se instanciara. Este metodo utiliza el patron de diseno Singleton.
@@ -119,10 +124,52 @@ public class ServiceLocator {
         return sedeDAO;
     }
     
-    public static ProgramarDAO getPrograma(){
-        if(programarDAO == null){
-            programarDAO = new ProgramarDAO();
+    /**
+     * Obtiene el DAO especifico para ImplementacionCursoEvento, si este no ha sido
+     * inicializado se instanciara.
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de ImplementacionEvento 
+     */
+    public static ImplementacionEventoDAO getImplementacionEvento(){
+        if(implementarDAO == null){
+            implementarDAO = new ImplementacionEventoDAO();
         }
-        return programarDAO;
+        return implementarDAO;
+    }
+    
+    /**
+     * Obtiene el DAO especifico para Encuesta, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de Encuesta
+     */
+    public static EncuestaDAO getEncuesta(){
+        if(encuestaDAO == null){
+            encuestaDAO = new EncuestaDAO();
+        }
+        return encuestaDAO;
+    }
+    
+    /**
+     * Obtiene el DAO especifico para Respuesta, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de Respuesta
+     */
+    public static RespuestaDAO getRespuesta(){
+        if(respuestaDAO == null){
+            respuestaDAO = new RespuestaDAO();
+        }
+        return respuestaDAO;
+    }
+    
+    /**
+     * Obtiene el DAO especifico para Respuesta, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de Respuesta
+     */
+    public static ImplementacionEventoEnunciadoLogisticaDAO getEnunciadoCali(){
+        if(calificacionDAO == null){
+            calificacionDAO = new ImplementacionEventoEnunciadoLogisticaDAO();
+        }
+        return calificacionDAO;
     }
 }

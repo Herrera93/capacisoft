@@ -21,6 +21,22 @@ public class EventoDAO extends BaseDAO{
         setEntity(Evento.class);
     }
     
+    public List<Object> buscarPorTipoEvento(int id) {
+        List<Object> o = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            o = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("tipoEvento.id", 1)).list();
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();   
+        }
+        return o;
+    }
+}
     public List<Object> buscarEvento(int id) {
         List<Object> o = null;
         try{

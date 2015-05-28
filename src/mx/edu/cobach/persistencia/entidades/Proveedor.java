@@ -1,5 +1,5 @@
 package mx.edu.cobach.persistencia.entidades;
-// Generated May 16, 2015 9:04:02 AM by Hibernate Tools 4.3.1
+// Generated May 26, 2015 1:34:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,39 +12,43 @@ public class Proveedor  implements java.io.Serializable {
 
 
      private Integer id;
+     private Evento evento;
      private TipoProveedor tipoProveedor;
      private String primerNombre;
      private String segundoNombre;
      private String apellidoPaterno;
      private String apellidoMaterno;
+     private String telefono;
      private String correoElectronico;
      private double calificacion;
-     private Set<ImplementacionCurso> implementacionCursos = new HashSet<ImplementacionCurso>(0);
-     private Set<Telefono> telefonos = new HashSet<Telefono>(0);
+     private Set<ImplementacionEvento> implementacionEventos = new HashSet<ImplementacionEvento>(0);
 
     public Proveedor() {
     }
 
 	
-    public Proveedor(TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, double calificacion) {
+    public Proveedor(Evento evento, TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, double calificacion) {
+        this.evento = evento;
         this.tipoProveedor = tipoProveedor;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
+        this.telefono = telefono;
         this.correoElectronico = correoElectronico;
         this.calificacion = calificacion;
     }
-    public Proveedor(TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correoElectronico, double calificacion, Set<ImplementacionCurso> implementacionCursos, Set<Telefono> telefonos) {
+    public Proveedor(Evento evento, TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, double calificacion, Set<ImplementacionEvento> implementacionEventos) {
+       this.evento = evento;
        this.tipoProveedor = tipoProveedor;
        this.primerNombre = primerNombre;
        this.segundoNombre = segundoNombre;
        this.apellidoPaterno = apellidoPaterno;
        this.apellidoMaterno = apellidoMaterno;
+       this.telefono = telefono;
        this.correoElectronico = correoElectronico;
        this.calificacion = calificacion;
-       this.implementacionCursos = implementacionCursos;
-       this.telefonos = telefonos;
+       this.implementacionEventos = implementacionEventos;
     }
    
     public Integer getId() {
@@ -53,6 +57,13 @@ public class Proveedor  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    public Evento getEvento() {
+        return this.evento;
+    }
+    
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
     public TipoProveedor getTipoProveedor() {
         return this.tipoProveedor;
@@ -89,6 +100,13 @@ public class Proveedor  implements java.io.Serializable {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
+    public String getTelefono() {
+        return this.telefono;
+    }
+    
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
     public String getCorreoElectronico() {
         return this.correoElectronico;
     }
@@ -103,27 +121,19 @@ public class Proveedor  implements java.io.Serializable {
     public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
     }
-    public Set<ImplementacionCurso> getImplementacionCursos() {
-        return this.implementacionCursos;
+    public Set<ImplementacionEvento> getImplementacionEventos() {
+        return this.implementacionEventos;
     }
     
-    public void setImplementacionCursos(Set<ImplementacionCurso> implementacionCursos) {
-        this.implementacionCursos = implementacionCursos;
-    }
-    public Set<Telefono> getTelefonos() {
-        return this.telefonos;
-    }
-    
-    public void setTelefonos(Set<Telefono> telefonos) {
-        this.telefonos = telefonos;
+    public void setImplementacionEventos(Set<ImplementacionEvento> implementacionEventos) {
+        this.implementacionEventos = implementacionEventos;
     }
 
-     @Override
     public String toString(){
-        return this.primerNombre + " " + this.segundoNombre + " " + 
-                this.apellidoPaterno + " " + this.apellidoPaterno;
+        return this.primerNombre+" "+this.segundoNombre+" "
+                + this.apellidoPaterno + this.apellidoMaterno;
     }
-    
+
 
 }
 

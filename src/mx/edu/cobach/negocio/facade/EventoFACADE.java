@@ -12,6 +12,16 @@ import mx.edu.cobach.persistencia.ServiceLocator;
  *
  * @author fernando
  */
+public class EventoFACADE extends BaseFACADE{
+    
+    public EventoFACADE(){
+        super();
+    }
+    
+    public List<Object> buscarPorTipoEvento(int id) {
+        return ServiceLocator.getEvento().buscarPorTipoEvento(id);
+    }
+}
 public class EventoFACADE{
 
     public List<Object> buscarEvento(int id) {

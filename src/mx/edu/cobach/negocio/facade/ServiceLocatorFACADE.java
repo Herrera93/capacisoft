@@ -5,6 +5,8 @@
  */
 package mx.edu.cobach.negocio.facade;
 
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
+
 /**
  * Clase para localizacion de servicios FACADE
  * @author Alex
@@ -21,7 +23,10 @@ public class ServiceLocatorFACADE {
     private static AspectoFACADE aspectoFacade;
     private static DepartamentoFACADE departamentoFacade;
     private static SedeFACADE sedeFacade;
-    private static ProgramarFACADE programaFacade;
+    private static EncuestaFACADE encuestaFacade;
+    private static RespuestaFACADE respuestaFacade;
+    private static ImplementacionEventoFACADE implementacionEventoFacade;
+    private static ImplementacionEventoEnunciadoLogisticaFACADE calificacionFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -62,10 +67,10 @@ public class ServiceLocatorFACADE {
     }
     
     /**
-     * Obtiene el FACADE especifico de la entidad Curso, si este no ha sido
+     * Obtiene el FACADE especifico de la entidad Evento, si este no ha sido
      * inicializado se instanciara. Este metodo utiliza el patron de diseno
      * Singleton.
-     * @return Regresa el FACADE de Curso
+     * @return Regresa el FACADE de Evento
      */
     public static EventoFACADE getEvento(){
         if(eventoFacade == null){
@@ -101,10 +106,10 @@ public class ServiceLocatorFACADE {
     }
     
     /**
-     * Obtiene el FACADE especifico de la entidad Aspecto, si este no ha sido
-     * inicializado se instanciara. Este metodo utiliza el patron de diseno
-     * Singleton.
-     * @return Regresa el FACADE de Aspecto
+     * Obtiene el FACADE especifico de la entidad Sede, 
+     * si este no ha sido inicializado se instanciara. 
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el FACADE de Sede
      */
     public static SedeFACADE getSede(){
         if(sedeFacade==null){
@@ -113,22 +118,69 @@ public class ServiceLocatorFACADE {
         return sedeFacade;
     }
     
+     /**
+     * Obtiene el FACADE especifico de la entidad Departamento, 
+     * si este no ha sido inicializado se instanciara. 
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el FACADE de Departamento
+     */
     public static DepartamentoFACADE getDepartamento(){
         if(departamentoFacade == null){
             departamentoFacade = new DepartamentoFACADE();
         }
         return departamentoFacade;
     }
+    
     /**
      * Obtiene el FACADE especifico de la entidad ImplementacionCurso, 
      * si este no ha sido inicializado se instanciara. 
      * Este metodo utiliza el patron de diseno Singleton.
      * @return Regresa el FACADE de Implementacion
      */
-    public static ProgramarFACADE getPrograma(){
-        if(programaFacade == null){
-            programaFacade = new ProgramarFACADE();
+    public static ImplementacionEventoFACADE getImplementacionEvento(){
+        if(implementacionEventoFacade == null){
+            implementacionEventoFacade = new ImplementacionEventoFACADE();
         }
-        return programaFacade;
+        return implementacionEventoFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad Encuesta, 
+     * si este no ha sido inicializado se instanciara. 
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el FACADE de Encuesta
+     */
+    public static EncuestaFACADE getEncuesta(){
+        if(encuestaFacade == null){
+            encuestaFacade = new EncuestaFACADE();
+        }
+        return encuestaFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad Encuesta, 
+     * si este no ha sido inicializado se instanciara. 
+     * Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el FACADE de Encuesta
+     */
+    public static RespuestaFACADE getRespuesta(){
+        if(respuestaFacade == null){
+            respuestaFacade = new RespuestaFACADE();
+        }
+        return respuestaFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad denada
+     * 
+     * ImplementacionCursoEnunciadoLogistica, si este no ha sido inicializado se
+     * instanciara. 
+     * @return Regresa el facade de ImplementacionCursoEnunciadoLogistica
+     */
+    public static ImplementacionEventoEnunciadoLogisticaFACADE getEnunciadoCali(){
+        if(calificacionFacade == null){
+            calificacionFacade = new ImplementacionEventoEnunciadoLogisticaFACADE();
+        }
+        return calificacionFacade;
     }
 }

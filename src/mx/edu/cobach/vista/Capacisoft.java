@@ -19,7 +19,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
 
     private PnlAlertas alertasPnl;
     private PnlSeguimiento seguimientoPnl;
-    private PnlProgramarCurso programarPnl;
+    private PnlProgramarEvento programarPnl;
     private PnlUsuarios usuarioPnl;
     private PnlPlantel plantelPnl;
     private PnlDepartamento departamentoPnl;
@@ -150,7 +150,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         //if(idTipo!=3)
             add(seguimientoPnl);/*preguntar*/
         
-        programarPnl = new PnlProgramarCurso();
+        programarPnl = new PnlProgramarEvento();
         programarPnl.setVisible(false);
         programarPnl.setSize(1181,587);
        // if(idTipo!=3)
@@ -201,7 +201,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         evaluacionProveedor_MIt = new javax.swing.JMenuItem();
         lista_MIt = new javax.swing.JMenuItem();
         procesos_Mn = new javax.swing.JMenu();
-        programarCurso_MIt = new javax.swing.JMenuItem();
+        programarEvento_MIt = new javax.swing.JMenuItem();
         encuesta_MIt = new javax.swing.JMenuItem();
         alertas_MIt = new javax.swing.JMenuItem();
 
@@ -359,17 +359,17 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         procesos_Mn.setIconTextGap(20);
         procesos_Mn.setPreferredSize(new java.awt.Dimension(80, 19));
 
-        programarCurso_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
-        programarCurso_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        programarCurso_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/Calendar.png"))); // NOI18N
-        programarCurso_MIt.setText("Programar Curso");
-        programarCurso_MIt.setPreferredSize(new java.awt.Dimension(100, 22));
-        programarCurso_MIt.addActionListener(new java.awt.event.ActionListener() {
+        programarEvento_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        programarEvento_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        programarEvento_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/Calendar.png"))); // NOI18N
+        programarEvento_MIt.setText("Programar Evento");
+        programarEvento_MIt.setPreferredSize(new java.awt.Dimension(100, 22));
+        programarEvento_MIt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                programarCurso_MItActionPerformed(evt);
+                programarEvento_MItActionPerformed(evt);
             }
         });
-        procesos_Mn.add(programarCurso_MIt);
+        procesos_Mn.add(programarEvento_MIt);
 
         encuesta_MIt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         encuesta_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -527,8 +527,8 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         alertasPnl.setVisible(true);
     }//GEN-LAST:event_alertas_MItActionPerformed
 
-    private void programarCurso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programarCurso_MItActionPerformed
-        this.setTitle("Capacisoft - Programar Curso");
+    private void programarEvento_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programarEvento_MItActionPerformed
+        this.setTitle("Capacisoft - Programar Evento");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
@@ -545,7 +545,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         seguimientoPnl.setVisible(false);
         alertasPnl.setVisible(false);
         programarPnl.llenarTodo();
-    }//GEN-LAST:event_programarCurso_MItActionPerformed
+    }//GEN-LAST:event_programarEvento_MItActionPerformed
 
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
         this.setTitle("Capacisoft - Curso de capacitación");
@@ -748,7 +748,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenu mantenimientoCurso_Mn;
     private javax.swing.JMenuItem planteles_MIt;
     private javax.swing.JMenu procesos_Mn;
-    private javax.swing.JMenuItem programarCurso_MIt;
+    private javax.swing.JMenuItem programarEvento_MIt;
     private javax.swing.JMenuItem proveedores_MIt;
     private javax.swing.JMenuItem puestos_MIt;
     private javax.swing.JMenuItem registroCurso_MIt;
