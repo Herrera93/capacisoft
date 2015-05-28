@@ -599,7 +599,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(primerNombreTFd.getText());
         atributos.add(segNombreTFd.getText());
         atributos.add(primerApellidoTFd.getText());
+        if (segApellidoTFd.getText().isEmpty()) {
+            atributos.add("");
+            } else {
         atributos.add(segApellidoTFd.getText());
+            }
         atributos.add(puestoCBx.getSelectedItem());
         atributos.add(correoTFd.getText());
         atributos.add(adscCBx.getSelectedItem());
