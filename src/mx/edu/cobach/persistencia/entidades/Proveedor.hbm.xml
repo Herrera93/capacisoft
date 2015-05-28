@@ -32,7 +32,7 @@
         <property name="calificacion" type="double">
             <column name="calificacion" precision="22" scale="0" not-null="true" />
         </property>
-        <set name="implementacionEventos" table="implementacion_Evento" inverse="true" lazy="true" fetch="select">
+        <set name="implementacionEventos" table="implementacion_evento" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="proveedor_id" not-null="true" />
             </key>
