@@ -230,7 +230,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         });
 
         tipoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Conferencia ", "Taller", "Conferencia / Taller", "platica", " ", " " }));
+        tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CONFERENCIA", "TALLER", "CURSO", "CURSO / TALLER", "PLATICA" }));
         tipoCBx.setEnabled(false);
 
         nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
