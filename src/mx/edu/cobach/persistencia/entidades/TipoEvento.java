@@ -49,7 +49,9 @@ public class TipoEvento  implements java.io.Serializable {
         this.eventos = eventos;
     }
 
-
+    public String toString(){
+        return this.descripcion;
+    }
 
 
 }
