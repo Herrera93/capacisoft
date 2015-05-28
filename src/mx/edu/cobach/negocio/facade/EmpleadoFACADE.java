@@ -17,17 +17,18 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
  *
  * @author Alex
  */
-public class EmpleadoFACADE extends BaseFACADE {
+public class EmpleadoFACADE{
     
-    public EmpleadoFACADE(){
+    public List<Object> buscarPorNombre(String nombre){
+        return ServiceLocator.getEmpleado().buscarPorNombre(nombre);
     }
     
-    public List<Object> findByNombre(String nombre){
-        return ServiceLocator.getEmpleado().findByNombre(nombre);
+    public List<Object> buscarPorAdscripcion(Adscripcion a){
+        return ServiceLocator.getEmpleado().buscarPorAdscripcion(a);
     }
     
-    public List<Object> findByAdscripcion(Adscripcion a){
-        return ServiceLocator.getEmpleado().findByAdscripcion(a);
+    public List<Object> validarPorNumero(int numero){
+        return ServiceLocator.getEmpleado().validarPorNumero(numero);
     }
     /**
      * Obtiene todos los empleados que estan relacionados a tal departamento

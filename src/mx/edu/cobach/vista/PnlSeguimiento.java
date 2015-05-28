@@ -195,6 +195,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         buscarBtn = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         eventosTbl = new javax.swing.JTable();
+        resultadosBtn = new javax.swing.JButton();
         resultadoEncuestaPnl = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         eventosResultadoTbl = new javax.swing.JTable();
@@ -282,6 +283,14 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
             eventosTbl.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        resultadosBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        resultadosBtn.setText("Obtener Resultados");
+        resultadosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultadosBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout realizarEncuestaPnlLayout = new javax.swing.GroupLayout(realizarEncuestaPnl);
         realizarEncuestaPnl.setLayout(realizarEncuestaPnlLayout);
         realizarEncuestaPnlLayout.setHorizontalGroup(
@@ -289,23 +298,25 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(realizarEncuestaPnlLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(realizarEncuestaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buscarBtn)
-                    .addGroup(realizarEncuestaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(realizarEncuestaPnlLayout.createSequentialGroup()
-                            .addComponent(deFechaLbl)
-                            .addGap(18, 18, 18)
-                            .addComponent(deFechaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel3)
-                            .addGap(8, 8, 8)
-                            .addComponent(aFechaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(disenarEncuestaInsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(disenarEncuestaTltLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(realizarEncuestaPnlLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(eventoCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(realizarEncuestaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(realizarEncuestaPnlLayout.createSequentialGroup()
+                        .addComponent(resultadosBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buscarBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, realizarEncuestaPnlLayout.createSequentialGroup()
+                        .addComponent(deFechaLbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(deFechaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(8, 8, 8)
+                        .addComponent(aFechaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(disenarEncuestaInsLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(disenarEncuestaTltLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, realizarEncuestaPnlLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(eventoCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         realizarEncuestaPnlLayout.setVerticalGroup(
@@ -326,8 +337,10 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
                     .addComponent(aFechaDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deFechaLbl))
                 .addGap(18, 18, 18)
-                .addComponent(buscarBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(realizarEncuestaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscarBtn)
+                    .addComponent(resultadosBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -629,6 +642,12 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         }
     }//GEN-LAST:event_eventosResultadoTblMouseClicked
 
+    private void resultadosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultadosBtnActionPerformed
+        control.guardarResultados();        
+        JOptionPane.showMessageDialog(this, "Se han guardado los resultados exitosamente",
+                "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_resultadosBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser aFechaDCh;
     private com.toedter.calendar.JDateChooser aFechaResultadoDCh;
@@ -654,6 +673,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JScrollPane jScrollPane5;
     public javax.swing.JPanel realizarEncuestaPnl;
     private javax.swing.JPanel resultadoEncuestaPnl;
+    private javax.swing.JButton resultadosBtn;
     private javax.swing.JTabbedPane seguimientoTpnl;
     // End of variables declaration//GEN-END:variables
 
@@ -665,6 +685,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         //Se obtiene la informacion del evento
         String[] evento = new String[3];
         for(int i = 0; i < eventosTblModel.getRowCount(); i++){
+            System.out.println(eventosTblModel.getValueAt(i, 4));
             if((Boolean) eventosTblModel.getValueAt(i, 4)){
                 evento[0] = (String) eventosTblModel.getValueAt(i, 0);
                 evento[1] = (String) eventosTblModel.getValueAt(i, 1);

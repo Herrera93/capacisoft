@@ -66,6 +66,7 @@ public class BaseControlador{
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
         com.setInfo(HelperEntidad.descomponerObjeto(o));
     }
+    
 
     /**
      * Metodo para buscar todos los registros y escribirlos en la tabla de 

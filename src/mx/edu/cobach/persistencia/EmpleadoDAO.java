@@ -28,7 +28,7 @@ public class EmpleadoDAO extends BaseDAO{
         super.entityClass = Empleado.class;
     }
     
-    public List<Object> findByNombre(String nombre){        
+    public List<Object> buscarPorNombre(String nombre){        
         List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
@@ -50,7 +50,7 @@ public class EmpleadoDAO extends BaseDAO{
         return ts;
     }
     
-    public List<Object> findByAdscripcion(Adscripcion adscripcion){
+    public List<Object> buscarPorAdscripcion(Adscripcion adscripcion){
         List<Object> ts = null;        
         try{
             HibernateUtil.openSession();
@@ -65,6 +65,7 @@ public class EmpleadoDAO extends BaseDAO{
         }
         return ts;
     }
+    
     /**
      * Obtiene todas las implementaciones relacionadas de un departamento dado.
      * @param departamento
@@ -152,5 +153,23 @@ public class EmpleadoDAO extends BaseDAO{
             HibernateUtil.closeSession();
         }
         return jefe;
+    }
+    
+    public List<Object> validarPorNumero(int numero){
+        List<Object> ts = null;        
+        String num = numero + "";
+        System.out.println(num);
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            ts = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("numero",num)).list();
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
     }
 }

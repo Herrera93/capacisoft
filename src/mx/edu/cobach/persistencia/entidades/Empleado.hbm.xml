@@ -3,21 +3,21 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 26, 2015 1:34:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="mx.edu.cobach.persistencia.entidades.Empleado" table="empleado" catalog="capacisoft" optimistic-lock="version">
+    <class name="mx.edu.cobach.persistencia.entidades.Empleado" table="empleado" catalog="capacisoft">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
-        <many-to-one name="adscripcion" class="mx.edu.cobach.persistencia.entidades.Adscripcion" fetch="select">
+        <many-to-one name="adscripcion" class="mx.edu.cobach.persistencia.entidades.Adscripcion" fetch="select" lazy="false">
             <column name="adscripcion_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="departamento" class="mx.edu.cobach.persistencia.entidades.Departamento" fetch="select">
+        <many-to-one name="departamento" class="mx.edu.cobach.persistencia.entidades.Departamento" fetch="select" lazy="false">
             <column name="departamento_id" />
         </many-to-one>
-        <many-to-one name="plantel" class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select">
+        <many-to-one name="plantel" class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select" lazy="false">
             <column name="plantel_id" />
         </many-to-one>
-        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select">
+        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select" lazy="false">
             <column name="puesto_id" not-null="true" />
         </many-to-one>
         <property name="numero" type="string">
@@ -27,13 +27,13 @@
             <column name="primer_nombre" length="45" not-null="true" />
         </property>
         <property name="segundoNombre" type="string">
-            <column name="segundo_nombre" length="45" />
+            <column name="segundo_nombre" length="45" not-null="false"/>
         </property>
         <property name="apellidoPaterno" type="string">
             <column name="apellido_paterno" length="45" not-null="true" />
         </property>
         <property name="apellidoMaterno" type="string">
-            <column name="apellido_materno" length="45" not-null="true" />
+            <column name="apellido_materno" length="45" not-null="false" />
         </property>
         <property name="correo" type="string">
             <column name="correo" length="45" not-null="true" />
@@ -44,7 +44,7 @@
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta" />
         </set>
-        <set name="implementacionEventos" table="implementacion_evento_empleado" inverse="false" lazy="true" fetch="select">
+        <set name="implementacionEventos" table="implementacion_evento_empleado" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="empleado_id" not-null="true" />
             </key>

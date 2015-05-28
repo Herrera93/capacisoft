@@ -515,9 +515,4 @@ public class PnlAgregarAspectos extends javax.swing.JPanel implements Comunicado
     public void limpiar() {
         aspectosAgrTblModel.setDataVector(new String[0][3], titulosTabla);
     }
-
-    @Override
-    public void llenarDatos(Object evento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

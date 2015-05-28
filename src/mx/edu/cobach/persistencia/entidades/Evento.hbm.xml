@@ -23,11 +23,13 @@
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento" />
         </set>
-        <set name="proveedors" table="proveedor" inverse="true" lazy="true" fetch="select">
+        <set fetch="select" inverse="true" lazy="true" name="proveedors" table="proveedor_evento">
             <key>
-                <column name="evento_id" not-null="true" />
+              <column name="evento_id" not-null="true"/>
             </key>
-            <one-to-many class="mx.edu.cobach.persistencia.entidades.Proveedor" />
-        </set>
+            <many-to-many entity-name="mx.edu.cobach.persistencia.entidades.Proveedor">
+              <column name="proveedor_id" not-null="true"/>
+            </many-to-many>
+          </set>
     </class>
 </hibernate-mapping>

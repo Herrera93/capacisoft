@@ -20,8 +20,11 @@ public class ServiceLocatorDELEGATE {
     private static UsuarioDELEGATE usuarioDelegate;
     private static DepartamentoDELEGATE departamentoDelegate;
     private static SedeDELEGATE sedeDelegate;
+    private static ReporteDELEGATE reporteDelegate;
     private static EncuestaDELEGATE encuestaDelegate;
     private static ImplementarEventoDELEGATE implementarEventoDelegate;
+    private static ProveedorDELEGATE proveedorDelegate;
+    private static PlantelDELEGATE plantelDelegate;
     private static AlertaDELEGATE alertaDelegate;
     
     /**
@@ -88,6 +91,33 @@ public class ServiceLocatorDELEGATE {
         return puestoDelegate;
     }
     
+    
+    /**
+     * Obtiene el DELEGATE especifico de la entidad Proveedor, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el DELEGATE de Proveedor
+     */
+    public static ProveedorDELEGATE getProveedorDelegate(){
+        if(proveedorDelegate == null){
+            proveedorDelegate = new ProveedorDELEGATE();
+        }        
+        return proveedorDelegate;
+    }
+    
+    /**
+     * Obtiene el DELEGATE especifico de la entidad Plantel, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el DELEGATE de Plantel
+     */
+    public static PlantelDELEGATE getPlantelDelegate(){
+        if(plantelDelegate == null){
+            plantelDelegate = new PlantelDELEGATE();
+        }        
+        return plantelDelegate;
+    }
+    
     /**
      * Obtiene el DELEGATE especifico de la entidad evento, si este no ha sido
      * inicializado se instanciara. Este metodo utiliza el patron de diseno
@@ -139,6 +169,17 @@ public class ServiceLocatorDELEGATE {
         return encuestaDelegate;
     }
     
+    /**
+     * Obtiene el DELEGATE especifico para el caso de uso Generar Reporte, si este
+     * no ha sido inicializado se instanciara. Este metodo utiliza el patron de
+     * diseno Singleton.
+     * @return Regresa el DELEGATE de Geenerar Reporte
+     */
+    public static ReporteDELEGATE getReporte() {
+        if(reporteDelegate == null){
+            reporteDelegate = new ReporteDELEGATE();
+        }
+        return reporteDelegate;
     public static AlertaDELEGATE getAlerta(){
         if(alertaDelegate == null){
             alertaDelegate = new AlertaDELEGATE();

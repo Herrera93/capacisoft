@@ -180,10 +180,10 @@ public class EncuestaDELEGATE {
                 
                 try {
                     //Se crea el correo por medio del API de Gmail
-                    MimeMessage correo = GmailUtil.createEmail(jefe.getCorreo(),
+                    MimeMessage correo = GmailUtil.crearEmail(jefe.getCorreo(),
                             CORREO, asunto, mensaje);
                     //Se envia el correo por medio del API de Gmail
-                    GmailUtil.sendMessage(GmailUtil.getGmailService(), CORREO, correo);
+                    GmailUtil.enviarMensaje(GmailUtil.getServicioGmail(), CORREO, correo);
                 } catch (MessagingException | IOException ex) {
                     Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -200,6 +200,12 @@ public class EncuestaDELEGATE {
     public void guardarRespuestas(long idEncuesta){
         //Se obtiene un Arreglo de JSON con las respuestas  de una encuesta
         JSONArray respuestas = JotFormUtil.getRespuestas(idEncuesta);
+        try {
+            if(respuestas.getJSONObject(0).getString("id").equalsIgnoreCase("#SampleSubmissionID"))
+                return;
+        } catch (JSONException ex) {
+            Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int idAsignado = JotFormUtil.getIdPregunta(idEncuesta, "asignado");
         
         Encuesta encuesta = ServiceLocatorFACADE.getEncuesta()
@@ -242,7 +248,7 @@ public class EncuestaDELEGATE {
                 //Se verifica si las respuestas de este empleado ya han sido registradas
                 List<Respuesta> respuestaVerificacion = ServiceLocatorFACADE.getRespuesta()
                     .buscarPorEmpleadoEncuesta(empleado, encuesta);
-                if(respuestaVerificacion != null)
+                if(respuestaVerificacion.size() > 0)
                     continue;
                 
                 //Se guarda cada respuesta en la base  de datos

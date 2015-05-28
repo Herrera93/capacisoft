@@ -28,6 +28,8 @@ public class ServiceLocator {
     private static RespuestaDAO respuestaDAO;
     private static ImplementacionEventoDAO implementarDAO;
     private static ImplementacionEventoEnunciadoLogisticaDAO calificacionDAO;
+    private static ProveedorDAO proveedorDAO;
+    private static PlantelDAO plantelDAO;
     private static AlertaDAO alertaDAO;
     
     /**
@@ -52,6 +54,30 @@ public class ServiceLocator {
             empleadoDAO = new EmpleadoDAO();
         }
         return empleadoDAO;
+    }
+    
+    /**
+     * Obtiene el DAO especifico para Proveedor, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de Proveedor
+     */
+    public static ProveedorDAO getProveedor(){
+        if(proveedorDAO == null){
+            proveedorDAO = new ProveedorDAO();
+        }
+        return proveedorDAO;
+    }
+    
+    /**
+     * Obtiene el DAO especifico para Plantel, si este no ha sido inicializado
+     * se instanciara. Este metodo utiliza el patron de diseno Singleton.
+     * @return Regresa el DAO de Plantel
+     */
+    public static PlantelDAO getPlantel(){
+        if(plantelDAO == null){
+            plantelDAO = new PlantelDAO();
+        }
+        return plantelDAO;
     }
     
     /**

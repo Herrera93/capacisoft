@@ -27,6 +27,8 @@ public class ServiceLocatorFACADE {
     private static RespuestaFACADE respuestaFacade;
     private static ImplementacionEventoFACADE implementacionEventoFacade;
     private static ImplementacionEventoEnunciadoLogisticaFACADE calificacionFacade;
+    private static ProveedorFACADE proveedorFacade;
+    private static PlantelFACADE plantelFacade;
     private static AlertaFACADE alertaFacade;
     
     /**
@@ -65,6 +67,32 @@ public class ServiceLocatorFACADE {
             puestoFacade = new PuestoFACADE();
         }
         return puestoFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad Proveedor, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Proveedor
+     */
+    public static ProveedorFACADE getProveedor(){
+        if(proveedorFacade==null){
+            proveedorFacade = new ProveedorFACADE();
+        }
+        return proveedorFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad Plantel, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Plantel
+     */
+    public static PlantelFACADE getPlantel(){
+        if(plantelFacade==null){
+            plantelFacade = new PlantelFACADE();
+        }
+        return plantelFacade;
     }
     
     /**

@@ -33,4 +33,11 @@ public class EmpleadoControlador extends BaseControlador {
         com.setTabla(HelperEntidad.descomponerObjetos(list));
     }    
     
+    public void validarPorNumero(int numero) {
+        List<Object> list = ServiceLocatorDELEGATE.getEmpleado().
+                validarPorNumero(numero);
+        if (!list.isEmpty()) {
+            com.setMensaje("El numero de empleado ya existe");
+        }
+    }
 }

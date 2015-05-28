@@ -3,10 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 26, 2015 1:34:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="mx.edu.cobach.persistencia.entidades.EnunciadoLogistica" table="enunciado_logistica" catalog="capacisoft" optimistic-lock="version">
+    <class name="mx.edu.cobach.persistencia.entidades.EnunciadoLogistica" table="enunciado_logistica" catalog="capacisoft">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="identity" />
+            <generator class="identity"></generator>
         </id>
         <many-to-one name="tipoEnunciado" class="mx.edu.cobach.persistencia.entidades.TipoEnunciado" fetch="select" lazy="false">
             <column name="tipo_enunciado_id" not-null="true" />

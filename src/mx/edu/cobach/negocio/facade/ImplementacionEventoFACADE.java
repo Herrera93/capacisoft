@@ -10,7 +10,8 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.ServiceLocator;
-import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Plantel;
 
 /**
  * Esta clase de ImplementacionEventoFacade es utilizada para la tabla
@@ -61,6 +62,14 @@ public class ImplementacionEventoFACADE extends BaseFACADE{
      */
     public Object guardarEvento(Object impleEvento, Class clazz) {
         return ServiceLocator.getImplementacionEvento().guardarEvento(impleEvento);
+    }
+    
+    public List<Object> buscarEventosPorDepartamento(Departamento departamento){
+        return ServiceLocator.getImplementacionEvento().buscarPorDepartamento(departamento);
+    }
+    
+    public List<Object> buscarEventosPorPlantel(Plantel plantel){
+        return ServiceLocator.getImplementacionEvento().buscarPorPlantel(plantel);
     }
 
     

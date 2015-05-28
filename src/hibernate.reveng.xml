@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="capacisoft"/>
-  <table-filter match-name="curso"/>
-  <table-filter match-name="tipo_curso"/>
+  <table-filter match-name="evento"/>
+  <table-filter match-name="tipo_evento"/>
   <table-filter match-name="usuario"/>
   <table-filter match-name="tipo_alerta"/>
   <table-filter match-name="enfoque"/>
@@ -18,7 +18,6 @@
   <table-filter match-name="implementacion_curso"/>
   <table-filter match-name="departamento"/>
   <table-filter match-name="tipo_cuenta"/>
-  <table-filter match-name="telefono"/>
   <table-filter match-name="competencia"/>
   <table-filter match-name="enunciado_logistica"/>
   <table-filter match-name="zona"/>
