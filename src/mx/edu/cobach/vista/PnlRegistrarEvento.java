@@ -430,7 +430,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         tipoCBx.setSelectedIndex(0);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
-        registroLbl.setText("Agregar");
+        registroLbl.setText("Registro");
         registroMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
         nombreTFd.setEnabled(true);
         descripcionTAa.setEnabled(true);

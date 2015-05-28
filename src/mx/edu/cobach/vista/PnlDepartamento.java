@@ -466,7 +466,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionCBx.setSelectedIndex(0);
         guardarBtn.setEnabled(true);
         guardarBtn.setText("Guardar");
-        registroLbl.setText("Agregar");
+        registroLbl.setText("Registro");
         agregarMsjLbl.setText("Ingrese la información a Almacenar, para salir o cancelar el registro presione el botón Cancelar");
         nombreTFd.setEnabled(true);
         direccionCBx.setEnabled(true);
