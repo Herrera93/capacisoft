@@ -87,7 +87,6 @@ public class ImplementarEventoControlador extends BaseControlador {
      */
     public void buscarEmpId(Integer id, Class<Empleado> empleado) {
         Object o = ServiceLocatorDELEGATE.getImplementarEvento().find(id, empleado);
-        System.out.println(o.toString());
         List<Object> atr = new ArrayList<Object>();
         atr.add(o);
         String matriz[][] = HelperEntidad.descomponerObjetos(atr);
