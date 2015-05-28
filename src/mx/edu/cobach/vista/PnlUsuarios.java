@@ -455,6 +455,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
              control.buscar(id); 
             
             guardarBtn.setText("Modificar");
+            
         }
         
         setEnabledPanelInformacion(true);
@@ -543,8 +544,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_usuariosTblMouseClicked
 
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(nombreTFd.getText().equals("")==false){
-            
+            busqueda=0;
             buscando=true;
             control.buscarPorNombre(nombreTFd.getText());
             buscando=false;
@@ -552,16 +554,18 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_nombreTFdFocusLost
 
     private void segundoNombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_segundoNombreTFdFocusLost
-        
+        if(!guardarBtn.getText().equals("Modificar")){
+        busqueda=0;
         buscando=true;
         control.buscarPorNombre(segundoNombreTFd.getText());
         buscando=false;
-        
+        }
     }//GEN-LAST:event_segundoNombreTFdFocusLost
 
     private void apellidoPaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(apellidoPaternoTFd.getText().equals("")==false){
-            
+            busqueda=0;
             buscando=true;
             control.buscarPorNombre(apellidoPaternoTFd.getText());
             buscando=false;
@@ -569,8 +573,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_apellidoPaternoTFdFocusLost
 
     private void apellidoMaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(apellidoMaternoTFd.getText().equals("")==false){
-            
+            busqueda=0;
             buscando=true;
             control.buscarPorNombre(apellidoMaternoTFd.getText());
             buscando=false;
@@ -578,6 +583,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_apellidoMaternoTFdFocusLost
 
     private void usuarioTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(usuarioTFd.getText().equals("")==false){
             busqueda=4;
             buscando=true;

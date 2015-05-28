@@ -477,6 +477,7 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
      * @param evt 
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        if(!guardarBtn.getText().equals("Modificar"))
         if(nombreTFd.getText().equals("")==false){
             buscando=true;    //VALIDAR SI EL NOMBRE DEL PLANTEL YA EXISTE
             calleTFd.setEnabled(true);
