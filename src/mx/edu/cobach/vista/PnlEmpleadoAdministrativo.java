@@ -384,7 +384,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         registroLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         registroLbl.setText("Registro");
 
-        registroMsjLbl.setText("Ingrese la información a almacenar");
+        registroMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón Cancelar");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("@cobachbc.edu.mx");

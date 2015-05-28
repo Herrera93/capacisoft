@@ -676,7 +676,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="registroMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
+            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n Cancelar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">

@@ -175,8 +175,8 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
         opcionPnl.add(opcionMsjLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        modificarMsjLbl.setText("<html>Para Modificar seleccione un nombre de curso de la columna <br>\"Nombre\", para eliminar seleccione el cuadro de la columna Eliminar del puesto que desea</html> ");
-        opcionPnl.add(modificarMsjLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 380, 80));
+        modificarMsjLbl.setText("<html>Para Modificar seleccione un nombre de evento de la columna <br>\"Nombre\", para eliminar seleccione el cuadro de la columna Eliminar del evento que desea</html> ");
+        opcionPnl.add(modificarMsjLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 380, 80));
 
         tipoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoLbl.setText("Tipo de Evento:");
@@ -242,7 +242,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         registroLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         registroLbl.setText("Registro");
 
-        registroMsjLbl.setText("Ingrese la información a Almacenar");
+        registroMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón Cancelar");
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");

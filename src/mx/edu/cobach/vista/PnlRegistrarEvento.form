@@ -202,11 +202,11 @@
         </Component>
         <Component class="javax.swing.JLabel" name="modificarMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un nombre de curso de la columna &lt;br&gt;&quot;Nombre&quot;, para eliminar seleccione el cuadro de la columna Eliminar del puesto que desea&lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un nombre de evento de la columna &lt;br&gt;&quot;Nombre&quot;, para eliminar seleccione el cuadro de la columna Eliminar del evento que desea&lt;/html&gt; "/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="180" width="380" height="80"/>
+              <AbsoluteConstraints x="10" y="180" width="380" height="80"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -414,7 +414,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="registroMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a Almacenar"/>
+            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n Cancelar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="cancelarBtn">

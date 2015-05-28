@@ -522,8 +522,13 @@ public class HelperEntidad {
             Empleado e = emps.get(i);
             info[i][0] = e.getId().toString();
             info[i][1] = e.getNumero();
-            info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
-                    + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
+            if(e.getSegundoNombre()==null){
+                info[i][2] = e.getPrimerNombre() + " " 
+                        + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
+            }else{
+                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                        + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
+            }
         }
         return info;
     }
