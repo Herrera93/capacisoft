@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
 import mx.edu.cobach.persistencia.entidades.Alerta;
@@ -34,13 +35,18 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     private int totalAlertas;
     // largo predefinido de las alertas
     private final int WIDTH = 800;
+    private final PnlProgramarEvento eventoPnl;
+    private final PnlSeguimiento encuestaPnl;
     
     /**
      * Creates new form PnlAlertas
+     * @param eventoPnl
+     * @param encuestaPnl
      */
-    public PnlAlertas() {// method
+    public PnlAlertas(PnlProgramarEvento eventoPnl, PnlSeguimiento encuestaPnl) {// method
         initComponents();
-        
+        this.eventoPnl = eventoPnl;
+        this.encuestaPnl = encuestaPnl;
         control = new AlertaControlador(this, Alerta.class);
         
         periodoPnl.setLocation(55, 79);
@@ -88,7 +94,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         tipoLbl.setText("Tipo de anuncio:");
 
         seleccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        seleccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alertas recientes", "Curso programado", "Curso diagnostico", "Información pendiente", "Encuesta pendiente" }));
+        seleccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alertas recientes", "Evento programado", "Evento diagnostico", "Información pendiente", "Encuesta pendiente" }));
         seleccionCBx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionCBxActionPerformed(evt);
@@ -365,7 +371,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                         + "pendientes.");
                 }// if
                 else{// else
-                    setMensaje("No existen eventos con evaluacion pendiente "
+                    setMensaje("No existen eventos con encuestas pendiente "
                             + "por el momento.");
                 }// else
                 break;
@@ -629,64 +635,62 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     public void resolverBtnActionPerformed(ActionEvent evt){// method
         for(int i = 0; i < totalAlertas; i++){// for
-            if(evt.equals(resolverBtn[i])){
+            if(evt.getSource().equals(resolverBtn[i])){
                 int id = Integer.parseInt(resolverBtn[i].getName());
-                String[] palabras = titulosLbl[i].toString().split(" ");
-                String alerta = palabras[0] + palabras[1];
-                Object obj;
-                List<Object> eventos;
+                String[] palabras = titulosLbl[i].getText().split(" ");
+                String alerta = palabras[0] + " " +palabras[1];
+                Set<ImplementacionEvento> eventos;
                 int j = 0;
+                System.out.println(alerta);
                 switch(alerta){
                     case "Evento programado":// 1
-                        obj = control.buscarAlerta(1);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
+                        eventos = ((Alerta) control.buscarAlerta(1)).getImplementacionEventos();
                         j = 0;
                         for(Object o : eventos){// for
-                            ImplementacionEvento ie = new ImplementacionEvento();
-                            if(ie.getId().intValue() == id){// if
-//                                control.getClass().getSuperclass()
+                            ImplementacionEvento ie = (ImplementacionEvento) o;
+                            if(ie.getId() == id){// if
+                                eventoPnl.llenarDatos((Object) ie);
+                                alertasPnl.setToolTipText(null);
+                                alertasPnl.setVisible(false);
                             }// if
                             j ++;
                         }// for
                         break;
                     case "Evento diagnosticado":// 2
-                        obj = control.buscarAlerta(2);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
-                        obj = control.buscarAlerta(1);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
+                        eventos = ((Alerta) control.buscarAlerta(2)).getImplementacionEventos();
                         j = 0;
                         for(Object o : eventos){// for
-                            ImplementacionEvento ie = new ImplementacionEvento();
-                            if(ie.getId().intValue() == id){// if
-//                                resolverAlerta(eventos.get(j));
+                            ImplementacionEvento ie = (ImplementacionEvento) o;
+                            if(ie.getId() == id){// if
+                                eventoPnl.llenarDatos((Object) ie);
+                                alertasPnl.setToolTipText(null);
+                                alertasPnl.setVisible(false);
                             }// if
                             j ++;
                         }// for
                         break;
                     case "Informacion pendiente":// 3
-                        obj = control.buscarAlerta(3);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
-                        obj = control.buscarAlerta(1);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
+                        eventos = ((Alerta) control.buscarAlerta(3)).getImplementacionEventos();
                         j = 0;
                         for(Object o : eventos){// for
-                            ImplementacionEvento ie = new ImplementacionEvento();
-                            if(ie.getId().intValue() == id){// if
-//                                resolverAlerta(eventos.get(j));
+                            ImplementacionEvento ie = (ImplementacionEvento) o;
+                            if(ie.getId() == id){// if
+                                eventoPnl.llenarDatos((Object) ie);
+                                alertasPnl.setToolTipText(null);
+                                alertasPnl.setVisible(false);
                             }// if
                             j ++;
                         }// for
                         break;
                     case "Encuesta pendiente":// 4
-                        obj = control.buscarAlerta(4);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
-                        obj = control.buscarAlerta(1);
-                        eventos = control.buscarImplementacionEvento((Alerta) obj);
+                        eventos = ((Alerta) control.buscarAlerta(4)).getImplementacionEventos();
                         j = 0;
                         for(Object o : eventos){// for
-                            ImplementacionEvento ie = new ImplementacionEvento();
-                            if(ie.getId().intValue() == id){// if
-//                                resolverAlerta(eventos.get(j));
+                            ImplementacionEvento ie = (ImplementacionEvento) o;
+                            if(ie.getId() == id){// if
+                                encuestaPnl.llenarDatos((Object) ie);
+                                alertasPnl.setToolTipText(null);
+                                alertasPnl.setVisible(false);
                             }// if
                             j ++;
                         }// for
@@ -929,4 +933,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             }// switch
         }// for each
     }//method
+
+    @Override
+    public void llenarDatos(Object evento) {
+        
+    }
 }// class
