@@ -213,7 +213,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="&lt;html&gt;&lt;br&gt;&lt;/html&gt;"/>
                 <StringItem index="1" value="Numero del Empleado"/>
-                <StringItem index="2" value="Nombre Completo"/>
+                <StringItem index="2" value="Nombre "/>
               </StringArray>
             </Property>
           </Properties>

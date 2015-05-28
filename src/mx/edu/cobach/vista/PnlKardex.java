@@ -115,7 +115,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
         tipoLbl.setText("Tipo de Búsqueda:");
 
         tipoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<html><br></html>", "Numero del Empleado", "Nombre Completo" }));
+        tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<html><br></html>", "Numero del Empleado", "Nombre " }));
         tipoCBx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoCBxActionPerformed(evt);
