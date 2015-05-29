@@ -130,6 +130,11 @@ public class EncuestaControlador extends BaseControlador {
         return encuesta.has("id");
     }
     
+    public boolean enviarEncuestaDespues(int idImplementacion, List<Integer> empleadosIds){
+        return ServiceLocatorDELEGATE.getEncuesta()
+                .enviarEncuestaDespues(idImplementacion, empleadosIds);
+    }
+    
      /**
      * Se buscan las implementacion de un evento que se encuentren en un rango
      * de fechas dado. Cualquiera de estos elementos puede ser nulo, y se consideraran
@@ -170,7 +175,7 @@ public class EncuestaControlador extends BaseControlador {
         return respuestas;
     }
     
-    public void guardarResultados(){
+    public void guardarResultados(){        
         List<Object> encuestas = ServiceLocatorDELEGATE.getInstance()
                 .findAll(Encuesta.class);
         
@@ -181,5 +186,10 @@ public class EncuestaControlador extends BaseControlador {
             ServiceLocatorDELEGATE.getEncuesta()
                     .guardarRespuestas(encuesta.getJotformIdDespues());            
         }
+    }
+
+    public boolean segundaEncuestaEnviada(int idImplementacion) {        
+        return ServiceLocatorDELEGATE.getEncuesta()
+            .segundaEncuestaEnviada(idImplementacion);
     }
 }
