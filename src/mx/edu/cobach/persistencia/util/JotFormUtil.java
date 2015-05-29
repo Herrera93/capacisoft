@@ -26,11 +26,13 @@ public class JotFormUtil {
         JotForm cliente = new JotForm(LLAVE_API);
         
         JSONObject respuesta = cliente.createForm(encuesta);
-        try {
-            System.out.println(respuesta.toString(3));
-            resultado = respuesta.getJSONObject("content");
-        } catch (JSONException ex) {
-            Logger.getLogger(JotFormUtil.class.getName()).log(Level.SEVERE, null, ex);
+        if(respuesta != null){
+            try {
+                System.out.println(respuesta.toString(3));
+                resultado = respuesta.getJSONObject("content");
+            } catch (JSONException ex) {
+                Logger.getLogger(JotFormUtil.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return resultado;
     }

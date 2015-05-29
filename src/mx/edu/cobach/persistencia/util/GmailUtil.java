@@ -46,7 +46,7 @@ public class GmailUtil {
 
     /** Directory to store user credentials. */
     private static final java.io.File DATA_STORE_DIR = new java.io.File(
-        ".credentials/gmail");
+        System.getProperty("user.home"), ".credenciales/gmail");
 
     /** Global instance of the {@link FileDataStoreFactory}. */
     private static FileDataStoreFactory DATA_STORE_FACTORY;

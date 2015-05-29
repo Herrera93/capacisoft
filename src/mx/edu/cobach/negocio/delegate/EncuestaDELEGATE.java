@@ -132,17 +132,19 @@ public class EncuestaDELEGATE {
         //Se crea la encuesta por medio del API de JotForm
         encuestaAntes = JotFormUtil.crearEncuesta(encuesta);
         
-        try {
-            //Se crea una copia de encuesta para realizarse posterior al evento
-            JSONObject encuestaDespues = JotFormUtil.copiarEncuesta(encuestaAntes.getLong("id"));
-            //Se guarda la encuesta en la base de datos
-            Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
-                .find(Integer.parseInt(idEvento), ImplementacionEvento.class), 
-                encuestaAntes.getLong("id"), encuestaDespues.getLong("id"));
-            encuestaGuardar.setAspectos(new HashSet<>(aspectos));
-            ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);
-        } catch (JSONException ex) {
-            Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+        if(encuestaAntes != null){        
+            try {
+                //Se crea una copia de encuesta para realizarse posterior al evento
+                JSONObject encuestaDespues = JotFormUtil.copiarEncuesta(encuestaAntes.getLong("id"));
+                //Se guarda la encuesta en la base de datos
+                Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
+                    .find(Integer.parseInt(idEvento), ImplementacionEvento.class), 
+                    encuestaAntes.getLong("id"), encuestaDespues.getLong("id"));
+                encuestaGuardar.setAspectos(new HashSet<>(aspectos));
+                ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);
+            } catch (JSONException ex) {
+                Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         return encuestaAntes;
@@ -165,6 +167,8 @@ public class EncuestaDELEGATE {
                         .find(idsEmpleados.get(i), Empleado.class);
                 Empleado jefe = (Empleado) ServiceLocatorFACADE.getEmpleado()
                         .buscarJefeInmediato(empleado);
+                if(jefe == null)
+                    continue;
                 
                 //Se actualiza las preguntas por cada empleado
                 JotFormUtil.actualizarPregunta(encuesta.getLong("id"), idAsignado, 
