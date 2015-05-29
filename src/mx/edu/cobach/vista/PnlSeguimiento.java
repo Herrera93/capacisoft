@@ -508,10 +508,6 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         eventosTblModel.setDataVector(new String[0][4], titulosTabla);
     }//GEN-LAST:event_realizarEncuestaPnlComponentShown
 
-    public void visualizarEncuesta(){
-        realizarEncuestaPnlComponentShown(null);
-    }
-    
     /**
      * Metodo que se ejecuta al mostrarse el panel de tab resultados de encuesta, en este
      * metodo se remueven los paneles de empleados y aspectos y anadimos el de resultado
@@ -529,8 +525,6 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         eventosTblModel.setDataVector(new String[0][4], titulosTabla);
     }//GEN-LAST:event_resultadoEncuestaPnlComponentShown
 
-    
-    
     /**
      * Metodo que se ejecuta al hacer click el boton buscar. Se toma el elemento
      * del combo box y las fechas y se busca con estas. Si no se han seleccionado
@@ -793,11 +787,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         aFechaDCh.setDate(((ImplementacionEvento) evento).getFechaFinal());
         eventoCBx.setSelectedIndex(((ImplementacionEvento) evento)
                 .getEvento().getId());
-        try{
-            this.getParent().getClass().getMethod("visualizarEncuesta", null);
-        } catch(NoSuchMethodException e){
-            System.out.println("No existe el método para visualizar la encuesta.");
-        }
+        this.realizarEncuestaPnlComponentShown(null);
         realizarEncuestaPnl.updateUI();
         this.updateUI();
     }

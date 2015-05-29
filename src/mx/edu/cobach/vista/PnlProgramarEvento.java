@@ -220,7 +220,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                     .addComponent(regRealizarBtn))
                 .addGap(26, 26, 26)
                 .addComponent(calendarioPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         opcionesTP.addTab("Registrar evento de capacitación", registrarPnl);
@@ -334,7 +334,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         buscarPnlLayout.setVerticalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buscarPnlLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(opcionesBusLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notaBusLbl)
@@ -367,7 +367,9 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionesTP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(opcionesTP, javax.swing.GroupLayout.PREFERRED_SIZE, 577, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -537,10 +539,6 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
 
-    public void visualizarEvento(){
-        formComponentShown(null);
-    }
-    
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         regRealizadoBtn.setEnabled(false);
         regRealizarBtn.setEnabled(false);
@@ -666,11 +664,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .getEvento().getNombre());
         tipoRegCBx.setSelectedIndex(((ImplementacionEvento) evento)
                 .getEvento().getId());
-        try{
-            this.getParent().getClass().getMethod("visualizarEvento", null);
-        } catch(NoSuchMethodException e){
-            System.out.println("No existe el método para visualizar el evento.");
-        }
+        this.formComponentShown(null);
         this.setVisible(true);
         this.updateUI();
     }
