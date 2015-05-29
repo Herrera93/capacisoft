@@ -277,6 +277,11 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
             }
         });
         eventosTbl.getTableHeader().setReorderingAllowed(false);
+        eventosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eventosTblMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(eventosTbl);
         if (eventosTbl.getColumnModel().getColumnCount() > 0) {
             eventosTbl.getColumnModel().getColumn(0).setResizable(false);
@@ -653,6 +658,26 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
             JOptionPane.showMessageDialog(this, "Se han guardado los resultados exitosamente",
             "Exito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_resultadosBtnActionPerformed
+
+    private void eventosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventosTblMouseClicked
+        Point punto = evt.getPoint();
+        int renglon = eventosTbl.rowAtPoint(punto);
+        int columna = eventosTbl.columnAtPoint(punto);
+        
+        if(columna == 3){
+            boolean valor = (boolean) eventosTbl.getValueAt(renglon, columna);
+            eventosTblModel.setValueAt(valor, renglon, (columna + 1));
+            if(valor){
+                int opcion = JOptionPane.showConfirmDialog(this, "Desea agregar lista de asistencias?", 
+                        "Confirmacion", JOptionPane.YES_NO_OPTION);
+                if(opcion == JOptionPane.YES_OPTION){
+                    agregarEmpleadosPnl.agregarListAsistencia((String) 
+                        eventosTblModel.getValueAt(renglon, 0));
+                }
+            }else
+                agregarEmpleadosPnl.limpiar();
+        }
+    }//GEN-LAST:event_eventosTblMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser aFechaDCh;

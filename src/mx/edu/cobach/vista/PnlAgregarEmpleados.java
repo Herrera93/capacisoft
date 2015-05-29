@@ -32,12 +32,14 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     private final String[] titulosTabla;
     //Modelo del combo box de competencias    
     private final DefaultComboBoxModel busquedaModel;
+    private boolean banderaListaAsistencia;
     
      /**
      * Se inicializan la configuracion de los componentes  y los atributos.
      */
     public PnlAgregarEmpleados() {
         control = new EncuestaControlador(this);
+        banderaListaAsistencia = false;
         titulosTabla = new String[]{"ID", "Numero", "Empleados"};
         initComponents();
         empleadosTblModel = new DefaultTableModel(titulosTabla, 5);
@@ -505,6 +507,11 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     private javax.swing.JLabel tipoBusquedaLbll;
     // End of variables declaration//GEN-END:variables
 
+    public void agregarListAsistencia(String idImplementacion){
+        banderaListaAsistencia = true;
+        control.buscarEmpleados(Integer.parseInt(idImplementacion));
+    }
+    
     /**
      * Obtiene una lista de los identificadores de los empleados agregados.
      * @return Lista con los identificadores.
@@ -554,12 +561,19 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     @Override
     public void setTabla(String[][] info) {
         TableColumn columnaID;
-        empleadosTblModel.setDataVector(info, titulosTabla);        
-        //Esconder columna ID
-        columnaID = empleadosTbl.getColumnModel().getColumn(0);
-        empleadosTbl.getColumnModel().removeColumn(columnaID);        
-        //Remover aspectos ya seleccionados
+        if(!banderaListaAsistencia){
+            empleadosTblModel.setDataVector(info, titulosTabla);
+            columnaID = empleadosTbl.getColumnModel().getColumn(0);
+            empleadosTbl.getColumnModel().removeColumn(columnaID);        
+        }else{
+            empleadosAgrTblModel.setDataVector(info, titulosTabla);        
+            columnaID = empleadosAgrTbl.getColumnModel().getColumn(0);
+            empleadosAgrTbl.getColumnModel().removeColumn(columnaID);
+            banderaListaAsistencia = false;
+        }
         removerAgregados();
+        //Esconder columna ID
+        //Remover aspectos ya seleccionados
     }
 
      /**
@@ -600,6 +614,6 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
 
     @Override
     public void llenarDatos(Object evento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

@@ -362,4 +362,26 @@ public class EncuestaDELEGATE {
         
         return resultado;
     }
+
+    public boolean enviarEncuestaDespues(int idImplementacion, List<Integer> empledosIds) {
+        ImplementacionEvento implementacion = (ImplementacionEvento) ServiceLocatorFACADE
+            .getInstance().find(idImplementacion, ImplementacionEvento.class);
+        
+        Encuesta encuesta = (Encuesta) implementacion.getEncuestas().toArray()[0];
+        if(encuesta == null)
+            return false;
+        JSONObject encuestaJson = JotFormUtil.getEncuesta(encuesta.getJotformIdDespues());
+        enviarEncuesta(encuestaJson, empledosIds);
+        encuesta.setDespuesEnviada(true);
+        ServiceLocatorFACADE.getInstance().saveOrUpdate(encuesta, Encuesta.class);
+        return true;
+    }
+    
+    public boolean segundaEncuestaEnviada(int idImplementacion){
+        ImplementacionEvento implementacion = (ImplementacionEvento) ServiceLocatorFACADE
+            .getInstance().find(idImplementacion, ImplementacionEvento.class);
+        
+        Encuesta encuesta = (Encuesta) implementacion.getEncuestas().toArray()[0];
+        return encuesta.isDespuesEnviada();
+    }
 }

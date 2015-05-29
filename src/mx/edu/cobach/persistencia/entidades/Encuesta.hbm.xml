@@ -17,6 +17,9 @@
         <property name="jotformIdDespues" type="long">
             <column name="jotform_id_despues" not-null="true" unique="true" />
         </property>
+        <property name="despuesEnviada" type="boolean">
+            <column name="despues_enviada" not-null="true" />
+        </property>
         <set name="respuestas" table="respuesta" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="encuesta_id" not-null="true" />

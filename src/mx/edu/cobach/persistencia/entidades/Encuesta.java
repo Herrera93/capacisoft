@@ -10,11 +10,11 @@ import java.util.Set;
  */
 public class Encuesta  implements java.io.Serializable {
 
-
      private Integer id;
      private ImplementacionEvento implementacionEvento;
      private long jotformIdAntes;
      private long jotformIdDespues;
+     private boolean despuesEnviada;
      private Set<Respuesta> respuestas = new HashSet<Respuesta>(0);
      private Set<Aspecto> aspectos = new HashSet<Aspecto>(0);
 
@@ -78,9 +78,14 @@ public class Encuesta  implements java.io.Serializable {
         this.aspectos = aspectos;
     }
 
+    public boolean isDespuesEnviada() {
+        return despuesEnviada;
+    }
 
-
-
+    public void setDespuesEnviada(boolean despuesEnviada) {
+        this.despuesEnviada = despuesEnviada;
+    }
+    
 }
 
 

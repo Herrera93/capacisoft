@@ -8,6 +8,7 @@ package mx.edu.cobach.vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -92,6 +93,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         despuesGraficaPnl = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        encuestaDespuesBtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -149,13 +151,21 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         );
         despuesGraficaPnlLayout.setVerticalGroup(
             despuesGraficaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Resultado de encuestas");
 
         jLabel2.setText("Seleccionar un empleado de la tabla para mostrar sus encuestas");
+
+        encuestaDespuesBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        encuestaDespuesBtn.setText("Enviar segunda encuesta");
+        encuestaDespuesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                encuestaDespuesBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -175,21 +185,26 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(encuestaDespuesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addComponent(encuestaDespuesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(despuesGraficaPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(antesGraficaPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                    .addComponent(antesGraficaPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -215,11 +230,23 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         }
     }//GEN-LAST:event_empleadosTblMouseClicked
 
+    private void encuestaDespuesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encuestaDespuesBtnActionPerformed
+        List<Integer> empleadosIds = new ArrayList();
+        for(int i = 0; i < empleadosTblModel.getRowCount(); i++){
+            empleadosIds.add(Integer.parseInt((String)empleadosTblModel.getValueAt(i, 0)));
+        }
+        control.enviarEncuestaDespues(idImplementacion, empleadosIds);
+        encuestaDespuesBtn.setEnabled(false);
+        JOptionPane.showMessageDialog(this, "Se ha enviado la encuesta exitosamente",
+                "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_encuestaDespuesBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel antesGraficaPnl;
     private javax.swing.JPanel despuesGraficaPnl;
     private javax.swing.JTable empleadosTbl;
+    private javax.swing.JButton encuestaDespuesBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -238,8 +265,12 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
      * @param idImplementacion Identificador de implementacion
      */
     public void buscarEmpleados(String idImplementacion) {
+        encuestaDespuesBtn.setEnabled(true);
         this.idImplementacion = Integer.parseInt(idImplementacion);
         control.buscarEmpleados(this.idImplementacion);
+        if(control.segundaEncuestaEnviada(this.idImplementacion)){
+            encuestaDespuesBtn.setEnabled(false);
+        }
     }
 
     /**
