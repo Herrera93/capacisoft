@@ -124,6 +124,8 @@ public class EncuestaControlador extends BaseControlador {
             String[] evento){
         JSONObject encuesta = ServiceLocatorDELEGATE.getEncuesta()
                 .crearEncuesta(aspectosIds, evento[0], evento[2], evento[1]);
+        if(encuesta == null)
+            return false;
         ServiceLocatorDELEGATE.getEncuesta().enviarEncuesta(encuesta, empleadosIds);
         return encuesta.has("id");
     }
@@ -171,13 +173,13 @@ public class EncuestaControlador extends BaseControlador {
     public void guardarResultados(){
         List<Object> encuestas = ServiceLocatorDELEGATE.getInstance()
                 .findAll(Encuesta.class);
-                
+        
         for(int i = 0; i < encuestas.size(); i++){
             Encuesta encuesta = (Encuesta) encuestas.get(i);
             ServiceLocatorDELEGATE.getEncuesta()
                     .guardarRespuestas(encuesta.getJotformIdAntes());
             ServiceLocatorDELEGATE.getEncuesta()
-                    .guardarRespuestas(encuesta.getJotformIdDespues());
+                    .guardarRespuestas(encuesta.getJotformIdDespues());            
         }
     }
 }
