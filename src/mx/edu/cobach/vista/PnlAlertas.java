@@ -35,7 +35,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     private int totalAlertas;
     // largo predefinido de las alertas
     private final int WIDTH = 800;
+    // panel de programacion de eventos
     private final PnlProgramarEvento eventoPnl;
+    // panel de frealizacion de encuesta
     private final PnlSeguimiento encuestaPnl;
     
     /**
@@ -316,17 +318,22 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         informacionCBx.setEnabled(false);
         cancelarBtn.setEnabled(false);
         alertasPnl.removeAll();
+        panelesPnl = null;
         alertasPnl.updateUI();
+        alertasPnl.setVisible(true);
         List<Object> lista = new ArrayList();
         Set<ImplementacionEvento> eventos;
         Object obj;
         boolean ban = false;
         switch(seleccionCBx.getSelectedIndex()){// switch
             case 0:// Alertas recientes
+                System.out.println("alertas recientes");
                 control.buscarTodas();
                 alertasPnl.setToolTipText("Todas las alertas programadas.");
+                ban = true;
                 break;
             case 1:// Evento programado
+                System.out.println("evento programado");
                 obj = control.buscarAlerta(1);
                 eventos = ((Alerta) obj)
                         .getImplementacionEventos();
@@ -396,7 +403,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 break;
         }// switch
         
-        if(!ban){
+        if(!ban){// if
             // colocando paneles vacios
             JPanel[] vacio1 = new JPanel[5];
             
@@ -407,7 +414,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 vacio1[k].setSize(WIDTH, 150);
                 vacio1[k].setBorder(javax.swing.BorderFactory.createLineBorder(
                         new java.awt.Color(0, 0, 0)));
-                if(k != 0){
+                if(k != 0){// if
                     int y = vacio1[k - 1].getLocation().y 
                             + vacio1[k].getSize().height;
                     vacio1[k].setLocation(0, y);
@@ -419,13 +426,13 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                                 vacio1[k].getLocation().y 
                             + vacio1[k].getSize().height);
                     }// if
-                }
+                }// if
                 alertasPnl.add(vacio1[k]);
                 alertasPnl.updateUI();
             }// for
             alertasPnl.setToolTipText("Se muestran las alertas "
                     + "programadas");
-        }
+        }// if
     }//GEN-LAST:event_seleccionCBxActionPerformed
 
     /**
@@ -434,6 +441,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     private void periodoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodoBtnActionPerformed
         alertasPnl.removeAll();
+        panelesPnl = null;
         alertasPnl.updateUI();
         
         eventoSpn.setEnabled(true);
@@ -446,6 +454,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         cancelarBtn.setEnabled(true);
         
         control.buscarTodosLista(1);
+        alertasPnl.updateUI();
     }//GEN-LAST:event_periodoBtnActionPerformed
 
     /**
@@ -649,7 +658,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     @Override
     public void setLista(List info, int i) {
         alertasPnl.removeAll();
-        System.out.println(info.size());
+        panelesPnl = null;
         boolean bandera = true;
         for(int j = 0; j < info.size(); j++){
             if(((Alerta) info.get(j)).getImplementacionEventos() == null){
@@ -665,7 +674,6 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             }// if
             // alertas recientes
             else{// else
-                System.out.println("generar alerta");
                 generarPanelAlerta(info);
             }// else
         }// if
@@ -695,6 +703,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                     }// if
                 }
                 alertasPnl.add(vacio1[k]);
+                alertasPnl.setVisible(true);
                 alertasPnl.updateUI();
             }// for
             alertasPnl.setToolTipText("Se muestran las alertas "
@@ -713,9 +722,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 int id = Integer.parseInt(resolverBtn[i].getName());
                 String[] palabras = titulosLbl[i].getText().split(" ");
                 String alerta = palabras[0] + " " +palabras[1];
+                System.out.println(alerta);
                 Set<ImplementacionEvento> eventos;
                 int j = 0;
-                System.out.println(alerta);
                 switch(alerta){
                     case "Evento programado":// 1
                         eventos = ((Alerta) control.buscarAlerta(1)).getImplementacionEventos();
@@ -743,15 +752,15 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                             j ++;
                         }// for
                         break;
-                    case "Informacion pendiente":// 3
+                    case "Información pendiente":// 3
                         eventos = ((Alerta) control.buscarAlerta(3)).getImplementacionEventos();
                         j = 0;
                         for(Object o : eventos){// for
                             ImplementacionEvento ie = (ImplementacionEvento) o;
                             if(ie.getId() == id){// if
-                                eventoPnl.llenarDatos((Object) ie);
                                 alertasPnl.setToolTipText(null);
                                 alertasPnl.setVisible(false);
+                                eventoPnl.llenarDatos((Object) ie);
                             }// if
                             j ++;
                         }// for
