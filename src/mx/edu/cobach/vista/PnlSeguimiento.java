@@ -227,6 +227,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         jLabel1.setText("Evento:");
 
         eventoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        eventoCBx.setMaximumSize(new java.awt.Dimension(56, 32767));
 
         deFechaDCh.setDateFormatString("dd/MM/yyyy");
         deFechaDCh.setFocusable(false);
@@ -310,7 +311,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, realizarEncuestaPnlLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(eventoCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(eventoCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         realizarEncuestaPnlLayout.setVerticalGroup(
@@ -639,10 +640,11 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         if(columna == 3){
             boolean valor = (boolean) eventosResultadoTbl.getValueAt(renglon, columna);
             eventosTblModel.setValueAt(valor, renglon, (columna + 1));
-            if(valor)
+            if(valor){
+                resultadoPnl.limpiar();
                 resultadoPnl.buscarEmpleados((String) eventosTblModel
                         .getValueAt(renglon, 0));
-            else
+            }else
                 resultadoPnl.limpiar();
         }
     }//GEN-LAST:event_eventosResultadoTblMouseClicked
