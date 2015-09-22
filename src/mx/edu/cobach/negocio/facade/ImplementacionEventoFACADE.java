@@ -30,14 +30,6 @@ public class ImplementacionEventoFACADE extends BaseFACADE{
     public List<Object> buscarPorEvento(Evento evento) {
         return ServiceLocator.getImplementacionEvento().buscarPorEvento(evento);
     }
-    /**
-     * Obtiene todas las implementaciones relacionadas de una sede dado.
-     * @param sede
-     * @return Regresa la lista con las implementaciones
-     */
-    public List<Object> buscarPorSede(Sede sede) {
-        return ServiceLocator.getImplementacionEvento().buscarPorSede(sede);
-    }
     
     /**
      * Obtiene todas las implementaciones de un evento especifico en un rango
