@@ -38,7 +38,7 @@
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento" />
         </set>
-        <set fetch="select" inverse="false" lazy="false" name="eventos" table="proveedor_evento">
+        <set fetch="select" inverse="false" lazy="true" name="eventos" table="proveedor_evento">
             <key>
               <column name="proveedor_id" not-null="true"/>
             </key>

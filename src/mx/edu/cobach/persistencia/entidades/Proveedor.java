@@ -26,6 +26,13 @@ public class Proveedor  implements java.io.Serializable {
     public Proveedor() {
     }
 
+    public Proveedor(String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno) {
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
 	
     public Proveedor(TipoProveedor tipoProveedor, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno,String telefono, String correoElectronico, double calificacion) {
         this.tipoProveedor = tipoProveedor;

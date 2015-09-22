@@ -23,7 +23,9 @@ public class Sede  implements java.io.Serializable {
 
     public Sede() {
     }
-
+    public Sede(String nombre){
+        this.nombre = nombre;
+    }
 	
     public Sede(Municipio municipio, String nombre, int capacidad, String calle, String numeroDireccion, String colonia, String lugar) {
         this.municipio = municipio;

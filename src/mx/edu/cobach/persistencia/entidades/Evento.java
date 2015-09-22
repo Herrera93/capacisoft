@@ -21,7 +21,9 @@ public class Evento  implements java.io.Serializable {
     public Evento() {
     }
 
-	
+    public Evento(String nombre){
+        this.nombre = nombre;
+    }
     public Evento(TipoEvento tipoEvento, String nombre, String descripcion) {
         this.tipoEvento = tipoEvento;
         this.nombre = nombre;

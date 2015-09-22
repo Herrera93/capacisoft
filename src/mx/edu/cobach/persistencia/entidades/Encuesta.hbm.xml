@@ -26,7 +26,7 @@
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta" />
         </set>
-        <set name="aspectos" table="encuesta_aspecto" inverse="false" lazy="false" fetch="select">
+        <set name="aspectos" table="encuesta_aspecto" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="encuesta_id" not-null="true" />
             </key>
