@@ -70,14 +70,6 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
     public List<Object> buscarPorEvento(Evento evento) {
         return ServiceLocatorFACADE.getImplementacionEvento().buscarPorEvento(evento);
     }
-    /**
-     * Obtiene todas las implementaciones relacionadas en una sede dada.
-     * @param sede
-     * @return Regresa la lista con las implementaciones
-     */
-    public List<Object> buscarPorSede(Sede sede) {
-        return ServiceLocatorFACADE.getImplementacionEvento().buscarPorSede(sede);
-    }
     
     /**
      * Obtiene todas las implementaciones de un evento especifico en un rango
