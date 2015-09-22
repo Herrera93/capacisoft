@@ -82,6 +82,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
+        tabla();
     }
 
     /**
@@ -610,13 +611,12 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        String campo = (String) campoCBx.getSelectedItem();
         control.setClass(Empleado.class);
-        switch (campo) {
-            case "Nombre":                
-                if(nombreLATFd.getText().equals("")){
+        switch ((String) campoCBx.getSelectedItem()) {
+            case "Nombre":
+                if (nombreLATFd.getText().equals("")) {
                     control.buscarEmpN(nombreLATFd.getText());
-                }else{
+                } else {
                     control.buscarTodos();
                 }
                 break;
@@ -638,29 +638,32 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void campoCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_campoCBxItemStateChanged
-        String campo = (String) campoCBx.getSelectedItem();
-        switch (campo) {
+        switch ((String) campoCBx.getSelectedItem()) {
             case "":
-                visibilidadCam(false);
+                visibilidadBusNombre(false);
+                visibilidadBusTipo(false);
                 break;
             case "Nombre":
-                visibilidadCam(true);
-                nombreLALbl.setText("Nombre del Empleado:");
+                visibilidadBusTipo(false);
+                visibilidadBusNombre(true);
                 break;
             case "Departamento":
-                visibilidadCam(true);
+                visibilidadBusNombre(false);
+                visibilidadBusTipo(true);
                 control.setClass(Departamento.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel":
-                visibilidadCam(true);
+                visibilidadBusNombre(false);
+                visibilidadBusTipo(true);
                 control.setClass(Plantel.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Plantel:");
                 break;
             case "Puesto":
-                visibilidadCam(true);
+                visibilidadBusNombre(false);
+                visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Puesto:");
@@ -674,12 +677,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        this.cambio = true;
-        int row = tablaLisITbl.getSelectedRow();
-        if (row >= 0) {
-            int id = Integer.parseInt((String) modelTablaEmI.getValueAt(row, 0));
-            control.setClass(Empleado.class);
-            control.buscarEmpId(id, Empleado.class);
+        if (tablaLisITbl.getSelectedRow() >= 0) {
+            agregarEmpleadosTabla(Integer.parseInt((String) modelTablaEmI
+                    .getValueAt(tablaLisITbl.getSelectedRow(), 0)));
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
     /**
@@ -689,12 +689,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
-        this.cambio = true;
-        int nRow = tablaLisITbl.getRowCount();
-        for (int i = 0; i < nRow; i++) {
-            int id = Integer.parseInt((String) modelTablaEmI.getValueAt(i, 0));
-            control.setClass(Empleado.class);
-            control.buscarEmpId(id, Empleado.class);
+        for (int i = 0; i < modelTablaEmI.getRowCount(); i++) {
+            agregarEmpleadosTabla(i);
         }
     }//GEN-LAST:event_agregarTBtnActionPerformed
     /**
@@ -704,25 +700,26 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        this.cambio = true;
-        int nRow = tablaLisFTbl.getRowCount();
-        int nCol = tablaLisFTbl.getColumnCount();
-        int row = tablaLisFTbl.getSelectedRow();
-        if (row >= 0) {
-            int cont = 0;
-            String id = (String) modelTablaEmF.getValueAt(row, 0);
-            Object[][] tableData = new Object[nRow - 1][nCol + 1];
-            for (int i = 0; i < nRow; i++) {
-                if (((String) modelTablaEmF.getValueAt(i, 0)).compareTo(id) != 0) {
-                    tableData[cont][0] = modelTablaEmF.getValueAt(i, 0);
-                    tableData[cont][1] = modelTablaEmF.getValueAt(i, 1);
-                    tableData[cont][2] = modelTablaEmF.getValueAt(i, 2);
-                    cont++;
+        if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar al empleado de "
+                + "la lista de asistencia?", "Precaucion",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+            this.cambio = true;
+            if (tablaLisFTbl.getSelectedRow() >= 0) {
+                int cont = 0;
+                Object[][] tableData = new Object[tablaLisFTbl.getRowCount() - 1][modelTablaEmF.getColumnCount()];
+                for (int i = 0; i < tablaLisFTbl.getRowCount(); i++) {
+                    if (((String) modelTablaEmF.getValueAt(i, 0)).
+                            compareTo((String) modelTablaEmF.getValueAt(tablaLisFTbl.getSelectedRow(), 0)) != 0) {
+                        tableData[cont][0] = modelTablaEmF.getValueAt(i, 0);
+                        tableData[cont][1] = modelTablaEmF.getValueAt(i, 1);
+                        tableData[cont][2] = modelTablaEmF.getValueAt(i, 2);
+                        cont++;
+                    }
                 }
+                modelTablaEmF.setDataVector(tableData, titulosTablaEm);
+                TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+                tablaLisFTbl.getColumnModel().removeColumn(tc);
             }
-            modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
         }
     }//GEN-LAST:event_eliminarBtnActionPerformed
     /**
@@ -732,12 +729,48 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
-        this.cambio = true;
-        String[][] datosTabla = new String[0][0];
-        modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar toda la lista "
+                + "de asistencia?", "Precaucion",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+            this.cambio = true;
+            modelTablaEmF.setDataVector(null, titulosTablaEm);
+            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+            tablaLisFTbl.getColumnModel().removeColumn(tc);
+        }
     }//GEN-LAST:event_eliminarTBtnActionPerformed
+    
+        /**
+     * Metodo que permite agregar los empleados en la tabla de asistencia
+     */
+    private void agregarEmpleadosTabla(int valor) {
+        boolean bandera = false;
+        this.cambio = true;
+        tablaLisFTbl.setEnabled(true);
+        for (int j = 0; j < modelTablaEmF.getRowCount(); j++) {
+            if (modelTablaEmI.getValueAt(valor, 0).equals(modelTablaEmF.getValueAt(j, 0))) {
+                bandera = true;
+            }
+        }
+        if (bandera == false) {
+            Object[][] tableData = new Object[modelTablaEmF.getRowCount() + 1][modelTablaEmF.getColumnCount()];
+            //ciclo que pasa la informacion de la tabla de lista 
+            //final para que al final sea agregado el nuevo empleado a 
+            //esta matriz
+            for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
+                for (int j = 0; j < modelTablaEmF.getColumnCount(); j++) {
+                    tableData[k][j] = modelTablaEmF.getValueAt(k, j);
+                }
+            }
+            tableData[modelTablaEmF.getRowCount()][0] = modelTablaEmI.getValueAt(valor, 0);
+            tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.getValueAt(valor, 1);
+            tableData[modelTablaEmF.getRowCount()][2] = modelTablaEmI.getValueAt(valor, 2);
+            modelTablaEmF.setDataVector(tableData, titulosTablaEm);
+            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+            tablaLisFTbl.getColumnModel().removeColumn(tc);
+        }
+        visibilidadOpcT(true);
+    }
+    
     /**
      * Evento ejecutado al hacer click mandando a un metodo que guarde la
      * informacion o la modificque.
@@ -762,13 +795,13 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt
      */
     private void tipoSedeGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoSedeGCBxItemStateChanged
-        Sede sede = (Sede) tipoSedeGCBx.getSelectedItem();
-        if (sede != null) {
-            if (sede.getNombre().equals("")) {
-                capacidadSedeGLbl.setText("Capacidad de la sede: ");
-            } else {
+        if ((Sede) tipoSedeGCBx.getSelectedItem() != null) {
+            if (tipoSedeGCBx.getSelectedItem().toString().compareTo("") != 0) {
                 this.cambio = true;
-                capacidadSedeGLbl.setText("Capacidad de la sede: " + sede.getCapacidad());
+                capacidadSedeGLbl.setText("Capacidad de la sede: "
+                        + ((Sede) tipoSedeGCBx.getSelectedItem()).getCapacidad());
+            } else {
+                capacidadSedeGLbl.setText("Capacidad de la sede: ");
             }
         }
     }//GEN-LAST:event_tipoSedeGCBxItemStateChanged
@@ -778,10 +811,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt
      */
     private void nombreLATFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreLATFdKeyTyped
-        char caracter;
-        caracter = evt.getKeyChar();
-        if (Character.isLetter(caracter) || Character.isISOControl(caracter)
-                || Character.isWhitespace(caracter)) {
+        if (Character.isLetter(evt.getKeyChar()) || Character.isISOControl(evt.getKeyChar())
+                || Character.isWhitespace(evt.getKeyChar())) {
             evt = evt;
         } else {
             evt.consume();
@@ -794,20 +825,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt
      */
     private void cancelarGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarGBtnActionPerformed
-        int opcion;
-        if (guardarGBtn.getText() == "Guardar") {
-            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
-                    + "modificacion del evento?", "Precaucion",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        }else{
-             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
-                    + "modificacion del evento?", "Precaucion",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        }
-        if (opcion == 0) {
-            this.setVisible(false);
-            limpiarCampos();
-        }
+        cancelar();
     }//GEN-LAST:event_cancelarGBtnActionPerformed
     /**
      * Este metodo sirve para cancelar el registro o la modificacion de un
@@ -816,13 +834,21 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt
      */
     private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
+        cancelar();
+    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    
+    /**
+     * Este metodo sirve para cancelar el proceso de registro o modificacion de
+     * un evento
+     */
+    private void cancelar() {
         int opcion;
         if (guardarGBtn.getText() == "Guardar") {
             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar el "
                     + "registro del evento?", "Precaucion",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        }else{
-             opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
+        } else {
+            opcion = JOptionPane.showConfirmDialog(this, "¿Desea cancelar la "
                     + "modificacion del evento?", "Precaucion",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         }
@@ -830,32 +856,19 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             this.setVisible(false);
             limpiarCampos();
         }
-    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    }
     /**
      * Metodo para indicar que a habido un cambio en la el panel
      * @param evt 
      */
     private void nombreGCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nombreGCBxItemStateChanged
-        Proveedor proveedor = (Proveedor) nombreGCBx.getSelectedItem();
-        if (proveedor != null) {
-            if (proveedor.getPrimerNombre().equals("")) {
-            } else {
+        if ((Proveedor) nombreGCBx.getSelectedItem() != null) {
+            if (((Proveedor) nombreGCBx.getSelectedItem()).getId() != null) {
                 this.cambio = true;
             }
         }
-        this.cambio = true;
     }//GEN-LAST:event_nombreGCBxItemStateChanged
 
-   /**
-     * Metodo que recibe el evento del catalogo para llenar parte de la
-     * informacion general del evento a llevar a cabo
-     *
-     * @param evento
-     */
-    public void buscarEvento(Evento evento) {
-        this.evento = evento;
-        control.buscarCurId(evento.getId(), Evento.class);
-    }
 
     /**
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
@@ -864,6 +877,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     public void llenarTodo() {
+        tabla();
         control.setClass(Sede.class);
         control.buscarTodosLista(1);
         control.setClass(Proveedor.class);
@@ -871,6 +885,33 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         cambio = false;
     }
 
+        /**
+     * Metodo que recibe el evento del catalogo para llenar parte de la
+     * informacion general del evento a llevar a cabo
+     *
+     * @param evento
+     */
+    public void llenarEvento(Evento evento) {
+        this.evento = evento;
+        agregarGLbl.setText("Agregar evento a realizar");
+        agregarLALbl.setText("Agregar evento a realizar");
+        guardarGBtn.setText("Guardar");
+        guardarLABtn.setText("Guardar");
+        nombreGTFd.setText(evento.getNombre());
+        descripcionGTAa.setText(evento.getDescripcion());
+        if (evento.getTipoEvento().equals("CONFERENCIA")) {
+            tipoGCBx.setSelectedIndex(0);
+        } else if (evento.getTipoEvento().equals("TALLER")) {
+            tipoGCBx.setSelectedIndex(1);
+        } else if (evento.getTipoEvento().equals("CURSO")) {
+            tipoGCBx.setSelectedIndex(2);
+        } else if (evento.getTipoEvento().equals("CURSO / TALLER")) {
+            tipoGCBx.setSelectedIndex(3);
+        } else if (evento.getTipoEvento().equals("PLATICA")) {
+            tipoGCBx.setSelectedIndex(4);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JLabel agregarGLbl;
@@ -937,7 +978,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      */
     @Override
     public void setTabla(String[][] info) {
-        if (info[0][0].contains("TLE1")) {
+       if (info[0][0].contains("TLE1")) {
             //Se checa si la palabra TLE1 se encuentra dentro de la matriz
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             //Se elimina la palabra TLE1 para que solo quede el id puro
@@ -946,46 +987,30 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
             tablaLisITbl.getColumnModel().removeColumn(tc);
             visibilidadOpcT(true);
-        } else if (info[0][0].contains("TLE2")) {
-            //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+        }else if(info[0][0].contains("TLE2")){
             info[0][0] = info[0][0].replaceAll("TLE2", "");
-            //Se elimina la palabra TLE1 para que solo quede el id puro
-            int nRow = tablaLisFTbl.getRowCount();
-            int nCol = tablaLisFTbl.getColumnCount();
-            boolean bandera = false;
-            tablaLisFTbl.setEnabled(true);
-            //ciclo que identifica si ya existe el empleado en la lista de 
-            //asistencia, si se encuentra entonces la bandera cambiara a true y
-            //no se agregara
-            for (int i = 0; i < nRow; i++) {
-                if (info[0][0].equals(modelTablaEmF.getValueAt(i, 0))) {
-                    bandera = true;
-                }
-            }
-            if (bandera == false) {
-                nRow = modelTablaEmF.getRowCount();
-                nCol = modelTablaEmF.getColumnCount();
-                Object[][] tableData = new Object[nRow + 1][nCol];
-                //ciclo que pasa la informacion de la tabla de lista 
-                //final para que al final sea agregado el nuevo empleado a 
-                //esta matriz
-                for (int i = 0; i < nRow; i++) {
-                    for (int j = 0; j < nCol; j++) {
-                        tableData[i][j] = modelTablaEmF.getValueAt(i, j);
-                    }
-                }
-                tableData[nRow][0] = info[0][0];
-                tableData[nRow][1] = info[0][1];
-                tableData[nRow][2] = info[0][2];
-                modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-
-                TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-                tablaLisFTbl.getColumnModel().removeColumn(tc);
-                visibilidadOpcT(true);
-            }
+            modelTablaEmF.setDataVector(info, titulosTablaEm);
+            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+            tablaLisFTbl.getColumnModel().removeColumn(tc);
         }
     }
 
+        /**
+     * Agrega los datos al modelo de la tabla, también se ocultara la columna id
+     * y se le dara se redefinira el ancho de la columna 0.
+     *
+     * @param info
+     */
+    private void tabla() {
+        modelTablaEmI.setDataVector(null, titulosTablaEm);
+        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
+        tablaLisITbl.getColumnModel().removeColumn(tc);
+
+        modelTablaEmF.setDataVector(null, titulosTablaEm);
+        tc = tablaLisFTbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
+    }
+    
     /**
      * Metodo sobrescrito de la clase Comunicador
      *
@@ -994,23 +1019,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      */
     @Override
     public void setInfo(List info) {
-        agregarGLbl.setText("Agregar");
-        agregarLALbl.setText("Agregar");
-        guardarGBtn.setText("Guardar");
-        guardarLABtn.setText("Guardar");
-        nombreGTFd.setText(info.get(1).toString());
-        descripcionGTAa.setText(info.get(2).toString());
-        if (info.get(3).equals("CONFERENCIA")) {
-            tipoGCBx.setSelectedIndex(0);
-        } else if (info.get(3).equals("TALLER")) {
-            tipoGCBx.setSelectedIndex(1);
-        } else if (info.get(3).equals("CURSO")) {
-            tipoGCBx.setSelectedIndex(2);
-        } else if (info.get(3).equals("CURSO / TALLER")) {
-            tipoGCBx.setSelectedIndex(3);
-        } else if (info.get(3).equals("PLATICA")) {
-            tipoGCBx.setSelectedIndex(4);
-        }
     }
 
     /**
@@ -1028,29 +1036,22 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         switch (i) {
             case 1:
                 sedeModel.removeAllElements();
-                Sede sede = new Sede();
-                sede.setNombre("");
-                sedeModel.addElement(sede);
-                for (int j = 0; j < info.size(); j++) {
-                    sedeModel.addElement(info.get(j));
+                sedeModel.addElement(new Sede(""));
+                for (Object j : info) {
+                    sedeModel.addElement(j);
                 }
                 break;
             case 2:
                 proveedorModel.removeAllElements();
-                Proveedor proveedor = new Proveedor();
-                proveedor.setPrimerNombre("");
-                proveedor.setSegundoNombre("");
-                proveedor.setApellidoPaterno("");
-                proveedor.setApellidoMaterno("");
-                proveedorModel.addElement(proveedor);
-                for (int j = 0; j < info.size(); j++) {
-                    proveedorModel.addElement(info.get(j));
+                proveedorModel.addElement(new Proveedor("", "", "", ""));
+                for (Object j : info) {
+                    proveedorModel.addElement(j);
                 }
                 break;
             case 3:
                 tipoModel.removeAllElements();
-                for (int j = 0; j < info.size(); j++) {
-                    tipoModel.addElement(info.get(j));
+                for (Object j : info) {
+                    tipoModel.addElement(j);
                 }
                 break;
         }
@@ -1073,14 +1074,23 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
     }
 
     /**
-     * Establece una visibilidad al seleccionar que tipo de busqueda para el
-     * empleado se realizara
+     * Metodo para hacer visible o imvisible la busqueda por nombre
      *
      * @param visibilidad
      */
-    private void visibilidadCam(boolean visibilidad) {
-        tipoLACBx.setEnabled(visibilidad);
+    public void visibilidadBusNombre(boolean visibilidad) {
         nombreLATFd.setEnabled(visibilidad);
+        buscarLABtn.setEnabled(visibilidad);
+    }
+
+    /**
+     * Metodo para hacer visible o invisible la busqueda por
+     * plantel,departamento, puesto
+     *
+     * @param visibilidad
+     */
+    public void visibilidadBusTipo(boolean visibilidad) {
+        tipoLACBx.setEnabled(visibilidad);
         buscarLABtn.setEnabled(visibilidad);
     }
 
@@ -1142,8 +1152,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      */
     public void obtenerMod(List info) {
         ImplementacionEvento eventoImplementado = new ImplementacionEvento();
-        agregarGLbl.setText("Modificar");
-        agregarLALbl.setText("Modificar");
+        agregarGLbl.setText("Modificar evento a realizar");
+        agregarLALbl.setText("Modificar evento a realizar");
         guardarGBtn.setText("Modificar");
         guardarLABtn.setText("Modificar");
         eventoProgramarId = Integer.parseInt(info.get(0).toString());
@@ -1166,13 +1176,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         sedeModel.setSelectedItem(info.get(7));
         proveedorModel.setSelectedItem(info.get(8));
 
-        String[][] datosTabla = new String[0][0];
-        modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
-        modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
-        tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        
 
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
@@ -1190,9 +1194,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @return
      */
     private boolean validacion() {
-        Sede campoSede = (Sede) tipoSedeGCBx.getSelectedItem();
-        Proveedor campoProveedor = (Proveedor) nombreGCBx.getSelectedItem();
-
         if (fechaIDCh.getDate() == null) {
             JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
                     + " inicial");
@@ -1201,22 +1202,21 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
                     + " Final");
             return true;
-        } else if (campoSede.getNombre().equals("")) {
+        } else if (tipoSedeGCBx.getSelectedItem().toString().equals("")) {
             JOptionPane.showMessageDialog(this, "No selecciono una sede");
             return true;
-        } else if (campoProveedor.toString().equals("")) {
+        } else if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
             JOptionPane.showMessageDialog(this, "No selecciono un proveedor");
             return true;
         } else if (tablaLisFTbl.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + "en la lista de asistencia");
             return true;
-        } else if (tablaLisFTbl.getRowCount() > campoSede.getCapacidad()) {
-            int op = JOptionPane.showConfirmDialog(this, "La lista de asistencia es mas "
+        } else if (tablaLisFTbl.getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).getCapacidad()) {
+            if (JOptionPane.showConfirmDialog(this, "La lista de asistencia es mas "
                     + "grande que la capacidad que puede soportar la sede"
                     + "¿Desea aun así realizarla ahí ?", "Precaucion",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            if (op == 0) {
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 return false;
             } else {
                 return true;
@@ -1237,11 +1237,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         this.setVisible(false);
         fechaIDCh.setDate(null);
         fechaTDCh.setDate(null);
-        descripcionGTAa.setText("");
-        String[][] datosTabla = new String[0][0];
-        modelTablaEmI.setDataVector(datosTabla, titulosTablaEm);
-        modelTablaEmF.setDataVector(datosTabla, titulosTablaEm);
-    }
+        tabla();}
     
     /** 
      * Variable que regresa un booleano si se le agrego informacion al evento o
@@ -1254,6 +1250,5 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
     @Override
     public void llenarDatos(Object evento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
