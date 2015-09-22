@@ -15,7 +15,7 @@
   <table-filter match-name="aspecto"/>
   <table-filter match-name="empleado"/>
   <table-filter match-name="proveedor"/>
-  <table-filter match-name="implementacion_curso"/>
+  <table-filter match-name="implementacion_evento"/>
   <table-filter match-name="departamento"/>
   <table-filter match-name="tipo_cuenta"/>
   <table-filter match-name="competencia"/>
