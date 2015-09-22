@@ -68,17 +68,6 @@ public class ImplementarEventoControlador extends BaseControlador {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorEvento(evento);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
-
-    /**
-     * Sirve para buscar todos sedes donde se implanto un evento implementar
-     *
-     * @param sede Sede a buscar
-     */
-    public void buscarPorSede(Sede sede) {
-        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorSede(sede);
-        com.setTabla(HelperEntidad.descomponerObjetos(o));
-    }
-
     /**
      * Este metodo sirve para buscar el id del empleado y agregarlo a la lista
      * de asistencia para la lista de asistencia
