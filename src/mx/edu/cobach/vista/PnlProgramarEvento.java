@@ -36,6 +36,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
         "Estado", "Eliminar"};
     public String estado;
+    
+    //mensaje instruccion : JLabel
 
     public PnlProgramarEvento() {
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
@@ -109,6 +111,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         sedeLbl1 = new javax.swing.JLabel();
         fechaInicialDCh = new com.toedter.calendar.JDateChooser();
         fechaTerminacionDCh = new com.toedter.calendar.JDateChooser();
+        tablaMsjLbl = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1150, 576));
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -175,7 +178,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         opcionesRegLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionesRegLbl.setText("Opciones");
 
-        notaRegLbl.setText("Ingrese el nombre para buscar la información especifica");
+        notaRegLbl.setText("<html>Seleccione el tipo de evento que desea registrar, <br>para registrar un evento ya realizado seleccione la opcion<br> de  \"Registrar evento realizado\",si desea  registrar un evento<br> a realizar seleccione la opcion de  \"Programar evento a realizar\"");
 
         javax.swing.GroupLayout registrarPnlLayout = new javax.swing.GroupLayout(registrarPnl);
         registrarPnl.setLayout(registrarPnlLayout);
@@ -184,21 +187,23 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             .addGroup(registrarPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(calendarioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(registrarPnlLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
                         .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(opcionesRegLbl)
                             .addGroup(registrarPnlLayout.createSequentialGroup()
-                                .addComponent(nombreRegLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(tipoRegCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(notaRegLbl))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(registrarPnlLayout.createSequentialGroup()
-                        .addComponent(regRealizadoBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(regRealizarBtn))
-                    .addComponent(calendarioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(11, 11, 11)
+                                .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(opcionesRegLbl)
+                                    .addComponent(notaRegLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(registrarPnlLayout.createSequentialGroup()
+                                        .addComponent(nombreRegLbl)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tipoRegCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(registrarPnlLayout.createSequentialGroup()
+                                .addComponent(regRealizadoBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(regRealizarBtn)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         registrarPnlLayout.setVerticalGroup(
@@ -207,18 +212,18 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .addGap(22, 22, 22)
                 .addComponent(opcionesRegLbl)
                 .addGap(3, 3, 3)
-                .addComponent(notaRegLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(notaRegLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreRegLbl)
                     .addComponent(tipoRegCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(regRealizadoBtn)
                     .addComponent(regRealizarBtn))
-                .addGap(26, 26, 26)
+                .addGap(32, 32, 32)
                 .addComponent(calendarioPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         opcionesTP.addTab("Registrar evento de capacitación", registrarPnl);
@@ -285,7 +290,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         opcionesBusLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionesBusLbl.setText("Opciones");
 
-        notaBusLbl.setText("Ingrese el nombre para buscar la información especifica");
+        notaBusLbl.setText("<html>Ingrese el nombre o la fecha del evento para buscar la <br> información especifica");
 
         sedeLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sedeLbl1.setText("a:");
@@ -296,6 +301,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         fechaTerminacionDCh.setDateFormatString("dd/MM/yyyy");
         fechaTerminacionDCh.setMaximumSize(new java.awt.Dimension(91, 20));
 
+        tablaMsjLbl.setText("<html>Para Modificar seleccione la fecha inicial, el nombre o el estado del evento que deseea modificar, para eliminar selecciona el cuadro eliminar de la columna Eliminar del evento que desee</html> ");
+
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
         buscarPnlLayout.setHorizontalGroup(
@@ -304,30 +311,34 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(buscarPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(buscarPnlLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(buscarPnlLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
                                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreBusLbl)
-                                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(sedeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(sedeLbl)))
-                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(notaBusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(opcionesBusLbl)
                                     .addGroup(buscarPnlLayout.createSequentialGroup()
+                                        .addComponent(nombreBusLbl)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buscarPnlLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
+                                    .addGroup(buscarPnlLayout.createSequentialGroup()
+                                        .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(sedeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(sedeLbl))
+                                        .addGap(18, 18, 18)
                                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(fechaInicialDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscarBtn))
-                            .addComponent(notaBusLbl)
-                            .addComponent(opcionesBusLbl))))
-                .addGap(0, 25, Short.MAX_VALUE))
+                                            .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(buscarPnlLayout.createSequentialGroup()
+                                                .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(buscarBtn))))))
+                            .addGroup(buscarPnlLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 15, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         buscarPnlLayout.setVerticalGroup(
             buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,24 +346,25 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(opcionesBusLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notaBusLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notaBusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreBusLbl)
                     .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sedeLbl)
                     .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(sedeLbl1)
-                        .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buscarBtn))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGap(18, 18, 18)
+                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sedeLbl1)
+                    .addComponent(buscarBtn)
+                    .addComponent(fechaTerminacionDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         opcionesTP.addTab("Buscar Evento", buscarPnl);
@@ -365,9 +377,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(opcionesTP, javax.swing.GroupLayout.PREFERRED_SIZE, 577, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(opcionesTP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -543,6 +553,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     private javax.swing.JPanel registrarPnl;
     private javax.swing.JLabel sedeLbl;
     private javax.swing.JLabel sedeLbl1;
+    private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JTable tablaTbl;
     public javax.swing.JComboBox tipoBusCBx;
     private javax.swing.JComboBox tipoRegCBx;

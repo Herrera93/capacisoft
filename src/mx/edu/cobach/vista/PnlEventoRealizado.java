@@ -88,6 +88,11 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         campoModel.addElement("Departamento");
         campoModel.addElement("Puesto");
         campoModel.addElement("Plantel");
+        campoModel.addElement("Direccion");
+        campoModel.addElement("Departamento/Nombre");
+        campoModel.addElement("Puestos/Nombre");
+        campoModel.addElement("Plantel/Nombre");
+        campoModel.addElement("Direccion/Nombre");
         campoCBx.setModel(campoModel);
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
@@ -730,7 +735,42 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre de la Puesto:");
+                break;
+            case "Direccion":
+                visibilidadBusNombre(false);
+                visibilidadBusTipo(true);
+                //control.setClass(Direccion.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Direccion:");
+                break;
+            case "Departamento/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                control.setClass(Departamento.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Departamento:");
+                break;
+            case "Plantel/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                control.setClass(Plantel.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Plantel:");
+                break;
+            case "Puestos/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                control.setClass(Puesto.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Puesto:");
+                break;
+            case "Direccion/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                //control.setClass(Direccion.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Direccion:");
                 break;
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
@@ -758,6 +798,21 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 break;
             case "Puesto":
                 control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
+            case "Direccion":
+                //control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
+            case "Departamento/Nombre":
+                //control.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
+                break;
+            case "Plantel/Nombre":
+                //control.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
+                break;
+            case "Puesto/Nombre":
+                //control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
+            case "Direccion/Nombre":
+                //control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed

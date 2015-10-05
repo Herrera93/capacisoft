@@ -77,6 +77,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         campoModel.addElement("Departamento");
         campoModel.addElement("Puesto");
         campoModel.addElement("Plantel");
+        campoModel.addElement("Direccion");
+        campoModel.addElement("Departamento/Nombre");
+        campoModel.addElement("Puestos/Nombre");
+        campoModel.addElement("Plantel/Nombre");
+        campoModel.addElement("Direccion/Nombre");
         campoCBx.setModel(campoModel);
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
 
@@ -629,6 +634,21 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             case "Puesto":
                 control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
                 break;
+            case "Direccion":
+                //control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
+            case "Departamento/Nombre":
+                //control.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
+                break;
+            case "Plantel/Nombre":
+                //control.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
+                break;
+            case "Puesto/Nombre":
+                //control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
+            case "Direccion/Nombre":
+                //control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
     /**
@@ -666,7 +686,42 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                 visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre de la Puesto:");
+                break;
+            case "Direccion":
+                visibilidadBusNombre(false);
+                visibilidadBusTipo(true);
+                //control.setClass(Direccion.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Direccion:");
+                break;
+            case "Departamento/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                control.setClass(Departamento.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Departamento:");
+                break;
+            case "Plantel/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                control.setClass(Plantel.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Plantel:");
+                break;
+            case "Puestos/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                control.setClass(Puesto.class);
+                control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Puesto:");
+                break;
+            case "Direccion/Nombre":
+                visibilidadBusNombre(true);
+                visibilidadBusTipo(true);
+                //control.setClass(Direccion.class);
+                control.buscarTodosLista(3);
+                seleccionLALbl.setText("Nombre del Direccion:");
                 break;
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
@@ -742,12 +797,12 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         /**
      * Metodo que permite agregar los empleados en la tabla de asistencia
      */
-    private void agregarEmpleadosTabla(int valor) {
+    private void agregarEmpleadosTabla(int posicionLista) {
         boolean bandera = false;
         this.cambio = true;
         tablaLisFTbl.setEnabled(true);
         for (int j = 0; j < modelTablaEmF.getRowCount(); j++) {
-            if (modelTablaEmI.getValueAt(valor, 0).equals(modelTablaEmF.getValueAt(j, 0))) {
+            if (modelTablaEmI.getValueAt(posicionLista, 0).equals(modelTablaEmF.getValueAt(j, 0))) {
                 bandera = true;
             }
         }
@@ -761,9 +816,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                     tableData[k][j] = modelTablaEmF.getValueAt(k, j);
                 }
             }
-            tableData[modelTablaEmF.getRowCount()][0] = modelTablaEmI.getValueAt(valor, 0);
-            tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.getValueAt(valor, 1);
-            tableData[modelTablaEmF.getRowCount()][2] = modelTablaEmI.getValueAt(valor, 2);
+            tableData[modelTablaEmF.getRowCount()][0] = modelTablaEmI.getValueAt(posicionLista, 0);
+            tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.getValueAt(posicionLista, 1);
+            tableData[modelTablaEmF.getRowCount()][2] = modelTablaEmI.getValueAt(posicionLista, 2);
             modelTablaEmF.setDataVector(tableData, titulosTablaEm);
             TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
             tablaLisFTbl.getColumnModel().removeColumn(tc);
