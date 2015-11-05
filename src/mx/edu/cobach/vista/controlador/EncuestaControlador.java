@@ -108,7 +108,17 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarImplementacion(Object evento, Date de, Date hasta){
         List<Object> implementaciones = ServiceLocatorDELEGATE.getEncuesta()
                 .buscarImplementaciones((Evento) evento, de, hasta);
-        com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+        List<Object> implementacionesActivas = new ArrayList();
+        for(Object implementacionObj : implementaciones) {
+            ImplementacionEvento implementacion = (ImplementacionEvento) implementacionObj;
+            if(implementacion.isActivo()){
+                implementacionesActivas.add(implementacion);
+            }
+        }
+        if(implementacionesActivas.isEmpty())
+            com.setMensaje("No se encontraron implementaciones con encuestas");
+        else
+            com.setTabla(HelperEntidad.descomponerObjetos(implementacionesActivas));
     }
     
     /**
@@ -148,7 +158,10 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarImplementacionResultado(Object evento, Date de, Date hasta) {
         List<Object> implementaciones = ServiceLocatorDELEGATE.getEncuesta()
                 .buscarImplementacionesResultado((Evento) evento, de, hasta);
-        com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+        if(implementaciones.isEmpty())
+            com.setMensaje("No se encontraron implementaciones con encuestas");
+        else
+            com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
 
     /**
@@ -184,7 +197,7 @@ public class EncuestaControlador extends BaseControlador {
             ServiceLocatorDELEGATE.getEncuesta()
                     .guardarRespuestas(encuesta.getJotformIdAntes());
             ServiceLocatorDELEGATE.getEncuesta()
-                    .guardarRespuestas(encuesta.getJotformIdDespues());            
+                    .guardarRespuestasDespues(encuesta.getJotformIdDespues());            
         }
     }
 

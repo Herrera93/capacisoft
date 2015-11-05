@@ -272,6 +272,79 @@ public class EncuestaDELEGATE {
         }
     }
     
+    public void guardarRespuestasDespues(long idEncuesta){
+        //Se obtiene un Arreglo de JSON con las respuestas  de una encuesta
+        JSONArray respuestas = JotFormUtil.getRespuestas(idEncuesta);
+        try {
+            if(respuestas.getJSONObject(0).getString("id").equalsIgnoreCase("#SampleSubmissionID"))
+                return;
+        } catch (JSONException ex) {
+            Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int idAsignado = JotFormUtil.getIdPregunta(idEncuesta, "asignado");
+        
+        Encuesta encuesta = ServiceLocatorFACADE.getEncuesta()
+                .burcarPorJotformId(idEncuesta);        
+        Set<Aspecto> aspectos = encuesta.getAspectos();
+        
+        //Se crea un HashMap con los identificadores y su aspecto correspondiente
+        JSONObject preguntas = JotFormUtil.getPreguntas(idEncuesta);
+        Iterator<Aspecto> itrAspectos = aspectos.iterator();
+        HashMap<String, Aspecto> preguntasId = new HashMap();
+        
+        while(itrAspectos.hasNext()){
+            Aspecto aspecto = itrAspectos.next();
+            Iterator itrPreguntas = preguntas.keys();
+            while(itrPreguntas.hasNext()){
+                String llave = (String) itrPreguntas.next();
+                String nombrePregunta;
+                try {
+                    nombrePregunta = preguntas.getJSONObject(llave).getString("name");
+                    if(aspecto.getAspecto().equalsIgnoreCase(nombrePregunta))
+                        preguntasId.put(llave, aspecto);
+                } catch (JSONException ex) {
+                    Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        for(int i = 0; i < respuestas.length(); i++){
+            try {
+                JSONObject respuestaJson = (JSONObject) respuestas.get(i);
+                
+                respuestaJson = respuestaJson.getJSONObject("answers");
+                
+                String asignado = respuestaJson.getJSONObject(String.valueOf(idAsignado))
+                    .getString("answer");
+                
+                Empleado empleado = (Empleado) ServiceLocatorFACADE.getInstance()
+                    .find(Integer.parseInt(asignado), Empleado.class);
+                
+                //Se verifica si las respuestas de este empleado ya han sido registradas
+                List<Respuesta> respuestaVerificacion = ServiceLocatorFACADE.getRespuesta()
+                    .buscarPorEmpleadoEncuesta(empleado, encuesta);
+                
+                //Se guarda cada respuesta en la base  de datos
+                for(String idPregunta : preguntasId.keySet()){
+                    Respuesta respuesta = new Respuesta();
+                    for(Respuesta resp: respuestaVerificacion){
+                        if(resp.getAspecto().getAspecto()
+                            .equalsIgnoreCase(preguntasId.get(idPregunta).getAspecto())){
+                            respuesta = resp;
+                        }
+                    }
+                    
+                    respuesta.setDespuesCurso(respuestaJson.getJSONObject(idPregunta)
+                        .getInt("answer"));
+                    ServiceLocatorFACADE.getInstance().saveOrUpdate(respuesta, Respuesta.class);
+                }
+                
+            } catch (JSONException ex) {
+                Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     /**
      * Metodo para la busqueda de aspectos de alguna competencia.
      * @param competencia Objeto de la competencia

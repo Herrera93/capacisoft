@@ -492,7 +492,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     }//GEN-LAST:event_programarEvento_MItActionPerformed
 
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
-        this.setTitle("Capacisoft - Curso de capacitación");
+        this.setTitle("Capacisoft - Evento de capacitación");
         usuarioPnl.setVisible(false);
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);

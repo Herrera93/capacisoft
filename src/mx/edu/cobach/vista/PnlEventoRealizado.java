@@ -1434,19 +1434,18 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                         + " terminacion");
                 return true;
             }
-        } else {
-            int rowN = enunciadoTbl.getRowCount();
-            boolean band = false;
-            for (int x = 0; x < rowN; x++) {
-                if (((Object) modelTablaEn.getValueAt(x, 3)) == null) {
-                    band = true;
-                }
+        }
+        int rowN = enunciadoTbl.getRowCount();
+        boolean band = false;
+        for (int x = 0; x < rowN; x++) {
+            if (((Object) modelTablaEn.getValueAt(x, 3)) == null) {
+                band = true;
             }
-            if (band == true) {
-                JOptionPane.showMessageDialog(this, "No se a completado la "
-                        + "calificacion de la logistica");
-                return true;
-            }
+        }
+        if (band == true) {
+            JOptionPane.showMessageDialog(this, "No se a completado la "
+                    + "calificacion de la logistica");
+            return true;
         }
         return false;
     }

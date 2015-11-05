@@ -223,9 +223,12 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         if(columna == 2){
             boolean valor = (boolean) empleadosTbl.getValueAt(renglon, columna);
             empleadosTblModel.setValueAt(valor, renglon, (columna + 1));
-            if(valor)
+            if(valor){
+                antesGraficaPnl.removeAll();
+                despuesGraficaPnl.removeAll();
+                revalidate();
                 mostrarGraficas((String) empleadosTblModel.getValueAt(renglon, 0));
-            else
+            }else
                 limpiar();
         }
     }//GEN-LAST:event_empleadosTblMouseClicked
@@ -256,8 +259,13 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
      * Metodo limpia la tabla de empleados y borra los registros.
      */
     public void limpiar() {
-        empleadosTblModel.setDataVector(new String[3][0], titulosTabla);
         idImplementacion = -1;
+        empleadosTblModel.setDataVector(new String[3][0], titulosTabla);
+        if(antesGraficaPnl.getComponentCount() > 0){
+            antesGraficaPnl.removeAll();
+            despuesGraficaPnl.removeAll();
+            repaint();
+        }
     }
 
     /**

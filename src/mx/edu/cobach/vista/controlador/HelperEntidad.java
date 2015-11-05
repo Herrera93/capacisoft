@@ -157,7 +157,7 @@ public class HelperEntidad {
         e.setAdscripcion((Adscripcion) atributos.get(7));
         Adscripcion ads = ((Adscripcion) atributos.get(7)); 
         System.out.println(ads.getDescripcion());
-        if(ads.getDescripcion().equalsIgnoreCase("Plantel ")){
+        if(ads.getDescripcion().equalsIgnoreCase("Plantel")){
             e.setPlantel((Plantel) atributos.get(8));
         }else{
             e.setDepartamento((Departamento) atributos.get(9));

@@ -600,11 +600,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(primerApellidoTFd.getText());
         if (segApellidoTFd.getText().isEmpty()) {
             atributos.add("");
-            } else {
-        atributos.add(segApellidoTFd.getText());
-            }
+        } else {
+            atributos.add(segApellidoTFd.getText());
+        }
         atributos.add(puestoCBx.getSelectedItem());
-        atributos.add(correoTFd.getText());
+        atributos.add(correoTFd.getText() + "@cobachbc.edu.mx");
         atributos.add(adscCBx.getSelectedItem());
         atributos.add(plantelCBx.getSelectedItem());
         atributos.add(departamentoCBx.getSelectedItem());
@@ -616,6 +616,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellidoTFd.setText("");
         segApellidoTFd.setText("");
         correoTFd.setText("");
+        puestoCBx.setSelectedIndex(0);
+        adscCBx.setSelectedIndex(0);
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
 
         //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
         //contenido en el boton.
@@ -674,12 +678,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 tablaTbl.clearSelection();
             }
         }
+        tablaTbl.clearSelection();
     }//GEN-LAST:event_tablaTblMouseClicked
 
     /**
-     * Evento que se ejecuta cuandore se presiona el boton Buscar, donde se 
+     * Evento que se ejecuta cuandore se presiona el boton Buscar, donde se
      * limpian los campos, se obtiene el valor por que se va a agregar.
-     * @param evt 
+     *
+     * @param evt
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se limpian los campos
@@ -712,9 +718,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     /**
      * Evento que se ejecuta al presionar el boton Cancelar el cual va a limpiar
-     * todos lo campos del panel info y los desahabilitara para realizar otra 
+     * todos lo campos del panel info y los desahabilitara para realizar otra
      * accion.
-     * @param evt 
+     *
+     * @param evt
      */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         //Se limpian los campos
@@ -741,9 +748,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**
-     * El este evento se produce cuando se intenta teclear en el campo 
-     * numero, donde solo se permitira el uso de numeros.
-     * @param evt 
+     * El este evento se produce cuando se intenta teclear en el campo numero,
+     * donde solo se permitira el uso de numeros.
+     *
+     * @param evt
      */
     private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
         char car = evt.getKeyChar();
@@ -759,7 +767,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     /**
      * Este evento se se produce cuando se intenta teclear en el campo
      * primerNombre, donde solo se permitira el uso de letras y espacios.
-     * @param evt 
+     *
+     * @param evt
      */
     private void primerNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerNombreTFdKeyTyped
         char car = evt.getKeyChar();
@@ -786,7 +795,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     /**
      * Este evento se se produce cuando se intenta teclear en el campo
      * primerApellido, donde solo se permitira el uso de letras y espacios.
-     * @param evt 
+     *
+     * @param evt
      */
     private void primerApellidoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerApellidoTFdKeyTyped
         char car = evt.getKeyChar();
@@ -812,9 +822,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     }//GEN-LAST:event_primerApellidoTFdKeyTyped
 
     /**
-     * El este evento se produce cuando se intenta teclear en el campo 
-     * numero, donde solo se permitira el uso de numeros.
-     * @param evt 
+     * El este evento se produce cuando se intenta teclear en el campo numero,
+     * donde solo se permitira el uso de numeros.
+     *
+     * @param evt
      */
     private void correoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTFdKeyTyped
         if (correoTFd.getText().length() >= 45) {
@@ -829,7 +840,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         } else if (adscCBx.getSelectedIndex() == 1) {
             plantelCBx.setEnabled(false);
             departamentoCBx.setEnabled(true);
-        } else if(adscCBx.getSelectedIndex() == 2) {
+        } else if (adscCBx.getSelectedIndex() == 2) {
             departamentoCBx.setEnabled(false);
             plantelCBx.setEnabled(true);
         }
@@ -896,6 +907,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 validNumLbl.setForeground(new Color(240, 0, 0));
                 break;
             case "Se ha guardado existosamente":
+                JOptionPane.showMessageDialog(this, mensaje,
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case "Se ha modificado existosamente":
                 JOptionPane.showMessageDialog(this, mensaje,
                         "Informacion", JOptionPane.INFORMATION_MESSAGE);
                 break;
@@ -1008,7 +1023,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellidoTFd.setText((String) info.get(4));
         segApellidoTFd.setText((String) info.get(5));
         puestoModel.setSelectedItem(info.get(6));
-        correoTFd.setText((String) info.get(7));
+        String[] correo = ((String) info.get(7)).split("@");
+        correoTFd.setText(correo[0]);
         plantelModel.setSelectedItem(info.get(8));
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
