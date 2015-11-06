@@ -28,11 +28,11 @@
     <mapping resource="mx/edu/cobach/persistencia/entidades/Puesto.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Evento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoEnunciado.hbm.xml"/>
-    <mapping resource="mx/edu/cobach/persistencia/entidades/Enfoque.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Sede.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionEvento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoEvento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Departamento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Empleado.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Direccion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

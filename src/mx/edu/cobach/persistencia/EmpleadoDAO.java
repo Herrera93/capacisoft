@@ -5,10 +5,10 @@
  */
 package mx.edu.cobach.persistencia;
 
-import java.util.Arrays;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -101,6 +101,27 @@ public class EmpleadoDAO extends BaseDAO{
                     add(Restrictions.eq("puesto", puesto)).list();
             HibernateUtil.commitTransaction();
             System.out.println("Buscar por nombre::Puesto");
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
+    /**
+     * Obtiene todas las implementaciones relacionadas con una direccion dada.
+     * @param direccion
+     * @return 
+     */
+    public List<Object> buscarPorDireccion(Direccion direccion){        
+        List<Object> ts = null;        
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            ts = HibernateUtil.getSession().createCriteria(entityClass).
+                    add(Restrictions.eq("direccion", direccion)).list();
+            HibernateUtil.commitTransaction();
+            System.out.println("Buscar por nombre::Direccion");
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
         }finally{

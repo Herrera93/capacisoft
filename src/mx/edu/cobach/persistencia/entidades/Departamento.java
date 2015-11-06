@@ -12,7 +12,6 @@ public class Departamento  implements java.io.Serializable {
 
 
      private Integer id;
-     private Enfoque enfoque;
      private String nombre;
      private Set<Empleado> empleados = new HashSet<Empleado>(0);
 
@@ -20,12 +19,10 @@ public class Departamento  implements java.io.Serializable {
     }
 
 	
-    public Departamento(Enfoque enfoque, String nombre) {
-        this.enfoque = enfoque;
+    public Departamento(String nombre) {
         this.nombre = nombre;
     }
-    public Departamento(Enfoque enfoque, String nombre, Set<Empleado> empleados) {
-       this.enfoque = enfoque;
+    public Departamento(String nombre, Set<Empleado> empleados) {
        this.nombre = nombre;
        this.empleados = empleados;
     }
@@ -37,13 +34,7 @@ public class Departamento  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Enfoque getEnfoque() {
-        return this.enfoque;
-    }
     
-    public void setEnfoque(Enfoque enfoque) {
-        this.enfoque = enfoque;
-    }
     public String getNombre() {
         return this.nombre;
     }

@@ -1,56 +1,58 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 26, 2015 1:34:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="mx.edu.cobach.persistencia.entidades.Empleado" table="empleado" catalog="capacisoft">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity"></generator>
-        </id>
-        <many-to-one name="adscripcion" class="mx.edu.cobach.persistencia.entidades.Adscripcion" fetch="select" lazy="false">
-            <column name="adscripcion_id" not-null="true" />
-        </many-to-one>
-        <many-to-one name="departamento" class="mx.edu.cobach.persistencia.entidades.Departamento" fetch="select" lazy="false">
-            <column name="departamento_id" />
-        </many-to-one>
-        <many-to-one name="plantel" class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select" lazy="false">
-            <column name="plantel_id" />
-        </many-to-one>
-        <many-to-one name="puesto" class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select" lazy="false">
-            <column name="puesto_id" not-null="true" />
-        </many-to-one>
-        <property name="numero" type="string">
-            <column name="numero" length="10" not-null="true" unique="true" />
-        </property>
-        <property name="primerNombre" type="string">
-            <column name="primer_nombre" length="45" not-null="true" />
-        </property>
-        <property name="segundoNombre" type="string">
-            <column name="segundo_nombre" length="45" not-null="false"/>
-        </property>
-        <property name="apellidoPaterno" type="string">
-            <column name="apellido_paterno" length="45" not-null="true" />
-        </property>
-        <property name="apellidoMaterno" type="string">
-            <column name="apellido_materno" length="45" not-null="false" />
-        </property>
-        <property name="correo" type="string">
-            <column name="correo" length="45" not-null="true" />
-        </property>
-        <set name="respuestas" table="respuesta" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="empleado_id" not-null="true" />
-            </key>
-            <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta" />
-        </set>
-        <set name="implementacionEventos" table="implementacion_evento_empleado" inverse="false" lazy="false" fetch="select">
-            <key>
-                <column name="empleado_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="mx.edu.cobach.persistencia.entidades.ImplementacionEvento">
-                <column name="implementacion_evento_id" not-null="true" />
-            </many-to-many>
-        </set>
-    </class>
+  <class catalog="capacisoft" name="mx.edu.cobach.persistencia.entidades.Empleado" table="empleado">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Adscripcion" fetch="select" lazy="false" name="adscripcion">
+      <column name="adscripcion_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Departamento" fetch="select" lazy="false" name="departamento">
+      <column name="departamento_id"/>
+    </many-to-one>
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Plantel" fetch="select" lazy="false" name="plantel">
+      <column name="plantel_id"/>
+    </many-to-one>
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Puesto" fetch="select" lazy="false" name="puesto">
+      <column name="puesto_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="mx.edu.cobach.persistencia.entidades.Direccion" fetch="select" lazy="false" name="direccion">
+      <column name="direccion_id"/>
+    </many-to-one>
+    <property name="numero" type="string">
+      <column length="10" name="numero" not-null="true" unique="true"/>
+    </property>
+    <property name="primerNombre" type="string">
+      <column length="45" name="primer_nombre" not-null="true"/>
+    </property>
+    <property name="segundoNombre" type="string">
+      <column length="45" name="segundo_nombre" not-null="false"/>
+    </property>
+    <property name="apellidoPaterno" type="string">
+      <column length="45" name="apellido_paterno" not-null="true"/>
+    </property>
+    <property name="apellidoMaterno" type="string">
+      <column length="45" name="apellido_materno" not-null="false"/>
+    </property>
+    <property name="correo" type="string">
+      <column length="45" name="correo" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="respuestas" table="respuesta">
+      <key>
+        <column name="empleado_id" not-null="true"/>
+      </key>
+      <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta"/>
+    </set>
+    <set fetch="select" inverse="false" lazy="false" name="implementacionEventos" table="implementacion_evento_empleado">
+      <key>
+        <column name="empleado_id" not-null="true"/>
+      </key>
+      <many-to-many entity-name="mx.edu.cobach.persistencia.entidades.ImplementacionEvento">
+        <column name="implementacion_evento_id" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
 </hibernate-mapping>
