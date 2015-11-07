@@ -11,6 +11,7 @@ import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
@@ -283,7 +284,7 @@ public class ImplementarEventoControlador extends BaseControlador {
             com.setMensaje("No se encontro el empleado");
         } else {
             String matriz[][] = HelperEntidad.descomponerObjetos(o);
-        //se agrega un string para hubicar a que direccion de las 
+            //se agrega un string para hubicar a que direccion de las 
             //3 tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1";
             com.setTabla(matriz);
@@ -302,7 +303,7 @@ public class ImplementarEventoControlador extends BaseControlador {
      * @param hasta Fecha de terminacion de rango
      */
     public void buscarImplementacion(Object evento, Date de, Date hasta) {
-        List<Object> implementaciones = ServiceLocatorDELEGATE.getEncuesta()
+        List<Object> implementaciones = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarImplementaciones((Evento) evento, de, hasta);
         com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
     }
@@ -314,36 +315,34 @@ public class ImplementarEventoControlador extends BaseControlador {
      * @param direccion
      * @param text
      */
-    /*
-     public void buscarEmpPorDireccionEmpleado(Direccion direccion, String text) {
-     List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmpPorDireccionNEmpleado(direccion, text);
-     if(o.size()==0){
+    public void buscarEmpPorDireccionEmpleado(Direccion direccion, String text) {
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmpPorDireccionNEmpleado(direccion, text);
+        if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
-        }else{
-     String matriz[][] = HelperEntidad.descomponerObjetos(o);
-     //se agrega un string para hubicar a que direccion de las 
-     //3 tablas se dirigira
-     matriz[0][0] = matriz[0][0] + "TLE1";
-     com.setTabla(matriz);
-     }
-     }
-     */
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            //se agrega un string para hubicar a que direccion de las 
+            //3 tablas se dirigira
+            matriz[0][0] = matriz[0][0] + "TLE1";
+            com.setTabla(matriz);
+        }
+    }
+
     /**
      * Este metodo sirve para buscar la coincidencia del puesto de los empleados
      * para la lista de asistencia
      *
      * @param direccion
-     *//*
-     public void buscarEmpDi(Direccion direccion) {
-     if(o.size()==0){
-            com.setMensaje("No se encontro el empleado");
-        }else{
-     List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorDireccion(direccion);
-     String matriz[][] = HelperEntidad.descomponerObjetos(o);
-     matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
-     com.setTabla(matriz);
-    }
-     }
      */
+    public void buscarEmpDi(Direccion direccion) {
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorDireccion(direccion);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
+            com.setTabla(matriz);
+        }
+    }
 
 }
