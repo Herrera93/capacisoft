@@ -54,6 +54,17 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
     public List<Object> buscarEmPorPlantel(Plantel plantel) {
         return ServiceLocatorFACADE.getEmpleado().buscarPorPlantel(plantel);
     }
+    
+    /**
+     * Obtiene todos los empleados que estan relacionados a tal plantel
+     * @param direccion
+     * @return Regresa la lista de los empleados
+     *//*
+    public List<Object> buscarEmPorPlantel(Direccion direccion) {
+        return ServiceLocatorFACADE.getEmpleado().buscarPorDireccion(direccion);
+    }
+    */
+    
     /**
      * Obtiene todas las encuestas de la logistica para el evento.
      * @param eventoProgra
@@ -95,4 +106,50 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
     public Object guardarEvento(Object impleEvento, Class clazz) {
         return ServiceLocatorFACADE.getImplementacionEvento().guardarEvento(impleEvento, clazz);
     }
+    /**
+     * Metodo que sirve para conectarse con el facade de empleado y obtener la 
+     * informacion de los empleados con su nombre y el departamento que se 
+     * encuentran
+     * @param departamento
+     * @param text
+     * @return 
+     */
+    public List<Object> buscarEmpPorDepartamentoNEmpleado(Departamento departamento, String text) {
+        return ServiceLocatorFACADE.getEmpleado().buscarPorDepartamentoNEmpleado(departamento,text);
+    }
+    /**
+     * Metodo que sirve para conectarse con el facade de empleado y obtener la 
+     * informacion de los empleados con su nombre y el plantel que se 
+     * encuentran
+     * @param plantel
+     * @param text
+     * @return 
+     */
+    public List<Object> buscarEmpPorPlantelNEmpleado(Plantel plantel, String text) {
+        return ServiceLocatorFACADE.getEmpleado().buscarPorPlantelNEmpleado(plantel,text);
+    }
+    /**
+     * Metodo que sirve para conectarse con el facade de empleado y obtener la 
+     * informacion de los empleados con su nombre y el puesto que se 
+     * encuentran
+     * @param puesto
+     * @param text
+     * @return 
+     */
+    public List<Object> buscarEmpPorPuestoNEmpleado(Puesto puesto, String text) {
+        return ServiceLocatorFACADE.getEmpleado().buscarPorPuestoNEmpleado(puesto,text);
+    }
+
+    /**
+     * Metodo que sirve para conectarse con el facade de empleado y obtener la 
+     * informacion de los empleados con su nombre y el puesto que se 
+     * encuentran
+     * @param direccion
+     * @param text
+     * @return 
+     *//*
+    public List<Object> buscarEmpPorDireccionNEmpleado(Direccion direccion, String text) {
+        return ServiceLocatorFACADE.getEmpleado().buscarPorDireccionNEmpleado(direccion,text);
+    }
+    */
 }

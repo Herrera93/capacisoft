@@ -36,9 +36,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
         "Estado", "Eliminar"};
     public String estado;
-    
-    //mensaje instruccion : JLabel
 
+    //mensaje instruccion : JLabel
     public PnlProgramarEvento() {
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         initComponents();
@@ -293,7 +292,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         notaBusLbl.setText("<html>Ingrese el nombre o la fecha del evento para buscar la <br> información especifica");
 
         sedeLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sedeLbl1.setText("a:");
+        sedeLbl1.setText("hasta:");
 
         fechaInicialDCh.setDateFormatString("dd/MM/yyyy");
         fechaInicialDCh.setMaximumSize(new java.awt.Dimension(91, 20));
@@ -325,8 +324,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                                         .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(buscarPnlLayout.createSequentialGroup()
                                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(sedeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(sedeLbl))
+                                            .addComponent(sedeLbl)
+                                            .addComponent(sedeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(fechaInicialDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -400,7 +399,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
      * @param evt
      */
     private void regRealizadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regRealizadoBtnActionPerformed
-         if (eventoRealizarPnl.isCambio() == true
+        if (eventoRealizarPnl.isCambio() == true
                 || eventoRealizadoPnl.isCambio() == true) {
             if (JOptionPane.showConfirmDialog(this, "La información se"
                     + " esta modificando,¿Aun así desea cancelarla?",
@@ -457,7 +456,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
 
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
-       int col = tablaTbl.columnAtPoint(evt.getPoint());
+        int col = tablaTbl.columnAtPoint(evt.getPoint());
         if (col == 0 || col == 1 || col == 2) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
@@ -486,19 +485,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if ((Evento) tipoBusCBx.getSelectedItem() != null) {
-            if (((Evento) tipoBusCBx.getSelectedItem()).getNombre().compareTo("") != 0) {
-                control.setClass(ImplementacionEvento.class);
-                control.buscarPorEvento((Evento) tipoBusCBx.getSelectedItem());
-            } else if (fechaInicialDCh.getDate() != null
-                    && fechaTerminacionDCh.getDate() != null) {
-                control.setClass(ImplementacionEvento.class);
-                control.buscarImplementacion(fechaInicialDCh.getDate(), fechaTerminacionDCh.getDate());
-            } else {
-                control.setClass(ImplementacionEvento.class);
-                control.buscarTodos();
-            }
-        }
+        Object evento = tipoBusCBx.getSelectedItem();
+        Date de = fechaInicialDCh.getDate();
+        Date hasta = fechaTerminacionDCh.getDate();
+        control.buscarImplementacion(evento, de, hasta);
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
@@ -580,11 +570,13 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     public void setTabla(String[][] info) {
         tablaTbl.setEnabled(true);
         model.setDataVector(info, titulosTabla);
-        //Esconder columna ID
+
         TableColumn tc = tablaTbl.getColumnModel().getColumn(4);
         tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
         tablaTbl.getColumnModel().removeColumn(tablaTbl.getColumnModel().getColumn(0));
+        //Esconder columna ID
+
     }
 
     /**
@@ -635,9 +627,9 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 break;
         }
     }
-    
+
     @Override
-    public void llenarDatos(Object evento){
+    public void llenarDatos(Object evento) {
         llenarTodo();
         tipoRegCBx.setSelectedIndex(((ImplementacionEvento) evento)
                 .getEvento().getId());

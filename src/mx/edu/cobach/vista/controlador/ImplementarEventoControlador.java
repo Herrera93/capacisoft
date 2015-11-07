@@ -22,16 +22,18 @@ import mx.edu.cobach.vista.Comunicador;
 
 /**
  * Esta clase sirve para controlar la informacion de los eventos utilizando
- * metodos para la obtencion de la informacion necesario y descomponerla en 
+ * metodos para la obtencion de la informacion necesario y descomponerla en
  * listas y matrices para enviarlas a los pnl
+ *
  * @author liuts
  */
 public class ImplementarEventoControlador extends BaseControlador {
-    
+
     /**
      * Controlador de la clase ImplementarEventoControlador
+     *
      * @param com
-     * @param clazz 
+     * @param clazz
      */
     public ImplementarEventoControlador(Comunicador com, Class clazz) {
         super(com, clazz);
@@ -68,6 +70,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarPorEvento(evento);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
+
     /**
      * Este metodo sirve para buscar el id del empleado y agregarlo a la lista
      * de asistencia para la lista de asistencia
@@ -92,11 +95,15 @@ public class ImplementarEventoControlador extends BaseControlador {
      */
     public void buscarEmpN(String clave) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorNombre(clave);
-        String matriz[][] = HelperEntidad.descomponerObjetos(o);
-        //se agrega un string para hubicar a que direccion de las 
-        //3 tablas se dirigira
-        matriz[0][0] = matriz[0][0] + "TLE1";
-        com.setTabla(matriz);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            //se agrega un string para hubicar a que direccion de las 
+            //3 tablas se dirigira
+            matriz[0][0] = matriz[0][0] + "TLE1";
+            com.setTabla(matriz);
+        }
     }
 
     /**
@@ -119,9 +126,13 @@ public class ImplementarEventoControlador extends BaseControlador {
      */
     public void buscarEmpD(Departamento departamento) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorDepartamento(departamento);
-        String matriz[][] = HelperEntidad.descomponerObjetos(o);
-        matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
-        com.setTabla(matriz);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
+            com.setTabla(matriz);
+        }
     }
 
     /**
@@ -132,9 +143,13 @@ public class ImplementarEventoControlador extends BaseControlador {
      */
     public void buscarEmpPl(Plantel plantel) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorPlantel(plantel);
-        String matriz[][] = HelperEntidad.descomponerObjetos(o);
-        matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
-        com.setTabla(matriz);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
+            com.setTabla(matriz);
+        }
     }
 
     /**
@@ -146,13 +161,18 @@ public class ImplementarEventoControlador extends BaseControlador {
      */
     public void buscarEmpPu(Puesto puesto) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorPuesto(puesto);
-        String matriz[][] = HelperEntidad.descomponerObjetos(o);
-        matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
-        com.setTabla(matriz);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
+            com.setTabla(matriz);
+        }
     }
 
     /**
-     * Este metodo sirve para buscar la coincidencia de los eventos implementados
+     * Este metodo sirve para buscar la coincidencia de los eventos
+     * implementados
      *
      * @param de
      * @param hasta
@@ -185,7 +205,7 @@ public class ImplementarEventoControlador extends BaseControlador {
                 infoCalificacion.setImplementacionEvento(implementacionEvento);
                 ServiceLocatorDELEGATE.getInstance().saveOrUpdate(infoCalificacion, clazz);
             }
-        }else{
+        } else {
             ServiceLocatorDELEGATE.getInstance().saveOrUpdate(impleEvento, clazz);
             for (int x = 0; x < listaCalificacion.size(); x++) {
                 ImplementacionEventoEnunciadoLogistica infoCalificacion
@@ -198,7 +218,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Este evento sirve para obtener una lista de la calificacion de logistica
+     * Este metodo sirve para obtener una lista de la calificacion de logistica
      * implementada
      *
      * @param impleEvento
@@ -209,5 +229,121 @@ public class ImplementarEventoControlador extends BaseControlador {
         matriz[0][0] = matriz[0][0] + "TLE4"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
         com.setTabla(matriz);
     }
+
+    /**
+     * Este metodoexiste para la busqueda del empleado con su nombre y con el
+     * departamento
+     *
+     * @param departamento
+     * @param text
+     */
+    public void buscarEmpPorDepartamentoNEmpleado(Departamento departamento, String text) {
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmpPorDepartamentoNEmpleado(departamento, text);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            //se agrega un string para hubicar a que direccion de las 
+            //3 tablas se dirigira
+            matriz[0][0] = matriz[0][0] + "TLE1";
+            com.setTabla(matriz);
+        }
+    }
+
+    /**
+     * Este metodoexiste para la busqueda del empleado con su nombre y con su
+     * plantel
+     *
+     * @param plantel
+     * @param text
+     */
+    public void buscarEmpPorPlantelNEmpleado(Plantel plantel, String text) {
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmpPorPlantelNEmpleado(plantel, text);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            //se agrega un string para hubicar a que direccion de las 
+            //3 tablas se dirigira
+            matriz[0][0] = matriz[0][0] + "TLE1";
+            com.setTabla(matriz);
+        }
+    }
+
+    /**
+     * Este metodo existe para la busqueda del empleado con su nombre y con su
+     * direccion
+     *
+     * @param puesto
+     * @param text
+     */
+    public void buscarEmpPorPuestoNEmpleado(Puesto puesto, String text) {
+        List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmpPorPuestoNEmpleado(puesto, text);
+        if (o.size() == 0) {
+            com.setMensaje("No se encontro el empleado");
+        } else {
+            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+        //se agrega un string para hubicar a que direccion de las 
+            //3 tablas se dirigira
+            matriz[0][0] = matriz[0][0] + "TLE1";
+            com.setTabla(matriz);
+        }
+    }
+
+    /**
+     * Se buscan las implementacion de un evento que se encuentren en un rango
+     * de fechas dado. Cualquiera de estos elementos puede ser nulo, y se
+     * consideraran los elementos que no los sean, en caso de todos ser nulos se
+     * regresan todas las implementaciones. Se obtienen las implementacion que
+     * no cuenten con encuesta
+     *
+     * @param evento Objeto de evento a buscar
+     * @param de Fecha de inicio de rango
+     * @param hasta Fecha de terminacion de rango
+     */
+    public void buscarImplementacion(Object evento, Date de, Date hasta) {
+        List<Object> implementaciones = ServiceLocatorDELEGATE.getEncuesta()
+                .buscarImplementaciones((Evento) evento, de, hasta);
+        com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+    }
+
+    /**
+     * Este metodoexiste para la busqueda del empleado con su nombre y con el
+     * departamento
+     *
+     * @param direccion
+     * @param text
+     */
+    /*
+     public void buscarEmpPorDireccionEmpleado(Direccion direccion, String text) {
+     List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmpPorDireccionNEmpleado(direccion, text);
+     if(o.size()==0){
+            com.setMensaje("No se encontro el empleado");
+        }else{
+     String matriz[][] = HelperEntidad.descomponerObjetos(o);
+     //se agrega un string para hubicar a que direccion de las 
+     //3 tablas se dirigira
+     matriz[0][0] = matriz[0][0] + "TLE1";
+     com.setTabla(matriz);
+     }
+     }
+     */
+    /**
+     * Este metodo sirve para buscar la coincidencia del puesto de los empleados
+     * para la lista de asistencia
+     *
+     * @param direccion
+     *//*
+     public void buscarEmpDi(Direccion direccion) {
+     if(o.size()==0){
+            com.setMensaje("No se encontro el empleado");
+        }else{
+     List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().buscarEmPorDireccion(direccion);
+     String matriz[][] = HelperEntidad.descomponerObjetos(o);
+     matriz[0][0] = matriz[0][0] + "TLE1"; //se agrega un string para hubicar a que direccion de las 3 tablas se dirigira
+     com.setTabla(matriz);
+    }
+     }
+     */
 
 }
