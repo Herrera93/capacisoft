@@ -5,11 +5,13 @@
  */
 package mx.edu.cobach.negocio.delegate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -59,11 +61,10 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
      * Obtiene todos los empleados que estan relacionados a tal plantel
      * @param direccion
      * @return Regresa la lista de los empleados
-     *//*
-    public List<Object> buscarEmPorPlantel(Direccion direccion) {
+     */
+    public List<Object> buscarEmPorDireccion(Direccion direccion) {
         return ServiceLocatorFACADE.getEmpleado().buscarPorDireccion(direccion);
     }
-    */
     
     /**
      * Obtiene todas las encuestas de la logistica para el evento.
@@ -147,9 +148,27 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE{
      * @param direccion
      * @param text
      * @return 
-     *//*
+     */
     public List<Object> buscarEmpPorDireccionNEmpleado(Direccion direccion, String text) {
         return ServiceLocatorFACADE.getEmpleado().buscarPorDireccionNEmpleado(direccion,text);
     }
-    */
+    
+    /**
+     * Se buscan las implementacion de un evento que se encuentren en un rango
+     * de fechas dado. Cualquiera de estos elementos puede ser nulo, y se consideraran
+     * los elementos  que no los sean, en caso de todos ser nulos se regresan
+     * todas las implementaciones. Se obtienen las implementacion que no cuenten
+     * con encuesta
+     * @param evento Objeto de evento a buscar
+     * @param de Fecha de inicio de rango
+     * @param hasta Fecha de terminacion de rango
+     * @return Regresa una lista de objeto de implementaciones
+     */
+    public List<Object> buscarImplementaciones(Object evento, Date de, Date hasta){
+        //Se obtienen las implementacion con los parametros
+        return ServiceLocatorFACADE.getImplementacionEvento()
+            .buscarEventoPorFechas((Evento) evento, de, hasta);
+       
+    }
+    
 }
