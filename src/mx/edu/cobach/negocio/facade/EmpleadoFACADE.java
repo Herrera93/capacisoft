@@ -9,6 +9,7 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -59,10 +60,10 @@ public class EmpleadoFACADE{
      * Obtiene todos los empleados que estan relacionados a tal Direccion
      * @param direccion
      * @return Regresa la lista de los empleados
-     *//*
+     */
     public List<Object> buscarPorDireccion(Direccion direccion) {
         return ServiceLocator.getEmpleado().buscarPorDireccion(direccion);
-    }*/
+    }
     
     
     /**
@@ -113,8 +114,8 @@ public class EmpleadoFACADE{
      * @param direccion
      * @param text
      * @return 
-     *//*
+     */
     public List<Object> buscarPorDireccionNEmpleado(Direccion direccion, String text) {
-        return ServiceLocator.getEmpleado().buscarPorPuestoNEmpleado(direccion,text);
-    }*/
+        return ServiceLocator.getEmpleado().buscarPorDireccionNEmpleado(direccion,text);
+    }
 }
