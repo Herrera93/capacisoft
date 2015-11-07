@@ -298,14 +298,14 @@ public class EmpleadoDAO extends BaseDAO {
      * @param direccion
      * @param nombre
      * @return 
-     *//*
+     */
     public List<Object> buscarPorDireccionNEmpleado(Direccion direccion, String nombre) {
         List<Object> ts = null;
         try {
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("direccion", Direccion)).add(Restrictions.or(
+                    add(Restrictions.eq("direccion", direccion)).add(Restrictions.or(
                                     Restrictions.like("primerNombre", nombre + "%"),
                                     Restrictions.like("segundoNombre", nombre + "%"),
                                     Restrictions.like("apellidoPaterno", nombre + "%"),
@@ -320,27 +320,4 @@ public class EmpleadoDAO extends BaseDAO {
         }
         return ts;
     }
-    */
-    /**
-     * Obtiene todas las implementaciones relacionadas de una direccion dado.
-     *
-     * @param direccion
-     * @return
-     *//*
-    public List<Object> buscarPorPlantel(Direccion direccion) {
-        List<Object> ts = null;
-        try {
-            HibernateUtil.openSession();
-            HibernateUtil.beginTransaction();
-            ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("direccion", direccion)).list();
-            HibernateUtil.commitTransaction();
-            System.out.println("Buscar por nombre::Empleado");
-        } catch (HibernateException e) {
-            HibernateUtil.rollbackTransaction();
-        } finally {
-            HibernateUtil.closeSession();
-        }
-        return ts;
-    }*/
 }
