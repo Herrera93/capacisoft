@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
@@ -91,8 +92,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         campoModel.addElement("Plantel");
         campoModel.addElement("Departamento Y Nombre_Empleado");
         campoModel.addElement("Puestos Y Nombre_Empleado");
-        campoModel.addElement("Plantel y Nombre_Empleado");
-        campoModel.addElement("Direccion y Nombre_Empleado");
+        campoModel.addElement("Plantel Y Nombre_Empleado");
+        campoModel.addElement("Direccion Y Nombre_Empleado");
         campoCBx.setModel(campoModel);
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
@@ -761,7 +762,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             case "Direccion":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
-                //control.setClass(Direccion.class);
+                control.setClass(Direccion.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Direccion:");
                 break;
@@ -789,7 +790,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             case "Direccion Y Nombre_Empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
-                //control.setClass(Direccion.class);
+                control.setClass(Direccion.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Direccion:");
                 break;
@@ -821,7 +822,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
                 break;
             case "Direccion":
-                //control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
+                control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
                 break;
             case "Departamento Y Nombre_Empleado":
                 control.buscarEmpPorDepartamentoNEmpleado((Departamento) tipoLACBx.getSelectedItem(), nombreLATFd.getText());
@@ -833,7 +834,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 control.buscarEmpPorPuestoNEmpleado((Puesto) tipoLACBx.getSelectedItem(), nombreLATFd.getText());
                 break;
             case "Direccion Y Nombre_Empleado":
-                //control.buscarEmpPorDireccionNEmpleado((Direccion) tipoLACBx.getSelectedItem(),nombreLATFd.getText());                    
+                control.buscarEmpPorDireccionEmpleado((Direccion) tipoLACBx.getSelectedItem(),nombreLATFd.getText());                    
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
@@ -1466,10 +1467,24 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
         eventoImplementado.setId(eventoProgramarId);
+        Object[][] tableData = new Object[eventoImplementado.getEmpleados().size()][modelTablaEmF.getColumnCount()];
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
+            
+            tableData[x][0] = empleado.getId()+"";
+            tableData[x][1] = empleado.getNumero()+"";
+            if(empleado.getSegundoNombre()==null){
+                tableData[x][2] = empleado.getPrimerNombre()+ " "+ empleado.getApellidoPaterno()+" "+ empleado.getApellidoMaterno();
+            
+            }else{
+                tableData[x][2] = empleado.getPrimerNombre()+ " "+ empleado.getSegundoNombre()+" "+ empleado.getApellidoPaterno()+" "+ empleado.getApellidoMaterno();
+            
+            }
+            
+            /*
+            ;
             control.setClass(Empleado.class);
-            control.buscarEmpId(empleado.getId(), Empleado.class);
+            control.buscarEmpId(empleado.getId(), Empleado.class);*/
         }
         control.setClass(ImplementacionEventoEnunciadoLogistica.class);
         control.bucarCalificacionMod(eventoImplementado);

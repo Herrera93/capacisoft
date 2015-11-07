@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
@@ -78,8 +79,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         campoModel.addElement("Direccion");
         campoModel.addElement("Departamento Y Nombre_Empleado");
         campoModel.addElement("Puestos Y Nombre_Empleado");
-        campoModel.addElement("Plantel y Nombre_Empleado");
-        campoModel.addElement("Direccion y Nombre_Empleado");
+        campoModel.addElement("Plantel Y Nombre_Empleado");
+        campoModel.addElement("Direccion Y Nombre_Empleado");
         campoCBx.setModel(campoModel);
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
 
@@ -645,7 +646,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                 control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
                 break;
             case "Direccion":
-                //control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
+                control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
                 break;
             case "Departamento Y Nombre_Empleado":
                 control.buscarEmpPorDepartamentoNEmpleado((Departamento) tipoLACBx.getSelectedItem(),nombreLATFd.getText());     
@@ -657,7 +658,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
                 control.buscarEmpPorPuestoNEmpleado((Puesto) tipoLACBx.getSelectedItem(),nombreLATFd.getText());                    
                 break;
             case "Direccion Y Nombre_Empleado":
-                //control.buscarEmpPorDireccionNEmpleado((Direccion) tipoLACBx.getSelectedItem(),nombreLATFd.getText());                    
+                control.buscarEmpPorDireccionEmpleado((Direccion) tipoLACBx.getSelectedItem(),nombreLATFd.getText());                    
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
@@ -701,7 +702,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             case "Direccion":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
-                //control.setClass(Direccion.class);
+                control.setClass(Direccion.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Direccion:");
                 break;
@@ -729,7 +730,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             case "Direccion Y Nombre_Empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
-                //control.setClass(Direccion.class);
+                control.setClass(Direccion.class);
                 control.buscarTodosLista(3);
                 seleccionLALbl.setText("Nombre del Direccion:");
                 break;
@@ -1044,14 +1045,16 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
     @Override
     public void setTabla(String[][] info) {
        if (info[0][0].contains("TLE1")) {
-            if(modelTablaEmI.getRowCount()==0){
-                setMensaje("No se encontraron referencias \n de empleados a "
-                        + "capacitar");
-            }else{
-                TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-                tablaLisITbl.getColumnModel().removeColumn(tc);
-                visibilidadOpcT(true);
-            }
+            //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+            info[0][0] = info[0][0].replaceAll("TLE1", "");
+            //Se elimina la palabra TLE1 para que solo quede el id puro
+            tablaLisITbl.setEnabled(true);
+            modelTablaEmI.setDataVector(info, titulosTablaEm);
+
+            TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
+            tablaLisITbl.getColumnModel().removeColumn(tc);
+            visibilidadOpcT(true);
+
         }else if(info[0][0].contains("TLE2")){
             info[0][0] = info[0][0].replaceAll("TLE2", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
@@ -1245,11 +1248,29 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
+        Object[][] tableData = new Object[eventoImplementado.getEmpleados().size()][modelTablaEmF.getColumnCount()];
+            
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
+            
+            tableData[x][0] = empleado.getId()+"";
+            tableData[x][1] = empleado.getNumero()+"";
+            if(empleado.getSegundoNombre()==null){
+                tableData[x][2] = empleado.getPrimerNombre()+ " "+ empleado.getApellidoPaterno()+" "+ empleado.getApellidoMaterno();
+            
+            }else{
+                tableData[x][2] = empleado.getPrimerNombre()+ " "+ empleado.getSegundoNombre()+" "+ empleado.getApellidoPaterno()+" "+ empleado.getApellidoMaterno();
+            
+            }
+            
+            /*
+            ;
             control.setClass(Empleado.class);
-            control.buscarEmpId(empleado.getId(), Empleado.class);
+            control.buscarEmpId(empleado.getId(), Empleado.class);*/
         }
+        modelTablaEmF.setDataVector(tableData, titulosTablaEm);
+        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
+        tablaLisFTbl.getColumnModel().removeColumn(tc);
     }
 
     /**
