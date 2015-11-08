@@ -46,26 +46,6 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
         }
         return ts;
     }
-    /**
-     * Obtiene todas las implementaciones relacionadas de una sede dado.
-     * @param sede
-     * @return Regresa la lista con las implementaciones
-     */
-    public List<Object> buscarPorSede(Sede sede){        
-        List<Object> ts = null;
-        try{
-            HibernateUtil.openSession();
-            HibernateUtil.beginTransaction();
-            ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("sede", sede)).list();
-            HibernateUtil.commitTransaction();
-        }catch(HibernateException e){
-            HibernateUtil.rollbackTransaction();
-        }finally{
-            HibernateUtil.closeSession();
-        }
-        return ts;
-    }
     
     /**
      * Metodo para el guardado y actualizacion de los cursos realizados

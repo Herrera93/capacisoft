@@ -26,7 +26,7 @@
         <property name="activo" type="boolean">
             <column name="activo" not-null="true" />
         </property>
-        <set name="empleados" table="implementacion_evento_empleado" inverse="false" lazy="false" fetch="select">
+        <set name="empleados" table="implementacion_evento_empleado" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="implementacion_evento_id" not-null="true" />
             </key>
@@ -48,7 +48,7 @@
                 <column name="alerta_id" not-null="true" />
             </many-to-many>
         </set>
-        <set name="encuestas" table="encuesta" inverse="true" lazy="false" fetch="select">
+        <set name="encuestas" table="encuesta" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="implementacion_evento_id" not-null="true" unique="true" />
             </key>

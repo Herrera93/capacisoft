@@ -312,6 +312,7 @@ public class HelperEntidad {
         List<Object> info = new ArrayList<>();
         Evento evento = eventoImplementado.getEvento();
         TipoEvento tipoEvento = evento.getTipoEvento();
+        
         info.add(eventoImplementado.getId());
         info.add(eventoImplementado.getEvento());
         info.add(evento.getNombre());

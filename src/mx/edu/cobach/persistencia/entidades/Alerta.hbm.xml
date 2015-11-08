@@ -14,7 +14,7 @@
         <property name="periodo" type="int">
             <column name="periodo" not-null="true" />
         </property>
-        <set name="implementacionEventos" table="alerta_implementacion_evento" inverse="false" lazy="false" fetch="select">
+        <set name="implementacionEventos" table="alerta_implementacion_evento" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="alerta_id" not-null="true" />
             </key>
