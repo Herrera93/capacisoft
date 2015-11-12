@@ -84,12 +84,18 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             Criteria crit = HibernateUtil.getSession().createCriteria(entityClass);
-            if(evento != null)
+            if(evento != null){
                 crit.add(Restrictions.eq("evento", evento));
-            if(de != null)
+            }
+                
+            if(de != null){
                 crit.add(Restrictions.ge("fechaInicial", de));
-            if(hasta != null)
+            }
+                
+            if(hasta != null){
                 crit.add(Restrictions.lt("fechaFinal", hasta));
+            }
+                
             ts = crit.list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
