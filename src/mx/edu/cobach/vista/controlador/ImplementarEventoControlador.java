@@ -302,10 +302,16 @@ public class ImplementarEventoControlador extends BaseControlador {
      * @param de Fecha de inicio de rango
      * @param hasta Fecha de terminacion de rango
      */
-    public void buscarImplementacion(Object evento, Date de, Date hasta) {
+    public void buscarImplementacion(Evento evento, Date de, Date hasta) {
+        
         List<Object> implementaciones = ServiceLocatorDELEGATE.getImplementarEvento()
-                .buscarImplementaciones((Evento) evento, de, hasta);
-        com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+                .buscarImplementaciones(evento, de, hasta);
+        if (implementaciones== null || implementaciones.size() == 0) {
+            com.setMensaje("No se encontro eventos de capacitacion");
+        }else{
+            com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+        }
+        
     }
 
     /**
