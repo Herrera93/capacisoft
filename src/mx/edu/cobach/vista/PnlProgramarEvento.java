@@ -7,12 +7,17 @@ package mx.edu.cobach.vista;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Direccion;
+import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Sede;
@@ -33,8 +38,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     public final ImplementarEventoControlador control;
     public final DefaultComboBoxModel tipoEventoModel;
     public final DefaultTableModel model;
-    public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
-        "Estado", "Eliminar"};
+    public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento","activo"
+            , "Eliminar"};
     public String estado;
 
     //mensaje instruccion : JLabel
@@ -44,6 +49,15 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         agregar();
         model = new DefaultTableModel(titulosTabla, 4);
         tablaTbl.setModel(model);
+        TableColumn tc = tablaTbl.getColumnModel().getColumn(0);
+        tablaTbl.getColumnModel().removeColumn(tc);
+        tc = tablaTbl.getColumnModel().getColumn(2);
+        tablaTbl.getColumnModel().removeColumn(tc);
+        tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablaTbl.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         tablaTbl.setColumnSelectionAllowed(false);
         tablaTbl.setDragEnabled(false);
         tipoEventoModel = new DefaultComboBoxModel();
@@ -94,8 +108,6 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         tipoRegCBx = new javax.swing.JComboBox();
         regRealizarBtn = new javax.swing.JButton();
         regRealizadoBtn = new javax.swing.JButton();
-        calendarioPnl = new javax.swing.JPanel();
-        agendarCursosCal = new com.jpcomponents.JPCalendar();
         opcionesRegLbl = new javax.swing.JLabel();
         notaRegLbl = new javax.swing.JLabel();
         buscarPnl = new javax.swing.JPanel();
@@ -155,25 +167,6 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             }
         });
 
-        calendarioPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout calendarioPnlLayout = new javax.swing.GroupLayout(calendarioPnl);
-        calendarioPnl.setLayout(calendarioPnlLayout);
-        calendarioPnlLayout.setHorizontalGroup(
-            calendarioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(calendarioPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(agendarCursosCal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        calendarioPnlLayout.setVerticalGroup(
-            calendarioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(calendarioPnlLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(agendarCursosCal, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         opcionesRegLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionesRegLbl.setText("Opciones");
 
@@ -184,26 +177,22 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         registrarPnlLayout.setHorizontalGroup(
             registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registrarPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(calendarioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(registrarPnlLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionesRegLbl)
+                            .addComponent(notaRegLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(registrarPnlLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opcionesRegLbl)
-                                    .addComponent(notaRegLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(registrarPnlLayout.createSequentialGroup()
-                                        .addComponent(nombreRegLbl)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tipoRegCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(registrarPnlLayout.createSequentialGroup()
-                                .addComponent(regRealizadoBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(regRealizarBtn)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(nombreRegLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(tipoRegCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(registrarPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(regRealizadoBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(regRealizarBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         registrarPnlLayout.setVerticalGroup(
             registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,13 +205,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreRegLbl)
                     .addComponent(tipoRegCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(38, 38, 38)
                 .addGroup(registrarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(regRealizadoBtn)
                     .addComponent(regRealizarBtn))
-                .addGap(32, 32, 32)
-                .addComponent(calendarioPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
 
         opcionesTP.addTab("Registrar evento de capacitación", registrarPnl);
@@ -300,7 +287,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         fechaTerminacionDCh.setDateFormatString("dd/MM/yyyy");
         fechaTerminacionDCh.setMaximumSize(new java.awt.Dimension(91, 20));
 
-        tablaMsjLbl.setText("<html>Para Modificar seleccione la fecha inicial, el nombre o el estado del evento que deseea modificar, para eliminar selecciona el cuadro eliminar de la columna Eliminar del evento que desee</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione la fecha inicial o el nombre del evento que deseea modificar, para eliminar selecciona el cuadro eliminar de la columna Eliminar del evento que desee</html> ");
 
         javax.swing.GroupLayout buscarPnlLayout = new javax.swing.GroupLayout(buscarPnl);
         buscarPnl.setLayout(buscarPnlLayout);
@@ -315,13 +302,13 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(buscarPnlLayout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(notaBusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(opcionesBusLbl)
                                     .addGroup(buscarPnlLayout.createSequentialGroup()
                                         .addComponent(nombreBusLbl)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tipoBusCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tipoBusCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(buscarPnlLayout.createSequentialGroup()
                                         .addGroup(buscarPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(sedeLbl)
@@ -457,7 +444,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
         int col = tablaTbl.columnAtPoint(evt.getPoint());
-        if (col == 0 || col == 1 || col == 2) {
+        if (col == 0 || col == 1) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
             if (((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 3)).equals("Activo")) {
@@ -477,7 +464,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 control.baja(Integer.parseInt((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
                 control.buscarTodos();
-                model.getDataVector().removeAllElements();
+                eventoRealizadoPnl.limpiarCampos();
+                eventoRealizarPnl.limpiarCampos();
+                eventoRealizarPnl.setVisible(false);
+                eventoRealizadoPnl.setVisible(false);
             } else {
                 model.setValueAt(false, tablaTbl.rowAtPoint(evt.getPoint()), 2);
             }
@@ -485,10 +475,16 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     }//GEN-LAST:event_tablaTblMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        Object evento = tipoBusCBx.getSelectedItem();
+        
+        Evento evento = (Evento) tipoBusCBx.getSelectedItem();
         Date de = fechaInicialDCh.getDate();
         Date hasta = fechaTerminacionDCh.getDate();
-        control.buscarImplementacion(evento, de, hasta);
+        control.setClass(ImplementacionEvento.class);
+        if(evento.getNombre().equals("")&&de==null&&hasta==null){
+            control.buscarTodos();
+        }else{
+            control.buscarImplementacion(evento, de, hasta);
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
@@ -523,10 +519,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.jpcomponents.JPCalendar agendarCursosCal;
     public javax.swing.JButton buscarBtn;
     private javax.swing.JPanel buscarPnl;
-    private javax.swing.JPanel calendarioPnl;
     public com.toedter.calendar.JDateChooser fechaInicialDCh;
     public com.toedter.calendar.JDateChooser fechaTerminacionDCh;
     private javax.swing.JPanel jPanel1;
@@ -575,6 +569,13 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
         tablaTbl.getColumnModel().removeColumn(tablaTbl.getColumnModel().getColumn(0));
+        tc = tablaTbl.getColumnModel().getColumn(2);
+        tablaTbl.getColumnModel().removeColumn(tc);
+        tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablaTbl.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         //Esconder columna ID
 
     }

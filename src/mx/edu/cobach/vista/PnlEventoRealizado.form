@@ -58,68 +58,51 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="sedeGLbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="tipoSedeGCBx" max="32767" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="nombrePrLbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="nombreGCBx" min="-2" pref="219" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="nombrePrLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tipoGLbl" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="fechaTLbl" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="fechaIDCh" pref="299" max="32767" attributes="0"/>
+                                          <Component id="fechaTDCh" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="sedeGLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fechaILbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarGLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="notaGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="459" max="-2" attributes="0"/>
                                       <Component id="cancelarGBtn" min="-2" pref="108" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Component id="guardarGBtn" min="-2" pref="108" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="agregarGLbl" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="fechaILbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="nombreGLbl" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="notaGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
-                                      <Component id="tipoGCBx" min="-2" pref="184" max="-2" attributes="0"/>
+                                      <Component id="siguienteGBtn" min="-2" pref="108" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="descripcionLbl" min="-2" pref="161" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="nombreGTFd" min="-2" pref="182" max="-2" attributes="0"/>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="fechaIDCh" max="32767" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="tipoGCBx" alignment="0" pref="439" max="32767" attributes="0"/>
+                                                  <Component id="nombreGTFd" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tipoSedeGCBx" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="nombreGCBx" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                                      <Component id="tipoGLbl" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                                      <Component id="fechaTLbl" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="fechaTDCh" min="-2" pref="143" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="jScrollPane1" min="-2" pref="469" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="11" max="32767" attributes="0"/>
+                              <EmptySpace pref="28" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -132,45 +115,47 @@
                       <Component id="agregarGLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="notaGLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="nombreGTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nombreGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="tipoGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tipoGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="fechaIDCh" min="-2" max="-2" attributes="0"/>
+                          <Component id="fechaILbl" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tipoGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tipoGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nombreGTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nombreGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="69" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="fechaIDCh" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fechaILbl" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="fechaTDCh" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="fechaTLbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="sedeGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tipoSedeGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="nombrePrLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="descripcionLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="68" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="siguienteGBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="cancelarGBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nombreGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombrePrLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="sedeGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tipoSedeGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="descripcionLbl" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="68" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="guardarGBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="cancelarGBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="fechaTDCh" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
@@ -191,7 +176,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fecha inicial de evento:"/>
+                <Property name="text" type="java.lang.String" value="Fecha inicial de evento*:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="fechaTLbl">
@@ -199,7 +184,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fecha de terminaci&#xf3;n del evento:"/>
+                <Property name="text" type="java.lang.String" value="Fecha de terminaci&#xf3;n del evento*:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="tipoGLbl">
@@ -215,7 +200,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Sede del evento:"/>
+                <Property name="text" type="java.lang.String" value="Sede del evento*:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="nombrePrLbl">
@@ -223,7 +208,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nombre de Proveedor:"/>
+                <Property name="text" type="java.lang.String" value="Nombre de Proveedor*:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="descripcionLbl">
@@ -319,16 +304,16 @@
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="nombreGCBxItemStateChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="guardarGBtn">
+            <Component class="javax.swing.JButton" name="siguienteGBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="text" type="java.lang.String" value="Siguiente"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarGBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguienteGBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="fechaIDCh">
@@ -385,9 +370,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="regresarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="cancelarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="guardarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Component id="siguienteLABtn" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -399,58 +386,57 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" min="-2" pref="304" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="campoCBx" min="-2" pref="260" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
-                                          <Component id="campoLbl" min="-2" max="-2" attributes="0"/>
-                                          <Component id="nota_LI_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace pref="34" max="32767" attributes="0"/>
-                                      <Component id="campoCBx" min="-2" pref="260" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="campoLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nota_LI_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="319" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="agregarTBtn" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                      <Component id="agregarBtn" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="eliminarBtn" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                  <Component id="eliminarTBtn" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jScrollPane5" min="-2" pref="335" max="-2" attributes="0"/>
-                              <EmptySpace pref="25" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="buscarLABtn" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
+                                  <Component id="buscarLABtn" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="seleccionLALbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="nombreLALbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="nombreLALbl" min="-2" max="-2" attributes="0"/>
+                                          <Component id="seleccionLALbl" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tipoLACBx" pref="226" max="32767" attributes="0"/>
                                           <Component id="nombreLATFd" max="32767" attributes="0"/>
+                                          <Component id="tipoLACBx" pref="243" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace pref="15" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="eliminarBtn" min="-2" pref="59" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="agregarTBtn" min="-2" pref="59" max="-2" attributes="0"/>
+                                          <Component id="agregarBtn" min="-2" pref="59" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="eliminarTBtn" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="350" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -461,9 +447,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="nota_LI_Lbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="campoLbl" min="-2" max="-2" attributes="0"/>
@@ -499,8 +485,9 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="guardarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="siguienteLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                                   <Component id="cancelarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Component id="regresarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
@@ -508,9 +495,9 @@
                               <Component id="agregarBtn" min="-2" pref="33" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="agregarTBtn" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="eliminarBtn" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="eliminarTBtn" min="-2" pref="35" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                           </Group>
@@ -621,15 +608,15 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="guardarLABtn">
+            <Component class="javax.swing.JButton" name="siguienteLABtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="text" type="java.lang.String" value="Siguiente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarLABtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguienteLABtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="nombreLATFd">
@@ -789,6 +776,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarLABtnActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="regresarLABtn">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Regresar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresarLABtnActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="calificacionPnl">
@@ -807,6 +805,8 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="regresarCBtn" min="-2" pref="108" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="cancelarCBtn" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="guardarCBtn" min="-2" pref="108" max="-2" attributes="0"/>
@@ -842,6 +842,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="guardarCBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="cancelarCBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="regresarCBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="58" max="32767" attributes="0"/>
                   </Group>
@@ -927,6 +928,18 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarCBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="regresarCBtn">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Regresar"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresarCBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
