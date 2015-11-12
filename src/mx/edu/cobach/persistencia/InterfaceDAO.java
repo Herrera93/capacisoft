@@ -15,6 +15,6 @@ public interface InterfaceDAO<T> {
     void saveOrUpdate(T t);
     T find(int id);
     List<Object> findAll();
-    void delete(T t);
+    String delete(T t);
     void setEntity(Class<T> cl);
 }
