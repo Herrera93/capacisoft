@@ -225,17 +225,17 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
 
         tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Fecha Inicial", "Nombre del evento", "Estado", "Eliminar"
+                "Fecha Inicial", "Nombre del evento", "Eliminar"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -254,7 +254,6 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             tablaTbl.getColumnModel().getColumn(0).setResizable(false);
             tablaTbl.getColumnModel().getColumn(1).setResizable(false);
             tablaTbl.getColumnModel().getColumn(2).setResizable(false);
-            tablaTbl.getColumnModel().getColumn(3).setResizable(false);
         }
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -572,9 +571,9 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         tc = tablaTbl.getColumnModel().getColumn(2);
         tablaTbl.getColumnModel().removeColumn(tc);
         tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(150);
+        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(80);
         tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
-        tablaTbl.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tablaTbl.getColumnModel().getColumn(2).setPreferredWidth(50);
         tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         //Esconder columna ID
 
