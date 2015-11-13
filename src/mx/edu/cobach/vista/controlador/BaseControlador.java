@@ -45,8 +45,8 @@ public class BaseControlador{
      * @param id Indentificador del objeto que se eliminara
      */
     public void baja(int id) {
-        ServiceLocatorDELEGATE.getInstance().delete(id, clazz);
-        com.setMensaje("Se ha eliminado exitosamente");
+        String mensaje = ServiceLocatorDELEGATE.getInstance().delete(id, clazz);
+        com.setMensaje(mensaje);
     }
 
     /**
