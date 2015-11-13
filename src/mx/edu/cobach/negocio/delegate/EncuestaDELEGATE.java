@@ -137,11 +137,11 @@ public class EncuestaDELEGATE {
                 //Se crea una copia de encuesta para realizarse posterior al evento
                 JSONObject encuestaDespues = JotFormUtil.copiarEncuesta(encuestaAntes.getLong("id"));
                 //Se guarda la encuesta en la base de datos
-                Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
+                /*Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
                     .find(Integer.parseInt(idEvento), ImplementacionEvento.class), 
                     encuestaAntes.getLong("id"), encuestaDespues.getLong("id"));
                 encuestaGuardar.setAspectos(new HashSet<>(aspectos));
-                ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);
+                ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);*/
             } catch (JSONException ex) {
                 Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
             }
