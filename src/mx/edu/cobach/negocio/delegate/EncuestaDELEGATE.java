@@ -139,7 +139,7 @@ public class EncuestaDELEGATE {
                 //Se guarda la encuesta en la base de datos
                 Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
                     .find(Integer.parseInt(idEvento), ImplementacionEvento.class), 
-                    encuestaAntes.getLong("id"), encuestaDespues.getLong("id"));
+                    encuestaAntes.getLong("id"), encuestaDespues.getLong("id"), false);
                 encuestaGuardar.setAspectos(new HashSet<>(aspectos));
                 ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);
             } catch (JSONException ex) {
