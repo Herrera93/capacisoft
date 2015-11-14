@@ -140,7 +140,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
             add(seguimientoPnl);/*preguntar*/
             
         
-        programarPnl = new PnlProgramarEvento();
+        programarPnl = new PnlProgramarEvento(this);
         programarPnl.setVisible(false);
         programarPnl.setSize(1181,587);
        // if(idTipo!=3)

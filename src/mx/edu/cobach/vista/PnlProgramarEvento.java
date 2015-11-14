@@ -4,11 +4,6 @@
  */
 package mx.edu.cobach.vista;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.InputEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -16,11 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Direccion;
-import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
-import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
@@ -41,9 +33,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento","activo"
             , "Eliminar"};
     public String estado;
-
+    private Capacisoft capacisoft;
     //mensaje instruccion : JLabel
-    public PnlProgramarEvento() {
+    public PnlProgramarEvento(Capacisoft capacisoft) {
+        this.capacisoft = capacisoft;
         control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
         initComponents();
         agregar();
@@ -69,13 +62,13 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
      * Metodo que permite agregar la interfaz de los paneles
      */
     private void agregar() {
-        eventoRealizarPnl = new PnlEventoRealizar();
+        eventoRealizarPnl = new PnlEventoRealizar(capacisoft);
         eventoRealizarPnl.setLocation(404, 0);
         eventoRealizarPnl.setSize(781, 589);
         eventoRealizarPnl.setVisible(false);
         add(eventoRealizarPnl);
 
-        eventoRealizadoPnl = new PnlEventoRealizado();
+        eventoRealizadoPnl = new PnlEventoRealizado(capacisoft);
         eventoRealizadoPnl.setLocation(404, 0);
         eventoRealizadoPnl.setSize(781, 589);
         eventoRealizadoPnl.setVisible(false);
@@ -455,7 +448,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             control.setClass(ImplementacionEvento.class);
             control.buscarMod(Integer.parseInt((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
             //Manda un mensaje de Confirmación sobre la eliminacion
-        } else if (col == 3) {
+        } else if (col == 2) {
             if (JOptionPane.
                     showConfirmDialog(this,
                             "¿Esta seguro de eliminar este registro?",
