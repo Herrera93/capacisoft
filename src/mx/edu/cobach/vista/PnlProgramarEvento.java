@@ -448,7 +448,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             control.setClass(ImplementacionEvento.class);
             control.buscarMod(Integer.parseInt((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
             //Manda un mensaje de Confirmación sobre la eliminacion
-        } else if (col == 3) {
+        } else if (col == 2) {
             if (JOptionPane.
                     showConfirmDialog(this,
                             "¿Esta seguro de eliminar este registro?",
