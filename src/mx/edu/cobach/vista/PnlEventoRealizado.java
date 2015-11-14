@@ -5,6 +5,8 @@
  */
 package mx.edu.cobach.vista;
 
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -40,7 +42,7 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  *
  * @author liuts
  */
-public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicador {
+public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicador, FocusListener {
 
     /**
      * Creates new form PnlEventoRealizado
@@ -85,6 +87,13 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         informacionTP.setEnabledAt(2, false);
         informacionTP.setSelectedIndex(0);
         tabla();
+        fechaIDCh.addFocusListener(this);
+        tipoSedeGCBx.addFocusListener(this);
+        nombreGCBx.addFocusListener(this);
+        validFechIniLbl.setVisible(false);
+        validSedeLbl.setVisible(false);
+        validProveedorLbl.setVisible(false);
+
     }
 
     /**
@@ -114,6 +123,9 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         agregarGLbl = new javax.swing.JLabel();
         notaGLbl = new javax.swing.JLabel();
         cancelarGBtn = new javax.swing.JButton();
+        validFechIniLbl = new javax.swing.JLabel();
+        validProveedorLbl = new javax.swing.JLabel();
+        validSedeLbl = new javax.swing.JLabel();
         listaPnl = new javax.swing.JPanel();
         campoLbl = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -145,7 +157,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         fechaILbl.setText("Fecha inicial de evento*:");
 
         fechaTLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        fechaTLbl.setText("Fecha de terminación del evento*:");
+        fechaTLbl.setText("Fecha de terminación del evento:");
 
         tipoGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoGLbl.setText("Tipo de evento:");
@@ -211,6 +223,15 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             }
         });
 
+        validFechIniLbl.setForeground(new java.awt.Color(240, 0, 0));
+        validFechIniLbl.setText("Este campo es obligatorio");
+
+        validProveedorLbl.setForeground(new java.awt.Color(240, 0, 0));
+        validProveedorLbl.setText("Este campo es obligatorio");
+
+        validSedeLbl.setForeground(new java.awt.Color(240, 0, 0));
+        validSedeLbl.setText("Este campo es obligatorio");
+
         javax.swing.GroupLayout generalPnlLayout = new javax.swing.GroupLayout(generalPnl);
         generalPnl.setLayout(generalPnlLayout);
         generalPnlLayout.setHorizontalGroup(
@@ -228,31 +249,37 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                                 .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
                                 .addComponent(siguienteGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sedeGLbl)
-                                    .addComponent(nombrePrLbl)
-                                    .addComponent(fechaILbl)
-                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, generalPnlLayout.createSequentialGroup()
-                                                    .addComponent(fechaTLbl)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(fechaTDCh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGroup(generalPnlLayout.createSequentialGroup()
-                                                    .addGap(221, 221, 221)
-                                                    .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(generalPnlLayout.createSequentialGroup()
-                                                .addGap(171, 171, 171)
-                                                .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(generalPnlLayout.createSequentialGroup()
+                                .addGap(171, 171, 171)
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tipoGCBx, 0, 439, Short.MAX_VALUE)
                                     .addComponent(nombreGTFd))))
                         .addContainerGap(28, Short.MAX_VALUE))
                     .addGroup(generalPnlLayout.createSequentialGroup()
-                        .addComponent(tipoGLbl)
+                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(generalPnlLayout.createSequentialGroup()
+                                .addComponent(sedeGLbl)
+                                .addGap(60, 60, 60)
+                                .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombrePrLbl)
+                            .addComponent(fechaILbl)
+                            .addComponent(tipoGLbl)
+                            .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(generalPnlLayout.createSequentialGroup()
+                                    .addComponent(fechaTLbl)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(fechaTDCh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, generalPnlLayout.createSequentialGroup()
+                                    .addGap(221, 221, 221)
+                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(validFechIniLbl)
+                                        .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(generalPnlLayout.createSequentialGroup()
+                                .addGap(171, 171, 171)
+                                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(validSedeLbl)
+                                    .addComponent(validProveedorLbl)
+                                    .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         generalPnlLayout.setVerticalGroup(
@@ -270,23 +297,29 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipoGLbl)
                     .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(18, 18, 18)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaILbl))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validFechIniLbl)
+                .addGap(27, 27, 27)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fechaTLbl)
-                    .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(fechaTLbl, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fechaTDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sedeGLbl)
                     .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validSedeLbl)
+                .addGap(34, 34, 34)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePrLbl)
                     .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validProveedorLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siguienteGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -531,7 +564,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         );
     }// </editor-fold>//GEN-END:initComponents
 
-   /**
+    /**
      * Evento ejecutado al hacer click se buscara al empleado dependiendo de del
      * campo seleccionado
      *
@@ -547,7 +580,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 matriz[k][j] = modelTablaEmF.getValueAt(k, j) + "";
             }
         }
-        if(tablaLisFTbl.getRowCount() > 0){
+        if (tablaLisFTbl.getRowCount() > 0) {
             lista.mandarTabla(matriz);
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
@@ -585,7 +618,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         informacionTP.setSelectedIndex(1);
     }//GEN-LAST:event_siguienteGBtnActionPerformed
 
-   /**
+    /**
      * Este metodo sirve para cancelar el registro o la modificacion de un
      * evento
      *
@@ -763,6 +796,9 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
     private javax.swing.JComboBox tipoGCBx;
     private javax.swing.JLabel tipoGLbl;
     private javax.swing.JComboBox tipoSedeGCBx;
+    private javax.swing.JLabel validFechIniLbl;
+    private javax.swing.JLabel validProveedorLbl;
+    private javax.swing.JLabel validSedeLbl;
     // End of variables declaration//GEN-END:variables
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
@@ -861,7 +897,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      */
     @Override
     public void setInfo(List info) {
-        if(info.get(0).equals("Desbloquear")){
+        if (info.get(0).equals("Desbloquear")) {
             capacisoft.setEnabled(true);
             capacisoft.setVisible(true);
         }
@@ -874,7 +910,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      * @param info
      */
     private void tabla() {
-        
+
         modelTablaEmF.setDataVector(null, titulosTablaEm);
         TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
         tablaLisFTbl.getColumnModel().removeColumn(tc);
@@ -1045,14 +1081,14 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         Object[][] tableData = new Object[eventoImplementado.getEmpleados().size()][modelTablaEmF.getColumnCount()];
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
-            tableData[x][0] = empleado.getId()+"";
-            tableData[x][1] = empleado.getNumero()+"";
-            if(empleado.getSegundoNombre()==null){
-                tableData[x][2] = empleado.getPrimerNombre()+ " "+ empleado.getApellidoPaterno()+" "+ empleado.getApellidoMaterno();
-            
-            }else{
-                tableData[x][2] = empleado.getPrimerNombre()+ " "+ empleado.getSegundoNombre()+" "+ empleado.getApellidoPaterno()+" "+ empleado.getApellidoMaterno();
-            
+            tableData[x][0] = empleado.getId() + "";
+            tableData[x][1] = empleado.getNumero() + "";
+            if (empleado.getSegundoNombre() == null) {
+                tableData[x][2] = empleado.getPrimerNombre() + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
+
+            } else {
+                tableData[x][2] = empleado.getPrimerNombre() + " " + empleado.getSegundoNombre() + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
+
             }
         }
         modelTablaEmF.setDataVector(tableData, titulosTablaEm);
@@ -1066,7 +1102,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         informacionTP.setEnabledAt(2, false);
         informacionTP.setSelectedIndex(0);
         tablaLisFTbl.setEnabled(true);
-        
+
     }
 
     /**
@@ -1132,5 +1168,33 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
 
     @Override
     public void llenarDatos(Object evento) {
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        Object fuente = e.getSource();
+        if (fuente == fechaIDCh) {
+            
+        } else if (fuente == tipoSedeGCBx) {
+            validSedeLbl.setVisible(false);
+        } else if (fuente == nombreGCBx) {
+            validProveedorLbl.setVisible(false);
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        Object fuente = e.getSource();
+        if (fuente == fechaIDCh) {
+
+        } else if (fuente == tipoSedeGCBx) {
+            if (tipoSedeGCBx.getSelectedItem().toString().equals("")) {
+                validSedeLbl.setVisible(true);
+            }
+        } else if (fuente == nombreGCBx) {
+            if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
+                validProveedorLbl.setVisible(true);
+            }
+        }
     }
 }
