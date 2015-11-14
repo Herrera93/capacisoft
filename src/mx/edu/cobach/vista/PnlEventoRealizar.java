@@ -52,8 +52,10 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
+    private Capacisoft capacisoft;
 
-    public PnlEventoRealizar() {
+    public PnlEventoRealizar(Capacisoft capacisoft) {
+        this.capacisoft = capacisoft;
         initComponents();
         sedeModel = new DefaultComboBoxModel();
         proveedorModel = new DefaultComboBoxModel();
@@ -350,7 +352,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         });
 
         devolverLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        devolverLABtn.setText("Devolver");
+        devolverLABtn.setText("Regresar");
         devolverLABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 devolverLABtnActionPerformed(evt);
@@ -436,7 +438,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      * @param evt Evento al presionar el boton
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        ListaAsistencia lista = new ListaAsistencia(this,ImplementacionEvento.class);
+        ListaAsistencia lista = new ListaAsistencia(this);
+        capacisoft.setEnabled(false);
         lista.setVisible(true);
         String[][] matriz = new String[modelTablaEmF.getRowCount()][modelTablaEmF.getColumnCount()];
         for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
@@ -683,6 +686,10 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
      */
     @Override
     public void setInfo(List info) {
+        if(info.get(0).equals("Desbloquear")){
+            capacisoft.setEnabled(true);
+            capacisoft.setVisible(true);
+        }
     }
 
     /**

@@ -50,7 +50,6 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private DefaultTableModel modelTablaEn;
-    private DefaultTableModel modelTablaEmI;
     private DefaultTableModel modelTablaEmF;
     private String[] titulosTablaEn = {"ID", "Tipo", "Enunciado",
         "Calificación"};
@@ -58,8 +57,10 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
+    private Capacisoft capacisoft;
 
-    public PnlEventoRealizado() {
+    public PnlEventoRealizado(Capacisoft capacisoft) {
+        this.capacisoft = capacisoft;
         initComponents();
         sedeModel = new DefaultComboBoxModel();
         proveedorModel = new DefaultComboBoxModel();
@@ -537,8 +538,9 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      * @param evt Evento al presionar el boton
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        ListaAsistencia lista = new ListaAsistencia(this,ImplementacionEvento.class);
+        ListaAsistencia lista = new ListaAsistencia(this);
         lista.setVisible(true);
+        capacisoft.setEnabled(false);
         String[][] matriz = new String[modelTablaEmF.getRowCount()][modelTablaEmF.getColumnCount()];
         for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
             for (int j = 0; j < modelTablaEmF.getColumnCount(); j++) {
@@ -859,7 +861,10 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
      */
     @Override
     public void setInfo(List info) {
-
+        if(info.get(0).equals("Desbloquear")){
+            capacisoft.setEnabled(true);
+            capacisoft.setVisible(true);
+        }
     }
 
     /**
