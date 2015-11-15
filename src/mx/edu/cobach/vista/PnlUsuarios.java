@@ -30,13 +30,20 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     public PnlUsuarios() {
         initComponents();
         titulosTabla= new String[]{"Número","Usuario","Nombre", "Eliminar"};
-        model = new DefaultTableModel(titulosTabla, 4);
+        model = new DefaultTableModel(titulosTabla, 4)  {
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                if (col == 3) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
         usuariosTbl.setModel(model);
         usuariosTbl.setColumnSelectionAllowed(false);
         usuariosTbl.setDragEnabled(false);
-        control = new UsuarioControlador(this,Usuario.class);
-        setEnabledPanelInformacion(false);
-        setEnabledPanelOpcion(false);
+        control = new UsuarioControlador(this,Usuario.class);;
         
         /**
          * Metodo que sirve para validar que solo se admitan letras mayusculas
@@ -52,6 +59,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 return false;
             }
         });
+        informacionPnl.setVisible(false);
+        control.buscarTodos();
     }
 
     /**
@@ -75,6 +84,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         nombreBuscarTFd = new javax.swing.JTextField();
         nombreBuscarLbl = new javax.swing.JLabel();
         buscarBtn = new javax.swing.JButton();
+        tablaMsjLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         nombreLbl = new javax.swing.JLabel();
         nombreTFd = new javax.swing.JTextField();
@@ -95,6 +105,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         confirmarContrasenaLbl = new javax.swing.JLabel();
         contrasenaPFd = new javax.swing.JPasswordField();
         confirmarContrasenaPFd = new javax.swing.JPasswordField();
+        cancelarBtn = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1181, 587));
         setMinimumSize(new java.awt.Dimension(1181, 587));
@@ -166,13 +177,12 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones ");
 
-        opcionMsjLbl.setText("<HTML>Seleccione el boton \"Agregar\" para habilitar la seccion de registro<BR>Si desea realizar una busqueda, seleccione el boton \"Buscar\"</HTML>");
+        opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreBuscarTFd.setEnabled(false);
 
         nombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreBuscarLbl.setText("Nombre del Empleado:");
+        nombreBuscarLbl.setText("Nombre del empleado:");
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
@@ -182,6 +192,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             }
         });
 
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un número del usuario de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
+
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
         opcionPnlLayout.setHorizontalGroup(
@@ -190,61 +202,66 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 .addGap(19, 19, 19)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(opcionLbl)
-                    .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(agregarBtn)
-                                .addGap(146, 146, 146)
-                                .addComponent(buscarBtn))
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(opcionPnlLayout.createSequentialGroup()
                                 .addComponent(nombreBuscarLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(nombreUsuario_OU_Lbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscar_OU_Btn)
-                                .addGap(21, 21, 21)))))
+                                .addGap(35, 35, 35)
+                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(274, 274, 274)
+                        .addComponent(nombreUsuario_OU_Lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(opcionPnlLayout.createSequentialGroup()
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(198, 198, 198)
+                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(buscar_OU_Btn)
+                .addGap(21, 21, 21))
         );
         opcionPnlLayout.setVerticalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(opcionLbl)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nombreUsuario_OU_Lbl)
                             .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(agregarBtn)
-                            .addComponent(buscar_OU_Btn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addComponent(buscar_OU_Btn)
+                        .addGap(400, 400, 400))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreBuscarLbl)
-                            .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                            .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreBuscarLbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buscarBtn)
+                            .addComponent(agregarBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -255,7 +272,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         nombreLbl.setText("Primer nombre:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreTFd.setEnabled(false);
         nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nombreTFdFocusLost(evt);
@@ -266,7 +282,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         usuarioLbl.setText("Nombre de usuario:");
 
         usuarioTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        usuarioTFd.setEnabled(false);
         usuarioTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 usuarioTFdFocusLost(evt);
@@ -282,24 +297,21 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         tipoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Analista", "Secretaria" }));
         tipoCBx.setToolTipText("Seleccioné el tipo de usuario");
-        tipoCBx.setEnabled(false);
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
-        guardarBtn.setEnabled(false);
         guardarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarBtnActionPerformed(evt);
             }
         });
 
-        agregarMsjLbl.setText("Ingrese la información a almacenar");
+        agregarMsjLbl.setText("Ingrese la información a almacenar del usuario.");
 
         agregarLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarLbl.setText("Agregar");
 
         segundoNombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        segundoNombreTFd.setEnabled(false);
         segundoNombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 segundoNombreTFdFocusLost(evt);
@@ -310,7 +322,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         segundoNombreLbl.setText("Segundo nombre:");
 
         apellidoPaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        apellidoPaternoTFd.setEnabled(false);
         apellidoPaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 apellidoPaternoTFdFocusLost(evt);
@@ -321,7 +332,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         apellidoPaternoLbl.setText("Apellido paterno:");
 
         apellidoMaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        apellidoMaternoTFd.setEnabled(false);
         apellidoMaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 apellidoMaternoTFdFocusLost(evt);
@@ -334,9 +344,13 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         confirmarContrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmarContrasenaLbl.setText("Confirmar Contraseña:");
 
-        contrasenaPFd.setEnabled(false);
-
-        confirmarContrasenaPFd.setEnabled(false);
+        cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
         informacionPnl.setLayout(informacionPnlLayout);
@@ -365,7 +379,10 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                             .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(guardarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
+                        .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(confirmarContrasenaLbl)
@@ -419,7 +436,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     .addComponent(confirmarContrasenaLbl)
                     .addComponent(confirmarContrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -446,33 +465,38 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        int renglon = usuariosTbl.getSelectedRow();
-        if(renglon == -1) {
+        if(informacionPnl.isVisible()){
+            if (JOptionPane.showConfirmDialog(this, "La información que"
+                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == 0) {
+                nombreTFd.setText("");
+                segundoNombreTFd.setText("");
+                apellidoPaternoTFd.setText("");
+                apellidoMaternoTFd.setText("");
+                usuarioTFd.setText("");
+                contrasenaPFd.setText("");
+                confirmarContrasenaPFd.setText("");
+                guardarBtn.setText("Guardar");
+            }
+        } else { 
+            nombreTFd.setText("");
+            segundoNombreTFd.setText("");
+            apellidoPaternoTFd.setText("");
+            apellidoMaternoTFd.setText("");
+            usuarioTFd.setText("");
+            contrasenaPFd.setText("");
+            confirmarContrasenaPFd.setText("");
             guardarBtn.setText("Guardar");
-        }else{
-             int id = Integer.parseInt((String)model.getValueAt(renglon, 0));
-            idUsuarioActual=id;
-             control.buscar(id); 
-            
-            guardarBtn.setText("Modificar");
-            
+            informacionPnl.setVisible(true);
         }
-        
-        setEnabledPanelInformacion(true);
-        setEnabledPanelOpcion(false); 
-                                        
     }//GEN-LAST:event_agregarBtnActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(nombreBuscarTFd.isEnabled()){
-            if(nombreBuscarTFd.getText().equals("")==false)
-                control.buscarPorNombre(nombreBuscarTFd.getText());        // TODO add your handling code here:
-            else
-                control.buscarTodos();
-        }else{
-            setEnabledPanelInformacion(false);
-            setEnabledPanelOpcion(true);
-        }
+        if(nombreBuscarTFd.getText().equals("")==false)
+            control.buscarPorNombre(nombreBuscarTFd.getText());        // TODO add your handling code here:
+        else
+            control.buscarTodos();
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
@@ -516,7 +540,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     atr.add(String.valueOf(idUsuarioActual));
                     control.modificacion(HelperEntidad.getUsuario(atr));
                 }
-        
+                
                 nombreTFd.setText("");
                 segundoNombreTFd.setText("");
                 apellidoPaternoTFd.setText("");
@@ -525,6 +549,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 contrasenaPFd.setText("");
                 confirmarContrasenaPFd.setText("");
                 guardarBtn.setText("Guardar");
+                informacionPnl.setVisible(false);
             }else
                 setMensaje("Usuario o Contraseña incorrectas");
     }//GEN-LAST:event_guardarBtnActionPerformed
@@ -532,13 +557,34 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private void usuariosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuariosTblMouseClicked
         int row = usuariosTbl.rowAtPoint(evt.getPoint());
         int col = usuariosTbl.columnAtPoint(evt.getPoint());
-        if(col == 3) {
+        if (col == 0) {
+            if(informacionPnl.isVisible()){
+                if (JOptionPane.showConfirmDialog(this, "La información que"
+                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == 0) {
+                    int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                    control.buscar(id);
+                    guardarBtn.setText("Modificar");
+                    usuariosTbl.clearSelection();
+                }
+            } else {
+                int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                control.buscar(id);
+                guardarBtn.setText("Modificar");
+                usuariosTbl.clearSelection();
+                informacionPnl.setVisible(true);
+            }
+        }else if(col == 3) {
             int op = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if(op == 0){
                 int id = Integer.parseInt((String)model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarPorNombre(nombreBuscarTFd.getText());
+            } else {
+                model.setValueAt(false, row, 3);
+                usuariosTbl.clearSelection();
             }
         }
     }//GEN-LAST:event_usuariosTblMouseClicked
@@ -592,6 +638,22 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         }
     }//GEN-LAST:event_usuarioTFdFocusLost
 
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "La información que"
+                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == 0) {
+            nombreTFd.setText("");
+            segundoNombreTFd.setText("");
+            apellidoPaternoTFd.setText("");
+            apellidoMaternoTFd.setText("");
+            usuarioTFd.setText("");
+            contrasenaPFd.setText("");
+            confirmarContrasenaPFd.setText("");
+            informacionPnl.setVisible(false);
+        }
+    }//GEN-LAST:event_cancelarBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JLabel agregarLbl;
@@ -602,6 +664,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JTextField apellidoPaternoTFd;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton buscar_OU_Btn;
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JLabel confirmarContrasenaLbl;
     private javax.swing.JPasswordField confirmarContrasenaPFd;
     private javax.swing.JLabel contrasenaLbl;
@@ -620,6 +683,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JPanel opcionPnl;
     private javax.swing.JLabel segundoNombreLbl;
     private javax.swing.JTextField segundoNombreTFd;
+    private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JComboBox tipoCBx;
     private javax.swing.JLabel tipoLbl;
     private javax.swing.JLabel usuarioLbl;
@@ -699,7 +763,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             setMensaje("No se encontraron coincidencias");
         else{
             nombreTFd.setText(info.get(0).toString());
-            segundoNombreTFd.setText(info.get(1).toString());
+            if(info.get(1) != null){
+                segundoNombreTFd.setText(info.get(1).toString());
+            }
             apellidoPaternoTFd.setText(info.get(2).toString());
             apellidoMaternoTFd.setText(info.get(3).toString());
             usuarioTFd.setText(info.get(4).toString());
