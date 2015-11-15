@@ -470,9 +470,9 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         switch ((String) campoCBx.getSelectedItem()) {
             case "Nombre":
                 if (nombreLATFd.getText().equals("")) {
-                    control.buscarEmpN(nombreLATFd.getText());
-                } else {
                     control.buscarTodos();
+                } else {
+                    control.buscarEmpN(nombreLATFd.getText());
                 }
                 break;
             case "Departamento":
