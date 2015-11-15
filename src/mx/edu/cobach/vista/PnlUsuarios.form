@@ -438,9 +438,6 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="usuarioLbl">
           <Properties>
@@ -456,9 +453,6 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="usuarioTFdFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="contrasenaLbl">
           <Properties>
@@ -521,9 +515,6 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="segundoNombreTFdFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="segundoNombreLbl">
           <Properties>
@@ -539,9 +530,6 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoPaternoTFdFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidoPaternoLbl">
           <Properties>
@@ -557,9 +545,6 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoMaternoTFdFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidoMaternoLbl">
           <Properties>

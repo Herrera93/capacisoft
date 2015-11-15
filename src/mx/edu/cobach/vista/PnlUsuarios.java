@@ -19,17 +19,14 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private final UsuarioControlador control;
     private int idUsuarioActual;
     private KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-    private String primerNombre="";
-    private String segundoNombre="";
-    private String apellidoPaterno="";
-    private String apellidoMaterno="";
-    private String usuario="";
-    private int busqueda=0;
-    private boolean buscando=false;
+    private boolean buscando = false;
+    private boolean problema = false;
+    private String usuarioConectado;
     
-    public PnlUsuarios() {
+    public PnlUsuarios(String usuario) {
         initComponents();
         titulosTabla= new String[]{"Número","Usuario","Nombre", "Eliminar"};
+        usuarioConectado = usuario;
         model = new DefaultTableModel(titulosTabla, 4)  {
             @Override
             public boolean isCellEditable(int row, int col) {
@@ -59,8 +56,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 return false;
             }
         });
-        informacionPnl.setVisible(false);
-        control.buscarTodos();
     }
 
     /**
@@ -272,21 +267,11 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         nombreLbl.setText("Primer nombre:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                nombreTFdFocusLost(evt);
-            }
-        });
 
         usuarioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usuarioLbl.setText("Nombre de usuario:");
 
         usuarioTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        usuarioTFd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                usuarioTFdFocusLost(evt);
-            }
-        });
 
         contrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contrasenaLbl.setText("Contraseña:");
@@ -312,31 +297,16 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         agregarLbl.setText("Agregar");
 
         segundoNombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        segundoNombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                segundoNombreTFdFocusLost(evt);
-            }
-        });
 
         segundoNombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         segundoNombreLbl.setText("Segundo nombre:");
 
         apellidoPaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        apellidoPaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                apellidoPaternoTFdFocusLost(evt);
-            }
-        });
 
         apellidoPaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoPaternoLbl.setText("Apellido paterno:");
 
         apellidoMaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        apellidoMaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                apellidoMaternoTFdFocusLost(evt);
-            }
-        });
 
         apellidoMaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoMaternoLbl.setText("Apellido materno:");
@@ -470,23 +440,11 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     + " esta modificando se perdera,¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
-                nombreTFd.setText("");
-                segundoNombreTFd.setText("");
-                apellidoPaternoTFd.setText("");
-                apellidoMaternoTFd.setText("");
-                usuarioTFd.setText("");
-                contrasenaPFd.setText("");
-                confirmarContrasenaPFd.setText("");
+                limpiar();
                 guardarBtn.setText("Guardar");
             }
         } else { 
-            nombreTFd.setText("");
-            segundoNombreTFd.setText("");
-            apellidoPaternoTFd.setText("");
-            apellidoMaternoTFd.setText("");
-            usuarioTFd.setText("");
-            contrasenaPFd.setText("");
-            confirmarContrasenaPFd.setText("");
+            limpiar();
             guardarBtn.setText("Guardar");
             informacionPnl.setVisible(true);
         }
@@ -509,7 +467,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
            confirmarContrasenaPFd.getText().equals("") ) 
             setMensaje("Debe ingresar los datos solicitados");
         else if(nombreTFd.getText().equals("")) 
-                    setMensaje("Debe ingresar el primer nombre del empleado");
+            setMensaje("Debe ingresar el primer nombre del empleado");
         else if(apellidoPaternoTFd.getText().equals("")) 
             setMensaje("Debe ingresar el apellido paterno del empleado");
         else if(apellidoMaternoTFd.getText().equals("")) 
@@ -520,7 +478,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             setMensaje("Debe ingresar la contraseña");
         else if(confirmarContrasenaPFd.getText().equals("")) 
             setMensaje("Debe volver a ingresar la contraseña en\nConfirmar contraseña");
-        else 
+        else {
             if( contrasenaPFd.getText().equals(confirmarContrasenaPFd.getText()) ){
                 List<String> atr = new ArrayList<String>();
                 atr.add(nombreTFd.getText()); //# En lista 0
@@ -534,24 +492,24 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     case "Secretaria": atr.add("3"); break;
                 }
                 atr.add(contrasenaPFd.getText());//# En lista 6
-                if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
-                    control.alta(HelperEntidad.getUsuario(atr));  
-                }else{
-                    atr.add(String.valueOf(idUsuarioActual));
-                    control.modificacion(HelperEntidad.getUsuario(atr));
+                buscando = true;
+                problema = false;
+                control.buscarTodos();
+                if(!problema){
+                    if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
+                        control.alta(HelperEntidad.getUsuario(atr));  
+                    }else{
+                        atr.add(String.valueOf(idUsuarioActual));
+                        control.modificacion(HelperEntidad.getUsuario(atr));
+                    }
+                    limpiar();
+                    guardarBtn.setText("Guardar");
+                    control.buscarTodos();
                 }
-                
-                nombreTFd.setText("");
-                segundoNombreTFd.setText("");
-                apellidoPaternoTFd.setText("");
-                apellidoMaternoTFd.setText("");
-                usuarioTFd.setText("");
-                contrasenaPFd.setText("");
-                confirmarContrasenaPFd.setText("");
-                guardarBtn.setText("Guardar");
-                informacionPnl.setVisible(false);
-            }else
+            }else{
                 setMensaje("Usuario o Contraseña incorrectas");
+            }
+        }
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     private void usuariosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuariosTblMouseClicked
@@ -560,7 +518,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         if (col == 0) {
             if(informacionPnl.isVisible()){
                 if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
@@ -576,9 +534,13 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 informacionPnl.setVisible(true);
             }
         }else if(col == 3) {
-            int op = JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            if(op == 0){
+            if(((String)model.getValueAt(row, 1)).equals(usuarioConectado)) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
+                    + " conectado actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                model.setValueAt(false, row, 3);
+                usuariosTbl.clearSelection();
+            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
                 int id = Integer.parseInt((String)model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarPorNombre(nombreBuscarTFd.getText());
@@ -589,68 +551,12 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         }
     }//GEN-LAST:event_usuariosTblMouseClicked
 
-    private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
-        if(!guardarBtn.getText().equals("Modificar"))
-        if(nombreTFd.getText().equals("")==false){
-            busqueda=0;
-            buscando=true;
-            control.buscarPorNombre(nombreTFd.getText());
-            buscando=false;
-        }
-    }//GEN-LAST:event_nombreTFdFocusLost
-
-    private void segundoNombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_segundoNombreTFdFocusLost
-        if(!guardarBtn.getText().equals("Modificar")){
-        busqueda=0;
-        buscando=true;
-        control.buscarPorNombre(segundoNombreTFd.getText());
-        buscando=false;
-        }
-    }//GEN-LAST:event_segundoNombreTFdFocusLost
-
-    private void apellidoPaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdFocusLost
-        if(!guardarBtn.getText().equals("Modificar"))
-        if(apellidoPaternoTFd.getText().equals("")==false){
-            busqueda=0;
-            buscando=true;
-            control.buscarPorNombre(apellidoPaternoTFd.getText());
-            buscando=false;
-        }
-    }//GEN-LAST:event_apellidoPaternoTFdFocusLost
-
-    private void apellidoMaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusLost
-        if(!guardarBtn.getText().equals("Modificar"))
-        if(apellidoMaternoTFd.getText().equals("")==false){
-            busqueda=0;
-            buscando=true;
-            control.buscarPorNombre(apellidoMaternoTFd.getText());
-            buscando=false;
-        }
-    }//GEN-LAST:event_apellidoMaternoTFdFocusLost
-
-    private void usuarioTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioTFdFocusLost
-        if(!guardarBtn.getText().equals("Modificar"))
-        if(usuarioTFd.getText().equals("")==false){
-            busqueda=4;
-            buscando=true;
-            control.buscarPorUsuario(usuarioTFd.getText());
-            buscando=false;
-        }
-    }//GEN-LAST:event_usuarioTFdFocusLost
-
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
-            nombreTFd.setText("");
-            segundoNombreTFd.setText("");
-            apellidoPaternoTFd.setText("");
-            apellidoMaternoTFd.setText("");
-            usuarioTFd.setText("");
-            contrasenaPFd.setText("");
-            confirmarContrasenaPFd.setText("");
-            informacionPnl.setVisible(false);
+            + " esta modificando se perdera,¿Aun así desea cancelarla?",
+            "Precaucion", JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE) == 0) {
+            limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
@@ -691,6 +597,22 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JTable usuariosTbl;
     // End of variables declaration//GEN-END:variables
 
+    public void llenarTodo(){
+        informacionPnl.setVisible(false);
+        control.buscarTodos();
+    }
+    
+    private void limpiar(){
+        nombreTFd.setText("");
+        segundoNombreTFd.setText("");
+        apellidoPaternoTFd.setText("");
+        apellidoMaternoTFd.setText("");
+        usuarioTFd.setText("");
+        contrasenaPFd.setText("");
+        confirmarContrasenaPFd.setText("");
+        informacionPnl.setVisible(false);
+    }
+    
     @Override
     public void setMensaje(String mensaje) {
          JOptionPane.showMessageDialog(this, mensaje);
@@ -698,29 +620,29 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setTabla(String[][] info) {
-        
-        model.setRowCount(0);
-        
         if(buscando){
-            if(info!=null)
-                if(busqueda==4){
-                    for(int x=0;x<info.length;x++){
-                        if(info[x][0].equals(usuarioTFd.getText())){
-                            setMensaje("ya existe el nombre de usuario\n"+info[x][0]);
-                        }
-                    }
-                }else{
-                    for(int x=0;x<info.length;x++){
-                        control.buscar(Integer.parseInt(info[x][0]));
-                        if(!buscando)
-                            break;
+            buscando = false;
+            if(info!=null){
+                for(int i=0; i < info.length; i++){
+                    String nombreAIngresar = String.join(" ", nombreTFd.getText(),
+                        segundoNombreTFd.getText(), apellidoPaternoTFd.getText(),
+                        apellidoMaternoTFd.getText());
+                    if(info[i][1].equals(usuarioTFd.getText())){
+                        setMensaje("Ya existe el nombre de usuario\n"+info[i][1]);
+                        problema = true;
+                        break;
+                    }else if(info[i][2].equalsIgnoreCase(nombreAIngresar)){
+                        setMensaje("Ya existe un usuario con ese nombre\n"+nombreAIngresar);
+                        problema = true;
+                        break;
                     }
                 }
-        }else
-            if(info==null)
-        
+            }
+        }else if(info==null){
+            model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
-        else{
+        }else{
+            model.setRowCount(0);
             model.setDataVector(info, titulosTabla);
             TableColumn tc = usuariosTbl.getColumnModel().getColumn(3);
             tc.setCellEditor(usuariosTbl.getDefaultEditor(Boolean.class));
@@ -731,35 +653,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setInfo(List info) {
-        if(buscando){
-            if(info!=null){
-               
-                    primerNombre= nombreTFd.getText();
-               
-                    segundoNombre=segundoNombreTFd.getText();
-              
-                    apellidoPaterno=apellidoPaternoTFd.getText();
-              
-                    apellidoMaterno=apellidoMaternoTFd.getText();
-              
-                if(
-                    primerNombre.equals(info.get(0).toString()) &&
-                    segundoNombre.equals(info.get(1).toString())&&
-                    apellidoPaterno.equals(info.get(2).toString())&&
-                    apellidoMaterno.equals(info.get(3).toString())
-                    ){
-                    buscando=false;
-                    setMensaje("Ya existe el nombre del empleado\n"
-                            +primerNombre+" "
-                            +segundoNombre+" "
-                            +apellidoPaterno+" "
-                            +apellidoMaterno);
-                    
-                }
-                
-            }
-        }
-        else if(info==null)
+        if(info==null)
             setMensaje("No se encontraron coincidencias");
         else{
             nombreTFd.setText(info.get(0).toString());
@@ -778,23 +672,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     @Override
     public void setLista(List info, int i) {
     }
-    
-    public void setEnabledPanelInformacion(boolean b){
-        nombreTFd.setEnabled(b);
-        apellidoPaternoTFd.setEnabled(b);
-        segundoNombreTFd.setEnabled(b);
-        apellidoMaternoTFd.setEnabled(b);
-        usuarioTFd.setEnabled(b);
-        tipoCBx.setEnabled(b);
-        contrasenaPFd.setEnabled(b);
-        confirmarContrasenaPFd.setEnabled(b);
-        guardarBtn.setEnabled(b);
-    }
-    
-     public void setEnabledPanelOpcion(boolean b){
-        nombreBuscarTFd.setEnabled(b);
-        model.setRowCount(0);
-     }
 
     @Override
     public void llenarDatos(Object evento) {
