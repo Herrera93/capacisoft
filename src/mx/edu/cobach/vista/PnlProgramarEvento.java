@@ -19,7 +19,8 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  * Esta clase mostrara la interfaz de la busqueda del evento o la seleccion de
  * un evento para llevarlo a implementar
  */
-public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicador {
+public class PnlProgramarEvento extends javax.swing.JPanel implements
+        Comunicador {
 
     /**
      * Creates new form PnlProgramarEvento
@@ -30,14 +31,15 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     public final ImplementarEventoControlador control;
     public final DefaultComboBoxModel tipoEventoModel;
     public final DefaultTableModel model;
-    public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento","activo"
-            , "Eliminar"};
+    public String[] titulosTabla = {"ID", "Fecha Inicial", "Nombre del evento",
+        "activo", "Eliminar"};
     public String estado;
     private Capacisoft capacisoft;
     //mensaje instruccion : JLabel
     public PnlProgramarEvento(Capacisoft capacisoft) {
         this.capacisoft = capacisoft;
-        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this, 
+                ImplementacionEvento.class);
         initComponents();
         agregar();
         model = new DefaultTableModel(titulosTabla, 4);
@@ -396,7 +398,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         } else {
             eventoRealizarPnl.setVisible(false);
             eventoRealizadoPnl.setVisible(true);
-            eventoRealizadoPnl.llenarEvento((Evento) tipoRegCBx.getSelectedItem());
+            eventoRealizadoPnl.llenarEvento((Evento) tipoRegCBx.
+                    getSelectedItem());
             eventoRealizadoPnl.llenarTodo();
             eventoRealizadoPnl.visibilidad(true);
         }
@@ -433,28 +436,37 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         }
     }//GEN-LAST:event_regRealizarBtnActionPerformed
 
-
+    /**
+     * Este metodo permite que la informacion de la tabla mostrada al usuario,
+     * se muestre en los paneles de los eventos para modificar o que estos 
+     * eventos sean borrados
+     * @param evt 
+     */
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
         int col = tablaTbl.columnAtPoint(evt.getPoint());
         if (col == 0 || col == 1) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
-            if (((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 3)).equals("Activo")) {
+            if (((String) model.getValueAt(tablaTbl.rowAtPoint(evt.
+                    getPoint()), 3)).equals("Activo")) {
                 estado = "Activo";
 
             } else {
                 estado = "Finalizado";
             }
             control.setClass(ImplementacionEvento.class);
-            control.buscarMod(Integer.parseInt((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
+            control.buscarMod(Integer.parseInt((String) model.
+                    getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 2) {
             if (JOptionPane.
                     showConfirmDialog(this,
                             "¿Esta seguro de eliminar este registro?",
                             "Precaucion",
-                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                control.baja(Integer.parseInt((String) model.getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
+                            JOptionPane.YES_NO_OPTION, JOptionPane.
+                                    WARNING_MESSAGE) == 0) {
+                control.baja(Integer.parseInt((String) model.
+                        getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
                 control.buscarTodos();
                 eventoRealizadoPnl.limpiarCampos();
                 eventoRealizarPnl.limpiarCampos();
@@ -465,7 +477,12 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             }
         }
     }//GEN-LAST:event_tablaTblMouseClicked
-
+    /**
+     * Este metodo permite que el usuario pueda buscar un evento ya realizado o 
+     * a realizar, buscando todos los eventos si estan vacios todos los campos
+     * o mandando toda la informacion de fechas y nombre si no estan vacios
+     * @param evt 
+     */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         
         Evento evento = (Evento) tipoBusCBx.getSelectedItem();
@@ -478,10 +495,16 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             control.buscarImplementacion(evento, de, hasta);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
-
+    /**
+     * Este metodo permite que cuando el usuario busque un evento que desea
+     * registrar este abilite los botones de programar evento a realizar o 
+     * registrar evento realizado.
+     * @param evt 
+     */
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
         if ((Evento) tipoBusCBx.getSelectedItem() != null) {
-            if (((Evento) tipoBusCBx.getSelectedItem()).getNombre().compareTo("") != 0) {
+            if (((Evento) tipoBusCBx.getSelectedItem()).getNombre().
+                    compareTo("") != 0) {
                 regRealizadoBtn.setEnabled(true);
                 regRealizarBtn.setEnabled(true);
             } else {
@@ -490,10 +513,16 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             }
         }
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
-
+    /**
+     * Este metodo permite que cuando el usuario busque un evento que desea
+     * registrar este abilite los botones de programar evento a realizar o 
+     * registrar evento realizado.
+     * @param evt 
+     */
     private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
         if ((Evento) tipoBusCBx.getSelectedItem() != null) {
-            if (((Evento) tipoBusCBx.getSelectedItem()).getNombre().compareTo("") != 0) {
+            if (((Evento) tipoBusCBx.getSelectedItem()).getNombre().
+                    compareTo("") != 0) {
                 regRealizadoBtn.setEnabled(true);
                 regRealizarBtn.setEnabled(true);
             } else {
@@ -502,7 +531,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
             }
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
-
+    /**
+     * Metodo que permite que cuando se cambie de interfaz el usuario, elimine 
+     * la informacion referente a la programacion de los eventos
+     * @param evt 
+     */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         regRealizadoBtn.setEnabled(false);
         regRealizarBtn.setEnabled(false);
@@ -560,7 +593,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
         TableColumn tc = tablaTbl.getColumnModel().getColumn(4);
         tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
-        tablaTbl.getColumnModel().removeColumn(tablaTbl.getColumnModel().getColumn(0));
+        tablaTbl.getColumnModel().removeColumn(tablaTbl.getColumnModel().
+                getColumn(0));
         tc = tablaTbl.getColumnModel().getColumn(2);
         tablaTbl.getColumnModel().removeColumn(tc);
         tablaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -620,7 +654,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
                 break;
         }
     }
-
+    /**
+     * Metodo que permite llenar la informacion relacionada a los eventos
+     * @param evento 
+     */
     @Override
     public void llenarDatos(Object evento) {
         llenarTodo();

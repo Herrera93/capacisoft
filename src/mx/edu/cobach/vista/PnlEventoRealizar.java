@@ -38,12 +38,12 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  *
  * @author liuts
  */
-public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador, FocusListener {
+public class PnlEventoRealizar extends javax.swing.JPanel implements 
+        Comunicador, FocusListener {
 
     /**
      * Creates new form PnlEventoRealizar
      */
-    private final Border BORDER_ORIGINAL;
     private static ImplementarEventoControlador control;
     private int eventoProgramarId;
     private final DefaultComboBoxModel sedeModel;
@@ -68,7 +68,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
-        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this,
+                ImplementacionEvento.class);
 
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
@@ -86,7 +87,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         validFechFinLbl.setVisible(false);
         validSedeLbl.setVisible(false);
         validProveedorLbl.setVisible(false);
-        BORDER_ORIGINAL = nombreGTFd.getBorder();
     }
 
     /**
@@ -482,7 +482,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         ListaAsistencia lista = new ListaAsistencia(this);
         capacisoft.setEnabled(false);
         lista.setVisible(true);
-        String[][] matriz = new String[modelTablaEmF.getRowCount()][modelTablaEmF.getColumnCount()];
+        String[][] matriz = new String[modelTablaEmF.
+                getRowCount()][modelTablaEmF.getColumnCount()];
         for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
             for (int j = 0; j < modelTablaEmF.getColumnCount(); j++) {
                 matriz[k][j] = modelTablaEmF.getValueAt(k, j) + "";
@@ -524,7 +525,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             if (tipoSedeGCBx.getSelectedItem().toString().compareTo("") != 0) {
                 this.cambio = true;
                 capacidadSedeGLbl.setText("Capacidad de la sede: "
-                        + ((Sede) tipoSedeGCBx.getSelectedItem()).getCapacidad());
+                        + ((Sede) tipoSedeGCBx.getSelectedItem()).
+                                getCapacidad());
             } else {
                 capacidadSedeGLbl.setText("Capacidad de la sede: ");
             }
@@ -700,7 +702,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             modelTablaEmF.setDataVector(info, titulosTablaEm);
             TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
             tablaLisFTbl.getColumnModel().removeColumn(tc);
-            totalEmpleadosLbl.setText("Total de empleados en la lista: " + tablaLisFTbl.getRowCount() + "");
+            totalEmpleadosLbl.setText("Total de empleados en la lista: " + 
+                    tablaLisFTbl.getRowCount() + "");
         }
     }
 
@@ -811,9 +814,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             atributos.add(lisEmpleado);
             control.setClass(ImplementacionEvento.class);
             if (guardarLABtn.getText().equals("Guardar")) {
-                control.alta(HelperEntidad.getImplementarEvento(atributos, "Guardar"));
+                control.alta(HelperEntidad.
+                        getImplementarEvento(atributos, "Guardar"));
             } else {
-                control.alta(HelperEntidad.getImplementarEvento(atributos, "Modificar"));
+                control.alta(HelperEntidad.
+                        getImplementarEvento(atributos, "Modificar"));
             }
             this.cambio = false;
             limpiarCampos();
@@ -852,7 +857,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
 
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
-        Object[][] tableData = new Object[eventoImplementado.getEmpleados().size()][modelTablaEmF.getColumnCount()];
+        Object[][] tableData = new Object[eventoImplementado.getEmpleados().
+                size()][modelTablaEmF.getColumnCount()];
 
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
@@ -860,10 +866,15 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             tableData[x][0] = empleado.getId() + "";
             tableData[x][1] = empleado.getNumero() + "";
             if (empleado.getSegundoNombre() == null) {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
+                tableData[x][2] = empleado.getPrimerNombre() + " " + 
+                        empleado.getApellidoPaterno() + " " + empleado.
+                                getApellidoMaterno();
 
             } else {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + empleado.getSegundoNombre() + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
+                tableData[x][2] = empleado.getPrimerNombre() + " " + 
+                        empleado.getSegundoNombre() + " " + empleado.
+                                getApellidoPaterno() + " " + empleado.
+                                        getApellidoMaterno();
 
             }
         }
@@ -902,18 +913,22 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + "en la lista de asistencia");
             return true;
-        } else if (tablaLisFTbl.getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).getCapacidad()) {
-            if (JOptionPane.showConfirmDialog(this, "La lista de asistencia es mas "
-                    + "grande que la capacidad que puede soportar la sede"
-                    + "¿Desea aun así realizarla ahí ?", "Precaucion",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+        } else if (tablaLisFTbl.
+                getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).
+                        getCapacidad()) {
+            if (JOptionPane.showConfirmDialog(this, "La lista de asistencia"
+                    + " es mas grande que la capacidad que puede soportar"
+                    + " la sede ¿Desea aun así realizarla ahí ?", "Precaucion",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.
+                            WARNING_MESSAGE) == 0) {
                 return false;
             } else {
                 return true;
             }
         } else if (fechaIDCh.getDate().after(fechaTDCh.getDate())) {
             JOptionPane.showMessageDialog(this, "Error en las fechas de evento."
-                    + "La fecha de inicio es mayor que la fecha de terminacion");
+                    + "La fecha de inicio es mayor que"
+                    + " la fecha de terminacion");
             return true;
         }
         return false;
@@ -928,7 +943,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         fechaIDCh.setDate(null);
         fechaTDCh.setDate(null);
         tabla();
-        totalEmpleadosLbl.setText("Total de empleados en la lista: " + tablaLisFTbl.getRowCount() + "");
+        totalEmpleadosLbl.setText("Total de empleados en la lista: "
+                + tablaLisFTbl.getRowCount() + "");
 
     }
 
@@ -941,11 +957,18 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
     public boolean isCambio() {
         return this.cambio;
     }
-
+    /**
+     * Metodo que regresa todos los atributos de un evento
+     * @param evento 
+     */
     @Override
     public void llenarDatos(Object evento) {
     }
-
+    /**
+     * Este metodo detecta que el usuario perdio el foco de un campo y no 
+     * escribio nada en el avisandole que el campo es obligatorio
+     * @param e 
+     */
     @Override
     public void focusLost(FocusEvent e) {
         Object fuente = e.getSource();
@@ -967,7 +990,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
             }
         }
     }
-
+    /**
+     * Este metodo detecta que el usuario esta modificando un campo y hace el 
+     * label de recordatorio invisible
+     * @param e 
+     */
     @Override
     public void focusGained(FocusEvent e) {
         Object fuente = e.getSource();

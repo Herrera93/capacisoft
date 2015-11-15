@@ -16,14 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
@@ -47,11 +45,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     //Comunicador con la interfaz grafica
     protected final Comunicador com;
     //Clase con la que estara trabajando la base de datos
-    
+
     /**
-     * Este constructor recibe el parametro de comunicador, permitiendo que 
+     * Este constructor recibe el parametro de comunicador, permitiendo que
      * mande los la tablas de la lista de asistencia
-     * @param com 
+     *
+     * @param com
      */
     public ListaAsistencia(Comunicador com) {
         this.com = com;
@@ -61,7 +60,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this,
+                ImplementacionEvento.class);
         campoModel = new DefaultComboBoxModel();
         tipoModel = new DefaultComboBoxModel();
         tipoLACBx.setModel(tipoModel);
@@ -377,7 +377,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     /**
      * Este metodo busca prepara los campos de busqueda para buscar al empleado
      * dependiendo de sus referencias
-     * @param evt 
+     *
+     * @param evt
      */
     private void campoCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_campoCBxItemStateChanged
         switch ((String) campoCBx.getSelectedItem()) {
@@ -448,12 +449,14 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
     /**
-     * Este metodo valida que el usuarios no escriba letras, entre otros 
+     * Este metodo valida que el usuarios no escriba letras, entre otros
      * parametros
-     * @param evt 
+     *
+     * @param evt
      */
     private void nombreLATFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreLATFdKeyTyped
-        if (Character.isLetter(evt.getKeyChar()) || Character.isISOControl(evt.getKeyChar())
+        if (Character.isLetter(evt.getKeyChar())
+                || Character.isISOControl(evt.getKeyChar())
                 || Character.isWhitespace(evt.getKeyChar())) {
             evt = evt;
         } else {
@@ -463,7 +466,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     /**
      * Este metodo busca todas las referencias dependiendo de como la solicita
      * el usuario
-     * @param evt 
+     *
+     * @param evt
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
         control.setClass(Empleado.class);
@@ -488,23 +492,28 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
                 break;
             case "Departamento Y Nombre_Empleado":
-                control.buscarEmpPorDepartamentoNEmpleado((Departamento) tipoLACBx.getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorDepartamentoNEmpleado((Departamento) tipoLACBx.
+                        getSelectedItem(), nombreLATFd.getText());
                 break;
             case "Plantel Y Nombre_Empleado":
-                control.buscarEmpPorPlantelNEmpleado((Plantel) tipoLACBx.getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorPlantelNEmpleado((Plantel) tipoLACBx.
+                        getSelectedItem(), nombreLATFd.getText());
                 break;
             case "Puesto Y Nombre_Empleado":
-                control.buscarEmpPorPuestoNEmpleado((Puesto) tipoLACBx.getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorPuestoNEmpleado((Puesto) tipoLACBx.
+                        getSelectedItem(), nombreLATFd.getText());
                 break;
             case "Direccion Y Nombre_Empleado":
-                control.buscarEmpPorDireccionEmpleado((Direccion) tipoLACBx.getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorDireccionEmpleado((Direccion) tipoLACBx.
+                        getSelectedItem(), nombreLATFd.getText());
                 break;
         }
     }//GEN-LAST:event_buscarLABtnActionPerformed
     /**
      * Este metodo agrega a los empleados a la lista de asistencia, mandando
-     * cada uno de los empleados de sus pocisiones 
-     * @param evt 
+     * cada uno de los empleados de sus pocisiones
+     *
+     * @param evt
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         if (tablaLisITbl.getSelectedRow() >= 0) {
@@ -517,10 +526,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
     /**
-     * Este metodo agrega un empleado a la lista de asistencia, mandando el 
+     * Este metodo agrega un empleado a la lista de asistencia, mandando el
      * empleado que selecciono el usuario
-     * 
-     * @param evt 
+     *
+     * @param evt
      */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
         for (int i = 0; i < modelTablaEmI.getRowCount(); i++) {
@@ -534,7 +543,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     }//GEN-LAST:event_agregarTBtnActionPerformed
     /**
      * Este metodo elimina una persona de la lista de asistencia
-     * @param evt 
+     *
+     * @param evt
      */
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar al empleado de "
@@ -542,10 +552,13 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
             if (tablaLisFTbl.getSelectedRow() >= 0) {
                 int cont = 0;
-                Object[][] tableData = new Object[tablaLisFTbl.getRowCount() - 1][modelTablaEmF.getColumnCount()];
+                Object[][] tableData = new Object[tablaLisFTbl.
+                        getRowCount() - 1][modelTablaEmF.getColumnCount()];
                 for (int i = 0; i < tablaLisFTbl.getRowCount(); i++) {
                     if (((String) modelTablaEmF.getValueAt(i, 0)).
-                            compareTo((String) modelTablaEmF.getValueAt(tablaLisFTbl.getSelectedRow(), 0)) != 0) {
+                            compareTo((String) modelTablaEmF.getValueAt(
+                                            tablaLisFTbl.getSelectedRow(),
+                                            0)) != 0) {
                         tableData[cont][0] = modelTablaEmF.getValueAt(i, 0);
                         tableData[cont][1] = modelTablaEmF.getValueAt(i, 1);
                         tableData[cont][2] = modelTablaEmF.getValueAt(i, 2);
@@ -556,8 +569,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
                 tablaLisFTbl.getColumnModel().removeColumn(tc);
                 tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-                tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-                tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+                tablaLisFTbl.getColumnModel().getColumn(0).
+                        setPreferredWidth(10);
+                tablaLisFTbl.getColumnModel().getColumn(1).
+                        setPreferredWidth(160);
                 tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
             }
         }
@@ -569,7 +584,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     }//GEN-LAST:event_eliminarBtnActionPerformed
     /**
      * Este metodo elimina todos los empleados de la lista de asistencia.
-     * @param evt 
+     *
+     * @param evt
      */
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar toda la lista "
@@ -596,12 +612,14 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         boolean bandera = false;
         tablaLisFTbl.setEnabled(true);
         for (int j = 0; j < modelTablaEmF.getRowCount(); j++) {
-            if (modelTablaEmI.getValueAt(posicionLista, 0).equals(modelTablaEmF.getValueAt(j, 0))) {
+            if (modelTablaEmI.getValueAt(posicionLista, 0).
+                    equals(modelTablaEmF.getValueAt(j, 0))) {
                 bandera = true;
             }
         }
         if (bandera == false) {
-            Object[][] tableData = new Object[modelTablaEmF.getRowCount() + 1][modelTablaEmF.getColumnCount()];
+            Object[][] tableData = new Object[modelTablaEmF.
+                    getRowCount() + 1][modelTablaEmF.getColumnCount()];
             //ciclo que pasa la informacion de la tabla de lista 
             //final para que al final sea agregado el nuevo empleado a 
             //esta matriz
@@ -610,9 +628,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                     tableData[k][j] = modelTablaEmF.getValueAt(k, j);
                 }
             }
-            tableData[modelTablaEmF.getRowCount()][0] = modelTablaEmI.getValueAt(posicionLista, 0);
-            tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.getValueAt(posicionLista, 1);
-            tableData[modelTablaEmF.getRowCount()][2] = modelTablaEmI.getValueAt(posicionLista, 2);
+            tableData[modelTablaEmF.getRowCount()][0] = modelTablaEmI.
+                    getValueAt(posicionLista, 0);
+            tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.
+                    getValueAt(posicionLista, 1);
+            tableData[modelTablaEmF.getRowCount()][2] = modelTablaEmI.
+                    getValueAt(posicionLista, 2);
             modelTablaEmF.setDataVector(tableData, titulosTablaEm);
             TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
             tablaLisFTbl.getColumnModel().removeColumn(tc);
@@ -625,9 +646,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     }
 
     /**
-     * Este metodo crea una tabla para la lista de asistencia final para el usuario
-     * en la interfaz de eventos realizados o a relizar
-     * @param evt 
+     * Este metodo crea una tabla para la lista de asistencia final para el
+     * usuario en la interfaz de eventos realizados o a relizar
+     *
+     * @param evt
      */
     private void crearTablaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearTablaBtnActionPerformed
         String[][] matriz = new String[modelTablaEmF.getRowCount()][modelTablaEmF.getColumnCount()];
@@ -646,11 +668,13 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     /**
      * Este metodo permite cancelar la lista de empleados, cerrando la ventana
      * de la lista de empleados
-     * @param evt 
+     *
+     * @param evt
      */
     private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
         if (tablaLisFTbl.getRowCount() > 0) {
-            if (JOptionPane.showConfirmDialog(this, "¿Desea cancelar la realizacion "
+            if (JOptionPane.showConfirmDialog(this,
+                    "¿Desea cancelar la realizacion "
                     + "de la lista de asistencia?", "Precaucion",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 List<String> info = new ArrayList<String>();
@@ -724,6 +748,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         eliminarBtn.setEnabled(visibilidad);
         eliminarTBtn.setEnabled(visibilidad);
     }
+
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
      * registro o modificacion exitosa.
@@ -734,6 +759,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
     /**
      * Metodo que recibe una matriz, donde se obtendran sus valores para
      * añadirlos a la modelo de la tabla, también se ocultara la columna id y se
@@ -759,6 +785,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         visibilidadOpcT(true);
 
     }
+
     /**
      * Agrega los datos al modelo de la tabla, también se ocultara la columna id
      * y se le dara se redefinira el ancho de la columna 0.
@@ -783,6 +810,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
     }
+
     /**
      * Metodo sobrescrito de la clase Comunicador
      *
@@ -791,8 +819,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      */
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     /**
      * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
      * los resultados de una busqueda especifica y vaciarlo en los campos y
@@ -814,18 +842,19 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 break;
         }
     }
+
     /**
      * Metodo que permite llenar los datos del evento
-     * @param evento 
+     *
+     * @param evento
      */
     @Override
-    public void llenarDatos(Object evento
-    ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void llenarDatos(Object evento) {
     }
+
     /**
      * Metodo que permite cerrar el JFrane dandole una advertencia al usuario,
-     * 
+     *
      */
     private void cerrar() {
         try {
@@ -839,13 +868,17 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             e.printStackTrace();
         }
     }
+
     /**
      * Metodo que permite cerrar el JFrane dandole una advertencia al usuario,
-     * 
+     *
      */
     private void confirmarSalida() {
         Object[] opciones = {"Aceptar", "Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane, "En realidad desea realizar cerrar la lista de asistencia", "Mensaje de Confirmacion",
+        int eleccion = JOptionPane.showOptionDialog(
+                rootPane, "En realidad desea realizar "
+                + "cerrar la lista de asistencia",
+                "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
@@ -855,9 +888,11 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             this.dispose();
         }
     }
+
     /**
      * Metodo que permite crear la lista de asistencia ya realizada.
-     * @param info 
+     *
+     * @param info
      */
     public void mandarTabla(String[][] info) {
         modelTablaEmF.setDataVector(info, titulosTablaEm);

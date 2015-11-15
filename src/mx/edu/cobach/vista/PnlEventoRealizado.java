@@ -27,7 +27,8 @@ import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
-import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.
+        ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -42,7 +43,8 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  *
  * @author liuts
  */
-public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicador, FocusListener {
+public class PnlEventoRealizado extends javax.swing.JPanel implements
+        Comunicador, FocusListener {
 
     /**
      * Creates new form PnlEventoRealizado
@@ -79,7 +81,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
 
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
-        control = new ImplementarEventoControlador(this, ImplementacionEvento.class);
+        control = new ImplementarEventoControlador(this, 
+                ImplementacionEvento.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMaxSelectableDate(new Date());
         informacionTP.setEnabledAt(0, true);
@@ -574,7 +577,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         ListaAsistencia lista = new ListaAsistencia(this);
         lista.setVisible(true);
         capacisoft.setEnabled(false);
-        String[][] matriz = new String[modelTablaEmF.getRowCount()][modelTablaEmF.getColumnCount()];
+        String[][] matriz = new String[modelTablaEmF.
+                getRowCount()][modelTablaEmF.getColumnCount()];
         for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
             for (int j = 0; j < modelTablaEmF.getColumnCount(); j++) {
                 matriz[k][j] = modelTablaEmF.getValueAt(k, j) + "";
@@ -857,7 +861,8 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             info[0][0] = info[0][0].replaceAll("TLE4", "");
             //Se elimina la palabra TLE4 para que solo quede el id puro
 
-            Object[][] tableData = new Object[enunciadoTbl.getRowCount()][enunciadoTbl.getColumnCount() + 1];
+            Object[][] tableData = new Object[enunciadoTbl.
+                    getRowCount()][enunciadoTbl.getColumnCount() + 1];
             for (int i = 0; i < enunciadoTbl.getRowCount(); i++) {
                 tableData[i][0] = info[i][0];
                 tableData[i][1] = modelTablaEn.getValueAt(i, 1);
@@ -1020,10 +1025,12 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
                 ImplementacionEvento evento = new ImplementacionEvento();
                 enunciado.setId(x + 1);
                 calificacionLog.setEnunciadoLogistica(enunciado);
-                calificacionLog.setCalificacion(Integer.parseInt((String) modelTablaEn.
+                calificacionLog.setCalificacion(Integer.
+                        parseInt((String) modelTablaEn.
                         getValueAt(x, 3)));
                 if (guardarCBtn.getText().equals("Modificar")) {
-                    calificacionLog.setId(Integer.parseInt((String) modelTablaEn.
+                    calificacionLog.setId(Integer.
+                            parseInt((String) modelTablaEn.
                             getValueAt(x, 0)));
                     evento.setId(eventoProgramarId);
                     calificacionLog.setImplementacionEvento(evento);
@@ -1032,11 +1039,13 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             }
             control.setClass(ImplementacionEvento.class);
             if (guardarCBtn.getText().equals("Guardar")) {
-                implementacionEvento = HelperEntidad.getImplementarEvento(eventoImplementar, "Guardar");
+                implementacionEvento = HelperEntidad.
+                        getImplementarEvento(eventoImplementar, "Guardar");
                 control.guardarOModificarEventoImplementado(implementacionEvento,
                         calificacion, "Guardar");
             } else {
-                implementacionEvento = HelperEntidad.getImplementarEvento(eventoImplementar, "Modificar");
+                implementacionEvento = HelperEntidad.
+                        getImplementarEvento(eventoImplementar, "Modificar");
                 control.guardarOModificarEventoImplementado(implementacionEvento,
                         calificacion, "Modificar");
             }
@@ -1078,16 +1087,22 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
         eventoImplementado.setId(eventoProgramarId);
-        Object[][] tableData = new Object[eventoImplementado.getEmpleados().size()][modelTablaEmF.getColumnCount()];
+        Object[][] tableData = new Object[eventoImplementado.getEmpleados().
+                size()][modelTablaEmF.getColumnCount()];
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
             tableData[x][0] = empleado.getId() + "";
             tableData[x][1] = empleado.getNumero() + "";
             if (empleado.getSegundoNombre() == null) {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
+                tableData[x][2] = empleado.getPrimerNombre() + " "
+                        + empleado.getApellidoPaterno() + " " + empleado.
+                                getApellidoMaterno();
 
             } else {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + empleado.getSegundoNombre() + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
+                tableData[x][2] = empleado.getPrimerNombre() + " " 
+                        + empleado.getSegundoNombre() + " " + empleado.
+                                getApellidoPaterno() + " " + empleado.
+                                        getApellidoMaterno();
 
             }
         }
@@ -1169,7 +1184,11 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
     @Override
     public void llenarDatos(Object evento) {
     }
-
+    /**
+     * Este metodo detecta que el usuario esta modificando un campo y hace el 
+     * label de recordatorio invisible
+     * @param e 
+     */
     @Override
     public void focusGained(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1181,7 +1200,11 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements Comunicado
             validProveedorLbl.setVisible(false);
         }
     }
-
+    /**
+     * Este metodo detecta que el usuario perdio el foco de un campo y no 
+     * escribio nada en el avisandole que el campo es obligatorio
+     * @param e 
+     */
     @Override
     public void focusLost(FocusEvent e) {
         Object fuente = e.getSource();
