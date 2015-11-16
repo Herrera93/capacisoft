@@ -105,14 +105,13 @@
                           <Component id="agregarBtn" min="-2" pref="81" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
                           <Component id="buscarBtn" min="-2" pref="81" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tablaMsjLbl" min="-2" pref="360" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="buscar_OU_Btn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
@@ -313,64 +312,49 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tipoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="nombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="tipoLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="apellidoMaternoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="apellidoPaternoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="segundoNombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="contrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="confirmarContrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="apellidoPaternoTFd" min="-2" pref="151" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tipoCBx" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="nombreTFd" min="-2" pref="151" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="nombreTFd" alignment="0" pref="360" max="32767" attributes="0"/>
+                                      <Component id="tipoCBx" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="apellidoMaternoTFd" max="32767" attributes="0"/>
+                                      <Component id="apellidoPaternoTFd" max="32767" attributes="0"/>
+                                      <Component id="segundoNombreTFd" max="32767" attributes="0"/>
+                                      <Component id="usuarioTFd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="contrasenaPFd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="confirmarContrasenaPFd" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
+                          <EmptySpace pref="95" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace pref="144" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="cancelarBtn" min="-2" pref="108" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="confirmarContrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="contrasenaLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="apellidoMaternoLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="segundoNombreLbl" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="confirmarContrasenaPFd" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="segundoNombreTFd" alignment="1" min="-2" pref="148" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="apellidoMaternoTFd" alignment="0" pref="151" max="32767" attributes="0"/>
-                                      <Component id="usuarioTFd" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="contrasenaPFd" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -386,32 +370,41 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="segundoNombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="segundoNombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="apellidoPaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apellidoPaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apellidoMaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apellidoMaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="segundoNombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="segundoNombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="usuarioTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="usuarioLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoPaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoPaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="apellidoMaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoMaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tipoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="usuarioTFd" min="-2" max="-2" attributes="0"/>
+                      <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="contrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="contrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="confirmarContrasenaLbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmarContrasenaPFd" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="confirmarContrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarContrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -559,7 +552,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Confirmar Contrase&#xf1;a:"/>
+            <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="contrasenaPFd">

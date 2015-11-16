@@ -478,6 +478,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         this.setTitle("Capacisoft - Plantel");
         ocultarPaneles();
         plantelPnl.setVisible(true);
+        plantelPnl.llenarTodo();
     }//GEN-LAST:event_planteles_MItActionPerformed
 
     private void usuario_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario_MItActionPerformed
