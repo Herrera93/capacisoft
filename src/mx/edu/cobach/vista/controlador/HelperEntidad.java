@@ -50,7 +50,7 @@ public class HelperEntidad {
     public static Departamento getDepartamento(List<Object> atributos){
         Departamento depto = new Departamento();
         depto.setNombre((String) atributos.get(0));
-        if (atributos.size() > 2) {
+        if (atributos.size() > 1) {
             depto.setId((Integer) atributos.get(1));
         }
         return depto;

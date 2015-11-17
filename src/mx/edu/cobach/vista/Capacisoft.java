@@ -472,6 +472,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         this.setTitle("Capacisoft - Departamento");
         ocultarPaneles();
         departamentoPnl.setVisible(true);
+        departamentoPnl.llenarTodo();
     }//GEN-LAST:event_departamentos_MItActionPerformed
 
     private void planteles_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planteles_MItActionPerformed

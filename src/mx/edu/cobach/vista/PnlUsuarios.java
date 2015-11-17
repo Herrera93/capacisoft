@@ -645,13 +645,13 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 usuariosTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                 "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            control.baja(id);
-            control.buscarPorNombre(nombreBuscarTFd.getText());
-        } else {
-            model.setValueAt(false, row, 3);
-            usuariosTbl.clearSelection();
-        }
+                int id = Integer.parseInt((String)model.getValueAt(row, 0));
+                control.baja(id);
+                control.buscarTodos();
+            } else {
+                model.setValueAt(false, row, 3);
+                usuariosTbl.clearSelection();
+            }
         }
     }//GEN-LAST:event_usuariosTblMouseClicked
 

@@ -363,7 +363,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106))
+                .addGap(32, 32, 32))
             .addGroup(informacionPnlLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,7 +443,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -572,12 +572,14 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             }
         }else if(col == 3) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(control.buscarEmpleados(id)){
+            if(!control.buscarEmpleados(id)){
                 setMensaje("No se puede eliminar un plantel que contenga empleados");
+                model.setValueAt(false, row, 3);
+                plantelesTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
                 control.baja(id);
-                control.buscarPorNombre(nombreBuscarTFd.getText());
+                control.buscarTodos();
             } else {
                 model.setValueAt(false, row, 3);
                 plantelesTbl.clearSelection();
