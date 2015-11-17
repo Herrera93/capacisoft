@@ -87,9 +87,9 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         setMinimumSize(new java.awt.Dimension(1181, 587));
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        opcionPnl.setEnabled(false);
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
         opcionPnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setPreferredSize(new java.awt.Dimension(408, 566));
 
         tablaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,7 +135,6 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         nombreBuscarLbl.setText("Nombre del departamento:");
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreBuscarTFd.setEnabled(false);
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
@@ -158,7 +157,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        jLabel1.setText("<html>Para Modificar seleccione un departamento de columna \"Nombre\", <br>para eliminar seleccione el cuadro de la columna Eliminar del depto. que desea.</html> ");
+        jLabel1.setText("<html>Para Modificar seleccione un número del usuario de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -168,49 +167,49 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 .addContainerGap()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tablaSPn, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                             .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(agregarBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscarBtn)
-                                .addGap(18, 18, 18))
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
                                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(opcionLbl)
+                                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                                        .addComponent(agregarBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(opcionPnlLayout.createSequentialGroup()
                                         .addComponent(nombreBuscarLbl)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                                    .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 57, Short.MAX_VALUE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(opcionLbl)
+                                            .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap())
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         opcionPnlLayout.setVerticalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionPnlLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(20, 20, 20)
                 .addComponent(opcionLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreBuscarLbl)
-                    .addComponent(nombreBuscarTFd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregarBtn)
                     .addComponent(buscarBtn))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -224,8 +223,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         nombreLbl.setText("Nombre del departamento:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreTFd.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nombreTFd.setEnabled(false);
+        nombreTFd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         nombreTFd.setPreferredSize(new java.awt.Dimension(167, 23));
         nombreTFd.setVerifyInputWhenFocusTarget(false);
         nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -248,11 +246,9 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FINANZAS", "ADMINISTRATIVA", "PLANEACIÓN", "SERVICIOS EDUCATIVOS", "GENERAL" }));
         direccionCBx.setToolTipText("Seleccioné la zona del plantel");
-        direccionCBx.setEnabled(false);
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
-        guardarBtn.setEnabled(false);
         guardarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarBtnActionPerformed(evt);
@@ -270,7 +266,6 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");
-        cancelarBtn.setEnabled(false);
         cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarBtnActionPerformed(evt);
@@ -339,8 +334,10 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -536,7 +536,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenuItem curso_MIt;
     private javax.swing.JMenuItem departamentos_MIt;
     private javax.swing.JMenuItem empleado_MIt;
-    private javax.swing.JMenuItem encuesta_MIt;
+    public javax.swing.JMenuItem encuesta_MIt;
     private javax.swing.JMenuItem kardex_MIt;
     private javax.swing.JMenuItem lista_MIt;
     private javax.swing.JMenu mantenimientoCurso_Mn;

@@ -4,12 +4,15 @@
  */
 package mx.edu.cobach.vista;
 
+import java.awt.Color;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Plantel;
@@ -25,6 +28,8 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private int idPlantelActual;
     private boolean buscando = false;
     private boolean problema = false;
+    private boolean almacenando = false;
+    private Border BORDER_ORIGINAL;
     private KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 
     /**
@@ -63,6 +68,8 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 return false;
             }
         });
+        
+        BORDER_ORIGINAL = nombreTFd.getBorder();
     }
 
     /**
@@ -100,10 +107,15 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         coloniaLbl = new javax.swing.JLabel();
         coloniaTFd = new javax.swing.JTextField();
         cancelarBtn = new javax.swing.JButton();
+        validCalleLbl = new javax.swing.JLabel();
+        validNomLbl = new javax.swing.JLabel();
+        validColoniaLbl = new javax.swing.JLabel();
+        validNumeroLbl = new javax.swing.JLabel();
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
         opcionPnl.setMinimumSize(new java.awt.Dimension(408, 587));
+        opcionPnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
         plantelesTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,32 +182,32 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         opcionPnl.setLayout(opcionPnlLayout);
         opcionPnlLayout.setHorizontalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tablaPlantelSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addComponent(agregarTFd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(NombreBuscarLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
+                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(opcionLbl))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addComponent(NombreBuscarLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 34, Short.MAX_VALUE))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addComponent(tablaPlantelSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         opcionPnlLayout.setVerticalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,8 +227,8 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaPlantelSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(tablaPlantelSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -233,12 +245,38 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         zonaLbl.setText("Zona:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nombreTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nombreTFdFocusLost(evt);
+            }
+        });
+        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTFdKeyTyped(evt);
+            }
+        });
 
         zonaCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Valle", "Costa Norte", "Costa Sur" }));
         zonaCBx.setToolTipText("Seleccioné la zona del plantel");
 
         calleTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        calleTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                calleTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                calleTFdFocusLost(evt);
+            }
+        });
+        calleTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleTFdKeyTyped(evt);
+            }
+        });
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
@@ -249,9 +287,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         });
 
         agregarLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLbl.setText("Agregar");
+        agregarLbl.setText("Registro");
 
-        agregarMsjLbl.setText("Ingrese la información a almacenar del plantel");
+        agregarMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón \"Cancelar\"");
 
         calleLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         calleLbl.setText("Calle:");
@@ -260,11 +298,37 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         numeroLbl.setText("Numero:");
 
         numeroTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        numeroTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                numeroTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                numeroTFdFocusLost(evt);
+            }
+        });
+        numeroTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroTFdKeyTyped(evt);
+            }
+        });
 
         coloniaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         coloniaLbl.setText("Colonia:");
 
         coloniaTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        coloniaTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                coloniaTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                coloniaTFdFocusLost(evt);
+            }
+        });
+        coloniaTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaTFdKeyTyped(evt);
+            }
+        });
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");
@@ -274,54 +338,71 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             }
         });
 
+        validCalleLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validCalleLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validCalleLbl.setText("Este campo es obligatorio");
+
+        validNomLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validNomLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validNomLbl.setText("Este campo es obligatorio");
+
+        validColoniaLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validColoniaLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validColoniaLbl.setText("Este campo es obligatorio");
+
+        validNumeroLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validNumeroLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validNumeroLbl.setText("Este campo es obligatorio");
+
         javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
         informacionPnl.setLayout(informacionPnlLayout);
         informacionPnlLayout.setHorizontalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacionPnlLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacionPnlLayout.createSequentialGroup()
-                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(coloniaLbl))
-                        .addGap(74, 74, 74)
-                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(calleTFd)
-                            .addComponent(coloniaTFd)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(nombreAgregarLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(informacionPnlLayout.createSequentialGroup()
-                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarMsjLbl)
-                            .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(diraccionLbl))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(informacionPnlLayout.createSequentialGroup()
-                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(numeroLbl)
-                            .addComponent(zonaLbl))
-                        .addGap(74, 74, 74)
-                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(informacionPnlLayout.createSequentialGroup()
-                                .addComponent(zonaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(numeroTFd))))
-                .addGap(252, 252, 252))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106))
+            .addGroup(informacionPnlLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarMsjLbl)
+                            .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(informacionPnlLayout.createSequentialGroup()
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(diraccionLbl)
+                                    .addComponent(calleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(coloniaLbl)
+                                    .addComponent(numeroLbl)
+                                    .addComponent(zonaLbl))
+                                .addGap(16, 16, 16)
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(calleTFd)
+                                    .addComponent(coloniaTFd)
+                                    .addComponent(numeroTFd)
+                                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(validNumeroLbl)
+                                            .addComponent(validColoniaLbl)
+                                            .addComponent(validCalleLbl)
+                                            .addComponent(zonaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 231, Short.MAX_VALUE)))))
+                        .addGap(242, 242, 242))
+                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                        .addComponent(nombreAgregarLbl)
+                        .addGap(18, 18, 18)
+                        .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(validNomLbl)
+                            .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         informacionPnlLayout.setVerticalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionPnlLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(20, 20, 20)
                 .addComponent(agregarLbl)
                 .addGap(11, 11, 11)
                 .addComponent(agregarMsjLbl)
@@ -329,24 +410,35 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreAgregarLbl)
                     .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(diraccionLbl)
-                .addGap(30, 30, 30)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(calleLbl)
-                    .addComponent(calleTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(coloniaTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coloniaLbl))
-                .addGap(30, 30, 30)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numeroLbl)
-                    .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(zonaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(zonaLbl))
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(diraccionLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(calleLbl)
+                        .addGap(33, 33, 33)
+                        .addComponent(coloniaLbl)
+                        .addGap(33, 33, 33)
+                        .addComponent(numeroLbl)
+                        .addGap(33, 33, 33)
+                        .addComponent(zonaLbl))
+                    .addGroup(informacionPnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(validNomLbl)
+                        .addGap(29, 29, 29)
+                        .addComponent(calleTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(validCalleLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(coloniaTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(validColoniaLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(validNumeroLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(zonaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,13 +451,13 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(informacionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -387,6 +479,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      * la informacion en la base de datos.
      */
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
+        almacenando = true;
         if(nombreTFd.getText().equals("") && coloniaTFd.getText().equals("")
             && calleTFd.getText().equals("") && numeroTFd.getText().equals("")){
             setMensaje("Debe ingresar los datos solicitados");
@@ -425,6 +518,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 control.buscarTodos();
             }
         }
+        almacenando = false;
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     /**
@@ -499,6 +593,101 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
+
+    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreTFdKeyTyped
+
+    private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
+        nombreTFd.setBorder(BORDER_ORIGINAL);
+        validNomLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_nombreTFdFocusGained
+
+    private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        buscando = true;
+        problema = false;
+        control.buscarTodos();
+        if (nombreTFd.getText().isEmpty()) {
+            nombreTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNomLbl.setText("Este campo es obligatorio");
+            validNomLbl.setForeground(new Color(255, 0, 0));
+        }else if(problema){
+            nombreTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNomLbl.setText("El nombre del plantel ya existe");
+            validNomLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_nombreTFdFocusLost
+
+    private void calleTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (calleTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_calleTFdKeyTyped
+
+    private void calleTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_calleTFdFocusLost
+        if (calleTFd.getText().isEmpty()) {
+            calleTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validCalleLbl.setText("Este campo es obligatorio");
+            validCalleLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_calleTFdFocusLost
+
+    private void calleTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_calleTFdFocusGained
+        calleTFd.setBorder(BORDER_ORIGINAL);
+        validCalleLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_calleTFdFocusGained
+
+    private void coloniaTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_coloniaTFdFocusGained
+        coloniaTFd.setBorder(BORDER_ORIGINAL);
+        validColoniaLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_coloniaTFdFocusGained
+
+    private void coloniaTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_coloniaTFdFocusLost
+        if (coloniaTFd.getText().isEmpty()) {
+            coloniaTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validColoniaLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_coloniaTFdFocusLost
+
+    private void coloniaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (coloniaTFd.getText().length() >= 55 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_coloniaTFdKeyTyped
+
+    private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (numeroTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_numeroTFdKeyTyped
+
+    private void numeroTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numeroTFdFocusLost
+        if (numeroTFd.getText().isEmpty()) {
+            numeroTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNumeroLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_numeroTFdFocusLost
+
+    private void numeroTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numeroTFdFocusGained
+        numeroTFd.setBorder(BORDER_ORIGINAL);
+        validNumeroLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_numeroTFdFocusGained
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -526,6 +715,10 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JTable plantelesTbl;
     private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JScrollPane tablaPlantelSPn;
+    private javax.swing.JLabel validCalleLbl;
+    private javax.swing.JLabel validColoniaLbl;
+    private javax.swing.JLabel validNomLbl;
+    private javax.swing.JLabel validNumeroLbl;
     private javax.swing.JComboBox zonaCBx;
     private javax.swing.JLabel zonaLbl;
     // End of variables declaration//GEN-END:variables
@@ -541,6 +734,14 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         coloniaTFd.setText("");
         calleTFd.setText("");
         numeroTFd.setText("");
+        nombreTFd.setBorder(BORDER_ORIGINAL);
+        coloniaTFd.setBorder(BORDER_ORIGINAL);
+        calleTFd.setBorder(BORDER_ORIGINAL);
+        numeroTFd.setBorder(BORDER_ORIGINAL);
+        validCalleLbl.setForeground(new Color(213, 216, 222));
+        validColoniaLbl.setForeground(new Color(213, 216, 222));
+        validNomLbl.setForeground(new Color(213, 216, 222));
+        validNumeroLbl.setForeground(new Color(213, 216, 222));
         informacionPnl.setVisible(false);
     }
     /**
@@ -564,8 +765,10 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             if(info != null){
                 for(int x=0;x<info.length;x++){
                     if(info[x][1].equals(nombreTFd.getText())){
-                        setMensaje("Ya existe un plantel con ese nombre.\n"
+                        if(almacenando){
+                            setMensaje("Ya existe un plantel con ese nombre.\n"
                                 + info[x][1]);
+                        }
                         problema = true;
                         break;
                     }

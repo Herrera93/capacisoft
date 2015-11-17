@@ -1,11 +1,14 @@
 package mx.edu.cobach.vista;
 
+import java.awt.Color;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Usuario;
@@ -20,8 +23,10 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private int idUsuarioActual;
     private KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
     private boolean buscando = false;
-    private boolean problema = false;
+    private boolean almacenando = false;
+    private int problema = 0;
     private String usuarioConectado;
+    private final Border BORDER_ORIGINAL;
     
     public PnlUsuarios(String usuario) {
         initComponents();
@@ -37,6 +42,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 }
             }
         };
+        BORDER_ORIGINAL = nombreTFd.getBorder();
         usuariosTbl.setModel(model);
         usuariosTbl.setColumnSelectionAllowed(false);
         usuariosTbl.setDragEnabled(false);
@@ -70,9 +76,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         opcionPnl = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         usuariosTbl = new javax.swing.JTable();
-        nombreUsuario_OU_Lbl = new javax.swing.JLabel();
-        nombreUsuario_OU_TFd = new javax.swing.JTextField();
-        buscar_OU_Btn = new javax.swing.JButton();
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
@@ -101,6 +104,12 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         contrasenaPFd = new javax.swing.JPasswordField();
         confirmarContrasenaPFd = new javax.swing.JPasswordField();
         cancelarBtn = new javax.swing.JButton();
+        validNomLbl = new javax.swing.JLabel();
+        validApePatLbl = new javax.swing.JLabel();
+        validApeMatLbl = new javax.swing.JLabel();
+        validUsuarioLbl = new javax.swing.JLabel();
+        validContrasenaLbl = new javax.swing.JLabel();
+        validConfirmarLbl = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1181, 587));
         setMinimumSize(new java.awt.Dimension(1181, 587));
@@ -111,7 +120,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         opcionPnl.setMinimumSize(new java.awt.Dimension(408, 587));
         opcionPnl.setPreferredSize(new java.awt.Dimension(408, 587));
 
-        usuariosTbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usuariosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -152,15 +160,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             usuariosTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        nombreUsuario_OU_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreUsuario_OU_Lbl.setText("Nombre de usuario:");
-
-        nombreUsuario_OU_TFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreUsuario_OU_TFd.setEnabled(false);
-
-        buscar_OU_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscar_OU_Btn.setText("Buscar");
-
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText("Agregar");
         agregarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -194,38 +193,26 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         opcionPnlLayout.setHorizontalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionPnlLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(opcionLbl)
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(nombreBuscarLbl)
-                                .addGap(35, 35, 35)
-                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(274, 274, 274)
-                        .addComponent(nombreUsuario_OU_Lbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(opcionPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(198, 198, 198)
-                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buscar_OU_Btn)
-                .addGap(21, 21, 21))
+                        .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionLbl)
+                            .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreBuscarLbl)))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         opcionPnlLayout.setVerticalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,28 +221,19 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 .addComponent(opcionLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreUsuario_OU_Lbl)
-                            .addComponent(nombreUsuario_OU_TFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buscar_OU_Btn)
-                        .addGap(400, 400, 400))
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreBuscarLbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buscarBtn)
-                            .addComponent(agregarBtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreBuscarLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarBtn)
+                    .addComponent(agregarBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -266,11 +244,37 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         nombreLbl.setText("Primer nombre:");
 
         nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nombreTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nombreTFdFocusLost(evt);
+            }
+        });
+        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTFdKeyTyped(evt);
+            }
+        });
 
         usuarioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         usuarioLbl.setText("Nombre de usuario:");
 
         usuarioTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usuarioTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usuarioTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usuarioTFdFocusLost(evt);
+            }
+        });
+        usuarioTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usuarioTFdKeyTyped(evt);
+            }
+        });
 
         contrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contrasenaLbl.setText("Contraseña:");
@@ -290,28 +294,77 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             }
         });
 
-        agregarMsjLbl.setText("Ingrese la información a almacenar del usuario.");
+        agregarMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón \"Cancelar\"");
 
         agregarLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLbl.setText("Agregar");
+        agregarLbl.setText("Registro");
 
         segundoNombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        segundoNombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                segundoNombreTFdKeyTyped(evt);
+            }
+        });
 
         segundoNombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         segundoNombreLbl.setText("Segundo nombre:");
 
         apellidoPaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoPaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                apellidoPaternoTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                apellidoPaternoTFdFocusLost(evt);
+            }
+        });
+        apellidoPaternoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoPaternoTFdKeyTyped(evt);
+            }
+        });
 
         apellidoPaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoPaternoLbl.setText("Apellido paterno:");
 
         apellidoMaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoMaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                apellidoMaternoTFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                apellidoMaternoTFdFocusLost(evt);
+            }
+        });
+        apellidoMaternoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoMaternoTFdKeyTyped(evt);
+            }
+        });
 
         apellidoMaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoMaternoLbl.setText("Apellido materno:");
 
         confirmarContrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmarContrasenaLbl.setText("Confirmar contraseña:");
+
+        contrasenaPFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                contrasenaPFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                contrasenaPFdFocusLost(evt);
+            }
+        });
+
+        confirmarContrasenaPFd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                confirmarContrasenaPFdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                confirmarContrasenaPFdFocusLost(evt);
+            }
+        });
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");
@@ -321,92 +374,135 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             }
         });
 
+        validNomLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validNomLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validNomLbl.setText("Este campo es obligatorio");
+
+        validApePatLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validApePatLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validApePatLbl.setText("Este campo es obligatorio");
+
+        validApeMatLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validApeMatLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validApeMatLbl.setText("Este campo es obligatorio");
+
+        validUsuarioLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validUsuarioLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validUsuarioLbl.setText("Este campo es obligatorio");
+
+        validContrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validContrasenaLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validContrasenaLbl.setText("Este campo es obligatorio");
+
+        validConfirmarLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        validConfirmarLbl.setForeground(new java.awt.Color(213, 216, 222));
+        validConfirmarLbl.setText("Este campo es obligatorio");
+
         javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
         informacionPnl.setLayout(informacionPnlLayout);
         informacionPnlLayout.setHorizontalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
+            .addGroup(informacionPnlLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tipoLbl)
+                    .addComponent(usuarioLbl)
+                    .addComponent(apellidoMaternoLbl)
+                    .addComponent(apellidoPaternoLbl)
+                    .addComponent(segundoNombreLbl)
+                    .addComponent(nombreLbl)
+                    .addComponent(contrasenaLbl)
+                    .addComponent(confirmarContrasenaLbl))
+                .addGap(18, 18, 18)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(validNomLbl)
+                    .addComponent(validApePatLbl)
+                    .addComponent(validApeMatLbl)
+                    .addComponent(validUsuarioLbl)
+                    .addComponent(validContrasenaLbl)
+                    .addComponent(validConfirmarLbl)
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(informacionPnlLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(agregarMsjLbl)
-                                    .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(informacionPnlLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tipoLbl)
-                                    .addComponent(usuarioLbl)
-                                    .addComponent(apellidoMaternoLbl)
-                                    .addComponent(apellidoPaternoLbl)
-                                    .addComponent(segundoNombreLbl)
-                                    .addComponent(nombreLbl)
-                                    .addComponent(contrasenaLbl)
-                                    .addComponent(confirmarContrasenaLbl))
-                                .addGap(18, 18, 18)
                                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nombreTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                                    .addComponent(nombreTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                                     .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(apellidoMaternoTFd)
                                     .addComponent(apellidoPaternoTFd)
                                     .addComponent(segundoNombreTFd)
                                     .addComponent(usuarioTFd)
                                     .addComponent(contrasenaPFd)
-                                    .addComponent(confirmarContrasenaPFd))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                                    .addComponent(confirmarContrasenaPFd))
+                                .addGap(0, 44, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
+            .addGroup(informacionPnlLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(agregarMsjLbl)
+                    .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
         informacionPnlLayout.setVerticalGroup(
             informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informacionPnlLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(20, 20, 20)
                 .addComponent(agregarLbl)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(agregarMsjLbl)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
                     .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validNomLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(segundoNombreLbl)
                     .addComponent(segundoNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(apellidoPaternoLbl)
                     .addComponent(apellidoPaternoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validApePatLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(apellidoMaternoLbl)
                     .addComponent(apellidoMaternoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validApeMatLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipoLbl)
                     .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(usuarioTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usuarioLbl))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validUsuarioLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contrasenaLbl)
                     .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validContrasenaLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmarContrasenaLbl)
                     .addComponent(confirmarContrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validConfirmarLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -414,49 +510,23 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(53, 53, 53))
+                .addComponent(informacionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(informacionPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if(informacionPnl.isVisible()){
-            if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
-                limpiar();
-                informacionPnl.setVisible(true);
-                guardarBtn.setText("Guardar");
-            }
-        } else { 
-            limpiar();
-            guardarBtn.setText("Guardar");
-            informacionPnl.setVisible(true);
-        }
-    }//GEN-LAST:event_agregarBtnActionPerformed
-
-    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(nombreBuscarTFd.getText().equals("")==false)
-            control.buscarPorNombre(nombreBuscarTFd.getText());        // TODO add your handling code here:
-        else
-            control.buscarTodos();
-    }//GEN-LAST:event_buscarBtnActionPerformed
-
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        
+        almacenando = true;
         if(nombreTFd.getText().equals("") &&
            apellidoPaternoTFd.getText().equals("")&&
            apellidoMaternoTFd.getText().equals("")&&
@@ -491,9 +561,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 }
                 atr.add(contrasenaPFd.getText());//# En lista 6
                 buscando = true;
-                problema = false;
+                problema = 0;
                 control.buscarTodos();
-                if(!problema){
+                if(problema != 0){
                     if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
                         control.alta(HelperEntidad.getUsuario(atr));  
                     }else{
@@ -508,48 +578,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 setMensaje("Usuario o Contraseña incorrectas");
             }
         }
+        almacenando = false;
     }//GEN-LAST:event_guardarBtnActionPerformed
-
-    private void usuariosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuariosTblMouseClicked
-        int row = usuariosTbl.rowAtPoint(evt.getPoint());
-        int col = usuariosTbl.columnAtPoint(evt.getPoint());
-        if (col == 0) {
-            if(informacionPnl.isVisible()){
-                if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
-                    int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                    control.buscar(id);
-                    idUsuarioActual = id;
-                    guardarBtn.setText("Modificar");
-                    usuariosTbl.clearSelection();
-                }
-            } else {
-                int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                control.buscar(id);
-                idUsuarioActual = id;
-                guardarBtn.setText("Modificar");
-                usuariosTbl.clearSelection();
-                informacionPnl.setVisible(true);
-            }
-        }else if(col == 3) {
-            if(((String)model.getValueAt(row, 1)).equals(usuarioConectado)) {
-                JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
-                    + " conectado actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
-                model.setValueAt(false, row, 3);
-                usuariosTbl.clearSelection();
-            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-                int id = Integer.parseInt((String)model.getValueAt(row, 0));
-                control.baja(id);
-                control.buscarPorNombre(nombreBuscarTFd.getText());
-            } else {
-                model.setValueAt(false, row, 3);
-                usuariosTbl.clearSelection();
-            }
-        }
-    }//GEN-LAST:event_usuariosTblMouseClicked
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
@@ -560,6 +590,207 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        if(nombreBuscarTFd.getText().equals("")==false)
+        control.buscarPorNombre(nombreBuscarTFd.getText());        // TODO add your handling code here:
+        else
+        control.buscarTodos();
+    }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        if(informacionPnl.isVisible()){
+            if (JOptionPane.showConfirmDialog(this, "La información que"
+                + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == 0) {
+            limpiar();
+            informacionPnl.setVisible(true);
+            guardarBtn.setText("Guardar");
+        }
+        } else {
+            limpiar();
+            guardarBtn.setText("Guardar");
+            informacionPnl.setVisible(true);
+        }
+    }//GEN-LAST:event_agregarBtnActionPerformed
+
+    private void usuariosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuariosTblMouseClicked
+        int row = usuariosTbl.rowAtPoint(evt.getPoint());
+        int col = usuariosTbl.columnAtPoint(evt.getPoint());
+        if (col == 0) {
+            if(informacionPnl.isVisible()){
+                if (JOptionPane.showConfirmDialog(this, "La información que"
+                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == 0) {
+                int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                control.buscar(id);
+                idUsuarioActual = id;
+                guardarBtn.setText("Modificar");
+                usuariosTbl.clearSelection();
+            }
+        } else {
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            control.buscar(id);
+            idUsuarioActual = id;
+            guardarBtn.setText("Modificar");
+            usuariosTbl.clearSelection();
+            informacionPnl.setVisible(true);
+        }
+        }else if(col == 3) {
+            if(((String)model.getValueAt(row, 1)).equals(usuarioConectado)) {
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
+                    + " conectado actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                model.setValueAt(false, row, 3);
+                usuariosTbl.clearSelection();
+            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
+            int id = Integer.parseInt((String)model.getValueAt(row, 0));
+            control.baja(id);
+            control.buscarPorNombre(nombreBuscarTFd.getText());
+        } else {
+            model.setValueAt(false, row, 3);
+            usuariosTbl.clearSelection();
+        }
+        }
+    }//GEN-LAST:event_usuariosTblMouseClicked
+
+    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreTFdKeyTyped
+
+    private void segundoNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_segundoNombreTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (segundoNombreTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_segundoNombreTFdKeyTyped
+
+    private void apellidoPaternoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (apellidoPaternoTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_apellidoPaternoTFdKeyTyped
+
+    private void apellidoMaternoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (apellidoMaternoTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_apellidoMaternoTFdKeyTyped
+
+    private void usuarioTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTFdKeyTyped
+        char car = evt.getKeyChar();
+        if (usuarioTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_usuarioTFdKeyTyped
+
+    private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        if (nombreTFd.getText().isEmpty()) {
+            nombreTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNomLbl.setForeground(new Color(255, 0, 0));
+        } 
+    }//GEN-LAST:event_nombreTFdFocusLost
+
+    private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
+        nombreTFd.setBorder(BORDER_ORIGINAL);
+        validNomLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_nombreTFdFocusGained
+
+    private void apellidoPaternoTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdFocusGained
+        apellidoPaternoTFd.setBorder(BORDER_ORIGINAL);
+        validApePatLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_apellidoPaternoTFdFocusGained
+
+    private void apellidoPaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdFocusLost
+        if (apellidoPaternoTFd.getText().isEmpty()) {
+            apellidoPaternoTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validApePatLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_apellidoPaternoTFdFocusLost
+
+    private void apellidoMaternoTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusGained
+        apellidoMaternoTFd.setBorder(BORDER_ORIGINAL);
+        validApeMatLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_apellidoMaternoTFdFocusGained
+
+    private void apellidoMaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusLost
+        if (apellidoMaternoTFd.getText().isEmpty()) {
+            apellidoMaternoTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validApeMatLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_apellidoMaternoTFdFocusLost
+
+    private void usuarioTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioTFdFocusGained
+        usuarioTFd.setBorder(BORDER_ORIGINAL);
+        validUsuarioLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_usuarioTFdFocusGained
+
+    private void usuarioTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioTFdFocusLost
+        buscando = true;
+        problema = 0;
+        control.buscarTodos();
+        if (usuarioTFd.getText().isEmpty()) {
+            usuarioTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validUsuarioLbl.setText("Este campo es obligatorio");
+            validUsuarioLbl.setForeground(new Color(255, 0, 0));
+        }else if(problema == 1){
+            usuarioTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validUsuarioLbl.setText("El usuario ya existe");
+            validUsuarioLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_usuarioTFdFocusLost
+
+    private void contrasenaPFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contrasenaPFdFocusGained
+        contrasenaPFd.setBorder(BORDER_ORIGINAL);
+        validContrasenaLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_contrasenaPFdFocusGained
+
+    private void contrasenaPFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contrasenaPFdFocusLost
+        if (contrasenaPFd.getText().isEmpty()) {
+            contrasenaPFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validContrasenaLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_contrasenaPFdFocusLost
+
+    private void confirmarContrasenaPFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmarContrasenaPFdFocusGained
+        confirmarContrasenaPFd.setBorder(BORDER_ORIGINAL);
+        validConfirmarLbl.setForeground(new Color(213, 216, 222));
+    }//GEN-LAST:event_confirmarContrasenaPFdFocusGained
+
+    private void confirmarContrasenaPFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmarContrasenaPFdFocusLost
+        if (confirmarContrasenaPFd.getText().isEmpty()) {
+            confirmarContrasenaPFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validConfirmarLbl.setText("Este campo es obligatorio");
+            validConfirmarLbl.setForeground(new Color(255, 0, 0));
+        } else if(!confirmarContrasenaPFd.getText().equals(contrasenaPFd.getText())){
+            confirmarContrasenaPFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validConfirmarLbl.setText("Las contrasenas no son iguales");
+            validConfirmarLbl.setForeground(new Color(255, 0, 0));
+        }
+    }//GEN-LAST:event_confirmarContrasenaPFdFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
     private javax.swing.JLabel agregarLbl;
@@ -569,7 +800,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JLabel apellidoPaternoLbl;
     private javax.swing.JTextField apellidoPaternoTFd;
     private javax.swing.JButton buscarBtn;
-    private javax.swing.JButton buscar_OU_Btn;
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JLabel confirmarContrasenaLbl;
     private javax.swing.JPasswordField confirmarContrasenaPFd;
@@ -582,8 +812,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JTextField nombreBuscarTFd;
     private javax.swing.JLabel nombreLbl;
     private javax.swing.JTextField nombreTFd;
-    private javax.swing.JLabel nombreUsuario_OU_Lbl;
-    private javax.swing.JTextField nombreUsuario_OU_TFd;
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
@@ -595,6 +823,12 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JLabel usuarioLbl;
     private javax.swing.JTextField usuarioTFd;
     private javax.swing.JTable usuariosTbl;
+    private javax.swing.JLabel validApeMatLbl;
+    private javax.swing.JLabel validApePatLbl;
+    private javax.swing.JLabel validConfirmarLbl;
+    private javax.swing.JLabel validContrasenaLbl;
+    private javax.swing.JLabel validNomLbl;
+    private javax.swing.JLabel validUsuarioLbl;
     // End of variables declaration//GEN-END:variables
 
     public void llenarTodo(){
@@ -610,12 +844,25 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         usuarioTFd.setText("");
         contrasenaPFd.setText("");
         confirmarContrasenaPFd.setText("");
+        nombreTFd.setBorder(BORDER_ORIGINAL);
+        segundoNombreTFd.setBorder(BORDER_ORIGINAL);
+        apellidoPaternoTFd.setBorder(BORDER_ORIGINAL);
+        apellidoMaternoTFd.setBorder(BORDER_ORIGINAL);
+        usuarioTFd.setBorder(BORDER_ORIGINAL);
+        contrasenaPFd.setBorder(BORDER_ORIGINAL);
+        confirmarContrasenaPFd.setBorder(BORDER_ORIGINAL);
+        validApeMatLbl.setForeground(new Color(213, 216, 222));
+        validApePatLbl.setForeground(new Color(213, 216, 222));
+        validContrasenaLbl.setForeground(new Color(213, 216, 222));
+        validNomLbl.setForeground(new Color(213, 216, 222));
+        validUsuarioLbl.setForeground(new Color(213, 216, 222));
+        validConfirmarLbl.setForeground(new Color(213, 216, 222));
         informacionPnl.setVisible(false);
     }
     
     @Override
     public void setMensaje(String mensaje) {
-         JOptionPane.showMessageDialog(this, mensaje);
+        JOptionPane.showMessageDialog(this, mensaje);
     }
 
     @Override
@@ -628,12 +875,16 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                         segundoNombreTFd.getText(), apellidoPaternoTFd.getText(),
                         apellidoMaternoTFd.getText());
                     if(info[i][1].equals(usuarioTFd.getText())){
-                        setMensaje("Ya existe el nombre de usuario\n"+info[i][1]);
-                        problema = true;
+                        if(almacenando){
+                            setMensaje("Ya existe el nombre de usuario\n"+info[i][1]);
+                        }
+                        problema = 1;
                         break;
                     }else if(info[i][2].equalsIgnoreCase(nombreAIngresar)){
-                        setMensaje("Ya existe un usuario con ese nombre\n"+nombreAIngresar);
-                        problema = true;
+                        if(almacenando){
+                            setMensaje("Ya existe un usuario con ese nombre\n"+nombreAIngresar);
+                        }
+                        problema = 2;
                         break;
                     }
                 }
