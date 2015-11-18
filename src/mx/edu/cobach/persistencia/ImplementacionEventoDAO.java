@@ -78,18 +78,26 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
      * @param hasta Fecha final de rango
      * @return Regresa la lista con las implementaciones
      */
-    public List<Object> buscarEventoPorFechas(Evento evento, Date de, Date hasta){
+    public List<Object> buscarEventoPorFechas(Evento evento, Date de,
+            Date hasta){
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            Criteria crit = HibernateUtil.getSession().createCriteria(entityClass);
-            if(evento != null)
+            Criteria crit = HibernateUtil.getSession().
+                    createCriteria(entityClass);
+            if(evento != null){
                 crit.add(Restrictions.eq("evento", evento));
-            if(de != null)
+            }
+                
+            if(de != null){
                 crit.add(Restrictions.ge("fechaInicial", de));
-            if(hasta != null)
+            }
+                
+            if(hasta != null){
                 crit.add(Restrictions.lt("fechaFinal", hasta));
+            }
+                
             ts = crit.list();
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
@@ -99,13 +107,17 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
         }
         return ts;        
     }
-    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron a los empleados de tal departartamento.
+     */
     public List<Object> buscarPorDepartamento(Departamento departamento){
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            Criteria criteria = HibernateUtil.getSession().createCriteria(entityClass, "implementacion");
+            Criteria criteria = HibernateUtil.getSession().
+                    createCriteria(entityClass, "implementacion");
             Criteria critEmpleados = criteria.createCriteria("empleados");
             critEmpleados.add(Restrictions.eq("departamento", departamento));
             ts = criteria.list(); 
@@ -117,13 +129,17 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
         }
         return ts;
     }
-    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron a los empleados de tal plantel.
+     */
     public List<Object> buscarPorPlantel(Plantel plantel){
         List<Object> ts = null;
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
-            Criteria criteria = HibernateUtil.getSession().createCriteria(entityClass, "implementacion");
+            Criteria criteria = HibernateUtil.getSession().
+                    createCriteria(entityClass, "implementacion");
             Criteria critEmpleados = criteria.createCriteria("empleados");
             critEmpleados.add(Restrictions.eq("plantel", plantel));
             ts = criteria.list(); 

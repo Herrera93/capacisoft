@@ -15,6 +15,7 @@ public class Empleado  implements java.io.Serializable {
      private Adscripcion adscripcion;
      private Departamento departamento;
      private Plantel plantel;
+     private Direccion direccion;
      private Puesto puesto;
      private String numero;
      private String primerNombre;
@@ -38,11 +39,12 @@ public class Empleado  implements java.io.Serializable {
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
     }
-    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas, Set<ImplementacionEvento> implementacionEventos) {
+    public Empleado(Adscripcion adscripcion, Departamento departamento, Plantel plantel, Puesto puesto, Direccion direccion, String numero, String primerNombre, String segundoNombre, String apellidoPaterno, String apellidoMaterno, String correo, Set<Respuesta> respuestas, Set<ImplementacionEvento> implementacionEventos) {
        this.adscripcion = adscripcion;
        this.departamento = departamento;
        this.plantel = plantel;
        this.puesto = puesto;
+       this.direccion = direccion;
        this.numero = numero;
        this.primerNombre = primerNombre;
        this.segundoNombre = segundoNombre;
@@ -88,6 +90,15 @@ public class Empleado  implements java.io.Serializable {
     public void setPuesto(Puesto puesto) {
         this.puesto = puesto;
     }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+    
     public String getNumero() {
         return this.numero;
     }

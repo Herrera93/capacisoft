@@ -7,41 +7,48 @@ package mx.edu.cobach.persistencia;
 
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
-import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.
+        ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *  Esta clase conecta es la encargada de la obtencio especifica para la tabla 
+ * Esta clase conecta es la encargada de la obtencio especifica para la tabla
  * ImplementacionEventoEnunciadoLogisticaDAO
+ *
  * @author liuts
  */
-public class ImplementacionEventoEnunciadoLogisticaDAO extends BaseDAO{
+public class ImplementacionEventoEnunciadoLogisticaDAO extends BaseDAO {
+
     /**
      * Contructor de la clase ImplementacionEventoEnunciadoLogisticaDAO
      */
-    public ImplementacionEventoEnunciadoLogisticaDAO(){
+    public ImplementacionEventoEnunciadoLogisticaDAO() {
         super();
         super.entityClass = ImplementacionEventoEnunciadoLogistica.class;
     }
+
     /**
-     * Metodo para la obtencion de la calificacion de la logistica de los 
-     * cursos realizados opteniendo una id del este mismo
+     * Metodo para la obtencion de la calificacion de la logistica de los cursos
+     * realizados opteniendo una id del este mismo
+     *
      * @param eventoProgra
-     * @return 
+     * @return
      */
-    public List<Object> buscarEncuestaPorEvento(ImplementacionEvento eventoProgra) {
+    public List<Object>
+            buscarEncuestaPorEvento(ImplementacionEvento eventoProgra) {
         List<Object> ts = null;
-        try{
+        try {
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass).
-                    add(Restrictions.eq("implementacionEvento", eventoProgra)).list();
+                    add(Restrictions.eq("implementacionEvento", eventoProgra))
+                    .list();
             HibernateUtil.commitTransaction();
-        }catch(HibernateException e){
+        } catch (HibernateException e) {
             HibernateUtil.rollbackTransaction();
-        }finally{
+        } finally {
             HibernateUtil.closeSession();
         }
         return ts;

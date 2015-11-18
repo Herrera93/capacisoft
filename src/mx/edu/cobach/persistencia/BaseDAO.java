@@ -103,20 +103,24 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
     /**
      * Metodo para la eliminacion de un registro en la entidad
      * @param t Objeto para identificar el registro que se borrara
+     * @return 
      */
     @Override
-    public void delete(T t) { 
+    public String delete(T t) {
+        String mensaje;
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
             HibernateUtil.getSession().delete(t);
             HibernateUtil.commitTransaction();
-            System.out.println("Elimar registro");
+            mensaje = "Se ha Elimando Exitosamente";
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
+            mensaje = "Eliminación Imposible";
         }finally{
             HibernateUtil.closeSession();
         }
+        return mensaje;
     }
     
 }

@@ -7,7 +7,6 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
@@ -15,14 +14,11 @@ import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Empleado;
-import mx.edu.cobach.persistencia.entidades.Encuesta;
 import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.TipoCuenta;
 import mx.edu.cobach.persistencia.entidades.TipoEvento;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.persistencia.entidades.Zona;
-import mx.edu.cobach.persistencia.entidades.Enfoque;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
@@ -31,7 +27,7 @@ import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.entidades.TipoProveedor;
 import mx.edu.cobach.persistencia.entidades.Alerta;
-import org.hibernate.Hibernate;
+import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
  *
@@ -52,13 +48,10 @@ public class HelperEntidad {
     
     
     public static Departamento getDepartamento(List<Object> atributos){
-        Enfoque enfoque = new Enfoque();
-        enfoque.setId((Integer) atributos.get(0));
         Departamento depto = new Departamento();
-        depto.setEnfoque(enfoque);
-        depto.setNombre((String) atributos.get(1));
+        depto.setNombre((String) atributos.get(0));
         if (atributos.size() > 2) {
-            depto.setId((Integer) atributos.get(2));
+            depto.setId((Integer) atributos.get(1));
         }
         return depto;
     }
@@ -157,7 +150,7 @@ public class HelperEntidad {
         e.setAdscripcion((Adscripcion) atributos.get(7));
         Adscripcion ads = ((Adscripcion) atributos.get(7)); 
         System.out.println(ads.getDescripcion());
-        if(ads.getDescripcion().equalsIgnoreCase("Plantel ")){
+        if(ads.getDescripcion().equalsIgnoreCase("Plantel")){
             e.setPlantel((Plantel) atributos.get(8));
         }else{
             e.setDepartamento((Departamento) atributos.get(9));
@@ -264,7 +257,6 @@ public class HelperEntidad {
         List<Object> info = new ArrayList<>();
         info.add(departamento.getId());
         info.add(departamento.getNombre());
-        info.add(departamento.getEnfoque().toString());
         return info;
     }
 
@@ -504,7 +496,6 @@ public class HelperEntidad {
             Departamento d = dp.get(i);
             info[i][0] = d.getId() + "";
             info[i][1] = d.getNombre();
-            info[i][2] = d.getEnfoque().toString();
         }
         return info;
     }

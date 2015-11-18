@@ -50,9 +50,10 @@ public class BaseFACADE {
      * @param obj Objeto de un registro a eliminar
      * @param clazz Clase de la entidad que se eliminara
      */
-    public void delete(Object obj, Class clazz) {
+    public String delete(Object obj, Class clazz) {
         ServiceLocator.getInstance().setEntity(clazz);
-        ServiceLocator.getInstance().delete(obj);
+        return ServiceLocator.getInstance().delete(obj);
+        
     }
     
 }

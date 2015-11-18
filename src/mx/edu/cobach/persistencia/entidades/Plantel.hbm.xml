@@ -21,7 +21,7 @@
             <column name="numero_direccion" length="45" not-null="true" />
         </property>
         <property name="colonia" type="string">
-            <column name="colonia" length="45" not-null="true" />
+            <column name="colonia" length="60" not-null="true" />
         </property>
         <set name="empleados" table="empleado" inverse="true" lazy="true" fetch="select">
             <key>

@@ -283,7 +283,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
         if (numeroTFd.getText().length() >= 5) {
             evt.consume();
         }
-        if ((car < '0' || car > '5')) {
+        if ((car < '0' || car > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_numeroTFdKeyTyped

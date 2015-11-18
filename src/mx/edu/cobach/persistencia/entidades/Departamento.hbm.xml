@@ -8,9 +8,6 @@
             <column name="id" />
             <generator class="identity"></generator>
         </id>
-        <many-to-one name="enfoque" class="mx.edu.cobach.persistencia.entidades.Enfoque" fetch="select" lazy="false">
-            <column name="enfoque_id" not-null="true" />
-        </many-to-one>
         <property name="nombre" type="string">
             <column name="nombre" length="45" not-null="true" />
         </property>

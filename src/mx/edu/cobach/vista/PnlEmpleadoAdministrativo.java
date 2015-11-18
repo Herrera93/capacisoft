@@ -98,19 +98,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         opcionMsjLbl = new javax.swing.JLabel();
         opcionLbl = new javax.swing.JLabel();
         tablaMsjLbl = new javax.swing.JLabel();
-        informacioPnl = new javax.swing.JPanel();
-        puestoLbll = new javax.swing.JLabel();
-        plantelLbl = new javax.swing.JLabel();
+        InformacionJTP = new javax.swing.JTabbedPane();
+        informacion1Pnl = new javax.swing.JPanel();
         numeroLbl = new javax.swing.JLabel();
         correoELbl = new javax.swing.JLabel();
-        adscLbl = new javax.swing.JLabel();
-        departamentoLbl = new javax.swing.JLabel();
         numeroTFd = new javax.swing.JTextField();
         correoTFd = new javax.swing.JTextField();
-        puestoCBx = new javax.swing.JComboBox();
-        plantelCBx = new javax.swing.JComboBox();
-        adscCBx = new javax.swing.JComboBox();
-        departamentoCBx = new javax.swing.JComboBox();
         guardarBtn = new javax.swing.JButton();
         primerNombreLbl = new javax.swing.JLabel();
         primerNombreTFd = new javax.swing.JTextField();
@@ -126,12 +119,21 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         validNumLbl = new javax.swing.JLabel();
         validNombLbl = new javax.swing.JLabel();
         validApellLbl = new javax.swing.JLabel();
+        validCorreo_Lbl = new javax.swing.JLabel();
+        cancelarBtn = new javax.swing.JButton();
+        informacion2Pnl = new javax.swing.JPanel();
+        puestoCBx = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
+        puestoLbll = new javax.swing.JLabel();
+        adscLbl = new javax.swing.JLabel();
+        departamentoLbl = new javax.swing.JLabel();
+        plantelCBx = new javax.swing.JComboBox();
+        adscCBx = new javax.swing.JComboBox();
+        departamentoCBx = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        validCorreo_Lbl = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cancelarBtn = new javax.swing.JButton();
+        plantelLbl = new javax.swing.JLabel();
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
@@ -274,28 +276,16 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        informacioPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        puestoLbll.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        puestoLbll.setText("Puesto:");
-
-        plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        plantelLbl.setText("Plantel:");
+        informacion1Pnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         numeroLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroLbl.setText("Num. Empleado:");
 
         correoELbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         correoELbl.setText("Correo electrónico :");
-
-        adscLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        adscLbl.setText("Adscripción: ");
-
-        departamentoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        departamentoLbl.setText("Departamento:");
 
         numeroTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroTFd.setEnabled(false);
@@ -312,31 +302,6 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 correoTFdKeyTyped(evt);
             }
         });
-
-        puestoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        puestoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        puestoCBx.setToolTipText("Seleccioné el puesto que esta asigando el empleado");
-        puestoCBx.setEnabled(false);
-
-        plantelCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        plantelCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        plantelCBx.setToolTipText("Seleccioné el plantel que esta asigando el empleado");
-        plantelCBx.setEnabled(false);
-
-        adscCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        adscCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
-        adscCBx.setToolTipText("Seleccioné la  adscripción que esta asigando el empleado");
-        adscCBx.setEnabled(false);
-        adscCBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adscCBxActionPerformed(evt);
-            }
-        });
-
-        departamentoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        departamentoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        departamentoCBx.setToolTipText("Seleccioné el departamento que esta asigando el empleado");
-        departamentoCBx.setEnabled(false);
 
         guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarBtn.setText("Guardar");
@@ -401,25 +366,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         validApellLbl.setForeground(new java.awt.Color(213, 216, 222));
         validApellLbl.setText("Este campo es obligatorio");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(213, 216, 222));
-        jLabel5.setText("Este campo es obligatorio");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(213, 216, 222));
-        jLabel6.setText("Este campo es obligatorio");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(213, 216, 222));
-        jLabel7.setText("Este campo es obligatorio");
-
         validCorreo_Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         validCorreo_Lbl.setForeground(new java.awt.Color(213, 216, 222));
         validCorreo_Lbl.setText("Este campo es obligatorio");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(213, 216, 222));
-        jLabel9.setText("Este campo es obligatorio");
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");
@@ -430,143 +379,224 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }
         });
 
-        javax.swing.GroupLayout informacioPnlLayout = new javax.swing.GroupLayout(informacioPnl);
-        informacioPnl.setLayout(informacioPnlLayout);
-        informacioPnlLayout.setHorizontalGroup(
-            informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacioPnlLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(adscLbl)
-                    .addComponent(registroMsjLbl)
-                    .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(primerNombreLbl)
-                            .addComponent(primerApellidoLbl)
-                            .addComponent(numeroLbl)
-                            .addComponent(puestoLbll))
-                        .addGap(27, 27, 27)
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(informacioPnlLayout.createSequentialGroup()
-                                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(primerApellidoTFd)
-                                    .addComponent(numeroTFd)
-                                    .addComponent(primerNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+        javax.swing.GroupLayout informacion1PnlLayout = new javax.swing.GroupLayout(informacion1Pnl);
+        informacion1Pnl.setLayout(informacion1PnlLayout);
+        informacion1PnlLayout.setHorizontalGroup(
+            informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informacion1PnlLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(registroMsjLbl)
+                            .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                .addGap(437, 437, 437)
+                                .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(segNombreLbl)
-                                    .addComponent(segApellidoLbl))
+                                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(informacion1PnlLayout.createSequentialGroup()
+                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(numeroLbl)
+                                    .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(segApellidoLbl)
+                                            .addComponent(correoELbl)
+                                            .addComponent(primerApellidoLbl)
+                                            .addComponent(segNombreLbl))
+                                        .addGap(10, 10, 10))))
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(primerNombreLbl)))
+                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(segNombreTFd)
-                                    .addComponent(segApellidoTFd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(validNumLbl)
-                            .addComponent(validNombLbl)
-                            .addComponent(validApellLbl)
-                            .addComponent(jLabel5)
-                            .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addComponent(correoELbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(correoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(plantelLbl)
-                            .addComponent(departamentoLbl))
-                        .addGap(37, 37, 37)
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(validCorreo_Lbl)
-                            .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informacioPnlLayout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(departamentoCBx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(92, Short.MAX_VALUE))
+                                .addComponent(primerApellidoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(segNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(validCorreo_Lbl)
+                                    .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(validNumLbl)
+                                        .addComponent(validNombLbl)
+                                        .addComponent(segApellidoTFd)
+                                        .addComponent(validApellLbl)
+                                        .addComponent(primerNombreTFd)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacion1PnlLayout.createSequentialGroup()
+                                            .addComponent(correoTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(numeroTFd)))))))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
-        informacioPnlLayout.setVerticalGroup(
-            informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(informacioPnlLayout.createSequentialGroup()
+        informacion1PnlLayout.setVerticalGroup(
+            informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacion1PnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(registroLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(registroMsjLbl)
                 .addGap(18, 18, 18)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(numeroLbl)
-                    .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(primerNombreLbl))
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(validNumLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(primerNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(segNombreLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(segNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(informacion1PnlLayout.createSequentialGroup()
+                        .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(primerNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(primerNombreLbl)))
+                            .addComponent(validNumLbl))))
+                .addGap(7, 7, 7)
                 .addComponent(validNombLbl)
-                .addGap(11, 11, 11)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(segNombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(segNombreLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(primerApellidoLbl)
-                    .addComponent(primerApellidoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(segApellidoLbl)
-                    .addComponent(segApellidoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(primerApellidoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validApellLbl)
-                .addGap(9, 9, 9)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(20, 20, 20)
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informacion1PnlLayout.createSequentialGroup()
+                        .addComponent(segApellidoLbl)
+                        .addGap(55, 55, 55)
+                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(correoELbl)
+                            .addComponent(correoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(segApellidoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(validCorreo_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+        );
+
+        InformacionJTP.addTab("tab1", informacion1Pnl);
+
+        puestoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        puestoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        puestoCBx.setToolTipText("Seleccioné el puesto que esta asigando el empleado");
+        puestoCBx.setEnabled(false);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(213, 216, 222));
+        jLabel5.setText("Este campo es obligatorio");
+
+        puestoLbll.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        puestoLbll.setText("Puesto:");
+
+        adscLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        adscLbl.setText("Adscripción: ");
+
+        departamentoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        departamentoLbl.setText("Departamento:");
+
+        plantelCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        plantelCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        plantelCBx.setToolTipText("Seleccioné el plantel que esta asigando el empleado");
+        plantelCBx.setEnabled(false);
+
+        adscCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        adscCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
+        adscCBx.setToolTipText("Seleccioné la  adscripción que esta asigando el empleado");
+        adscCBx.setEnabled(false);
+        adscCBx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adscCBxActionPerformed(evt);
+            }
+        });
+
+        departamentoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        departamentoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        departamentoCBx.setToolTipText("Seleccioné el departamento que esta asigando el empleado");
+        departamentoCBx.setEnabled(false);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(213, 216, 222));
+        jLabel6.setText("Este campo es obligatorio");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(213, 216, 222));
+        jLabel7.setText("Este campo es obligatorio");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(213, 216, 222));
+        jLabel9.setText("Este campo es obligatorio");
+
+        plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        plantelLbl.setText("Plantel:");
+
+        javax.swing.GroupLayout informacion2PnlLayout = new javax.swing.GroupLayout(informacion2Pnl);
+        informacion2Pnl.setLayout(informacion2PnlLayout);
+        informacion2PnlLayout.setHorizontalGroup(
+            informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacion2PnlLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adscLbl)
+                    .addGroup(informacion2PnlLayout.createSequentialGroup()
+                        .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(plantelLbl)
+                            .addComponent(departamentoLbl)
+                            .addComponent(puestoLbll))
+                        .addGap(37, 37, 37)
+                        .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+        informacion2PnlLayout.setVerticalGroup(
+            informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(informacion2PnlLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(puestoLbll)
                     .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(13, 13, 13)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(correoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(correoELbl)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(validCorreo_Lbl)
-                .addGap(8, 8, 8)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(adscLbl)
                     .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(plantelLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(departamentoLbl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9))
-                    .addGroup(informacioPnlLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(informacioPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(departamentoLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addContainerGap(301, Short.MAX_VALUE))
         );
+
+        InformacionJTP.addTab("tab2", informacion2Pnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -575,12 +605,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacioPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(InformacionJTP))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-            .addComponent(informacioPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(InformacionJTP, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -600,11 +630,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(primerApellidoTFd.getText());
         if (segApellidoTFd.getText().isEmpty()) {
             atributos.add("");
-            } else {
-        atributos.add(segApellidoTFd.getText());
-            }
+        } else {
+            atributos.add(segApellidoTFd.getText());
+        }
         atributos.add(puestoCBx.getSelectedItem());
-        atributos.add(correoTFd.getText());
+        atributos.add(correoTFd.getText() + "@cobachbc.edu.mx");
         atributos.add(adscCBx.getSelectedItem());
         atributos.add(plantelCBx.getSelectedItem());
         atributos.add(departamentoCBx.getSelectedItem());
@@ -616,6 +646,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellidoTFd.setText("");
         segApellidoTFd.setText("");
         correoTFd.setText("");
+        puestoCBx.setSelectedIndex(0);
+        adscCBx.setSelectedIndex(0);
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
 
         //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
         //contenido en el boton.
@@ -674,12 +708,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 tablaTbl.clearSelection();
             }
         }
+        tablaTbl.clearSelection();
     }//GEN-LAST:event_tablaTblMouseClicked
 
     /**
-     * Evento que se ejecuta cuandore se presiona el boton Buscar, donde se 
+     * Evento que se ejecuta cuandore se presiona el boton Buscar, donde se
      * limpian los campos, se obtiene el valor por que se va a agregar.
-     * @param evt 
+     *
+     * @param evt
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se limpian los campos
@@ -712,9 +748,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     /**
      * Evento que se ejecuta al presionar el boton Cancelar el cual va a limpiar
-     * todos lo campos del panel info y los desahabilitara para realizar otra 
+     * todos lo campos del panel info y los desahabilitara para realizar otra
      * accion.
-     * @param evt 
+     *
+     * @param evt
      */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         //Se limpian los campos
@@ -741,9 +778,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**
-     * El este evento se produce cuando se intenta teclear en el campo 
-     * numero, donde solo se permitira el uso de numeros.
-     * @param evt 
+     * El este evento se produce cuando se intenta teclear en el campo numero,
+     * donde solo se permitira el uso de numeros.
+     *
+     * @param evt
      */
     private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
         char car = evt.getKeyChar();
@@ -759,7 +797,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     /**
      * Este evento se se produce cuando se intenta teclear en el campo
      * primerNombre, donde solo se permitira el uso de letras y espacios.
-     * @param evt 
+     *
+     * @param evt
      */
     private void primerNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerNombreTFdKeyTyped
         char car = evt.getKeyChar();
@@ -786,7 +825,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     /**
      * Este evento se se produce cuando se intenta teclear en el campo
      * primerApellido, donde solo se permitira el uso de letras y espacios.
-     * @param evt 
+     *
+     * @param evt
      */
     private void primerApellidoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerApellidoTFdKeyTyped
         char car = evt.getKeyChar();
@@ -812,9 +852,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     }//GEN-LAST:event_primerApellidoTFdKeyTyped
 
     /**
-     * El este evento se produce cuando se intenta teclear en el campo 
-     * numero, donde solo se permitira el uso de numeros.
-     * @param evt 
+     * El este evento se produce cuando se intenta teclear en el campo numero,
+     * donde solo se permitira el uso de numeros.
+     *
+     * @param evt
      */
     private void correoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTFdKeyTyped
         if (correoTFd.getText().length() >= 45) {
@@ -829,7 +870,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         } else if (adscCBx.getSelectedIndex() == 1) {
             plantelCBx.setEnabled(false);
             departamentoCBx.setEnabled(true);
-        } else if(adscCBx.getSelectedIndex() == 2) {
+        } else if (adscCBx.getSelectedIndex() == 2) {
             departamentoCBx.setEnabled(false);
             plantelCBx.setEnabled(true);
         }
@@ -837,6 +878,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane InformacionJTP;
     private javax.swing.JComboBox adscBuscarCBx;
     private javax.swing.JLabel adscBuscarLbl;
     private javax.swing.JComboBox adscCBx;
@@ -849,7 +891,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JComboBox departamentoCBx;
     private javax.swing.JLabel departamentoLbl;
     private javax.swing.JButton guardarBtn;
-    private javax.swing.JPanel informacioPnl;
+    private javax.swing.JPanel informacion1Pnl;
+    private javax.swing.JPanel informacion2Pnl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -899,6 +942,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 JOptionPane.showMessageDialog(this, mensaje,
                         "Informacion", JOptionPane.INFORMATION_MESSAGE);
                 break;
+            case "Se ha modificado existosamente":
+                JOptionPane.showMessageDialog(this, mensaje,
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, mensaje,
+                        "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -933,6 +983,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     puestoModel.addElement(info.get(j));
                 }
                 puestoModel.insertElementAt(new Puesto(), 0);
+                Puesto obj =(Puesto)puestoModel.getElementAt(1);
                 puestoCBx.setSelectedIndex(0);
                 break;
             case 2:
@@ -1008,7 +1059,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         primerApellidoTFd.setText((String) info.get(4));
         segApellidoTFd.setText((String) info.get(5));
         puestoModel.setSelectedItem(info.get(6));
-        correoTFd.setText((String) info.get(7));
+        String[] correo = ((String) info.get(7)).split("@");
+        correoTFd.setText(correo[0]);
         plantelModel.setSelectedItem(info.get(8));
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));

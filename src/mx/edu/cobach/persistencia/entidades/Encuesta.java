@@ -22,15 +22,17 @@ public class Encuesta  implements java.io.Serializable {
     }
 
 	
-    public Encuesta(ImplementacionEvento implementacionEvento, long jotformIdAntes, long jotformIdDespues) {
+    public Encuesta(ImplementacionEvento implementacionEvento, long jotformIdAntes, long jotformIdDespues, boolean despuesEnviada) {
         this.implementacionEvento = implementacionEvento;
         this.jotformIdAntes = jotformIdAntes;
         this.jotformIdDespues = jotformIdDespues;
+        this.despuesEnviada = despuesEnviada;
     }
-    public Encuesta(ImplementacionEvento implementacionEvento, long jotformIdAntes, long jotformIdDespues, Set<Respuesta> respuestas, Set<Aspecto> aspectos) {
+    public Encuesta(ImplementacionEvento implementacionEvento, long jotformIdAntes, long jotformIdDespues, boolean despuesEnviada, Set<Respuesta> respuestas, Set<Aspecto> aspectos) {
        this.implementacionEvento = implementacionEvento;
        this.jotformIdAntes = jotformIdAntes;
        this.jotformIdDespues = jotformIdDespues;
+       this.despuesEnviada = despuesEnviada;
        this.respuestas = respuestas;
        this.aspectos = aspectos;
     }

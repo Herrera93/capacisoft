@@ -9,7 +9,6 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.enable_lazy_load_no_trans">true</property>
     <property name="hibernate.connection.password">1234</property>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Usuario.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoCuenta.hbm.xml"/>
@@ -29,11 +28,11 @@
     <mapping resource="mx/edu/cobach/persistencia/entidades/Puesto.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Evento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoEnunciado.hbm.xml"/>
-    <mapping resource="mx/edu/cobach/persistencia/entidades/Enfoque.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Sede.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/ImplementacionEvento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/TipoEvento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Departamento.hbm.xml"/>
     <mapping resource="mx/edu/cobach/persistencia/entidades/Empleado.hbm.xml"/>
+    <mapping resource="mx/edu/cobach/persistencia/entidades/Direccion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
