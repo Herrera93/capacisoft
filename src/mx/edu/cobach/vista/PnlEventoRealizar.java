@@ -1248,7 +1248,13 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements Comunicador
         return this.cambio;
     }
 
+    /**
+     * 
+     * @param evento 
+     */
     @Override
-    public void llenarDatos(Object evento) {
-    }
-}
+    public void llenarDatos(Object evento) {//method
+        
+    }//method
+    
+}//class

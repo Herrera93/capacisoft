@@ -334,7 +334,7 @@ public class HelperEntidad {
         return info;
     }
     
-    public static List<Object> descomponerAlerta(Alerta alerta){
+    private static List<Object> descomponerAlerta(Alerta alerta){
         List<Object> info = new ArrayList();
         info.add(alerta.getId());
         info.add(alerta.getPeriodo());

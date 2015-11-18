@@ -628,10 +628,9 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements Comunicado
     @Override
     public void llenarDatos(Object evento){
         llenarTodo();
-        tipoRegCBx.setSelectedIndex(((ImplementacionEvento) evento)
-                .getEvento().getId());
+        tipoRegCBx.setSelectedIndex(((Evento) evento).getId());
         this.formComponentShown(null);
-        this.setVisible(true);
+        buscarPnl.setVisible(true);
         this.updateUI();
     }
 }
