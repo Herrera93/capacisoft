@@ -910,6 +910,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             nombreTFd.setText(info.get(0).toString());
             if(info.get(1) != null){
                 segundoNombreTFd.setText(info.get(1).toString());
+            }else{
+                segundoNombreTFd.setText("");
             }
             apellidoPaternoTFd.setText(info.get(2).toString());
             apellidoMaternoTFd.setText(info.get(3).toString());

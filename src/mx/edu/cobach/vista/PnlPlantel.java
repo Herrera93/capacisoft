@@ -467,7 +467,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      *de lo contrario activara el campo de nombre.
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(nombreBuscarTFd.getText().equals("")==false)
+        if(!nombreBuscarTFd.getText().equals(""))
             control.buscarPorNombre(nombreBuscarTFd.getText());
         else
             control.buscarTodos();

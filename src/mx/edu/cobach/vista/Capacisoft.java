@@ -466,6 +466,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         this.setTitle("Capacisoft - Puesto");
         ocultarPaneles();
         puestoPnl.setVisible(true);
+        puestoPnl.llenarTodo();
     }//GEN-LAST:event_puestos_MItActionPerformed
 
     private void departamentos_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departamentos_MItActionPerformed
