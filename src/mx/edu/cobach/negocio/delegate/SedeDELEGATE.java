@@ -21,4 +21,8 @@ public class SedeDELEGATE {
         return ServiceLocatorFACADE.getSede().findByNombre(nombre);
     }
     
+    public List<Object> buscarImplementaciones(int id){
+        return ServiceLocatorFACADE.getSede().buscarImplementaciones(id);
+    }
+    
 }

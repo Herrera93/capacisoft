@@ -236,10 +236,10 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         informacionPnl.setMinimumSize(new java.awt.Dimension(767, 394));
 
         nombreAgregarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreAgregarLbl.setText("Nombre del plantel:");
+        nombreAgregarLbl.setText("Nombre:");
 
         diraccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        diraccionLbl.setText("Dirección del plantel");
+        diraccionLbl.setText("Dirección");
 
         zonaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         zonaLbl.setText("Zona:");
@@ -295,7 +295,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         calleLbl.setText("Calle:");
 
         numeroLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        numeroLbl.setText("Numero:");
+        numeroLbl.setText("Número:");
 
         numeroTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroTFd.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -378,9 +378,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                                     .addComponent(coloniaLbl)
                                     .addComponent(numeroLbl)
                                     .addComponent(zonaLbl))
-                                .addGap(16, 16, 16)
+                                .addGap(81, 81, 81)
                                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(calleTFd)
+                                    .addComponent(calleTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                                     .addComponent(coloniaTFd)
                                     .addComponent(numeroTFd)
                                     .addGroup(informacionPnlLayout.createSequentialGroup()
@@ -389,11 +389,11 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                                             .addComponent(validColoniaLbl)
                                             .addComponent(validCalleLbl)
                                             .addComponent(zonaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 231, Short.MAX_VALUE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(242, 242, 242))
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addComponent(nombreAgregarLbl)
-                        .addGap(18, 18, 18)
+                        .addGap(81, 81, 81)
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(validNomLbl)
                             .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
