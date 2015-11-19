@@ -29,15 +29,6 @@ public class AlertaControlador extends BaseControlador{// class
     
     /**
      * 
-     * 
-     * @param alerta
-     */
-    public void modificarAlerta(Object alerta){// method
-        ServiceLocator.getInstance().saveOrUpdate(alerta);
-    }// method
-    
-    /**
-     * 
      * @param id
      * @return 
      */
@@ -57,9 +48,17 @@ public class AlertaControlador extends BaseControlador{// class
     /**
      * 
      */
-    public void buscarTodas(){// method
+    public void buscarTodasLista(int opcion){// method
         List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
-        com.setLista(ls, 0);
+        System.out.println("Controlador: " + ((Alerta) ls.get(0)).getDescripcion());
+        com.setLista(ls, opcion);
     }// method
+    
+    /**
+     * 
+     */
+    public List<Object> buscarTodas(){//method
+        return ServiceLocatorDELEGATE.getInstance().findAll(clazz);
+    }//method
     
 }// class

@@ -291,7 +291,8 @@ public class Login extends javax.swing.JFrame implements Comunicador{
             salirBtn.setEnabled(true);
         }else{
             if(info[0][1].equals(contrasena)){      
-                new Capacisoft(info[0][2]).setVisible(true);
+                new Capacisoft("ADMINISTRADOR").setVisible(true);
+                //new Capacisoft(info[0][2]).setVisible(true);
                 this.setVisible(false);
             }else{
                 setMensaje("Contraseña incorrecta");
