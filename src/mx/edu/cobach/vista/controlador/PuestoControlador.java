@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -34,5 +35,13 @@ public class PuestoControlador extends BaseControlador{
     public void buscarMod(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
         com.setInfo(HelperEntidad.descomponerObjeto(o));
-    }   
+    }
+    
+    public boolean buscarEmpleados(int id){
+        List<String> atr = new ArrayList();
+        atr.add(String.valueOf(id));
+        atr.add("");
+        return ServiceLocatorDELEGATE.getImplementarEvento()
+            .buscarEmPorPuesto(HelperEntidad.getPuesto(atr, "")) != null;
+    }
 }

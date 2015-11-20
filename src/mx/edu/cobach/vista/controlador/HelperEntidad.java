@@ -50,7 +50,7 @@ public class HelperEntidad {
     public static Departamento getDepartamento(List<Object> atributos){
         Departamento depto = new Departamento();
         depto.setNombre((String) atributos.get(0));
-        if (atributos.size() > 2) {
+        if (atributos.size() > 1) {
             depto.setId((Integer) atributos.get(1));
         }
         return depto;
@@ -326,7 +326,7 @@ public class HelperEntidad {
         return info;
     }
     
-    public static List<Object> descomponerAlerta(Alerta alerta){
+    private static List<Object> descomponerAlerta(Alerta alerta){
         List<Object> info = new ArrayList();
         info.add(alerta.getId());
         info.add(alerta.getPeriodo());

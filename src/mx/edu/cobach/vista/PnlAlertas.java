@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
@@ -33,12 +34,18 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     private JButton[] resolverBtn;
     // número de alertas generadas
     private int totalAlertas;
+    // posición del boton a resolver
+    private int botonPresionado;
     // largo predefinido de las alertas
     private final int WIDTH = 800;
     // panel de programacion de eventos
     private final PnlProgramarEvento eventoPnl;
     // panel de frealizacion de encuesta
     private final PnlSeguimiento encuestaPnl;
+    // 
+    private int[] idAlerta;
+    // 
+    private ArrayList<ImplementacionEvento> datosEvento;
     
     /**
      * Creates new form PnlAlertas
@@ -86,9 +93,57 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         cancelarBtn = new javax.swing.JButton();
         aceptarBtn = new javax.swing.JButton();
         periodoBtn = new javax.swing.JButton();
+        descripcionLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         alertasSPn = new javax.swing.JScrollPane();
         alertasPnl = new javax.swing.JPanel();
+        alerta1Pnl = new javax.swing.JPanel();
+        tipoAlerta1Lbl = new javax.swing.JLabel();
+        inicio1Lbl = new javax.swing.JLabel();
+        fin1Lbl = new javax.swing.JLabel();
+        inicio1Txf = new javax.swing.JTextField();
+        fin1Txf = new javax.swing.JTextField();
+        nombre1Lbl = new javax.swing.JLabel();
+        sede1Lbl = new javax.swing.JLabel();
+        nombreSede1Lbl = new javax.swing.JLabel();
+        resolver1Btn = new javax.swing.JButton();
+        instruc1Lbl = new javax.swing.JLabel();
+        alerta2Pnl = new javax.swing.JPanel();
+        nombre2Lbl = new javax.swing.JLabel();
+        inicio2Lbl = new javax.swing.JLabel();
+        tipoAlerta2Lbl = new javax.swing.JLabel();
+        inicio2Txf = new javax.swing.JTextField();
+        sede2Lbl = new javax.swing.JLabel();
+        fin2Txf = new javax.swing.JTextField();
+        nombreSede2Lbl = new javax.swing.JLabel();
+        fin2Lbl = new javax.swing.JLabel();
+        resolver2Btn = new javax.swing.JButton();
+        instruc2Lbl = new javax.swing.JLabel();
+        alerta3Pnl = new javax.swing.JPanel();
+        nombre3Lbl = new javax.swing.JLabel();
+        tipoAlerta3Lbl = new javax.swing.JLabel();
+        sede3Lbl = new javax.swing.JLabel();
+        nombreSede3Lbl = new javax.swing.JLabel();
+        instruc3Lbl = new javax.swing.JLabel();
+        resolver3Btn = new javax.swing.JButton();
+        inicio3Lbl = new javax.swing.JLabel();
+        inicio3Txf = new javax.swing.JTextField();
+        fin3Lbl = new javax.swing.JLabel();
+        fin3Txf = new javax.swing.JTextField();
+        alerta4Pnl = new javax.swing.JPanel();
+        nombre4Lbl = new javax.swing.JLabel();
+        inicio4Lbl = new javax.swing.JLabel();
+        fin4Lbl = new javax.swing.JLabel();
+        inicio4Txf = new javax.swing.JTextField();
+        fin4Txf = new javax.swing.JTextField();
+        tipoAlerta4Lbl = new javax.swing.JLabel();
+        sede4Lbl = new javax.swing.JLabel();
+        nombreSede4Lbl = new javax.swing.JLabel();
+        instruc4Lbl = new javax.swing.JLabel();
+        resolver4Btn = new javax.swing.JButton();
+        anteriorBtn = new javax.swing.JButton();
+        siguienteBtn = new javax.swing.JButton();
+        paginasLbl = new javax.swing.JLabel();
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -245,6 +300,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             }
         });
 
+        descripcionLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        descripcionLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        descripcionLbl.setText("Consulta todas las alertas pendientes");
+        descripcionLbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
         opcionPnlLayout.setHorizontalGroup(
@@ -255,13 +315,16 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(tipoLbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(134, 134, 134)
+                        .addComponent(periodoBtn))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(periodoBtn)))
+                        .addGap(31, 31, 31)
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(tipoLbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         opcionPnlLayout.setVerticalGroup(
@@ -271,9 +334,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(160, 160, 160)
+                .addGap(18, 18, 18)
+                .addComponent(descripcionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
                 .addComponent(periodoBtn)
-                .addGap(62, 62, 62)
+                .addGap(54, 54, 54)
                 .addComponent(periodoPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
@@ -283,10 +348,427 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         informacionPnl.setLayout(null);
 
         alertasPnl.setLayout(null);
+
+        alerta1Pnl.setBackground(new java.awt.Color(255, 255, 255));
+        alerta1Pnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+
+        tipoAlerta1Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoAlerta1Lbl.setText("Tipo de alerta");
+
+        inicio1Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio1Lbl.setText("Fecha de inicio:");
+
+        fin1Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin1Lbl.setText("Fecha de fin:");
+
+        inicio1Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio1Txf.setText("dd/mm/yy");
+        inicio1Txf.setBorder(null);
+
+        fin1Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin1Txf.setText("dd/mm/yy");
+        fin1Txf.setBorder(null);
+
+        nombre1Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nombre1Lbl.setText("Nombre del evento");
+
+        sede1Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sede1Lbl.setText("Lugar:");
+
+        nombreSede1Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nombreSede1Lbl.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nombreSede1Lbl.setText("Nombre de la sede");
+        nombreSede1Lbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        resolver1Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        resolver1Btn.setText("Resolver");
+
+        instruc1Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        instruc1Lbl.setText("<html>Seleccione el botón \"Resolver\" para programar el evento</html>");
+        instruc1Lbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout alerta1PnlLayout = new javax.swing.GroupLayout(alerta1Pnl);
+        alerta1Pnl.setLayout(alerta1PnlLayout);
+        alerta1PnlLayout.setHorizontalGroup(
+            alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta1PnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(alerta1PnlLayout.createSequentialGroup()
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nombre1Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                            .addComponent(tipoAlerta1Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inicio1Lbl)
+                            .addComponent(fin1Lbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inicio1Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fin1Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(alerta1PnlLayout.createSequentialGroup()
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta1PnlLayout.createSequentialGroup()
+                                .addComponent(sede1Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreSede1Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 213, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta1PnlLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(instruc1Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resolver1Btn)
+                        .addGap(28, 28, 28))))
+        );
+        alerta1PnlLayout.setVerticalGroup(
+            alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta1PnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(alerta1PnlLayout.createSequentialGroup()
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inicio1Lbl)
+                            .addComponent(inicio1Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fin1Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fin1Lbl))
+                        .addGap(9, 9, 9))
+                    .addGroup(alerta1PnlLayout.createSequentialGroup()
+                        .addComponent(nombre1Lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tipoAlerta1Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreSede1Lbl)
+                    .addComponent(sede1Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(instruc1Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resolver1Btn))
+                .addContainerGap())
+        );
+
+        alertasPnl.add(alerta1Pnl);
+        alerta1Pnl.setBounds(0, 0, 740, 130);
+
+        alerta2Pnl.setBackground(new java.awt.Color(255, 255, 255));
+        alerta2Pnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+
+        nombre2Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nombre2Lbl.setText("Nombre del evento");
+
+        inicio2Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio2Lbl.setText("Fecha de inicio:");
+
+        tipoAlerta2Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoAlerta2Lbl.setText("Tipo de alerta");
+
+        inicio2Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio2Txf.setText("dd/mm/yy");
+        inicio2Txf.setBorder(null);
+
+        sede2Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sede2Lbl.setText("Lugar:");
+
+        fin2Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin2Txf.setText("dd/mm/yy");
+        fin2Txf.setBorder(null);
+
+        nombreSede2Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nombreSede2Lbl.setText("Nombre de la sede");
+        nombreSede2Lbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        fin2Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin2Lbl.setText("Fecha de fin:");
+
+        resolver2Btn.setText("Resolver");
+
+        instruc2Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        instruc2Lbl.setText("<html>Seleccione el botón \"Resolver\" para programar el evento</html>");
+        instruc2Lbl.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout alerta2PnlLayout = new javax.swing.GroupLayout(alerta2Pnl);
+        alerta2Pnl.setLayout(alerta2PnlLayout);
+        alerta2PnlLayout.setHorizontalGroup(
+            alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta2PnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(alerta2PnlLayout.createSequentialGroup()
+                        .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta2PnlLayout.createSequentialGroup()
+                                .addComponent(nombre2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(inicio2Lbl))
+                            .addGroup(alerta2PnlLayout.createSequentialGroup()
+                                .addComponent(tipoAlerta2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(fin2Lbl)))
+                        .addGap(27, 27, 27)
+                        .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inicio2Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fin2Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(alerta2PnlLayout.createSequentialGroup()
+                        .addComponent(sede2Lbl)
+                        .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta2PnlLayout.createSequentialGroup()
+                                .addGap(256, 256, 256)
+                                .addComponent(instruc2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(resolver2Btn))
+                            .addGroup(alerta2PnlLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreSede2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        alerta2PnlLayout.setVerticalGroup(
+            alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta2PnlLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(nombre2Lbl)
+                    .addGroup(alerta2PnlLayout.createSequentialGroup()
+                        .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inicio2Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inicio2Lbl))
+                        .addGap(7, 7, 7)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipoAlerta2Lbl)
+                    .addComponent(fin2Lbl)
+                    .addComponent(fin2Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(nombreSede2Lbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sede2Lbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resolver2Btn)
+                    .addComponent(instruc2Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
+        );
+
+        alertasPnl.add(alerta2Pnl);
+        alerta2Pnl.setBounds(0, 130, 740, 130);
+
+        alerta3Pnl.setBackground(new java.awt.Color(255, 255, 255));
+        alerta3Pnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+
+        nombre3Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nombre3Lbl.setText("Nombre del evento");
+
+        tipoAlerta3Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoAlerta3Lbl.setText("Tipo de alerta");
+
+        sede3Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sede3Lbl.setText("Lugar:");
+
+        nombreSede3Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nombreSede3Lbl.setText("Nombre de la sede");
+
+        instruc3Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        instruc3Lbl.setText("Seleccione el botón \"Resolver\" para programar el evento");
+
+        resolver3Btn.setText("Resolver");
+
+        inicio3Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio3Lbl.setText("Fecha de inicio:");
+
+        inicio3Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio3Txf.setText("dd/mm/yy");
+        inicio3Txf.setBorder(null);
+
+        fin3Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin3Lbl.setText("Fecha de fin:");
+
+        fin3Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin3Txf.setText("dd/mm/yy");
+        fin3Txf.setBorder(null);
+
+        javax.swing.GroupLayout alerta3PnlLayout = new javax.swing.GroupLayout(alerta3Pnl);
+        alerta3Pnl.setLayout(alerta3PnlLayout);
+        alerta3PnlLayout.setHorizontalGroup(
+            alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta3PnlLayout.createSequentialGroup()
+                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(alerta3PnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta3PnlLayout.createSequentialGroup()
+                                .addComponent(sede3Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreSede3Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(alerta3PnlLayout.createSequentialGroup()
+                                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombre3Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipoAlerta3Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inicio3Lbl)
+                                    .addComponent(fin3Lbl))
+                                .addGap(28, 28, 28)
+                                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fin3Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inicio3Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(alerta3PnlLayout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(instruc3Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(resolver3Btn)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+        alerta3PnlLayout.setVerticalGroup(
+            alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta3PnlLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(alerta3PnlLayout.createSequentialGroup()
+                        .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inicio3Lbl)
+                            .addComponent(inicio3Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fin3Lbl)
+                            .addComponent(fin3Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(resolver3Btn)
+                            .addComponent(instruc3Lbl)))
+                    .addGroup(alerta3PnlLayout.createSequentialGroup()
+                        .addComponent(nombre3Lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tipoAlerta3Lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sede3Lbl)
+                            .addComponent(nombreSede3Lbl))
+                        .addGap(26, 26, 26)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        alertasPnl.add(alerta3Pnl);
+        alerta3Pnl.setBounds(0, 260, 740, 130);
+
+        alerta4Pnl.setBackground(new java.awt.Color(255, 255, 255));
+        alerta4Pnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        nombre4Lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nombre4Lbl.setText("Nombre del evento");
+
+        inicio4Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio4Lbl.setText("Fecha de inicio:");
+
+        fin4Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin4Lbl.setText("Fecha de fin:");
+
+        inicio4Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        inicio4Txf.setText("dd/mm/yy");
+        inicio4Txf.setBorder(null);
+
+        fin4Txf.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fin4Txf.setText("dd/mm/yy");
+        fin4Txf.setBorder(null);
+
+        tipoAlerta4Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tipoAlerta4Lbl.setText("Tipo de alerta");
+
+        sede4Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        sede4Lbl.setText("Lugar:");
+
+        nombreSede4Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nombreSede4Lbl.setText("Nombre de la sede");
+
+        instruc4Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        instruc4Lbl.setText("Seleccione el botón \"Resolver\" para programar el evento");
+
+        resolver4Btn.setText("Resolver");
+
+        javax.swing.GroupLayout alerta4PnlLayout = new javax.swing.GroupLayout(alerta4Pnl);
+        alerta4Pnl.setLayout(alerta4PnlLayout);
+        alerta4PnlLayout.setHorizontalGroup(
+            alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta4PnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta4PnlLayout.createSequentialGroup()
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombre4Lbl)
+                            .addComponent(tipoAlerta4Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(alerta4PnlLayout.createSequentialGroup()
+                                .addComponent(inicio4Lbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inicio4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(alerta4PnlLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(fin4Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(fin4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(136, 136, 136))
+                    .addGroup(alerta4PnlLayout.createSequentialGroup()
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta4PnlLayout.createSequentialGroup()
+                                .addComponent(sede4Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreSede4Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta4PnlLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(instruc4Lbl)))
+                        .addGap(18, 18, 18)
+                        .addComponent(resolver4Btn)
+                        .addGap(18, 18, 18))))
+        );
+        alerta4PnlLayout.setVerticalGroup(
+            alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alerta4PnlLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(resolver4Btn)
+                    .addGroup(alerta4PnlLayout.createSequentialGroup()
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(inicio4Lbl)
+                                .addComponent(inicio4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nombre4Lbl))
+                        .addGap(18, 18, 18)
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fin4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fin4Lbl)
+                            .addComponent(tipoAlerta4Lbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sede4Lbl)
+                            .addComponent(nombreSede4Lbl))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(instruc4Lbl)))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        alertasPnl.add(alerta4Pnl);
+        alerta4Pnl.setBounds(0, 390, 740, 130);
+
+        anteriorBtn.setText("Anterior");
+        alertasPnl.add(anteriorBtn);
+        anteriorBtn.setBounds(200, 530, 80, 30);
+
+        siguienteBtn.setText("Siguiente");
+        alertasPnl.add(siguienteBtn);
+        siguienteBtn.setBounds(410, 530, 80, 30);
+
+        paginasLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        paginasLbl.setText("1/1");
+        alertasPnl.add(paginasLbl);
+        paginasLbl.setBounds(330, 540, 40, 20);
+
         alertasSPn.setViewportView(alertasPnl);
 
         informacionPnl.add(alertasSPn);
-        alertasSPn.setBounds(0, 0, 700, 580);
+        alertasSPn.setBounds(0, 0, 740, 580);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -295,7 +777,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,20 +810,16 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         switch(seleccionCBx.getSelectedIndex()){// switch
             case 0:// Alertas recientes
                 System.out.println("alertas recientes");
-                control.buscarTodas();
-                alertasPnl.setToolTipText("Todas las alertas programadas.");
+                control.buscarTodasLista(0);
                 ban = true;
                 break;
             case 1:// Evento programado
                 System.out.println("evento programado");
                 obj = control.buscarAlerta(1);
-                eventos = ((Alerta) obj)
-                        .getImplementacionEventos();
+                eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
                     generarPanelAlerta(lista);
-                    alertasPnl.setToolTipText("Alertas de los eventos "
-                        + "programados.");
                     ban = true;
                 }// if
                 else{// else
@@ -352,13 +830,14 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 break;
             case 2:// Evento diagnosticado
                 obj = control.buscarAlerta(2);
-                eventos = ((Alerta) obj)
-                        .getImplementacionEventos();
+                System.out.println("Objeto: " + ((Alerta)obj).getImplementacionEventos().size());
+                for(ImplementacionEvento ie : ((Alerta)obj).getImplementacionEventos()){//for
+                    System.out.println(ie.getEvento().getDescripcion());
+                }
+                eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
                     generarPanelAlerta(lista);
-                    alertasPnl.setToolTipText("Alertas de los eventos "
-                        + "diagnosicados.");
                     ban = true;
                 }// if
                 else{// else
@@ -369,13 +848,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 break;
             case 3:// Informacion pendiente
                 obj = control.buscarAlerta(3);
-                eventos = ((Alerta) obj)
-                        .getImplementacionEventos();
+                eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
                     generarPanelAlerta(lista);
-                    alertasPnl.setToolTipText("Alertas de eventos con "
-                            + "informacion pendiente.");
                     ban = true;
                 }// if
                 else{// else
@@ -386,13 +862,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 break;
             case 4:// Encuesta pendiente
                 obj = control.buscarAlerta(4);
-                eventos = ((Alerta) obj)
-                        .getImplementacionEventos();
+                eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
                     generarPanelAlerta(lista);
-                    alertasPnl.setToolTipText("Alertas de encuestas "
-                        + "pendientes.");
                     ban = true;
                 }// if
                 else{// else
@@ -532,10 +1005,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                     informacionSpn.getValue().toString()));
             encuesta.setPeriodo(Integer.parseInt(
                     encuestaSpn.getValue().toString()));
-            control.modificarAlerta(evento);
-            control.modificarAlerta(evento1);
-            control.modificarAlerta(informacion);
-            control.modificarAlerta(encuesta);
+            control.modificacion(evento);
+            control.modificacion(evento1);
+            control.modificacion(informacion);
+            control.modificacion(encuesta);
             
             eventoSpn.setValue(1);
             encuestaSpn.setValue(1);
@@ -603,23 +1076,71 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarBtn;
+    private javax.swing.JPanel alerta1Pnl;
+    private javax.swing.JPanel alerta2Pnl;
+    private javax.swing.JPanel alerta3Pnl;
+    private javax.swing.JPanel alerta4Pnl;
     private javax.swing.JPanel alertasPnl;
     private javax.swing.JScrollPane alertasSPn;
+    private javax.swing.JButton anteriorBtn;
     private javax.swing.JButton cancelarBtn;
+    private javax.swing.JLabel descripcionLbl;
     private javax.swing.JComboBox encuestaCBx;
     private javax.swing.JLabel encuestaLbl;
     private javax.swing.JSpinner encuestaSpn;
     private javax.swing.JComboBox eventoCBx;
     private javax.swing.JLabel eventoLbl;
     private javax.swing.JSpinner eventoSpn;
+    private javax.swing.JLabel fin1Lbl;
+    private javax.swing.JTextField fin1Txf;
+    private javax.swing.JLabel fin2Lbl;
+    private javax.swing.JTextField fin2Txf;
+    private javax.swing.JLabel fin3Lbl;
+    private javax.swing.JTextField fin3Txf;
+    private javax.swing.JLabel fin4Lbl;
+    private javax.swing.JTextField fin4Txf;
     private javax.swing.JComboBox informacionCBx;
     private javax.swing.JLabel informacionLbl;
     private javax.swing.JPanel informacionPnl;
     private javax.swing.JSpinner informacionSpn;
+    private javax.swing.JLabel inicio1Lbl;
+    private javax.swing.JTextField inicio1Txf;
+    private javax.swing.JLabel inicio2Lbl;
+    private javax.swing.JTextField inicio2Txf;
+    private javax.swing.JLabel inicio3Lbl;
+    private javax.swing.JTextField inicio3Txf;
+    private javax.swing.JLabel inicio4Lbl;
+    private javax.swing.JTextField inicio4Txf;
+    private javax.swing.JLabel instruc1Lbl;
+    private javax.swing.JLabel instruc2Lbl;
+    private javax.swing.JLabel instruc3Lbl;
+    private javax.swing.JLabel instruc4Lbl;
+    private javax.swing.JLabel nombre1Lbl;
+    private javax.swing.JLabel nombre2Lbl;
+    private javax.swing.JLabel nombre3Lbl;
+    private javax.swing.JLabel nombre4Lbl;
+    private javax.swing.JLabel nombreSede1Lbl;
+    private javax.swing.JLabel nombreSede2Lbl;
+    private javax.swing.JLabel nombreSede3Lbl;
+    private javax.swing.JLabel nombreSede4Lbl;
     private javax.swing.JPanel opcionPnl;
+    private javax.swing.JLabel paginasLbl;
     private javax.swing.JButton periodoBtn;
     private javax.swing.JPanel periodoPnl;
+    private javax.swing.JButton resolver1Btn;
+    private javax.swing.JButton resolver2Btn;
+    private javax.swing.JButton resolver3Btn;
+    private javax.swing.JButton resolver4Btn;
+    private javax.swing.JLabel sede1Lbl;
+    private javax.swing.JLabel sede2Lbl;
+    private javax.swing.JLabel sede3Lbl;
+    private javax.swing.JLabel sede4Lbl;
     private javax.swing.JComboBox seleccionCBx;
+    private javax.swing.JButton siguienteBtn;
+    private javax.swing.JLabel tipoAlerta1Lbl;
+    private javax.swing.JLabel tipoAlerta2Lbl;
+    private javax.swing.JLabel tipoAlerta3Lbl;
+    private javax.swing.JLabel tipoAlerta4Lbl;
     private javax.swing.JLabel tipoLbl;
     // End of variables declaration//GEN-END:variables
 
@@ -717,77 +1238,41 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      * @param evt 
      */
     public void resolverBtnActionPerformed(ActionEvent evt){// method
+        System.err.println("Mensaje 2");
         for(int i = 0; i < totalAlertas; i++){// for
-            if(evt.getSource().equals(resolverBtn[i])){
+            if(evt.getSource().equals(resolverBtn[i])){//if
                 int id = Integer.parseInt(resolverBtn[i].getName());
                 String[] palabras = titulosLbl[i].getText().split(" ");
                 String alerta = palabras[0] + " " +palabras[1];
-                System.out.println(alerta);
-                Set<ImplementacionEvento> eventos;
-                int j = 0;
-                switch(alerta){
+                switch(alerta){//switch
                     case "Evento programado":// 1
-                        eventos = ((Alerta) control.buscarAlerta(1)).getImplementacionEventos();
-                        j = 0;
-                        for(Object o : eventos){// for
-                            ImplementacionEvento ie = (ImplementacionEvento) o;
-                            if(ie.getId() == id){// if
-                                eventoPnl.llenarDatos((Object) ie);
-                                alertasPnl.setToolTipText(null);
-                                alertasPnl.setVisible(false);
-                            }// if
-                            j ++;
-                        }// for
+                        System.err.println("Programado");
+                        llenarDatos(datosEvento.get(id).getEvento());
+                        alertasPnl.setVisible(false);
                         break;
                     case "Evento diagnosticado":// 2
-                        eventos = ((Alerta) control.buscarAlerta(2)).getImplementacionEventos();
-                        j = 0;
-                        for(Object o : eventos){// for
-                            ImplementacionEvento ie = (ImplementacionEvento) o;
-                            if(ie.getId() == id){// if
-                                eventoPnl.llenarDatos((Object) ie);
-                                alertasPnl.setToolTipText(null);
-                                alertasPnl.setVisible(false);
-                            }// if
-                            j ++;
-                        }// for
+                        llenarDatos(datosEvento.get(id).getEvento());
+                        alertasPnl.setVisible(false);
                         break;
                     case "Información pendiente":// 3
-                        eventos = ((Alerta) control.buscarAlerta(3)).getImplementacionEventos();
-                        j = 0;
-                        for(Object o : eventos){// for
-                            ImplementacionEvento ie = (ImplementacionEvento) o;
-                            if(ie.getId() == id){// if
-                                alertasPnl.setToolTipText(null);
-                                alertasPnl.setVisible(false);
-                                eventoPnl.llenarDatos((Object) ie);
-                            }// if
-                            j ++;
-                        }// for
+                        llenarDatos(datosEvento.get(id).getEvento());
+                        alertasPnl.setVisible(false);
                         break;
                     case "Encuesta pendiente":// 4
-                        eventos = ((Alerta) control.buscarAlerta(4)).getImplementacionEventos();
-                        j = 0;
-                        for(Object o : eventos){// for
-                            ImplementacionEvento ie = (ImplementacionEvento) o;
-                            if(ie.getId() == id){// if
-                                encuestaPnl.llenarDatos((Object) ie);
-                                alertasPnl.setToolTipText(null);
-                                alertasPnl.setVisible(false);
-                            }// if
-                            j ++;
-                        }// for
+                        llenarDatos(datosEvento.get(id).getEvento());
+                        alertasPnl.setVisible(false);
                         break;
-                }
-            }
+                }//switch
+            }//if
         }// for
     }// method
     
     /**
      * 
+     * 
      * @param info 
      */
-    private void generarPanelAlerta(List<Object> info){// method
+     private void generarPanelAlerta(List<Object> info){// method
         int tamaño = 0;
         for(int l = 0; l < info.size(); l++){// for
             Alerta a = (Alerta) info.get(l);
@@ -799,15 +1284,29 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         panelesPnl = new JPanel[tamaño];
         titulosLbl = new JLabel[tamaño];
         resolverBtn = new JButton[tamaño];
-        JLabel descripcion = new JLabel();
+        idAlerta = new int[tamaño];
+        datosEvento = new ArrayList<ImplementacionEvento>();
+        JLabel descripcion;
         int j = 0;
         for(Object obj : info){// for each
             Alerta a = (Alerta) obj;
             switch(a.getId()){// switch
-                case 1:// evento programado
+                case 1: // evento programado
+            for (Iterator<ImplementacionEvento> it = a.
+                    getImplementacionEventos().iterator(); it.hasNext();) {//for
+                ImplementacionEvento ie = it.next();
+                if(ie != null){//if
+                    idAlerta[j] = 1;
+                    datosEvento.add(ie);
+                    
+                }//if
+            } //for
+                    
                     for(ImplementacionEvento ic : 
                             a.getImplementacionEventos()){// for each
                         if(ic != null){// if
+                            idAlerta[j] = 1;
+                            datosEvento.add(ic);
                             panelesPnl[j] = new JPanel();
                             panelesPnl[j].setBackground(java.awt.Color.white);
                             panelesPnl[j].setLayout(null);
@@ -848,6 +1347,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
 
                                 @Override
                                 public void actionPerformed(ActionEvent ae){// method
+                                    System.err.println("Mensaje 1");
                                     resolverBtnActionPerformed(ae);
                                 }// method
                             });// listener
@@ -866,6 +1366,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 case 2:// evento diagnosticado
                     for(ImplementacionEvento ic : 
                             a.getImplementacionEventos()){// for each
+                        idAlerta[j] = 2;
+                        datosEvento.add(ic);
                         panelesPnl[j] = new JPanel();
                         panelesPnl[j].setBackground(java.awt.Color.white);
                         panelesPnl[j].setLayout(null);
@@ -917,6 +1419,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 case 3:// informacion pendiente
                     for(ImplementacionEvento ic : 
                             a.getImplementacionEventos()){// for each
+                        idAlerta[j] = 3;
+                        datosEvento.add(ic);
                         panelesPnl[j] = new JPanel();
                         panelesPnl[j].setBackground(java.awt.Color.white);
                         panelesPnl[j].setLayout(null);
@@ -966,6 +1470,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 case 4:// encuesta pendiente
                     for(ImplementacionEvento ic : 
                             a.getImplementacionEventos()){// for each
+                        idAlerta[j] = 4;
+                        datosEvento.add(ic);
                         panelesPnl[j] = new JPanel();
                         panelesPnl[j].setBackground(java.awt.Color.white);
                         panelesPnl[j].setLayout(null);
@@ -1020,7 +1526,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }//method
 
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object evento) {//method
         
-    }
+    }//method
+    
 }// class

@@ -18,4 +18,7 @@ public class SedeFACADE extends BaseFACADE{
     public List<Object> findByNombre(String nombre){
         return ServiceLocator.getSede().findByNombre(nombre);
     }
+    public List<Object> buscarImplementaciones(int id){
+        return ServiceLocator.getSede().buscarImplementaciones(id);
+    }
 }
