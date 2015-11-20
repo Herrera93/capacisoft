@@ -29,7 +29,7 @@ public class DepartamentoDAO extends BaseDAO{
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass)
                     .add(Restrictions.or(
-                            Restrictions.like("nombre", nombre )))
+                            Restrictions.like("nombre", "%" + nombre + "%")))
                     .list();
             HibernateUtil.commitTransaction();
             System.out.println("Buscar por nombre::Departamento");

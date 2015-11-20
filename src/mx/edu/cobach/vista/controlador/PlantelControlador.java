@@ -17,5 +17,10 @@ public class PlantelControlador extends BaseControlador{
     public void buscarPorNombre(String nombre){
         List<Object> list = ServiceLocatorDELEGATE.getPlantelDelegate().buscarPorNombre(nombre);
        com.setTabla(HelperEntidad.descomponerObjetos(list));
-    }   
+    }
+    
+    public boolean buscarEmpleados(int id){
+        return ServiceLocatorDELEGATE.getPlantelDelegate().
+            buscarEmpleados(id) != null;
+    }
 }

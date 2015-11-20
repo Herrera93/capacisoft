@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
@@ -26,8 +27,16 @@ public class DepartamentoControlador extends BaseControlador {
         } else {
             List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
             if(!o.isEmpty()){
-            com.setMensaje("Este departamento ya esta registrado");
+                com.setMensaje("Este departamento ya esta registrado");
             }
         }
+    }
+    
+    public boolean buscarEmpleados(int id){
+        List<Object> atr = new ArrayList();
+        atr.add("");
+        atr.add(id);
+        return ServiceLocatorDELEGATE.getImplementarEvento()
+            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)) != null;
     }
 }

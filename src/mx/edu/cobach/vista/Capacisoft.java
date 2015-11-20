@@ -33,14 +33,16 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlListaAsistencia listaAsistenciaPnl;
     private final ImageIcon imageLogo;
     private int idTipo;
+    private String usuario;
     
-    public Capacisoft(String tipo) {
+    public Capacisoft(String tipo, String usuario) {
         imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
         setTitle("CapaciSoft");
         
         //this.tipo=tipo;
         getIdTipo(tipo);
+        this.usuario = usuario;
         initComponents();
         setLayout(new BorderLayout());
         agregar();
@@ -66,7 +68,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     */
    private void agregar(){
         //Mantenimientos
-        usuarioPnl = new PnlUsuarios();
+        usuarioPnl = new PnlUsuarios(usuario);
         usuarioPnl.setVisible(false);
         usuarioPnl.setSize(1181,587);
         //if(idTipo==1)
@@ -397,20 +399,8 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
 
     private void encuesta_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encuesta_MItActionPerformed
         this.setTitle("Capacisoft - Realizar Encuesta");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
+        ocultarPaneles();
         seguimientoPnl.setVisible(true);
-        alertasPnl.setVisible(false);
         seguimientoPnl.llenarTodo();
     }//GEN-LAST:event_encuesta_MItActionPerformed
 
@@ -420,93 +410,33 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     
     private void kardex_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kardex_MItActionPerformed
         this.setTitle("Capacisoft - Kardex");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
+        ocultarPaneles();
         kardexPnl.setVisible(true);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
     }//GEN-LAST:event_kardex_MItActionPerformed
 
     private void lista_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista_MItActionPerformed
         this.setTitle("Capacisoft - Lista de asistencia");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
+        ocultarPaneles();
         listaAsistenciaPnl.setVisible(true);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
     }//GEN-LAST:event_lista_MItActionPerformed
 
     private void alertas_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alertas_MItActionPerformed
         this.setTitle("Capacisoft - Administar Alertas");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
+        ocultarPaneles();
         alertasPnl.setVisible(true);
     }//GEN-LAST:event_alertas_MItActionPerformed
 
     private void programarEvento_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programarEvento_MItActionPerformed
         this.setTitle("Capacisoft - Programar Evento");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
+        ocultarPaneles();
         programarPnl.setVisible(true);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
         programarPnl.llenarTodo();
     }//GEN-LAST:event_programarEvento_MItActionPerformed
 
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
         this.setTitle("Capacisoft - Evento de capacitación");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
+        ocultarPaneles();
         cursoPnl.setVisible(true);
-        empleadoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
     }//GEN-LAST:event_curso_MItActionPerformed
 
     public void visualizarEvento(){
@@ -515,147 +445,56 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     
     private void empleado_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleado_MItActionPerformed
         this.setTitle("Capacisoft - Empleado Administrativo");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
+        ocultarPaneles();
         empleadoPnl.setVisible(true);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
         empleadoPnl.llenarTodo();
     }//GEN-LAST:event_empleado_MItActionPerformed
 
     private void proveedores_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedores_MItActionPerformed
         this.setTitle("Capacisoft - Proveedor");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
+        ocultarPaneles();
         proveedorPnl.setVisible(true);
-        empleadoPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
     }//GEN-LAST:event_proveedores_MItActionPerformed
 
     private void sedes_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedes_MItActionPerformed
         this.setTitle("Capacisoft - Sede");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
+        ocultarPaneles();
         sedePnl.setVisible(true);
-        proveedorPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
+        sedePnl.llenarTodo();
     }//GEN-LAST:event_sedes_MItActionPerformed
 
     private void puestos_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puestos_MItActionPerformed
         this.setTitle("Capacisoft - Puesto");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
+        ocultarPaneles();
         puestoPnl.setVisible(true);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
+        puestoPnl.llenarTodo();
     }//GEN-LAST:event_puestos_MItActionPerformed
 
     private void departamentos_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departamentos_MItActionPerformed
         this.setTitle("Capacisoft - Departamento");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
+        ocultarPaneles();
         departamentoPnl.setVisible(true);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
+        departamentoPnl.llenarTodo();
     }//GEN-LAST:event_departamentos_MItActionPerformed
 
     private void planteles_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planteles_MItActionPerformed
         this.setTitle("Capacisoft - Plantel");
-        usuarioPnl.setVisible(false);
+        ocultarPaneles();
         plantelPnl.setVisible(true);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
+        plantelPnl.llenarTodo();
     }//GEN-LAST:event_planteles_MItActionPerformed
 
     private void usuario_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuario_MItActionPerformed
         this.setTitle("Capacisoft - Usuario");
+        ocultarPaneles();
         usuarioPnl.setVisible(true);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
-        reporteCursoPnl.setVisible(false);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
+        usuarioPnl.llenarTodo();
     }//GEN-LAST:event_usuario_MItActionPerformed
 
     private void registroCurso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroCurso_MItActionPerformed
         this.setTitle("Capacisoft - Evento de capacitación");
-        usuarioPnl.setVisible(false);
-        plantelPnl.setVisible(false);
-        departamentoPnl.setVisible(false);
-        puestoPnl.setVisible(false);
-        sedePnl.setVisible(false);
-        proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
-        empleadoPnl.setVisible(false);
-        kardexPnl.setVisible(false);
+        ocultarPaneles();
         reporteCursoPnl.setVisible(true);
-        listaAsistenciaPnl.setVisible(false);
-        programarPnl.setVisible(false);
-        seguimientoPnl.setVisible(false);
-        alertasPnl.setVisible(false);
         reporteCursoPnl.llenarTodo();
     }//GEN-LAST:event_registroCurso_MItActionPerformed
 
@@ -700,7 +539,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenuItem curso_MIt;
     private javax.swing.JMenuItem departamentos_MIt;
     private javax.swing.JMenuItem empleado_MIt;
-    private javax.swing.JMenuItem encuesta_MIt;
+    public javax.swing.JMenuItem encuesta_MIt;
     private javax.swing.JMenuItem kardex_MIt;
     private javax.swing.JMenuItem lista_MIt;
     private javax.swing.JMenu mantenimientoCurso_Mn;
@@ -715,4 +554,21 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenuItem usuario_MIt;
     // End of variables declaration//GEN-END:variables
 
+    
+    private void ocultarPaneles(){
+        usuarioPnl.setVisible(false);
+        plantelPnl.setVisible(false);
+        departamentoPnl.setVisible(false);
+        puestoPnl.setVisible(false);
+        sedePnl.setVisible(false);
+        proveedorPnl.setVisible(false);
+        cursoPnl.setVisible(false);
+        empleadoPnl.setVisible(false);
+        kardexPnl.setVisible(false);
+        reporteCursoPnl.setVisible(false);
+        listaAsistenciaPnl.setVisible(false);
+        programarPnl.setVisible(false);
+        seguimientoPnl.setVisible(false);
+        alertasPnl.setVisible(false);
+    }
 }
