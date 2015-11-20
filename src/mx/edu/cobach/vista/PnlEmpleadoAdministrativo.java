@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -33,7 +34,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     private final DefaultTableModel model;
     private final DefaultComboBoxModel puestoModel, plantelModel, dptoModel,
-            adscripModel;
+            adscripModel, direccionModel;
     private final String[] titulosTabla;
     private final EmpleadoControlador control;
     private int idEmpleadoActual;
@@ -63,10 +64,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelModel = new DefaultComboBoxModel();
         dptoModel = new DefaultComboBoxModel();
         adscripModel = new DefaultComboBoxModel();
+        direccionModel= new DefaultComboBoxModel();
         puestoCBx.setModel(puestoModel);
         plantelCBx.setModel(plantelModel);
         departamentoCBx.setModel(dptoModel);
         adscCBx.setModel(adscripModel);
+        direccionCBx.setModel(direccionModel);
         adscBuscarCBx.setModel(adscripModel);
         numeroTFd.addFocusListener(this);
         primerNombreTFd.addFocusListener(this);
@@ -98,13 +101,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         opcionMsjLbl = new javax.swing.JLabel();
         opcionLbl = new javax.swing.JLabel();
         tablaMsjLbl = new javax.swing.JLabel();
-        InformacionJTP = new javax.swing.JTabbedPane();
+        informacionJTP = new javax.swing.JTabbedPane();
         informacion1Pnl = new javax.swing.JPanel();
         numeroLbl = new javax.swing.JLabel();
         correoELbl = new javax.swing.JLabel();
         numeroTFd = new javax.swing.JTextField();
         correoTFd = new javax.swing.JTextField();
-        guardarBtn = new javax.swing.JButton();
         primerNombreLbl = new javax.swing.JLabel();
         primerNombreTFd = new javax.swing.JTextField();
         segNombreTFd = new javax.swing.JTextField();
@@ -121,6 +123,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         validApellLbl = new javax.swing.JLabel();
         validCorreo_Lbl = new javax.swing.JLabel();
         cancelarBtn = new javax.swing.JButton();
+        siguienteBtn = new javax.swing.JButton();
         informacion2Pnl = new javax.swing.JPanel();
         puestoCBx = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
@@ -134,6 +137,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         plantelLbl = new javax.swing.JLabel();
+        guardarBtn = new javax.swing.JButton();
+        direccionLbl = new javax.swing.JLabel();
+        direccionCBx = new javax.swing.JComboBox();
+        jLabel10 = new javax.swing.JLabel();
+        regresarBtn = new javax.swing.JButton();
+        cancelar2Btn = new javax.swing.JButton();
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
@@ -303,15 +312,6 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }
         });
 
-        guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        guardarBtn.setText("Guardar");
-        guardarBtn.setEnabled(false);
-        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarBtnActionPerformed(evt);
-            }
-        });
-
         primerNombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         primerNombreLbl.setText("Primer nombre:");
 
@@ -379,6 +379,15 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }
         });
 
+        siguienteBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        siguienteBtn.setText("Siguiente");
+        siguienteBtn.setEnabled(false);
+        siguienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout informacion1PnlLayout = new javax.swing.GroupLayout(informacion1Pnl);
         informacion1Pnl.setLayout(informacion1PnlLayout);
         informacion1PnlLayout.setHorizontalGroup(
@@ -389,12 +398,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                         .addGap(32, 32, 32)
                         .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(registroMsjLbl)
-                            .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(informacion1PnlLayout.createSequentialGroup()
-                                .addGap(437, 437, 437)
-                                .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(informacion1PnlLayout.createSequentialGroup()
                         .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(informacion1PnlLayout.createSequentialGroup()
@@ -422,18 +426,23 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                                 .addGap(18, 18, 18)
                                 .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(validCorreo_Lbl)
-                                    .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(validNumLbl)
-                                        .addComponent(validNombLbl)
-                                        .addComponent(segApellidoTFd)
-                                        .addComponent(validApellLbl)
-                                        .addComponent(primerNombreTFd)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacion1PnlLayout.createSequentialGroup()
-                                            .addComponent(correoTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(numeroTFd)))))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                                    .addGroup(informacion1PnlLayout.createSequentialGroup()
+                                        .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(validNumLbl)
+                                                .addComponent(validNombLbl)
+                                                .addComponent(segApellidoTFd)
+                                                .addComponent(validApellLbl)
+                                                .addComponent(primerNombreTFd)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacion1PnlLayout.createSequentialGroup()
+                                                    .addComponent(correoTFd, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(numeroTFd)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(siguienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
         informacion1PnlLayout.setVerticalGroup(
             informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,13 +489,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(validCorreo_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(siguienteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
         );
 
-        InformacionJTP.addTab("tab1", informacion1Pnl);
+        informacionJTP.addTab("tab1", informacion1Pnl);
 
         puestoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         puestoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -541,6 +550,44 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelLbl.setText("Plantel:");
 
+        guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        guardarBtn.setText("Guardar");
+        guardarBtn.setEnabled(false);
+        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBtnActionPerformed(evt);
+            }
+        });
+
+        direccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        direccionLbl.setText("Dirección");
+
+        direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        direccionCBx.setEnabled(false);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(213, 216, 222));
+        jLabel10.setText("Este campo es obligatorio");
+
+        regresarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        regresarBtn.setText("Regresar");
+        regresarBtn.setEnabled(false);
+        regresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarBtnActionPerformed(evt);
+            }
+        });
+
+        cancelar2Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelar2Btn.setText("Cancelar");
+        cancelar2Btn.setEnabled(false);
+        cancelar2Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelar2BtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout informacion2PnlLayout = new javax.swing.GroupLayout(informacion2Pnl);
         informacion2Pnl.setLayout(informacion2PnlLayout);
         informacion2PnlLayout.setHorizontalGroup(
@@ -553,8 +600,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                         .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(plantelLbl)
                             .addComponent(departamentoLbl)
-                            .addComponent(puestoLbll))
-                        .addGap(37, 37, 37)
+                            .addComponent(puestoLbll)
+                            .addComponent(direccionLbl))
+                        .addGap(85, 85, 85)
                         .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -563,8 +611,18 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                             .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(95, Short.MAX_VALUE))
+                            .addComponent(jLabel10)
+                            .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(informacion2PnlLayout.createSequentialGroup()
+                                    .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cancelar2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(direccionCBx, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(departamentoCBx, javax.swing.GroupLayout.Alignment.LEADING, 0, 504, Short.MAX_VALUE))))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         informacion2PnlLayout.setVerticalGroup(
             informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,15 +646,29 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(departamentoLbl)
+                    .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informacion2PnlLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(direccionLbl))
+                    .addGroup(informacion2PnlLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(direccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(departamentoLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(301, Short.MAX_VALUE))
+                    .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelar2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
 
-        InformacionJTP.addTab("tab2", informacion2Pnl);
+        informacionJTP.addTab("tab2", informacion2Pnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -605,12 +677,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InformacionJTP))
+                .addComponent(informacionJTP))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-            .addComponent(InformacionJTP, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(informacionJTP, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -863,37 +935,83 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_correoTFdKeyTyped
 
+    private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
+        informacionJTP.setEnabledAt(0, true);
+        informacionJTP.setEnabledAt(1, false);
+        informacionJTP.setSelectedIndex(0);
+    }//GEN-LAST:event_regresarBtnActionPerformed
+
+    private void cancelar2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar2BtnActionPerformed
+        //Se limpian los campos
+        numeroTFd.setText("");
+        primerNombreTFd.setText("");
+        segNombreTFd.setText("");
+        primerApellidoTFd.setText("");
+        segApellidoTFd.setText("");
+        correoTFd.setText("");
+        adscCBx.setSelectedIndex(0);
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        guardarBtn.setText("Guardar");
+        numeroTFd.setBorder(BORDER_ORIGINAL);
+        primerNombreTFd.setBorder(BORDER_ORIGINAL);
+        primerApellidoTFd.setBorder(BORDER_ORIGINAL);
+        correoTFd.setBorder(BORDER_ORIGINAL);
+        validNumLbl.setForeground(new Color(213, 216, 222));
+        validNombLbl.setForeground(new Color(213, 216, 222));
+        validApellLbl.setForeground(new Color(213, 216, 222));
+        validCorreo_Lbl.setForeground(new Color(213, 216, 222));
+        setEnabledPanelInformacion(false);
+    }//GEN-LAST:event_cancelar2BtnActionPerformed
+
+    private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
+        informacionJTP.setEnabledAt(0, false);
+        informacionJTP.setEnabledAt(1, true);
+        informacionJTP.setSelectedIndex(1);
+    }//GEN-LAST:event_siguienteBtnActionPerformed
+
     private void adscCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adscCBxActionPerformed
         if (adscCBx.getSelectedIndex() == 0) {
             plantelCBx.setEnabled(false);
             departamentoCBx.setEnabled(false);
+            direccionCBx.setEnabled(false);
         } else if (adscCBx.getSelectedIndex() == 1) {
             plantelCBx.setEnabled(false);
             departamentoCBx.setEnabled(true);
+            direccionCBx.setEnabled(false);
         } else if (adscCBx.getSelectedIndex() == 2) {
             departamentoCBx.setEnabled(false);
             plantelCBx.setEnabled(true);
+            direccionCBx.setEnabled(false);
+        } else if (adscCBx.getSelectedIndex() == 3) {
+            departamentoCBx.setEnabled(false);
+            plantelCBx.setEnabled(false);
+            direccionCBx.setEnabled(true);
         }
     }//GEN-LAST:event_adscCBxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane InformacionJTP;
     private javax.swing.JComboBox adscBuscarCBx;
     private javax.swing.JLabel adscBuscarLbl;
     private javax.swing.JComboBox adscCBx;
     private javax.swing.JLabel adscLbl;
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
+    private javax.swing.JButton cancelar2Btn;
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JLabel correoELbl;
     private javax.swing.JTextField correoTFd;
     private javax.swing.JComboBox departamentoCBx;
     private javax.swing.JLabel departamentoLbl;
+    private javax.swing.JComboBox direccionCBx;
+    private javax.swing.JLabel direccionLbl;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacion1Pnl;
     private javax.swing.JPanel informacion2Pnl;
+    private javax.swing.JTabbedPane informacionJTP;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -915,10 +1033,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JLabel puestoLbll;
     private javax.swing.JLabel registroLbl;
     private javax.swing.JLabel registroMsjLbl;
+    private javax.swing.JButton regresarBtn;
     private javax.swing.JLabel segApellidoLbl;
     private javax.swing.JTextField segApellidoTFd;
     private javax.swing.JLabel segNombreLbl;
     private javax.swing.JTextField segNombreTFd;
+    private javax.swing.JButton siguienteBtn;
     private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JScrollPane tablaSPn;
     private javax.swing.JTable tablaTbl;
@@ -1010,6 +1130,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 adscripModel.insertElementAt(new Departamento(), 0);
                 adscCBx.setSelectedIndex(0);
                 break;
+            case 5:
+                direccionModel.removeAllElements();
+                for (int j = 0; j < info.size(); j++) {
+                    direccionModel.addElement(info.get(j));
+                }
+                direccionModel.insertElementAt(new Direccion(), 0);
+                adscCBx.setSelectedIndex(0);
+                break;
         }
     }
 
@@ -1024,6 +1152,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         control.setClass(Adscripcion.class);
         control.buscarTodosLista(4);
         control.setClass(Empleado.class);
+        control.setClass(Direccion.class);
+        control.buscarTodosLista(5);
         setEnabledPanelInformacion(false);
 
     }
@@ -1040,6 +1170,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscCBx.setEnabled(b);
         guardarBtn.setEnabled(b);
         cancelarBtn.setEnabled(b);
+        siguienteBtn.setEnabled(b);
+        cancelar2Btn.setEnabled(b);
+        regresarBtn.setEnabled(b);
     }
 
     /**
