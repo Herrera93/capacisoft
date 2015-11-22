@@ -711,7 +711,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(adscCBx.getSelectedItem());
         atributos.add(plantelCBx.getSelectedItem());
         atributos.add(departamentoCBx.getSelectedItem());
-        atributos.add(direccionCBx.getSelectedIndex());
+        atributos.add(direccionCBx.getSelectedItem());
 
         //Se limpian los campos
         numeroTFd.setText("");
@@ -724,6 +724,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscCBx.setSelectedIndex(0);
         plantelCBx.setSelectedIndex(0);
         departamentoCBx.setSelectedIndex(0);
+        direccionCBx.setSelectedIndex(0);
 
         //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
         //contenido en el boton.
@@ -1275,3 +1276,4 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+
