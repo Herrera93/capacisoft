@@ -19,7 +19,7 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
