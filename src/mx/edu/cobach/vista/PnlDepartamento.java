@@ -30,7 +30,8 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private final Border BORDER_ORIGINAL;
 
     /**
-     * Creates new form PnlDepartamento
+     * Constructor, se instancia la clase DepartamentoControolador. Se crea 
+     * modelo de la tabla y se realiza la busqueda 
      */
     public PnlDepartamento() {
         initComponents();
@@ -437,7 +438,13 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             informacionPnl.setVisible(true);
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
-
+    
+    /**
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * obligatorio
+     * @param evt Evento al perder foco
+     */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
@@ -450,11 +457,22 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_nombreTFdFocusLost
 
+    /**
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
+     * @param evt Evento al perder foco
+     */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
     }//GEN-LAST:event_nombreTFdFocusGained
 
+    /**
+     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el mensaje
+     * de confirmacion para cancelar el registro o modificación. Se manda a llamar 
+     * el metódo Limpiar.
+     * @param evt Evento al presionar el botón
+     */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
             + " esta modificando se perdera,¿Aun así desea cancelarla?",
@@ -464,6 +482,11 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
+    /**
+     * Evento ejecutado cuando se escribe sobre un campo, validando que no se 
+     * permita el ingreso del número. Limitando el número de caracteres a $5.
+     * @param evt Evento al presionar el botón
+     */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
         char car = evt.getKeyChar();
         if (nombreTFd.getText().length() >= 45) {
@@ -508,12 +531,20 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metódo que se utiliza para realizar una búsqueda general de los departamentos
+     * registrados en la base de datos.
+     */
     public void llenarTodo(){
         nombreBuscarTFd.setText("");
         limpiar();
         control.buscarTodos();
     }
     
+    /**
+     * Metódo que se utiliza para limpiar el campo del panel departamentoPnl, 
+     * deja la configuración inicial del panel mencionado anteriormente.
+     */
     private void limpiar(){
         nombreTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
@@ -576,11 +607,25 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         nombreTFd.setText((String) info.get(1));        
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica, que no tiene ninguna funcionalidad 
+     * en este componente.
+     *
+     * @param info Lista de Objeto con información de búsqueda.
+     * @param i Número entero para indicar el tipo de objeto que esta regresando
+     */
     @Override
     public void setLista(List info, int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna funcionalidad 
+     * en este componente.
+     * @param evento Objecto de la entidad de tipo evento
+     */
     @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

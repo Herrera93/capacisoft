@@ -14,6 +14,12 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
  */
 public class DepartamentoDELEGATE{
     
+    /**
+     * Metódo, Utilizado para realizar una búsqueda por nombre de un departamento.
+     * 
+     * @param nombre String con el nombre del departamento
+     * @return lista de objetos con el departamento encontrado
+     */
     public List<Object> find(String nombre) {
         return ServiceLocatorFACADE.getDepartamento().find(nombre);
     }
