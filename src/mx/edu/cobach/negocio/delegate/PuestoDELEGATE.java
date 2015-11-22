@@ -10,10 +10,15 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PuestoDELEGATE {
     
+    /**
+     * Metodo para buscar un registro especifico a traves de un nombre
+     * @param nombre Nombre del puesto a buscar
+     * @return lista de objetos con la información de puesto
+    */
     public List<Object> find(String nombre) {
         return ServiceLocatorFACADE.getPuesto().find(nombre);
     }

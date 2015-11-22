@@ -11,10 +11,15 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PuestoFACADE extends BaseFACADE{
     
+    /**
+     * Metodo para buscar un registro especifico a traves de un nombre
+     * @param nombre Nombre del puesto a buscar
+     * @return lista de objetos con la información de puesto
+    */
     public List<Object> find(String nombre) {
         ServiceLocator.getPuesto().setEntity(Puesto.class);
         return ServiceLocator.getPuesto().find(nombre);
