@@ -711,6 +711,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(adscCBx.getSelectedItem());
         atributos.add(plantelCBx.getSelectedItem());
         atributos.add(departamentoCBx.getSelectedItem());
+        atributos.add(direccionCBx.getSelectedIndex());
 
         //Se limpian los campos
         numeroTFd.setText("");
