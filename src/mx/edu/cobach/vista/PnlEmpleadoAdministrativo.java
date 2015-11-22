@@ -43,7 +43,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     /**
      * Constructor del PnlEmpleadoAdministrativo
      */
-    public PnlEmpleadoAdministrativo() {
+    public PnlEmpleadoAdministrativo() 
+   {
         this.titulosTabla = new String[]{"ID", "Numero", "Nombre", "Eliminar"};
         initComponents();
         model = new DefaultTableModel(titulosTabla, 5) {
@@ -763,6 +764,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         if (col == 0) {
 
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            System.out.println(id);
             control.buscar(id);
         } else if (col == 2) {
             //System.out.println("ID: " + model.getValueAt(row, 0));
@@ -943,6 +945,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     private void cancelar2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar2BtnActionPerformed
         //Se limpian los campos
+        informacionJTP.setEnabledAt(0, false);
+        informacionJTP.setEnabledAt(1, false);
+        informacionJTP.setSelectedIndex(0);
         numeroTFd.setText("");
         primerNombreTFd.setText("");
         segNombreTFd.setText("");
@@ -1151,9 +1156,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         control.buscarTodosLista(3);
         control.setClass(Adscripcion.class);
         control.buscarTodosLista(4);
-        control.setClass(Empleado.class);
         control.setClass(Direccion.class);
         control.buscarTodosLista(5);
+        control.setClass(Empleado.class);
         setEnabledPanelInformacion(false);
 
     }
@@ -1184,6 +1189,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      */
     @Override
     public void setInfo(List info) {
+        System.out.println(info.size());
         setEnabledPanelInformacion(true);
         idEmpleadoActual = (int) info.get(0);
         numeroTFd.setText((String) info.get(1));
@@ -1197,6 +1203,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelModel.setSelectedItem(info.get(8));
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
+        direccionModel.setSelectedItem(info.get(11));
         adscCBx.setEnabled(true);
         puestoCBx.setEnabled(true);
         guardarBtn.setText("Modificar");
