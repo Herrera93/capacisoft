@@ -11,7 +11,7 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
  *
- * @author Fernando
+ * @author liuts
  */
 public class PuestoFACADE extends BaseFACADE{
     

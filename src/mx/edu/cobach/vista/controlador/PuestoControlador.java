@@ -15,7 +15,7 @@ import mx.edu.cobach.vista.Comunicador;
  * Clase con los metodos de busqueda especifica en la entidades 
  * y realiza los cambios en la interfaz grafica a traves de la interfaz de 
  * comunicacion Comunicador
- * @author Fernando
+ * @author Liuts
  */
 public class PuestoControlador extends BaseControlador{
     
@@ -34,7 +34,7 @@ public class PuestoControlador extends BaseControlador{
     public void buscar(String nombre) {
         List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
-    }
+    }   
     
     /**
      * Metodo para buscar un registro especifico a traves de un id entero

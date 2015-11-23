@@ -19,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Fernando
+ * @author Alex
  */
 public class EmpleadoDAO extends BaseDAO {
 
@@ -27,7 +27,7 @@ public class EmpleadoDAO extends BaseDAO {
         super();
         super.entityClass = Empleado.class;
     }
-    
+
     /**
      * Metodo para buscar un registro especifico a traves de un nombre
      * @param nombre Nombre del empleado a buscar

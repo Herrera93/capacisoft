@@ -181,7 +181,7 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        tablaMsjLbl.setText("<html>Para Modificar seleccione un número del usuario de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un nombre de la sede de la columna<br> \"Nombre\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -584,13 +584,16 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                    limpiar();
                     control.buscar(id);
                     idSedeActual = id;
                     guardarBtn.setText("Modificar");
                     sedesTbl.clearSelection();
+                    informacionPnl.setVisible(true);
                 }
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                limpiar();
                 control.buscar(id);
                 idSedeActual = id;
                 guardarBtn.setText("Modificar");
@@ -767,6 +770,7 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
         capacidadTFd.setText("");
         numeroTFd.setText("");
         lugarTFd.setText("");
+        guardarBtn.setText("Guardar");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         coloniaTFd.setBorder(BORDER_ORIGINAL);
         calleTFd.setBorder(BORDER_ORIGINAL);
@@ -815,6 +819,8 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             tc.setCellEditor(sedesTbl.getDefaultEditor(Boolean.class));
             tc.setCellRenderer(sedesTbl.getDefaultRenderer(Boolean.class));
             tc = sedesTbl.getColumnModel().getColumn(0);
+            sedesTbl.getColumnModel().removeColumn(tc);
+            sedesTbl.getColumnModel().getColumn(0).setPreferredWidth(300);
         }else {
             model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
@@ -840,9 +846,7 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             calleTFd.setText(info.get(3).toString());
             numeroTFd.setText(info.get(4).toString());
             capacidadTFd.setText(info.get(5).toString());
-            if(info.size() > 6){
-                lugarTFd.setText(info.get(6).toString());
-            }
+            lugarTFd.setText(info.get(6).toString());
         }
     }
     

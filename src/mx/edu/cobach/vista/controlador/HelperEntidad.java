@@ -27,7 +27,6 @@ import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.entidades.TipoProveedor;
 import mx.edu.cobach.persistencia.entidades.Alerta;
-import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
@@ -156,10 +155,10 @@ public class HelperEntidad {
         }else if (ads.getDescripcion().equalsIgnoreCase("departamento")){
             e.setDepartamento((Departamento) atributos.get(9));
         }else{
-            e.setDireccion((Direccion) atributos.get(10));
+            e.setDepartamento((Departamento) atributos.get(9));
         }
         if (atributos.size() > 10) {
-            e.setId((int) atributos.get(11));
+            e.setId((int) atributos.get(10));
         }
         return e;
     }
@@ -193,9 +192,10 @@ public class HelperEntidad {
         s.setCalle(atributos.get(3));
         s.setNumeroDireccion(atributos.get(4));
         s.setCapacidad(Integer.parseInt(atributos.get(5)));
+        s.setLugar(atributos.get(6));
         
-        if(atributos.size() >6)
-            s.setId(Integer.parseInt(atributos.get(6)));
+        if(atributos.size() > 7)
+            s.setId(Integer.parseInt(atributos.get(7)));
         return s;
     }
 
@@ -434,9 +434,10 @@ public class HelperEntidad {
         info.add(proveedor.getApellidoPaterno());
         info.add(proveedor.getApellidoMaterno());
         info.add(proveedor.getCorreoElectronico());
-        m=proveedor.getTipoProveedor();
+        m = proveedor.getTipoProveedor();
         info.add(m.getDescripcion());
         info.add(proveedor.getEventos());
+        info.add(proveedor.getTelefono());
         return info;
     }
     
@@ -570,6 +571,7 @@ public class HelperEntidad {
         info.add(sede.getCalle());
         info.add(sede.getNumeroDireccion());
         info.add(sede.getCapacidad());
+        info.add(sede.getLugar());
         return info;
     }
 

@@ -16,4 +16,8 @@ public class ProveedorDELEGATE {
     public List<Object> findByNombre(String nombre){
         return ServiceLocatorFACADE.getProveedor().findByNombre(nombre);
     }
+    
+    public List<Object> buscarImplementaciones(int id){
+        return ServiceLocatorFACADE.getProveedor().buscarImplementaciones(id);
+    }
 }

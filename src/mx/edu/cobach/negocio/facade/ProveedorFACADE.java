@@ -14,4 +14,7 @@ public class ProveedorFACADE extends BaseFACADE{
     public List<Object> findByNombre(String nombre){
         return ServiceLocator.getProveedor().findByNombre(nombre);
     }
+    public List<Object> buscarImplementaciones(int id){
+        return ServiceLocator.getProveedor().buscarImplementaciones(id);
+    }
 }

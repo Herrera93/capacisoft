@@ -11,7 +11,7 @@ import mx.edu.cobach.persistencia.entidades.Adscripcion;
 
 /**
  *
- * @author Fernando
+ * @author Alex
  */
 public class EmpleadoDELEGATE {
   

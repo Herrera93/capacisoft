@@ -11,10 +11,8 @@ import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
- * Clase con los metodos de busqueda especifica en la entidades 
- * y realiza los cambios en la interfaz grafica a traves de la interfaz de 
- * comunicacion Comunicador
- * @author Fernando
+ *
+ * @author Alex
  */
 public class EmpleadoControlador extends BaseControlador {
 

@@ -28,6 +28,9 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private final String[] titulosTabla;
     private int id;
     private final Border BORDER_ORIGINAL;
+    private boolean almacenando = false;
+    private boolean problema = false;
+    private boolean buscando = false;
 
     /**
      * Constructor, se instancia la clase DepartamentoControolador. Se crea
@@ -48,8 +51,9 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             }
         };
         tablaTbl.setModel(model);
+        tablaTbl.setColumnSelectionAllowed(false);
+        tablaTbl.setDragEnabled(false);
         BORDER_ORIGINAL = nombreTFd.getBorder();
-        control.buscarTodos();
     }
 
     /**
@@ -330,26 +334,28 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el boton
      */
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        if (guardarBtn.getText().equals("Guardar")) {
-            if (nombreTFd.getText().equals("")) {
+        almacenando = true;
+        if (nombreTFd.getText().equals("")) {
                 //Mensaje de Campos vacíos.
                 setMensaje("Dejo campos vacíos");
-            } else {
-                List<Object> atr = new ArrayList<>();
-                atr.add(nombreTFd.getText());
-                control.alta(HelperEntidad.getDepartamento(atr));
-            }
         } else {
-            /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
-             /*Se agregan los valores de los campos a la Lista,se mandan 
-             al metodo control.modificacion*/
             List<Object> atr = new ArrayList<>();
             atr.add(nombreTFd.getText());
-            atr.add(id);
-            control.modificacion(HelperEntidad.getDepartamento(atr));
+            buscando = true;
+            problema = false;
+            control.buscarTodos();
+            if(!problema){
+                if(guardarBtn.getText().equals("Guardar")){
+                    control.alta(HelperEntidad.getDepartamento(atr));
+                }else{
+                    atr.add(id);
+                    control.modificacion(HelperEntidad.getDepartamento(atr));
+                }
+            }
+            limpiar();
+            control.buscarTodos();            
         }
-        limpiar();
-        control.buscarTodos();
+        almacenando = false;
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     /**
@@ -387,12 +393,15 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                     //Se obtiene el id de la columna no visible para realizar una 
                     //busqueda especifica.
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                    limpiar();
                     control.buscar(id);
                     guardarBtn.setText("Modificar");
                     tablaTbl.clearSelection();
+                    informacionPnl.setVisible(true);
                 }
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                limpiar();
                 control.buscar(id);
                 guardarBtn.setText("Modificar");
                 tablaTbl.clearSelection();
@@ -400,10 +409,15 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             }
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 1) {
-            int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            if (!control.buscarEmpleados(id)) {
-                setMensaje("No se puede eliminar un plantel que contenga empleados");
-                model.setValueAt(false, row, 3);
+            int id = Integer.parseInt((String)model.getValueAt(row, 0));
+            if(control.buscarEmpleados(id)){
+                setMensaje("No se puede eliminar un departamento que contenga empleados");
+                model.setValueAt(false, row, 2);
+                tablaTbl.clearSelection();
+            }else if(guardarBtn.getText().equals("Modificar") && this.id == id){
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
+                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                model.setValueAt(false, row, 2);
                 tablaTbl.clearSelection();
             } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
@@ -554,6 +568,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         nombreTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
+        guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
 
@@ -586,16 +601,34 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setTabla(String[][] info) {
-        model.setDataVector(info, titulosTabla);
-        TableColumn tc = tablaTbl.getColumnModel().getColumn(2);
-        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
-        //Esconder columna ID
-        tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
-        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(210);
-        tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(140);
-
+        if(buscando){
+            buscando = false;
+             for(int x=0;x<info.length;x++){
+                 if(guardarBtn.getText().equals("Modificar") &&
+                        info[x][0].equals(String.valueOf(id))){
+                        continue;
+                    }
+                    if(info[x][1].equals(nombreTFd.getText())){
+                        if(almacenando){
+                            setMensaje("Ya existe un departamento con ese nombre.\n"
+                                + info[x][1]);
+                        }
+                        problema = true;
+                        break;
+                    }
+             }
+        }else{
+            model.setRowCount(0);
+            model.setDataVector(info, titulosTabla);
+            TableColumn tc = tablaTbl.getColumnModel().getColumn(2);
+            tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
+            tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
+            //Esconder columna ID
+            tc = tablaTbl.getColumnModel().getColumn(0);
+            tablaTbl.getColumnModel().removeColumn(tc);
+            tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(210);
+            tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(140);
+        }
     }
 
     /**

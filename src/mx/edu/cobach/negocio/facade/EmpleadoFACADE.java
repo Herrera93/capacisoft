@@ -82,6 +82,7 @@ public class EmpleadoFACADE{
         return ServiceLocator.getEmpleado().buscarPorDireccion(direccion);
     }
     
+    
     /**
      * Busqueda del jefe de inmeadiato de un empleado dado
      * @param empleado Objeto de empleado a buscar

@@ -78,5 +78,5 @@ public class ImplementacionEventoFACADE extends BaseFACADE {
         return ServiceLocator.getImplementacionEvento().
                 buscarPorPlantel(plantel);
     }
-    
+
 }

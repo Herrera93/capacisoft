@@ -38,24 +38,17 @@ public class DepartamentoControlador extends BaseControlador {
             com.setTabla(HelperEntidad.descomponerObjetos(o));
         } else {
             List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
-            if (!o.isEmpty()) {
+            if(!o.isEmpty()){
                 com.setMensaje("Este departamento ya esta registrado");
             }
         }
     }
     
-    /**
-     * Metódo, Utilizado para realizar una búsqueda por id de departamento, 
-     * para verificar que el departamento a eliminar no tiene asignados empleados 
-     * adscrito. 
-     * @param id Contiene el id de un departamento
-     * @return Booleano que indica si existe un departamento
-     */
-    public boolean buscarEmpleados(int id) {
+    public boolean buscarEmpleados(int id){
         List<Object> atr = new ArrayList();
         atr.add("");
         atr.add(id);
         return ServiceLocatorDELEGATE.getImplementarEvento()
-                .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)) != null;
+            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)).size() > 0;
     }
 }
