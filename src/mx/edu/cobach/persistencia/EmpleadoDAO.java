@@ -19,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Alex
+ * @author Fernando
  */
 public class EmpleadoDAO extends BaseDAO {
 
@@ -27,7 +27,12 @@ public class EmpleadoDAO extends BaseDAO {
         super();
         super.entityClass = Empleado.class;
     }
-
+    
+    /**
+     * Metodo para buscar un registro especifico a traves de un nombre
+     * @param nombre Nombre del empleado a buscar
+     * @return devuelve lista de objetos a los empleados que coinciden con el nombre
+    */
     public List<Object> buscarPorNombre(String nombre) {
         List<Object> ts = null;
         try {
@@ -50,6 +55,12 @@ public class EmpleadoDAO extends BaseDAO {
         return ts;
     }
 
+    /**
+     * Metodo para buscar un registro especifico a traves de un nombre
+     * @param adscripcion Adscripcion  del empleado a buscar
+     * @return devuelve lista de objetos a los empleados que coinciden con la 
+     * adscripcion
+    */
     public List<Object> buscarPorAdscripcion(Adscripcion adscripcion) {
         List<Object> ts = null;
         try {
@@ -181,6 +192,12 @@ public class EmpleadoDAO extends BaseDAO {
         return jefe;
     }
 
+    /**
+     * Metodo para buscar un registro especifico a traves de su numero de empleado
+     * @param numero numero del empleado a validar
+     * @return devuelve lista de objetos a los empleados que coinciden con el número
+     * de empleado
+    */
     public List<Object> validarPorNumero(int numero) {
         List<Object> ts = null;
         String num = numero + "";

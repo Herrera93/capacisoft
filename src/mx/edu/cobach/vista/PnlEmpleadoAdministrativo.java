@@ -41,7 +41,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private final Border BORDER_ORIGINAL;
 
     /**
-     * Constructor del PnlEmpleadoAdministrativo
+     * Constructor del PnlEmpleadoAdministrativo e instancia la clase EmpleadoControlador. 
+     * Se crea modelo de la tabla y se realiza la busqueda 
      */
     public PnlEmpleadoAdministrativo() 
    {
@@ -738,7 +739,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         control.buscarTodos();
     }//GEN-LAST:event_guardarBtnActionPerformed
 
-
+    /**
+     * Evento ejecutado al presionar el botón, habilita y limpia los campos para
+     * realizar un nuevo registro, modifica el texto contenido en los labels.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         int renglon = tablaTbl.getSelectedRow();
         if (renglon == -1) {
@@ -939,12 +945,25 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_correoTFdKeyTyped
 
+    /**
+     * Evento ejecutado al presionar el botón, destactiva y activa los paneles
+     * dentro del JTabbedPane.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
         informacionJTP.setEnabledAt(0, true);
         informacionJTP.setEnabledAt(1, false);
         informacionJTP.setSelectedIndex(0);
     }//GEN-LAST:event_regresarBtnActionPerformed
-
+        
+    /**
+     * Evento que se ejecuta al presionar el boton Cancelar el cual va a limpiar
+     * todos lo campos del panel info y los desahabilitara para realizar otra
+     * accion.
+     *
+     * @param evt
+     */
     private void cancelar2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar2BtnActionPerformed
         //Se limpian los campos
         informacionJTP.setEnabledAt(0, false);
@@ -971,12 +990,24 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         setEnabledPanelInformacion(false);
     }//GEN-LAST:event_cancelar2BtnActionPerformed
 
+    /**
+     * Evento ejecutado al presionar el botón, destactiva y activa los paneles
+     * dentro del JTabbedPane.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
         informacionJTP.setEnabledAt(0, false);
         informacionJTP.setEnabledAt(1, true);
         informacionJTP.setSelectedIndex(1);
     }//GEN-LAST:event_siguienteBtnActionPerformed
 
+    /**
+     * Evento ejecutado al registrar cambio de seleccion en el adscCBx ComboBox, 
+     * habilitando otros ComboBox
+     *
+     * @param evt Evento al cambiar la seleccion en el ComboBox
+     */
     private void adscCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adscCBxActionPerformed
         if (adscCBx.getSelectedIndex() == 0) {
             plantelCBx.setEnabled(false);
@@ -1055,6 +1086,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JLabel validNumLbl;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
+     * registro exitoso.
+     *
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
     public void setMensaje(String mensaje) {
         switch (mensaje) {
@@ -1098,6 +1135,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(230);
     }
 
+    /**
+     * Metodo sobrescrito de la clase Comunicador, agrega al modelo de los ComboBox
+     * la información que proviende de las entidades.
+     * 
+     * @param info
+     * @param i
+     */
     @Override
     public void setLista(List info, int i) {
         if (info.isEmpty()) {
@@ -1148,6 +1192,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Metodo sobrescrito de la clase Comunicador, que sirve para 
+     *
+     * @param info
+     * @param i
+     */
     public void llenarTodo() {
         control.buscarTodos();
         control.setClass(Puesto.class);
@@ -1165,7 +1215,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     }
 
-    // Metodo que hace visibles o invisibles los campos del panel informacion
+    /**
+     * Metodo sobrescrito de la clase Comunicador que hace visibles o invisibles
+     * los campos del panel informacion
+     */
     private void setEnabledPanelInformacion(boolean b) {
         numeroTFd.setEnabled(b);
         primerNombreTFd.setEnabled(b);
@@ -1211,6 +1264,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         guardarBtn.setText("Modificar");
     }
 
+    /**
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
+     * @param e
+     * @param evt Evento al perder foco
+     */
     @Override
     public void focusGained(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1229,6 +1288,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * obligatorio
+     * @param e
+     */
     @Override
     public void focusLost(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1272,6 +1337,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     *
+     * @param evento Objecto de la entidad de tipo evento
+     */
+    @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
