@@ -426,10 +426,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
 
+    
     /**
-     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
-     * de color a rojo y colocando un mensaje para indicando que el campo es 
-     * obligatorio
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
@@ -438,8 +438,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_nombreTFdFocusGained
 
     /**
-     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
-     * a la configuracion inicial.
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * obligatorio
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
