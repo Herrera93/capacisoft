@@ -152,8 +152,6 @@ public class HelperEntidad {
         System.out.println(ads.getDescripcion());
         if(ads.getDescripcion().equalsIgnoreCase("Plantel")){
             e.setPlantel((Plantel) atributos.get(8));
-        }else if (ads.getDescripcion().equalsIgnoreCase("departamento")){
-            e.setDepartamento((Departamento) atributos.get(9));
         }else{
             e.setDepartamento((Departamento) atributos.get(9));
         }
@@ -293,7 +291,6 @@ public class HelperEntidad {
         info.add(empleado.getPlantel());
         info.add(empleado.getAdscripcion());
         info.add(empleado.getDepartamento());
-        info.add(empleado.getDireccion());
         return info;
     }
     

@@ -16,35 +16,18 @@ import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
  *
- * @author Fernando
+ * @author Alex
  */
 public class EmpleadoFACADE{
     
-    /**
-     * Metodo para buscar un registro especifico a traves de un nombre
-     * @param nombre Nombre del empleado a buscar
-     * @return devuelve lista de objetos a los empleados que coinciden con el nombre
-    */
     public List<Object> buscarPorNombre(String nombre){
         return ServiceLocator.getEmpleado().buscarPorNombre(nombre);
     }
     
-    /**
-     * Metodo para buscar un registro especifico a traves de un nombre
-     * @param a Adscripcion  del empleado a buscar
-     * @return devuelve lista de objetos a los empleados que coinciden con la 
-     * adscripcion
-    */
     public List<Object> buscarPorAdscripcion(Adscripcion a){
         return ServiceLocator.getEmpleado().buscarPorAdscripcion(a);
     }
     
-    /**
-     * Metodo para buscar un registro especifico a traves de su numero de empleado
-     * @param numero numero del empleado a validar
-     * @return devuelve lista de objetos a los empleados que coinciden con el número
-     * de empleado
-    */
     public List<Object> validarPorNumero(int numero){
         return ServiceLocator.getEmpleado().validarPorNumero(numero);
     }
@@ -58,7 +41,7 @@ public class EmpleadoFACADE{
     }
     /**
      * Obtiene todos los empleados que estan relacionados a tal Puesto
-     * @param puesto
+     * @param departamento
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarPorPuesto(Puesto puesto) {
@@ -66,7 +49,7 @@ public class EmpleadoFACADE{
     }
     /**
      * Obtiene todos los empleados que estan relacionados a tal Plantel
-     * @param plantel
+     * @param departamento
      * @return Regresa la lista de los empleados
      */
     public List<Object> buscarPorPlantel(Plantel plantel) {

@@ -17,24 +17,11 @@ import org.hibernate.criterion.Restrictions;
  */
 public class DepartamentoDAO extends BaseDAO{
     
-     /**
-     * Constructor, incializa el constructor de BaseDao a tráves de super, asigna
-     * la calse entidad para realizar los querys.
-     * @param com Comunicador con la interfaz grafica
-     * @param clazz Clase con la que estara trabajando la base de datos
-     */
     DepartamentoDAO(){
         super();
         super.entityClass = Departamento.class;
     }
     
-    /**
-     * Metódo, Utilizado para realizar una búsqueda por nombre de un departamento,
-     * a tráves del mapeado xml, donde devulve la busqueda en forma de objeto como entidad
-     * departamento.
-     * @param nombre
-     * @return una lista de objetos de entidad departamentos.
-     */
     public List<Object> findByNombre(String nombre){        
         List<Object> ts = null;        
         try{
