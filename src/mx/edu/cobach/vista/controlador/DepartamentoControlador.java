@@ -37,6 +37,6 @@ public class DepartamentoControlador extends BaseControlador {
         atr.add("");
         atr.add(id);
         return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)) != null;
+            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)).size() > 0;
     }
 }

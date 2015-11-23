@@ -21,11 +21,11 @@ import mx.edu.cobach.vista.controlador.PuestoControlador;
  */
 public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
-    private DefaultTableModel model;
+    private final DefaultTableModel model;
     private String[] titulosTabla = {"ID", "Nombre", "Eliminar"};
-    private PuestoControlador puestoControl;
+    private final PuestoControlador control;
     private int idPuesto;
-    private Border BORDER_ORIGINAL;
+    private final Border BORDER_ORIGINAL;
     private boolean almacenando = false;
     private boolean problema = false;
     private boolean buscando = false;
@@ -35,7 +35,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      */
     public PnlPuestos() {
         initComponents();
-        model = new DefaultTableModel(titulosTabla, 4) {
+        model = new DefaultTableModel(titulosTabla, 10) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 if (col == 2) {
@@ -48,8 +48,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         puestosTbl.setModel(model);
         puestosTbl.setColumnSelectionAllowed(false);
         puestosTbl.setDragEnabled(false);
-        puestosTbl.setModel(model);
-        puestoControl = new PuestoControlador(this);
+        control = new PuestoControlador(this);
         
         BORDER_ORIGINAL = nombreTFd.getBorder();
     }
@@ -66,13 +65,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         opcionPnl = new javax.swing.JPanel();
         nombreBuscarLbl = new javax.swing.JLabel();
         nombreBuscarTFd = new javax.swing.JTextField();
-        tablaSPn = new javax.swing.JScrollPane();
-        puestosTbl = new javax.swing.JTable();
         buscarBtn = new javax.swing.JButton();
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        tablaPuestoSPn = new javax.swing.JScrollPane();
+        puestosTbl = new javax.swing.JTable();
         informacionPnl = new javax.swing.JPanel();
         nombreLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
@@ -96,50 +95,6 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        puestosTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nombre", "Eliminar"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        puestosTbl.setCellSelectionEnabled(false);
-        puestosTbl.setMaximumSize(new java.awt.Dimension(225, 64));
-        puestosTbl.setMinimumSize(new java.awt.Dimension(225, 64));
-        puestosTbl.setPreferredSize(new java.awt.Dimension(225, 64));
-        puestosTbl.setRowSelectionAllowed(true);
-        puestosTbl.getTableHeader().setReorderingAllowed(false);
-        puestosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                puestosTblMouseClicked(evt);
-            }
-        });
-        tablaSPn.setViewportView(puestosTbl);
-        puestosTbl.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (puestosTbl.getColumnModel().getColumnCount() > 0) {
-            puestosTbl.getColumnModel().getColumn(0).setResizable(false);
-            puestosTbl.getColumnModel().getColumn(1).setResizable(false);
-        }
-
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -161,35 +116,66 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        jLabel1.setText("<html>Para Modificar seleccione un número del usuario de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
+        jLabel1.setText("<html>Para Modificar seleccione un nombre del puesto de la columna<br> \"Nombre\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
+
+        puestosTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre", "Direccion", "Eliminar"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        puestosTbl.setMaximumSize(new java.awt.Dimension(225, 64));
+        puestosTbl.setMinimumSize(new java.awt.Dimension(225, 64));
+        puestosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                puestosTblMouseClicked(evt);
+            }
+        });
+        tablaPuestoSPn.setViewportView(puestosTbl);
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
         opcionPnlLayout.setHorizontalGroup(
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionPnlLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(opcionMsjLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                        .addGap(11, 11, 11))
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(nombreBuscarLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(opcionLbl)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(agregarBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+            .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(opcionPnlLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(opcionMsjLbl)
+                                .addGap(11, 11, 11))
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(nombreBuscarLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(opcionLbl)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(opcionPnlLayout.createSequentialGroup()
+                                .addComponent(agregarBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tablaPuestoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         opcionPnlLayout.setVerticalGroup(
@@ -210,8 +196,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(tablaPuestoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -336,14 +322,14 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         } else {
             buscando = true;
             problema = false;
-            puestoControl.buscarTodos();
+            control.buscarTodos();
             if(!problema){
                 if (guardarBtn.getText().equals("Guardar")) {
                     /*Se agregan los valores de los campos a la Lista, 
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    puestoControl.alta(HelperEntidad.getPuesto(atr, "Guardar"));
+                    control.alta(HelperEntidad.getPuesto(atr, "Guardar"));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
@@ -351,10 +337,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     List<String> atr = new ArrayList<String>();
                     atr.add(idPuesto + "");
                     atr.add(nombreTFd.getText());
-                    puestoControl.modificacion(HelperEntidad.getPuesto(atr, "Mod/Eli"));
+                    control.modificacion(HelperEntidad.getPuesto(atr, "Mod/Eli"));
                 }
                 limpiar();
-                puestoControl.buscarTodos();
+                control.buscarTodos();
             }
         }
         almacenando = false;
@@ -370,9 +356,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         //Se verifica que el campo este vacio, de ser así se realiza una 
         //busqueda general.
         if(!nombreBuscarTFd.getText().equals(""))
-            puestoControl.buscar(nombreBuscarTFd.getText());
+            control.buscar(nombreBuscarTFd.getText());
         else
-            puestoControl.buscarTodos();
+            control.buscarTodos();
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
@@ -396,6 +382,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             guardarBtn.setText("Guardar");
             informacionPnl.setVisible(true);
         }
+        System.out.println(puestosTbl.getRowCount());
     }//GEN-LAST:event_agregarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
@@ -422,7 +409,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        puestoControl.buscarTodos();
+        control.buscarTodos();
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -446,51 +433,54 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      *
      * @param evt Evento al hacer click
      */
-    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {
-        //Obtenelos el renglon y columna donde se hizo click
+    private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puestosTblMouseClicked
         int row = puestosTbl.rowAtPoint(evt.getPoint());
         int col = puestosTbl.columnAtPoint(evt.getPoint());
-        if (col == 0) {
-            //Se obtiene el id de la columna no visible para realizar una 
-            //busqueda especifica.
+        if (col == 0){
             if(informacionPnl.isVisible()){
                 if (JOptionPane.showConfirmDialog(this, "La información que"
                     + " esta modificando se perdera ¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
-                    int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                    puestoControl.buscar(id);
-                    idPuesto = id;
-                    guardarBtn.setText("Modificar");
-                    puestosTbl.clearSelection();
-                }
-            } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                puestoControl.buscar(id);
+                limpiar();
+                control.buscar(id);
                 idPuesto = id;
                 guardarBtn.setText("Modificar");
                 puestosTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-            //Manda un mensaje de Confirmación sobre la eliminacion
-        } else if (col == 1) {
+        } else {
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            if (!puestoControl.buscarEmpleados(id)) {
+            limpiar();
+            control.buscar(id);
+            idPuesto = id;
+            guardarBtn.setText("Modificar");
+            puestosTbl.clearSelection();
+            informacionPnl.setVisible(true);
+        }
+        }else if(col == 1) {
+            int id = Integer.parseInt((String)model.getValueAt(row, 0));
+            if(control.buscarEmpleados(id)){
                 setMensaje("No se puede eliminar un puesto que contenga empleados");
                 model.setValueAt(false, row, 2);
                 puestosTbl.clearSelection();
-            }else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                //Obtenemos ID de la columna escondida
-                puestoControl.baja(id);
-                puestoControl.buscarTodos();
-            } else {
+            }else if(guardarBtn.getText().equals("Modificar") && idPuesto == id){
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el puesto que esta"
+                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 2);
                 puestosTbl.clearSelection();
-            }
+            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
+            control.baja(id);
+            control.buscarTodos();
+        } else {
+            model.setValueAt(false, row, 2);
+            puestosTbl.clearSelection();
         }
+        }
+    }//GEN-LAST:event_puestosTblMouseClicked
 
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
@@ -509,20 +499,22 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JTable puestosTbl;
     private javax.swing.JLabel registroLBl;
     private javax.swing.JLabel registroMsjLbl;
-    private javax.swing.JScrollPane tablaSPn;
+    private javax.swing.JScrollPane tablaPuestoSPn;
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 
     
     public void llenarTodo(){
+        nombreBuscarTFd.setText("");
         limpiar();
-        puestoControl.buscarTodos();
+        control.buscarTodos();
     }
     
     private void limpiar(){
         nombreTFd.setText("");        
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
+        guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
     
@@ -564,8 +556,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
         }else{
+            model.setRowCount(0);
             model.setDataVector(info, titulosTabla);
-            //Esconder columna ID
             TableColumn tc = puestosTbl.getColumnModel().getColumn(2);
             tc.setCellEditor(puestosTbl.getDefaultEditor(Boolean.class));
             tc.setCellRenderer(puestosTbl.getDefaultRenderer(Boolean.class));

@@ -190,9 +190,10 @@ public class HelperEntidad {
         s.setCalle(atributos.get(3));
         s.setNumeroDireccion(atributos.get(4));
         s.setCapacidad(Integer.parseInt(atributos.get(5)));
+        s.setLugar(atributos.get(6));
         
-        if(atributos.size() >6)
-            s.setId(Integer.parseInt(atributos.get(6)));
+        if(atributos.size() > 7)
+            s.setId(Integer.parseInt(atributos.get(7)));
         return s;
     }
 
@@ -430,9 +431,10 @@ public class HelperEntidad {
         info.add(proveedor.getApellidoPaterno());
         info.add(proveedor.getApellidoMaterno());
         info.add(proveedor.getCorreoElectronico());
-        m=proveedor.getTipoProveedor();
+        m = proveedor.getTipoProveedor();
         info.add(m.getDescripcion());
         info.add(proveedor.getEventos());
+        info.add(proveedor.getTelefono());
         return info;
     }
     
@@ -566,6 +568,7 @@ public class HelperEntidad {
         info.add(sede.getCalle());
         info.add(sede.getNumeroDireccion());
         info.add(sede.getCapacidad());
+        info.add(sede.getLugar());
         return info;
     }
 
