@@ -113,10 +113,10 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
             HibernateUtil.beginTransaction();
             HibernateUtil.getSession().delete(t);
             HibernateUtil.commitTransaction();
-            mensaje = "Se ha Elimando Exitosamente";
+            mensaje = "Se ha eliminado exitosamente";
         }catch(HibernateException e){
             HibernateUtil.rollbackTransaction();
-            mensaje = "Eliminación Imposible";
+            mensaje = "Eliminación imposible";
         }finally{
             HibernateUtil.closeSession();
         }

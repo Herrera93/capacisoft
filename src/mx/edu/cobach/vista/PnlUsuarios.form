@@ -230,7 +230,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="tablaMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un n&#xfa;mero del usuario de la columna&lt;br&gt; &quot;Numero&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee&lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un nombre de usuario de la columna&lt;br&gt; &quot;Usuario&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee&lt;/html&gt; "/>
           </Properties>
         </Component>
       </SubComponents>

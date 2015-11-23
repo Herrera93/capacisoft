@@ -5,6 +5,7 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
@@ -20,7 +21,13 @@ public class PlantelControlador extends BaseControlador{
     }
     
     public boolean buscarEmpleados(int id){
-        return ServiceLocatorDELEGATE.getPlantelDelegate().
-            buscarEmpleados(id) != null;
+        List<String> atr = new ArrayList();
+        for(int i = 0; i < 4; i++){
+            atr.add("");
+        }
+        atr.add("0");
+        atr.add(String.valueOf(id));
+        return ServiceLocatorDELEGATE.getImplementarEvento()
+            .buscarEmPorPlantel(HelperEntidad.getPlantel(atr)).size() > 0;
     }
 }

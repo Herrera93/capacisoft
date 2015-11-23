@@ -19,7 +19,7 @@ import mx.edu.cobach.vista.controlador.HelperEntidad;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
 
@@ -28,9 +28,13 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private final String[] titulosTabla;
     private int id;
     private final Border BORDER_ORIGINAL;
+    private boolean almacenando = false;
+    private boolean problema = false;
+    private boolean buscando = false;
 
     /**
-     * Creates new form PnlDepartamento
+     * Constructor, se instancia la clase DepartamentoControolador. Se crea
+     * modelo de la tabla y se realiza la busqueda
      */
     public PnlDepartamento() {
         initComponents();
@@ -47,8 +51,9 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             }
         };
         tablaTbl.setModel(model);
+        tablaTbl.setColumnSelectionAllowed(false);
+        tablaTbl.setDragEnabled(false);
         BORDER_ORIGINAL = nombreTFd.getBorder();
-        control.buscarTodos();
     }
 
     /**
@@ -329,26 +334,28 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el boton
      */
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
-        if (guardarBtn.getText().equals("Guardar")) {
-            if (nombreTFd.getText().equals("")) {
+        almacenando = true;
+        if (nombreTFd.getText().equals("")) {
                 //Mensaje de Campos vacíos.
                 setMensaje("Dejo campos vacíos");
-            } else {
-                List<Object> atr = new ArrayList<>();
-                atr.add(nombreTFd.getText());
-                control.alta(HelperEntidad.getDepartamento(atr));
-            }
         } else {
-            /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
-             /*Se agregan los valores de los campos a la Lista,se mandan 
-             al metodo control.modificacion*/
             List<Object> atr = new ArrayList<>();
             atr.add(nombreTFd.getText());
-            atr.add(id);
-            control.modificacion(HelperEntidad.getDepartamento(atr));
+            buscando = true;
+            problema = false;
+            control.buscarTodos();
+            if(!problema){
+                if(guardarBtn.getText().equals("Guardar")){
+                    control.alta(HelperEntidad.getDepartamento(atr));
+                }else{
+                    atr.add(id);
+                    control.modificacion(HelperEntidad.getDepartamento(atr));
+                }
+            }
+            limpiar();
+            control.buscarTodos();            
         }
-        limpiar();
-        control.buscarTodos();
+        almacenando = false;
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     /**
@@ -358,10 +365,11 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el boton
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(!nombreBuscarTFd.getText().equals(""))
+        if (!nombreBuscarTFd.getText().equals("")) {
             control.buscarPorNombre(nombreBuscarTFd.getText(), 1);
-        else
+        } else {
             control.buscarTodos();
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
@@ -377,33 +385,41 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         int row = tablaTbl.rowAtPoint(evt.getPoint());
         int col = tablaTbl.columnAtPoint(evt.getPoint());
         if (col == 0) {
-            if(informacionPnl.isVisible()){
+            if (informacionPnl.isVisible()) {
                 if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
+                        + " esta modificando se perdera ¿Aun así desea cancelarla?",
+                        "Precaucion", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE) == 0) {
                     //Se obtiene el id de la columna no visible para realizar una 
                     //busqueda especifica.
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                    limpiar();
                     control.buscar(id);
                     guardarBtn.setText("Modificar");
                     tablaTbl.clearSelection();
+                    informacionPnl.setVisible(true);
                 }
-            }else{
+            } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                limpiar();
                 control.buscar(id);
                 guardarBtn.setText("Modificar");
                 tablaTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-        //Manda un mensaje de Confirmación sobre la eliminacion
+            //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 1) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(!control.buscarEmpleados(id)){
-                setMensaje("No se puede eliminar un plantel que contenga empleados");
-                model.setValueAt(false, row, 3);
+            if(control.buscarEmpleados(id)){
+                setMensaje("No se puede eliminar un departamento que contenga empleados");
+                model.setValueAt(false, row, 2);
                 tablaTbl.clearSelection();
-            }else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+            }else if(guardarBtn.getText().equals("Modificar") && this.id == id){
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
+                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                model.setValueAt(false, row, 2);
+                tablaTbl.clearSelection();
+            } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 //Obtenemos ID de la columna escondida
                 control.baja(id);
@@ -422,7 +438,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el botón
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if(informacionPnl.isVisible()){
+        if (informacionPnl.isVisible()) {
             if (JOptionPane.showConfirmDialog(this, "La información que"
                     + " esta modificando se perdera,¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
@@ -431,13 +447,20 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 informacionPnl.setVisible(true);
                 guardarBtn.setText("Guardar");
             }
-        }else{
+        } else {
             limpiar();
             guardarBtn.setText("Guardar");
             informacionPnl.setVisible(true);
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
 
+    /**
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es
+     * obligatorio
+     *
+     * @param evt Evento al perder foco
+     */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
@@ -450,20 +473,39 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_nombreTFdFocusLost
 
+    /**
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
+     *
+     * @param evt Evento al perder foco
+     */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
     }//GEN-LAST:event_nombreTFdFocusGained
 
+    /**
+     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el
+     * mensaje de confirmacion para cancelar el registro o modificación. Se
+     * manda a llamar el metódo Limpiar.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
-            + " esta modificando se perdera,¿Aun así desea cancelarla?",
-            "Precaucion", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE) == 0) {
+                + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == 0) {
             limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
+    /**
+     * Evento ejecutado cuando se escribe sobre un campo, validando que no se
+     * permita el ingreso del número. Limitando el número de caracteres a $5.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
         char car = evt.getKeyChar();
         if (nombreTFd.getText().length() >= 45) {
@@ -508,19 +550,28 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 
-    public void llenarTodo(){
+    /**
+     * Metódo que se utiliza para realizar una búsqueda general de los
+     * departamentos registrados en la base de datos.
+     */
+    public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
         control.buscarTodos();
     }
-    
-    private void limpiar(){
+
+    /**
+     * Metódo que se utiliza para limpiar el campo del panel departamentoPnl,
+     * deja la configuración inicial del panel mencionado anteriormente.
+     */
+    private void limpiar() {
         nombreTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
+        guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
      * registro exitoso.
@@ -550,16 +601,34 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setTabla(String[][] info) {
-        model.setDataVector(info, titulosTabla);
-        TableColumn tc = tablaTbl.getColumnModel().getColumn(2);
-        tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
-        //Esconder columna ID
-        tc = tablaTbl.getColumnModel().getColumn(0);
-        tablaTbl.getColumnModel().removeColumn(tc);
-        tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(210);
-        tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(140);
-
+        if(buscando){
+            buscando = false;
+             for(int x=0;x<info.length;x++){
+                 if(guardarBtn.getText().equals("Modificar") &&
+                        info[x][0].equals(String.valueOf(id))){
+                        continue;
+                    }
+                    if(info[x][1].equals(nombreTFd.getText())){
+                        if(almacenando){
+                            setMensaje("Ya existe un departamento con ese nombre.\n"
+                                + info[x][1]);
+                        }
+                        problema = true;
+                        break;
+                    }
+             }
+        }else{
+            model.setRowCount(0);
+            model.setDataVector(info, titulosTabla);
+            TableColumn tc = tablaTbl.getColumnModel().getColumn(2);
+            tc.setCellEditor(tablaTbl.getDefaultEditor(Boolean.class));
+            tc.setCellRenderer(tablaTbl.getDefaultRenderer(Boolean.class));
+            //Esconder columna ID
+            tc = tablaTbl.getColumnModel().getColumn(0);
+            tablaTbl.getColumnModel().removeColumn(tc);
+            tablaTbl.getColumnModel().getColumn(0).setPreferredWidth(210);
+            tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(140);
+        }
     }
 
     /**
@@ -573,14 +642,29 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     public void setInfo(List info) {
         id = (int) info.get(0);
         System.out.println(id + "info");
-        nombreTFd.setText((String) info.get(1));        
+        nombreTFd.setText((String) info.get(1));
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     *
+     * @param info Lista de Objeto con información de búsqueda.
+     * @param i Número entero para indicar el tipo de objeto que esta regresando
+     */
     @Override
     public void setLista(List info, int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     *
+     * @param evento Objecto de la entidad de tipo evento
+     */
     @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

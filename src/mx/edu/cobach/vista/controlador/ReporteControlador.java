@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.vista.Comunicador;
 /**
@@ -121,6 +122,18 @@ public class ReporteControlador extends BaseControlador{
         List <Object> listaAsistencia = new ArrayList();
         listaAsistencia.add(lista);
         com.setInfo(listaAsistencia);
+    }
+    
+    /**
+     * Metodo que recibe un objeto de tipo direccion el cual se conecta con 
+     * el ServiceLocatorDELEGATE, donde este recibira una matriz de eventos 
+     * implementados en la direccion
+     * @param direccion
+     */
+    public void generarReportePorDireccion(Direccion direccion){
+        String[][] reporteEvento = ServiceLocatorDELEGATE.getReporte()
+                .generarReportePorDireccion(direccion);
+        com.setTabla(reporteEvento);     
     }
     
 }

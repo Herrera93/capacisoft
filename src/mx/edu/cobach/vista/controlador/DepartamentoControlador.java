@@ -16,10 +16,22 @@ import mx.edu.cobach.vista.Comunicador;
  */
 public class DepartamentoControlador extends BaseControlador {
 
+    /**
+     * Constructor, inicializa un controlador super de la clase BaseControlador
+     *   
+     */
     public DepartamentoControlador(Comunicador com, Class clazz) {
         super(com, clazz);
     }
 
+    /**
+     * Metódo, Utilizado para realizar una búsqueda por nombre de un departamento, 
+     * para realizar una consulta o una validación en caso de que el departamento
+     * ya esta registrado, los cuales recibe a tráves de sus parametros 
+     *
+     * @param nombre
+     * @param a
+     */
     public void buscarPorNombre(String nombre, int a) {
         if (a == 1) {
             List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
@@ -37,6 +49,6 @@ public class DepartamentoControlador extends BaseControlador {
         atr.add("");
         atr.add(id);
         return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)) != null;
+            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)).size() > 0;
     }
 }

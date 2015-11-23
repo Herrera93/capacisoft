@@ -36,20 +36,4 @@ public class PlantelDAO extends BaseDAO{
         return ts;
     }
     
-    public List<Object> buscarEmpleados(int id){
-        List<Object> ts = null;        
-        try{
-            HibernateUtil.openSession();
-            HibernateUtil.beginTransaction();
-            ts = HibernateUtil.getSession().createCriteria(Empleado.class)
-                    .add(Restrictions.eq("plantel_id", id))
-                    .list();
-            HibernateUtil.commitTransaction();            
-        }catch(HibernateException e){
-            HibernateUtil.rollbackTransaction();
-        }finally{
-            HibernateUtil.closeSession();            
-        }
-        return ts;
-    }
 }

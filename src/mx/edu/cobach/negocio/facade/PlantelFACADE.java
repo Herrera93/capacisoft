@@ -17,7 +17,4 @@ public class PlantelFACADE extends BaseFACADE{
         return ServiceLocator.getPlantel().findByNombre(nombre);
     }
     
-    public List<Object> buscarEmpleados(int id){
-        return ServiceLocator.getPlantel().buscarEmpleados(id);
-    }
 }

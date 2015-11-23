@@ -186,7 +186,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             }
         });
 
-        tablaMsjLbl.setText("<html>Para Modificar seleccione un número del usuario de la columna<br> \"Numero\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un nombre de usuario de la columna<br> \"Usuario\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -563,7 +563,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 buscando = true;
                 problema = 0;
                 control.buscarTodos();
-                if(problema != 0){
+                if(problema == 0){
                     if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
                         control.alta(HelperEntidad.getUsuario(atr));  
                     }else{
@@ -623,29 +623,37 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     + " esta modificando se perdera ¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
+                    limpiar();
+                    int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                    control.buscar(id);
+                    idUsuarioActual = id;
+                    guardarBtn.setText("Modificar");
+                    usuariosTbl.clearSelection();
+                    informacionPnl.setVisible(true);
+                }
+            } else {
+                limpiar();
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 control.buscar(id);
                 idUsuarioActual = id;
                 guardarBtn.setText("Modificar");
                 usuariosTbl.clearSelection();
+                informacionPnl.setVisible(true);
             }
-        } else {
-            int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            control.buscar(id);
-            idUsuarioActual = id;
-            guardarBtn.setText("Modificar");
-            usuariosTbl.clearSelection();
-            informacionPnl.setVisible(true);
-        }
-        }else if(col == 3) {
+        }else if(col == 2) {
+            int id = Integer.parseInt((String)model.getValueAt(row, 0));
             if(((String)model.getValueAt(row, 1)).equals(usuarioConectado)) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
                     + " conectado actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 3);
                 usuariosTbl.clearSelection();
+            }else if(guardarBtn.getText().equals("Modificar") && idUsuarioActual == id){
+                JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
+                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                model.setValueAt(false, row, 3);
+                usuariosTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                 "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-                int id = Integer.parseInt((String)model.getValueAt(row, 0));
                 control.baja(id);
                 control.buscarTodos();
             } else {
@@ -832,6 +840,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     // End of variables declaration//GEN-END:variables
 
     public void llenarTodo(){
+        nombreBuscarTFd.setText("");
         limpiar();
         control.buscarTodos();
     }
@@ -857,6 +866,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         validNomLbl.setForeground(new Color(213, 216, 222));
         validUsuarioLbl.setForeground(new Color(213, 216, 222));
         validConfirmarLbl.setForeground(new Color(213, 216, 222));
+        guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
     
@@ -871,6 +881,10 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             buscando = false;
             if(info!=null){
                 for(int i=0; i < info.length; i++){
+                    if(guardarBtn.getText().equals("Modificar") &&
+                        info[i][0].equals(String.valueOf(idUsuarioActual))){
+                        continue;
+                    }
                     String nombreAIngresar = String.join(" ", nombreTFd.getText(),
                         segundoNombreTFd.getText(), apellidoPaternoTFd.getText(),
                         apellidoMaternoTFd.getText());
@@ -899,6 +913,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             tc.setCellEditor(usuariosTbl.getDefaultEditor(Boolean.class));
             tc.setCellRenderer(usuariosTbl.getDefaultRenderer(Boolean.class));
             tc = usuariosTbl.getColumnModel().getColumn(0);
+            usuariosTbl.getColumnModel().removeColumn(tc);
+            usuariosTbl.getColumnModel().getColumn(1).setPreferredWidth(300);
         }
     }
 

@@ -237,6 +237,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
                 return canEdit [columnIndex];
             }
         });
+        tablaTbl.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tablaTbl.setMaximumSize(new java.awt.Dimension(300, 64));
         tablaTbl.setMinimumSize(new java.awt.Dimension(300, 64));
         tablaTbl.addMouseListener(new java.awt.event.MouseAdapter() {

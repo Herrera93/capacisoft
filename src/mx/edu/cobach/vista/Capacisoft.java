@@ -98,7 +98,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         //if(idTipo!=3)
             add(sedePnl);
         
-        proveedorPnl = new PnlProveedor();
+        proveedorPnl = new PnlProveedor(this);
         proveedorPnl.setVisible(false);
         proveedorPnl.setSize(1181,587);
         //if(idTipo!=3)
@@ -454,6 +454,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         this.setTitle("Capacisoft - Proveedor");
         ocultarPaneles();
         proveedorPnl.setVisible(true);
+        proveedorPnl.llenarTodo();
     }//GEN-LAST:event_proveedores_MItActionPerformed
 
     private void sedes_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sedes_MItActionPerformed

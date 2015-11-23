@@ -19,6 +19,10 @@ import mx.edu.cobach.vista.Comunicador;
  */
 public class PuestoControlador extends BaseControlador{
     
+    /**
+     * Constructor, inicializa un controlador super de la clase BaseControlador
+     * @param com
+     */
     public PuestoControlador(Comunicador com){
         super(com, Puesto.class);
     } 
@@ -32,11 +36,21 @@ public class PuestoControlador extends BaseControlador{
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }   
     
+    /**
+     * Metodo para buscar un registro especifico a traves de un id entero
+     * @param id del puesto
+    */
     public void buscarMod(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
         com.setInfo(HelperEntidad.descomponerObjeto(o));
     }
     
+    /**
+     * Metódo para realizar la búsqueda de un empleado para verificar si existe
+     * tiene el puesto que se va a eliminar.
+     * @param id Puesto que se encuentra en la tabla de empleados
+     * @return booleano que indica si puesto es utilizado o no
+    */
     public boolean buscarEmpleados(int id){
         List<String> atr = new ArrayList();
         atr.add(String.valueOf(id));
