@@ -159,7 +159,7 @@ public class HelperEntidad {
             e.setDireccion((Direccion) atributos.get(10));
         }
         if (atributos.size() > 10) {
-            e.setId((int) atributos.get(10));
+            e.setId((int) atributos.get(11));
         }
         return e;
     }
