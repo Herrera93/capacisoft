@@ -625,7 +625,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
 
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
-     * registro exitoso.
+     * registro exitoso, modificacion o eliminación.
      *
      * @param mensaje String con mensaje de confirmacion de registro.
      */

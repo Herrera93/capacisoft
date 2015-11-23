@@ -10,6 +10,7 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 
 /**
@@ -60,7 +61,7 @@ public class ImplementacionEventoFACADE extends BaseFACADE {
     }
     /**
      * Este metodo busca todos los eventos de capacitacion que se hagan
-     * realido a los empleados de tal departamento
+     * realizado a los empleados de tal departamento
      * @param departamento
      * @return 
      */
@@ -77,6 +78,18 @@ public class ImplementacionEventoFACADE extends BaseFACADE {
     public List<Object> buscarEventosPorPlantel(Plantel plantel) {
         return ServiceLocator.getImplementacionEvento().
                 buscarPorPlantel(plantel);
+    }
+    
+    /**
+     * Metodo que recibe un objeto de tipo direccion el cual se conecta con 
+     * el ServiceLocatorDELEGATE, donde este recibira una matriz de eventos 
+     * implementados en la direccion
+     * @param direccion
+     * @return retorna lista de objectos con la informacion de los eventos coincidentes
+     */
+    public List<Object> buscarEventosPorDireccion(Direccion direccion) {
+        return ServiceLocator.getImplementacionEvento().
+                buscarPorDireccion(direccion);
     }
 
 }

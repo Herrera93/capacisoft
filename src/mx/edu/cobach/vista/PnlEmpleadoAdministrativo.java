@@ -21,7 +21,7 @@ import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.persistencia.entidades.Puesto;
+ import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.EmpleadoControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 
@@ -41,7 +41,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private final Border BORDER_ORIGINAL;
 
     /**
-     * Constructor del PnlEmpleadoAdministrativo
+     * Constructor del PnlEmpleadoAdministrativo e instancia la clase EmpleadoControlador. 
+     * Se crea modelo de la tabla y se realiza la busqueda 
      */
     public PnlEmpleadoAdministrativo() {
         this.titulosTabla = new String[]{"ID", "Numero", "Nombre", "Eliminar"};
@@ -661,10 +662,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cancelarBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(39, 39, 39))
         );
 
@@ -749,7 +751,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         setEnabledPanelInformacion(false);
     }//GEN-LAST:event_guardarBtnActionPerformed
 
-
+    /**
+     * Evento ejecutado al presionar el botón, habilita y limpia los campos para
+     * realizar un nuevo registro, modifica el texto contenido en los labels.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         int renglon = tablaTbl.getSelectedRow();
         if (renglon == -1) {
@@ -949,6 +956,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_correoTFdKeyTyped
 
+   /**
+     * Evento ejecutado al realizar una seleccion en el ComboBox de adscripcion,
+     * desactivando o activando otros ComboBox
+     * @param evt Evento al presionar el boton
+     */
     private void adscCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adscCBxActionPerformed
         if (adscCBx.getSelectedIndex() == 0) {
             plantelCBx.setEnabled(false);
@@ -1013,6 +1025,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         informacionJTP.setSelectedIndex(0);
     }//GEN-LAST:event_regresarBtnActionPerformed
 
+    /**
+     * Evento ejecutado al presionar el botón, activa y desactiva los paneles de
+     * los paneles de empleado administrativo.
+     * @param evt Evento al presionar el boton
+     */
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
         informacionJTP.setEnabledAt(0, false);
         informacionJTP.setEnabledAt(1, true);
@@ -1077,6 +1094,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JLabel validNumLbl;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
+     * registro exitoso, modificacion o eliminación.
+     *
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
     public void setMensaje(String mensaje) {
         switch (mensaje) {
@@ -1120,6 +1143,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(230);
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica y vaciarlo en los campos y
+     * checkbox
+     *
+     * @param info Lista de Objeto con información de búsqueda.
+     * @param i
+     */
     @Override
     public void setLista(List info, int i) {
         if (info.isEmpty()) {
@@ -1170,6 +1201,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Metodo se manda hacer consultas de tablas y e insertar los valores en los
+     * modelos de los ComboBox
+     */
     public void llenarTodo() {
         control.buscarTodos();
         control.setClass(Puesto.class);
@@ -1233,6 +1268,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         guardarBtn.setText("Modificar");
     }
 
+    
+    /**
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
+     * @param e Evento al perder foco
+     */
     @Override
     public void focusGained(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1251,6 +1292,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * obligatorio
+     * @param e Evento al perder foco
+     */
     @Override
     public void focusLost(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1294,6 +1341,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
+     * registro exitoso, modificacion o eliminación.
+     *
+     * @param evento objecto de eventos 
+     */
+    @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

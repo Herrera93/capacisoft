@@ -17,7 +17,7 @@ import mx.edu.cobach.vista.controlador.PuestoControlador;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
@@ -31,7 +31,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private boolean buscando = false;
 
     /**
-     * Creates new form PnlPuestos
+     * Constructor del PnlPuesto e instancia la clase PuestoControlador. 
+     * Se crea modelo de la tabla y se realiza la busqueda 
      */
     public PnlPuestos() {
         initComponents();
@@ -385,6 +386,12 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         System.out.println(puestosTbl.getRowCount());
     }//GEN-LAST:event_agregarBtnActionPerformed
 
+    /**
+     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el mensaje
+     * de confirmacion para cancelar el registro o modificación. Se manda a llamar 
+     * el metódo Limpiar.
+     * @param evt Evento al presionar el botón
+     */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
             + " esta modificando se perdera,¿Aun así desea cancelarla?",
@@ -516,6 +523,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     // End of variables declaration//GEN-END:variables
 
     
+    /**
+     * Metodo que limpa los campos y realiza la busqueda general de los puestos
+     */
     public void llenarTodo(){
         nombreBuscarTFd.setText("");
         limpiar();
@@ -603,6 +613,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         guardarBtn.setText("Modificar");
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     *
+     * @param evento Objecto de la entidad de tipo evento
+     */
     @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -1,4 +1,4 @@
-/*
+/*}
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -13,25 +13,27 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.vista.controlador.ReporteControlador;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador {
 
     
     ReporteControlador control;
-    private final DefaultComboBoxModel departamentoModel;
+    private final DefaultComboBoxModel departamentoModel, dirModel;
     private final DefaultComboBoxModel plantelModel;
     private final DefaultTableModel model;
     private final String[] titulosTabla;
-
+    
     /**
-     * Constructor de la clase ReporteEvento
+     * Constructor del PnlRegistrarEvento e instancia la clase EventoControlador. 
+     * Se crea modelo de la tabla y se realiza la busqueda 
      */
     public PnlReporteEvento() {
         initComponents();
@@ -46,7 +48,9 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         control = new ReporteControlador(this, ImplementacionEvento.class);
         departamentoModel = new DefaultComboBoxModel();
         plantelModel = new DefaultComboBoxModel();
+        dirModel = new DefaultComboBoxModel();
         departamentoCBx.setModel(departamentoModel);
+        direccionCBx.setModel(dirModel);
         plantelCBx.setModel(plantelModel);
     }
 
@@ -68,6 +72,12 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         opcionDeptoLbl = new javax.swing.JLabel();
         opcionDeptoMsjLbl = new javax.swing.JLabel();
         buscarDepartamentoBtnl = new javax.swing.JButton();
+        direccionPnl = new javax.swing.JPanel();
+        direccionLbl = new javax.swing.JLabel();
+        direccionCBx = new javax.swing.JComboBox();
+        opcionDirLbl = new javax.swing.JLabel();
+        opcionDirMsjLbl = new javax.swing.JLabel();
+        buscarDirBtn = new javax.swing.JButton();
         plantelPnl = new javax.swing.JPanel();
         plantelLbl = new javax.swing.JLabel();
         plantelCBx = new javax.swing.JComboBox();
@@ -80,9 +90,9 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         buscarFechaBtn = new javax.swing.JButton();
         opcionFechaMsjLbl = new javax.swing.JLabel();
         opcionFechaLbl = new javax.swing.JLabel();
-        fechaInicioDCh = new com.toedter.calendar.JDateChooser();
         fechaHastaDCh = new com.toedter.calendar.JDateChooser();
         fechaLbl = new javax.swing.JLabel();
+        fechaInicioDCh = new com.toedter.calendar.JDateChooser();
         informacionPnl = new javax.swing.JPanel();
         eventoSPn = new javax.swing.JScrollPane();
         eventoTbl = new javax.swing.JTable();
@@ -155,6 +165,64 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         );
 
         reporteCursoTb.addTab("Por Departamento", departamentoPnl);
+
+        direccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        direccionLbl.setText("Dirección");
+
+        direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        opcionDirLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        opcionDirLbl.setText("Opciones ");
+
+        opcionDirMsjLbl.setText("Seleccione el dirección y presione el botón Buscar ");
+
+        buscarDirBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarDirBtn.setText("Buscar");
+        buscarDirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarDirBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout direccionPnlLayout = new javax.swing.GroupLayout(direccionPnl);
+        direccionPnl.setLayout(direccionPnlLayout);
+        direccionPnlLayout.setHorizontalGroup(
+            direccionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(direccionPnlLayout.createSequentialGroup()
+                .addGroup(direccionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, direccionPnlLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buscarDirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(direccionPnlLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(direccionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionDirMsjLbl)
+                            .addComponent(opcionDirLbl))
+                        .addGap(0, 117, Short.MAX_VALUE))
+                    .addGroup(direccionPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(direccionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(direccionCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        direccionPnlLayout.setVerticalGroup(
+            direccionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(direccionPnlLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(opcionDirLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(opcionDirMsjLbl)
+                .addGap(46, 46, 46)
+                .addGroup(direccionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(direccionLbl)
+                    .addComponent(direccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
+                .addComponent(buscarDirBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+        );
+
+        reporteCursoTb.addTab("Por Dirección", direccionPnl);
 
         plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelLbl.setText("Plantel:");
@@ -234,14 +302,6 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         opcionFechaLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionFechaLbl.setText("Opciones ");
 
-        fechaInicioDCh.setDateFormatString("dd/MM/yyyy");
-        fechaInicioDCh.setFocusable(false);
-        fechaInicioDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fechaInicioDChPropertyChange(evt);
-            }
-        });
-
         fechaHastaDCh.setDateFormatString("dd/MM/yyyy");
         fechaHastaDCh.setFocusable(false);
         fechaHastaDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -251,6 +311,14 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         });
 
         fechaLbl.setText("<HTML>Si deseas ingresar la fecha con el teclado sigue el formato<BR> D/M/A. Ejem. 01/12/2015 </HTML>");
+
+        fechaInicioDCh.setDateFormatString("dd/MM/yyyy");
+        fechaInicioDCh.setFocusable(false);
+        fechaInicioDCh.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaInicioDChPropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout fechaPnlLayout = new javax.swing.GroupLayout(fechaPnl);
         fechaPnl.setLayout(fechaPnlLayout);
@@ -287,8 +355,8 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 .addComponent(fechaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechaInicioLbl))
+                    .addComponent(fechaInicioLbl)
+                    .addComponent(fechaInicioDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(fechaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechaHastaLbl)
@@ -304,7 +372,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(reporteCursoTb, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(reporteCursoTb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,6 +466,10 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evento ejecutado al presionar el botón, imprime en pdf la tabla que contiene
+     * la informacion de eventos
+     */
     private void imprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBtnActionPerformed
         try {
             eventoTbl.print();
@@ -406,43 +478,6 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         }
     }//GEN-LAST:event_imprimirBtnActionPerformed
 
-    private void buscarPlantelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPlantelBtnActionPerformed
-        control.generarReportePorPlantel((Plantel) plantelCBx.getSelectedItem());
-        plantelCBx.setSelectedIndex(0);
-        departamentoCBx.setSelectedIndex(0);
-        fechaInicioDCh.setDate(null);
-        fechaHastaDCh.setDate(null);
-    }//GEN-LAST:event_buscarPlantelBtnActionPerformed
-
-    private void buscarDepartamentoBtnlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDepartamentoBtnlActionPerformed
-        control.generarReportePorDepartamento((Departamento) departamentoCBx.getSelectedItem());
-        plantelCBx.setSelectedIndex(0);
-        departamentoCBx.setSelectedIndex(0);
-        fechaInicioDCh.setDate(null);
-        fechaHastaDCh.setDate(null);
-    }//GEN-LAST:event_buscarDepartamentoBtnlActionPerformed
-
-    private void buscarFechaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFechaBtnActionPerformed
-        control.generarEventosPorFecha(fechaInicioDCh.getDate(), fechaHastaDCh.getDate());
-        fechaInicioDCh.setDate(null);
-        fechaHastaDCh.setDate(null);
-    }//GEN-LAST:event_buscarFechaBtnActionPerformed
-
-    /**
-     * Metodo que se ejecuta al cambiar la fecha del componente deFechaDCh. Se ajusta
-     * la fecha minima del componente aFechaDCh y se ajusta si esta ya es menor que
-     * la actual.
-     * @param evt Evento de cambio de propiedad
-     */
-    private void fechaInicioDChPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaInicioDChPropertyChange
-        Date deFecha = fechaInicioDCh.getDate();
-        if(deFecha != null){
-            fechaHastaDCh.setMinSelectableDate(deFecha);
-            if(fechaHastaDCh.getDate() != null && fechaHastaDCh.getDate().before(deFecha))
-                fechaHastaDCh.setDate(deFecha);
-        }
-    }//GEN-LAST:event_fechaInicioDChPropertyChange
-    
     /**
      * Metodo que se ejecuta al cambiar la fecha del componente aFechaDCh. Se ajusta
      * la fecha maxima del componente deFechaDCh y se ajusta si esta ya es mayor que
@@ -454,18 +489,83 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         if(hastaFecha != null){
             fechaInicioDCh.setMaxSelectableDate(hastaFecha);
             if(fechaInicioDCh.getDate() != null && fechaInicioDCh.getDate().after(hastaFecha))
-               fechaInicioDCh.setDate(hastaFecha);
+            fechaInicioDCh.setDate(hastaFecha);
         }
     }//GEN-LAST:event_fechaHastaDChPropertyChange
 
+    /**
+     * Metodo que se ejecuta al presionar el botón. obteniendo la fecha inicial y
+     * final.
+     * @param evt Evento de cambio de propiedad
+     */
+    private void buscarFechaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFechaBtnActionPerformed
+        control.generarEventosPorFecha(fechaInicioDCh.getDate(), fechaHastaDCh.getDate());
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
+    }//GEN-LAST:event_buscarFechaBtnActionPerformed
+
+    /**
+     * Metodo que se ejecuta al presionar el botón. obteniendo la fecha inicial y
+     * final.
+     * @param evt Evento de cambio de propiedad
+     */
+    private void buscarPlantelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPlantelBtnActionPerformed
+        control.generarReportePorPlantel((Plantel) plantelCBx.getSelectedItem());
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        direccionCBx.setSelectedIndex(0);
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
+    }//GEN-LAST:event_buscarPlantelBtnActionPerformed
+
+    /**
+     * Metodo que se ejecuta al presionar el botón. obteniendo el departamento.
+     * @param evt Evento que obtiene el deparamento
+     */
+    private void buscarDepartamentoBtnlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDepartamentoBtnlActionPerformed
+        control.generarReportePorDepartamento((Departamento) departamentoCBx.getSelectedItem());
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        direccionCBx.setSelectedIndex(0);
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
+    }//GEN-LAST:event_buscarDepartamentoBtnlActionPerformed
+
+    /**
+     * Metodo que se ejecuta al presionar el botón. obteniendo el direccion.
+     * @param evt Evento que obtiene el deparamento
+     */
+    private void buscarDirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDirBtnActionPerformed
+        control.generarReportePorDireccion((Direccion) direccionCBx.getSelectedItem());
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        direccionCBx.setSelectedIndex(0);
+        fechaInicioDCh.setDate(null);
+        fechaHastaDCh.setDate(null);
+    }//GEN-LAST:event_buscarDirBtnActionPerformed
+
+    /**
+     * Metodo que se ejecuta al cambiar la fecha del componente deFechaDCh. Se ajusta
+     * la fecha minima del componente aFechaDCh y se ajusta si esta ya es menor que
+     * la actual.
+     * @param evt Evento de cambio de propiedad
+     */
+    private void fechaInicioDChPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaInicioDChPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaInicioDChPropertyChange
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarDepartamentoBtnl;
+    private javax.swing.JButton buscarDirBtn;
     private javax.swing.JButton buscarFechaBtn;
     private javax.swing.JButton buscarPlantelBtn;
     private javax.swing.JComboBox departamentoCBx;
     private javax.swing.JLabel departamentoLbl;
     private javax.swing.JPanel departamentoPnl;
+    private javax.swing.JComboBox direccionCBx;
+    private javax.swing.JLabel direccionLbl;
+    private javax.swing.JPanel direccionPnl;
     private javax.swing.JScrollPane eventoSPn;
     private javax.swing.JTable eventoTbl;
     private com.toedter.calendar.JDateChooser fechaHastaDCh;
@@ -481,6 +581,8 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel opcionDeptoLbl;
     private javax.swing.JLabel opcionDeptoMsjLbl;
+    private javax.swing.JLabel opcionDirLbl;
+    private javax.swing.JLabel opcionDirMsjLbl;
     private javax.swing.JLabel opcionFechaLbl;
     private javax.swing.JLabel opcionFechaMsjLbl;
     private javax.swing.JLabel opcionLbl;
@@ -491,18 +593,36 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     private javax.swing.JTabbedPane reporteCursoTb;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metodo se manda hacer consultas de tablas y e insertar los valores en los
+     * modelos de los ComboBox
+     */
     public void llenarTodo() {
         control.setClass(Departamento.class);
         control.buscarTodosLista(1);
         control.setClass(Plantel.class);
         control.buscarTodosLista(2);
+        control.setClass(Direccion.class);
+        control.buscarTodosLista(3);
     }
     
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     */
     @Override
     public void setMensaje(String mensaje) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metodo que recibe una matriz, donde se obtendran sus valores para
+     * añadirlos a la modelo de la tabla, también se ocultara la columna id y se
+     * le dara se redefinira el ancho de la columna 0.
+     *
+     * @param info Matriz String para vaciar en tabla
+     */
     @Override
     public void setTabla(String[][] info) {
         if (info.length==0) {
@@ -514,11 +634,25 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         }
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     *
+     * @param evento Objecto de la entidad de tipo evento
+     */
     @Override
     public void setInfo(List info) {
 
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica y vaciarlo en los campos y
+     * checkbox
+     *
+     * @param info Lista de Objeto con información de búsqueda.
+     */
     @Override
     public void setLista(List info, int i) {
         if (info.isEmpty()) {
@@ -543,17 +677,25 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 plantelModel.insertElementAt(new Departamento(), 0);
                 plantelCBx.setSelectedIndex(0);
                 break;
-            
-//            case 2:
-//                plantelModel.removeAllElements();
-//                for (int j = 0; j < info.size(); j++) {
-//                    plantelModel.addElement(info.get(j));
-//                }
-//                break;
-//        }
+            case 3:
+                dirModel.removeAllElements();
+                for (int j = 0; j < info.size(); j++) {
+                    dirModel.addElement(info.get(j));
+                }
+
+                dirModel.insertElementAt(new Departamento(), 0);
+                direccionCBx.setSelectedIndex(0);
+                break;
         }
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
+     * los resultados de una busqueda especifica, que no tiene ninguna
+     * funcionalidad en este componente.
+     *
+     * @param evento Objecto de la entidad de tipo evento
+     */
     @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
