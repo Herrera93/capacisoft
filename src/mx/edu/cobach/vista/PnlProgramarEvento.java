@@ -35,10 +35,12 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
         "activo", "Eliminar"};
     public String estado;
     private Capacisoft capacisoft;
+
     //mensaje instruccion : JLabel
+
     public PnlProgramarEvento(Capacisoft capacisoft) {
         this.capacisoft = capacisoft;
-        control = new ImplementarEventoControlador(this, 
+        control = new ImplementarEventoControlador(this,
                 ImplementacionEvento.class);
         initComponents();
         agregar();
@@ -439,9 +441,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
 
     /**
      * Este metodo permite que la informacion de la tabla mostrada al usuario,
-     * se muestre en los paneles de los eventos para modificar o que estos 
+     * se muestre en los paneles de los eventos para modificar o que estos
      * eventos sean borrados
-     * @param evt 
+     *
+     * @param evt
      */
     private void tablaTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTblMouseClicked
         int col = tablaTbl.columnAtPoint(evt.getPoint());
@@ -464,8 +467,7 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
                     showConfirmDialog(this,
                             "¿Esta seguro de eliminar este registro?",
                             "Precaucion",
-                            JOptionPane.YES_NO_OPTION, JOptionPane.
-                                    WARNING_MESSAGE) == 0) {
+                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 control.baja(Integer.parseInt((String) model.
                         getValueAt(tablaTbl.rowAtPoint(evt.getPoint()), 0)));
                 control.buscarTodos();
@@ -479,28 +481,30 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_tablaTblMouseClicked
     /**
-     * Este metodo permite que el usuario pueda buscar un evento ya realizado o 
-     * a realizar, buscando todos los eventos si estan vacios todos los campos
-     * o mandando toda la informacion de fechas y nombre si no estan vacios
-     * @param evt 
+     * Este metodo permite que el usuario pueda buscar un evento ya realizado o
+     * a realizar, buscando todos los eventos si estan vacios todos los campos o
+     * mandando toda la informacion de fechas y nombre si no estan vacios
+     *
+     * @param evt
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        
+
         Evento evento = (Evento) tipoBusCBx.getSelectedItem();
         Date de = fechaInicialDCh.getDate();
         Date hasta = fechaTerminacionDCh.getDate();
         control.setClass(ImplementacionEvento.class);
-        if(evento.getNombre().equals("")&&de==null&&hasta==null){
+        if (evento.getNombre().equals("") && de == null && hasta == null) {
             control.buscarTodos();
-        }else{
+        } else {
             control.buscarImplementacion(evento, de, hasta);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
     /**
      * Este metodo permite que cuando el usuario busque un evento que desea
-     * registrar este abilite los botones de programar evento a realizar o 
+     * registrar este abilite los botones de programar evento a realizar o
      * registrar evento realizado.
-     * @param evt 
+     *
+     * @param evt
      */
     private void tipoRegCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoRegCBxItemStateChanged
         if ((Evento) tipoBusCBx.getSelectedItem() != null) {
@@ -516,9 +520,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
     }//GEN-LAST:event_tipoRegCBxItemStateChanged
     /**
      * Este metodo permite que cuando el usuario busque un evento que desea
-     * registrar este abilite los botones de programar evento a realizar o 
+     * registrar este abilite los botones de programar evento a realizar o
      * registrar evento realizado.
-     * @param evt 
+     *
+     * @param evt
      */
     private void tipoBusCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipoBusCBxItemStateChanged
         if ((Evento) tipoBusCBx.getSelectedItem() != null) {
@@ -533,9 +538,10 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_tipoBusCBxItemStateChanged
     /**
-     * Metodo que permite que cuando se cambie de interfaz el usuario, elimine 
+     * Metodo que permite que cuando se cambie de interfaz el usuario, elimine
      * la informacion referente a la programacion de los eventos
-     * @param evt 
+     *
+     * @param evt
      */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         regRealizadoBtn.setEnabled(false);
@@ -623,11 +629,17 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
             eventoRealizadoPnl.llenarTodo();
             eventoRealizadoPnl.obtenerMod(info);
             eventoRealizadoPnl.visibilidad(true);
+        } else if (estado.equals("Activo")) {
+            eventoRealizarPnl.setVisible(true);
+            eventoRealizadoPnl.setVisible(false);
+            eventoRealizarPnl.llenarTodo();
+            eventoRealizarPnl.obtenerMod(info, "Modificar");
+            eventoRealizarPnl.visibilidad(true);
         } else {
             eventoRealizarPnl.setVisible(true);
             eventoRealizadoPnl.setVisible(false);
             eventoRealizarPnl.llenarTodo();
-            eventoRealizarPnl.obtenerMod(info);
+            eventoRealizarPnl.obtenerMod(info, "Guardar");
             eventoRealizarPnl.visibilidad(true);
         }
     }
@@ -655,9 +667,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
                 break;
         }
     }
+
     /**
      * Metodo que permite llenar la informacion relacionada a los eventos
-     * @param evento 
+     *
+     * @param evento
      */
     @Override
     public void llenarDatos(Object evento) {
@@ -667,4 +681,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
         buscarPnl.setVisible(true);
         this.updateUI();
     }
+
+    public void obtenerEventoImplementado(ImplementacionEvento eventoImplementado) {
+        estado = "Activo Guardar";
+        control.setClass(ImplementacionEvento.class);
+        control.buscarMod(eventoImplementado.getId());
+    }
+
 }

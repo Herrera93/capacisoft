@@ -831,11 +831,19 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      *
      * @param info
      */
-    public void obtenerMod(List info) {
+    public void obtenerMod(List info,String estado) {
         ImplementacionEvento eventoImplementado = new ImplementacionEvento();
-        agregarGLbl.setText("Modificar evento a realizar");
-        agregarLALbl.setText("Modificar evento a realizar");
-        guardarLABtn.setText("Modificar");
+        if(estado.equals("Modificar")){
+            agregarGLbl.setText("Modificar evento a realizar");
+            agregarLALbl.setText("Modificar evento a realizar");
+            guardarLABtn.setText("Modificar");
+            eventoProgramarId = Integer.parseInt(info.get(0).toString());
+        }else{
+            agregarGLbl.setText("Guardar evento a realizar");
+            agregarLALbl.setText("Guardar evento a realizar");
+            guardarLABtn.setText("Guardar");
+        }
+        
         eventoProgramarId = Integer.parseInt(info.get(0).toString());
         evento = (Evento) info.get(1);
         nombreGTFd.setText(info.get(2).toString());
@@ -1008,5 +1016,4 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             validProveedorLbl.setVisible(false);
         }
     }
-
 }
