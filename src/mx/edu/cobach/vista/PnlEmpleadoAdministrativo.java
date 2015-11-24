@@ -778,7 +778,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             //System.out.println("ID: " + model.getValueAt(row, 0));
             //Preguntamos si esta seguro de la eliminacion
             String id = (String)model.getValueAt(row, 0);
-            if(guardarBtn.getText().equals("Modificar") && idEmpleadoActual.equals(id)){
+            if(control.buscarImplementaciones(id)){
+                setMensaje("No se puede eliminar un emleado que este asignado a un evento");
+                model.setValueAt(false, row, 2);
+                tablaTbl.clearSelection();
+            }else if(guardarBtn.getText().equals("Modificar") && idEmpleadoActual.equals(id)){
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el empleado que esta"
                     + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 2);

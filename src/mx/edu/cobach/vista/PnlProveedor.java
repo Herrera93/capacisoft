@@ -806,7 +806,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             atributos.add(primerNombreTFd.getText());
             atributos.add(segundoNombreTFd.getText());
             atributos.add(apellidoPaternoTFd.getText());
-            atributos.add(apellidoPaternoTFd.getText());
+            atributos.add(apellidoMaternoTFd.getText());
             atributos.add(correoTFd.getText());
             atributos.add(telefonoTFd.getText());
             if(internoRBtn.isSelected())
@@ -1041,7 +1041,10 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setTabla(String[][] info) {
-        if (info[0][0].contains("TLE1")) {
+        if(info == null){
+            model.setNumRows(0);
+            setMensaje("No se encontraron coincidencias");
+        }else if (info[0][0].contains("TLE1")) {
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelEventos.setDataVector(info, titulosEventos);
             TableColumn tc = eventosTbl.getColumnModel().getColumn(0);
@@ -1070,7 +1073,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             }
         }else if(guardando==true){
             idProveedorActual=Integer.parseInt(info[0][0]);
-        }else if(info != null){
+        }else{
             model.setRowCount(0);
             model.setDataVector(info, titulosTabla);
             TableColumn tc = proveedoresTbl.getColumnModel().getColumn(2);
@@ -1079,36 +1082,33 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             tc = proveedoresTbl.getColumnModel().getColumn(0);
             proveedoresTbl.getColumnModel().removeColumn(tc);
             proveedoresTbl.getColumnModel().getColumn(0).setPreferredWidth(300);
-        }else{
-            setMensaje("No se encontraron coincidencias");
         }
         
     }
 
     @Override
     public void setInfo(List info) {
-        if (info.get(0).equals("Desbloquear")) {
+        if(info == null){
+        }else if (info.get(0).equals("Desbloquear")) {
             capacisoft.setEnabled(true);
             capacisoft.setVisible(true);
-        }else if(buscando){
-            if(info!=null){                
-                primerNombre= primerNombreTFd.getText();
-                segundoNombre=segundoNombreTFd.getText();
-                apellidoPaterno=apellidoPaternoTFd.getText();
-                apellidoMaterno=apellidoMaternoTFd.getText();
-                if(primerNombre.equals(info.get(0).toString()) &&
-                   apellidoPaterno.equals(info.get(2).toString())&&
-                   apellidoMaterno.equals(info.get(3).toString()) &&
-                   segundoNombre.equals(info.get(1).toString())){
-                    buscando=false;
-                    setMensaje("Ya existe el nombre del empleado\n"
-                            +primerNombre+" "
-                            +segundoNombre+" "
-                            +apellidoPaterno+" "
-                            +apellidoMaterno);
-                }
+        }else if(buscando){               
+            primerNombre= primerNombreTFd.getText();
+            segundoNombre=segundoNombreTFd.getText();
+            apellidoPaterno=apellidoPaternoTFd.getText();
+            apellidoMaterno=apellidoMaternoTFd.getText();
+            if(primerNombre.equals(info.get(0).toString()) &&
+               apellidoPaterno.equals(info.get(2).toString())&&
+               apellidoMaterno.equals(info.get(3).toString()) &&
+               segundoNombre.equals(info.get(1).toString())){
+                buscando=false;
+                setMensaje("Ya existe el nombre del empleado\n"
+                        +primerNombre+" "
+                        +segundoNombre+" "
+                        +apellidoPaterno+" "
+                        +apellidoMaterno);
             }    
-        }else{
+        } else {
             primerNombreTFd.setText(info.get(0).toString());
             segundoNombreTFd.setText(info.get(1).toString());
             apellidoPaternoTFd.setText(info.get(2).toString());

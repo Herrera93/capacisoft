@@ -5,9 +5,11 @@
  */
 package mx.edu.cobach.negocio.delegate;
 
+import java.util.ArrayList;
 import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
+import mx.edu.cobach.persistencia.entidades.Empleado;
 
 /**
  *
@@ -63,5 +65,17 @@ public class EmpleadoDELEGATE {
      */
     public Object buscar(String id){
         return ServiceLocatorFACADE.getEmpleado().find(id);
+    }
+
+    /**
+     * Metodo para buscar las implementaciones de evento de un empleado
+     * @param id Numero de empleado
+     * @return REgresa una lista de implementaiciones
+     */
+    public List<Object> buscarImplementaciones(String id) {
+        List<Object> lista = new ArrayList();
+        Empleado e = (Empleado) buscar(id);
+        lista.addAll(e.getImplementacionEventos());
+        return lista;
     }
 }

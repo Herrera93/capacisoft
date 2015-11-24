@@ -634,6 +634,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 setMensaje("No se puede eliminar una sede que contenga implementaciones");
                 model.setValueAt(false, row, 2);
                 sedesTbl.clearSelection();
+            }else if(guardarBtn.getText().equals("Modificar") && idSedeActual == id){
+                JOptionPane.showMessageDialog(this, "No se puede eliminar la sede que esta"
+                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                model.setValueAt(false, row, 2);
+                sedesTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
                 control.baja(id);

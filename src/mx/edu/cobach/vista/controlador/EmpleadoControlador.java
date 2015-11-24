@@ -78,6 +78,17 @@ public class EmpleadoControlador extends BaseControlador {
             com.setMensaje("El numero de empleado ya existe");
         }
     }
+
+    /**
+     * Metodo para validar si el empleado se encuentra asignado a alguna
+     * lista de asistencia de una implementacion de evento
+     * @param id Numero de empleado
+     * @return REgresa el valor de la validacion
+     */
+    public boolean buscarImplementaciones(String id) {
+        return ServiceLocatorDELEGATE.getEmpleado()
+                .buscarImplementaciones(id).size() > 0;
+    }
     
     
 }
