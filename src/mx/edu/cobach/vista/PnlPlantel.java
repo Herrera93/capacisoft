@@ -370,9 +370,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                             .addComponent(numeroLbl)
                             .addComponent(zonaLbl)
                             .addComponent(coloniaLbl)
-                            .addGroup(informacionPnlLayout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(calleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(calleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(83, 83, 83)
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(numeroTFd, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -380,11 +378,11 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                             .addComponent(calleTFd)
                             .addGroup(informacionPnlLayout.createSequentialGroup()
                                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(zonaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(validNumeroLbl)
                                     .addComponent(validColoniaLbl)
                                     .addComponent(validCalleLbl))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(zonaCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addComponent(nombreAgregarLbl)
                         .addGap(83, 83, 83)
@@ -594,8 +592,24 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
-        char car = evt.getKeyChar();
-        if (nombreTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+         char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
             evt.consume();
         }
     }//GEN-LAST:event_nombreTFdKeyTyped

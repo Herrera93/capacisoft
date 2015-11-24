@@ -27,13 +27,13 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlSede sedePnl;
     private PnlProveedor proveedorPnl;
     private PnlEmpleadoAdministrativo empleadoPnl;
-    private PnlRegistrarEvento cursoPnl;
+    private PnlRegistrarEvento eventoPnl;
     private PnlKardex kardexPnl;
     private PnlReporteEvento reporteCursoPnl;
     private PnlListaAsistencia listaAsistenciaPnl;
     private final ImageIcon imageLogo;
     private int idTipo;
-    private String usuario;
+    private final String usuario;
     
     public Capacisoft(String tipo, String usuario) {
         imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
@@ -110,11 +110,11 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         //if(idTipo!=3)
             add(empleadoPnl);
         
-        cursoPnl = new PnlRegistrarEvento();
-        cursoPnl.setVisible(false);
-        cursoPnl.setSize(1181,587);
+        eventoPnl = new PnlRegistrarEvento();
+        eventoPnl.setVisible(false);
+        eventoPnl.setSize(1181,587);
         //if(idTipo!=3)
-            add(cursoPnl);
+            add(eventoPnl);
         
         //Kardex
         kardexPnl = new PnlKardex();
@@ -436,7 +436,8 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private void curso_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curso_MItActionPerformed
         this.setTitle("Capacisoft - Evento de capacitación");
         ocultarPaneles();
-        cursoPnl.setVisible(true);
+        eventoPnl.setVisible(true);
+        eventoPnl.llenarTodo();
     }//GEN-LAST:event_curso_MItActionPerformed
 
     public void visualizarEvento(){
@@ -563,7 +564,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         puestoPnl.setVisible(false);
         sedePnl.setVisible(false);
         proveedorPnl.setVisible(false);
-        cursoPnl.setVisible(false);
+        eventoPnl.setVisible(false);
         empleadoPnl.setVisible(false);
         kardexPnl.setVisible(false);
         reporteCursoPnl.setVisible(false);

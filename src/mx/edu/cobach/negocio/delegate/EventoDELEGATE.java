@@ -17,14 +17,9 @@ public class EventoDELEGATE {
     public EventoDELEGATE() {
     }
 
-    public List<Object> buscarPorTipoCurso(int id) {
+    public List<Object> buscarPorTipoEvento(int id) {
         return ServiceLocatorFACADE.getEvento().buscarPorTipoEvento(id);
     }
-
-    public List<Object> buscarEvento(int id) {
-        return ServiceLocatorFACADE.getEvento().buscarEvento(id);
-    }
-
     public List<Object> buscarPorNombre(String nombre) {
         return ServiceLocatorFACADE.getEvento().buscarPorNombre(nombre);
     }

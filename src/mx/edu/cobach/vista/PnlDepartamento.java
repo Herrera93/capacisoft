@@ -462,14 +462,21 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
+        buscando = true;
+        problema = false;
+        control.buscarTodos();
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
             validNomLbl.setText("Esta campo es obligatorio");
             validNomLbl.setForeground(new Color(255, 0, 0));
-        } else {
-            control.buscarPorNombre(nombreTFd.getText(), 2);
+        }else if(problema){
+            nombreTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNomLbl.setText("El nombre del departamento ya existe");
+            validNomLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_nombreTFdFocusLost
 
@@ -608,15 +615,18 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                         info[x][0].equals(String.valueOf(id))){
                         continue;
                     }
-                    if(info[x][1].equals(nombreTFd.getText())){
-                        if(almacenando){
-                            setMensaje("Ya existe un departamento con ese nombre.\n"
-                                + info[x][1]);
-                        }
-                        problema = true;
-                        break;
+                if(info[x][1].equals(nombreTFd.getText())){
+                    if(almacenando){
+                        setMensaje("Ya existe un departamento con ese nombre.\n"
+                            + info[x][1]);
                     }
+                    problema = true;
+                    break;
+                }
              }
+        }else if(info == null){
+            model.setRowCount(0);
+            setMensaje("No se encontraron coincidencias");
         }else{
             model.setRowCount(0);
             model.setDataVector(info, titulosTabla);

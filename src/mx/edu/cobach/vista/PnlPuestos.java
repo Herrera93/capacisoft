@@ -465,6 +465,15 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     + " esta modificando se perdera ¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
+                    int id = Integer.parseInt((String) model.getValueAt(row, 0));
+                    limpiar();
+                    control.buscar(id);
+                    idPuesto = id;
+                    guardarBtn.setText("Modificar");
+                    puestosTbl.clearSelection();
+                    informacionPnl.setVisible(true);
+                }
+            } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 limpiar();
                 control.buscar(id);
@@ -473,15 +482,6 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 puestosTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-        } else {
-            int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            limpiar();
-            control.buscar(id);
-            idPuesto = id;
-            guardarBtn.setText("Modificar");
-            puestosTbl.clearSelection();
-            informacionPnl.setVisible(true);
-        }
         }else if(col == 1) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
             if(control.buscarEmpleados(id)){

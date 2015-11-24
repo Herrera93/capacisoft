@@ -56,6 +56,6 @@ public class PuestoControlador extends BaseControlador{
         atr.add(String.valueOf(id));
         atr.add("");
         return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorPuesto(HelperEntidad.getPuesto(atr, "")) != null;
+            .buscarEmPorPuesto(HelperEntidad.getPuesto(atr, "")).size() > 0;
     }
 }

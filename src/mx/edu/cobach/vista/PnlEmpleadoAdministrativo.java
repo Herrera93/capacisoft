@@ -1190,12 +1190,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             case 4:
                 adscripModel.removeAllElements();
                 adscBuscarModel.removeAllElements();
+                adscBuscarModel.addElement(new Adscripcion());
                 for (int j = 0; j < info.size(); j++) {
                     adscripModel.addElement(info.get(j));
                     adscBuscarModel.addElement(info.get(j));
                 }
                 adscripModel.insertElementAt(new Departamento(), 0);
-                adscBuscarModel.insertElementAt(new Departamento(), 0);
+                adscBuscarModel.insertElementAt("BUSCAR TODOS", 0);
                 adscCBx.setSelectedIndex(0);
                 adscBuscarCBx.setSelectedIndex(0);
                 break;

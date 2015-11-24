@@ -21,9 +21,6 @@ public class EventoFACADE extends BaseFACADE{
     public List<Object> buscarPorTipoEvento(int id) {
         return ServiceLocator.getEvento().buscarPorTipoEvento(id);
     }
-    public List<Object> buscarEvento(int id) {
-        return ServiceLocator.getEvento().buscarEvento(id);
-    }
     
     public List<Object> buscarPorNombre(String nombre){
         return ServiceLocator.getEvento().buscarPorNombre(nombre);
