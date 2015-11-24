@@ -21,6 +21,11 @@ public class EventoDAO extends BaseDAO{
         setEntity(Evento.class);
     }
     
+    /**
+     * Metodo para buscar un registro especifico a traves del id del tipo de evento
+     * @param id
+     * @return lista de objectos con el evento que coinciden con nombre
+    */
     public List<Object> buscarPorTipoEvento(int id) {
         List<Object> o = null;
         try{
@@ -38,6 +43,11 @@ public class EventoDAO extends BaseDAO{
         return o;
     }
     
+    /**
+     * Metodo para buscar un registro especifico a traves de un nombre
+     * @param nombre Nombre del puesto a buscar
+     * @return lista de objectos con los eventos que coinciden con nombre
+    */
     public List<Object> buscarPorNombre(String nombre) {
         List<Object> o = null;
         try{

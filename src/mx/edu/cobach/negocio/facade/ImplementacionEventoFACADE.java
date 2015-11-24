@@ -10,7 +10,9 @@ import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Plantel;
+import mx.edu.cobach.persistencia.entidades.Sede;
 
 /**
  * Esta clase de ImplementacionEventoFacade es utilizada para la tabla
@@ -60,7 +62,7 @@ public class ImplementacionEventoFACADE extends BaseFACADE {
     }
     /**
      * Este metodo busca todos los eventos de capacitacion que se hagan
-     * realido a los empleados de tal departamento
+     * realizado a los empleados de tal departamento
      * @param departamento
      * @return 
      */
@@ -79,4 +81,26 @@ public class ImplementacionEventoFACADE extends BaseFACADE {
                 buscarPorPlantel(plantel);
     }
     
+    /**
+     * Metodo que recibe un objeto de tipo direccion el cual se conecta con 
+     * el ServiceLocatorDELEGATE, donde este recibira una matriz de eventos 
+     * implementados en la direccion
+     * @param direccion
+     * @return retorna lista de objectos con la informacion de los eventos coincidentes
+     */
+    public List<Object> buscarEventosPorDireccion(Direccion direccion) {
+        return ServiceLocator.getImplementacionEvento().
+                buscarPorDireccion(direccion);
+    }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron en una sede especifica.
+     * @param sede objeto de tipo entidad sede
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarEventosPorSede(Sede sede) {
+        return ServiceLocator.getImplementacionEvento().
+                buscarPorSede(sede);
+    }
 }

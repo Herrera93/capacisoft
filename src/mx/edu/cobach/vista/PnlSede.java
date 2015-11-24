@@ -628,10 +628,10 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 sedesTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-        } else if(col == 2) {
+        } else if(col == 1) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(!control.buscarImplementaciones(id)){
-                setMensaje("No se puede eliminar un plantel que contenga empleados");
+            if(control.buscarImplementaciones(id)){
+                setMensaje("No se puede eliminar una sede que contenga implementaciones");
                 model.setValueAt(false, row, 2);
                 sedesTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",

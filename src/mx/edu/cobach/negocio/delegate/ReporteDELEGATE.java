@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
@@ -237,5 +238,28 @@ public class ReporteDELEGATE {
         }
         word.crearTabla(lista, numEvento);
         word.cerrarSesion();
+    }
+    
+    /**
+     * Metodo que recibe un objeto de tipo direccion el cual se conecta con 
+     * el ServiceLocatorDELEGATE, donde este recibira una matriz de eventos 
+     * implementados en la direccion
+     * @param direccion
+     * @return retorna matriz con la informacion de los eventos coincidentes
+     */
+    public String[][] generarReportePorDireccion(Direccion direccion) {
+        List<Object> eventosPorDireccion = ServiceLocatorFACADE.getImplementacionEvento()
+                .buscarEventosPorDireccion(direccion);
+        String[][] evento = new String[eventosPorDireccion.size()][5];
+        for (int i = 0; i < eventosPorDireccion.size(); i++) {
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorDireccion.get(i);
+            evento[i][0] = eD.getFechaInicial() + "";
+            evento[i][1] = eD.getFechaFinal() + "";
+            evento[i][2] = eD.getEvento().toString();
+            evento[i][3] = eD.getSede().toString();
+            evento[i][4] = eD.getProveedor().toString();
+            System.out.println(eD.getFechaFinal() + "");
+        }
+        return evento;
     }
 }

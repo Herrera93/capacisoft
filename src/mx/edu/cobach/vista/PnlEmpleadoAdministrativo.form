@@ -563,7 +563,7 @@
                 <Property name="text" type="java.lang.String" value="Siguiente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguienteBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguiente"/>
               </Events>
             </Component>
           </SubComponents>
@@ -592,33 +592,24 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="departamentoLbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="validDptoLbl" min="-2" max="-2" attributes="0"/>
-                                  <Component id="departamentoCBx" min="-2" pref="504" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="plantelLbl" min="-2" max="-2" attributes="0"/>
-                                  <Component id="puestoLbll" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="direccionLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="adscLbl" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="validPuestoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="puestoCBx" min="-2" pref="506" max="-2" attributes="0"/>
-                                  <Component id="validAdsLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="validPlantelLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="adscCBx" alignment="0" min="-2" pref="504" max="-2" attributes="0"/>
-                                  <Component id="plantelCBx" alignment="0" min="-2" pref="504" max="-2" attributes="0"/>
-                                  <Component id="validDirLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="direccionCBx" alignment="0" min="-2" pref="504" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="plantelLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="puestoLbll" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="direccionLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="adscLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="direccionLbl1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="validDptoLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="departamentoCBx" min="-2" pref="504" max="-2" attributes="0"/>
+                          <Component id="validPuestoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="puestoCBx" min="-2" pref="506" max="-2" attributes="0"/>
+                          <Component id="validAdsLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="validPlantelLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="adscCBx" alignment="0" min="-2" pref="504" max="-2" attributes="0"/>
+                          <Component id="plantelCBx" alignment="0" min="-2" pref="504" max="-2" attributes="0"/>
+                          <Component id="validDirLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="direccionCBx" alignment="0" min="-2" pref="504" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="78" max="32767" attributes="0"/>
                   </Group>
@@ -643,7 +634,7 @@
                       <Component id="validAdsLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="departamentoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="direccionLbl1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="departamentoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -720,12 +711,12 @@
                 <Property name="text" type="java.lang.String" value="Adscripci&#xf3;n: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="departamentoLbl">
+            <Component class="javax.swing.JLabel" name="direccionLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Departamento:"/>
+                <Property name="text" type="java.lang.String" value="Direccion"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="plantelCBx">
@@ -831,7 +822,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="direccionLbl">
+            <Component class="javax.swing.JLabel" name="direccionLbl1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -874,7 +865,7 @@
                 <Property name="text" type="java.lang.String" value="Regresar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresarBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresar"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="cancelar2Btn">

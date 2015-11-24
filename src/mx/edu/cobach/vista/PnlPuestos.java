@@ -32,8 +32,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private boolean buscando = false;
 
     /**
-     * Constructor, se instancia la clase PuestoControlador. Se crea 
-     * modelo de la tabla y se realiza la busqueda 
+     * Constructor del PnlPuesto e instancia la clase PuestoControlador. 
+     * Se crea modelo de la tabla y se realiza la busqueda 
      */
     public PnlPuestos() {
         initComponents();
@@ -430,10 +430,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
 
+    
     /**
-     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
-     * de color a rojo y colocando un mensaje para indicando que el campo es 
-     * obligatorio
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
@@ -442,8 +442,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_nombreTFdFocusGained
 
     /**
-     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
-     * a la configuracion inicial.
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * obligatorio
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
@@ -543,9 +544,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 
+    
     /**
-     * Metódo que se utiliza para realizar una búsqueda general de los
-     * departamentos registrados en la base de datos.
+     * Metodo que limpa los campos y realiza la busqueda general de los puestos
      */
     public void llenarTodo(){
         nombreBuscarTFd.setText("");
@@ -637,7 +638,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         idPuesto = Integer.parseInt(info.get(1).toString());
         guardarBtn.setText("Modificar");
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
      * los resultados de una busqueda especifica, que no tiene ninguna

@@ -8,6 +8,7 @@ package mx.edu.cobach.persistencia;
 import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
@@ -142,6 +143,55 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
                     createCriteria(entityClass, "implementacion");
             Criteria critEmpleados = criteria.createCriteria("empleados");
             critEmpleados.add(Restrictions.eq("plantel", plantel));
+            ts = criteria.list(); 
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron a los empleados de tal Direccion.
+     * @param direccion objeto de tipo entidad direccion
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarPorDireccion(Direccion direccion){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria criteria = HibernateUtil.getSession().
+                    createCriteria(entityClass, "implementacion");
+            Criteria critEmpleados = criteria.createCriteria("empleados");
+            critEmpleados.add(Restrictions.eq("direccion", direccion));
+            ts = criteria.list(); 
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron en una sede especifica.
+     * @param sede objeto de tipo entidad sede
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarPorSede(Sede sede){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria criteria = HibernateUtil.getSession().
+                    createCriteria(entityClass, "implementacion");
+            criteria.add(Restrictions.eq("sede", sede));
             ts = criteria.list(); 
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
