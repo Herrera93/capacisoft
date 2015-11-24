@@ -807,8 +807,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             atributos.add(nombreGCBx.getSelectedItem());
             for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
                 Empleado empleado = new Empleado();
-                empleado.setId(Integer.parseInt((String) modelTablaEmF.
-                        getValueAt(x, 0)));
+                empleado.setNumero((String) modelTablaEmF.getValueAt(x, 0));
                 lisEmpleado.add(empleado);
             }
             atributos.add(lisEmpleado);
@@ -862,16 +861,14 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
 
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
-
-            tableData[x][0] = empleado.getId() + "";
-            tableData[x][1] = empleado.getNumero() + "";
+            tableData[x][0] = empleado.getNumero() + "";
             if (empleado.getSegundoNombre() == null) {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + 
+                tableData[x][1] = empleado.getPrimerNombre() + " " + 
                         empleado.getApellidoPaterno() + " " + empleado.
                                 getApellidoMaterno();
 
             } else {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + 
+                tableData[x][1] = empleado.getPrimerNombre() + " " + 
                         empleado.getSegundoNombre() + " " + empleado.
                                 getApellidoPaterno() + " " + empleado.
                                         getApellidoMaterno();

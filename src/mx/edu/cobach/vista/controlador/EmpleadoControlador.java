@@ -25,7 +25,28 @@ public class EmpleadoControlador extends BaseControlador {
      */
     public EmpleadoControlador(Comunicador com, Class clazz) {
         super(com, clazz);
-    }    
+    }
+    
+    /**
+     * Metodo para la eliminacion de un empleado, este esta separado de los
+     * demas debido a que tiene un llave primaria de cadena.
+     * @param id Id de empleado a eliminar
+     */
+    public void baja(String id){
+        String mensaje = ServiceLocatorDELEGATE.getEmpleado().baja(id);
+        com.setMensaje(mensaje);
+    }
+    
+    /**
+     * Metodo para buscar un empleado especifico a traves de un identificador,
+     * este metodo es separado del generico debido a que Empleado tiene una
+     * llave primaria de tipo cadena.
+     * @param id Identificador del empleado
+     */
+    public void buscar(String id){
+        Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
+        com.setInfo(HelperEntidad.descomponerObjeto(empleado));
+    }
     
     /**
      * Metodo para buscar un registro especifico a traves de un nombre
@@ -57,4 +78,6 @@ public class EmpleadoControlador extends BaseControlador {
             com.setMensaje("El numero de empleado ya existe");
         }
     }
+    
+    
 }

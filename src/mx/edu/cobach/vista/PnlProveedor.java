@@ -266,7 +266,6 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                 .addGap(32, 32, 32))
         );
 
-        informacionTBn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         informacionTBn.setMaximumSize(new java.awt.Dimension(767, 587));
         informacionTBn.setMinimumSize(new java.awt.Dimension(767, 587));
         informacionTBn.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -462,7 +461,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                                 .addComponent(validTelefonoLbl)
                                 .addComponent(telefonoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -603,16 +602,16 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnl1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(devolverLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addGap(18, 18, 18)
                         .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(18, 18, 18)
                         .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                        .addGap(32, 32, 32))
                     .addGroup(listaPnl1Layout.createSequentialGroup()
                         .addGroup(listaPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(totalEmpleadosLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 51, Short.MAX_VALUE))))
+                        .addGap(0, 55, Short.MAX_VALUE))))
             .addGroup(listaPnl1Layout.createSequentialGroup()
                 .addGroup(listaPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listaPnl1Layout.createSequentialGroup()
@@ -638,7 +637,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                 .addComponent(seleccionLALbl)
                 .addGap(18, 18, 18)
                 .addComponent(buscarLABtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(listaAsistenciaLALbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -649,7 +648,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                     .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(devolverLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                .addGap(44, 44, 44))
         );
 
         informacionTBn.addTab("Lista de eventos", listaPnl1);
@@ -742,6 +741,7 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                 proveedoresTbl.clearSelection();
             }
         }
+        proveedoresTbl.clearSelection();
     }//GEN-LAST:event_proveedoresTblMouseClicked
     
     private void externoRBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_externoRBtnMouseClicked

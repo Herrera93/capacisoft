@@ -43,4 +43,25 @@ public class EmpleadoDELEGATE {
     public List<Object> validarPorNumero(int numero){
         return ServiceLocatorFACADE.getEmpleado().validarPorNumero(numero);
     }
+    
+    /**
+     * Metodo para la eliminacion de un empleado, este esta separado de los
+     * demas debido a que tiene un llave primaria de cadena.
+     * @param id Id de empleado a eliminar
+     */
+    public String baja(String id){
+        return ServiceLocatorFACADE.getEmpleado().delete(id);
+    }
+    
+    /**
+     * Metodo para buscar un empleado especifico a traves de un identificador,
+     * este metodo es separado del generico debido a que Empleado tiene una
+     * llave primaria de tipo cadena.
+     * @param id Identificador del empleado
+     * @return Regresa el objeto del empleado encontrado o un nulo en caso
+     * de algun problema
+     */
+    public Object buscar(String id){
+        return ServiceLocatorFACADE.getEmpleado().find(id);
+    }
 }

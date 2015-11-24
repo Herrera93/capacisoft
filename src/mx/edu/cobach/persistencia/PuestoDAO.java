@@ -22,6 +22,11 @@ public class PuestoDAO<T> extends BaseDAO{
         
     }
     
+    /**
+     * Metodo para buscar un registro especifico a traves de un nombre
+     * @param nombre Nombre del puesto a buscar
+     * @return lista de objetos con la información de puesto
+    */
     public List<T> find(String nombre) {
         List<T> t = null;
         try{

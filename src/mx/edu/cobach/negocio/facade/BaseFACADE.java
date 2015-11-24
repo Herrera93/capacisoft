@@ -52,8 +52,7 @@ public class BaseFACADE {
      */
     public String delete(Object obj, Class clazz) {
         ServiceLocator.getInstance().setEntity(clazz);
-        return ServiceLocator.getInstance().delete(obj);
-        
+        return ServiceLocator.getInstance().delete(obj);   
     }
     
 }

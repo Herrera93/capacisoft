@@ -27,6 +27,7 @@ import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.entidades.TipoProveedor;
 import mx.edu.cobach.persistencia.entidades.Alerta;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 
 /**
@@ -152,11 +153,10 @@ public class HelperEntidad {
         System.out.println(ads.getDescripcion());
         if(ads.getDescripcion().equalsIgnoreCase("Plantel")){
             e.setPlantel((Plantel) atributos.get(8));
-        }else{
+        }else if (ads.getDescripcion().equalsIgnoreCase("departamento")){
             e.setDepartamento((Departamento) atributos.get(9));
-        }
-        if (atributos.size() > 10) {
-            e.setId((int) atributos.get(10));
+        }else{
+            e.setDireccion((Direccion) atributos.get(10));
         }
         return e;
     }
@@ -280,7 +280,6 @@ public class HelperEntidad {
     private static List<Object> descomponerEmpleado(Empleado empleado) {
         List<Object> info = new ArrayList<>();
         System.out.println(empleado.getPrimerNombre());
-        info.add(empleado.getId());
         info.add(empleado.getNumero());
         info.add(empleado.getPrimerNombre());
         info.add(empleado.getSegundoNombre());
@@ -291,6 +290,7 @@ public class HelperEntidad {
         info.add(empleado.getPlantel());
         info.add(empleado.getAdscripcion());
         info.add(empleado.getDepartamento());
+        info.add(empleado.getDireccion());
         return info;
     }
     
@@ -527,13 +527,12 @@ public class HelperEntidad {
         String[][] info = new String[emps.size()][3];
         for(int i = 0; i < emps.size(); i++){
             Empleado e = emps.get(i);
-            info[i][0] = e.getId().toString();
-            info[i][1] = e.getNumero();
+            info[i][0] = e.getNumero();
             if(e.getSegundoNombre()==null){
-                info[i][2] = e.getPrimerNombre() + " " 
+                info[i][1] = e.getPrimerNombre() + " " 
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }else{
-                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                info[i][1] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }
         }

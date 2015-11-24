@@ -12,7 +12,7 @@
             <column name="aspecto_id" not-null="true" />
         </many-to-one>
         <many-to-one name="empleado" class="mx.edu.cobach.persistencia.entidades.Empleado" fetch="select">
-            <column name="empleado_id" not-null="true" />
+            <column name="empleado_numero" not-null="true" />
         </many-to-one>
         <many-to-one name="encuesta" class="mx.edu.cobach.persistencia.entidades.Encuesta" fetch="select">
             <column name="encuesta_id" not-null="true" />

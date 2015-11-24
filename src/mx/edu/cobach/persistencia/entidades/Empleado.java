@@ -11,7 +11,6 @@ import java.util.Set;
 public class Empleado  implements java.io.Serializable {
 
 
-     private Integer id;
      private Adscripcion adscripcion;
      private Departamento departamento;
      private Plantel plantel;
@@ -55,13 +54,6 @@ public class Empleado  implements java.io.Serializable {
        this.implementacionEventos = implementacionEventos;
     }
    
-    public Integer getId() {
-        return this.id;
-    }
-    
-    public void setId(Integer id) {
-        this.id = id;
-    }
     public Adscripcion getAdscripcion() {
         return this.adscripcion;
     }

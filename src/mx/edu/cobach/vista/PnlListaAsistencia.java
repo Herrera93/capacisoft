@@ -423,11 +423,10 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             for (Iterator it = listaAsistencia.getEmpleados().iterator(); it.hasNext();) {
                 x++;
                 Empleado empleado = (Empleado) it.next();
-                lista[x][0] = empleado.getId() + "";
-                lista[x][1] = empleado.getNumero() + "";
-                lista[x][2] = empleado.getPrimerNombre() + " " + empleado.getSegundoNombre()
+                lista[x][0] = empleado.getNumero() + "";
+                lista[x][1] = empleado.getPrimerNombre() + " " + empleado.getSegundoNombre()
                         + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
-                lista[x][3] = empleado
+                lista[x][2] = empleado
                         .getPuesto().toString();
             }
 

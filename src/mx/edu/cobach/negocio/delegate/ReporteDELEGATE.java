@@ -40,17 +40,16 @@ public class ReporteDELEGATE {
         String[][] info = new String[emps.size()][5];
         for (int i = 0; i < emps.size(); i++) {
             Empleado e = (Empleado) emps.get(i);
-            info[i][0] = e.getId().toString();
-            info[i][1] = e.getNumero();
+            info[i][0] = e.getNumero();
             if (e.getSegundoNombre()== null) {
-                info[i][2] = e.getPrimerNombre() + " "+ e.getApellidoPaterno() +
+                info[i][1] = e.getPrimerNombre() + " "+ e.getApellidoPaterno() +
                         " " + e.getApellidoMaterno();
             } else {
-                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                info[i][1] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }
-            info[i][3] = e.getPuesto().toString();
-            info[i][4] = e.getCorreo();
+            info[i][2] = e.getPuesto().toString();
+            info[i][3] = e.getCorreo();
         }
         return info;
     }
@@ -69,17 +68,16 @@ public class ReporteDELEGATE {
         String[][] info = new String[emps.size()][5];
         for (int i = 0; i < emps.size(); i++) {
             Empleado e = (Empleado) emps.get(i);
-            info[i][0] = e.getId().toString();
-            info[i][1] = e.getNumero();
+            info[i][0] = e.getNumero();
             if (e.getSegundoNombre()== null) {
-                info[i][2] = e.getPrimerNombre() + " "+ e.getApellidoPaterno() +
+                info[i][1] = e.getPrimerNombre() + " "+ e.getApellidoPaterno() +
                         " " + e.getApellidoMaterno();
             } else {
-                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                info[i][1] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }
-            info[i][3] = e.getPuesto().toString();
-            info[i][4] = e.getCorreo();
+            info[i][2] = e.getPuesto().toString();
+            info[i][3] = e.getCorreo();
         }
         return info;
     }

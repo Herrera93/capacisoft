@@ -227,11 +227,6 @@
     </Container>
     <Container class="javax.swing.JTabbedPane" name="informacionTBn">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
-          </Border>
-        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[767, 587]"/>
         </Property>
@@ -328,7 +323,7 @@
                           </Group>
                           <Component id="agregarLbl" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="223" max="32767" attributes="0"/>
+                      <EmptySpace pref="227" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -656,18 +651,18 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="devolverLABtn" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Component id="cancelarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Component id="guardarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jScrollPane5" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
                                   <Component id="totalEmpleadosLbl" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="55" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -702,7 +697,7 @@
                       <Component id="seleccionLALbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buscarLABtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="232" max="-2" attributes="0"/>
@@ -714,7 +709,7 @@
                           <Component id="cancelarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="devolverLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
