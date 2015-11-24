@@ -830,6 +830,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      * PnlProgramarEvento para que este la pueda modificar
      *
      * @param info
+     * @param estado
      */
     public void obtenerMod(List info,String estado) {
         ImplementacionEvento eventoImplementado = new ImplementacionEvento();
