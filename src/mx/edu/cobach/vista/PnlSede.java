@@ -234,7 +234,7 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -268,6 +268,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 nombreTFdFocusLost(evt);
             }
         });
+        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTFdKeyTyped(evt);
+            }
+        });
 
         coloniaTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         coloniaTFd.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -276,6 +281,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 coloniaTFdFocusLost(evt);
+            }
+        });
+        coloniaTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                coloniaTFdKeyTyped(evt);
             }
         });
 
@@ -295,6 +305,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 capacidadTFdFocusLost(evt);
             }
         });
+        capacidadTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                capacidadTFdKeyTyped(evt);
+            }
+        });
 
         calleLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         calleLbl.setText("Calle:");
@@ -311,6 +326,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 calleTFdFocusLost(evt);
             }
         });
+        calleTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calleTFdKeyTyped(evt);
+            }
+        });
 
         numeroTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroTFd.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -319,6 +339,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 numeroTFdFocusLost(evt);
+            }
+        });
+        numeroTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numeroTFdKeyTyped(evt);
             }
         });
 
@@ -337,6 +362,11 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 lugarTFdFocusLost(evt);
+            }
+        });
+        lugarTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                lugarTFdKeyTyped(evt);
             }
         });
 
@@ -388,7 +418,6 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                     .addComponent(cantidadLbl)
                     .addComponent(agregarMsjLbl)
                     .addComponent(agregarLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calleLbl)
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,7 +428,9 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                                     .addComponent(coloniaLbl)
                                     .addGap(86, 86, 86)))
                             .addGroup(informacionPnlLayout.createSequentialGroup()
-                                .addComponent(municipioLbl)
+                                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(municipioLbl)
+                                    .addComponent(calleLbl))
                                 .addGap(75, 75, 75)))
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(municipioCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,15 +479,12 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lugarLbl1)
                     .addComponent(lugarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(informacionPnlLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(calleLbl))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(validLugarLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(calleTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validLugarLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(calleTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calleLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validCalleLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -723,6 +751,112 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             validNumeroLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_numeroTFdFocusLost
+
+    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
+         char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_nombreTFdKeyTyped
+
+    private void capacidadTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_capacidadTFdKeyTyped
+         char car = evt.getKeyChar();
+        if (capacidadTFd.getText().length() >= 6 || !Character.isDigit(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_capacidadTFdKeyTyped
+
+    private void lugarTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lugarTFdKeyTyped
+         char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_lugarTFdKeyTyped
+
+    private void calleTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFdKeyTyped
+         char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_calleTFdKeyTyped
+
+    private void coloniaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFdKeyTyped
+         char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_coloniaTFdKeyTyped
+
+    private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
+         char car = evt.getKeyChar();
+        if (nombreTFd.getText().length() >= 10 && !Character.isDigit(car)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_numeroTFdKeyTyped
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

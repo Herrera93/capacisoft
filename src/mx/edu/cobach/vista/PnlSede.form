@@ -124,7 +124,7 @@
                   <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="340" max="-2" attributes="0"/>
-                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,7 +272,6 @@
                       <Component id="cantidadLbl" min="-2" max="-2" attributes="0"/>
                       <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
                       <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="calleLbl" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
@@ -285,8 +284,11 @@
                                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="municipioLbl" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="municipioLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="calleLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -350,17 +352,12 @@
                       <Component id="lugarLbl1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lugarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="calleLbl" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="validLugarLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                          <Component id="calleTFd" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validLugarLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="calleTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="calleLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="validCalleLbl" min="-2" max="-2" attributes="0"/>
@@ -438,6 +435,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="coloniaTFd">
@@ -449,6 +447,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="coloniaTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="coloniaTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="coloniaTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="municipioCBx">
@@ -485,6 +484,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="capacidadTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="capacidadTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="capacidadTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="calleLbl">
@@ -512,6 +512,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="calleTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="calleTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="calleTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="numeroTFd">
@@ -523,6 +524,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="numeroTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="numeroTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="numeroTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="agregarLbl">
@@ -555,6 +557,7 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lugarTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lugarTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lugarTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="validNomLbl">

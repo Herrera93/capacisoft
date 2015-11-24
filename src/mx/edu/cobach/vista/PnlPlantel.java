@@ -375,14 +375,14 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(numeroTFd, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(coloniaTFd, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(calleTFd)
                             .addGroup(informacionPnlLayout.createSequentialGroup()
                                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(validNumeroLbl)
                                     .addComponent(validColoniaLbl)
                                     .addComponent(validCalleLbl))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(zonaCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(zonaCBx, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(calleTFd)))
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addComponent(nombreAgregarLbl)
                         .addGap(83, 83, 83)
@@ -640,7 +640,23 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
 
     private void calleTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calleTFdKeyTyped
         char car = evt.getKeyChar();
-        if (calleTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
             evt.consume();
         }
     }//GEN-LAST:event_calleTFdKeyTyped
@@ -676,14 +692,30 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
 
     private void coloniaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coloniaTFdKeyTyped
         char car = evt.getKeyChar();
-        if (coloniaTFd.getText().length() >= 55 || !Character.isLetter(car)) {
+        if (nombreTFd.getText().length() >= 55) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
             evt.consume();
         }
     }//GEN-LAST:event_coloniaTFdKeyTyped
 
     private void numeroTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroTFdKeyTyped
         char car = evt.getKeyChar();
-        if (numeroTFd.getText().length() >= 45) {
+        if (numeroTFd.getText().length() >= 45 || !Character.isDigit(car)) {
             evt.consume();
         }
     }//GEN-LAST:event_numeroTFdKeyTyped

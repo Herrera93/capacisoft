@@ -5,6 +5,7 @@
 package mx.edu.cobach.vista;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -408,7 +409,23 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
         char car = evt.getKeyChar();
-        if (nombreTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+        if (nombreTFd.getText().length() >= 45) {
+            evt.consume();
+        }
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && car != 'á' //Minúsculas             
+                && car != 'é'
+                && car != 'í'
+                && car != 'ó'
+                && car != 'ú'
+                && car != 'Á' //Mayúsculas             
+                && car != 'É'
+                && car != 'Í'
+                && car != 'Ó'
+                && car != 'Ú'
+                && car != 'ñ'
+                && car != 'Ñ'
+                && (car != (char) KeyEvent.VK_SPACE)) {
             evt.consume();
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
@@ -443,7 +460,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
-            validNomLbl.setText("El nombre del plantel ya existe");
+            validNomLbl.setText("El nombre del puesto ya existe");
             validNomLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_nombreTFdFocusLost
