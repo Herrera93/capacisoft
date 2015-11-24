@@ -16,4 +16,5 @@ public class PlantelFACADE extends BaseFACADE{
     public List<Object> buscarPorNombre(String nombre){
         return ServiceLocator.getPlantel().findByNombre(nombre);
     }
+    
 }

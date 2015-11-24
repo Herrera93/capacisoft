@@ -16,4 +16,5 @@ public class PlantelDELEGATE {
     public List<Object> buscarPorNombre(String nombre){
         return ServiceLocatorFACADE.getPlantel().buscarPorNombre(nombre);
     }
+    
 }

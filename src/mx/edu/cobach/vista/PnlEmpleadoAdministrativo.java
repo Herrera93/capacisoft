@@ -18,9 +18,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.persistencia.entidades.Puesto;
+ import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.EmpleadoControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 
@@ -33,14 +34,15 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
     private final DefaultTableModel model;
     private final DefaultComboBoxModel puestoModel, plantelModel, dptoModel,
-            adscripModel;
+            adscripModel, dirModel;
     private final String[] titulosTabla;
     private final EmpleadoControlador control;
     private int idEmpleadoActual;
     private final Border BORDER_ORIGINAL;
 
     /**
-     * Constructor del PnlEmpleadoAdministrativo
+     * Constructor del PnlEmpleadoAdministrativo e instancia la clase EmpleadoControlador. 
+     * Se crea modelo de la tabla y se realiza la busqueda 
      */
     public PnlEmpleadoAdministrativo() {
         this.titulosTabla = new String[]{"ID", "Numero", "Nombre", "Eliminar"};
@@ -63,16 +65,21 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelModel = new DefaultComboBoxModel();
         dptoModel = new DefaultComboBoxModel();
         adscripModel = new DefaultComboBoxModel();
+        dirModel = new DefaultComboBoxModel();
         puestoCBx.setModel(puestoModel);
         plantelCBx.setModel(plantelModel);
         departamentoCBx.setModel(dptoModel);
         adscCBx.setModel(adscripModel);
         adscBuscarCBx.setModel(adscripModel);
+        direccionCBx.setModel(dirModel);
         numeroTFd.addFocusListener(this);
         primerNombreTFd.addFocusListener(this);
         primerApellidoTFd.addFocusListener(this);
         correoTFd.addFocusListener(this);
         BORDER_ORIGINAL = numeroTFd.getBorder();
+        informacionJTP.setEnabledAt(0, true);
+        informacionJTP.setEnabledAt(1, false);
+        informacionJTP.setSelectedIndex(0);
         control.buscarTodos();
 
     }
@@ -98,13 +105,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         opcionMsjLbl = new javax.swing.JLabel();
         opcionLbl = new javax.swing.JLabel();
         tablaMsjLbl = new javax.swing.JLabel();
-        InformacionJTP = new javax.swing.JTabbedPane();
+        informacionJTP = new javax.swing.JTabbedPane();
         informacion1Pnl = new javax.swing.JPanel();
         numeroLbl = new javax.swing.JLabel();
         correoELbl = new javax.swing.JLabel();
         numeroTFd = new javax.swing.JTextField();
         correoTFd = new javax.swing.JTextField();
-        guardarBtn = new javax.swing.JButton();
         primerNombreLbl = new javax.swing.JLabel();
         primerNombreTFd = new javax.swing.JTextField();
         segNombreTFd = new javax.swing.JTextField();
@@ -121,12 +127,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         validApellLbl = new javax.swing.JLabel();
         validCorreo_Lbl = new javax.swing.JLabel();
         cancelarBtn = new javax.swing.JButton();
+        siguienteBtn = new javax.swing.JButton();
         informacion2Pnl = new javax.swing.JPanel();
         puestoCBx = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         puestoLbll = new javax.swing.JLabel();
         adscLbl = new javax.swing.JLabel();
-        departamentoLbl = new javax.swing.JLabel();
+        direccionLbl = new javax.swing.JLabel();
         plantelCBx = new javax.swing.JComboBox();
         adscCBx = new javax.swing.JComboBox();
         departamentoCBx = new javax.swing.JComboBox();
@@ -134,6 +141,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         plantelLbl = new javax.swing.JLabel();
+        cancelarBtn2 = new javax.swing.JButton();
+        guardarBtn = new javax.swing.JButton();
+        departamentoLbl1 = new javax.swing.JLabel();
+        direccionCBx = new javax.swing.JComboBox();
+        regresarBtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
@@ -303,15 +316,6 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }
         });
 
-        guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        guardarBtn.setText("Guardar");
-        guardarBtn.setEnabled(false);
-        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarBtnActionPerformed(evt);
-            }
-        });
-
         primerNombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         primerNombreLbl.setText("Primer nombre:");
 
@@ -379,6 +383,15 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }
         });
 
+        siguienteBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        siguienteBtn.setText("Siguiente");
+        siguienteBtn.setEnabled(false);
+        siguienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout informacion1PnlLayout = new javax.swing.GroupLayout(informacion1Pnl);
         informacion1Pnl.setLayout(informacion1PnlLayout);
         informacion1PnlLayout.setHorizontalGroup(
@@ -391,10 +404,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                             .addComponent(registroMsjLbl)
                             .addComponent(registroLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(informacion1PnlLayout.createSequentialGroup()
-                                .addGap(437, 437, 437)
+                                .addGap(323, 323, 323)
                                 .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(43, 43, 43)
+                                .addComponent(siguienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(informacion1PnlLayout.createSequentialGroup()
                         .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(informacion1PnlLayout.createSequentialGroup()
@@ -433,7 +446,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(numeroTFd)))))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         informacion1PnlLayout.setVerticalGroup(
             informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,12 +494,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 .addComponent(validCorreo_Lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(informacion1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siguienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
-        InformacionJTP.addTab("tab1", informacion1Pnl);
+        informacionJTP.addTab("tab1", informacion1Pnl);
 
         puestoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         puestoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -503,8 +516,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         adscLbl.setText("Adscripción: ");
 
-        departamentoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        departamentoLbl.setText("Departamento:");
+        direccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        direccionLbl.setText("Direccion");
 
         plantelCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -541,6 +554,45 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelLbl.setText("Plantel:");
 
+        cancelarBtn2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarBtn2.setText("Cancelar");
+        cancelarBtn2.setEnabled(false);
+        cancelarBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtn2ActionPerformed(evt);
+            }
+        });
+
+        guardarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        guardarBtn.setText("Guardar");
+        guardarBtn.setEnabled(false);
+        guardarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarBtnActionPerformed(evt);
+            }
+        });
+
+        departamentoLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        departamentoLbl1.setText("Departamento:");
+
+        direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        direccionCBx.setToolTipText("Seleccioné el departamento que esta asigando el empleado");
+        direccionCBx.setEnabled(false);
+
+        regresarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        regresarBtn.setText("Regresar");
+        regresarBtn.setEnabled(false);
+        regresarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(213, 216, 222));
+        jLabel10.setText("Este campo es obligatorio");
+
         javax.swing.GroupLayout informacion2PnlLayout = new javax.swing.GroupLayout(informacion2Pnl);
         informacion2Pnl.setLayout(informacion2PnlLayout);
         informacion2PnlLayout.setHorizontalGroup(
@@ -552,18 +604,28 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     .addGroup(informacion2PnlLayout.createSequentialGroup()
                         .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(plantelLbl)
-                            .addComponent(departamentoLbl)
-                            .addComponent(puestoLbll))
+                            .addComponent(direccionLbl)
+                            .addComponent(puestoLbll)
+                            .addComponent(departamentoLbl1))
                         .addGap(37, 37, 37)
-                        .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9)
+                                .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(direccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10))
+                            .addGroup(informacion2PnlLayout.createSequentialGroup()
+                                .addComponent(cancelarBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         informacion2PnlLayout.setVerticalGroup(
@@ -575,28 +637,40 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     .addComponent(puestoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(adscLbl)
                     .addComponent(adscCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(38, 38, 38)
                 .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(plantelLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(38, 38, 38)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(departamentoLbl))
+                    .addComponent(departamentoLbl1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(direccionLbl)
+                    .addComponent(direccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelarBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(guardarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39))
         );
 
-        InformacionJTP.addTab("tab2", informacion2Pnl);
+        informacionJTP.addTab("tab2", informacion2Pnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -605,12 +679,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             .addGroup(layout.createSequentialGroup()
                 .addComponent(opcionPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InformacionJTP))
+                .addComponent(informacionJTP))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-            .addComponent(InformacionJTP, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(informacionJTP, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -638,7 +712,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         atributos.add(adscCBx.getSelectedItem());
         atributos.add(plantelCBx.getSelectedItem());
         atributos.add(departamentoCBx.getSelectedItem());
-
+        atributos.add(direccionCBx.getSelectedItem());
+        informacionJTP.setEnabledAt(0, true);
+        informacionJTP.setEnabledAt(1, false);
+        informacionJTP.setSelectedIndex(0);
+        
         //Se limpian los campos
         numeroTFd.setText("");
         primerNombreTFd.setText("");
@@ -650,6 +728,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         adscCBx.setSelectedIndex(0);
         plantelCBx.setSelectedIndex(0);
         departamentoCBx.setSelectedIndex(0);
+        direccionCBx.setSelectedIndex(0);
 
         //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
         //contenido en el boton.
@@ -660,10 +739,24 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             control.modificacion(HelperEntidad.getEmpleado(atributos));
         }
         guardarBtn.setText("Guardar");
+        numeroTFd.setBorder(BORDER_ORIGINAL);
+        validNumLbl.setForeground(new Color(213, 216, 222));
+        primerNombreTFd.setBorder(BORDER_ORIGINAL);
+        validNombLbl.setForeground(new Color(213, 216, 222));
+        primerApellidoTFd.setBorder(BORDER_ORIGINAL);
+        validApellLbl.setForeground(new Color(213, 216, 222));
+        correoTFd.setBorder(BORDER_ORIGINAL);
+        validCorreo_Lbl.setForeground(new Color(213, 216, 222));
         control.buscarTodos();
+        setEnabledPanelInformacion(false);
     }//GEN-LAST:event_guardarBtnActionPerformed
 
-
+    /**
+     * Evento ejecutado al presionar el botón, habilita y limpia los campos para
+     * realizar un nuevo registro, modifica el texto contenido en los labels.
+     *
+     * @param evt Evento al presionar el botón
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         int renglon = tablaTbl.getSelectedRow();
         if (renglon == -1) {
@@ -863,22 +956,88 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_correoTFdKeyTyped
 
+   /**
+     * Evento ejecutado al realizar una seleccion en el ComboBox de adscripcion,
+     * desactivando o activando otros ComboBox
+     * @param evt Evento al presionar el boton
+     */
     private void adscCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adscCBxActionPerformed
         if (adscCBx.getSelectedIndex() == 0) {
             plantelCBx.setEnabled(false);
             departamentoCBx.setEnabled(false);
+            direccionCBx.setEnabled(false);
         } else if (adscCBx.getSelectedIndex() == 1) {
             plantelCBx.setEnabled(false);
             departamentoCBx.setEnabled(true);
+            direccionCBx.setEnabled(false);
         } else if (adscCBx.getSelectedIndex() == 2) {
             departamentoCBx.setEnabled(false);
             plantelCBx.setEnabled(true);
+            direccionCBx.setEnabled(false);
+        } else if (adscCBx.getSelectedIndex() == 3) {
+            departamentoCBx.setEnabled(false);
+            plantelCBx.setEnabled(false);
+            direccionCBx.setEnabled(true);
         }
     }//GEN-LAST:event_adscCBxActionPerformed
 
+    /**
+     * Evento que se ejecuta al presionar el boton Cancelar el cual va a limpiar
+     * todos lo campos del panel info y los desahabilitara para realizar otra
+     * accion.
+     *
+     * @param evt
+     */
+    private void cancelarBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtn2ActionPerformed
+        //Se limpian los campos
+        informacionJTP.setEnabledAt(0, true);
+        informacionJTP.setEnabledAt(1, false);
+        informacionJTP.setSelectedIndex(0);
+        numeroTFd.setText("");
+        primerNombreTFd.setText("");
+        segNombreTFd.setText("");
+        primerApellidoTFd.setText("");
+        segApellidoTFd.setText("");
+        correoTFd.setText("");
+        adscCBx.setSelectedIndex(0);
+        plantelCBx.setSelectedIndex(0);
+        departamentoCBx.setSelectedIndex(0);
+        guardarBtn.setText("Guardar");
+        numeroTFd.setBorder(BORDER_ORIGINAL);
+        primerNombreTFd.setBorder(BORDER_ORIGINAL);
+        primerApellidoTFd.setBorder(BORDER_ORIGINAL);
+        correoTFd.setBorder(BORDER_ORIGINAL);
+        validNumLbl.setForeground(new Color(213, 216, 222));
+        validNombLbl.setForeground(new Color(213, 216, 222));
+        validApellLbl.setForeground(new Color(213, 216, 222));
+        validCorreo_Lbl.setForeground(new Color(213, 216, 222));
+        setEnabledPanelInformacion(false);
+    }//GEN-LAST:event_cancelarBtn2ActionPerformed
+
+    /**
+     * Evento que se ejecuta al presionar el boton Regresar el cual hace la 
+     * transicion de un panel a otro
+     * @param evt
+     */
+    private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
+        informacionJTP.setEnabledAt(0, true);
+        informacionJTP.setEnabledAt(1, false);
+        informacionJTP.setSelectedIndex(0);
+    }//GEN-LAST:event_regresarBtnActionPerformed
+
+    /**
+     * Evento ejecutado al presionar el botón, activa y desactiva los paneles de
+     * los paneles de empleado administrativo.
+     * @param evt Evento al presionar el boton
+     */
+    private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
+        informacionJTP.setEnabledAt(0, false);
+        informacionJTP.setEnabledAt(1, true);
+        informacionJTP.setSelectedIndex(1);
+    }//GEN-LAST:event_siguienteBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane InformacionJTP;
     private javax.swing.JComboBox adscBuscarCBx;
     private javax.swing.JLabel adscBuscarLbl;
     private javax.swing.JComboBox adscCBx;
@@ -886,14 +1045,19 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton cancelarBtn;
+    private javax.swing.JButton cancelarBtn2;
     private javax.swing.JLabel correoELbl;
     private javax.swing.JTextField correoTFd;
     private javax.swing.JComboBox departamentoCBx;
-    private javax.swing.JLabel departamentoLbl;
+    private javax.swing.JLabel departamentoLbl1;
+    private javax.swing.JComboBox direccionCBx;
+    private javax.swing.JLabel direccionLbl;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacion1Pnl;
     private javax.swing.JPanel informacion2Pnl;
+    private javax.swing.JTabbedPane informacionJTP;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -915,10 +1079,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JLabel puestoLbll;
     private javax.swing.JLabel registroLbl;
     private javax.swing.JLabel registroMsjLbl;
+    private javax.swing.JButton regresarBtn;
     private javax.swing.JLabel segApellidoLbl;
     private javax.swing.JTextField segApellidoTFd;
     private javax.swing.JLabel segNombreLbl;
     private javax.swing.JTextField segNombreTFd;
+    private javax.swing.JButton siguienteBtn;
     private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JScrollPane tablaSPn;
     private javax.swing.JTable tablaTbl;
@@ -928,6 +1094,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     private javax.swing.JLabel validNumLbl;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
+     * registro exitoso, modificacion o eliminación.
+     *
+     * @param mensaje String con mensaje de confirmacion de registro.
+     */
     @Override
     public void setMensaje(String mensaje) {
         switch (mensaje) {
@@ -971,6 +1143,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         tablaTbl.getColumnModel().getColumn(1).setPreferredWidth(230);
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador que recibe una Lista con la
+     * los resultados de una busqueda especifica y vaciarlo en los campos y
+     * checkbox
+     *
+     * @param info Lista de Objeto con información de búsqueda.
+     * @param i
+     */
     @Override
     public void setLista(List info, int i) {
         if (info.isEmpty()) {
@@ -1010,9 +1190,21 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 adscripModel.insertElementAt(new Departamento(), 0);
                 adscCBx.setSelectedIndex(0);
                 break;
+            case 5:
+                dirModel.removeAllElements();
+                for (int j = 0; j < info.size(); j++) {
+                    dirModel.addElement(info.get(j));
+                }
+                dirModel.insertElementAt(new Departamento(), 0);
+                direccionCBx.setSelectedIndex(0);
+                break;
         }
     }
 
+    /**
+     * Metodo se manda hacer consultas de tablas y e insertar los valores en los
+     * modelos de los ComboBox
+     */
     public void llenarTodo() {
         control.buscarTodos();
         control.setClass(Puesto.class);
@@ -1023,6 +1215,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         control.buscarTodosLista(3);
         control.setClass(Adscripcion.class);
         control.buscarTodosLista(4);
+        control.setClass(Direccion.class);
+        control.buscarTodosLista(5);
         control.setClass(Empleado.class);
         setEnabledPanelInformacion(false);
 
@@ -1038,8 +1232,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         correoTFd.setEnabled(b);
         puestoCBx.setEnabled(b);
         adscCBx.setEnabled(b);
+        direccionCBx.setEnabled(b);
         guardarBtn.setEnabled(b);
         cancelarBtn.setEnabled(b);
+        cancelarBtn2.setEnabled(b);
+        regresarBtn.setEnabled(b);
+        siguienteBtn.setEnabled(b);
     }
 
     /**
@@ -1064,11 +1262,18 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelModel.setSelectedItem(info.get(8));
         adscripModel.setSelectedItem(info.get(9));
         dptoModel.setSelectedItem(info.get(10));
+        dirModel.setSelectedItem(info.get(11));
         adscCBx.setEnabled(true);
         puestoCBx.setEnabled(true);
         guardarBtn.setText("Modificar");
     }
 
+    
+    /**
+     * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
+     * a la configuracion inicial.
+     * @param e Evento al perder foco
+     */
     @Override
     public void focusGained(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1087,6 +1292,12 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
+     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * obligatorio
+     * @param e Evento al perder foco
+     */
     @Override
     public void focusLost(FocusEvent e) {
         Object fuente = e.getSource();
@@ -1130,6 +1341,13 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         }
     }
 
+    /**
+     * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
+     * registro exitoso, modificacion o eliminación.
+     *
+     * @param evento objecto de eventos 
+     */
+    @Override
     public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

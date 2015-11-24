@@ -22,4 +22,9 @@ public class ProveedorControlador extends BaseControlador{
     public void altaTelefonos(Object obj){
         ServiceLocatorDELEGATE.getInstance().saveOrUpdate(obj, clazz);
     }
+    
+    public boolean buscarImplementaciones(int id){
+        return ServiceLocatorDELEGATE.getProveedorDelegate()
+            .buscarImplementaciones(id) != null;
+    }
 }

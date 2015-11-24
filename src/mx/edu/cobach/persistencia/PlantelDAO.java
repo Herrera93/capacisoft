@@ -7,6 +7,7 @@ package mx.edu.cobach.persistencia;
 
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import java.util.List;
+import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
@@ -24,7 +25,7 @@ public class PlantelDAO extends BaseDAO{
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass)
                     .add(Restrictions.or(
-                            Restrictions.like("nombre", nombre + "%")))
+                            Restrictions.like("nombre", "%" + nombre + "%")))
                     .list();
             HibernateUtil.commitTransaction();            
         }catch(HibernateException e){
@@ -34,4 +35,5 @@ public class PlantelDAO extends BaseDAO{
         }
         return ts;
     }
+    
 }

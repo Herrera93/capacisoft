@@ -108,28 +108,22 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     private void agregar(){
         resultadoPnl = new PnlEncuestaResultado();
         
-        resultadoPnl.setLocation(408,0);
-        resultadoPnl.setSize(773,589);
+        resultadoPnl.setLocation(396,0);
+        resultadoPnl.setSize(785,589);
         resultadoPnl.setVisible(false);
         add(resultadoPnl);
         
         agregarAspectosPnl = new PnlAgregarAspectos();
-        agregarAspectosPnl.setLocation(408,0);
-        agregarAspectosPnl.setSize(773,589);
+        agregarAspectosPnl.setLocation(396,0);
+        agregarAspectosPnl.setSize(785,589);
         agregarAspectosPnl.setVisible(true);
         add(agregarAspectosPnl);
         
         agregarEmpleadosPnl = new PnlAgregarEmpleados();
-        agregarEmpleadosPnl.setLocation(408,0);
-        agregarEmpleadosPnl.setSize(773,589);
+        agregarEmpleadosPnl.setLocation(396,0);
+        agregarEmpleadosPnl.setSize(785,589);
         agregarEmpleadosPnl.setVisible(false);
         add(agregarEmpleadosPnl);
-        
-        resultadoPnl = new PnlEncuestaResultado();
-        resultadoPnl.setLocation(408,0);
-        resultadoPnl.setSize(773,589);
-        resultadoPnl.setVisible(false);
-        add(resultadoPnl);
         
         /*
         Este metodo nos permite esconder el panel de empleados al esconderse el 

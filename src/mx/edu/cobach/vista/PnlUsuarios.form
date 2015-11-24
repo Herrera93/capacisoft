@@ -28,10 +28,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="opcionPnl" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="informacionPnl" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Component id="opcionPnl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="informacionPnl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -39,13 +39,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="opcionPnl" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="informacionPnl" alignment="1" max="32767" attributes="0"/>
+                  <Component id="opcionPnl" max="32767" attributes="0"/>
+                  <Component id="informacionPnl" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,43 +70,32 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="opcionMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="agregarBtn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
-                                  <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="nombreBuscarLbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="nombreBuscarTFd" min="-2" pref="151" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Component id="agregarBtn" min="-2" pref="81" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tablaMsjLbl" min="-2" pref="360" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                                  <Component id="nombreUsuario_OU_Lbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="nombreUsuario_OU_TFd" min="-2" pref="146" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="buscar_OU_Btn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreBuscarLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="384" max="-2" attributes="0"/>
+                              <Component id="nombreBuscarTFd" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="buscarBtn" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="380" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -117,37 +103,25 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nombreUsuario_OU_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreUsuario_OU_TFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="agregarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="buscar_OU_Btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="389" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="341" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -162,9 +136,6 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="usuariosTbl">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
-                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
                     <Column editable="false" title="Numero" type="java.lang.Object"/>
@@ -207,30 +178,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="nombreUsuario_OU_Lbl">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Nombre de usuario:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="nombreUsuario_OU_TFd">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="buscar_OU_Btn">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="agregarBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -252,7 +199,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="opcionMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;HTML&gt;Seleccione el boton &quot;Agregar&quot; para habilitar la seccion de registro&lt;BR&gt;Si desea realizar una busqueda, seleccione el boton &quot;Buscar&quot;&lt;/HTML&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Seleccione el bot&#xf3;n &quot;Agregar&quot; para habilitar la secci&#xf3;n de registro,&lt;br&gt;si desea  realizar una b&#xfa;squeda seleccione el bot&#xf3;n &quot;Buscar&quot;&lt;/html&gt;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nombreBuscarTFd">
@@ -260,7 +207,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="nombreBuscarLbl">
@@ -268,7 +214,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nombre del Empleado:"/>
+            <Property name="text" type="java.lang.String" value="Nombre del empleado:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="buscarBtn">
@@ -281,6 +227,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tablaMsjLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un nombre de usuario de la columna&lt;br&gt; &quot;Usuario&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee&lt;/html&gt; "/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -302,107 +253,127 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tipoLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoMaternoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoPaternoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="segundoNombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="contrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarContrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="validNomLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="validApePatLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="validApeMatLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="validUsuarioLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="validContrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="validConfirmarLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="nombreTFd" alignment="0" pref="380" max="32767" attributes="0"/>
+                                      <Component id="tipoCBx" min="-2" pref="151" max="-2" attributes="0"/>
+                                      <Component id="apellidoMaternoTFd" max="32767" attributes="0"/>
+                                      <Component id="apellidoPaternoTFd" max="32767" attributes="0"/>
+                                      <Component id="segundoNombreTFd" max="32767" attributes="0"/>
+                                      <Component id="usuarioTFd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="contrasenaPFd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="confirmarContrasenaPFd" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="cancelarBtn" min="-2" pref="108" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="guardarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tipoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="nombreLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="apellidoPaternoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="apellidoPaternoTFd" min="-2" pref="151" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="tipoCBx" alignment="1" min="-2" pref="151" max="-2" attributes="0"/>
-                                          <Component id="nombreTFd" min="-2" pref="151" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="144" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="guardarBtn" alignment="1" min="-2" pref="108" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="confirmarContrasenaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="contrasenaLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="apellidoMaternoLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="segundoNombreLbl" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="confirmarContrasenaPFd" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="segundoNombreTFd" alignment="1" min="-2" pref="148" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="apellidoMaternoTFd" alignment="0" pref="151" max="32767" attributes="0"/>
-                                      <Component id="usuarioTFd" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="contrasenaPFd" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLbl" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="agregarLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="segundoNombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validNomLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="segundoNombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="segundoNombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="apellidoPaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="apellidoPaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apellidoMaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apellidoMaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoPaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validApePatLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="usuarioTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="usuarioLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoMaternoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="apellidoMaternoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validApeMatLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tipoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="usuarioTFd" min="-2" max="-2" attributes="0"/>
+                      <Component id="usuarioLbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validUsuarioLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="contrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="contrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="confirmarContrasenaLbl" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmarContrasenaPFd" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validContrasenaLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="confirmarContrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarContrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="validConfirmarLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="guardarBtn" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="guardarBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                      <Component id="cancelarBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -421,10 +392,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nombreTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="usuarioLbl">
@@ -440,10 +412,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="usuarioTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="usuarioTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="usuarioTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="contrasenaLbl">
@@ -475,7 +448,6 @@
               </StringArray>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Seleccion&#xe9; el tipo de usuario"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="guardarBtn">
@@ -484,7 +456,6 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
@@ -492,7 +463,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="agregarMsjLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
+            <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="agregarLbl">
@@ -500,7 +471,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Agregar"/>
+            <Property name="text" type="java.lang.String" value="Registro"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="segundoNombreTFd">
@@ -508,10 +479,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="segundoNombreTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="segundoNombreTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="segundoNombreLbl">
@@ -527,10 +497,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoPaternoTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoPaternoTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="apellidoPaternoTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidoPaternoLbl">
@@ -546,10 +517,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoMaternoTFdFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoMaternoTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="apellidoMaternoTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="apellidoMaternoLbl">
@@ -565,17 +537,96 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Confirmar Contrase&#xf1;a:"/>
+            <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="contrasenaPFd">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="contrasenaPFdFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="contrasenaPFdFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="confirmarContrasenaPFd">
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="confirmarContrasenaPFdFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="confirmarContrasenaPFdFocusLost"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="cancelarBtn">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="validNomLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="de" green="d8" red="d5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="validApePatLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="de" green="d8" red="d5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="validApeMatLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="de" green="d8" red="d5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="validUsuarioLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="de" green="d8" red="d5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="validContrasenaLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="de" green="d8" red="d5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="validConfirmarLbl">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="de" green="d8" red="d5" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
           </Properties>
         </Component>
       </SubComponents>
