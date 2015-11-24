@@ -681,7 +681,11 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
         buscarPnl.setVisible(true);
         this.updateUI();
     }
-
+    /**
+     * Metodo que permite obtener el id de implementacionEvento desde el
+     * componente de alertas
+     * @param eventoImplementado 
+     */
     public void obtenerEventoImplementado(ImplementacionEvento eventoImplementado) {
         estado = "Activo Guardar";
         control.setClass(ImplementacionEvento.class);
