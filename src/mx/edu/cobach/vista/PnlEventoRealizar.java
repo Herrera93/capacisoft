@@ -49,7 +49,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private DefaultTableModel modelTablaEmF;
-    private String[] titulosTablaEm = {"ID", "Numero",
+    private String[] titulosTablaEm = {"Numero",
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
@@ -700,8 +700,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         if (info[0][0].contains("TLE1")) {
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
             totalEmpleadosLbl.setText("Total de empleados en la lista: " + 
                     tablaLisFTbl.getRowCount() + "");
         }
@@ -718,8 +716,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         modelTablaEmF.setDataVector(null, titulosTablaEm);
         modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
         tablaLisFTbl.setModel(modelTablaEmF);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -885,8 +881,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             }
         }
         modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         informacionTP.setEnabledAt(0, true);
         informacionTP.setEnabledAt(1, false);
         informacionTP.setSelectedIndex(0);

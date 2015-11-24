@@ -39,7 +39,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     private DefaultTableModel modelTablaEmI;
     private DefaultTableModel modelTablaEmF;
     private final DefaultComboBoxModel tipoModel;
-    private String[] titulosTablaEm = {"ID", "Numero",
+    private String[] titulosTablaEm = {"Numero",
         "Nombre del Empleado"};
     private final ImageIcon imageLogo;
     //Comunicador con la interfaz grafica
@@ -566,8 +566,6 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                     }
                 }
                 modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-                TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-                tablaLisFTbl.getColumnModel().removeColumn(tc);
                 tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                 tablaLisFTbl.getColumnModel().getColumn(0).
                         setPreferredWidth(10);
@@ -592,8 +590,6 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 + "de asistencia?", "Precaucion",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
             modelTablaEmF.setDataVector(null, titulosTablaEm);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
             tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
             tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -632,11 +628,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                     getValueAt(posicionLista, 0);
             tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.
                     getValueAt(posicionLista, 1);
-            tableData[modelTablaEmF.getRowCount()][2] = modelTablaEmI.
-                    getValueAt(posicionLista, 2);
             modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
             tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
             tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -774,10 +766,6 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         //Se elimina la palabra TLE1 para que solo quede el id puro
         tablaLisITbl.setEnabled(true);
         modelTablaEmI.setDataVector(info, titulosTablaEm);
-
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
-
         tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisITbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisITbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -795,16 +783,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     private void tabla() {
 
         modelTablaEmI.setDataVector(null, titulosTablaEm);
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
         tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisITbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisITbl.getColumnModel().getColumn(1).setPreferredWidth(160);
         tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 
         modelTablaEmF.setDataVector(null, titulosTablaEm);
-        tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -896,8 +880,6 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      */
     public void mandarTabla(String[][] info) {
         modelTablaEmF.setDataVector(info, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);

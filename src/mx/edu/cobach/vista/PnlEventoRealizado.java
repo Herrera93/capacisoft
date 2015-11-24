@@ -57,7 +57,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
     private DefaultTableModel modelTablaEmF;
     private String[] titulosTablaEn = {"ID", "Tipo", "Enunciado",
         "Calificación"};
-    private String[] titulosTablaEm = {"ID", "Numero",
+    private String[] titulosTablaEm = {"Numero",
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
@@ -827,8 +827,6 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
         if (info[0][0].contains("TLE1")) {
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
         } else if (info[0][0].contains(
                 "TLE3")) {
             //Se checa si la palabra TLE3 se encuentra dentro de la matriz
@@ -917,15 +915,14 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
     private void tabla() {
 
         modelTablaEmF.setDataVector(null, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 
         modelTablaEn.setDataVector(null, titulosTablaEn);
-        tc = enunciadoTbl.getColumnModel().getColumn(0);
+        TableColumn tc = enunciadoTbl.getColumnModel().getColumn(0);
         enunciadoTbl.getColumnModel().removeColumn(tc);
         enunciadoTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         enunciadoTbl.getColumnModel().getColumn(0).setPreferredWidth(1200);
@@ -1105,8 +1102,6 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
             }
         }
         modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         informacionTP.setSelectedIndex(0);
         control.setClass(ImplementacionEventoEnunciadoLogistica.class);
         control.bucarCalificacionMod(eventoImplementado);
