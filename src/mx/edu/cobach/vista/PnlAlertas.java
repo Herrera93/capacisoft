@@ -738,9 +738,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                         .addGap(18, 18, 18)
                         .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fin4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tipoAlerta4Lbl)
-                                .addComponent(fin4Lbl)))
+                            .addComponent(fin4Lbl)
+                            .addComponent(tipoAlerta4Lbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sede4Lbl)
@@ -1275,12 +1274,25 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
      private void generarPanelAlerta(List<Object> info){// method
         int tamaño = 0;
+        datosEvento = new ArrayList();
         for(int l = 0; l < info.size(); l++){// for
             Alerta a = (Alerta) info.get(l);
-            for(ImplementacionEvento obj : a.getImplementacionEventos()){// for
-                tamaño = tamaño + 1;
-            }// for
+            if(!a.getImplementacionEventos().isEmpty()){//if
+                for(ImplementacionEvento obj : a.getImplementacionEventos()){// for
+                    datosEvento.add(obj);
+                    tamaño ++;
+                }// for
+            }//if
+            else{//else
+                System.out.println("Está vacío");
+            }//else
         }// for
+        
+        int paginas = Math.round(tamaño/4);
+        
+        System.out.println("Pag: " + tamaño);
+        
+        /*
         totalAlertas = tamaño;
         panelesPnl = new JPanel[tamaño];
         titulosLbl = new JLabel[tamaño];
@@ -1292,17 +1304,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         for(Object obj : info){// for each
             Alerta a = (Alerta) obj;
             switch(a.getId()){// switch
-                case 1: // evento programado
-            for (Iterator<ImplementacionEvento> it = a.
-                    getImplementacionEventos().iterator(); it.hasNext();) {//for
-                ImplementacionEvento ie = it.next();
-                if(ie != null){//if
-                    idAlerta[j] = 1;
-                    datosEvento.add(ie);
-                    
-                }//if
-            } //for
-                    
+                case 1: // evento programado        
                     for(ImplementacionEvento ic : 
                             a.getImplementacionEventos()){// for each
                         if(ic != null){// if
@@ -1523,7 +1525,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                     alertasPnl.updateUI();
                     break;
             }// switch
-        }// for each
+        }// for each*/
     }//method
 
     @Override
