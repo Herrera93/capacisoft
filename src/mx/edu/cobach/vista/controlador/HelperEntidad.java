@@ -136,6 +136,19 @@ public class HelperEntidad {
             return puesto;
         }
     }
+    
+    public static Direccion getDireccion(List<String> atributos, String opcion) {
+        if (opcion.equals("Guardar")) {
+            Direccion direccion = new Direccion();
+            direccion.setNombre(atributos.get(0) + "");
+            return direccion;
+        } else {
+            Direccion direccion = new Direccion();
+            direccion.setId(Integer.parseInt(atributos.get(0)));
+            direccion.setNombre(atributos.get(1) + "");
+            return direccion;
+        }
+    }
 
     public static Object getEmpleado(List<Object> atributos) {
         Empleado e = new Empleado();
@@ -233,7 +246,9 @@ public class HelperEntidad {
               return descomponerPlantel((Plantel)obj);
         }else if(obj instanceof Alerta){
             return descomponerAlerta((Alerta) obj);
-        }
+        }else if(obj instanceof Direccion){
+            return descomponerDireccion((Direccion) obj);
+        }        
         else{
             return null;
         }
@@ -265,6 +280,13 @@ public class HelperEntidad {
         List<Object> info = new ArrayList<>();
         info.add(puesto.getNombre());
         info.add(puesto.getId());
+        return info;
+    }
+    
+    private static List<Object> descomponerDireccion(Direccion direccion){
+        List<Object> info = new ArrayList<>();
+        info.add(direccion.getNombre());
+        info.add(direccion.getId());
         return info;
     }
     
@@ -413,6 +435,12 @@ public class HelperEntidad {
                     pl.add((Plantel) objetos.get(i));
                 }
                 return descomponerPlanteles(pl);
+            }else if(objetos.get(0) instanceof Direccion){
+                List<Direccion> di = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    di.add((Direccion) objetos.get(i));
+                }
+                return descomponerDirecciones(di);
             }
         }
         return null;
@@ -508,6 +536,16 @@ public class HelperEntidad {
             Puesto p = ps.get(i);
             info[i][0] = p.getId()+"";
             info[i][1] = p.getNombre();
+        }
+        return info;
+    }
+    
+    private static String[][] descomponerDirecciones(List<Direccion> di){
+        String[][] info = new String[di.size()][2];
+        for(int i = 0; i < di.size(); i++){
+            Direccion d = di.get(i);
+            info[i][0] = d.getId()+"";
+            info[i][1] = d.getNombre();
         }
         return info;
     }

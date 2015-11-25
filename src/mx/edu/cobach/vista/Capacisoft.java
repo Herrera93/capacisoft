@@ -24,6 +24,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private PnlPlantel plantelPnl;
     private PnlDepartamento departamentoPnl;
     private PnlPuestos puestoPnl;
+    private PnlDireccion direccionPnl;
     private PnlSede sedePnl;
     private PnlProveedor proveedorPnl;
     private PnlEmpleadoAdministrativo empleadoPnl;
@@ -91,6 +92,12 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         puestoPnl.setSize(1181,587);
         //if(idTipo!=3)
             add(puestoPnl);
+            
+        direccionPnl = new PnlDireccion();
+        direccionPnl.setVisible(false);
+        direccionPnl.setSize(1181,587);
+        //if(idTipo!=3)
+            add(direccionPnl);
         
         sedePnl = new PnlSede();
         sedePnl.setVisible(false);
@@ -188,6 +195,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         planteles_MIt = new javax.swing.JMenuItem();
         departamentos_MIt = new javax.swing.JMenuItem();
         puestos_MIt = new javax.swing.JMenuItem();
+        direccion_MIt = new javax.swing.JMenuItem();
         sedes_MIt = new javax.swing.JMenuItem();
         proveedores_MIt = new javax.swing.JMenuItem();
         empleado_MIt = new javax.swing.JMenuItem();
@@ -256,6 +264,16 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
             }
         });
         mantenimientoCurso_Mn.add(puestos_MIt);
+
+        direccion_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        direccion_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/departamento.png"))); // NOI18N
+        direccion_MIt.setText("Direcciones");
+        direccion_MIt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                direccion_MItActionPerformed(evt);
+            }
+        });
+        mantenimientoCurso_Mn.add(direccion_MIt);
 
         sedes_MIt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sedes_MIt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/edu/cobach/vista/recursos/sede.png"))); // NOI18N
@@ -500,6 +518,13 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         reporteCursoPnl.llenarTodo();
     }//GEN-LAST:event_registroCurso_MItActionPerformed
 
+    private void direccion_MItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccion_MItActionPerformed
+       this.setTitle("Capacisoft - Direcciones");
+        ocultarPaneles();
+        direccionPnl.setVisible(true);
+        direccionPnl.llenarTodo();
+    }//GEN-LAST:event_direccion_MItActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,6 +565,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JMenuItem curso_MIt;
     private javax.swing.JMenuItem departamentos_MIt;
+    private javax.swing.JMenuItem direccion_MIt;
     private javax.swing.JMenuItem empleado_MIt;
     public javax.swing.JMenuItem encuesta_MIt;
     private javax.swing.JMenuItem kardex_MIt;
@@ -562,6 +588,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         plantelPnl.setVisible(false);
         departamentoPnl.setVisible(false);
         puestoPnl.setVisible(false);
+        direccionPnl.setVisible(false);
         sedePnl.setVisible(false);
         proveedorPnl.setVisible(false);
         eventoPnl.setVisible(false);
