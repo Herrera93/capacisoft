@@ -88,6 +88,7 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
         try{
             HibernateUtil.openSession();
             HibernateUtil.beginTransaction();
+            System.out.println("Datos: " + ts);
             ts = HibernateUtil.getSession()
                     .createCriteria(entityClass).list();
             HibernateUtil.commitTransaction();

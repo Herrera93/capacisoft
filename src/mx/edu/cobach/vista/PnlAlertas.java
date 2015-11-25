@@ -4,15 +4,9 @@
  */
 package mx.edu.cobach.vista;
 
-import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
@@ -26,26 +20,18 @@ import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// class
 
     private AlertaControlador control;
-    // paneles visualizados en la consulta de alertas
-    private JPanel[] panelesPnl;
-    // titulos de las alertas
-    private JLabel[] titulosLbl;
-    // botones de resolver de las alertas
-    private JButton[] resolverBtn;
-    // número de alertas generadas
-    private int totalAlertas;
-    // posición del boton a resolver
-    private int botonPresionado;
+    // matriz con el tipo de alerta correspondiente
+    private int[][] tipoAlerta;
+    // matriz en representación de páginas de alertas
+    private ImplementacionEvento[][] implementaciones;
+    // opción previamente seleccionada al actualizar periodo
+    private String[] periodoAnt;
     // largo predefinido de las alertas
-    private final int WIDTH = 800;
+    private final int WIDTH1 = 800;
     // panel de programacion de eventos
     private final PnlProgramarEvento eventoPnl;
-    // panel de frealizacion de encuesta
+    // panel de realizacion de encuesta
     private final PnlSeguimiento encuestaPnl;
-    // 
-    private int[] idAlerta;
-    // 
-    private ArrayList<ImplementacionEvento> datosEvento;
     
     /**
      * Creates new form PnlAlertas
@@ -57,6 +43,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         this.eventoPnl = eventoPnl;
         this.encuestaPnl = encuestaPnl;
         control = new AlertaControlador(this, Alerta.class);
+        periodoAnt = new String[4];
         
         periodoPnl.setLocation(55, 79);
         cancelarBtn.setSize(cancelarBtn.getSize().width, 25);
@@ -66,6 +53,13 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         alertasPnl.setSize(WIDTH - 10, 595);
         alertasSPn.setViewportView(alertasPnl);
         alertasSPn.setSize(750, 585);
+        
+        alerta1Pnl.setVisible(false);
+        alerta2Pnl.setVisible(false);
+        alerta3Pnl.setVisible(false);
+        alerta4Pnl.setVisible(false);
+        anteriorBtn.setEnabled(false);
+        siguienteBtn.setEnabled(false);
     }// method
 
     /**
@@ -151,7 +145,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         tipoLbl.setText("Tipo de anuncio:");
 
         seleccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        seleccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alertas recientes", "Evento programado", "Evento diagnostico", "Información pendiente", "Encuesta pendiente" }));
+        seleccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alertas recientes", "Evento programado", "Evento diagnosticado", "Información pendiente", "Encuesta pendiente" }));
         seleccionCBx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionCBxActionPerformed(evt);
@@ -197,29 +191,14 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         eventoCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eventoCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Día", "Semana", "Mes" }));
         eventoCBx.setEnabled(false);
-        eventoCBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventoCBxActionPerformed(evt);
-            }
-        });
 
         informacionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         informacionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Día", "Semana", "Mes" }));
         informacionCBx.setEnabled(false);
-        informacionCBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                informacionCBxActionPerformed(evt);
-            }
-        });
 
         encuestaCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         encuestaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Día", "Semana", "Mes" }));
         encuestaCBx.setEnabled(false);
-        encuestaCBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                encuestaCBxActionPerformed(evt);
-            }
-        });
 
         cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cancelarBtn.setText("Cancelar");
@@ -382,6 +361,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
 
         resolver1Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         resolver1Btn.setText("Resolver");
+        resolver1Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resolverBtnActionPerformed(evt);
+            }
+        });
 
         instruc1Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         instruc1Lbl.setText("<html>Seleccione el botón \"Resolver\" para programar el evento</html>");
@@ -403,9 +387,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                             .addComponent(inicio1Lbl)
                             .addComponent(fin1Lbl))
                         .addGap(18, 18, 18)
-                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inicio1Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fin1Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inicio1Txf, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(fin1Txf))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(alerta1PnlLayout.createSequentialGroup()
                         .addGroup(alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,6 +468,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         fin2Lbl.setText("Fecha de fin:");
 
         resolver2Btn.setText("Resolver");
+        resolver2Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resolverBtnActionPerformed(evt);
+            }
+        });
 
         instruc2Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         instruc2Lbl.setText("<html>Seleccione el botón \"Resolver\" para programar el evento</html>");
@@ -507,9 +496,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                                 .addGap(18, 18, 18)
                                 .addComponent(fin2Lbl)))
                         .addGap(27, 27, 27)
-                        .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inicio2Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fin2Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inicio2Txf, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(fin2Txf)))
                     .addGroup(alerta2PnlLayout.createSequentialGroup()
                         .addComponent(sede2Lbl)
                         .addGroup(alerta2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -572,6 +561,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         instruc3Lbl.setText("Seleccione el botón \"Resolver\" para programar el evento");
 
         resolver3Btn.setText("Resolver");
+        resolver3Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resolverBtnActionPerformed(evt);
+            }
+        });
 
         inicio3Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         inicio3Lbl.setText("Fecha de inicio:");
@@ -609,9 +603,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                                     .addComponent(inicio3Lbl)
                                     .addComponent(fin3Lbl))
                                 .addGap(28, 28, 28)
-                                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fin3Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inicio3Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(alerta3PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(inicio3Txf, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                                    .addComponent(fin3Txf)))))
                     .addGroup(alerta3PnlLayout.createSequentialGroup()
                         .addGap(296, 296, 296)
                         .addComponent(instruc3Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -684,6 +678,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         instruc4Lbl.setText("Seleccione el botón \"Resolver\" para programar el evento");
 
         resolver4Btn.setText("Resolver");
+        resolver4Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resolverBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout alerta4PnlLayout = new javax.swing.GroupLayout(alerta4Pnl);
         alerta4Pnl.setLayout(alerta4PnlLayout);
@@ -697,31 +696,27 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                             .addComponent(nombre4Lbl)
                             .addComponent(tipoAlerta4Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
-                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(alerta4PnlLayout.createSequentialGroup()
+                                .addGap(0, 5, Short.MAX_VALUE)
+                                .addComponent(fin4Lbl)
+                                .addGap(18, 18, 18)
+                                .addComponent(fin4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(alerta4PnlLayout.createSequentialGroup()
                                 .addComponent(inicio4Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(inicio4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(alerta4PnlLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(fin4Lbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(fin4Txf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(136, 136, 136))
+                                .addComponent(inicio4Txf))))
                     .addGroup(alerta4PnlLayout.createSequentialGroup()
-                        .addGroup(alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(alerta4PnlLayout.createSequentialGroup()
-                                .addComponent(sede4Lbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(nombreSede4Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta4PnlLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(instruc4Lbl)))
+                        .addComponent(sede4Lbl)
                         .addGap(18, 18, 18)
-                        .addComponent(resolver4Btn)
-                        .addGap(18, 18, 18))))
+                        .addComponent(nombreSede4Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta4PnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(instruc4Lbl)))
+                .addGap(18, 18, 18)
+                .addComponent(resolver4Btn)
+                .addGap(18, 18, 18))
         );
         alerta4PnlLayout.setVerticalGroup(
             alerta4PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -753,10 +748,20 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         alerta4Pnl.setBounds(0, 390, 740, 130);
 
         anteriorBtn.setText("Anterior");
+        anteriorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paginaActionPerformed(evt);
+            }
+        });
         alertasPnl.add(anteriorBtn);
         anteriorBtn.setBounds(200, 530, 80, 30);
 
         siguienteBtn.setText("Siguiente");
+        siguienteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paginaActionPerformed(evt);
+            }
+        });
         alertasPnl.add(siguienteBtn);
         siguienteBtn.setBounds(410, 530, 80, 30);
 
@@ -799,9 +804,6 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         encuestaCBx.setEnabled(false);
         informacionCBx.setEnabled(false);
         cancelarBtn.setEnabled(false);
-        alertasPnl.removeAll();
-        panelesPnl = null;
-        alertasPnl.updateUI();
         alertasPnl.setVisible(true);
         List<Object> lista = new ArrayList();
         Set<ImplementacionEvento> eventos;
@@ -819,7 +821,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
-                    generarPanelAlerta(lista);
+                    generarPanelAlerta(lista, false);
                     ban = true;
                 }// if
                 else{// else
@@ -837,7 +839,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
-                    generarPanelAlerta(lista);
+                    generarPanelAlerta(lista, false);
                     ban = true;
                 }// if
                 else{// else
@@ -851,7 +853,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
-                    generarPanelAlerta(lista);
+                    generarPanelAlerta(lista, false);
                     ban = true;
                 }// if
                 else{// else
@@ -865,7 +867,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
-                    generarPanelAlerta(lista);
+                    generarPanelAlerta(lista, false);
                     ban = true;
                 }// if
                 else{// else
@@ -877,34 +879,12 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         }// switch
         
         if(!ban){// if
-            // colocando paneles vacios
-            JPanel[] vacio1 = new JPanel[5];
-            
-            for(int k = 0; k < 5; k++){// for
-                vacio1[k] = new JPanel();
-                vacio1[k].setBackground(java.awt.Color.white);
-                vacio1[k].setMinimumSize(new java.awt.Dimension(WIDTH, 150));
-                vacio1[k].setSize(WIDTH, 150);
-                vacio1[k].setBorder(javax.swing.BorderFactory.createLineBorder(
-                        new java.awt.Color(0, 0, 0)));
-                if(k != 0){// if
-                    int y = vacio1[k - 1].getLocation().y 
-                            + vacio1[k].getSize().height;
-                    vacio1[k].setLocation(0, y);
-                    if((vacio1[k].getLocation().y 
-                            + vacio1[k].getSize().height) > 
-                            alertasPnl.getSize().height){// if
-
-                        alertasPnl.setSize(alertasPnl.getSize().width, 
-                                vacio1[k].getLocation().y 
-                            + vacio1[k].getSize().height);
-                    }// if
-                }// if
-                alertasPnl.add(vacio1[k]);
-                alertasPnl.updateUI();
-            }// for
-            alertasPnl.setToolTipText("Se muestran las alertas "
-                    + "programadas");
+            alerta1Pnl.setVisible(false);
+            alerta2Pnl.setVisible(false);
+            alerta3Pnl.setVisible(false);
+            alerta4Pnl.setVisible(false);
+            anteriorBtn.setEnabled(false);
+            siguienteBtn.setEnabled(false);
         }// if
     }//GEN-LAST:event_seleccionCBxActionPerformed
 
@@ -913,9 +893,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      * @param evt Evento al presionar el botón.
      */
     private void periodoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodoBtnActionPerformed
-        alertasPnl.removeAll();
-        panelesPnl = null;
-        alertasPnl.updateUI();
+        alerta1Pnl.setVisible(false);
+        alerta2Pnl.setVisible(false);
+        alerta3Pnl.setVisible(false);
+        alerta4Pnl.setVisible(false);
         
         eventoSpn.setEnabled(true);
         encuestaSpn.setEnabled(true);
@@ -926,8 +907,12 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         informacionCBx.setEnabled(true);
         cancelarBtn.setEnabled(true);
         
+        periodoAnt[0] = "";
+        periodoAnt[1] = "";
+        periodoAnt[2] = "";
+        periodoAnt[3] = "";
+        
         control.buscarTodosLista(1);
-        alertasPnl.updateUI();
     }//GEN-LAST:event_periodoBtnActionPerformed
 
     /**
@@ -994,7 +979,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         if(Integer.parseInt(eventoSpn.getValue().toString()) > 1 
                 && Integer.parseInt(encuestaSpn.getValue().toString()) > 1
-                && Integer.parseInt(informacionSpn.getValue().toString()) > 1){// if
+                && Integer.parseInt(informacionSpn.getValue().toString()) > 1)
+        {// if
             
             Alerta evento = (Alerta) control.buscarAlerta(1);
             Alerta evento1 = (Alerta) control.buscarAlerta(2);
@@ -1025,54 +1011,95 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         }// if
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
-    private void informacionCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informacionCBxActionPerformed
-        switch(informacionCBx.getSelectedIndex()){// switch
-            case 1:// semana
-                informacionSpn.setValue(Integer.parseInt(
-                        informacionSpn.getValue().toString()) * 7);
-                informacionCBx.setSelectedIndex(0);
-                break;
-            case 2:// mes
-                informacionSpn.setValue(Integer.parseInt(
-                        informacionSpn.getValue().toString()) * 30);
-                informacionCBx.setSelectedIndex(0);
-                break;
-        }// switch
-    }//GEN-LAST:event_informacionCBxActionPerformed
+    private void resolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resolverBtnActionPerformed
+        ImplementacionEvento e;
+        int alerta;
+        if(evt.equals(resolver1Btn)){//if
+            e = implementaciones
+                [Integer.parseInt(resolver1Btn.getName())][0];
+            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][0];
+            switch(alerta){//switch
+                case 0:// evento programado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 1:// evento diagnosticado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 2:// información pendiente
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 4:// encuesta pendiente
+                    encuestaPnl.llenarDatos(e);
+                    break;
+            }//switch
+        }//if
+        if(evt.equals(resolver2Btn)){//if
+            e = implementaciones
+                [Integer.parseInt(resolver1Btn.getName())][1];
+            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][1];
+            switch(alerta){//switch
+                case 0:// evento programado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 1:// evento diagnosticado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 2:// información pendiente
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 4:// encuesta pendiente
+                    encuestaPnl.llenarDatos(e);
+                    break;
+            }//switch
+        }//if
+        if(evt.equals(resolver3Btn)){//if
+            e = implementaciones
+                [Integer.parseInt(resolver1Btn.getName())][2];
+            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][2];
+            switch(alerta){//switch
+                case 0:// evento programado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 1:// evento diagnosticado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 2:// información pendiente
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 4:// encuesta pendiente
+                    encuestaPnl.llenarDatos(e);
+                    break;
+            }//switch
+        }//if
+        if(evt.equals(resolver4Btn)){//if
+            e = implementaciones
+                [Integer.parseInt(resolver1Btn.getName())][3];
+            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][3];
+            switch(alerta){//switch
+                case 0:// evento programado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 1:// evento diagnosticado
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 2:// información pendiente
+                    eventoPnl.llenarDatos(e);
+                    break;
+                case 4:// encuesta pendiente
+                    encuestaPnl.llenarDatos(e);
+                    break;
+            }//switch
+        }//if
+    }//GEN-LAST:event_resolverBtnActionPerformed
 
-    private void encuestaCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encuestaCBxActionPerformed
-        switch(encuestaCBx.getSelectedIndex()){// switch
-            case 1:// semana
-                encuestaSpn.setValue(Integer.parseInt(encuestaSpn.getValue()
-                        .toString()) * 7);
-                encuestaCBx.setSelectedIndex(0);
-                break;
-            case 2:// mes
-                encuestaSpn.setValue(Integer.parseInt(encuestaSpn.getValue()
-                        .toString()) * 30);
-                encuestaCBx.setSelectedIndex(0);
-                break;
-        }// switch
-    }//GEN-LAST:event_encuestaCBxActionPerformed
-
-    /**
-     * 
-     * @param evt 
-     */
-    private void eventoCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventoCBxActionPerformed
-        switch(eventoCBx.getSelectedIndex()){// switch
-            case 1:// semana
-            eventoSpn.setValue(Integer.parseInt(eventoSpn.getValue()
-                .toString()) * 7);
-            eventoCBx.setSelectedIndex(0);
-            break;
-            case 2:// mes
-                eventoSpn.setValue(Integer.parseInt(eventoSpn.getValue()
-                .toString()) * 30);
-                eventoCBx.setSelectedIndex(0);
-            break;
-    }// switch
-    }//GEN-LAST:event_eventoCBxActionPerformed
+    private void paginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paginaActionPerformed
+        if(evt.getSource().equals(anteriorBtn)){//if
+            cambioPagina(Integer.parseInt(anteriorBtn.getName()));
+        }//if
+        else{//else
+            cambioPagina(Integer.parseInt(siguienteBtn.getName()));
+        }//else
+    }//GEN-LAST:event_paginaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarBtn;
@@ -1178,356 +1205,298 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     @Override
     public void setLista(List info, int i) {
-        alertasPnl.removeAll();
-        panelesPnl = null;
-        boolean bandera = true;
-        for(int j = 0; j < info.size(); j++){
-            if(((Alerta) info.get(j)).getImplementacionEventos() == null){
-                bandera = false;
-            }
-        }
-        if(bandera){// if
-            // periodos
+        alerta1Pnl.setVisible(false);
+        alerta2Pnl.setVisible(false);
+        alerta3Pnl.setVisible(false);
+        alerta4Pnl.setVisible(false);
+        anteriorBtn.setEnabled(false);
+        siguienteBtn.setEnabled(false);
+        if(info != null){//if
+            // actualizar periodos
             if(i == 1){// if
                 eventoSpn.setValue(((Alerta) info.get(0)).getPeriodo());
                 informacionSpn.setValue(((Alerta) info.get(2)).getPeriodo());
                 encuestaSpn.setValue(((Alerta) info.get(3)).getPeriodo());
             }// if
-            // alertas recientes
-            else{// else
-                generarPanelAlerta(info);
-            }// else
-        }// if
-        // no existen alertas
-        else{// else
-            // colocando paneles vacios
-            JPanel[] vacio1 = new JPanel[5];
-            
-            for(int k = 0; k < 5; k++){// for
-                vacio1[k] = new JPanel();
-                vacio1[k].setBackground(java.awt.Color.white);
-                vacio1[k].setMinimumSize(new java.awt.Dimension(WIDTH, 150));
-                vacio1[k].setSize(WIDTH, 150);
-                vacio1[k].setBorder(javax.swing.BorderFactory.createLineBorder(
-                        new java.awt.Color(0, 0, 0)));
-                if(k != 0){
-                    int y = vacio1[k - 1].getLocation().y 
-                            + vacio1[k].getSize().height;
-                    vacio1[k].setLocation(0, y);
-                    if((vacio1[k].getLocation().y 
-                            + vacio1[k].getSize().height) > 
-                            alertasPnl.getSize().height){// if
-
-                        alertasPnl.setSize(alertasPnl.getSize().width, 
-                                vacio1[k].getLocation().y 
-                            + vacio1[k].getSize().height);
-                    }// if
-                }
-                alertasPnl.add(vacio1[k]);
-                alertasPnl.setVisible(true);
-                alertasPnl.updateUI();
-            }// for
-            alertasPnl.setToolTipText("Se muestran las alertas "
-                    + "programadas");
-            setMensaje("No existen alertas por el momento.");
-        }// else
+            else{//else
+                if(((Alerta) info.get(0)).getImplementacionEventos() != null
+                    || ((Alerta) info.get(1)).getImplementacionEventos() != null
+                    || ((Alerta) info.get(2)).getImplementacionEventos() != null
+                    || ((Alerta) info.get(3)).getImplementacionEventos()!= null)
+                {// if
+                    // consulta de alertas recientes
+                    generarPanelAlerta(info, true);
+                }// if
+                // no existen alertas
+                else{// else
+                    setMensaje("No existen alertas por el momento.");
+                }// else
+            }//else
+        }//if
+        else{//else
+            JOptionPane.showInternalInputDialog(this, 
+                "No hay tipo de alertas en la base de datos.", "Error",
+                JOptionPane.ERROR_MESSAGE);
+        }//else
     }// method
     
     /**
-     * 
-     * @param evt 
+     * @param pagina
      */
-    public void resolverBtnActionPerformed(ActionEvent evt){// method
-        System.err.println("Mensaje 2");
-        for(int i = 0; i < totalAlertas; i++){// for
-            if(evt.getSource().equals(resolverBtn[i])){//if
-                int id = Integer.parseInt(resolverBtn[i].getName());
-                String[] palabras = titulosLbl[i].getText().split(" ");
-                String alerta = palabras[0] + " " +palabras[1];
-                switch(alerta){//switch
-                    case "Evento programado":// 1
-                        System.err.println("Programado");
-                        llenarDatos(datosEvento.get(id).getEvento());
-                        alertasPnl.setVisible(false);
-                        break;
-                    case "Evento diagnosticado":// 2
-                        llenarDatos(datosEvento.get(id).getEvento());
-                        alertasPnl.setVisible(false);
-                        break;
-                    case "Información pendiente":// 3
-                        llenarDatos(datosEvento.get(id).getEvento());
-                        alertasPnl.setVisible(false);
-                        break;
-                    case "Encuesta pendiente":// 4
-                        llenarDatos(datosEvento.get(id).getEvento());
-                        alertasPnl.setVisible(false);
-                        break;
-                }//switch
+    public void cambioPagina(int pagina){//method
+        ImplementacionEvento e1 = null,e2 = null,e3 = null,e4 = null;
+        System.out.println("Pag: " + pagina);
+        for(int i = 0; i < pagina; i ++){//for
+            for(int j = 0; j < 4; j++){//for
+                System.out.println(i + "," + j + ": " + implementaciones[i][j]);
+            }//for
+        }//for
+        e1 = implementaciones[pagina][0];
+        System.out.println("e1:" + e1);
+        nombre1Lbl.setText(e1.getEvento().getNombre());
+        inicio1Txf.setText(e1.getFechaInicial().toString());
+        fin1Txf.setText(e1.getFechaFinal().toString());
+        switch(tipoAlerta[pagina][0]){//switch
+            case 1:// evento programado
+                tipoAlerta1Lbl.setText("Evento programado");
+                break;
+            case 2:// evento diagnosticado
+                tipoAlerta1Lbl.setText("Evento diagnosticado");
+                break;
+            case 3:// información pendiente
+                tipoAlerta1Lbl.setText("Información pendiente");
+                break;
+            case 4:// encuesta pendiente
+                tipoAlerta1Lbl.setText("Encuesta pendiente");
+                break;
+        }//switch
+        nombreSede1Lbl.setText(e1.getSede().getNombre());
+        resolver1Btn.setName(pagina + "");
+        alerta1Pnl.setVisible(true);
+
+        if(implementaciones[pagina][1] != null 
+                && implementaciones[pagina][1] != e1){//if
+            e2 = implementaciones[pagina][0];
+            System.out.println("e2:" + e2);
+            nombre2Lbl.setText(e2.getEvento().getNombre());
+            inicio2Txf.setText(e2.getFechaInicial().toString());
+            fin2Txf.setText(e2.getFechaFinal().toString());
+            switch(tipoAlerta[pagina][0]){//switch
+                case 1:// evento programado
+                    tipoAlerta2Lbl.setText("Evento programado");
+                    break;
+                case 2:// evento diagnosticado
+                    tipoAlerta2Lbl.setText("Evento diagnosticado");
+                    break;
+                case 3:// información pendiente
+                    tipoAlerta2Lbl.setText("Información pendiente");
+                    break;
+                case 4:// encuesta pendiente
+                    tipoAlerta2Lbl.setText("Encuesta pendiente");
+                    break;
+            }//switch
+            nombreSede2Lbl.setText(e2.getSede().getNombre());
+            resolver2Btn.setName(pagina + "");
+            alerta2Pnl.setVisible(true);
+        }//if
+        else{//else
+            alerta2Pnl.setVisible(false);
+        }//else
+
+        if(implementaciones[pagina][2] != null
+                && implementaciones[pagina][2] != e1
+                && implementaciones[pagina][2] != e2){//if
+            e3 = implementaciones[pagina][0];
+            System.out.println("3:" + e3);
+            nombre3Lbl.setText(e3.getEvento().getNombre());
+            inicio3Txf.setText(e3.getFechaInicial().toString());
+            fin3Txf.setText(e3.getFechaFinal().toString());
+            switch(tipoAlerta[pagina][0]){//switch
+                case 1:// evento programado
+                    tipoAlerta3Lbl.setText("Evento programado");
+                    break;
+                case 2:// evento diagnosticado
+                    tipoAlerta3Lbl.setText("Evento diagnosticado");
+                    break;
+                case 3:// información pendiente
+                    tipoAlerta3Lbl.setText("Información pendiente");
+                    break;
+                case 4:// encuesta pendiente
+                    tipoAlerta3Lbl.setText("Encuesta pendiente");
+                    break;
+            }//switch
+            nombreSede3Lbl.setText(e3.getSede().getNombre());
+            resolver3Btn.setName(pagina + "");
+            alerta3Pnl.setVisible(true);
+        }//if
+        else{//else
+            alerta3Pnl.setVisible(false);
+        }//else
+
+        if(implementaciones[pagina][3] != null
+                && implementaciones[pagina][3] != e1
+                && implementaciones[pagina][3] != e2
+                && implementaciones[pagina][3] != e3){//if
+            e4 = implementaciones[pagina][0];
+            System.out.println("4:" + e4);
+            nombre4Lbl.setText(e4.getEvento().getNombre());
+            inicio4Txf.setText(e4.getFechaInicial().toString());
+            fin4Txf.setText(e4.getFechaFinal().toString());
+            switch(tipoAlerta[pagina][0]){//switch
+                case 1:// evento programado
+                    tipoAlerta4Lbl.setText("Evento programado");
+                    break;
+                case 2:// evento diagnosticado
+                    tipoAlerta4Lbl.setText("Evento diagnosticado");
+                    break;
+                case 3:// información pendiente
+                    tipoAlerta4Lbl.setText("Información pendiente");
+                    break;
+                case 4:// encuesta pendiente
+                    tipoAlerta4Lbl.setText("Encuesta pendiente");
+                    break;
+            }//switch
+            nombreSede4Lbl.setText(e4.getSede().getNombre());
+            resolver4Btn.setName(pagina + "");
+            alerta4Pnl.setVisible(true);
+        }//if
+        else{//else
+            alerta4Pnl.setVisible(false);
+        }//else
+
+        if(pagina > 0){//if
+           anteriorBtn.setEnabled(true);
+        }//if
+        else{//else
+            if(pagina == 0){//if
+                anteriorBtn.setEnabled(false);
             }//if
-        }// for
-    }// method
+        }//else
+
+        String[] auxPag = paginasLbl.getText().split("/");
+        if(Integer.parseInt(siguienteBtn.getName()) 
+                == Integer.parseInt(auxPag[1]))
+        {//if
+            siguienteBtn.setEnabled(false);
+        }//if
+        else{//else
+            if(pagina == 0){//if
+                anteriorBtn.setEnabled(false);
+            }//if
+            siguienteBtn.setEnabled(true);
+        }//else
+        
+        anteriorBtn.setName(siguienteBtn.getName());
+        siguienteBtn.setName((Integer.parseInt(
+            siguienteBtn.getName()) + 1) + "");
+        paginasLbl.setText((pagina + 1) + "/" + auxPag[1]);
+    }//method
     
     /**
      * 
      * 
      * @param info 
+     * @param recientes, Booleano que indica si se generarán los páneles de
+     * Alertas recientes.
      */
-     private void generarPanelAlerta(List<Object> info){// method
-        int tamaño = 0;
-        for(int l = 0; l < info.size(); l++){// for
-            Alerta a = (Alerta) info.get(l);
-            for(ImplementacionEvento obj : a.getImplementacionEventos()){// for
-                tamaño = tamaño + 1;
+     private void generarPanelAlerta(List<Object> info, boolean recientes){// method
+        int totalPag;
+        ArrayList<ImplementacionEvento> auxiliar = new ArrayList();
+        if(recientes){//if
+            for(int l = 0; l < info.size(); l++){// for
+                Alerta a = (Alerta) info.get(l);
+                for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
+                    auxiliar.add(obj);
+                }// for
             }// for
-        }// for
-        totalAlertas = tamaño;
-        panelesPnl = new JPanel[tamaño];
-        titulosLbl = new JLabel[tamaño];
-        resolverBtn = new JButton[tamaño];
-        idAlerta = new int[tamaño];
-        datosEvento = new ArrayList<ImplementacionEvento>();
-        JLabel descripcion;
-        int j = 0;
-        for(Object obj : info){// for each
-            Alerta a = (Alerta) obj;
-            switch(a.getId()){// switch
-                case 1: // evento programado
-            for (Iterator<ImplementacionEvento> it = a.
-                    getImplementacionEventos().iterator(); it.hasNext();) {//for
-                ImplementacionEvento ie = it.next();
-                if(ie != null){//if
-                    idAlerta[j] = 1;
-                    datosEvento.add(ie);
-                    
-                }//if
-            } //for
-                    
-                    for(ImplementacionEvento ic : 
-                            a.getImplementacionEventos()){// for each
-                        if(ic != null){// if
-                            idAlerta[j] = 1;
-                            datosEvento.add(ic);
-                            panelesPnl[j] = new JPanel();
-                            panelesPnl[j].setBackground(java.awt.Color.white);
-                            panelesPnl[j].setLayout(null);
-                            panelesPnl[j].setSize(WIDTH, 150);
-                            panelesPnl[j].setBorder(javax.swing.BorderFactory.
-                            createLineBorder(new java.awt.Color(
-                                    0, 0, 0)));
 
-                            if(j == 0){// if
-                                panelesPnl[j].setLocation(0, 0);
-                            }// if
-                            else{// else
-                                int y = panelesPnl[j - 1].getLocation().y 
-                                        + panelesPnl[j].getSize().height;
-                                panelesPnl[j].setLocation(0, y);
-                                if((panelesPnl[j].getLocation().y 
-                                        + panelesPnl[j].getSize().height) > 
-                                        alertasPnl.getSize().height){// if
+            totalPag = Math.round(auxiliar.size()/4);
 
-                                    alertasPnl.setSize(alertasPnl.getSize().width, 
-                                            panelesPnl[j].getLocation().y 
-                                        + panelesPnl[j].getSize().height);
-                                }// if
-                            }// else
+            if((totalPag%4) != 0){//if
+                totalPag = totalPag + 1;
+            }//if
 
-                            titulosLbl[j] = new javax.swing.JLabel();
-                            titulosLbl[j].setText(a.getDescripcion() 
-                                    + " de " +ic.getEvento().getNombre());
-                            titulosLbl[j].setFont(eventoLbl.getFont());
-                            titulosLbl[j].setBounds( 15, 20, WIDTH, 20);
-                            descripcion = new JLabel("Se acerca la fecha "
-                                    + "para llevar a cabo el evento, seleccione "
-                                    + "el boton para programar el evento.");
-                            descripcion.setBounds( 15, 70, WIDTH, 20);
-                            descripcion.setFont(eventoLbl.getFont());
-                            resolverBtn[j] = new JButton("Resolver");
-                            resolverBtn[j].addActionListener(new ActionListener(){// listener
-
-                                @Override
-                                public void actionPerformed(ActionEvent ae){// method
-                                    System.err.println("Mensaje 1");
-                                    resolverBtnActionPerformed(ae);
-                                }// method
-                            });// listener
-                            resolverBtn[j].setFont(eventoLbl.getFont());
-                            resolverBtn[j].setBounds( 600, 100, 100, 25);
-                            resolverBtn[j].setName(ic.getId().toString());
-                            panelesPnl[j].add(titulosLbl[j]);
-                            panelesPnl[j].add(descripcion);
-                            panelesPnl[j].add(resolverBtn[j]);
-                            alertasPnl.add(panelesPnl[j]);
-                            j++;
-                        }// if
-                    }// for each
-                    alertasPnl.updateUI();
-                    break;
-                case 2:// evento diagnosticado
-                    for(ImplementacionEvento ic : 
-                            a.getImplementacionEventos()){// for each
-                        idAlerta[j] = 2;
-                        datosEvento.add(ic);
-                        panelesPnl[j] = new JPanel();
-                        panelesPnl[j].setBackground(java.awt.Color.white);
-                        panelesPnl[j].setLayout(null);
-                        panelesPnl[j].setMinimumSize(new java.awt.
-                                Dimension(WIDTH, 150));
-                        panelesPnl[j].setSize(WIDTH, 150);
-                        panelesPnl[j].setBorder(javax.swing.BorderFactory.
-                        createLineBorder(new java.awt.Color(
-                                0, 0, 0)));
-
-                        if(j == 0){// if
-                            panelesPnl[j].setLocation(0, 0);
-                        }// if
-                        else{// else
-                            int y = panelesPnl[j - 1].getLocation().y 
-                                    + panelesPnl[j].getSize().height;
-                            panelesPnl[j].setLocation(0, y);
-                        }// else
-                        
-                        titulosLbl[j] = new javax.swing.JLabel();
-                        titulosLbl[j].setText(a.getDescripcion() 
-                                + " de " +ic.getEvento().getNombre());
-                        titulosLbl[j].setFont(eventoLbl.getFont());
-                        titulosLbl[j].setBounds( 15, 20, WIDTH, 20);
-                        descripcion = new JLabel("Se encontraron empleados "
-                                + "que deben llevar el evento, seleccione "
-                                + "el boton para programar el evento.");
-                        descripcion.setBounds( 15, 70, WIDTH, 20);
-                        descripcion.setFont(eventoLbl.getFont());
-                        resolverBtn[j] = new JButton("Resolver");
-                        resolverBtn[j].setFont(eventoLbl.getFont());
-                        resolverBtn[j].setBounds( 600, 100, 100, 25);
-                        resolverBtn[j].setName(ic.getId().toString());
-                        resolverBtn[j].addActionListener(new ActionListener(){// listener
-                            
-                            @Override
-                            public void actionPerformed(ActionEvent ae){// method
-                                resolverBtnActionPerformed(ae);
-                            }// method
-                        });// listener
-                        panelesPnl[j].add(titulosLbl[j]);
-                        panelesPnl[j].add(descripcion);
-                        panelesPnl[j].add(resolverBtn[j]);
-                        alertasPnl.add(panelesPnl[j]);
-                        j++;
-                    }// for each
-                    alertasPnl.updateUI();
-                    break;
-                case 3:// informacion pendiente
-                    for(ImplementacionEvento ic : 
-                            a.getImplementacionEventos()){// for each
-                        idAlerta[j] = 3;
-                        datosEvento.add(ic);
-                        panelesPnl[j] = new JPanel();
-                        panelesPnl[j].setBackground(java.awt.Color.white);
-                        panelesPnl[j].setLayout(null);
-                        panelesPnl[j].setSize(WIDTH, 150);
-                        panelesPnl[j].setBorder(javax.swing.BorderFactory.
-                        createLineBorder(new java.awt.Color(
-                                0, 0, 0)));
-                        
-                        if(j == 0){// if
-                            panelesPnl[j].setLocation(0, 0);
-                        }// if
-                        else{// else
-                            int y = panelesPnl[j - 1].getLocation().y 
-                                    + panelesPnl[j].getSize().height;
-                            panelesPnl[j].setLocation(0, y);
-                        }// else
-                        
-                        titulosLbl[j] = new JLabel();
-                        titulosLbl[j].setText(a.getDescripcion() 
-                                + " de " +ic.getEvento().getNombre());
-                        titulosLbl[j].setFont(eventoLbl.getFont());
-                        titulosLbl[j].setBounds( 15, 20, WIDTH, 20);
-                        descripcion = new JLabel("Existe informacion pendiente "
-                                + "del evento, seleccione el boton para "
-                                + "programar el evento.");
-                        descripcion.setBounds( 15, 70, WIDTH, 20);
-                        descripcion.setFont(eventoLbl.getFont());
-                        resolverBtn[j] = new JButton("Resolver");
-                        resolverBtn[j].setFont(eventoLbl.getFont());
-                        resolverBtn[j].setBounds( 600, 100, 100, 25);
-                        resolverBtn[j].setName(ic.getId().toString());
-                        resolverBtn[j].addActionListener(new ActionListener(){// listener
-                            
-                            @Override
-                            public void actionPerformed(ActionEvent ae){// method
-                                resolverBtnActionPerformed(ae);
-                            }// method
-                        });// listener
-                        panelesPnl[j].add(titulosLbl[j]);
-                        panelesPnl[j].add(descripcion);
-                        panelesPnl[j].add(resolverBtn[j]);
-                        alertasPnl.add(panelesPnl[j]);
-                        j++;
-                    }// for each
-                    alertasPnl.updateUI();
-                    break;
-                case 4:// encuesta pendiente
-                    for(ImplementacionEvento ic : 
-                            a.getImplementacionEventos()){// for each
-                        idAlerta[j] = 4;
-                        datosEvento.add(ic);
-                        panelesPnl[j] = new JPanel();
-                        panelesPnl[j].setBackground(java.awt.Color.white);
-                        panelesPnl[j].setLayout(null);
-                        panelesPnl[j].setMinimumSize(new java.awt.
-                                Dimension(WIDTH, 150));
-                        panelesPnl[j].setSize(WIDTH, 150);
-                        panelesPnl[j].setBorder(javax.swing.BorderFactory.
-                        createLineBorder(new java.awt.Color(
-                                0, 0, 0)));
-
-                        if(j == 0){// if
-                            panelesPnl[j].setLocation(0, 0);
-                        }// if
-                        else{// else
-                            int y = panelesPnl[j - 1].getLocation().y 
-                                    + panelesPnl[j].getSize().height;
-                            panelesPnl[j].setLocation(0, y);
-                        }// else
-                        
-                        titulosLbl[j] = new javax.swing.JLabel();
-                        titulosLbl[j].setText(a.getDescripcion() 
-                                + " de " +ic.getEvento().getNombre());
-                        titulosLbl[j].setFont(eventoLbl.getFont());
-                        titulosLbl[j].setBounds( 15, 20, WIDTH, 20);
-                        descripcion = new JLabel("Es necesario que revise las "
-                                + "encuestas del evento, seleccione el boton "
-                                + "para programar el evento.");
-                        descripcion.setBounds( 15, 70, WIDTH, 20);
-                        descripcion.setFont(eventoLbl.getFont());
-                        resolverBtn[j] = new javax.swing.JButton(
-                                "Resolver");
-                        resolverBtn[j].setFont(eventoLbl.getFont());
-                        resolverBtn[j].setBounds( 600, 100, 100, 25);
-                        resolverBtn[j].setName(ic.getId().toString());
-                        resolverBtn[j].addActionListener(new ActionListener(){// listener
-                            
-                            @Override
-                            public void actionPerformed(ActionEvent ae){// method
-                                resolverBtnActionPerformed(ae);
-                            }// method
-                        });// listener
-                        panelesPnl[j].add(titulosLbl[j]);
-                        panelesPnl[j].add(descripcion);
-                        panelesPnl[j].add(resolverBtn[j]);
-                        alertasPnl.add(panelesPnl[j]);
-                        j++;
-                    }// for each
-                    alertasPnl.updateUI();
-                    break;
-            }// switch
-        }// for each
+            implementaciones = new ImplementacionEvento[totalPag][4];
+            tipoAlerta = new int[totalPag][4];
+            int z = 0;
+            for(int x = 0; x < totalPag; x++){//for
+                for(int y = 0; y < 4; y++){//for
+                    System.out.println("z: " + z);
+                    if(z < auxiliar.size() && auxiliar.get(z) != null){//if
+                        if(((Alerta) info.get(0)).getImplementacionEventos()
+                                .contains(auxiliar.get(z))){//if
+                            if(seleccionCBx.getSelectedIndex() == 0 
+                                    || seleccionCBx.getSelectedIndex() == 1){//if
+                                tipoAlerta[x][y] = 1;
+                            }//if
+                        }//if
+                        if(((Alerta) info.get(1)).getImplementacionEventos()
+                                .contains(auxiliar.get(z))){//if
+                            if(seleccionCBx.getSelectedIndex() == 0 
+                                    || seleccionCBx.getSelectedIndex() == 2){//if
+                                tipoAlerta[x][y] = 2;
+                            }//if
+                        }//if
+                        if(((Alerta) info.get(2)).getImplementacionEventos()
+                                .contains(auxiliar.get(z))){//if
+                            if(seleccionCBx.getSelectedIndex() == 0 
+                                    || seleccionCBx.getSelectedIndex() == 3){//if
+                                tipoAlerta[x][y] = 3;
+                            }//if
+                        }//if
+                        if(((Alerta) info.get(3)).getImplementacionEventos()
+                                .contains(auxiliar.get(z))){//if
+                            if(seleccionCBx.getSelectedIndex() == 0 
+                                    || seleccionCBx.getSelectedIndex() == 4){//if
+                                tipoAlerta[x][y] = 4;
+                            }//if
+                        }//if
+                        implementaciones[x][y] = auxiliar.get(z);
+                        z++;
+                    }//if
+                    else{//else
+                        y= 4;
+                        x= totalPag + 1;
+                    }//else
+                }//for
+            }//for
+        }//if
+        else{//else
+            Set<ImplementacionEvento> eventos = ((Alerta) info.get(0))
+                    .getImplementacionEventos();
+            for(ImplementacionEvento e : eventos){//for
+                auxiliar.add(e);
+            }//for
+            totalPag = Math.round(auxiliar.size()/4);
+            if((auxiliar.size()%4) != 0){//if
+                totalPag = totalPag + 1;
+            }//if
+            int z = 0;
+            implementaciones = new ImplementacionEvento[totalPag][4];
+            tipoAlerta = new int[totalPag][4];
+            for(int x = 0; x < totalPag; x++){//for
+                for(int y = 0; y < 4; y++){//for
+                    if(auxiliar.get(z) != null){//if
+                        implementaciones[x][y] = auxiliar.get(z);
+                        tipoAlerta[x][y] = seleccionCBx.getSelectedIndex();
+                    }//if
+                    else{//else
+                        x = totalPag;
+                        y = 4;
+                    }//else
+                }//for
+            }//for
+        }//else
+        anteriorBtn.setName("0");
+        siguienteBtn.setName("1");
+        paginasLbl.setText("0/" + totalPag);
+        
+        cambioPagina(0);
     }//method
 
     @Override
     public void llenarDatos(Object evento) {//method
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }//method
     
 }// class
