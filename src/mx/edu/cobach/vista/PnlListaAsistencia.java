@@ -395,8 +395,8 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
     @Override
     public void setTabla(String[][] info) {
         if (info.length == 0) {
-            modelEvento.setDataVector(new String[3][0], titulosTablaEvento);
-            JOptionPane.showMessageDialog(null, "No se Encontro la busqueda");
+            modelEvento.setNumRows(0);
+            setMensaje("No se encontro la busqueda");
         } else {
             modelEvento.setDataVector(info, titulosTablaEvento);
             //Esconder columna ID
@@ -423,16 +423,18 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
                 x++;
                 Empleado empleado = (Empleado) it.next();
                 lista[x][0] = empleado.getNumero() + "";
-                lista[x][1] = empleado.getPrimerNombre() + " " + empleado.getSegundoNombre()
-                        + " " + empleado.getApellidoPaterno() + " " + empleado.getApellidoMaterno();
-                lista[x][2] = empleado
-                        .getPuesto().toString();
+                String segundoNombre = (empleado.getSegundoNombre() == null) ? 
+                    "" : empleado.getSegundoNombre();
+                String apellidoMaterno = (empleado.getApellidoMaterno()== null) ? 
+                    "" : empleado.getApellidoMaterno();
+                String nombre = String.join(" ", empleado.getPrimerNombre(),
+                    segundoNombre, empleado.getApellidoPaterno(), apellidoMaterno);
+                lista[x][1] = nombre;
+                lista[x][2] = empleado.getPuesto().toString();
             }
 
             modelLista.setDataVector(lista, titulosTablaLista);
             //Esconder columna ID
-            TableColumn idTbc = listaAsistenciaTbl.getColumnModel().getColumn(0);
-            listaAsistenciaTbl.getColumnModel().removeColumn(idTbc);
             listaAsistenciaTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
             listaAsistenciaTbl.getColumnModel().getColumn(2).setPreferredWidth(220);
     }

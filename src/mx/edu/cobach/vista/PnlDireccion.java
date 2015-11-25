@@ -454,7 +454,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
-            validNomLbl.setText("El nombre del puesto ya existe");
+            validNomLbl.setText("El nombre de la direccion ya existe");
             validNomLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_nombreTFdFocusLost

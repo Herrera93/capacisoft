@@ -243,8 +243,12 @@ public class ReporteDELEGATE {
             .getEmpleado().find(numero);
 
         Map<String, String> agregarInfo = new HashMap();
-        String nombre = empleadoInfo.getPrimerNombre() + " " + empleadoInfo.getSegundoNombre()
-                + " " + empleadoInfo.getApellidoPaterno() + " " + empleadoInfo.getApellidoMaterno();
+        String segundoNombre = (empleadoInfo.getSegundoNombre() == null) ? 
+            "" : empleadoInfo.getSegundoNombre();
+        String apellidoMaterno = (empleadoInfo.getApellidoMaterno()== null) ? 
+            "" : empleadoInfo.getApellidoMaterno();
+        String nombre = String.join(" ", empleadoInfo.getPrimerNombre(),
+            segundoNombre, empleadoInfo.getApellidoPaterno(), apellidoMaterno);
         word = new ApachePoiUtil(nombre);
         //Se agregan los valores del empleado.
         agregarInfo.put("<@nombre>", nombre);
