@@ -106,7 +106,7 @@
               <StringArray count="5">
                 <StringItem index="0" value="Alertas recientes"/>
                 <StringItem index="1" value="Evento programado"/>
-                <StringItem index="2" value="Evento diagnostico"/>
+                <StringItem index="2" value="Evento diagnosticado"/>
                 <StringItem index="3" value="Informaci&#xf3;n pendiente"/>
                 <StringItem index="4" value="Encuesta pendiente"/>
               </StringArray>
@@ -264,9 +264,6 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eventoCBxActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="informacionCBx">
               <Properties>
@@ -282,9 +279,6 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="informacionCBxActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="encuestaCBx">
               <Properties>
@@ -300,9 +294,6 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="encuestaCBxActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="cancelarBtn">
               <Properties>
@@ -418,9 +409,9 @@
                                           <Component id="fin1Lbl" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="inicio1Txf" min="-2" pref="80" max="-2" attributes="0"/>
-                                          <Component id="fin1Txf" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="inicio1Txf" pref="80" max="32767" attributes="0"/>
+                                          <Component id="fin1Txf" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
@@ -563,6 +554,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Resolver"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resolverBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="instruc1Lbl">
                       <Properties>
@@ -614,9 +608,9 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="inicio2Txf" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fin2Txf" min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="inicio2Txf" pref="80" max="32767" attributes="0"/>
+                                          <Component id="fin2Txf" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -750,6 +744,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Resolver"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resolverBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="instruc2Lbl">
                       <Properties>
@@ -805,9 +802,9 @@
                                                   <Component id="fin3Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="fin3Txf" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="inicio3Txf" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="inicio3Txf" pref="75" max="32767" attributes="0"/>
+                                                  <Component id="fin3Txf" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -906,6 +903,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Resolver"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resolverBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="inicio3Lbl">
                       <Properties>
@@ -978,40 +978,34 @@
                                           <Component id="tipoAlerta4Lbl" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
+                                              <Component id="fin4Lbl" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="fin4Txf" min="-2" pref="81" max="-2" attributes="0"/>
+                                          </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="inicio4Lbl" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="inicio4Txf" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="fin4Lbl" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="fin4Txf" min="-2" max="-2" attributes="0"/>
+                                              <Component id="inicio4Txf" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="sede4Lbl" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="nombreSede4Lbl" min="-2" pref="354" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="instruc4Lbl" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="sede4Lbl" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="resolver4Btn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="nombreSede4Lbl" min="-2" pref="354" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="instruc4Lbl" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="resolver4Btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1132,6 +1126,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Resolver"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resolverBtnActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1139,6 +1136,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Anterior"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paginaActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="200" y="530" width="80" height="30"/>
@@ -1149,6 +1149,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Siguiente"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paginaActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="410" y="530" width="80" height="30"/>
