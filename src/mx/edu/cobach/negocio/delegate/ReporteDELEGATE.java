@@ -161,15 +161,27 @@ public class ReporteDELEGATE {
     public String[][] generarReportePorDepartamento(Departamento departamento) {
         List<Object> eventosPorDepartamento = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorDepartamento(departamento);
-        String[][] evento = new String[eventosPorDepartamento.size()][5];
+        List<Integer> idsEventos = new ArrayList();        
         for (int i = 0; i < eventosPorDepartamento.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorDepartamento.get(i);
-            evento[i][0] = eD.getFechaInicial() + "";
-            evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getEvento().toString();
-            evento[i][3] = eD.getSede().toString();
-            evento[i][4] = eD.getProveedor().toString();
-            System.out.println(eD.getFechaFinal() + "");
+            if(idsEventos.contains(eD.getId())){
+                continue;
+            }
+            idsEventos.add(eD.getId());
+        }
+        String[][] evento = new String[idsEventos.size()][5];
+        idsEventos.clear();
+        for (int i = 0; i < eventosPorDepartamento.size(); i++) {
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorDepartamento.get(i);
+            if(idsEventos.contains(eD.getId())){
+                continue;
+            }
+            idsEventos.add(eD.getId());
+            evento[idsEventos.size() - 1][0] = eD.getFechaInicial() + "";
+            evento[idsEventos.size() - 1][1] = eD.getFechaFinal() + "";
+            evento[idsEventos.size() - 1][2] = eD.getEvento().toString();
+            evento[idsEventos.size() - 1][3] = eD.getSede().toString();
+            evento[idsEventos.size() - 1][4] = eD.getProveedor().toString();
         }
         return evento;
     }
@@ -187,14 +199,27 @@ public class ReporteDELEGATE {
     public String[][] generarReportePorPlantel(Plantel plantel) {
         List<Object> eventosPorPlantel = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorPlantel(plantel);
-        String[][] evento = new String[eventosPorPlantel.size()][5];
+        List<Integer> idsEventos = new ArrayList();
         for (int i = 0; i < eventosPorPlantel.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorPlantel.get(i);
-            evento[i][0] = eD.getFechaInicial() + "";
-            evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getEvento().toString();
-            evento[i][3] = eD.getSede().toString();
-            evento[i][4] = eD.getProveedor().toString();
+            if(idsEventos.contains(eD.getId())){
+                continue;
+            }
+            idsEventos.add(eD.getId());
+        }
+        String[][] evento = new String[idsEventos.size()][5];
+        idsEventos.clear();
+        for (int i = 0; i < eventosPorPlantel.size(); i++) {
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorPlantel.get(i);
+            if(idsEventos.contains(eD.getId())){
+                continue;
+            }
+            idsEventos.add(eD.getId());
+            evento[idsEventos.size() - 1][0] = eD.getFechaInicial() + "";
+            evento[idsEventos.size() - 1][1] = eD.getFechaFinal() + "";
+            evento[idsEventos.size() - 1][2] = eD.getEvento().toString();
+            evento[idsEventos.size() - 1][3] = eD.getSede().toString();
+            evento[idsEventos.size() - 1][4] = eD.getProveedor().toString();
             System.out.println(eD.getFechaFinal() + "");
         }
         return evento;
@@ -208,14 +233,14 @@ public class ReporteDELEGATE {
      * @param numero
      * @throws IOException
      */
-    public void generarKardex(int numero) throws IOException {
+    public void generarKardex(String numero) throws IOException {
 
         int numEvento = 0;
         //instancia de la clase ApachePoiUtil
         ApachePoiUtil word;
         List<String> lista = new ArrayList();
-        Empleado empleadoInfo = (Empleado) ServiceLocatorFACADE.getInstance().
-                find(numero, Empleado.class);
+        Empleado empleadoInfo = (Empleado) ServiceLocatorFACADE
+            .getEmpleado().find(numero);
 
         Map<String, String> agregarInfo = new HashMap();
         String nombre = empleadoInfo.getPrimerNombre() + " " + empleadoInfo.getSegundoNombre()
@@ -250,15 +275,27 @@ public class ReporteDELEGATE {
     public String[][] generarReportePorDireccion(Direccion direccion) {
         List<Object> eventosPorDireccion = ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventosPorDireccion(direccion);
-        String[][] evento = new String[eventosPorDireccion.size()][5];
+        List<Integer> idsEventos = new ArrayList();
         for (int i = 0; i < eventosPorDireccion.size(); i++) {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorDireccion.get(i);
-            evento[i][0] = eD.getFechaInicial() + "";
-            evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getEvento().toString();
-            evento[i][3] = eD.getSede().toString();
-            evento[i][4] = eD.getProveedor().toString();
-            System.out.println(eD.getFechaFinal() + "");
+            if(idsEventos.contains(eD.getId())){
+                continue;
+            }
+            idsEventos.add(eD.getId());
+        }
+        String[][] evento = new String[idsEventos.size()][5];
+        idsEventos.clear();
+        for (int i = 0; i < eventosPorDireccion.size(); i++) {
+            ImplementacionEvento eD = (ImplementacionEvento) eventosPorDireccion.get(i);
+            if(idsEventos.contains(eD.getId())){
+                continue;
+            }
+            idsEventos.add(eD.getId());
+            evento[idsEventos.size() - 1][0] = eD.getFechaInicial() + "";
+            evento[idsEventos.size() - 1][1] = eD.getFechaFinal() + "";
+            evento[idsEventos.size() - 1][2] = eD.getEvento().toString();
+            evento[idsEventos.size() - 1][3] = eD.getSede().toString();
+            evento[idsEventos.size() - 1][4] = eD.getProveedor().toString();
         }
         return evento;
     }

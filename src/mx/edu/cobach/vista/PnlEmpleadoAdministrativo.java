@@ -1181,7 +1181,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             buscando = false;
             if(info != null){
                 for(int x = 0; x < info.length; x++){
-                    if(info[x][1].equals(numeroTFd.getText())){
+                    if(guardarBtn.getText().equals("Modificar") &&
+                        info[x][0].equals(idEmpleadoActual)){
+                        continue;
+                    }
+                    if(info[x][0].equals(numeroTFd.getText())){
                         if(almacenando){
                             setMensaje("Ya existe un empleado con numero\n"+info[x][0]);
                         }
