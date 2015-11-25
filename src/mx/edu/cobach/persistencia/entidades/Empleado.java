@@ -158,7 +158,8 @@ public class Empleado  implements java.io.Serializable {
 
     @Override
     public String toString(){
-        if(segundoNombre.isEmpty()){
+        System.out.println("Seg: " + segundoNombre);
+        if(segundoNombre == null || segundoNombre.isEmpty()){
             return primerNombre + " " + apellidoPaterno + " " + apellidoMaterno;
         }else{
             return primerNombre + " " + segundoNombre + " " + apellidoPaterno +

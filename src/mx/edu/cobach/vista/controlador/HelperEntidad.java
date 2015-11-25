@@ -343,6 +343,7 @@ public class HelperEntidad {
     //Descomposicion de lista de objetos
     
     public static String[][] descomponerObjetos(List<Object> objetos){
+        System.out.println("Lista: " + objetos);
         if(objetos.size() > 0){
             if(objetos.get(0) instanceof Puesto){
                 List<Puesto> ps = new ArrayList<>();
