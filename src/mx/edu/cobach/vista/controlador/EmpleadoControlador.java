@@ -11,8 +11,10 @@ import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
- *
- * @author Alex
+ * Clase con los metodos de busqueda especifica en la entidades 
+ * y realiza los cambios en la interfaz grafica a traves de la interfaz de 
+ * comunicacion Comunicador
+ * @author Fernando
  */
 public class EmpleadoControlador extends BaseControlador {
 
@@ -23,7 +25,28 @@ public class EmpleadoControlador extends BaseControlador {
      */
     public EmpleadoControlador(Comunicador com, Class clazz) {
         super(com, clazz);
-    }    
+    }
+    
+    /**
+     * Metodo para la eliminacion de un empleado, este esta separado de los
+     * demas debido a que tiene un llave primaria de cadena.
+     * @param id Id de empleado a eliminar
+     */
+    public void baja(String id){
+        String mensaje = ServiceLocatorDELEGATE.getEmpleado().baja(id);
+        com.setMensaje(mensaje);
+    }
+    
+    /**
+     * Metodo para buscar un empleado especifico a traves de un identificador,
+     * este metodo es separado del generico debido a que Empleado tiene una
+     * llave primaria de tipo cadena.
+     * @param id Identificador del empleado
+     */
+    public void buscar(String id){
+        Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
+        com.setInfo(HelperEntidad.descomponerObjeto(empleado));
+    }
     
     /**
      * Metodo para buscar un registro especifico a traves de un nombre
@@ -55,4 +78,17 @@ public class EmpleadoControlador extends BaseControlador {
             com.setMensaje("El numero de empleado ya existe");
         }
     }
+
+    /**
+     * Metodo para validar si el empleado se encuentra asignado a alguna
+     * lista de asistencia de una implementacion de evento
+     * @param id Numero de empleado
+     * @return REgresa el valor de la validacion
+     */
+    public boolean buscarImplementaciones(String id) {
+        return ServiceLocatorDELEGATE.getEmpleado()
+                .buscarImplementaciones(id).size() > 0;
+    }
+    
+    
 }

@@ -19,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Alex
+ * @author Fernando
  */
 public class EmpleadoDAO extends BaseDAO {
 
@@ -27,7 +27,7 @@ public class EmpleadoDAO extends BaseDAO {
         super();
         super.entityClass = Empleado.class;
     }
-
+    
     /**
      * Metodo para buscar un registro especifico a traves de un nombre
      * @param nombre Nombre del empleado a buscar
@@ -40,10 +40,10 @@ public class EmpleadoDAO extends BaseDAO {
             HibernateUtil.beginTransaction();
             ts = HibernateUtil.getSession().createCriteria(entityClass)
                     .add(Restrictions.or(
-                                    Restrictions.like("primerNombre", nombre + "%"),
-                                    Restrictions.like("segundoNombre", nombre + "%"),
-                                    Restrictions.like("apellidoPaterno", nombre + "%"),
-                                    Restrictions.like("apellidoMaterno", nombre + "%")))
+                                    Restrictions.like("primerNombre", "%" + nombre + "%"),
+                                    Restrictions.like("segundoNombre","%" +  nombre + "%"),
+                                    Restrictions.like("apellidoPaterno","%" +  nombre + "%"),
+                                    Restrictions.like("apellidoMaterno","%" +  nombre + "%")))
                     .list();
             HibernateUtil.commitTransaction();
             System.out.println("Buscar por nombre::Empleado");
@@ -336,5 +336,50 @@ public class EmpleadoDAO extends BaseDAO {
             HibernateUtil.closeSession();
         }
         return ts;
+    }
+    /**
+     * Metodo para la eliminacion de un empleado, este esta separado de los
+     * demas debido a que tiene un llave primaria de cadena.
+     * @param id Id de empleado a eliminar
+     */
+    public String baja(String id){
+        String mensaje;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Empleado t = (Empleado) HibernateUtil.getSession().get(Empleado.class, id);
+            HibernateUtil.getSession().delete(t);
+            HibernateUtil.commitTransaction();
+            mensaje = "Se ha eliminado exitosamente";
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+            mensaje = "Eliminación imposible";
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return mensaje;
+    }
+    
+    /**
+     * Metodo para buscar un empleado especifico a traves de un identificador,
+     * este metodo es separado del generico debido a que Empleado tiene una
+     * llave primaria de tipo cadena.
+     * @param id Identificador del empleado
+     * @return Regresa el objeto del empleado encontrado o un nulo en caso
+     * de algun problema
+     */
+    public Object find(String id){
+        Empleado t = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            t = (Empleado) HibernateUtil.getSession().get(Empleado.class, id);
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return t;
     }
 }

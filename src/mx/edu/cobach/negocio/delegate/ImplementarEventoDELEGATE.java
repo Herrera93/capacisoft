@@ -8,12 +8,14 @@ package mx.edu.cobach.negocio.delegate;
 import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
+import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Puesto;
+import mx.edu.cobach.persistencia.entidades.Sede;
 
 /**
  * Esta clase de ImplementacionEventoDelegate es utilizada para el caso de uso
@@ -201,6 +203,17 @@ public class ImplementarEventoDELEGATE extends BaseDELEGATE {
         return ServiceLocatorFACADE.getImplementacionEvento()
                 .buscarEventoPorFechas((Evento) evento, de, hasta);
 
+    }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron en una sede especifica.
+     * @param sede objeto de tipo entidad sede
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarEventosPorSede(Sede sede) {
+        return ServiceLocatorFACADE.getImplementacionEvento().
+            buscarEventosPorSede(sede);    
     }
 
 }

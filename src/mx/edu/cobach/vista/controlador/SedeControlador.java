@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.Comunicador;
 
 /**
@@ -24,6 +25,8 @@ public class SedeControlador extends BaseControlador{
     }
     
     public boolean buscarImplementaciones(int id){
-        return ServiceLocatorDELEGATE.getSede().buscarImplementaciones(id) != null;
+        Sede o = (Sede) ServiceLocatorDELEGATE.getInstance().find(id, clazz);
+        return ServiceLocatorDELEGATE.getImplementarEvento()
+            .buscarEventosPorSede(o).size() > 0;
     }
 }

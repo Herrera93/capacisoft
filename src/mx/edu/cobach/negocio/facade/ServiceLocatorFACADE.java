@@ -30,6 +30,7 @@ public class ServiceLocatorFACADE {
     private static ProveedorFACADE proveedorFacade;
     private static PlantelFACADE plantelFacade;
     private static AlertaFACADE alertaFacade;
+    private static DireccionFACADE direccionFacade;
     
     /**
      * Obtiene el FACADE generico, si este no ha sido inicilizado se instanciara.
@@ -67,6 +68,19 @@ public class ServiceLocatorFACADE {
             puestoFacade = new PuestoFACADE();
         }
         return puestoFacade;
+    }
+    
+    /**
+     * Obtiene el FACADE especifico de la entidad Direccion, si este no ha sido
+     * inicializado se instanciara. Este metodo utiliza el patron de diseno
+     * Singleton.
+     * @return Regresa el FACADE de Direccion
+     */
+    public static DireccionFACADE getDireccion(){
+        if(direccionFacade == null){
+            direccionFacade = new DireccionFACADE();
+        }
+        return direccionFacade;
     }
     
     /**

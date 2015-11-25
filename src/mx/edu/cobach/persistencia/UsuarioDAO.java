@@ -31,10 +31,10 @@ public class UsuarioDAO extends BaseDAO{
                     .list();
             HibernateUtil.commitTransaction();            
         }catch(HibernateException e){
+            e.printStackTrace();
             HibernateUtil.rollbackTransaction();
         }finally{
             HibernateUtil.closeSession();
-            
         }
         return ts;
     }

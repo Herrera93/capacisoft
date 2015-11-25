@@ -49,7 +49,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private DefaultTableModel modelTablaEmF;
-    private String[] titulosTablaEm = {"ID", "Numero",
+    private String[] titulosTablaEm = {"Numero",
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
@@ -700,8 +700,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         if (info[0][0].contains("TLE1")) {
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
             totalEmpleadosLbl.setText("Total de empleados en la lista: " + 
                     tablaLisFTbl.getRowCount() + "");
         }
@@ -718,8 +716,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         modelTablaEmF.setDataVector(null, titulosTablaEm);
         modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
         tablaLisFTbl.setModel(modelTablaEmF);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -807,8 +803,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             atributos.add(nombreGCBx.getSelectedItem());
             for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
                 Empleado empleado = new Empleado();
-                empleado.setId(Integer.parseInt((String) modelTablaEmF.
-                        getValueAt(x, 0)));
+                empleado.setNumero((String) modelTablaEmF.getValueAt(x, 0));
                 lisEmpleado.add(empleado);
             }
             atributos.add(lisEmpleado);
@@ -871,16 +866,14 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
 
         for (int x = 0; x < eventoImplementado.getEmpleados().size(); x++) {
             Empleado empleado = (Empleado) itr.next();
-
-            tableData[x][0] = empleado.getId() + "";
-            tableData[x][1] = empleado.getNumero() + "";
+            tableData[x][0] = empleado.getNumero() + "";
             if (empleado.getSegundoNombre() == null) {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + 
+                tableData[x][1] = empleado.getPrimerNombre() + " " + 
                         empleado.getApellidoPaterno() + " " + empleado.
                                 getApellidoMaterno();
 
             } else {
-                tableData[x][2] = empleado.getPrimerNombre() + " " + 
+                tableData[x][1] = empleado.getPrimerNombre() + " " + 
                         empleado.getSegundoNombre() + " " + empleado.
                                 getApellidoPaterno() + " " + empleado.
                                         getApellidoMaterno();
@@ -888,8 +881,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             }
         }
         modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
         informacionTP.setEnabledAt(0, true);
         informacionTP.setEnabledAt(1, false);
         informacionTP.setSelectedIndex(0);

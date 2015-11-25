@@ -177,5 +177,29 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
         }
         return ts;
     }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se realizaron en una sede especifica.
+     * @param sede objeto de tipo entidad sede
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarPorSede(Sede sede){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria criteria = HibernateUtil.getSession().
+                    createCriteria(entityClass, "implementacion");
+            criteria.add(Restrictions.eq("sede", sede));
+            ts = criteria.list(); 
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
 }
 

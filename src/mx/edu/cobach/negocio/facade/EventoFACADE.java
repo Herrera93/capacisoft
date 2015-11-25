@@ -28,15 +28,6 @@ public class EventoFACADE extends BaseFACADE{
     }
     
     /**
-     * Metodo para buscar un registro especifico a traves de su id
-     * @param id con el numer del evento
-     * @return lista de objectos con el evento que coinciden con nombre
-    */
-    public List<Object> buscarEvento(int id) {
-        return ServiceLocator.getEvento().buscarEvento(id);
-    }
-    
-    /**
      * Metodo para buscar un registro especifico a traves de un nombre
      * @param nombre Nombre del puesto a buscar
      * @return lista de objectos con los eventos que coinciden con nombre

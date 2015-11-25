@@ -173,7 +173,7 @@ public class EncuestaDELEGATE {
                 //Se actualiza las preguntas por cada empleado
                 JotFormUtil.actualizarPregunta(encuesta.getLong("id"), idAsignado, 
                         "defaultValue", 
-                        String.valueOf(empleado.getId()));
+                        String.valueOf(empleado.getNumero()));
                 
                 String nombreEncuesta = encuesta.getString("title");
                 String asunto = "Encuesta: " + nombreEncuesta;

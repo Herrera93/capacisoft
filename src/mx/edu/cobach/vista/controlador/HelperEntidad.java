@@ -136,6 +136,19 @@ public class HelperEntidad {
             return puesto;
         }
     }
+    
+    public static Direccion getDireccion(List<String> atributos, String opcion) {
+        if (opcion.equals("Guardar")) {
+            Direccion direccion = new Direccion();
+            direccion.setNombre(atributos.get(0) + "");
+            return direccion;
+        } else {
+            Direccion direccion = new Direccion();
+            direccion.setId(Integer.parseInt(atributos.get(0)));
+            direccion.setNombre(atributos.get(1) + "");
+            return direccion;
+        }
+    }
 
     public static Object getEmpleado(List<Object> atributos) {
         Empleado e = new Empleado();
@@ -157,9 +170,6 @@ public class HelperEntidad {
             e.setDepartamento((Departamento) atributos.get(9));
         }else{
             e.setDireccion((Direccion) atributos.get(10));
-        }
-        if (atributos.size() > 10) {
-            e.setId((int) atributos.get(11));
         }
         return e;
     }
@@ -236,7 +246,9 @@ public class HelperEntidad {
               return descomponerPlantel((Plantel)obj);
         }else if(obj instanceof Alerta){
             return descomponerAlerta((Alerta) obj);
-        }
+        }else if(obj instanceof Direccion){
+            return descomponerDireccion((Direccion) obj);
+        }        
         else{
             return null;
         }
@@ -271,6 +283,13 @@ public class HelperEntidad {
         return info;
     }
     
+    private static List<Object> descomponerDireccion(Direccion direccion){
+        List<Object> info = new ArrayList<>();
+        info.add(direccion.getNombre());
+        info.add(direccion.getId());
+        return info;
+    }
+    
     private static List<Object> descomponerEvento(Evento evento) {
         List<Object> info = new ArrayList<>();
         info.add(evento.getId());
@@ -283,7 +302,6 @@ public class HelperEntidad {
     private static List<Object> descomponerEmpleado(Empleado empleado) {
         List<Object> info = new ArrayList<>();
         System.out.println(empleado.getPrimerNombre());
-        info.add(empleado.getId());
         info.add(empleado.getNumero());
         info.add(empleado.getPrimerNombre());
         info.add(empleado.getSegundoNombre());
@@ -418,6 +436,12 @@ public class HelperEntidad {
                     pl.add((Plantel) objetos.get(i));
                 }
                 return descomponerPlanteles(pl);
+            }else if(objetos.get(0) instanceof Direccion){
+                List<Direccion> di = new ArrayList();
+                for(int i = 0; i < objetos.size(); i++){
+                    di.add((Direccion) objetos.get(i));
+                }
+                return descomponerDirecciones(di);
             }
         }
         return null;
@@ -517,6 +541,16 @@ public class HelperEntidad {
         return info;
     }
     
+    private static String[][] descomponerDirecciones(List<Direccion> di){
+        String[][] info = new String[di.size()][2];
+        for(int i = 0; i < di.size(); i++){
+            Direccion d = di.get(i);
+            info[i][0] = d.getId()+"";
+            info[i][1] = d.getNombre();
+        }
+        return info;
+    }
+    
     private static String[][] descomponerEventos(List<Evento> cr) {
         String[][] info = new String[cr.size()][3];
         for(int i = 0; i < cr.size(); i++){
@@ -532,13 +566,12 @@ public class HelperEntidad {
         String[][] info = new String[emps.size()][3];
         for(int i = 0; i < emps.size(); i++){
             Empleado e = emps.get(i);
-            info[i][0] = e.getId().toString();
-            info[i][1] = e.getNumero();
+            info[i][0] = e.getNumero();
             if(e.getSegundoNombre()==null){
-                info[i][2] = e.getPrimerNombre() + " " 
+                info[i][1] = e.getPrimerNombre() + " " 
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }else{
-                info[i][2] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
+                info[i][1] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }
         }

@@ -53,9 +53,9 @@ public class ReporteControlador extends BaseControlador{
      * @param numero
      * @throws IOException 
      */
-    public void generarKardex(int numero) throws IOException{
+    public void generarKardex(String numero) throws IOException{
         ServiceLocatorDELEGATE.getReporte().generarKardex(numero);
-        com.setMensaje("El Kardex fue generado Exitosamente");
+        com.setMensaje("El Kardex fue generado exitosamente");
     }
     
     /**

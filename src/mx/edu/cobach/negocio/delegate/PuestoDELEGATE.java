@@ -10,7 +10,7 @@ import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 
 /**
  *
- * @author liuts
+ * @author Fernando
  */
 public class PuestoDELEGATE {
     

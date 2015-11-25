@@ -94,6 +94,7 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
             HibernateUtil.commitTransaction();
             System.out.println("Buscar todos");
         }catch(HibernateException e){
+            e.printStackTrace();
             HibernateUtil.rollbackTransaction();
         }finally{
             HibernateUtil.closeSession();
