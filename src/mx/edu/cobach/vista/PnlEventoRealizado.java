@@ -1175,7 +1175,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
     }
 
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
     }
     /**
      * Este metodo detecta que el usuario esta modificando un campo y hace el 
