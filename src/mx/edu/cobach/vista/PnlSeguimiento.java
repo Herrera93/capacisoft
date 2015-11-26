@@ -802,15 +802,15 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     }
     
     @Override
-    public void llenarDatos(Object evento){
-        System.out.println("Alta encuesta");
+    public void llenarDatos(Object implementacionEvento){
+        System.out.println("Encuesta");
         llenarTodo();
         this.setVisible(true);
-        System.out.println(((ImplementacionEvento) evento)
+        System.out.println(((ImplementacionEvento) implementacionEvento)
                 .getEvento().getNombre());
-        deFechaDCh.setDate(((ImplementacionEvento) evento).getFechaInicial());
-        aFechaDCh.setDate(((ImplementacionEvento) evento).getFechaFinal());
-        eventoCBx.setSelectedIndex(((ImplementacionEvento) evento)
+        //deFechaDCh.setDate(((ImplementacionEvento) implementacionEvento).getFechaInicial());
+        //aFechaDCh.setDate(((ImplementacionEvento) implementacionEvento).getFechaFinal());
+        eventoCBx.setSelectedIndex(((ImplementacionEvento) implementacionEvento)
                 .getEvento().getId());
         this.realizarEncuestaPnlComponentShown(null);
         realizarEncuestaPnl.updateUI();
