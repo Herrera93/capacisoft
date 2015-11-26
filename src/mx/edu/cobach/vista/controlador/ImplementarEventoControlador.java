@@ -237,7 +237,9 @@ public class ImplementarEventoControlador extends BaseControlador {
         String matriz[][] = HelperEntidad.descomponerObjetos(o);
         //se agrega un string para hubicar a que direccion de las 3
         //tablas se dirigira
-        matriz[0][0] = matriz[0][0] + "TLE4"; 
+        if(matriz != null){
+            matriz[0][0] = matriz[0][0] + "TLE4"; 
+        }
         com.setTabla(matriz);
     }
 
