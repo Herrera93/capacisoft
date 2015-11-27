@@ -670,16 +670,21 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
     /**
      * Metodo que permite llenar la informacion relacionada a los eventos
      *
-     * @param evento
+     * @param implementacionEvento
      */
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
+        ImplementacionEvento ie = (ImplementacionEvento) implementacionEvento;
+        System.out.println("Programar evento");
         llenarTodo();
-        tipoRegCBx.setSelectedIndex(((Evento) evento).getId());
-        this.formComponentShown(null);
-        buscarPnl.setVisible(true);
         this.updateUI();
+        tipoRegCBx.setSelectedIndex(ie.getEvento().getId());
+        this.formComponentShown(null);
+        opcionesTP.setSelectedIndex(1);
+        fechaInicialDCh.setDate(ie.getFechaInicial());
+        fechaTerminacionDCh.setDate(ie.getFechaFinal());
     }
+    
     /**
      * Metodo que permite obtener el id de implementacionEvento desde el
      * componente de alertas

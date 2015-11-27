@@ -945,7 +945,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      * @param evento 
      */
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
     }
     /**
      * Este metodo detecta que el usuario perdio el foco de un campo y no 
