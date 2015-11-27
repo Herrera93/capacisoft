@@ -385,7 +385,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
     }
 
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

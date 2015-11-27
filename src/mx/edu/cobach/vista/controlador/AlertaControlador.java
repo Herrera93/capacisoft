@@ -50,7 +50,6 @@ public class AlertaControlador extends BaseControlador{// class
      */
     public void buscarTodasLista(int opcion){// method
         List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
-        System.out.println("Controlador: " + ((Alerta) ls.get(0)).getDescripcion());
         com.setLista(ls, opcion);
     }// method
     

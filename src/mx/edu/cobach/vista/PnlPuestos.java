@@ -647,7 +647,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * @param evento Objecto de la entidad de tipo evento
      */
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

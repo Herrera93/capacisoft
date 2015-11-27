@@ -613,7 +613,7 @@ public class PnlAgregarEmpleados extends javax.swing.JPanel implements Comunicad
     }
 
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
         
     }
 }

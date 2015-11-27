@@ -16,7 +16,6 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
      * Creates new form Capacisoft
      */
     
-
     private PnlAlertas alertasPnl;
     private PnlSeguimiento seguimientoPnl;
     private PnlProgramarEvento programarPnl;
@@ -160,6 +159,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         alertasPnl.setSize(1181,587);
         //if(idTipo!=3)
             add(alertasPnl);
+            
         if(idTipo==2 || idTipo==3)
             usuario_MIt.setVisible(false);
         if(idTipo==3){

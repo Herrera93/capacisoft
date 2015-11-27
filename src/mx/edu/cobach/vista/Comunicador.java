@@ -34,5 +34,5 @@ public interface Comunicador {
 
     public void setLista(List info, int i);
     
-    public void llenarDatos(Object evento);
+    public void llenarDatos(Object implementacionEvento);
 }

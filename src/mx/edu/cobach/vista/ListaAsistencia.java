@@ -833,7 +833,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param evento
      */
     @Override
-    public void llenarDatos(Object evento) {
+    public void llenarDatos(Object implementacionEvento) {
     }
 
     /**

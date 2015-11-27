@@ -1345,7 +1345,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      * @param pagina, Indica la página a la que se ha cambiado.
      */
     public void cambioPagina(int pagina){//method
-        ImplementacionEvento e1 = null,e2 = null,e3 = null,e4 = null;
+        ImplementacionEvento e1,e2 = null,e3 = null,e4 = null;
         e1 = implementaciones[pagina][0];
         nombre1Lbl.setText(e1.getEvento().getNombre());
         inicio1Txf.setText(e1.getFechaInicial().toString());
