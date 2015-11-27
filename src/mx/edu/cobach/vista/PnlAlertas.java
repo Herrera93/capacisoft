@@ -60,6 +60,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         alerta4Pnl.setVisible(false);
         anteriorBtn.setEnabled(false);
         siguienteBtn.setEnabled(false);
+        
+        
     }// method
 
     /**
@@ -401,9 +403,9 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, alerta1PnlLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(instruc1Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(resolver1Btn)
-                        .addGap(28, 28, 28))))
+                        .addGap(22, 22, 22))))
         );
         alerta1PnlLayout.setVerticalGroup(
             alerta1PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -792,10 +794,39 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Método que consulta el tipo de alerta especificada y procede a generar
+     * los paneles de alerta con los datos de los eventos y en caso de no haber
+     * alertas programas por el momento lo notifica al usuario mediante un
+     * mensaje.
      * 
-     * @param evt Evento al seleccionar un dato.
+     * @param evt Evento al seleccionar un tipo de alerta a consultar.
      */
     private void seleccionCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionCBxActionPerformed
+        switch(seleccionCBx.getSelectedIndex()){//switch
+            case 0:// alertas recientes
+                descripcionLbl.setText("<html>Consulta todas las alertas "
+                        + "pendientes</html>");
+                break;
+            case 1:// evento programado
+                descripcionLbl.setText("<html>Consulta todas las alertas"
+                        + " de los eventos programados.</html>");
+                break;
+            case 2:// evento diagnosticado
+                descripcionLbl.setText("<html>Consulta todas las alertas de "
+                        + "empleados diagnosticados con necesidades de "
+                        + "capacitación</html>");
+                break;
+            case 3:// información pendiente
+                descripcionLbl.setText("<html>Consulta todas las alertas "
+                        + "programadas de eventos con información pendiente "
+                        + "por llenar</html>");
+                break;
+            case 4:// encuesta pendiente
+                descripcionLbl.setText("<html>Consulta todas las alertas pro"
+                        + "gramadas de eventos con encuestas pendientes por rea"
+                        + "lizar o resultados pendientes por revisar</html>");
+                break;
+        }//switch
         eventoSpn.setEnabled(false);
         encuestaSpn.setEnabled(false);
         informacionSpn.setEnabled(false);
@@ -811,12 +842,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         boolean ban = false;
         switch(seleccionCBx.getSelectedIndex()){// switch
             case 0:// Alertas recientes
-                System.out.println("alertas recientes");
                 control.buscarTodasLista(0);
                 ban = true;
                 break;
             case 1:// Evento programado
-                System.out.println("evento programado");
                 obj = control.buscarAlerta(1);
                 eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
@@ -825,17 +854,13 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                     ban = true;
                 }// if
                 else{// else
-                    setMensaje("No existen alertas de evento programado por "
-                            + "el momento.");
+                    setMensaje("No existen alertas de evento programado por el"
+                            + " momento.//" + JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
             case 2:// Evento diagnosticado
                 obj = control.buscarAlerta(2);
-                System.out.println("Objeto: " + ((Alerta)obj).getImplementacionEventos().size());
-                for(ImplementacionEvento ie : ((Alerta)obj).getImplementacionEventos()){//for
-                    System.out.println(ie.getEvento().getDescripcion());
-                }
                 eventos = ((Alerta) obj).getImplementacionEventos();
                 if(!eventos.isEmpty()){// if
                     lista.add(obj);
@@ -843,8 +868,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                     ban = true;
                 }// if
                 else{// else
-                    setMensaje("No existen alertas de evento diagnosticado "
-                            + "por el momento.");
+                    setMensaje("No existen alertas de evento diagnosticado por "
+                            + "el momento.//"+ JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -858,7 +883,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 else{// else
                     setMensaje("No existen eventos con informacion pendiente"
-                            + " por el momento.");
+                            + " por el momento.//" 
+                            + JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -872,7 +898,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 else{// else
                     setMensaje("No existen eventos con encuestas pendiente "
-                            + "por el momento.");
+                            + "por el momento.//" 
+                            + JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -889,8 +916,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }//GEN-LAST:event_seleccionCBxActionPerformed
 
     /**
-     * 
-     * @param evt Evento al presionar el botón.
+     * Método que consulta los periodos actuales en que se generarán las alertas
+     * permitiendo al usuario modificarlos.
+     * @param evt Evento generado al presionar el botón para actualizar los 
+     * periodos de las alertas.
      */
     private void periodoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_periodoBtnActionPerformed
         alerta1Pnl.setVisible(false);
@@ -916,41 +945,52 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }//GEN-LAST:event_periodoBtnActionPerformed
 
     /**
+     * Método que al cambiar de valor, valida que este no sea menor a 1.
      * 
-     * @param evt Evento al cambiar de estado.
+     * @param evt Evento generado al cambiar de valor en el periodo de la alerta
+     * de evento programado o evento diagnosticado.
      */
     private void eventoSpnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_eventoSpnStateChanged
         if(Integer.parseInt(eventoSpn.getValue().toString()) < 1){// if
-            setMensaje("El periodo no puede ser menor a 1.");
+            setMensaje("El periodo no puede ser menor a 1./Advertencia/"
+                    + JOptionPane.WARNING_MESSAGE);
             eventoSpn.setValue(1);
         }// if
     }//GEN-LAST:event_eventoSpnStateChanged
 
     /**
+     * Método que al cambiar de valor, valida que este no sea menor a 1.
      * 
-     * @param evt Evento al cambiar de estado.
+     * @param evt Evento generado al cambiar de estado en el tipo de alerta de
+     * información pendiente.
      */
     private void informacionSpnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_informacionSpnStateChanged
         if(Integer.parseInt(informacionSpn.getValue().toString()) < 1){// if
-            setMensaje("El periodo no puede ser menor a 1.");
+            setMensaje("El periodo no puede ser menor a 1./Advertencia/"
+                    + JOptionPane.WARNING_MESSAGE);
             informacionSpn.setValue(1);
         }// if
     }//GEN-LAST:event_informacionSpnStateChanged
 
     /**
+     * Método que al cambiar de valor, valida que este no sea menor a 1.
      * 
-     * @param evt Evento al cambiar de estado
+     * @param evt Evento generado al cambiar de estado en el tipo de alerta de
+     * encuesta pendiente.
      */
     private void encuestaSpnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_encuestaSpnStateChanged
         if(Integer.parseInt(encuestaSpn.getValue().toString()) < 1){// if
-            setMensaje("El periodo no puede ser menor a 1.");
+            setMensaje("El periodo no puede ser menor a 1./Advertencia/"
+                    + JOptionPane.WARNING_MESSAGE);
             encuestaSpn.setValue(1);
         }// if
     }//GEN-LAST:event_encuestaSpnStateChanged
 
     /**
+     * Método que cancela la modificación de los periodos de activación de los
+     * tipos de alerta, mostrándo primero un mensaje de confirmación.
      * 
-     * @param evt Evento al cambiar de estado
+     * @param evt Evento generado al presionar el botón de cancelar.
      */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
          int respuesta = JOptionPane.showConfirmDialog(null, 
@@ -973,8 +1013,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**
+     * Método que guarda los cambios realizados en los periodos de activación
+     * de los tipos de alertas, mostrándo primero un mensaje de confirmación al
+     * usuario, haciéndole saber como se almacenarán los periodos en el sistema.
      * 
-     * @param evt Evento al presionar el botón.
+     * @param evt Evento generado al presionar el botón de aceptar.
      */
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
         if(Integer.parseInt(eventoSpn.getValue().toString()) > 1 
@@ -1011,87 +1054,131 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         }// if
     }//GEN-LAST:event_aceptarBtnActionPerformed
 
+    /**
+     * Método que es llamado al presionar el botón de resolver de alguna alerta
+     * realizando la transición entre la consulta de alertas y la resolución 
+     * de estas, activando el panel correspondiente (PnlSeguimiento o 
+     * PnlProgramarEvento) y vaciando los datos en él.
+     * 
+     * @param evt, Evento generado al presionar el botón de resolver en
+     * cualquiera de los paneles de las alertas consultadas.
+     */
     private void resolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resolverBtnActionPerformed
         ImplementacionEvento e;
         int alerta;
-        if(evt.equals(resolver1Btn)){//if
-            e = implementaciones
-                [Integer.parseInt(resolver1Btn.getName())][0];
+        if(evt.getSource().equals(resolver1Btn)){//if
+            e = implementaciones[Integer.parseInt(resolver1Btn.getName())][0];
             alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][0];
             switch(alerta){//switch
                 case 0:// evento programado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 1:// evento diagnosticado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 2:// información pendiente
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 4:// encuesta pendiente
+                    this.setVisible(false);
+                    encuestaPnl.setVisible(true);
                     encuestaPnl.llenarDatos(e);
                     break;
             }//switch
         }//if
-        if(evt.equals(resolver2Btn)){//if
-            e = implementaciones
-                [Integer.parseInt(resolver1Btn.getName())][1];
+        if(evt.getSource().equals(resolver2Btn)){//if
+            e = implementaciones[Integer.parseInt(resolver1Btn.getName())][1];
             alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][1];
             switch(alerta){//switch
                 case 0:// evento programado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 1:// evento diagnosticado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 2:// información pendiente
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 4:// encuesta pendiente
+                    this.setVisible(false);
+                    encuestaPnl.setVisible(true);
                     encuestaPnl.llenarDatos(e);
                     break;
             }//switch
         }//if
-        if(evt.equals(resolver3Btn)){//if
-            e = implementaciones
-                [Integer.parseInt(resolver1Btn.getName())][2];
+        if(evt.getSource().equals(resolver3Btn)){//if
+            e = implementaciones[Integer.parseInt(resolver1Btn.getName())][2];
             alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][2];
             switch(alerta){//switch
                 case 0:// evento programado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 1:// evento diagnosticado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 2:// información pendiente
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 4:// encuesta pendiente
+                    this.setVisible(false);
+                    encuestaPnl.setVisible(true);
                     encuestaPnl.llenarDatos(e);
                     break;
             }//switch
         }//if
-        if(evt.equals(resolver4Btn)){//if
-            e = implementaciones
-                [Integer.parseInt(resolver1Btn.getName())][3];
+        if(evt.getSource().equals(resolver4Btn)){//if
+            e = implementaciones[Integer.parseInt(resolver1Btn.getName())][3];
             alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][3];
             switch(alerta){//switch
                 case 0:// evento programado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 1:// evento diagnosticado
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 2:// información pendiente
+                    this.setVisible(false);
+                    eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
                 case 4:// encuesta pendiente
+                    this.setVisible(false);
+                    encuestaPnl.setVisible(true);
                     encuestaPnl.llenarDatos(e);
                     break;
             }//switch
         }//if
     }//GEN-LAST:event_resolverBtnActionPerformed
 
+    /**
+     * Método que cambia la página de alertas consultadas dependiendo del botón
+     * que ha sido seleccionado.
+     * 
+     * @param evt, Evento generado al presionar el botón de siguiente o 
+     * anterior de la consulta a alertas.
+     */
     private void paginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paginaActionPerformed
         if(evt.getSource().equals(anteriorBtn)){//if
             cambioPagina(Integer.parseInt(anteriorBtn.getName()));
@@ -1172,16 +1259,20 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     // End of variables declaration//GEN-END:variables
 
     /**
+     * Método que recibe un mensaje y lo muestra al usuario en una ventana
+     * emergente.
      * 
-     * @param mensaje 
+     * @param mensaje, Mensaje que será mostrado al usuario.
      */
     @Override
     public void setMensaje(String mensaje) {// method
-        JOptionPane.showMessageDialog(null, mensaje);
+        String[] auxiliar = mensaje.split("/");
+        JOptionPane.showMessageDialog(null, auxiliar[0],auxiliar[1],
+                Integer.parseInt(auxiliar[2]));
     }// method
 
     /**
-     * 
+     * Método no implementado.
      * @param info 
      */
     @Override
@@ -1190,7 +1281,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }// method
 
     /**
-     * 
+     * Método no implementado.
      * @param info 
      */
     @Override
@@ -1199,9 +1290,13 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }// method
 
     /**
+     * Método que al recibir las alertas, extrae los datos necesarios para
+     * realizar el proceso correspondiente, ya sea una consulta de cualquier
+     * tipo de alerta o una consulta de los periodos.
      * 
-     * @param info
-     * @param i 
+     * @param info, Lista que contiene la alerta a consultar.
+     * @param i, Entero que indica al ser su valor 1 indica que se han 
+     * consultado los periodos, de lo contrario, la consulta es de alertas.
      */
     @Override
     public void setLista(List info, int i) {
@@ -1229,30 +1324,29 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 // no existen alertas
                 else{// else
-                    setMensaje("No existen alertas por el momento.");
+                    setMensaje("No existen alertas por el momento.//"
+                    + JOptionPane.INFORMATION_MESSAGE);
                 }// else
             }//else
         }//if
         else{//else
-            JOptionPane.showInternalInputDialog(this, 
+            setMensaje("No hay tipo de alertas en la base de datos./Error/" 
+                    + JOptionPane.ERROR_MESSAGE);
+            /*JOptionPane.showInternalInputDialog(this, 
                 "No hay tipo de alertas en la base de datos.", "Error",
-                JOptionPane.ERROR_MESSAGE);
+                JOptionPane.ERROR_MESSAGE);*/
         }//else
     }// method
     
     /**
-     * @param pagina
+     * Método que al recibir la página que ha sido solicitada, procede a mostrar
+     * las alertas correspondientes a dicha página.
+     * 
+     * @param pagina, Indica la página a la que se ha cambiado.
      */
     public void cambioPagina(int pagina){//method
         ImplementacionEvento e1 = null,e2 = null,e3 = null,e4 = null;
-        System.out.println("Pag: " + pagina);
-        for(int i = 0; i < pagina; i ++){//for
-            for(int j = 0; j < 4; j++){//for
-                System.out.println(i + "," + j + ": " + implementaciones[i][j]);
-            }//for
-        }//for
         e1 = implementaciones[pagina][0];
-        System.out.println("e1:" + e1);
         nombre1Lbl.setText(e1.getEvento().getNombre());
         inicio1Txf.setText(e1.getFechaInicial().toString());
         fin1Txf.setText(e1.getFechaFinal().toString());
@@ -1276,12 +1370,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
 
         if(implementaciones[pagina][1] != null 
                 && implementaciones[pagina][1] != e1){//if
-            e2 = implementaciones[pagina][0];
-            System.out.println("e2:" + e2);
+            e2 = implementaciones[pagina][1];
             nombre2Lbl.setText(e2.getEvento().getNombre());
             inicio2Txf.setText(e2.getFechaInicial().toString());
             fin2Txf.setText(e2.getFechaFinal().toString());
-            switch(tipoAlerta[pagina][0]){//switch
+            switch(tipoAlerta[pagina][1]){//switch
                 case 1:// evento programado
                     tipoAlerta2Lbl.setText("Evento programado");
                     break;
@@ -1306,12 +1399,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         if(implementaciones[pagina][2] != null
                 && implementaciones[pagina][2] != e1
                 && implementaciones[pagina][2] != e2){//if
-            e3 = implementaciones[pagina][0];
-            System.out.println("3:" + e3);
+            e3 = implementaciones[pagina][2];
             nombre3Lbl.setText(e3.getEvento().getNombre());
             inicio3Txf.setText(e3.getFechaInicial().toString());
             fin3Txf.setText(e3.getFechaFinal().toString());
-            switch(tipoAlerta[pagina][0]){//switch
+            switch(tipoAlerta[pagina][2]){//switch
                 case 1:// evento programado
                     tipoAlerta3Lbl.setText("Evento programado");
                     break;
@@ -1337,12 +1429,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 && implementaciones[pagina][3] != e1
                 && implementaciones[pagina][3] != e2
                 && implementaciones[pagina][3] != e3){//if
-            e4 = implementaciones[pagina][0];
-            System.out.println("4:" + e4);
+            e4 = implementaciones[pagina][3];
             nombre4Lbl.setText(e4.getEvento().getNombre());
             inicio4Txf.setText(e4.getFechaInicial().toString());
             fin4Txf.setText(e4.getFechaFinal().toString());
-            switch(tipoAlerta[pagina][0]){//switch
+            switch(tipoAlerta[pagina][3]){//switch
                 case 1:// evento programado
                     tipoAlerta4Lbl.setText("Evento programado");
                     break;
@@ -1366,38 +1457,42 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
 
         if(pagina > 0){//if
            anteriorBtn.setEnabled(true);
+           
         }//if
         else{//else
             if(pagina == 0){//if
                 anteriorBtn.setEnabled(false);
+                siguienteBtn.setEnabled(true);
             }//if
         }//else
 
         String[] auxPag = paginasLbl.getText().split("/");
-        if(Integer.parseInt(siguienteBtn.getName()) 
-                == Integer.parseInt(auxPag[1]))
-        {//if
+        if(pagina == (Integer.parseInt(auxPag[1]) - 1)){//if
             siguienteBtn.setEnabled(false);
+            siguienteBtn.setName(auxPag[1]);
         }//if
         else{//else
             if(pagina == 0){//if
                 anteriorBtn.setEnabled(false);
+                anteriorBtn.setName("0");
             }//if
+            else{//else
+                anteriorBtn.setEnabled(true);
+            }//else
             siguienteBtn.setEnabled(true);
         }//else
-        
-        anteriorBtn.setName(siguienteBtn.getName());
-        siguienteBtn.setName((Integer.parseInt(
-            siguienteBtn.getName()) + 1) + "");
+        anteriorBtn.setName((pagina - 1) + "");
+        siguienteBtn.setName((pagina + 1) + "");
         paginasLbl.setText((pagina + 1) + "/" + auxPag[1]);
     }//method
     
     /**
      * 
      * 
-     * @param info 
-     * @param recientes, Booleano que indica si se generarán los páneles de
-     * Alertas recientes.
+     * @param info, 
+     * @param recientes, Booleano que al ser verdadero indica si se generarán 
+     * los paneles de Alertas recientes y al ser falso indica que se genearán
+     * paneles para una alerta específica.
      */
      private void generarPanelAlerta(List<Object> info, boolean recientes){// method
         int totalPag;
@@ -1421,7 +1516,6 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             int z = 0;
             for(int x = 0; x < totalPag; x++){//for
                 for(int y = 0; y < 4; y++){//for
-                    System.out.println("z: " + z);
                     if(z < auxiliar.size() && auxiliar.get(z) != null){//if
                         if(((Alerta) info.get(0)).getImplementacionEventos()
                                 .contains(auxiliar.get(z))){//if
@@ -1494,8 +1588,12 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         cambioPagina(0);
     }//method
 
+     /**
+      * Método no implementado
+      * @param implementacionEvento 
+      */
     @Override
-    public void llenarDatos(Object evento) {//method
+    public void llenarDatos(Object implementacionEvento) {//method
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }//method
     
