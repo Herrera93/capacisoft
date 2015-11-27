@@ -33,7 +33,7 @@ public class AlertaDELEGATE {// class
      * @param clazz
      */
     public void modificarAlerta(Object alerta, Class clazz){// method
-       ServiceLocator.getAlerta().modificarAlerta(alerta);
+       ServiceLocatorFACADE.getAlerta().modificarAlerta(alerta, clazz);
     }// method
     
     /**
@@ -43,7 +43,7 @@ public class AlertaDELEGATE {// class
      * @return 
      */
     public List<Object> buscarImplementacion(Alerta alerta, Class clazz){// method
-        return ServiceLocator.getAlerta().buscarImplementacion(alerta);
+        return ServiceLocatorFACADE.getAlerta().buscarImplementacion(alerta, clazz);
     }// method
     
 }// class

@@ -7,6 +7,10 @@ package mx.edu.cobach.vista;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
@@ -1276,7 +1280,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
 
         if(implementaciones[pagina][1] != null 
                 && implementaciones[pagina][1] != e1){//if
-            e2 = implementaciones[pagina][0];
+            e2 = implementaciones[pagina][1];
             System.out.println("e2:" + e2);
             nombre2Lbl.setText(e2.getEvento().getNombre());
             inicio2Txf.setText(e2.getFechaInicial().toString());
@@ -1306,7 +1310,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         if(implementaciones[pagina][2] != null
                 && implementaciones[pagina][2] != e1
                 && implementaciones[pagina][2] != e2){//if
-            e3 = implementaciones[pagina][0];
+            e3 = implementaciones[pagina][2];
             System.out.println("3:" + e3);
             nombre3Lbl.setText(e3.getEvento().getNombre());
             inicio3Txf.setText(e3.getFechaInicial().toString());
@@ -1337,7 +1341,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 && implementaciones[pagina][3] != e1
                 && implementaciones[pagina][3] != e2
                 && implementaciones[pagina][3] != e3){//if
-            e4 = implementaciones[pagina][0];
+            e4 = implementaciones[pagina][3];
             System.out.println("4:" + e4);
             nombre4Lbl.setText(e4.getEvento().getNombre());
             inicio4Txf.setText(e4.getFechaInicial().toString());
@@ -1401,18 +1405,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
      private void generarPanelAlerta(List<Object> info, boolean recientes){// method
         int totalPag;
-        ArrayList<ImplementacionEvento> auxiliar = new ArrayList();
+        List<ImplementacionEvento> auxiliar = ordenarImplementaciones(info);
         if(recientes){//if
-            for(int l = 0; l < info.size(); l++){// for
-                Alerta a = (Alerta) info.get(l);
-                for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
-                    auxiliar.add(obj);
-                }// for
-            }// for
-
             totalPag = Math.round(auxiliar.size()/4);
 
-            if((totalPag%4) != 0){//if
+            if((totalPag%4) != 0 || auxiliar.size() < 4){//if
                 totalPag = totalPag + 1;
             }//if
 
@@ -1462,13 +1459,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             }//for
         }//if
         else{//else
-            Set<ImplementacionEvento> eventos = ((Alerta) info.get(0))
-                    .getImplementacionEventos();
-            for(ImplementacionEvento e : eventos){//for
-                auxiliar.add(e);
-            }//for
             totalPag = Math.round(auxiliar.size()/4);
-            if((auxiliar.size()%4) != 0){//if
+            if((auxiliar.size()%4) != 0 || auxiliar.size() < 4){//if
                 totalPag = totalPag + 1;
             }//if
             int z = 0;
@@ -1498,5 +1490,45 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     public void llenarDatos(Object evento) {//method
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }//method
+    
+    public List<ImplementacionEvento> ordenarImplementaciones(List<Object> info){
+        List<ImplementacionEvento> eventos = new ArrayList();
+        List<Alerta> alertas = new ArrayList();
+        for(int l = 0; l < info.size(); l++){// for
+            Alerta a = (Alerta) info.get(l);
+            if(!alertas.contains(a)){
+                alertas.add(a);
+                for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
+                    eventos.add(obj);
+                }// for
+            }
+        }// for
+        Collections.sort(eventos, new Comparator<ImplementacionEvento>(){
+
+            @Override
+            public int compare(ImplementacionEvento o1, ImplementacionEvento o2) {
+                Date primera, segunda;
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(o1.getFechaFinal());
+                for(int i = 0; i < alertas.size(); i++){
+                    Alerta a = alertas.get(i);
+                    if(a.getImplementacionEventos().contains(o1))
+                        cal.add(Calendar.DATE, a.getPeriodo());
+                }
+                primera = cal.getTime();
+                cal.setTime(o2.getFechaFinal());
+                for(int i = 0; i < alertas.size(); i++){
+                    Alerta a = alertas.get(i);
+                    if(a.getImplementacionEventos().contains(o2))
+                        cal.add(Calendar.DATE, a.getPeriodo());
+                }
+                segunda = cal.getTime();
+                return primera.compareTo(segunda);
+            }
+            
+        });
+        
+        return eventos;
+    }
     
 }// class
