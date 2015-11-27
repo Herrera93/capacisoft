@@ -174,10 +174,10 @@ public class EmpleadoDAO extends BaseDAO {
             HibernateUtil.beginTransaction();
             Criteria criteria = HibernateUtil.getSession().createCriteria(entityClass);
             criteria.createAlias("puesto", "p");
-            if (empleado.getDepartamento() != null) {
+            if (empleado.getAdscripcion().getId() == 1) {
                 criteria.add(Restrictions.eq("departamento", empleado.getDepartamento()));
                 criteria.add(Restrictions.like("p.nombre", "Jefe%"));
-            } else {
+            } else if(empleado.getAdscripcion().getId() == 2) {
                 criteria.add(Restrictions.eq("plantel", empleado.getPlantel()));
                 criteria.add(Restrictions.like("p.nombre", "Director%"));
             }

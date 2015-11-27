@@ -385,8 +385,8 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
     }//GEN-LAST:event_agregarTBtnActionPerformed
 
     private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar al empleado de "
-            + "la lista de asistencia?", "Precaucion",
+        if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar el evento de "
+            + "la lista de eventos?", "Precaucion",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
         if (tablaLisFTbl.getSelectedRow() >= 0) {
             int cont = 0;
@@ -423,7 +423,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
 
     private void eliminarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar toda la lista "
-            + "de asistencia?", "Precaucion",
+            + "de eventos?", "Precaucion",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
         modelTablaEvF.setDataVector(null, titulosTablaEv);
         TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
@@ -587,8 +587,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
     private void confirmarSalida() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(
-                rootPane, "En realidad desea realizar "
-                + "cerrar la lista de asistencia",
+                rootPane, "En realidad desea cerrar la lista de eventos?",
                 "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");

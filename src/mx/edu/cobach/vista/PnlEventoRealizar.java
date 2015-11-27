@@ -74,9 +74,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
         tabla();
-        informacionTP.setEnabledAt(0, true);
-        informacionTP.setEnabledAt(1, false);
-        informacionTP.setSelectedIndex(0);
+        informacionTBn.setEnabledAt(0, true);
+        informacionTBn.setEnabledAt(1, false);
+        informacionTBn.setSelectedIndex(0);
 
         fechaIDCh.addFocusListener(this);
         fechaTDCh.addFocusListener(this);
@@ -98,7 +98,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        informacionTP = new javax.swing.JTabbedPane();
+        informacionTBn = new javax.swing.JTabbedPane();
         generalPnl = new javax.swing.JPanel();
         nombreGLbl = new javax.swing.JLabel();
         fechaILbl = new javax.swing.JLabel();
@@ -136,7 +136,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        informacionTP.setPreferredSize(new java.awt.Dimension(739, 472));
+        informacionTBn.setPreferredSize(new java.awt.Dimension(739, 472));
 
         nombreGLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreGLbl.setText("Nombre del evento:");
@@ -247,10 +247,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                                     .addComponent(capacidadSedeGLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(70, 70, 70)
                                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(nombreGTFd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tipoGCBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(fechaIDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(validProveedorLbl)
                                         .addComponent(validSedeLbl)
@@ -279,8 +278,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notaGLbl)
                 .addGap(22, 22, 22)
-                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nombreGTFd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreGLbl))
                 .addGap(27, 27, 27)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -303,9 +302,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                     .addComponent(sedeGLbl)
                     .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(capacidadSedeGLbl)
-                    .addComponent(validSedeLbl))
+                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(validSedeLbl)
+                    .addComponent(capacidadSedeGLbl))
                 .addGap(19, 19, 19)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePrLbl)
@@ -319,7 +318,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addGap(44, 44, 44))
         );
 
-        informacionTP.addTab("General", generalPnl);
+        informacionTBn.addTab("General", generalPnl);
 
         tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -443,17 +442,17 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addGap(44, 44, 44))
         );
 
-        informacionTP.addTab("Lista de asistencia", listaPnl);
+        informacionTBn.addTab("Lista de asistencia", listaPnl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionTP, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+            .addComponent(informacionTBn, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(informacionTP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+            .addComponent(informacionTBn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     /**
@@ -495,9 +494,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      */
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
 
-        informacionTP.setEnabledAt(0, false);
-        informacionTP.setEnabledAt(1, true);
-        informacionTP.setSelectedIndex(1);
+        informacionTBn.setEnabledAt(0, false);
+        informacionTBn.setEnabledAt(1, true);
+        informacionTBn.setSelectedIndex(1);
     }//GEN-LAST:event_siguienteBtnActionPerformed
     /**
      * Evento ejecutado para obtener y mostrar la capacidad de la sede
@@ -571,9 +570,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     }//GEN-LAST:event_nombreGCBxItemStateChanged
 
     private void devolverLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverLABtnActionPerformed
-        informacionTP.setEnabledAt(0, true);
-        informacionTP.setEnabledAt(1, false);
-        informacionTP.setSelectedIndex(0);
+        informacionTBn.setEnabledAt(0, true);
+        informacionTBn.setEnabledAt(1, false);
+        informacionTBn.setSelectedIndex(0);
     }//GEN-LAST:event_devolverLABtnActionPerformed
 
     /**
@@ -619,9 +618,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         } else if (evento.getTipoEvento().equals("PLATICA")) {
             tipoGCBx.setSelectedIndex(4);
         }
-        informacionTP.setEnabledAt(0, true);
-        informacionTP.setEnabledAt(1, false);
-        informacionTP.setSelectedIndex(0);
+        informacionTBn.setEnabledAt(0, true);
+        informacionTBn.setEnabledAt(1, false);
+        informacionTBn.setSelectedIndex(0);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -638,7 +637,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private javax.swing.JLabel fechaTLbl;
     private javax.swing.JPanel generalPnl;
     private javax.swing.JButton guardarLABtn;
-    private javax.swing.JTabbedPane informacionTP;
+    private javax.swing.JTabbedPane informacionTBn;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel listaAsistenciaLALbl;
     private javax.swing.JPanel listaPnl;
@@ -865,9 +864,9 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             }
         }
         modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-        informacionTP.setEnabledAt(0, true);
-        informacionTP.setEnabledAt(1, false);
-        informacionTP.setSelectedIndex(0);
+        informacionTBn.setEnabledAt(0, true);
+        informacionTBn.setEnabledAt(1, false);
+        informacionTBn.setSelectedIndex(0);
         tablaLisFTbl.setEnabled(true);
         totalEmpleadosLbl.setText("Total de empleados en la lista: " + tablaLisFTbl.getRowCount() + "");
     }

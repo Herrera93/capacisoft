@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Competencia;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
@@ -71,10 +72,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         campoModel.addElement("Puesto");
         campoModel.addElement("Plantel");
         campoModel.addElement("Direccion");
-        campoModel.addElement("Departamento Y Nombre_Empleado");
-        campoModel.addElement("Puestos Y Nombre_Empleado");
-        campoModel.addElement("Plantel Y Nombre_Empleado");
-        campoModel.addElement("Direccion Y Nombre_Empleado");
+        campoModel.addElement("Departamento/Nombre empleado");
+        campoModel.addElement("Puestos/Nombre Empleado");
+        campoModel.addElement("Plantel/Nombre empleado");
+        campoModel.addElement("Direccion/Nombre empleado");
         campoCBx.setModel(campoModel);
         setIconImage(imageLogo.getImage());
 
@@ -127,7 +128,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLALbl.setText("Agregar");
+        agregarLALbl.setText("Registro");
 
         nota_LI_Lbl.setText("Ingrese la información a almacenar");
 
@@ -191,7 +192,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         jScrollPane5.setViewportView(tablaLisFTbl);
 
         listaAsistenciaLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaAsistenciaLALbl.setText("Lista de asistencia");
+        listaAsistenciaLALbl.setText("Lista de empleados");
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText(">");
@@ -282,17 +283,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(seleccionLALbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(tipoLACBx, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nombreLALbl)
-                                    .addComponent(campoLbl))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(207, 207, 207)
+                                .addComponent(tipoLACBx, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(nombreLATFd, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -312,15 +308,18 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(listaCandidatosLALbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                         .addComponent(listaAsistenciaLALbl)
                         .addGap(159, 159, 159))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(agregarLALbl)
-                    .addComponent(nota_LI_Lbl))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nota_LI_Lbl)
+                    .addComponent(campoLbl)
+                    .addComponent(nombreLALbl)
+                    .addComponent(seleccionLALbl))
+                .addContainerGap(764, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +330,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(agregarLALbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nota_LI_Lbl)
@@ -340,7 +339,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                     .addComponent(campoLbl)
                     .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLATFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreLALbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -365,7 +364,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                         .addGap(18, 18, 18)
                         .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -409,42 +408,42 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre de la Puesto:");
+                seleccionLALbl.setText("Nombre del Puesto:");
                 break;
             case "Direccion":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
                 control.setClass(Direccion.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Direccion:");
+                seleccionLALbl.setText("Nombre de la Direccion:");
                 break;
-            case "Departamento Y Nombre_Empleado":
+            case "Departamento/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Departamento.class);
                 control.buscarTodosLista(1);
                 seleccionLALbl.setText("Nombre del Departamento:");
                 break;
-            case "Plantel Y Nombre_Empleado":
+            case "Plantel/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Plantel.class);
                 control.buscarTodosLista(1);
                 seleccionLALbl.setText("Nombre del Plantel:");
                 break;
-            case "Puestos Y Nombre_Empleado":
+            case "Puestos/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(1);
                 seleccionLALbl.setText("Nombre del Puesto:");
                 break;
-            case "Direccion Y Nombre_Empleado":
+            case "Direccion/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Direccion.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Direccion:");
+                seleccionLALbl.setText("Nombre de la Direccion:");
                 break;
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
@@ -491,19 +490,19 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             case "Direccion":
                 control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
                 break;
-            case "Departamento Y Nombre_Empleado":
+            case "Departamento/Nombre empleado":
                 control.buscarEmpPorDepartamentoNEmpleado((Departamento) tipoLACBx.
                         getSelectedItem(), nombreLATFd.getText());
                 break;
-            case "Plantel Y Nombre_Empleado":
+            case "Plantel/Nombre empleado":
                 control.buscarEmpPorPlantelNEmpleado((Plantel) tipoLACBx.
                         getSelectedItem(), nombreLATFd.getText());
                 break;
-            case "Puesto Y Nombre_Empleado":
+            case "Puesto/Nombre empleado":
                 control.buscarEmpPorPuestoNEmpleado((Puesto) tipoLACBx.
                         getSelectedItem(), nombreLATFd.getText());
                 break;
-            case "Direccion Y Nombre_Empleado":
+            case "Direccion/Nombre empleado":
                 control.buscarEmpPorDireccionEmpleado((Direccion) tipoLACBx.
                         getSelectedItem(), nombreLATFd.getText());
                 break;
@@ -860,8 +859,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     private void confirmarSalida() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(
-                rootPane, "En realidad desea realizar "
-                + "cerrar la lista de asistencia",
+                rootPane, "En realidad desea cerrar la lista de asistencia?",
                 "Mensaje de Confirmacion",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");

@@ -142,7 +142,7 @@ public class Capacisoft extends javax.swing.JFrame implements CapaciSoftInt{// i
         
         //Procesos
         
-        seguimientoPnl = new PnlSeguimiento();
+        seguimientoPnl = new PnlSeguimiento(this);
         seguimientoPnl.setVisible(false);
         seguimientoPnl.setSize(1181,587);
         //if(idTipo!=3)

@@ -130,7 +130,7 @@ public class EncuestaControlador extends BaseControlador {
      * @param evento Arreglo con la informacion de empleados
      * @return Regresa una confirmacion de la creacion de la encuesta
      */
-    public boolean enviarEncuesta(List<Integer> aspectosIds, List<Integer> empleadosIds,
+    public boolean enviarEncuesta(List<Integer> aspectosIds, List<String> empleadosIds,
             String[] evento){
         JSONObject encuesta = ServiceLocatorDELEGATE.getEncuesta()
                 .crearEncuesta(aspectosIds, evento[0], evento[2], evento[1]);
@@ -140,7 +140,7 @@ public class EncuestaControlador extends BaseControlador {
         return encuesta.has("id");
     }
     
-    public boolean enviarEncuestaDespues(int idImplementacion, List<Integer> empleadosIds){
+    public boolean enviarEncuestaDespues(int idImplementacion, List<String> empleadosIds){
         return ServiceLocatorDELEGATE.getEncuesta()
                 .enviarEncuestaDespues(idImplementacion, empleadosIds);
     }
@@ -171,8 +171,15 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarEmpleados(int idImplementacion) {
         ImplementacionEvento implementacion =  (ImplementacionEvento) ServiceLocatorDELEGATE
             .getInstance().find(idImplementacion, ImplementacionEvento.class);
+        if(implementacion.getFechaFinal().before(new Date())){
+            com.setInfo(null);
+        }
         List<Object> empleados = new ArrayList(implementacion.getEmpleados());
-        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+        String[][] info = HelperEntidad.descomponerObjetos(empleados);
+        if(info != null) {
+            info[0][0] = info[0][0] + "TLE1";
+            com.setTabla(info);
+        }
     }
 
     /**
@@ -182,7 +189,7 @@ public class EncuestaControlador extends BaseControlador {
      * @param idImplementacion Identificador de implementacion
      * @return Regresa una lista de objeto de respuestas.
      */
-    public List<Object> resultados(int idEmpleado, int idImplementacion) {
+    public List<Object> resultados(String idEmpleado, int idImplementacion) {
         List<Object> respuestas = ServiceLocatorDELEGATE.getEncuesta()
                 .getResultados(idEmpleado, idImplementacion);
         return respuestas;
