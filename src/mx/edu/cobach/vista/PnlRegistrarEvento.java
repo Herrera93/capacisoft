@@ -587,7 +587,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
      *
      * @param evt Evento al hacer click
      */
-    private void cursosTblMouseClicked(java.awt.event.MouseEvent evt) {
+    private void eventosTblMouseClicked(java.awt.event.MouseEvent evt) {
         //Obtenelos el renglon y columna donde se hizo click
         int row = eventosTbl.rowAtPoint(evt.getPoint());
         int col = eventosTbl.columnAtPoint(evt.getPoint());
