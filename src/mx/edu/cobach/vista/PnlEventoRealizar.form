@@ -97,7 +97,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="agregarGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="notaGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarGMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="nombreGLbl" min="-2" pref="122" max="-2" attributes="0"/>
                                   <Component id="tipoGLbl" min="-2" max="-2" attributes="0"/>
                                   <Component id="fechaILbl" min="-2" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="agregarGLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="notaGLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarGMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="nombreGTFd" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -310,7 +310,7 @@
                 <Property name="text" type="java.lang.String" value="Registro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="notaGLbl">
+            <Component class="javax.swing.JLabel" name="agregarGMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar"/>
               </Properties>
@@ -389,7 +389,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="devolverLABtn" min="-2" pref="108" max="-2" attributes="0"/>
+                              <Component id="regresarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="cancelarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -398,11 +398,11 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane5" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
+                                  <Component id="listaAsistenciaSPn" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
                                   <Component id="buscarLABtn" min="-2" max="-2" attributes="0"/>
                                   <Component id="totalEmpleadosLbl" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                                   <Component id="seleccionLALbl" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
-                                  <Component id="nota_LI_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarLAMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="agregarLALbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="55" max="32767" attributes="0"/>
@@ -417,7 +417,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="nota_LI_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLAMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="seleccionLALbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -425,14 +425,14 @@
                       <EmptySpace type="separate" max="32767" attributes="0"/>
                       <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" min="-2" pref="232" max="-2" attributes="0"/>
+                      <Component id="listaAsistenciaSPn" min="-2" pref="232" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="totalEmpleadosLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="guardarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="cancelarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="devolverLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                          <Component id="regresarBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
@@ -440,14 +440,14 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+            <Container class="javax.swing.JScrollPane" name="listaAsistenciaSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tablaLisFTbl">
+                <Component class="javax.swing.JTable" name="listaAsistenciaTbl">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="2" rowCount="4">
@@ -483,7 +483,7 @@
                 <Property name="text" type="java.lang.String" value="Registro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nota_LI_Lbl">
+            <Component class="javax.swing.JLabel" name="agregarLAMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;"/>
               </Properties>
@@ -526,7 +526,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarLABtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="devolverLABtn">
+            <Component class="javax.swing.JButton" name="regresarBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -534,7 +534,7 @@
                 <Property name="text" type="java.lang.String" value="Regresar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="devolverLABtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresarBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="totalEmpleadosLbl">

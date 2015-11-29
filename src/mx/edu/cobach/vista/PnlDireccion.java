@@ -16,7 +16,7 @@ import mx.edu.cobach.vista.controlador.DireccionControlador;
 public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
 
     private final DefaultTableModel model;
-    private String[] titulosTabla = {"ID", "Nombre", "Eliminar"};
+    private final String[] titulosTabla = {"ID", "Nombre", "Eliminar"};
     private final DireccionControlador control;
     private int idDireccion;
     private final Border BORDER_ORIGINAL;
@@ -33,11 +33,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         model = new DefaultTableModel(titulosTabla, 10) {
             @Override
             public boolean isCellEditable(int row, int col) {
-                if (col == 2) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return (col == 2);
             }
         };
         direccionTbl.setModel(model);
@@ -63,9 +59,9 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         buscarBtn = new javax.swing.JButton();
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
-        opcionMsjLbl = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        tablaPuestoSPn = new javax.swing.JScrollPane();
+        opcionInsLbl = new javax.swing.JLabel();
+        tablaMsjLbl = new javax.swing.JLabel();
+        direccionSPn = new javax.swing.JScrollPane();
         direccionTbl = new javax.swing.JTable();
         informacionPnl = new javax.swing.JPanel();
         nombreLbl = new javax.swing.JLabel();
@@ -109,9 +105,9 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         opcionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionLbl.setText("Opciones ");
 
-        opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
+        opcionInsLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        jLabel1.setText("<html>Para Modificar seleccione un nombre de dirección de la columna<br> \"Nombre\", para eliminar selecciona el cuadro eliminar de la columna Eliminar de la dirección que desee</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un nombre de dirección de la columna<br> \"Nombre\", para eliminar selecciona el cuadro eliminar de la columna Eliminar de la dirección que desee</html> ");
 
         direccionTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,7 +135,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                 direccionTblMouseClicked(evt);
             }
         });
-        tablaPuestoSPn.setViewportView(direccionTbl);
+        direccionSPn.setViewportView(direccionTbl);
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -147,7 +143,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +151,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                         .addGap(19, 19, 19)
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(opcionMsjLbl)
+                                .addComponent(opcionInsLbl)
                                 .addGap(11, 11, 11))
                             .addGroup(opcionPnlLayout.createSequentialGroup()
                                 .addComponent(nombreBuscarLbl)
@@ -170,7 +166,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                                 .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tablaPuestoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(direccionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         opcionPnlLayout.setVerticalGroup(
@@ -179,7 +175,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                 .addGap(20, 20, 20)
                 .addComponent(opcionLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionInsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,9 +185,9 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                     .addComponent(buscarBtn)
                     .addComponent(agregarBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaPuestoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(direccionSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -520,20 +516,20 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton cancelarBtn;
+    private javax.swing.JScrollPane direccionSPn;
     private javax.swing.JTable direccionTbl;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nombreBuscarLbl;
     private javax.swing.JTextField nombreBuscarTFd;
     private javax.swing.JLabel nombreLbl;
     private javax.swing.JTextField nombreTFd;
+    private javax.swing.JLabel opcionInsLbl;
     private javax.swing.JLabel opcionLbl;
-    private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
     private javax.swing.JLabel registroLBl;
     private javax.swing.JLabel registroMsjLbl;
-    private javax.swing.JScrollPane tablaPuestoSPn;
+    private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 

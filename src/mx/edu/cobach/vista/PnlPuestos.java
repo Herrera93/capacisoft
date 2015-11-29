@@ -71,8 +71,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        tablaPuestoSPn = new javax.swing.JScrollPane();
+        tablaMsjLbl = new javax.swing.JLabel();
+        puestosSPn = new javax.swing.JScrollPane();
         puestosTbl = new javax.swing.JTable();
         informacionPnl = new javax.swing.JPanel();
         nombreLbl = new javax.swing.JLabel();
@@ -118,7 +118,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        jLabel1.setText("<html>Para Modificar seleccione un nombre del puesto de la columna<br> \"Nombre\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un nombre del puesto de la columna<br> \"Nombre\", para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee</html> ");
 
         puestosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,7 +146,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 puestosTblMouseClicked(evt);
             }
         });
-        tablaPuestoSPn.setViewportView(puestosTbl);
+        puestosSPn.setViewportView(puestosTbl);
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -154,7 +154,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +177,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                                 .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tablaPuestoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(puestosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         opcionPnlLayout.setVerticalGroup(
@@ -196,9 +196,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     .addComponent(buscarBtn)
                     .addComponent(agregarBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaPuestoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(puestosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -529,7 +529,6 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nombreBuscarLbl;
     private javax.swing.JTextField nombreBuscarTFd;
     private javax.swing.JLabel nombreLbl;
@@ -537,10 +536,11 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
+    private javax.swing.JScrollPane puestosSPn;
     private javax.swing.JTable puestosTbl;
     private javax.swing.JLabel registroLBl;
     private javax.swing.JLabel registroMsjLbl;
-    private javax.swing.JScrollPane tablaPuestoSPn;
+    private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 

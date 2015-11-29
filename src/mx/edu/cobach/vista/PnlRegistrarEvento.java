@@ -57,7 +57,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             }
 
         };
-        cursosTbl.setModel(model);
+        eventosTbl.setModel(model);
         BORDER_ORIGINAL_NOMBRE = nombreTFd.getBorder();
         BORDER_ORIGINAL_DESCRP = descripcionSPn.getBorder();
         BORDER_ORIGINAL_TIPO = tipoCBx.getBorder();
@@ -79,14 +79,14 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
 
         opcionPnl = new javax.swing.JPanel();
         tipoBuscarLbl = new javax.swing.JLabel();
-        cursoSPn = new javax.swing.JScrollPane();
-        cursosTbl = new javax.swing.JTable();
+        eventoSPn = new javax.swing.JScrollPane();
+        eventosTbl = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
         buscarBtn = new javax.swing.JButton();
         tipoBuscarCBx = new javax.swing.JComboBox();
         opcionLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
-        modificarMsjLbl = new javax.swing.JLabel();
+        tablaMsjLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         tipoLbl = new javax.swing.JLabel();
         guardarBtn = new javax.swing.JButton();
@@ -108,7 +108,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         tipoBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoBuscarLbl.setText("Tipo de Evento:");
 
-        cursosTbl.setModel(new javax.swing.table.DefaultTableModel(
+        eventosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -134,22 +134,22 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                 return canEdit [columnIndex];
             }
         });
-        cursosTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cursosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        cursosTbl.getTableHeader().setReorderingAllowed(false);
-        cursosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        eventosTbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        eventosTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        eventosTbl.getTableHeader().setReorderingAllowed(false);
+        eventosTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cursosTblMouseClicked(evt);
+                eventosTblMouseClicked(evt);
             }
         });
-        cursoSPn.setViewportView(cursosTbl);
-        if (cursosTbl.getColumnModel().getColumnCount() > 0) {
-            cursosTbl.getColumnModel().getColumn(0).setResizable(false);
-            cursosTbl.getColumnModel().getColumn(0).setPreferredWidth(100);
-            cursosTbl.getColumnModel().getColumn(1).setResizable(false);
-            cursosTbl.getColumnModel().getColumn(1).setPreferredWidth(60);
-            cursosTbl.getColumnModel().getColumn(2).setResizable(false);
-            cursosTbl.getColumnModel().getColumn(2).setPreferredWidth(20);
+        eventoSPn.setViewportView(eventosTbl);
+        if (eventosTbl.getColumnModel().getColumnCount() > 0) {
+            eventosTbl.getColumnModel().getColumn(0).setResizable(false);
+            eventosTbl.getColumnModel().getColumn(0).setPreferredWidth(100);
+            eventosTbl.getColumnModel().getColumn(1).setResizable(false);
+            eventosTbl.getColumnModel().getColumn(1).setPreferredWidth(60);
+            eventosTbl.getColumnModel().getColumn(2).setResizable(false);
+            eventosTbl.getColumnModel().getColumn(2).setPreferredWidth(20);
         }
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -176,7 +176,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
 
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
-        modificarMsjLbl.setText("<html>Para Modificar seleccione un nombre de evento de la columna <br>\"Nombre\", para eliminar seleccione el cuadro de la columna Eliminar del evento que desea</html> ");
+        tablaMsjLbl.setText("<html>Para Modificar seleccione un nombre de evento de la columna <br>\"Nombre\", para eliminar seleccione el cuadro de la columna Eliminar del evento que desea</html> ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -190,13 +190,13 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(modificarMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(opcionPnlLayout.createSequentialGroup()
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(eventoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,9 +226,9 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                     .addComponent(agregarBtn)
                     .addComponent(buscarBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(modificarMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cursoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eventoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
@@ -589,8 +589,8 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
      */
     private void cursosTblMouseClicked(java.awt.event.MouseEvent evt) {
         //Obtenelos el renglon y columna donde se hizo click
-        int row = cursosTbl.rowAtPoint(evt.getPoint());
-        int col = cursosTbl.columnAtPoint(evt.getPoint());
+        int row = eventosTbl.rowAtPoint(evt.getPoint());
+        int col = eventosTbl.columnAtPoint(evt.getPoint());
         if (col == 0) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
@@ -604,7 +604,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                     control.buscar(id);
                     this.id = id;
                     guardarBtn.setText("Modificar");
-                    cursosTbl.clearSelection();
+                    eventosTbl.clearSelection();
                     informacionPnl.setVisible(true);
                 }
             } else {
@@ -613,7 +613,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                 control.buscar(id);
                 this.id = id;
                 guardarBtn.setText("Modificar");
-                cursosTbl.clearSelection();
+                eventosTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
             //Manda un mensaje de Confirmación sobre la eliminacion
@@ -622,19 +622,19 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             if(control.buscarImplementaciones(id)){
                 setMensaje("No se puede eliminar un evento que tenga implementaciones");
                 model.setValueAt(false, row, 3);
-                cursosTbl.clearSelection();
+                eventosTbl.clearSelection();
             }else if(guardarBtn.getText().equals("Modificar") && this.id == id){
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el evento que esta"
                     + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 3);
-                cursosTbl.clearSelection();
+                eventosTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
                 control.baja(id);
                 control.buscarTodos();
             } else {
                 model.setValueAt(false, row, 3);
-                cursosTbl.clearSelection();
+                eventosTbl.clearSelection();
             }
         }
     }
@@ -644,14 +644,13 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private javax.swing.JButton agregarBtn;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton cancelarBtn;
-    private javax.swing.JScrollPane cursoSPn;
-    private javax.swing.JTable cursosTbl;
     private javax.swing.JLabel descripcionLbl;
     private javax.swing.JScrollPane descripcionSPn;
     private javax.swing.JTextArea descripcionTAa;
+    private javax.swing.JScrollPane eventoSPn;
+    private javax.swing.JTable eventosTbl;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JLabel modificarMsjLbl;
     private javax.swing.JLabel nombreLbl;
     private javax.swing.JTextField nombreTFd;
     private javax.swing.JLabel opcionLbl;
@@ -659,6 +658,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private javax.swing.JPanel opcionPnl;
     private javax.swing.JLabel registroLbl;
     private javax.swing.JLabel registroMsjLbl;
+    private javax.swing.JLabel tablaMsjLbl;
     private javax.swing.JComboBox tipoBuscarCBx;
     private javax.swing.JLabel tipoBuscarLbl;
     private javax.swing.JComboBox tipoCBx;
@@ -741,12 +741,12 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         }else{
             model.setDataVector(info, titulosTabla);
             //Esconder columna ID
-            TableColumn idTbc = cursosTbl.getColumnModel().getColumn(0);
-            cursosTbl.getColumnModel().removeColumn(idTbc);
-            cursosTbl.getColumnModel().getColumn(0).setPreferredWidth(170);
-            TableColumn eliminarTbc = cursosTbl.getColumnModel().getColumn(2);
-            eliminarTbc.setCellEditor(cursosTbl.getDefaultEditor(Boolean.class));
-            eliminarTbc.setCellRenderer(cursosTbl.getDefaultRenderer(Boolean.class));
+            TableColumn idTbc = eventosTbl.getColumnModel().getColumn(0);
+            eventosTbl.getColumnModel().removeColumn(idTbc);
+            eventosTbl.getColumnModel().getColumn(0).setPreferredWidth(170);
+            TableColumn eliminarTbc = eventosTbl.getColumnModel().getColumn(2);
+            eliminarTbc.setCellEditor(eventosTbl.getDefaultEditor(Boolean.class));
+            eliminarTbc.setCellRenderer(eventosTbl.getDefaultRenderer(Boolean.class));
         }
     }
 

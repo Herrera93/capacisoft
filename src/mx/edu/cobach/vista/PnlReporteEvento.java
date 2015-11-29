@@ -64,8 +64,8 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     private void initComponents() {
 
         fechaIDCh1 = new com.toedter.calendar.JDateChooser();
-        jPanel1 = new javax.swing.JPanel();
-        reporteCursoTb = new javax.swing.JTabbedPane();
+        opcionesPnl = new javax.swing.JPanel();
+        reporteEventoTBn = new javax.swing.JTabbedPane();
         departamentoPnl = new javax.swing.JPanel();
         departamentoLbl = new javax.swing.JLabel();
         departamentoCBx = new javax.swing.JComboBox();
@@ -102,11 +102,11 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         fechaIDCh1.setDateFormatString("dd/MM/yyyy");
         fechaIDCh1.setEnabled(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        opcionesPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        reporteCursoTb.setMaximumSize(new java.awt.Dimension(408, 587));
-        reporteCursoTb.setMinimumSize(new java.awt.Dimension(408, 587));
-        reporteCursoTb.setPreferredSize(new java.awt.Dimension(408, 587));
+        reporteEventoTBn.setMaximumSize(new java.awt.Dimension(408, 587));
+        reporteEventoTBn.setMinimumSize(new java.awt.Dimension(408, 587));
+        reporteEventoTBn.setPreferredSize(new java.awt.Dimension(408, 587));
 
         departamentoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         departamentoLbl.setText("Departamento: ");
@@ -165,7 +165,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 .addGap(35, 35, 35))
         );
 
-        reporteCursoTb.addTab("Por departamento", departamentoPnl);
+        reporteEventoTBn.addTab("Por departamento", departamentoPnl);
 
         direccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccionLbl.setText("Dirección");
@@ -224,7 +224,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 .addGap(35, 35, 35))
         );
 
-        reporteCursoTb.addTab("Por dirección", direccionPnl);
+        reporteEventoTBn.addTab("Por dirección", direccionPnl);
 
         plantelLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         plantelLbl.setText("Plantel:");
@@ -284,7 +284,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 .addGap(35, 35, 35))
         );
 
-        reporteCursoTb.addTab("Por plantel", plantelPnl);
+        reporteEventoTBn.addTab("Por plantel", plantelPnl);
 
         fechaInicioLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         fechaInicioLbl.setText("Fecha de:");
@@ -373,17 +373,17 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 .addGap(35, 35, 35))
         );
 
-        reporteCursoTb.addTab("Por fechas", fechaPnl);
+        reporteEventoTBn.addTab("Por fechas", fechaPnl);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(reporteCursoTb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout opcionesPnlLayout = new javax.swing.GroupLayout(opcionesPnl);
+        opcionesPnl.setLayout(opcionesPnlLayout);
+        opcionesPnlLayout.setHorizontalGroup(
+            opcionesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(reporteEventoTBn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(reporteCursoTb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        opcionesPnlLayout.setVerticalGroup(
+            opcionesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(reporteEventoTBn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         informacionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -462,13 +462,13 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(opcionesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(opcionesPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(informacionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -585,7 +585,6 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     private javax.swing.JButton imprimirBtn;
     private javax.swing.JLabel infoLbl;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel opcionDeptoLbl;
     private javax.swing.JLabel opcionDeptoMsjLbl;
     private javax.swing.JLabel opcionDirLbl;
@@ -594,10 +593,11 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     private javax.swing.JLabel opcionFechaMsjLbl;
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionPlantelMsjLbl;
+    private javax.swing.JPanel opcionesPnl;
     private javax.swing.JComboBox plantelCBx;
     private javax.swing.JLabel plantelLbl;
     private javax.swing.JPanel plantelPnl;
-    private javax.swing.JTabbedPane reporteCursoTb;
+    private javax.swing.JTabbedPane reporteEventoTBn;
     // End of variables declaration//GEN-END:variables
 
     /**

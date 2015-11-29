@@ -8,13 +8,11 @@ package mx.edu.cobach.vista;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Competencia;
@@ -24,14 +22,14 @@ import mx.edu.cobach.vista.controlador.EncuestaControlador;
  *
  * @author Alex
  */
-public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
+public class ListaAspectosFrm extends javax.swing.JFrame implements Comunicador {
 
-    private Comunicador com;
-    private ImageIcon imageLogo;
-    private EncuestaControlador control;
+    private final Comunicador com;
+    private final ImageIcon imageLogo;
+    private final EncuestaControlador control;
     //Modelo del combo box de competencias
     private final DefaultComboBoxModel competenciaModel;
-    private final DefaultTableModel aspectosModel, aspectosAModel;
+    private final DefaultTableModel candidatosModel, agregadosModel;
     private final String[] titulosTabla = new String[]{"ID", "Aspectos"};
     
     /**
@@ -40,9 +38,9 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
      *
      * @param com
      */
-    public ListaAspectos(Comunicador com) {
+    public ListaAspectosFrm(Comunicador com) {
         this.com = com;
-        imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
+        imageLogo = new ImageIcon(CapacisoftFrm.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
         setTitle("CapaciSoft-Lista de Asistencia");
         initComponents();
@@ -52,15 +50,15 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
         control = new EncuestaControlador(this);
         setIconImage(imageLogo.getImage());
         
-        aspectosModel = new DefaultTableModel(titulosTabla, 0);
-        tablaLisITbl.setModel(aspectosModel);
-        tablaLisITbl.setColumnSelectionAllowed(false);
-        tablaLisITbl.setDragEnabled(false);
+        candidatosModel = new DefaultTableModel(titulosTabla, 0);
+        candidatosTbl.setModel(candidatosModel);
+        candidatosTbl.setColumnSelectionAllowed(false);
+        candidatosTbl.setDragEnabled(false);
 
-        aspectosAModel = new DefaultTableModel(titulosTabla, 0);
-        tablaLisFTbl.setModel(aspectosAModel);
-        tablaLisFTbl.setColumnSelectionAllowed(false);
-        tablaLisFTbl.setDragEnabled(false);
+        agregadosModel = new DefaultTableModel(titulosTabla, 0);
+        agregadosTbl.setModel(agregadosModel);
+        agregadosTbl.setColumnSelectionAllowed(false);
+        agregadosTbl.setDragEnabled(false);
         
         competenciaModel = new DefaultComboBoxModel();
         competenciaCBx.setModel(competenciaModel);
@@ -79,13 +77,13 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
      * @param info
      */
     private void tabla() {        
-        aspectosModel.setDataVector(null, titulosTabla);
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
+        candidatosModel.setDataVector(null, titulosTabla);
+        TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(tc);
 
-        aspectosAModel.setDataVector(null, titulosTabla);
-        tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
+        agregadosModel.setDataVector(null, titulosTabla);
+        tc = agregadosTbl.getColumnModel().getColumn(0);
+        agregadosTbl.getColumnModel().removeColumn(tc);
     }
     
     /**
@@ -96,12 +94,12 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
+                @Override
                 public void windowClosing(WindowEvent e) {
                     confirmarSalida();
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     
@@ -117,7 +115,7 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
@@ -132,32 +130,31 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        agregarLALbl = new javax.swing.JLabel();
-        nota_LI_Lbl = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaLisFTbl = new javax.swing.JTable();
-        listaAsistenciaLALbl = new javax.swing.JLabel();
+        listaAspectosTltLbl = new javax.swing.JLabel();
+        listaAspectosInsLbl = new javax.swing.JLabel();
+        agregadosSPn = new javax.swing.JScrollPane();
+        agregadosTbl = new javax.swing.JTable();
+        agregadosLbl = new javax.swing.JLabel();
         agregarBtn = new javax.swing.JButton();
         agregarTBtn = new javax.swing.JButton();
         eliminarBtn = new javax.swing.JButton();
         eliminarTBtn = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tablaLisITbl = new javax.swing.JTable();
-        listaCandidatosLALbl = new javax.swing.JLabel();
+        candidatosSPn = new javax.swing.JScrollPane();
+        candidatosTbl = new javax.swing.JTable();
+        candidatosLbl = new javax.swing.JLabel();
         crearTablaBtn = new javax.swing.JButton();
-        cancelarLABtn = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JButton();
         competenciaCBx = new javax.swing.JComboBox();
         competenciaLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(715, 564));
 
-        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLALbl.setText("Registro");
+        listaAspectosTltLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        listaAspectosTltLbl.setText("Registro");
 
-        nota_LI_Lbl.setText("Ingrese la información a almacenar");
+        listaAspectosInsLbl.setText("Ingrese la información a almacenar");
 
-        tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
+        agregadosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -176,11 +173,11 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        tablaLisFTbl.setEnabled(false);
-        jScrollPane5.setViewportView(tablaLisFTbl);
+        agregadosTbl.setEnabled(false);
+        agregadosSPn.setViewportView(agregadosTbl);
 
-        listaAsistenciaLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaAsistenciaLALbl.setText("Lista de aspectos agregados");
+        agregadosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregadosLbl.setText("Lista de aspectos agregados");
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText(">");
@@ -218,7 +215,7 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        tablaLisITbl.setModel(new javax.swing.table.DefaultTableModel(
+        candidatosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -237,10 +234,10 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tablaLisITbl);
+        candidatosSPn.setViewportView(candidatosTbl);
 
-        listaCandidatosLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaCandidatosLALbl.setText("Lista de aspectos");
+        candidatosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        candidatosLbl.setText("Lista de aspectos");
 
         crearTablaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         crearTablaBtn.setText("Crear Tabla");
@@ -251,11 +248,11 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        cancelarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cancelarLABtn.setText("Cancelar");
-        cancelarLABtn.addActionListener(new java.awt.event.ActionListener() {
+        cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarLABtnActionPerformed(evt);
+                cancelarBtnActionPerformed(evt);
             }
         });
 
@@ -280,7 +277,7 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(candidatosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(agregarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,18 +285,18 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                                     .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(agregadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(agregarLALbl)
-                                    .addComponent(nota_LI_Lbl))))
+                                    .addComponent(listaAspectosTltLbl)
+                                    .addComponent(listaAspectosInsLbl))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(listaCandidatosLALbl)
+                        .addComponent(candidatosLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(listaAsistenciaLALbl)
+                        .addComponent(agregadosLbl)
                         .addGap(41, 41, 41))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -309,7 +306,7 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                         .addGap(113, 113, 113))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -318,20 +315,20 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(agregarLALbl)
+                .addComponent(listaAspectosTltLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nota_LI_Lbl)
+                .addComponent(listaAspectosInsLbl)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(competenciaLbl)
                     .addComponent(competenciaCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listaCandidatosLALbl)
-                    .addComponent(listaAsistenciaLALbl))
+                    .addComponent(candidatosLbl)
+                    .addComponent(agregadosLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(candidatosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,10 +338,10 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
                         .addComponent(eliminarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -357,10 +354,10 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
      * @param evt
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if (tablaLisITbl.getSelectedRow() >= 0) {
-            agregarAspectosTabla(tablaLisITbl.getSelectedRow());
+        if (candidatosTbl.getSelectedRow() >= 0) {
+            agregarAspectosTabla(candidatosTbl.getSelectedRow());
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -372,39 +369,39 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
      */
     private void agregarAspectosTabla(int posicionLista) {
         boolean bandera = false;
-        tablaLisFTbl.setEnabled(true);
-        for (int j = 0; j < aspectosAModel.getRowCount(); j++) {
-            if (aspectosModel.getValueAt(posicionLista, 0).
-                    equals(aspectosAModel.getValueAt(j, 0))) {
+        agregadosTbl.setEnabled(true);
+        for (int j = 0; j < agregadosModel.getRowCount(); j++) {
+            if (candidatosModel.getValueAt(posicionLista, 0).
+                    equals(agregadosModel.getValueAt(j, 0))) {
                 bandera = true;
             }
         }
         if (bandera == false) {
-            Object[][] tableData = new Object[aspectosAModel.
-                    getRowCount() + 1][aspectosAModel.getColumnCount()];
+            Object[][] tableData = new Object[agregadosModel.
+                    getRowCount() + 1][agregadosModel.getColumnCount()];
             //ciclo que pasa la informacion de la tabla de lista 
             //final para que al final sea agregado el nuevo empleado a 
             //esta matriz
-            for (int k = 0; k < aspectosAModel.getRowCount(); k++) {
-                for (int j = 0; j < aspectosAModel.getColumnCount(); j++) {
-                    tableData[k][j] = aspectosAModel.getValueAt(k, j);
+            for (int k = 0; k < agregadosModel.getRowCount(); k++) {
+                for (int j = 0; j < agregadosModel.getColumnCount(); j++) {
+                    tableData[k][j] = agregadosModel.getValueAt(k, j);
                 }
             }
-            tableData[aspectosAModel.getRowCount()][0] = aspectosModel.
+            tableData[agregadosModel.getRowCount()][0] = candidatosModel.
                     getValueAt(posicionLista, 0);
-            tableData[aspectosAModel.getRowCount()][1] = aspectosModel.
+            tableData[agregadosModel.getRowCount()][1] = candidatosModel.
                     getValueAt(posicionLista, 1);
-            aspectosAModel.setDataVector(tableData, titulosTabla);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
+            agregadosModel.setDataVector(tableData, titulosTabla);
+            TableColumn tc = agregadosTbl.getColumnModel().getColumn(0);
+            agregadosTbl.getColumnModel().removeColumn(tc);
         }
     }
     
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
-        for (int i = 0; i < aspectosModel.getRowCount(); i++) {
+        for (int i = 0; i < candidatosModel.getRowCount(); i++) {
             agregarAspectosTabla(i);
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -415,27 +412,27 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar el aspecto de "
             + "la lista de aspectos?", "Precaucion",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-        if (tablaLisFTbl.getSelectedRow() >= 0) {
+        if (agregadosTbl.getSelectedRow() >= 0) {
             int cont = 0;
-            Object[][] tableData = new Object[tablaLisFTbl.
-            getRowCount() - 1][aspectosAModel.getColumnCount()];
-            for (int i = 0; i < tablaLisFTbl.getRowCount(); i++) {
-                if (((String) aspectosAModel.getValueAt(i, 0)).
-                    compareTo((String) aspectosAModel.getValueAt(
-                        tablaLisFTbl.getSelectedRow(),
+            Object[][] tableData = new Object[agregadosTbl.
+            getRowCount() - 1][agregadosModel.getColumnCount()];
+            for (int i = 0; i < agregadosTbl.getRowCount(); i++) {
+                if (((String) agregadosModel.getValueAt(i, 0)).
+                    compareTo((String) agregadosModel.getValueAt(
+                        agregadosTbl.getSelectedRow(),
                         0)) != 0) {
-                tableData[cont][0] = aspectosAModel.getValueAt(i, 0);
-                tableData[cont][1] = aspectosAModel.getValueAt(i, 1);
-                tableData[cont][2] = aspectosAModel.getValueAt(i, 2);
+                tableData[cont][0] = agregadosModel.getValueAt(i, 0);
+                tableData[cont][1] = agregadosModel.getValueAt(i, 1);
+                tableData[cont][2] = agregadosModel.getValueAt(i, 2);
                 cont++;
             }
         }
-        aspectosAModel.setDataVector(tableData, titulosTabla);
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
+        agregadosModel.setDataVector(tableData, titulosTabla);
+        TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(tc);
         }
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -446,11 +443,11 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar toda la lista "
             + "de aspectos?", "Precaucion",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-        aspectosModel.setDataVector(null, titulosTabla);
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
+        candidatosModel.setDataVector(null, titulosTabla);
+        TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(tc);
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -458,61 +455,61 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
     }//GEN-LAST:event_eliminarTBtnActionPerformed
 
     private void crearTablaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearTablaBtnActionPerformed
-        String[][] matriz = new String[aspectosAModel.getRowCount()][aspectosAModel.getColumnCount()];
-        for (int k = 0; k < aspectosAModel.getRowCount(); k++) {
-            for (int j = 0; j < aspectosAModel.getColumnCount(); j++) {
-                matriz[k][j] = aspectosAModel.getValueAt(k, j) + "";
+        String[][] matriz = new String[agregadosModel.getRowCount()][agregadosModel.getColumnCount()];
+        for (int k = 0; k < agregadosModel.getRowCount(); k++) {
+            for (int j = 0; j < agregadosModel.getColumnCount(); j++) {
+                matriz[k][j] = agregadosModel.getValueAt(k, j) + "";
             }
         }
         matriz[0][0] = matriz[0][0] + "TLA1";
         com.setTabla(matriz);
-        List<String> info = new ArrayList<String>();
+        List<String> info = new ArrayList();
         info.add("Desbloquear");
         com.setInfo(info);
         this.dispose();
     }//GEN-LAST:event_crearTablaBtnActionPerformed
 
-    private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
-        if (tablaLisFTbl.getRowCount() > 0) {
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        if (agregadosTbl.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
                 "¿Desea cancelar la realizacion "
                 + "de la lista de aspectos?", "Precaucion",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
 
         }
         } else {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
         }
-    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void competenciaCBxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_competenciaCBxItemStateChanged
         control.buscarPorCompetencia(competenciaCBx.getSelectedItem());
     }//GEN-LAST:event_competenciaCBxItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel agregadosLbl;
+    private javax.swing.JScrollPane agregadosSPn;
+    private javax.swing.JTable agregadosTbl;
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JLabel agregarLALbl;
     private javax.swing.JButton agregarTBtn;
-    private javax.swing.JButton cancelarLABtn;
+    private javax.swing.JButton cancelarBtn;
+    private javax.swing.JLabel candidatosLbl;
+    private javax.swing.JScrollPane candidatosSPn;
+    private javax.swing.JTable candidatosTbl;
     private javax.swing.JComboBox competenciaCBx;
     private javax.swing.JLabel competenciaLbl;
     private javax.swing.JButton crearTablaBtn;
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JButton eliminarTBtn;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JLabel listaAsistenciaLALbl;
-    private javax.swing.JLabel listaCandidatosLALbl;
-    private javax.swing.JLabel nota_LI_Lbl;
-    private javax.swing.JTable tablaLisFTbl;
-    private javax.swing.JTable tablaLisITbl;
+    private javax.swing.JLabel listaAspectosInsLbl;
+    private javax.swing.JLabel listaAspectosTltLbl;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -536,10 +533,10 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
     @Override
     public void setTabla(String[][] info) {
         TableColumn columnaID;
-        aspectosModel.setDataVector(info, titulosTabla);        
+        candidatosModel.setDataVector(info, titulosTabla);        
         //Esconder columna ID
-        columnaID = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(columnaID);        
+        columnaID = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(columnaID);        
     }
 
     @Override
@@ -552,6 +549,7 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
      * checkbox
      *
      * @param info Lista de Objeto con información de búsqueda.
+     * @param i
      */
     @Override
     public void setLista(List info, int i) {
@@ -581,9 +579,9 @@ public class ListaAspectos extends javax.swing.JFrame implements Comunicador {
      * @param info
      */
     public void mandarTabla(String[][] info) {
-        aspectosModel.setDataVector(info, titulosTabla);
-        TableColumn columnaID = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(columnaID);   
-        tablaLisFTbl.setEnabled(true);
+        candidatosModel.setDataVector(info, titulosTabla);
+        TableColumn columnaID = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(columnaID);   
+        agregadosTbl.setEnabled(true);
     }
 }

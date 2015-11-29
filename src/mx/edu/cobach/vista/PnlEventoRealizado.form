@@ -23,17 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="informacionTP" alignment="0" pref="786" max="32767" attributes="0"/>
+          <Component id="informacionTBn" alignment="0" pref="786" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="informacionTP" alignment="1" pref="587" max="32767" attributes="0"/>
+          <Component id="informacionTBn" alignment="1" pref="587" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="informacionTP">
+    <Container class="javax.swing.JTabbedPane" name="informacionTBn">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[739, 472]"/>
@@ -66,8 +66,8 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="nombreGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="agregarGLbl" min="-2" max="-2" attributes="0"/>
-                                  <Component id="notaGLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="generalLbl" min="-2" max="-2" attributes="0"/>
+                                  <Component id="generalMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="459" max="-2" attributes="0"/>
                                       <Component id="cancelarGBtn" min="-2" pref="108" max="-2" attributes="0"/>
@@ -120,9 +120,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="agregarGLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="generalLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="notaGLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="generalMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="nombreGTFd" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -308,7 +308,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="agregarGLbl">
+            <Component class="javax.swing.JLabel" name="generalLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -316,7 +316,7 @@
                 <Property name="text" type="java.lang.String" value="Registro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="notaGLbl">
+            <Component class="javax.swing.JLabel" name="generalMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;"/>
               </Properties>
@@ -383,17 +383,17 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="listaAsistenciaLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="315" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
-                          <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
-                          <Component id="nota_LI_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoLbl" alignment="0" min="-2" pref="689" max="-2" attributes="0"/>
-                          <Component id="buscarLABtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="listaAsistenciaSPn" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
+                          <Component id="registroLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="registroMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="listaAsistenciaMsjLbl" alignment="0" min="-2" pref="689" max="-2" attributes="0"/>
+                          <Component id="generarBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
@@ -403,19 +403,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="registroLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="nota_LI_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="registroMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="campoLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="listaAsistenciaMsjLbl" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="buscarLABtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="generarBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="listaAsistenciaLbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane5" min="-2" pref="232" max="-2" attributes="0"/>
+                              <Component id="listaAsistenciaSPn" min="-2" pref="232" max="-2" attributes="0"/>
                               <EmptySpace min="24" pref="131" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -433,7 +433,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="campoLbl">
+            <Component class="javax.swing.JLabel" name="listaAsistenciaMsjLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -441,14 +441,14 @@
                 <Property name="text" type="java.lang.String" value="Seleccione la opcion de generar lista de asistencia para agregar los empleados que desee que asistan al evento"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+            <Container class="javax.swing.JScrollPane" name="listaAsistenciaSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tablaLisFTbl">
+                <Component class="javax.swing.JTable" name="listaAsistenciaTbl">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="2" rowCount="4">
@@ -489,7 +489,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguienteLABtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="listaAsistenciaLALbl">
+            <Component class="javax.swing.JLabel" name="listaAsistenciaLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -497,12 +497,12 @@
                 <Property name="text" type="java.lang.String" value="Lista de asistencia"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nota_LI_Lbl">
+            <Component class="javax.swing.JLabel" name="registroMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="buscarLABtn">
+            <Component class="javax.swing.JButton" name="generarBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -511,10 +511,10 @@
                 <Property name="autoscrolls" type="boolean" value="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarLABtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="agregarLALbl">
+            <Component class="javax.swing.JLabel" name="registroLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -571,7 +571,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" pref="761" max="32767" attributes="0"/>
+                              <Component id="enunciadoSPn" pref="761" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -579,8 +579,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="nota_CL_Lbl" min="-2" max="-2" attributes="0"/>
-                          <Component id="agregarCLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="calificacionMsjLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="calificacionLbl" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -590,11 +590,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="agregarCLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="calificacionLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="nota_CL_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="calificacionMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="364" max="32767" attributes="0"/>
+                      <Component id="enunciadoSPn" pref="364" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="guardarCBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
@@ -619,7 +619,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarCBtnActionPerformed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+            <Container class="javax.swing.JScrollPane" name="enunciadoSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -662,7 +662,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="agregarCLbl">
+            <Component class="javax.swing.JLabel" name="calificacionLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -670,7 +670,7 @@
                 <Property name="text" type="java.lang.String" value="Registro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nota_CL_Lbl">
+            <Component class="javax.swing.JLabel" name="calificacionMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;"/>
               </Properties>

@@ -68,7 +68,7 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="NombreBuscarLbl" min="-2" max="-2" attributes="0"/>
+                          <Component id="nombreBuscarLbl" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="nombreBuscarTFd" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
@@ -83,7 +83,7 @@
                           <EmptySpace min="15" pref="34" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="tablaPlantelSPn" pref="0" max="32767" attributes="0"/>
+                          <Component id="plantelesSPn" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -99,7 +99,7 @@
                   <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="NombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreBuscarLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nombreBuscarTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -110,14 +110,14 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tablaPlantelSPn" min="-2" pref="341" max="-2" attributes="0"/>
+                  <Component id="plantelesSPn" min="-2" pref="341" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="tablaPlantelSPn">
+        <Container class="javax.swing.JScrollPane" name="plantelesSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -179,7 +179,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarTFdActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="NombreBuscarLbl">
+        <Component class="javax.swing.JLabel" name="nombreBuscarLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>

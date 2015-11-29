@@ -61,14 +61,14 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
         opcionMsjLbl = new javax.swing.JLabel();
         tipoLbl = new javax.swing.JLabel();
         tipoCBx = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        nombreMsjLbl = new javax.swing.JLabel();
+        numeroMsjLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         empleadoSPn = new javax.swing.JScrollPane();
         empleadoTbl = new javax.swing.JTable();
         generarBtn = new javax.swing.JButton();
         informacionLbl = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        kardexMsjLbl = new javax.swing.JLabel();
 
         opcionPnl.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         opcionPnl.setMaximumSize(new java.awt.Dimension(408, 587));
@@ -126,9 +126,9 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
             }
         });
 
-        jLabel1.setText("<html>Ingrese un nombre para devolver las coincidencias del nombre<br> con algún empleado</html>");
+        nombreMsjLbl.setText("<html>Ingrese un nombre para devolver las coincidencias del nombre<br> con algún empleado</html>");
 
-        jLabel3.setText("Ingrese el numero del empleado ");
+        numeroMsjLbl.setText("Ingrese el numero del empleado ");
 
         javax.swing.GroupLayout opcionPnlLayout = new javax.swing.GroupLayout(opcionPnl);
         opcionPnl.setLayout(opcionPnlLayout);
@@ -153,8 +153,8 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                                 .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(opcionPnlLayout.createSequentialGroup()
                                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(numeroMsjLbl)
+                                    .addComponent(nombreMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(opcionesLbl))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(opcionPnlLayout.createSequentialGroup()
@@ -175,13 +175,13 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                     .addComponent(tipoLbl)
                     .addComponent(tipoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(numeroMsjLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroLbl)
                     .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombreMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreLbl)
@@ -225,7 +225,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
         informacionLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         informacionLbl.setText("Información del Kardex del empleado");
 
-        jLabel2.setText("Seleccione un empleado de la tabla para generar el Kardex y presionar el boton \"Generar\"");
+        kardexMsjLbl.setText("Seleccione un empleado de la tabla para generar el Kardex y presionar el boton \"Generar\"");
 
         javax.swing.GroupLayout informacionPnlLayout = new javax.swing.GroupLayout(informacionPnl);
         informacionPnl.setLayout(informacionPnlLayout);
@@ -241,7 +241,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                     .addGroup(informacionPnlLayout.createSequentialGroup()
                         .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(informacionLbl)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(kardexMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -251,7 +251,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                 .addGap(20, 20, 20)
                 .addComponent(informacionLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(kardexMsjLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(empleadoSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -373,12 +373,12 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JButton generarBtn;
     private javax.swing.JLabel informacionLbl;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel kardexMsjLbl;
     private javax.swing.JLabel nombreLbl;
+    private javax.swing.JLabel nombreMsjLbl;
     private javax.swing.JTextField nombreTFd;
     private javax.swing.JLabel numeroLbl;
+    private javax.swing.JLabel numeroMsjLbl;
     private javax.swing.JTextField numeroTFd;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;

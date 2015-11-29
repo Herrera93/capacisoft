@@ -1513,14 +1513,14 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 for(int i = 0; i < alertas.size(); i++){
                     Alerta a = alertas.get(i);
                     if(a.getImplementacionEventos().contains(o1))
-                        cal.add(Calendar.DATE, a.getPeriodo());
+                        cal.add(Calendar.DATE, -a.getPeriodo());
                 }
                 primera = cal.getTime();
                 cal.setTime(o2.getFechaFinal());
                 for(int i = 0; i < alertas.size(); i++){
                     Alerta a = alertas.get(i);
                     if(a.getImplementacionEventos().contains(o2))
-                        cal.add(Calendar.DATE, a.getPeriodo());
+                        cal.add(Calendar.DATE, -a.getPeriodo());
                 }
                 segunda = cal.getTime();
                 return primera.compareTo(segunda);

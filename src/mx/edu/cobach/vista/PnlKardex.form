@@ -74,8 +74,8 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="numeroMsjLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreMsjLbl" min="-2" max="-2" attributes="0"/>
                                       <Component id="opcionesLbl" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -105,14 +105,14 @@
                       <Component id="tipoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="numeroMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="numeroTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="nombreMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -214,12 +214,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipoCBxActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="nombreMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Ingrese un nombre para devolver las coincidencias del nombre&lt;br&gt; con alg&#xfa;n empleado&lt;/html&gt;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="numeroMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese el numero del empleado "/>
           </Properties>
@@ -255,7 +255,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="informacionLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="730" max="-2" attributes="0"/>
+                              <Component id="kardexMsjLbl" min="-2" pref="730" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -270,7 +270,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="informacionLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="kardexMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="empleadoSPn" min="-2" pref="411" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -352,7 +352,7 @@
             <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del Kardex del empleado"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="kardexMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccione un empleado de la tabla para generar el Kardex y presionar el boton &quot;Generar&quot;"/>
           </Properties>

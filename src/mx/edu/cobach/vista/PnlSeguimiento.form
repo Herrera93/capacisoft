@@ -17,7 +17,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="seguimientoTpnl" min="-2" max="-2" attributes="0"/>
+              <Component id="seguimientoTBn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="informacionTBn" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -26,13 +26,13 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="seguimientoTpnl" max="32767" attributes="0"/>
+          <Component id="seguimientoTBn" max="32767" attributes="0"/>
           <Component id="informacionTBn" pref="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="seguimientoTpnl">
+    <Container class="javax.swing.JTabbedPane" name="seguimientoTBn">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -71,7 +71,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="notaBusLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="disenarEncuestaMsjLbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -82,13 +82,13 @@
                                       <Component id="deFechaDCh" min="-2" pref="180" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="hastaDLbl" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="aFechaDCh" min="-2" pref="180" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="disenarEncuestaTltLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="disenarEncuestaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="eventoDLbl" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="eventoCBx" min="-2" pref="180" max="-2" attributes="0"/>
                                   </Group>
@@ -100,8 +100,8 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" pref="0" max="32767" attributes="0"/>
-                          <Component id="disenarEncuestaInsLbl" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="eventosDSPn" pref="0" max="32767" attributes="0"/>
+                          <Component id="tablaMsjLbl" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
@@ -115,12 +115,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="disenarEncuestaTltLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="disenarEncuestaLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="notaBusLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="disenarEncuestaMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="eventoDLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="eventoCBx" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -130,22 +130,22 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hastaDLbl" min="-2" max="-2" attributes="0"/>
                           <Component id="aFechaDCh" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="disenarEncuestaInsLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane5" pref="316" max="32767" attributes="0"/>
+                      <Component id="eventosDSPn" pref="316" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="disenarEncuestaTltLbl">
+            <Component class="javax.swing.JLabel" name="disenarEncuestaLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -153,12 +153,12 @@
                 <Property name="text" type="java.lang.String" value="Opciones"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="disenarEncuestaInsLbl">
+            <Component class="javax.swing.JLabel" name="tablaMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Para seleccionar un evento seleccione la fecha o nombre del evento asociado con la encuesta a realizar.&lt;/html&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="eventoDLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -212,7 +212,7 @@
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="aFechaDChPropertyChange"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="hastaDLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -231,14 +231,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+            <Container class="javax.swing.JScrollPane" name="eventosDSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="eventosTbl">
+                <Component class="javax.swing.JTable" name="eventosDTbl">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="2" rowCount="4">
@@ -265,12 +265,12 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eventosTblMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eventosDTblMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="notaBusLbl">
+            <Component class="javax.swing.JLabel" name="disenarEncuestaMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Ingrese el nombre o la fecha del evento para buscar la informaci&#xf3;n&lt;br&gt;especifica"/>
               </Properties>
@@ -301,11 +301,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" pref="0" max="32767" attributes="0"/>
+                              <Component id="eventosRSPn" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="disenarEncuestaInsLbl1" pref="0" max="32767" attributes="0"/>
+                              <Component id="tablaRMsjLbl" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -314,7 +314,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="eventoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="deFechaLbl1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="hastaRLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -325,8 +325,8 @@
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="notaBusLbl1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="disenarEncuestaTltLbl1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="resultadosMsjLbl" min="-2" max="-2" attributes="0"/>
+                                          <Component id="resultadosLbl" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="47" max="32767" attributes="0"/>
                                   </Group>
@@ -346,9 +346,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="disenarEncuestaTltLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="resultadosLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="notaBusLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="resultadosMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="eventoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -361,7 +361,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="hastaRLbl" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="aFechaResultadoDCh" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -372,16 +372,16 @@
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="disenarEncuestaInsLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="tablaRMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="316" max="32767" attributes="0"/>
+                      <Component id="eventosRSPn" pref="316" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+            <Container class="javax.swing.JScrollPane" name="eventosRSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -432,12 +432,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="disenarEncuestaInsLbl1">
+            <Component class="javax.swing.JLabel" name="tablaRMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Para seleccionar un evento seleccione la fecha o nombre del evento asociado con la encuesta que se desean ver sus resultados.&lt;/html&gt; "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="disenarEncuestaTltLbl1">
+            <Component class="javax.swing.JLabel" name="resultadosLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -496,7 +496,7 @@
                 <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="aFechaResultadoDChPropertyChange"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="hastaRLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -526,7 +526,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resultadosBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="notaBusLbl1">
+            <Component class="javax.swing.JLabel" name="resultadosMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Ingrese el nombre o la fecha del evento para buscar la informaci&#xf3;n&lt;br&gt;especifica"/>
               </Properties>
@@ -566,7 +566,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane7" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
+                                  <Component id="aspectosSPn" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
                                   <Component id="totalAspectosLbl" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
@@ -578,15 +578,15 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nota_LI_Lbl1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="agregarLALbl1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="seleccionLALbl1" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
-                                  <Component id="listaAspectosBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarAMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarALbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="aspectosMsjLbl" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
+                                  <Component id="generarLABtn" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
-                              <Component id="listaAsistenciaLALbl1" min="-2" max="-2" attributes="0"/>
+                              <Component id="aspectosLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -597,17 +597,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="agregarLALbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarALbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="nota_LI_Lbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarAMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="seleccionLALbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="aspectosMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="listaAspectosBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="generarLABtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="41" max="32767" attributes="0"/>
-                      <Component id="listaAsistenciaLALbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="aspectosLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane7" min="-2" pref="232" max="-2" attributes="0"/>
+                      <Component id="aspectosSPn" min="-2" pref="232" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="totalAspectosLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -621,7 +621,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+            <Container class="javax.swing.JScrollPane" name="aspectosSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -655,7 +655,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="siguienteBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="agregarLALbl1">
+            <Component class="javax.swing.JLabel" name="agregarALbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -663,12 +663,12 @@
                 <Property name="text" type="java.lang.String" value="Registro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nota_LI_Lbl1">
+            <Component class="javax.swing.JLabel" name="agregarAMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;&lt;/html&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="seleccionLALbl1">
+            <Component class="javax.swing.JLabel" name="aspectosMsjLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -676,7 +676,7 @@
                 <Property name="text" type="java.lang.String" value="Seleccione la opcion de &quot;Generar lista de aspectos&quot; para agregar los aspectos a evaluar en la encuesta."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="listaAspectosBtn">
+            <Component class="javax.swing.JButton" name="generarLABtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -684,10 +684,10 @@
                 <Property name="text" type="java.lang.String" value="Generar lista de aspectos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaAspectosBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarLABtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="listaAsistenciaLALbl1">
+            <Component class="javax.swing.JLabel" name="aspectosLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -739,7 +739,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane6" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
+                                  <Component id="empleadosSPn" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
                                   <Component id="totalEmpleadosLbl" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
@@ -751,15 +751,15 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="nota_LI_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="agregarLALbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="seleccionLALbl" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
-                                  <Component id="listaEmpleadosBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarLEMsjLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarLELbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="empleadosMsjLbl" alignment="0" min="-2" pref="688" max="-2" attributes="0"/>
+                                  <Component id="generarLEBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="299" max="-2" attributes="0"/>
-                              <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="empleadosLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -770,17 +770,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLELbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="nota_LI_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarLEMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="seleccionLALbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="empleadosMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="listaEmpleadosBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="generarLEBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="24" max="32767" attributes="0"/>
-                      <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="empleadosLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane6" min="-2" pref="232" max="-2" attributes="0"/>
+                      <Component id="empleadosSPn" min="-2" pref="232" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="totalEmpleadosLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -795,7 +795,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+            <Container class="javax.swing.JScrollPane" name="empleadosSPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -829,7 +829,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviarBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="agregarLALbl">
+            <Component class="javax.swing.JLabel" name="agregarLELbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -837,12 +837,12 @@
                 <Property name="text" type="java.lang.String" value="Registro"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nota_LI_Lbl">
+            <Component class="javax.swing.JLabel" name="agregarLEMsjLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;&lt;/html&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="seleccionLALbl">
+            <Component class="javax.swing.JLabel" name="empleadosMsjLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -850,7 +850,7 @@
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;Seleccione la opci&amp;oacute;n de &quot;Generar lista de empleados&quot; para agregar a los empleados cuyos jefes inmediatos&lt;br&gt;recibiran la encuesta.&lt;/html&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="listaEmpleadosBtn">
+            <Component class="javax.swing.JButton" name="generarLEBtn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -858,10 +858,10 @@
                 <Property name="text" type="java.lang.String" value="Generar lista de empleados"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaEmpleadosBtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarLEBtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="listaAsistenciaLALbl">
+            <Component class="javax.swing.JLabel" name="empleadosLbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>

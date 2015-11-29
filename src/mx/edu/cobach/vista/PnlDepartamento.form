@@ -65,7 +65,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tablaSPn" pref="384" max="32767" attributes="0"/>
+                              <Component id="departamentoSPn" pref="384" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -81,7 +81,7 @@
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
+                                              <Component id="opcionTltLbl" min="-2" max="-2" attributes="0"/>
                                               <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -92,7 +92,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" pref="360" max="-2" attributes="0"/>
+                          <Component id="tablaMsjLbl" min="-2" pref="360" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -103,7 +103,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="opcionLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionTltLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="opcionMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -117,23 +117,23 @@
                       <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tablaSPn" min="-2" pref="341" max="-2" attributes="0"/>
+                  <Component id="departamentoSPn" min="-2" pref="341" max="-2" attributes="0"/>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="tablaSPn">
+        <Container class="javax.swing.JScrollPane" name="departamentoSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaTbl">
+            <Component class="javax.swing.JTable" name="departamentoTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -172,7 +172,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaTblMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="departamentoTblMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -214,7 +214,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="opcionLbl">
+        <Component class="javax.swing.JLabel" name="opcionTltLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -227,7 +227,7 @@
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Seleccione el bot&#xf3;n &quot;Agregar&quot; para habilitar la secci&#xf3;n de registro,&lt;br&gt;si desea  realizar una b&#xfa;squeda seleccione el bot&#xf3;n &quot;Buscar&quot;&lt;/html&gt;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="tablaMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un n&#xfa;mero del usuario de la columna&lt;br&gt; &quot;Numero&quot;, para eliminar selecciona el cuadro eliminar de la columna Eliminar del usuario que desee&lt;/html&gt; "/>
           </Properties>
@@ -269,7 +269,7 @@
                           </Group>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="agregarMsjLbl" alignment="0" max="32767" attributes="0"/>
+                          <Component id="registroMsjLbl" alignment="0" max="32767" attributes="0"/>
                           <Component id="registroLbl" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -290,7 +290,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="registroLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="agregarMsjLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="registroMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nombreLbl" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -347,7 +347,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="agregarMsjLbl">
+        <Component class="javax.swing.JLabel" name="registroMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingrese la informaci&#xf3;n a almacenar, para salir o cancelar el registro presione el bot&#xf3;n Cancelar"/>
           </Properties>

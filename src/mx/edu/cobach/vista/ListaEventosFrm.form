@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane4" min="-2" pref="415" max="-2" attributes="0"/>
+              <Component id="candidatosSPn" min="-2" pref="415" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="agregarTBtn" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
@@ -34,14 +34,14 @@
                   <Component id="agregarBtn" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane5" min="-2" pref="415" max="-2" attributes="0"/>
+              <Component id="agregadosSPn" min="-2" pref="415" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="cancelarLABtn" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Component id="cancelarBtn" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="crearTablaBtn" min="-2" pref="108" max="-2" attributes="0"/>
                   </Group>
@@ -50,17 +50,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="agregarLALbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nota_LI_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="listaEventosTltLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="listaEventosInsLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                              <Component id="nombreLALbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="eventoLbl" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Component id="nombreTFd" min="-2" pref="358" max="-2" attributes="0"/>
+                              <Component id="eventoTFd" min="-2" pref="358" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="buscarLABtn" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="buscarBtn" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -70,9 +70,9 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-              <Component id="listaCandidatosLALbl" min="-2" max="-2" attributes="0"/>
+              <Component id="candidatosLbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="listaAsistenciaLALbl" min="-2" max="-2" attributes="0"/>
+              <Component id="agregadosLbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -81,23 +81,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="agregarLALbl" min="-2" max="-2" attributes="0"/>
+              <Component id="listaEventosTltLbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="nota_LI_Lbl" min="-2" max="-2" attributes="0"/>
+              <Component id="listaEventosInsLbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="nombreLALbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nombreTFd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buscarLABtn" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="eventoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="eventoTFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buscarBtn" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="listaCandidatosLALbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="listaAsistenciaLALbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="candidatosLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregadosLbl" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane4" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="candidatosSPn" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="agregarBtn" min="-2" pref="45" max="-2" attributes="0"/>
@@ -108,12 +108,12 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="eliminarTBtn" min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane5" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
+                  <Component id="agregadosSPn" alignment="0" min="-2" pref="314" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="9" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="crearTablaBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="cancelarLABtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="cancelarBtn" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -121,7 +121,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="listaCandidatosLALbl">
+    <Component class="javax.swing.JLabel" name="candidatosLbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -129,7 +129,7 @@
         <Property name="text" type="java.lang.String" value="Posibles eventos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="buscarLABtn">
+    <Component class="javax.swing.JButton" name="buscarBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -137,7 +137,7 @@
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarLABtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="crearTablaBtn">
@@ -152,14 +152,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearTablaBtnActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+    <Container class="javax.swing.JScrollPane" name="agregadosSPn">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaLisFTbl">
+        <Component class="javax.swing.JTable" name="agregadosTbl">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="4">
@@ -175,7 +175,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="cancelarLABtn">
+    <Component class="javax.swing.JButton" name="cancelarBtn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -183,10 +183,10 @@
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarLABtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="listaAsistenciaLALbl">
+    <Component class="javax.swing.JLabel" name="agregadosLbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
@@ -194,7 +194,7 @@
         <Property name="text" type="java.lang.String" value="Eventos seleccionados"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="nota_LI_Lbl">
+    <Component class="javax.swing.JLabel" name="listaEventosInsLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;Anada los eventos que el proveedor puede impartir, en la izquierda se muestran todos los eventos y en la derecha los eventos elegidos, se pueden&lt;br&gt;buscar eventos por medio de su nombre, para salir o cancelar el registro presione el bot&#xf3;n &quot;Cancelar&quot;&lt;/html&gt;"/>
       </Properties>
@@ -238,7 +238,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="nombreLALbl">
+    <Component class="javax.swing.JLabel" name="eventoLbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -259,14 +259,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarTBtnActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+    <Container class="javax.swing.JScrollPane" name="candidatosSPn">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tablaLisITbl">
+        <Component class="javax.swing.JTable" name="candidatosTbl">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="4">
@@ -281,7 +281,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="nombreTFd">
+    <Component class="javax.swing.JTextField" name="eventoTFd">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -291,10 +291,10 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreTFdKeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="eventoTFdKeyTyped"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="agregarLALbl">
+    <Component class="javax.swing.JLabel" name="listaEventosTltLbl">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="0"/>
