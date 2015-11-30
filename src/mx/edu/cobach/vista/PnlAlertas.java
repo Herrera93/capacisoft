@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
@@ -41,11 +42,13 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     private final PnlSeguimiento encuestaPnl;
     
     /**
-     * Creates new form PnlAlertas
+     * Crea un nuevo panel PnlAlertas y en caso de ser inicio de semestre se
+     * programan alertas de implementaciones anteriores.
+     * 
      * @param eventoPnl
      * @param encuestaPnl
      */
-    public PnlAlertas(PnlProgramarEvento eventoPnl, PnlSeguimiento encuestaPnl) {// method
+    public PnlAlertas(PnlProgramarEvento eventoPnl, PnlSeguimiento encuestaPnl){// method
         initComponents();
         this.eventoPnl = eventoPnl;
         this.encuestaPnl = encuestaPnl;
@@ -77,48 +80,74 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String[] fecha = sdf.format(actual).split("/");
             System.out.println("Año: " + fecha[2]);
-            Date programacion = sdf.parse("15/01/" + fecha[2]);
+            Date programacion = new Date();
+//            Date programacion = sdf.parse("15/01/" + fecha[2]);
             System.out.println("Primer parse: " + sdf.format(programacion));
-            if((actual.before(programacion) || actual.equals(programacion))){//if
+            if(actual.equals(programacion)){//if
                 
                 System.out.println("Fecha: 14/08/" + (Integer.parseInt(fecha[2]) - 1));
                 List<Object> programar = control1.buscarImplementacionLista(
                         sdf.parse("15/08/" + (Integer.parseInt(fecha[2]) - 1)), 
-                        sdf.parse("14/01/" + (Integer.parseInt(fecha[2]) - 1)));
+                        sdf.parse("14/01/" + (Integer.parseInt(fecha[2]))));
                 System.out.println("Segundo parse");
                 Set<ImplementacionEvento> implementado = ((Alerta)control.
                         buscarAlerta(1)).getImplementacionEventos();
-                if(implementado == null){//if
-                    if(programar != null){//if
-                        int clave = 0;
-                        List<Object> alertas = control.buscarTodas();
-                        // obtener la última clave
-                        for(int i = 0; i < 4; i++){//for
-                            Set<ImplementacionEvento> eventos = ((Alerta) alertas
-                                    .get(i)).getImplementacionEventos();
-                            if(eventos != null){//if
-                                for(ImplementacionEvento e : eventos){//for
-                                    if(e.getId() > clave){//if
-                                        clave = e.getId();
-                                    }//if
-                                }//for
+                
+                int clave = 0;
+                List<Object> alertas = control.buscarTodas();
+                // obtener la última clave
+                for(int i = 0; i < 4; i++){//for
+                    Set<ImplementacionEvento> eventos = ((Alerta)alertas
+                            .get(i)).getImplementacionEventos();
+                    if(eventos != null){//if
+                        for(ImplementacionEvento e : eventos){//for
+                            if(e.getId() > clave){//if
+                                clave = e.getId();
                             }//if
                         }//for
-                        
-                        
+                    }//if
+                }//for
+                clave ++;
+                
+                if(implementado == null){//if
+                    if(programar != null){//if
+                        Set<ImplementacionEvento> eventos = new HashSet();
+                        for(Object obj : programar){//for
+                            ImplementacionEvento e = (ImplementacionEvento) obj;
+                            e.setId(clave);
+                            e.setFechaInicial(actual);
+                            e.setFechaFinal(actual);
+                            e.setActivo(true);
+                            control1.alta(e);
+                            clave ++;
+                            eventos.add(e);
+                        }//for
+                        ((Alerta) alertas.get(1))
+                                .setImplementacionEventos(eventos);
+                        control.modificacion(alertas.get(1));
                     }//if
                 }//if
                 else{//else
-                    int clave = 0;
-                    for(int i = 0; i < programar.size(); i++){//for
-                        for(int j = 0; j < implementado.size(); j++){//for
-
+                    if(programar != null){//if
+                        Alerta a = (Alerta)alertas.get(1);
+                        for(Object obj : programar){//for
+                            for(ImplementacionEvento ie : implementado){//for
+                                ImplementacionEvento temp 
+                                        = (ImplementacionEvento) obj;
+                                if(!temp.getEvento().equals(ie.getEvento())){//if
+                                    ie.setId(clave);
+                                    ie.setFechaInicial(actual);
+                                    ie.setFechaFinal(actual);
+                                    a.getImplementacionEventos().add(ie);
+                                    clave ++;
+                                }//if
+                            }//for
                         }//for
-                    }//for
+                        control.modificacion(a);
+                    }//if
                 }//else
                 
             }//if
-            System.out.println("Sem-1:" + sdf.format(actual));
         }//try
         catch (ParseException ex) {//catch
 //            setMensaje("Ocurrió un error inesperado al convertir la fecha."
@@ -131,11 +160,73 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             Date actual = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String[] fecha = sdf.format(actual).split("/");
-            Date finEne = sdf.parse("15/08" + fecha[2]);
-            if((actual.before(finEne) || actual.equals(finEne))){//if
-                control1.buscarImplementacion(finEne, actual);
+            System.out.println("Año: " + fecha[2]);
+            Date programacion = sdf.parse("15/08/" + fecha[2]);
+            System.out.println("Primer parse: " + sdf.format(programacion));
+            if(actual.equals(programacion)){//if
+                
+                System.out.println("Fecha: 14/01/" + (Integer.parseInt(fecha[2]) - 1));
+                List<Object> programar = control1.buscarImplementacionLista(
+                        sdf.parse("15/01/" + (Integer.parseInt(fecha[2]) - 1)), 
+                        sdf.parse("14/08/" + (Integer.parseInt(fecha[2]))));
+                System.out.println("Segundo parse");
+                Set<ImplementacionEvento> implementado = ((Alerta)control.
+                        buscarAlerta(1)).getImplementacionEventos();
+                
+                int clave = 0;
+                List<Object> alertas = control.buscarTodas();
+                // obtener la última clave
+                for(int i = 0; i < 4; i++){//for
+                    Set<ImplementacionEvento> eventos = ((Alerta)alertas
+                            .get(i)).getImplementacionEventos();
+                    if(eventos != null){//if
+                        for(ImplementacionEvento e : eventos){//for
+                            if(e.getId() > clave){//if
+                                clave = e.getId();
+                            }//if
+                        }//for
+                    }//if
+                }//for
+                clave ++;
+                
+                if(implementado == null){//if
+                    if(programar != null){//if
+                        Set<ImplementacionEvento> eventos = new HashSet();
+                        for(Object obj : programar){//for
+                            ImplementacionEvento e = (ImplementacionEvento) obj;
+                            e.setId(clave);
+                            e.setFechaInicial(actual);
+                            e.setFechaFinal(actual);
+                            e.setActivo(true);
+                            control1.alta(e);
+                            clave ++;
+                            eventos.add(e);
+                        }//for
+                        ((Alerta) alertas.get(1))
+                                .setImplementacionEventos(eventos);
+                        control.modificacion(alertas.get(1));
+                    }//if
+                }//if
+                else{//else
+                    if(programar != null){//if
+                        Alerta a = (Alerta)alertas.get(1);
+                        for(Object obj : programar){//for
+                            for(ImplementacionEvento ie : implementado){//for
+                                ImplementacionEvento temp 
+                                        = (ImplementacionEvento) obj;
+                                if(!temp.getEvento().equals(ie.getEvento())){//if
+                                    ie.setId(clave);
+                                    ie.setFechaInicial(actual);
+                                    ie.setFechaFinal(actual);
+                                    a.getImplementacionEventos().add(ie);
+                                    clave ++;
+                                }//if
+                            }//for
+                        }//for
+                        control.modificacion(a);
+                    }//if
+                }//else
             }//if
-            System.out.println("Sem-2:" + sdf.format(actual));
         }//try
         catch (ParseException ex) {//catch
 //            setMensaje("Ocurrió un error inesperado al convertir la fecha."
@@ -941,7 +1032,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 else{// else
                     setMensaje("No existen alertas de evento programado por el"
-                            + " momento.//" + JOptionPane.INFORMATION_MESSAGE);
+                            + " momento.",null,JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -955,7 +1046,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 else{// else
                     setMensaje("No existen alertas de evento diagnosticado por "
-                            + "el momento.//"+ JOptionPane.INFORMATION_MESSAGE);
+                            + "el momento.",null,JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -969,8 +1060,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 else{// else
                     setMensaje("No existen eventos con informacion pendiente"
-                            + " por el momento.//" 
-                            + JOptionPane.INFORMATION_MESSAGE);
+                            + " por el momento.", null, 
+                            JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -984,8 +1075,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 else{// else
                     setMensaje("No existen eventos con encuestas pendiente "
-                            + "por el momento.//" 
-                            + JOptionPane.INFORMATION_MESSAGE);
+                            + "por el momento." , null,
+                            JOptionPane.INFORMATION_MESSAGE);
                     ban = false;
                 }// else
                 break;
@@ -1038,8 +1129,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     private void eventoSpnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_eventoSpnStateChanged
         if(Integer.parseInt(eventoSpn.getValue().toString()) < 1){// if
-            setMensaje("El periodo no puede ser menor a 1./Advertencia/"
-                    + JOptionPane.WARNING_MESSAGE);
+            setMensaje("El periodo no puede ser menor a 1.","Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
             eventoSpn.setValue(1);
         }// if
     }//GEN-LAST:event_eventoSpnStateChanged
@@ -1052,8 +1143,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     private void informacionSpnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_informacionSpnStateChanged
         if(Integer.parseInt(informacionSpn.getValue().toString()) < 1){// if
-            setMensaje("El periodo no puede ser menor a 1./Advertencia/"
-                    + JOptionPane.WARNING_MESSAGE);
+            setMensaje("El periodo no puede ser menor a 1.", "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
             informacionSpn.setValue(1);
         }// if
     }//GEN-LAST:event_informacionSpnStateChanged
@@ -1066,8 +1157,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     private void encuestaSpnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_encuestaSpnStateChanged
         if(Integer.parseInt(encuestaSpn.getValue().toString()) < 1){// if
-            setMensaje("El periodo no puede ser menor a 1./Advertencia/"
-                    + JOptionPane.WARNING_MESSAGE);
+            setMensaje("El periodo no puede ser menor a 1.", "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
             encuestaSpn.setValue(1);
         }// if
     }//GEN-LAST:event_encuestaSpnStateChanged
@@ -1352,10 +1443,15 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
     @Override
     public void setMensaje(String mensaje) {// method
-        String[] auxiliar = mensaje.split("/");
-        JOptionPane.showMessageDialog(null, auxiliar[0],auxiliar[1],
-                Integer.parseInt(auxiliar[2]));
+        JOptionPane.showMessageDialog(null, mensaje);
     }// method
+    
+    /**
+     * 
+     */
+    public void setMensaje(String mensaje, String cabecera, int tipoMensaje){//method
+        JOptionPane.showMessageDialog(null, mensaje, cabecera, tipoMensaje);
+    }//method
 
     /**
      * Método no implementado.
@@ -1410,14 +1506,14 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 }// if
                 // no existen alertas
                 else{// else
-                    setMensaje("No existen alertas por el momento.//"
-                    + JOptionPane.INFORMATION_MESSAGE);
+                    setMensaje("No existen alertas por el momento.", null,
+                    JOptionPane.INFORMATION_MESSAGE);
                 }// else
             }//else
         }//if
         else{//else
-            setMensaje("No hay tipo de alertas en la base de datos./Error/" 
-                    + JOptionPane.ERROR_MESSAGE);
+            setMensaje("No hay tipo de alertas en la base de datos.", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
             /*JOptionPane.showInternalInputDialog(this, 
                 "No hay tipo de alertas en la base de datos.", "Error",
                 JOptionPane.ERROR_MESSAGE);*/
