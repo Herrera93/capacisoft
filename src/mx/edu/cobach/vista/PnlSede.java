@@ -668,8 +668,13 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
-            validNomLbl.setText("El nombre de la sede ya existe");
+            lugarTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNomLbl.setText("El nombre y lugar de la sede ya existe");
             validNomLbl.setForeground(new Color(255, 0, 0));
+            validLugarLbl.setText("El nombre y lugar de la sede ya existe");
+            validLugarLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_nombreTFdFocusLost
 
@@ -685,6 +690,8 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
+        lugarTFd.setBorder(BORDER_ORIGINAL);
+        validLugarLbl.setForeground(new Color(213, 216, 222));
     }//GEN-LAST:event_nombreTFdFocusGained
 
     private void capacidadTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_capacidadTFdFocusGained
@@ -702,15 +709,31 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_capacidadTFdFocusLost
 
     private void lugarTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lugarTFdFocusGained
+        nombreTFd.setBorder(BORDER_ORIGINAL);
+        validNomLbl.setForeground(new Color(213, 216, 222));
         lugarTFd.setBorder(BORDER_ORIGINAL);
         validLugarLbl.setForeground(new Color(213, 216, 222));
     }//GEN-LAST:event_lugarTFdFocusGained
 
     private void lugarTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lugarTFdFocusLost
+        problema = false;
+        buscando = true;
+        control.buscarTodos();
         if (lugarTFd.getText().isEmpty()) {
             lugarTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
+            validLugarLbl.setForeground(new Color(255, 0, 0));
+        }else if(problema){
+            nombreTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            lugarTFd.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
+                    BORDER_ORIGINAL));
+            validNomLbl.setText("El nombre y lugar de la sede ya existe");
+            validNomLbl.setForeground(new Color(255, 0, 0));
+            validLugarLbl.setText("El nombre y lugar de la sede ya existe");
             validLugarLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_lugarTFdFocusLost
@@ -941,7 +964,12 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             buscando = false;
             if(info != null){
                 for(int x = 0; x < info.length; x++){
-                    if(nombreTFd.getText().equals(info[x][1])){
+                    if(guardarBtn.getText().equals("Modificar") &&
+                        info[x][0].equals(String.valueOf(idSedeActual))){
+                        continue;
+                    }
+                    String nombre = nombreTFd.getText() + " \"" + lugarTFd.getText() + "\"";
+                    if(nombre.equals(info[x][1])){
                         if(almacenando){
                             setMensaje("Ya existe una sede con ese nombre.\n"
                                 + info[x][1]);
