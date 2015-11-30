@@ -185,6 +185,9 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreBuscarTFdKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nombreLBuscarbl">
           <Properties>
@@ -445,6 +448,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="telefonoTFdFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="telefonoTFdFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="telefonoTFdKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="internoRBtn">

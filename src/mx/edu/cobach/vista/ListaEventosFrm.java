@@ -459,7 +459,9 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
     private void eventoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eventoTFdKeyTyped
         if (!Character.isLetter(evt.getKeyChar())  
             && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar())) {
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || eventoTFd.getText().length() == 45
+                ) {
              evt.consume();
             
             
