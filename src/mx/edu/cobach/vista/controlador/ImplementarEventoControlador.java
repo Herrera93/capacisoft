@@ -169,17 +169,13 @@ public class ImplementarEventoControlador extends BaseControlador {
     }
 
     /**
-     * Este método sirve para buscar la coincidencia de los eventos
-     * implementados.
+     * Este método sirve para buscar todos los eventos implementados.
      * 
-     * @param de, Fecha desde la cual se buscarán los eventos.
-     * @param hasta, Fecha hasta la cual se buscarán los eventos.
      * @return Lista de objetos que contiene todas las implementaciones de
-     * eventos con fechas entre el periodo ingresado por parámetro.
+     * eventos.
      */
-    public List<Object> buscarImplementacionLista(Date de, Date hasta){
-        return ServiceLocatorDELEGATE.getImplementarEvento()
-                .buscarEventoPorFechas(null, de, hasta);
+    public List<Object> buscarTodosLista(){
+        return ServiceLocatorDELEGATE.getInstance().findAll(clazz);
     }
     
     /**
