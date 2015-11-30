@@ -3,6 +3,7 @@ package mx.edu.cobach.persistencia.entidades;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -59,7 +60,21 @@ public class Alerta  implements java.io.Serializable {
         this.implementacionEventos = implementacionEventos;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Alerta){
+            Alerta alerta = (Alerta) obj;
+            return Objects.equals(this.id, alerta.getId());
+        }
+        return false;
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
 
 
 }

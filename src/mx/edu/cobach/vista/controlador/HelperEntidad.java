@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
@@ -106,9 +107,15 @@ public class HelperEntidad {
             implementaEvento.setFechaInicial((Date) atributos.get(1));
             implementaEvento.setFechaFinal((Date) atributos.get(2));
             implementaEvento.setActivo((boolean) atributos.get(3));
-            implementaEvento.setSede((Sede) atributos.get(4));
-            implementaEvento.setProveedor((Proveedor) atributos.get(5));
-            implementaEvento.setEmpleados((Set<Empleado>) atributos.get(6));
+            if(atributos.get(4) != null)
+                implementaEvento.setSede((Sede) atributos.get(4));
+            if(atributos.get(5) != null)
+                implementaEvento.setProveedor((Proveedor) atributos.get(5));
+            if(atributos.get(6) != null)
+                implementaEvento.setEmpleados((Set<Empleado>) atributos.get(6));
+            if(atributos.size() > 7){
+                implementaEvento.setAlertas((Set<Alerta>) atributos.get(7));
+            }
             return implementaEvento;
         } else if (direccion.equals("Modificar")) {
             implementaEvento.setId(Integer.parseInt(atributos.get(0).toString()));

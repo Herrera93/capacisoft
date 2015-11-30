@@ -31,7 +31,7 @@
         </property>
         <set name="implementacionEventos" table="implementacion_evento" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="sede_id" not-null="true" />
+                <column name="sede_id" not-null="false" />
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEvento" />
         </set>

@@ -3,6 +3,7 @@ package mx.edu.cobach.persistencia.entidades;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -240,4 +241,7 @@ public class ImplementacionEvento implements java.io.Serializable {
         this.encuestas = encuestas;
     }
 
+    public boolean getActivo() {
+        return activo;
+    }
 }

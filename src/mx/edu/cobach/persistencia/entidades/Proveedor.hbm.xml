@@ -40,7 +40,7 @@
         </set>
         <set fetch="select" inverse="false" lazy="false" name="eventos" table="proveedor_evento">
             <key>
-              <column name="proveedor_id" not-null="true"/>
+              <column name="proveedor_id" not-null="false"/>
             </key>
             <many-to-many entity-name="mx.edu.cobach.persistencia.entidades.Evento">
               <column name="evento_id" not-null="true"/>

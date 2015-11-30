@@ -16,18 +16,14 @@ import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Alerta;
 import mx.edu.cobach.persistencia.entidades.Evento;
-import mx.edu.cobach.persistencia.entidades.Departamento;
-import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
-import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
-import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
+import mx.edu.cobach.vista.controlador.AlertaControlador;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
@@ -49,11 +45,12 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private final DefaultComboBoxModel sedeModel;
     private final DefaultComboBoxModel proveedorModel;
     private DefaultTableModel modelTablaEmF;
-    private String[] titulosTablaEm = {"Numero",
+    private final String[] titulosTablaEm = {"Numero",
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
-    private CapacisoftFrm capacisoft;
+    private final CapacisoftFrm capacisoft;
+    private final AlertaControlador controlAlerta;
 
     public PnlEventoRealizar(CapacisoftFrm capacisoft) {
         this.capacisoft = capacisoft;
@@ -70,6 +67,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         nombreGCBx.setModel(proveedorModel);
         control = new ImplementarEventoControlador(this,
                 ImplementacionEvento.class);
+        controlAlerta = new AlertaControlador(this, Alerta.class);
 
         fechaIDCh.getJCalendar().setMinSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMinSelectableDate(new Date());
@@ -579,7 +577,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
      * proveedores registrados informacion o la modificque.
      *
-     * @param evt Evento al presionar el boton
      */
     public void llenarTodo() {
         tabla();
@@ -774,7 +771,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private void guarMod() {
         HashSet<Empleado> lisEmpleado = new HashSet();
         List<Object> atributos = new ArrayList();
-        if (validacion() == false) {
+        boolean pendiente = false;
+        if (!validacion()) {
             if (guardarLABtn.getText().equals("Modificar")) {
                 atributos.add(eventoProgramarId);
             }
@@ -782,16 +780,42 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             atributos.add(fechaIDCh.getDate());
             atributos.add(fechaTDCh.getDate());
             atributos.add(true);
-            atributos.add(tipoSedeGCBx.getSelectedItem());
-            atributos.add(nombreGCBx.getSelectedItem());
+            if (tipoSedeGCBx.getSelectedItem().toString().equals("")) {
+                pendiente = true;
+                atributos.add(null);
+            } else {
+                atributos.add(tipoSedeGCBx.getSelectedItem());                
+            }
+            
+            if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
+                pendiente = true;
+                atributos.add(null);
+            } else{
+                atributos.add(nombreGCBx.getSelectedItem());                
+            }
+            
             for (int x = 0; x < listaAsistenciaTbl.getRowCount(); x++) {
                 Empleado empleado = new Empleado();
                 empleado.setNumero((String) modelTablaEmF.getValueAt(x, 0));
                 lisEmpleado.add(empleado);
             }
-            atributos.add(lisEmpleado);
+            
+            if (listaAsistenciaTbl.getRowCount() == 0) {
+                pendiente = true;
+                atributos.add(null);
+            }else{
+                atributos.add(lisEmpleado);                
+            }
+            
             control.setClass(ImplementacionEvento.class);
             if (guardarLABtn.getText().equals("Guardar")) {
+                if(pendiente){
+                    HashSet<Alerta> alertas = new HashSet();
+                    Alerta alerta = new Alerta();
+                    alerta.setId(3);
+                    alertas.add(alerta);
+                    atributos.add(alertas);
+                }
                 control.alta(HelperEntidad.
                         getImplementarEvento(atributos, "Guardar"));
             } else {
@@ -802,7 +826,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             limpiarCampos();
         }
     }
-
+    
     /**
      * Este metodo obtiene la informacion del evento a realizar del
      * PnlProgramarEvento para que este la pueda modificar
@@ -839,8 +863,15 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         }
         fechaIDCh.setDate((Date) info.get(5));
         fechaTDCh.setDate((Date) info.get(6));
-        sedeModel.setSelectedItem(info.get(7));
-        proveedorModel.setSelectedItem(info.get(8));
+        if(info.get(7) != null)
+            sedeModel.setSelectedItem(info.get(7));
+        else
+            sedeModel.setSelectedItem(new Sede(""));
+        
+        if(info.get(8) != null)
+            proveedorModel.setSelectedItem(info.get(8));
+        else
+            proveedorModel.setSelectedItem(new Proveedor("", "", "", ""));
 
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
@@ -879,22 +910,10 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      */
     private boolean validacion() {
         if (fechaIDCh.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
-                    + " inicial");
+            setMensaje("No se ha ingresado la fecha de inicio");
             return true;
         } else if (fechaTDCh.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "No lleno el campo de la fecha"
-                    + " Final");
-            return true;
-        } else if (tipoSedeGCBx.getSelectedItem().toString().equals("")) {
-            JOptionPane.showMessageDialog(this, "No selecciono una sede");
-            return true;
-        } else if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
-            JOptionPane.showMessageDialog(this, "No selecciono un proveedor");
-            return true;
-        } else if (listaAsistenciaTbl.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "No se encontraron empleados"
-                    + " en la lista de asistencia");
+            setMensaje("No se ha ingresado la fecha de finalizacion");
             return true;
         } else if (listaAsistenciaTbl.
                 getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).
@@ -908,12 +927,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             } else {
                 return true;
             }
-        } else if (fechaIDCh.getDate().after(fechaTDCh.getDate())) {
-            JOptionPane.showMessageDialog(this, "Error en las fechas de evento."
-                    + "La fecha de inicio es mayor que"
-                    + " la fecha de terminacion");
-            return true;
-        }
+        } 
         return false;
     }
 

@@ -56,6 +56,7 @@ public class CapacisoftFrm extends javax.swing.JFrame implements CapaciSoftInt{/
             this.setTitle("Capacisoft - Administar Alertas");
             ocultarPaneles();
             alertasPnl.setVisible(true);
+            alertasPnl.verificarImplementaciones();
         }
     }
     
@@ -448,6 +449,7 @@ public class CapacisoftFrm extends javax.swing.JFrame implements CapaciSoftInt{/
         this.setTitle("Capacisoft - Administar Alertas");
         ocultarPaneles();
         alertasPnl.setVisible(true);
+        alertasPnl.consultarAlerta();
     }//GEN-LAST:event_alertasMItActionPerformed
 
     private void programarEventoMItActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programarEventoMItActionPerformed
