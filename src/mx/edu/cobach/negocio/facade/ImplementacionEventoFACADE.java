@@ -12,6 +12,7 @@ import mx.edu.cobach.persistencia.ServiceLocator;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Plantel;
+import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 
 /**
@@ -102,5 +103,15 @@ public class ImplementacionEventoFACADE extends BaseFACADE {
     public List<Object> buscarEventosPorSede(Sede sede) {
         return ServiceLocator.getImplementacionEvento().
                 buscarPorSede(sede);
+    }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que impartio un proveedor
+     * @param proveedor objeto de tipo entidad proveedor
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarPorProveedor(Proveedor proveedor){
+        return ServiceLocator.getImplementacionEvento().buscarPorProveedor(proveedor);
     }
 }
