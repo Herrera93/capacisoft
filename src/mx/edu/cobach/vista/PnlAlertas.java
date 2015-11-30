@@ -82,14 +82,15 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String[] fecha = sdf.format(actual).split("/");
             System.out.println("Año: " + fecha[2]);
-            Date programacion = new Date();
+            Date programacion = actual;
 //            Date programacion = sdf.parse("15/01/" + fecha[2]);
             System.out.println("Primer parse: " + sdf.format(programacion));
             if(actual.equals(programacion)){//if
                 
                 System.out.println("Fecha: 14/08/" + (Integer.parseInt(fecha[2]) - 1));
                 List<Object> programar = control1.buscarImplementacionLista(
-                        sdf.parse("15/08/" + (Integer.parseInt(fecha[2]) - 1)), 
+                        sdf.parse("15/08/" + (Integer.parseInt(fecha[2]))),
+//                        sdf.parse("15/08/" + (Integer.parseInt(fecha[2]) - 1)),
                         sdf.parse("14/01/" + (Integer.parseInt(fecha[2]))));
                 System.out.println("Segundo parse");
                 Set<ImplementacionEvento> implementado = ((Alerta)control.
@@ -1498,10 +1499,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 encuestaSpn.setValue(((Alerta) info.get(3)).getPeriodo());
             }// if
             else{//else
-                if(((Alerta) info.get(0)).getImplementacionEventos() != null
-                    || ((Alerta) info.get(1)).getImplementacionEventos() != null
-                    || ((Alerta) info.get(2)).getImplementacionEventos() != null
-                    || ((Alerta) info.get(3)).getImplementacionEventos()!= null)
+                if(((Alerta) info.get(0)).getImplementacionEventos().size() > 0
+                    || ((Alerta) info.get(1)).getImplementacionEventos()
+                            .size() > 0 || ((Alerta) info.get(2))
+                                    .getImplementacionEventos().size() > 0
+                    || ((Alerta) info.get(3)).getImplementacionEventos()
+                            .size()> 0)
                 {// if
                     // consulta de alertas recientes
                     generarPanelAlerta(info, true);
@@ -1736,7 +1739,8 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         }//if
         else{//else
             totalPag = Math.round(auxiliar.size()/4);
-            if((auxiliar.size()%4) != 0 || auxiliar.size() < 4){//if
+            if(((auxiliar.size()%4) != 0 || auxiliar.size() < 4)
+                    && auxiliar.size() > 0){//if
                 totalPag = totalPag + 1;
             }//if
             int z = 0;
@@ -1759,7 +1763,9 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         siguienteBtn.setName("1");
         paginasLbl.setText("0/" + totalPag);
         
-        cambioPagina(0);
+        if(totalPag > 0){//if
+            cambioPagina(0);
+        }//if
     }//method
 
      /**
