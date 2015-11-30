@@ -7,10 +7,13 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Aspecto;
 import mx.edu.cobach.persistencia.entidades.Departamento;
+import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Encuesta;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
@@ -132,6 +135,16 @@ public class EncuestaControlador extends BaseControlador {
      */
     public boolean enviarEncuesta(List<Integer> aspectosIds, List<String> empleadosIds,
             String[] evento){
+        ImplementacionEvento ie = (ImplementacionEvento) ServiceLocatorDELEGATE.getInstance()
+            .find(Integer.parseInt(evento[0]), ImplementacionEvento.class);
+        Set<Empleado> empleados = new HashSet();
+        for(String id: empleadosIds){
+            empleados.add((Empleado) ServiceLocatorDELEGATE.getEmpleado().buscar(id));
+        }
+        if(empleadosIds.size() > 0){
+            ie.setEmpleados(empleados);
+            ServiceLocatorDELEGATE.getInstance().saveOrUpdate(ie, ImplementacionEvento.class);
+        }
         JSONObject encuesta = ServiceLocatorDELEGATE.getEncuesta()
                 .crearEncuesta(aspectosIds, evento[0], evento[2], evento[1]);
         if(encuesta == null)
@@ -171,7 +184,8 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarEmpleados(int idImplementacion) {
         ImplementacionEvento implementacion =  (ImplementacionEvento) ServiceLocatorDELEGATE
             .getInstance().find(idImplementacion, ImplementacionEvento.class);
-        if(implementacion.getFechaFinal().before(new Date())){
+        Date hoy = new Date();
+        if(implementacion.getFechaFinal().after(hoy)){
             com.setInfo(null);
         }
         List<Object> empleados = new ArrayList(implementacion.getEmpleados());

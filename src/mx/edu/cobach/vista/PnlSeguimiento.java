@@ -934,6 +934,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         control.guardarResultados();
         JOptionPane.showMessageDialog(this, "Se han guardado los resultados exitosamente",
         "Exito", JOptionPane.INFORMATION_MESSAGE);
+        resultadoPnl.setVisible(false);
     }//GEN-LAST:event_resultadosBtnActionPerformed
 
     private void eventosDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventosDTblMouseClicked
