@@ -914,7 +914,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         switch(seleccionCBx.getSelectedIndex()){//switch
             case 0:// alertas recientes
                 descripcionLbl.setText("<html>Consulta todas las alertas "
-                        + "pendientes</html>");
+                        + "pendientes.</html>");
                 break;
             case 1:// evento programado
                 descripcionLbl.setText("<html>Consulta todas las alertas"
@@ -923,12 +923,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             case 2:// evento diagnosticado
                 descripcionLbl.setText("<html>Consulta todas las alertas de "
                         + "empleados diagnosticados con necesidades de "
-                        + "capacitación</html>");
+                        + "capacitación.</html>");
                 break;
             case 3:// información pendiente
                 descripcionLbl.setText("<html>Consulta todas las alertas "
                         + "programadas de eventos con información pendiente "
-                        + "por llenar</html>");
+                        + "por llenar.</html>");
                 break;
             case 4:// encuesta pendiente
                 descripcionLbl.setText("<html>Consulta todas las alertas pro"
@@ -1129,24 +1129,64 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
      * @param evt Evento generado al presionar el botón de aceptar.
      */
     private void aceptarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBtnActionPerformed
-        if(Integer.parseInt(eventoSpn.getValue().toString()) > 1 
-                && Integer.parseInt(encuestaSpn.getValue().toString()) > 1
-                && Integer.parseInt(informacionSpn.getValue().toString()) > 1)
+        if(Integer.parseInt(eventoSpn.getValue().toString()) >= 1 
+                && Integer.parseInt(encuestaSpn.getValue().toString()) >= 1
+                && Integer.parseInt(informacionSpn.getValue().toString()) >= 1)
         {// if
+            int evto = Integer.parseInt(eventoSpn.getValue().toString());
+            int info = Integer.parseInt(informacionSpn.getValue().toString());
+            int encuesta1 = Integer.parseInt(encuestaSpn.getValue().toString());
             
-            Alerta evento = (Alerta) control.buscarAlerta(1);
-            Alerta evento1 = (Alerta) control.buscarAlerta(2);
-            Alerta informacion = (Alerta) control.buscarAlerta(3);
-            Alerta encuesta = (Alerta) control.buscarAlerta(4);
-            evento.setPeriodo(Integer.parseInt(eventoSpn.getValue().toString()));
-            informacion.setPeriodo(Integer.parseInt(
-                    informacionSpn.getValue().toString()));
-            encuesta.setPeriodo(Integer.parseInt(
-                    encuestaSpn.getValue().toString()));
-            control.modificacion(evento);
-            control.modificacion(evento1);
-            control.modificacion(informacion);
-            control.modificacion(encuesta);
+            switch(eventoCBx.getSelectedItem().toString()){//switch
+                case "Mes":
+                    evto = evto * 30;
+                    break;
+                case "Semana":
+                    evto = evto * 7;
+                    break;
+            }//switch
+            
+            switch(informacionCBx.getSelectedItem().toString()){//switch
+                case "Mes":
+                    info = info * 30;
+                    break;
+                case "Semana":
+                    info = info * 7;
+                    break;
+            }//switch
+            
+            switch(encuestaCBx.getSelectedItem().toString()){//switch
+                case "Mes":
+                    encuesta1 = encuesta1 * 30;
+                    break;
+                case "Semana":
+                    encuesta1 = encuesta1 * 7;
+                    break;
+            }//switch
+            
+            int respuesta = JOptionPane.showConfirmDialog(this, "<html>Los pe"
+                    +"riodos se almacenarán de la siguiente manera:<br>Evento "
+                    +"programado/diagnosticado: " + evto + " dias.<br>Informa"
+                    +"ción pendiente: " + info + " dias.<br>Encuesta pen"+
+                    "diente: " +  encuesta1 + " dias.</html>", "Confimación",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("Respuesta: " + respuesta);
+            if(respuesta == 0){//if
+                Alerta evento = (Alerta) control.buscarAlerta(1);
+                Alerta evento1 = (Alerta) control.buscarAlerta(2);
+                Alerta informacion = (Alerta) control.buscarAlerta(3);
+                Alerta encuesta = (Alerta) control.buscarAlerta(4);
+                evento.setPeriodo(evto);
+                evento1.setPeriodo(evto);
+                informacion.setPeriodo(info);
+                encuesta.setPeriodo(encuesta1);
+
+                control.modificacion(evento);
+                control.modificacion(evento1);
+                control.modificacion(informacion);
+                control.modificacion(encuesta);
+            }//if
             
             eventoSpn.setValue(1);
             encuestaSpn.setValue(1);
@@ -1420,6 +1460,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         alerta4Pnl.setVisible(false);
         anteriorBtn.setEnabled(false);
         siguienteBtn.setEnabled(false);
+        
         if(info != null){//if
             // actualizar periodos
             if(i == 1){// if
@@ -1428,6 +1469,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 encuestaSpn.setValue(((Alerta) info.get(3)).getPeriodo());
             }// if
             else{//else
+                // Alertas recientes
                 if(((Alerta) info.get(0)).getImplementacionEventos().size() > 0
                     || ((Alerta) info.get(1)).getImplementacionEventos()
                             .size() > 0 || ((Alerta) info.get(2))
@@ -1482,8 +1524,8 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         }//switch
         if(e1.getSede() != null)
             nombreSede1Lbl.setText(e1.getSede().getNombre());
-        resolver1Btn.setName(pagina + "");
-        alerta1Pnl.setVisible(true);
+            resolver1Btn.setName(pagina + "");
+            alerta1Pnl.setVisible(true);
 
         if(implementaciones[pagina][1] != null 
                 && implementaciones[pagina][1] != e1){//if
@@ -1514,6 +1556,8 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             alerta2Pnl.setVisible(false);
         }//else
 
+        System.out.println("Imp: " + implementaciones[pagina][2]
+                + "\nE1: " + e1 + "\nE2: " + e2);
         if(implementaciones[pagina][2] != null
                 && implementaciones[pagina][2] != e1
                 && implementaciones[pagina][2] != e2){//if
@@ -1543,14 +1587,20 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             alerta3Pnl.setVisible(false);
         }//else
 
+        System.out.println("Imp: " + implementaciones[pagina][2]
+                + "\nE1: " + e1 + "\nE2: " + e2 + "\nE3: " + e3);
         if(implementaciones[pagina][3] != null
                 && implementaciones[pagina][3] != e1
                 && implementaciones[pagina][3] != e2
-                && implementaciones[pagina][3] != e3){//if
+                /*&& implementaciones[pagina][3] != e3*/){//if
             e4 = implementaciones[pagina][3];
             nombre4Lbl.setText(e4.getEvento().getNombre());
             inicio4Txf.setText(e4.getFechaInicial().toString());
             fin4Txf.setText(e4.getFechaFinal().toString());
+            for(Alerta a : e4.getAlertas()){//for
+                System.out.println("Id 4: " + a.getId());
+                break;
+            }//for
             switch(tipoAlerta[pagina][3]){//switch
                 case 1:// evento programado
                     tipoAlerta4Lbl.setText("Evento programado");
@@ -1605,20 +1655,21 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
     }//method
     
     /**
-     * 
+     * Método que genera los paneles de alerta consultadas.
      * 
      * @param info, 
      * @param recientes, Booleano que al ser verdadero indica si se generarán 
      * los paneles de Alertas recientes y al ser falso indica que se genearán
      * paneles para una alerta específica.
      */
-     private void generarPanelAlerta(List<Object> info, boolean recientes){// method
+     private void generarPanelAlerta(List<Object> info, boolean recientes){//method
         int totalPag;
         List<ImplementacionEvento> auxiliar = ordenarImplementaciones(info);
         if(recientes){//if
             totalPag = Math.round(auxiliar.size()/4);
 
-            if((totalPag%4) != 0 || auxiliar.size() < 4){//if
+            System.out.println("Total: " + auxiliar.size() +"\nPaginas: " + auxiliar.size()%4);
+            if((auxiliar.size()%4) != 0 || auxiliar.size() < 4){//if
                 totalPag = totalPag + 1;
             }//if
 
@@ -1629,33 +1680,52 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 for(int y = 0; y < 4; y++){//for
                     if(z < auxiliar.size() && auxiliar.get(z) != null){//if
                         if(((Alerta) info.get(0)).getImplementacionEventos()
+                                .contains(auxiliar.get(z))
+                                && !((Alerta) info.get(0))
+                                .getImplementacionEventos()
                                 .contains(auxiliar.get(z))){//if
                             if(seleccionCBx.getSelectedIndex() == 0 
                                     || seleccionCBx.getSelectedIndex() == 1){//if
                                 tipoAlerta[x][y] = 1;
                             }//if
                         }//if
-                        if(((Alerta) info.get(1)).getImplementacionEventos()
-                                .contains(auxiliar.get(z))){//if
-                            if(seleccionCBx.getSelectedIndex() == 0 
-                                    || seleccionCBx.getSelectedIndex() == 2){//if
-                                tipoAlerta[x][y] = 2;
+                        else{// else
+                            if(((Alerta) info.get(1)).getImplementacionEventos()
+                                    .contains(auxiliar.get(z))
+                                    && !((Alerta) info.get(1))
+                                    .getImplementacionEventos()
+                                    .contains(auxiliar.get(z-1))){//if
+                                if(seleccionCBx.getSelectedIndex() == 0 
+                                        || seleccionCBx.getSelectedIndex() == 2)
+                                {//if
+                                    tipoAlerta[x][y] = 2;
+                                }//if
                             }//if
-                        }//if
-                        if(((Alerta) info.get(2)).getImplementacionEventos()
+                            else{//else
+                                if(((Alerta) info.get(2))
+                                        .getImplementacionEventos()
+                                        .contains(auxiliar.get(z)) && 
+                                        !((Alerta) info.get(2))
+                                        .getImplementacionEventos()
+                                        .contains(auxiliar.get(z-1))){//if
+                                    if(seleccionCBx.getSelectedIndex() == 0 
+                                            || seleccionCBx
+                                                    .getSelectedIndex() == 3){//if
+                                        tipoAlerta[x][y] = 3;
+                                    }//if
+                                }//if
+                                else{//else
+                                    if(((Alerta) info.get(3)).getImplementacionEventos()
                                 .contains(auxiliar.get(z))){//if
-                            if(seleccionCBx.getSelectedIndex() == 0 
-                                    || seleccionCBx.getSelectedIndex() == 3){//if
-                                tipoAlerta[x][y] = 3;
-                            }//if
-                        }//if
-                        if(((Alerta) info.get(3)).getImplementacionEventos()
-                                .contains(auxiliar.get(z))){//if
-                            if(seleccionCBx.getSelectedIndex() == 0 
-                                    || seleccionCBx.getSelectedIndex() == 4){//if
-                                tipoAlerta[x][y] = 4;
-                            }//if
-                        }//if
+                                        if(seleccionCBx.getSelectedIndex() == 0 
+                                                || seleccionCBx
+                                                .getSelectedIndex() == 4){//if
+                                            tipoAlerta[x][y] = 4;
+                                        }//if
+                                    }//if
+                                }//else
+                            }//else
+                        }// else
                         implementaciones[x][y] = auxiliar.get(z);
                         z++;
                     }//if
@@ -1713,17 +1783,17 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
      * @param info, Lista de implementaciones sin ordenar
      * @return Lista de implementaciones de eventos ordenadas
      */
-    public List<ImplementacionEvento> ordenarImplementaciones(List<Object> info){
+    public List<ImplementacionEvento> ordenarImplementaciones(List<Object> info){//method
         List<ImplementacionEvento> eventos = new ArrayList();
         List<Alerta> alertas = new ArrayList();
         for(int l = 0; l < info.size(); l++){// for
             Alerta a = (Alerta) info.get(l);
-            if(!alertas.contains(a)){
+            if(!alertas.contains(a)){//if
                 alertas.add(a);
                 for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
                     eventos.add(obj);
                 }// for
-            }
+            }//if
         }// for
         Collections.sort(eventos, new Comparator<ImplementacionEvento>(){
 
@@ -1751,7 +1821,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         });
         
         return eventos;
-    }
+    }// method
 
     public void verificarImplementaciones() {
         control.verificarImplementaciones();
