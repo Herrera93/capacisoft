@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.vista.Comunicador;
 
 public class ProveedorControlador extends BaseControlador{
@@ -24,7 +25,8 @@ public class ProveedorControlador extends BaseControlador{
     }
     
     public boolean buscarImplementaciones(int id){
-        return ServiceLocatorDELEGATE.getProveedorDelegate()
-            .buscarImplementaciones(id) != null;
+        Proveedor o = (Proveedor) ServiceLocatorDELEGATE.getInstance().find(id, clazz);
+        return ServiceLocatorDELEGATE.getImplementarEvento()
+            .buscarPorProveedor(o).size() > 0;
     }
 }
