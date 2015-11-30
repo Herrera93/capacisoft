@@ -347,9 +347,9 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                     atr.add(id);
                     control.modificacion(HelperEntidad.getDepartamento(atr));
                 }
+                limpiar();
+                control.buscarTodos();            
             }
-            limpiar();
-            control.buscarTodos();            
         }
         almacenando = false;
     }//GEN-LAST:event_guardarBtnActionPerformed

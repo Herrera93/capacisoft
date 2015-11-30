@@ -794,7 +794,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             //Preguntamos si esta seguro de la eliminacion
             String id = (String)model.getValueAt(row, 0);
             if(control.buscarImplementaciones(id)){
-                setMensaje("No se puede eliminar un emleado que este asignado a un evento");
+                setMensaje("No se puede eliminar un empleado que este asignado a un evento");
                 model.setValueAt(false, row, 2);
                 empleadosTbl.clearSelection();
             }else if(guardarBtn.getText().equals("Modificar") && idEmpleadoActual.equals(id)){
@@ -1198,7 +1198,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             buscando = false;
             if(info != null){
                 for(int x = 0; x < info.length; x++){
-                    if(info[x][1].equals(numeroTFd.getText())){
+                    if(info[x][0].equals(idEmpleadoActual)){
+                        continue;
+                    }
+                    if(info[x][0].equals(numeroTFd.getText())){
                         if(almacenando){
                             setMensaje("Ya existe un empleado con numero\n"+info[x][0]);
                         }

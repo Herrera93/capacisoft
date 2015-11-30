@@ -27,8 +27,7 @@ import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
-import mx.edu.cobach.persistencia.entidades.
-        ImplementacionEventoEnunciadoLogistica;
+import mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
@@ -81,7 +80,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
 
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
-        control = new ImplementarEventoControlador(this, 
+        control = new ImplementarEventoControlador(this,
                 ImplementacionEvento.class);
         fechaIDCh.getJCalendar().setMaxSelectableDate(new Date());
         fechaTDCh.getJCalendar().setMaxSelectableDate(new Date());
@@ -826,7 +825,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
      */
     @Override
     public void setTabla(String[][] info) {
-        if(info == null){
+        if (info == null) {
             Object[][] tableData = new Object[enunciadoTbl.
                     getRowCount()][enunciadoTbl.getColumnCount() + 1];
             for (int i = 0; i < enunciadoTbl.getRowCount(); i++) {
@@ -857,7 +856,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
             enunciadoTbl.getColumnModel().getColumn(1).setPreferredWidth(200);
             enunciadoTbl.getColumnModel().getColumn(2).setPreferredWidth(200);
             enunciadoTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        }else if (info[0][0].contains("TLE1")) {
+        } else if (info[0][0].contains("TLE1")) {
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
         } else if (info[0][0].contains(
@@ -948,7 +947,7 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
     private void tabla() {
 
         modelTablaEmF.setDataVector(null, titulosTablaEm);
-        
+
         listaAsistenciaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         listaAsistenciaTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
         listaAsistenciaTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
@@ -1056,11 +1055,11 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
                 calificacionLog.setEnunciadoLogistica(enunciado);
                 calificacionLog.setCalificacion(Integer.
                         parseInt((String) modelTablaEn.
-                        getValueAt(x, 3)));
+                                getValueAt(x, 3)));
                 if (guardarCBtn.getText().equals("Modificar")) {
                     calificacionLog.setId(Integer.
                             parseInt((String) modelTablaEn.
-                            getValueAt(x, 0)));
+                                    getValueAt(x, 0)));
                     evento.setId(eventoProgramarId);
                     calificacionLog.setImplementacionEvento(evento);
                 }
@@ -1124,13 +1123,13 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
             if (empleado.getSegundoNombre() == null) {
                 tableData[x][1] = empleado.getPrimerNombre() + " "
                         + empleado.getApellidoPaterno() + " " + empleado.
-                                getApellidoMaterno();
+                        getApellidoMaterno();
 
             } else {
-                tableData[x][1] = empleado.getPrimerNombre() + " " 
+                tableData[x][1] = empleado.getPrimerNombre() + " "
                         + empleado.getSegundoNombre() + " " + empleado.
-                                getApellidoPaterno() + " " + empleado.
-                                        getApellidoMaterno();
+                        getApellidoPaterno() + " " + empleado.
+                        getApellidoMaterno();
 
             }
         }
@@ -1175,11 +1174,23 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
                 return true;
             }
         }
-        for (int i = 0; i < enunciadoTbl.getRowCount(); i++) {
-            if (((Object) modelTablaEn.getValueAt(i, 3)) == null) {
-                JOptionPane.showMessageDialog(this, "No se a completado la "
-                        + "calificacion de la logistica");
-                return true;
+        if (guardarCBtn.getText().equals("Guardar")) {
+            for (int i = 0; i < enunciadoTbl.getRowCount(); i++) {
+                if (((Object) modelTablaEn.getValueAt(i, 3)) == null) {
+                    JOptionPane.showMessageDialog(this, "No se a completado la "
+                            + "calificacion de la logistica");
+                    return true;
+                }
+            }
+        } else {
+            for (int i = 0; i < enunciadoTbl.getRowCount(); i++) {
+                try {
+                    Integer cal = Integer.parseInt((String) modelTablaEn.getValueAt(i, 3));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "No se a completado la "
+                            + "calificacion de la logistica");
+                    return true;
+                }
             }
         }
         return false;
@@ -1210,26 +1221,30 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
     @Override
     public void llenarDatos(Object implementacionEvento) {
     }
+
     /**
-     * Este metodo detecta que el usuario esta modificando un campo y hace el 
+     * Este metodo detecta que el usuario esta modificando un campo y hace el
      * label de recordatorio invisible
-     * @param e 
+     *
+     * @param e
      */
     @Override
     public void focusGained(FocusEvent e) {
         Object fuente = e.getSource();
         if (fuente == fechaIDCh) {
-            
+
         } else if (fuente == tipoSedeGCBx) {
             validSedeLbl.setVisible(false);
         } else if (fuente == nombreGCBx) {
             validProveedorLbl.setVisible(false);
         }
     }
+
     /**
-     * Este metodo detecta que el usuario perdio el foco de un campo y no 
+     * Este metodo detecta que el usuario perdio el foco de un campo y no
      * escribio nada en el avisandole que el campo es obligatorio
-     * @param e 
+     *
+     * @param e
      */
     @Override
     public void focusLost(FocusEvent e) {

@@ -552,10 +552,6 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoMaternoTFdFocusGained"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoMaternoTFdFocusLost"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="apellidoMaternoLbl">
               <Properties>
