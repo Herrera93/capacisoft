@@ -622,7 +622,7 @@ public class HelperEntidad {
         for (int i = 0; i < se.size(); i++) {
             Sede s = se.get(i);
             info[i][0] = String.valueOf(s.getId());
-            info[i][1] = s.getNombre();
+            info[i][1] = s.getNombre() + " \"" + s.getLugar() + "\"";
         }
         return info;
 

@@ -43,7 +43,7 @@
       </key>
       <one-to-many class="mx.edu.cobach.persistencia.entidades.Respuesta"/>
     </set>
-    <set fetch="select" inverse="true" lazy="true" name="implementacionEventos" table="implementacion_evento_empleado">
+    <set fetch="select" inverse="true" lazy="false" name="implementacionEventos" table="implementacion_evento_empleado">
       <key>
         <column name="empleado_numero" not-null="true"/>
       </key>

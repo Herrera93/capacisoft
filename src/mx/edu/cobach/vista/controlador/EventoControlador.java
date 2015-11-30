@@ -38,10 +38,8 @@ public class EventoControlador extends BaseControlador{
      * @param nombre Nombre del puesto a buscar
     */
     public void buscarPorNombre(String nombre){
-        List<Object> o = ServiceLocatorDELEGATE.getEvento().buscarPorNombre(nombre);
-        if(!o.isEmpty()){
-            com.setMensaje("El nombre del evento ya existe");
-        }
+        List<Object> list = ServiceLocatorDELEGATE.getEvento().buscarPorNombre(nombre);
+        com.setTabla(HelperEntidad.descomponerObjetos(list));
     }
     
     public boolean buscarImplementaciones(int id){

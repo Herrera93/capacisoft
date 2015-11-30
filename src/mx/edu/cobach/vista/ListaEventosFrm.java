@@ -228,6 +228,11 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
 
         eventoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eventoTFd.setMaximumSize(new java.awt.Dimension(6, 23));
+        eventoTFd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventoTFdActionPerformed(evt);
+            }
+        });
         eventoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 eventoTFdKeyTyped(evt);
@@ -323,7 +328,7 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(eventoTFd.getText().isEmpty()){
+        if(eventoTFd.getText().equals("")){
             control.buscarTodos();
         }else{
             control.buscarPorNombre(eventoTFd.getText());
@@ -442,12 +447,18 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
     }//GEN-LAST:event_eliminarTBtnActionPerformed
 
     private void eventoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eventoTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())
-            || !Character.isISOControl(evt.getKeyChar())
-            || !Character.isWhitespace(evt.getKeyChar())) {
-            evt.consume();
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar())) {
+             evt.consume();
+            
+            
         }
     }//GEN-LAST:event_eventoTFdKeyTyped
+
+    private void eventoTFdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventoTFdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventoTFdActionPerformed
 
   
 
