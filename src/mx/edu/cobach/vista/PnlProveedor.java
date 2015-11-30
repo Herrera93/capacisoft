@@ -375,14 +375,6 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         apellidoPaternoLbl.setText("Apellido paterno:");
 
         apellidoMaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        apellidoMaternoTFd.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                apellidoMaternoTFdFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                apellidoMaternoTFdFocusLost(evt);
-            }
-        });
 
         apellidoMaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoMaternoLbl.setText("Apellido materno:");
@@ -727,7 +719,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             }
         }else if(col == 1) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(guardarBtn.getText().equals("Modificar") && idProveedorActual == id){
+            if(control.buscarImplementaciones(id)){
+                setMensaje("No se puede eliminar un proveedor con implementaciones");
+                model.setValueAt(false, row, 2);
+                proveedoresTbl.clearSelection();
+            }else if(guardarBtn.getText().equals("Modificar") && idProveedorActual == id){
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el proveedor que esta"
                     + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 2);
@@ -769,15 +765,6 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             validApePatLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_apellidoPaternoTFdFocusLost
-
-    private void apellidoMaternoTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusLost
-        if (apellidoMaternoTFd.getText().isEmpty()) {
-            apellidoMaternoTFd.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(new Color(255, 106, 106)),
-                    BORDER_ORIGINAL));
-            validApeMatLbl.setForeground(new Color(255, 0, 0));
-        }
-    }//GEN-LAST:event_apellidoMaternoTFdFocusLost
 
     private void informacionTBnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_informacionTBnMouseClicked
         
@@ -852,8 +839,6 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             setMensaje("Debe ingresar el primer nombre del proveedor");
         else if(apellidoPaternoTFd.getText().equals("")) 
             setMensaje("Debe ingresar el apellido paterno del proveedor");
-        else if(apellidoMaternoTFd.getText().equals("")) 
-            setMensaje("Debe ingresar el apellido materno del proveedor");
         else if(correoTFd.getText().equals("")) 
             setMensaje("Debe ingresar el correo del proveedor");
         else if(!m.matches() && !correoTFd.getText().equals("N/A"))
@@ -907,11 +892,6 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         apellidoPaternoTFd.setBorder(BORDER_ORIGINAL);
         validApePatLbl.setForeground(new Color(213, 216, 222));
     }//GEN-LAST:event_apellidoPaternoTFdFocusGained
-
-    private void apellidoMaternoTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdFocusGained
-        apellidoMaternoTFd.setBorder(BORDER_ORIGINAL);
-        validApeMatLbl.setForeground(new Color(213, 216, 222));
-    }//GEN-LAST:event_apellidoMaternoTFdFocusGained
 
     private void telefonoTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefonoTFdFocusGained
         telefonoTFd.setBorder(BORDER_ORIGINAL);
