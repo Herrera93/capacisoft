@@ -137,11 +137,11 @@ public class EncuestaDELEGATE {
                 //Se crea una copia de encuesta para realizarse posterior al evento
                 JSONObject encuestaDespues = JotFormUtil.copiarEncuesta(encuestaAntes.getLong("id"));
                 //Se guarda la encuesta en la base de datos
-                /*Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
+                Encuesta encuestaGuardar = new Encuesta((ImplementacionEvento) ServiceLocatorFACADE.getInstance()
                     .find(Integer.parseInt(idEvento), ImplementacionEvento.class), 
                     encuestaAntes.getLong("id"), encuestaDespues.getLong("id"), false);
                 encuestaGuardar.setAspectos(new HashSet<>(aspectos));
-                ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);*/
+                ServiceLocatorFACADE.getInstance().saveOrUpdate(encuestaGuardar, Encuesta.class);
             } catch (JSONException ex) {
                 Logger.getLogger(EncuestaDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -157,14 +157,14 @@ public class EncuestaDELEGATE {
      * un atributo 'id', 'title' y 'url'.
      * @param idsEmpleados Lista con identificadores de empleados
      */
-    public void enviarEncuesta(JSONObject encuesta, List<Integer> idsEmpleados){
+    public void enviarEncuesta(JSONObject encuesta, List<String> idsEmpleados){
         try{
             //Se obtiene el identificador de la pregunta escondidad
             int idAsignado = JotFormUtil.getIdPregunta(encuesta.getLong("id"), "asignado");
             for(int i = 0; i < idsEmpleados.size(); i++){
                 //Se obtiene el empleado y su jefe
-                Empleado empleado = (Empleado) ServiceLocatorFACADE.getInstance()
-                        .find(idsEmpleados.get(i), Empleado.class);
+                Empleado empleado = (Empleado) ServiceLocatorFACADE.getEmpleado()
+                    .find(idsEmpleados.get(i));
                 Empleado jefe = (Empleado) ServiceLocatorFACADE.getEmpleado()
                         .buscarJefeInmediato(empleado);
                 if(jefe == null)
@@ -246,8 +246,8 @@ public class EncuestaDELEGATE {
                 String asignado = respuestaJson.getJSONObject(String.valueOf(idAsignado))
                     .getString("answer");
                 
-                Empleado empleado = (Empleado) ServiceLocatorFACADE.getInstance()
-                    .find(Integer.parseInt(asignado), Empleado.class);
+                Empleado empleado = (Empleado) ServiceLocatorFACADE.getEmpleado()
+                    .find(asignado);
                 
                 //Se verifica si las respuestas de este empleado ya han sido registradas
                 List<Respuesta> respuestaVerificacion = ServiceLocatorFACADE.getRespuesta()
@@ -317,8 +317,8 @@ public class EncuestaDELEGATE {
                 String asignado = respuestaJson.getJSONObject(String.valueOf(idAsignado))
                     .getString("answer");
                 
-                Empleado empleado = (Empleado) ServiceLocatorFACADE.getInstance()
-                    .find(Integer.parseInt(asignado), Empleado.class);
+                Empleado empleado = (Empleado) ServiceLocatorFACADE.getEmpleado()
+                    .find(asignado);
                 
                 //Se verifica si las respuestas de este empleado ya han sido registradas
                 List<Respuesta> respuestaVerificacion = ServiceLocatorFACADE.getRespuesta()
@@ -416,9 +416,8 @@ public class EncuestaDELEGATE {
      * @param idImplementacion Identificador de implementacion
      * @return Regresa una lista de objeto de respuestas.
      */
-    public List<Object> getResultados(int idEmpleado, int idImplementacion) {
-        Empleado empleado = (Empleado) ServiceLocatorFACADE.getInstance()
-            .find(idEmpleado, Empleado.class);
+    public List<Object> getResultados(String idEmpleado, int idImplementacion) {
+        Empleado empleado = (Empleado) ServiceLocatorFACADE.getEmpleado().find(idEmpleado);
         ImplementacionEvento implementacion = (ImplementacionEvento) ServiceLocatorFACADE
             .getInstance().find(idImplementacion, ImplementacionEvento.class);
         
@@ -436,7 +435,7 @@ public class EncuestaDELEGATE {
         return resultado;
     }
 
-    public boolean enviarEncuestaDespues(int idImplementacion, List<Integer> empledosIds) {
+    public boolean enviarEncuestaDespues(int idImplementacion, List<String> empledosIds) {
         ImplementacionEvento implementacion = (ImplementacionEvento) ServiceLocatorFACADE
             .getInstance().find(idImplementacion, ImplementacionEvento.class);
         

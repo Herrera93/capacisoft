@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -27,7 +26,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunicador{
 
     //Titulos de tabla de empleados
-    private final String[] titulosTabla = {"ID", "Numero", "Nombre", "Seleccion"};
+    private final String[] titulosTabla = {"Numero", "Nombre"};
     //Modelo de tabla de empleados
     private final DefaultTableModel empleadosTblModel;
     //Controlador que permite la interaccion con capas bajas
@@ -44,38 +43,12 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         control = new EncuestaControlador(this);
         
         empleadosTblModel = new DefaultTableModel(titulosTabla, 0) {
-            private boolean bandera = false;
-            
             @Override
             public boolean isCellEditable(int renglon, int columna){
-                return columna == 3;
-            }
-            
-            @Override
-            public void setValueAt(Object valor, int renglon, int columna){
-                if(columna == 3){
-                    if(!bandera){
-                        bandera = true;
-                        Boolean bol = (Boolean) valor;
-                        super.setValueAt(valor, renglon, columna);
-                        if(bol){
-                            for(int i = 0; i < this.getRowCount(); i++){
-                                if(i != renglon){
-                                    super.setValueAt(!bol, i, columna);
-                                }
-                            }
-                        }
-                        bandera = false;
-                    }
-                }else{
-                    super.setValueAt(valor, renglon, columna);
-                }
+                return false;
             }
         };
         empleadosTbl.setModel(empleadosTblModel);        
-        
-        TableColumn tc = empleadosTbl.getColumnModel().getColumn(0);
-        empleadosTbl.getColumnModel().removeColumn(tc);
     }
     
     /**
@@ -181,7 +154,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
                         .addComponent(despuesGraficaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
@@ -192,7 +165,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -220,23 +193,21 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
         int renglon = empleadosTbl.rowAtPoint(punto);
         int columna = empleadosTbl.columnAtPoint(punto);
         
-        if(columna == 2){
-            boolean valor = (boolean) empleadosTbl.getValueAt(renglon, columna);
-            empleadosTblModel.setValueAt(valor, renglon, (columna + 1));
-            if(valor){
-                antesGraficaPnl.removeAll();
-                despuesGraficaPnl.removeAll();
-                revalidate();
-                mostrarGraficas((String) empleadosTblModel.getValueAt(renglon, 0));
-            }else
-                limpiar();
-        }
+        antesGraficaPnl.removeAll();
+        despuesGraficaPnl.removeAll();
+        revalidate();
+        mostrarGraficas((String) empleadosTblModel.getValueAt(renglon, 0));
     }//GEN-LAST:event_empleadosTblMouseClicked
 
+    /**
+     * Metodo ejecutada al presionar el boton "Enviar segunda encuesta" de esta
+     * manera se enviara la encuesta posterior al evento.
+     * @param evt Evento ejecutado al hacer click al boton
+     */
     private void encuestaDespuesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encuestaDespuesBtnActionPerformed
-        List<Integer> empleadosIds = new ArrayList();
+        List<String> empleadosIds = new ArrayList();
         for(int i = 0; i < empleadosTblModel.getRowCount(); i++){
-            empleadosIds.add(Integer.parseInt((String)empleadosTblModel.getValueAt(i, 0)));
+            empleadosIds.add((String)empleadosTblModel.getValueAt(i, 0));
         }
         control.enviarEncuestaDespues(idImplementacion, empleadosIds);
         encuestaDespuesBtn.setEnabled(false);
@@ -297,21 +268,19 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
      */
     @Override
     public void setTabla(String[][] info) {
+        if(info[0][0].contains("TLE1"))
+            info[0][0] = info[0][0].replaceAll("TLE1", "");
         empleadosTblModel.setDataVector(info, titulosTabla);
-        TableColumn tc = empleadosTbl.getColumnModel().getColumn(3);
-        tc.setCellEditor(empleadosTbl.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(empleadosTbl.getDefaultRenderer(Boolean.class));
-        tc = empleadosTbl.getColumnModel().getColumn(0);
-        empleadosTbl.getColumnModel().removeColumn(tc);
     }
 
     /**
-     * Metodo no implementado.
+     * Metodo utilizado para deshabilitar el boton para enviar la segunda encuesta,
+     * este sera ejecutado cuando aun no pase la fecha de terminacion del evento.
      * @param info 
      */
     @Override
     public void setInfo(List info) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        encuestaDespuesBtn.setEnabled(false);
     }
 
     /**
@@ -330,7 +299,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
      */
     private void mostrarGraficas(String idEmpleado) {
         //Se obtienen las respuestas del empleado
-        List<Object> respuestas = control.resultados(Integer.parseInt(idEmpleado),
+        List<Object> respuestas = control.resultados(idEmpleado,
             idImplementacion);
         
         //Se genera la grafica con las respuestas antes del evento

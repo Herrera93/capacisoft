@@ -4,14 +4,21 @@
  */
 package mx.edu.cobach.vista;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
 import mx.edu.cobach.persistencia.entidades.Alerta;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
  *
@@ -61,7 +68,79 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         anteriorBtn.setEnabled(false);
         siguienteBtn.setEnabled(false);
         
+        consultarAlerta();
         
+        // Semestre -1
+        try {//try
+            ImplementarEventoControlador control1 = eventoPnl.control;
+            Date actual = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String[] fecha = sdf.format(actual).split("/");
+            System.out.println("Año: " + fecha[2]);
+            Date programacion = sdf.parse("15/01/" + fecha[2]);
+            System.out.println("Primer parse: " + sdf.format(programacion));
+            if((actual.before(programacion) || actual.equals(programacion))){//if
+                
+                System.out.println("Fecha: 14/08/" + (Integer.parseInt(fecha[2]) - 1));
+                List<Object> programar = control1.buscarImplementacionLista(
+                        sdf.parse("15/08/" + (Integer.parseInt(fecha[2]) - 1)), 
+                        sdf.parse("14/01/" + (Integer.parseInt(fecha[2]) - 1)));
+                System.out.println("Segundo parse");
+                Set<ImplementacionEvento> implementado = ((Alerta)control.
+                        buscarAlerta(1)).getImplementacionEventos();
+                if(implementado == null){//if
+                    if(programar != null){//if
+                        int clave = 0;
+                        List<Object> alertas = control.buscarTodas();
+                        // obtener la última clave
+                        for(int i = 0; i < 4; i++){//for
+                            Set<ImplementacionEvento> eventos = ((Alerta) alertas
+                                    .get(i)).getImplementacionEventos();
+                            if(eventos != null){//if
+                                for(ImplementacionEvento e : eventos){//for
+                                    if(e.getId() > clave){//if
+                                        clave = e.getId();
+                                    }//if
+                                }//for
+                            }//if
+                        }//for
+                        
+                        
+                    }//if
+                }//if
+                else{//else
+                    int clave = 0;
+                    for(int i = 0; i < programar.size(); i++){//for
+                        for(int j = 0; j < implementado.size(); j++){//for
+
+                        }//for
+                    }//for
+                }//else
+                
+            }//if
+            System.out.println("Sem-1:" + sdf.format(actual));
+        }//try
+        catch (ParseException ex) {//catch
+//            setMensaje("Ocurrió un error inesperado al convertir la fecha."
+//                    + "/Error/" + JOptionPane.ERROR_MESSAGE);
+        }//catch
+        
+        // Semestre -2
+        try {//try
+            ImplementarEventoControlador control1 = eventoPnl.control;
+            Date actual = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String[] fecha = sdf.format(actual).split("/");
+            Date finEne = sdf.parse("15/08" + fecha[2]);
+            if((actual.before(finEne) || actual.equals(finEne))){//if
+                control1.buscarImplementacion(finEne, actual);
+            }//if
+            System.out.println("Sem-2:" + sdf.format(actual));
+        }//try
+        catch (ParseException ex) {//catch
+//            setMensaje("Ocurrió un error inesperado al convertir la fecha."
+//                    + "/Error/" + JOptionPane.ERROR_MESSAGE);
+        }//catch
     }// method
 
     /**
@@ -794,14 +873,21 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Método que consulta el tipo de alerta especificada y procede a generar
-     * los paneles de alerta con los datos de los eventos y en caso de no haber
-     * alertas programas por el momento lo notifica al usuario mediante un
-     * mensaje.
+     * Método que consulta las alertas al seleccionar un tipo de alerta.
      * 
      * @param evt Evento al seleccionar un tipo de alerta a consultar.
      */
     private void seleccionCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionCBxActionPerformed
+        consultarAlerta();
+    }//GEN-LAST:event_seleccionCBxActionPerformed
+
+    /**
+     * Método que consulta el tipo de alerta especificada y procede a generar
+     * los paneles de alerta con los datos de los eventos y en caso de no haber
+     * alertas programas por el momento lo notifica al usuario mediante un
+     * mensaje.
+     */
+    private void consultarAlerta(){
         switch(seleccionCBx.getSelectedIndex()){//switch
             case 0:// alertas recientes
                 descripcionLbl.setText("<html>Consulta todas las alertas "
@@ -913,8 +999,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             anteriorBtn.setEnabled(false);
             siguienteBtn.setEnabled(false);
         }// if
-    }//GEN-LAST:event_seleccionCBxActionPerformed
-
+    }
+    
     /**
      * Método que consulta los periodos actuales en que se generarán las alertas
      * permitiendo al usuario modificarlos.
@@ -1496,18 +1582,11 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      */
      private void generarPanelAlerta(List<Object> info, boolean recientes){// method
         int totalPag;
-        ArrayList<ImplementacionEvento> auxiliar = new ArrayList();
+        List<ImplementacionEvento> auxiliar = ordenarImplementaciones(info);
         if(recientes){//if
-            for(int l = 0; l < info.size(); l++){// for
-                Alerta a = (Alerta) info.get(l);
-                for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
-                    auxiliar.add(obj);
-                }// for
-            }// for
-
             totalPag = Math.round(auxiliar.size()/4);
 
-            if((totalPag%4) != 0){//if
+            if((totalPag%4) != 0 || auxiliar.size() < 4){//if
                 totalPag = totalPag + 1;
             }//if
 
@@ -1556,13 +1635,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
             }//for
         }//if
         else{//else
-            Set<ImplementacionEvento> eventos = ((Alerta) info.get(0))
-                    .getImplementacionEventos();
-            for(ImplementacionEvento e : eventos){//for
-                auxiliar.add(e);
-            }//for
             totalPag = Math.round(auxiliar.size()/4);
-            if((auxiliar.size()%4) != 0){//if
+            if((auxiliar.size()%4) != 0 || auxiliar.size() < 4){//if
                 totalPag = totalPag + 1;
             }//if
             int z = 0;
@@ -1596,5 +1670,52 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
     public void llenarDatos(Object implementacionEvento) {//method
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }//method
+    
+    /**
+     * Método que ordena los eventos con respecto a la fecha de 
+     * terminación de su implementación.
+     * 
+     * @param info, Lista de implementaciones sin ordenar
+     * @return Lista de implementaciones de eventos ordenadas
+     */
+    public List<ImplementacionEvento> ordenarImplementaciones(List<Object> info){
+        List<ImplementacionEvento> eventos = new ArrayList();
+        List<Alerta> alertas = new ArrayList();
+        for(int l = 0; l < info.size(); l++){// for
+            Alerta a = (Alerta) info.get(l);
+            if(!alertas.contains(a)){
+                alertas.add(a);
+                for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
+                    eventos.add(obj);
+                }// for
+            }
+        }// for
+        Collections.sort(eventos, new Comparator<ImplementacionEvento>(){
+
+            @Override
+            public int compare(ImplementacionEvento o1, ImplementacionEvento o2) {
+                Date primera, segunda;
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(o1.getFechaFinal());
+                for(int i = 0; i < alertas.size(); i++){
+                    Alerta a = alertas.get(i);
+                    if(a.getImplementacionEventos().contains(o1))
+                        cal.add(Calendar.DATE, a.getPeriodo());
+                }
+                primera = cal.getTime();
+                cal.setTime(o2.getFechaFinal());
+                for(int i = 0; i < alertas.size(); i++){
+                    Alerta a = alertas.get(i);
+                    if(a.getImplementacionEventos().contains(o2))
+                        cal.add(Calendar.DATE, a.getPeriodo());
+                }
+                segunda = cal.getTime();
+                return primera.compareTo(segunda);
+            }
+            
+        });
+        
+        return eventos;
+    }
     
 }// class
