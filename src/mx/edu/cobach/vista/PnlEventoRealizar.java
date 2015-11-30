@@ -53,18 +53,18 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         "Nombre del Empleado"};
     private Evento evento;
     private boolean cambio = false;
-    private Capacisoft capacisoft;
+    private CapacisoftFrm capacisoft;
 
-    public PnlEventoRealizar(Capacisoft capacisoft) {
+    public PnlEventoRealizar(CapacisoftFrm capacisoft) {
         this.capacisoft = capacisoft;
         initComponents();
         sedeModel = new DefaultComboBoxModel();
         proveedorModel = new DefaultComboBoxModel();
 
         modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
-        tablaLisFTbl.setModel(modelTablaEmF);
-        tablaLisFTbl.setColumnSelectionAllowed(false);
-        tablaLisFTbl.setDragEnabled(false);
+        listaAsistenciaTbl.setModel(modelTablaEmF);
+        listaAsistenciaTbl.setColumnSelectionAllowed(false);
+        listaAsistenciaTbl.setDragEnabled(false);
 
         tipoSedeGCBx.setModel(sedeModel);
         nombreGCBx.setModel(proveedorModel);
@@ -114,7 +114,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         fechaIDCh = new com.toedter.calendar.JDateChooser();
         fechaTDCh = new com.toedter.calendar.JDateChooser();
         agregarGLbl = new javax.swing.JLabel();
-        notaGLbl = new javax.swing.JLabel();
+        agregarGMsjLbl = new javax.swing.JLabel();
         capacidadSedeGLbl = new javax.swing.JLabel();
         cancelarGBtn = new javax.swing.JButton();
         validFechFinLbl = new javax.swing.JLabel();
@@ -122,16 +122,16 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         validSedeLbl = new javax.swing.JLabel();
         validProveedorLbl = new javax.swing.JLabel();
         listaPnl = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaLisFTbl = new javax.swing.JTable();
+        listaAsistenciaSPn = new javax.swing.JScrollPane();
+        listaAsistenciaTbl = new javax.swing.JTable();
         guardarLABtn = new javax.swing.JButton();
         agregarLALbl = new javax.swing.JLabel();
-        nota_LI_Lbl = new javax.swing.JLabel();
+        agregarLAMsjLbl = new javax.swing.JLabel();
         seleccionLALbl = new javax.swing.JLabel();
         buscarLABtn = new javax.swing.JButton();
         listaAsistenciaLALbl = new javax.swing.JLabel();
         cancelarLABtn = new javax.swing.JButton();
-        devolverLABtn = new javax.swing.JButton();
+        regresarBtn = new javax.swing.JButton();
         totalEmpleadosLbl = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -199,7 +199,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         agregarGLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarGLbl.setText("Registro");
 
-        notaGLbl.setText("Ingrese la información a almacenar");
+        agregarGMsjLbl.setText("Ingrese la información a almacenar");
 
         capacidadSedeGLbl.setText("Capacidad de la sede:");
         capacidadSedeGLbl.setEnabled(false);
@@ -264,7 +264,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                     .addGroup(generalPnlLayout.createSequentialGroup()
                         .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(agregarGLbl)
-                            .addComponent(notaGLbl)
+                            .addComponent(agregarGMsjLbl)
                             .addComponent(nombreGLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tipoGLbl)
                             .addComponent(fechaILbl))
@@ -276,7 +276,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addContainerGap()
                 .addComponent(agregarGLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notaGLbl)
+                .addComponent(agregarGMsjLbl)
                 .addGap(22, 22, 22)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nombreGTFd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +320,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
 
         informacionTBn.addTab("General", generalPnl);
 
-        tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
+        listaAsistenciaTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -339,8 +339,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 return canEdit [columnIndex];
             }
         });
-        tablaLisFTbl.setEnabled(false);
-        jScrollPane5.setViewportView(tablaLisFTbl);
+        listaAsistenciaTbl.setEnabled(false);
+        listaAsistenciaSPn.setViewportView(listaAsistenciaTbl);
 
         guardarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardarLABtn.setText("Guardar");
@@ -354,7 +354,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         agregarLALbl.setText("Registro");
 
-        nota_LI_Lbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón \"Cancelar\"");
+        agregarLAMsjLbl.setText("Ingrese la información a almacenar, para salir o cancelar el registro presione el botón \"Cancelar\"");
 
         seleccionLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         seleccionLALbl.setText("Seleccione la opcion de generar lista de asistencia para agregar los empleados que desee que asistan al evento");
@@ -378,11 +378,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             }
         });
 
-        devolverLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        devolverLABtn.setText("Regresar");
-        devolverLABtn.addActionListener(new java.awt.event.ActionListener() {
+        regresarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        regresarBtn.setText("Regresar");
+        regresarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                devolverLABtnActionPerformed(evt);
+                regresarBtnActionPerformed(evt);
             }
         });
 
@@ -401,7 +401,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listaPnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(devolverLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -409,11 +409,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                         .addGap(32, 32, 32))
                     .addGroup(listaPnlLayout.createSequentialGroup()
                         .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listaAsistenciaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buscarLABtn)
                             .addComponent(totalEmpleadosLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(seleccionLALbl, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nota_LI_Lbl)
+                            .addComponent(agregarLAMsjLbl)
                             .addComponent(agregarLALbl))
                         .addContainerGap(55, Short.MAX_VALUE))))
         );
@@ -423,7 +423,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addGap(20, 20, 20)
                 .addComponent(agregarLALbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nota_LI_Lbl)
+                .addComponent(agregarLAMsjLbl)
                 .addGap(18, 18, 18)
                 .addComponent(seleccionLALbl)
                 .addGap(18, 18, 18)
@@ -431,14 +431,14 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(listaAsistenciaLALbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(listaAsistenciaSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalEmpleadosLbl)
                 .addGap(12, 12, 12)
                 .addGroup(listaPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(devolverLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(regresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
         );
 
@@ -462,7 +462,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      * @param evt Evento al presionar el boton
      */
     private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        ListaAsistencia lista = new ListaAsistencia(this);
+        ListaAsistenciaFrm lista = new ListaAsistenciaFrm(this);
         capacisoft.setEnabled(false);
         lista.setVisible(true);
         String[][] matriz = new String[modelTablaEmF.
@@ -472,7 +472,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 matriz[k][j] = modelTablaEmF.getValueAt(k, j) + "";
             }
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (listaAsistenciaTbl.getRowCount() > 0) {
             lista.mandarTabla(matriz);
         }
 
@@ -569,11 +569,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         }
     }//GEN-LAST:event_nombreGCBxItemStateChanged
 
-    private void devolverLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devolverLABtnActionPerformed
+    private void regresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarBtnActionPerformed
         informacionTBn.setEnabledAt(0, true);
         informacionTBn.setEnabledAt(1, false);
         informacionTBn.setSelectedIndex(0);
-    }//GEN-LAST:event_devolverLABtnActionPerformed
+    }//GEN-LAST:event_regresarBtnActionPerformed
 
     /**
      * Metodo que permite mandar a obtener la informacion de todos las sedes y
@@ -625,12 +625,13 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agregarGLbl;
+    private javax.swing.JLabel agregarGMsjLbl;
     private javax.swing.JLabel agregarLALbl;
+    private javax.swing.JLabel agregarLAMsjLbl;
     private javax.swing.JButton buscarLABtn;
     private javax.swing.JButton cancelarGBtn;
     private javax.swing.JButton cancelarLABtn;
     private javax.swing.JLabel capacidadSedeGLbl;
-    private javax.swing.JButton devolverLABtn;
     private com.toedter.calendar.JDateChooser fechaIDCh;
     private javax.swing.JLabel fechaILbl;
     private com.toedter.calendar.JDateChooser fechaTDCh;
@@ -638,19 +639,18 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private javax.swing.JPanel generalPnl;
     private javax.swing.JButton guardarLABtn;
     private javax.swing.JTabbedPane informacionTBn;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel listaAsistenciaLALbl;
+    private javax.swing.JScrollPane listaAsistenciaSPn;
+    private javax.swing.JTable listaAsistenciaTbl;
     private javax.swing.JPanel listaPnl;
     private javax.swing.JComboBox nombreGCBx;
     private javax.swing.JLabel nombreGLbl;
     private javax.swing.JTextField nombreGTFd;
     private javax.swing.JLabel nombrePrLbl;
-    private javax.swing.JLabel notaGLbl;
-    private javax.swing.JLabel nota_LI_Lbl;
+    private javax.swing.JButton regresarBtn;
     private javax.swing.JLabel sedeGLbl;
     private javax.swing.JLabel seleccionLALbl;
     private javax.swing.JButton siguienteBtn;
-    private javax.swing.JTable tablaLisFTbl;
     private javax.swing.JComboBox tipoGCBx;
     private javax.swing.JLabel tipoGLbl;
     private javax.swing.JComboBox tipoSedeGCBx;
@@ -684,7 +684,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
             totalEmpleadosLbl.setText("Total de empleados en la lista: " + 
-                    tablaLisFTbl.getRowCount() + "");
+                    listaAsistenciaTbl.getRowCount() + "");
         }
     }
 
@@ -698,11 +698,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
 
         modelTablaEmF.setDataVector(null, titulosTablaEm);
         modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
-        tablaLisFTbl.setModel(modelTablaEmF);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        listaAsistenciaTbl.setModel(modelTablaEmF);
+        listaAsistenciaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        listaAsistenciaTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        listaAsistenciaTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        listaAsistenciaTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
     }
 
     /**
@@ -762,7 +762,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         siguienteBtn.setEnabled(visibilidad);
         cancelarGBtn.setEnabled(visibilidad);
         guardarLABtn.setEnabled(visibilidad);
-        devolverLABtn.setEnabled(visibilidad);
+        regresarBtn.setEnabled(visibilidad);
     }
 
     /**
@@ -784,7 +784,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             atributos.add(true);
             atributos.add(tipoSedeGCBx.getSelectedItem());
             atributos.add(nombreGCBx.getSelectedItem());
-            for (int x = 0; x < tablaLisFTbl.getRowCount(); x++) {
+            for (int x = 0; x < listaAsistenciaTbl.getRowCount(); x++) {
                 Empleado empleado = new Empleado();
                 empleado.setNumero((String) modelTablaEmF.getValueAt(x, 0));
                 lisEmpleado.add(empleado);
@@ -867,8 +867,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         informacionTBn.setEnabledAt(0, true);
         informacionTBn.setEnabledAt(1, false);
         informacionTBn.setSelectedIndex(0);
-        tablaLisFTbl.setEnabled(true);
-        totalEmpleadosLbl.setText("Total de empleados en la lista: " + tablaLisFTbl.getRowCount() + "");
+        listaAsistenciaTbl.setEnabled(true);
+        totalEmpleadosLbl.setText("Total de empleados en la lista: " + listaAsistenciaTbl.getRowCount() + "");
     }
 
     /**
@@ -892,11 +892,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         } else if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
             JOptionPane.showMessageDialog(this, "No selecciono un proveedor");
             return true;
-        } else if (tablaLisFTbl.getRowCount() == 0) {
+        } else if (listaAsistenciaTbl.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "No se encontraron empleados"
                     + " en la lista de asistencia");
             return true;
-        } else if (tablaLisFTbl.
+        } else if (listaAsistenciaTbl.
                 getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).
                         getCapacidad()) {
             if (JOptionPane.showConfirmDialog(this, "La lista de asistencia"
@@ -927,7 +927,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         fechaTDCh.setDate(null);
         tabla();
         totalEmpleadosLbl.setText("Total de empleados en la lista: "
-                + tablaLisFTbl.getRowCount() + "");
+                + listaAsistenciaTbl.getRowCount() + "");
 
     }
 

@@ -21,13 +21,13 @@ import mx.edu.cobach.vista.controlador.EventoControlador;
  *
  * @author Alex
  */
-public class ListaEventos extends javax.swing.JFrame implements Comunicador {
+public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
 
-    private static EventoControlador control;
+    private final EventoControlador control;
 
-    private DefaultTableModel modelTablaEvI;
-    private DefaultTableModel modelTablaEvF;
-    private String[] titulosTablaEv = {"ID", "Numero", "Evento"};
+    private final DefaultTableModel candidatosModel;
+    private final DefaultTableModel agregadosModel;
+    private final String[] titulosTabla = {"ID", "Evento", "Tipo de evento"};
     private final ImageIcon imageLogo;
     //Comunicador con la interfaz grafica
     protected final Comunicador com;
@@ -36,10 +36,11 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
     
     /**
      * Creates new form ListaEventos
+     * @param com
      */
-    public ListaEventos(Comunicador com) {
+    public ListaEventosFrm(Comunicador com) {
         this.com = com;
-        imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
+        imageLogo = new ImageIcon(CapacisoftFrm.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
         setTitle("CapaciSoft-Lista de eventos");
         initComponents();
@@ -48,31 +49,31 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
         control = new EventoControlador(this);
         setIconImage(imageLogo.getImage());
 
-        modelTablaEvI = new DefaultTableModel(titulosTablaEv, 0);
-        tablaLisITbl.setModel(modelTablaEvI);
-        tablaLisITbl.setColumnSelectionAllowed(false);
-        tablaLisITbl.setDragEnabled(false);
+        candidatosModel = new DefaultTableModel(titulosTabla, 0);
+        candidatosTbl.setModel(candidatosModel);
+        candidatosTbl.setColumnSelectionAllowed(false);
+        candidatosTbl.setDragEnabled(false);
 
-        modelTablaEvF = new DefaultTableModel(titulosTablaEv, 0);
-        tablaLisFTbl.setModel(modelTablaEvF);
-        tablaLisFTbl.setColumnSelectionAllowed(false);
-        tablaLisFTbl.setDragEnabled(false);
+        agregadosModel = new DefaultTableModel(titulosTabla, 0);
+        agregadosTbl.setModel(agregadosModel);
+        agregadosTbl.setColumnSelectionAllowed(false);
+        agregadosTbl.setDragEnabled(false);
         
-        modelTablaEvI.setDataVector(null, titulosTablaEv);
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisITbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisITbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        candidatosModel.setDataVector(null, titulosTabla);
+        TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(tc);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 
-        modelTablaEvF.setDataVector(null, titulosTablaEv);
-        tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        agregadosModel.setDataVector(null, titulosTabla);
+        tc = agregadosTbl.getColumnModel().getColumn(0);
+        agregadosTbl.getColumnModel().removeColumn(tc);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        agregadosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        agregadosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         
         cerrar();
     }
@@ -86,34 +87,34 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        listaCandidatosLALbl = new javax.swing.JLabel();
-        buscarLABtn = new javax.swing.JButton();
+        candidatosLbl = new javax.swing.JLabel();
+        buscarBtn = new javax.swing.JButton();
         crearTablaBtn = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaLisFTbl = new javax.swing.JTable();
-        cancelarLABtn = new javax.swing.JButton();
-        listaAsistenciaLALbl = new javax.swing.JLabel();
-        nota_LI_Lbl = new javax.swing.JLabel();
+        agregadosSPn = new javax.swing.JScrollPane();
+        agregadosTbl = new javax.swing.JTable();
+        cancelarBtn = new javax.swing.JButton();
+        agregadosLbl = new javax.swing.JLabel();
+        listaEventosInsLbl = new javax.swing.JLabel();
         agregarBtn = new javax.swing.JButton();
         agregarTBtn = new javax.swing.JButton();
         eliminarBtn = new javax.swing.JButton();
-        nombreLALbl = new javax.swing.JLabel();
+        eventoLbl = new javax.swing.JLabel();
         eliminarTBtn = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tablaLisITbl = new javax.swing.JTable();
-        nombreTFd = new javax.swing.JTextField();
-        agregarLALbl = new javax.swing.JLabel();
+        candidatosSPn = new javax.swing.JScrollPane();
+        candidatosTbl = new javax.swing.JTable();
+        eventoTFd = new javax.swing.JTextField();
+        listaEventosTltLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        listaCandidatosLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaCandidatosLALbl.setText("Posibles eventos");
+        candidatosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        candidatosLbl.setText("Posibles eventos");
 
-        buscarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscarLABtn.setText("Buscar");
-        buscarLABtn.addActionListener(new java.awt.event.ActionListener() {
+        buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarLABtnActionPerformed(evt);
+                buscarBtnActionPerformed(evt);
             }
         });
 
@@ -126,7 +127,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
+        agregadosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -145,21 +146,21 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        tablaLisFTbl.setEnabled(false);
-        jScrollPane5.setViewportView(tablaLisFTbl);
+        agregadosTbl.setEnabled(false);
+        agregadosSPn.setViewportView(agregadosTbl);
 
-        cancelarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cancelarLABtn.setText("Cancelar");
-        cancelarLABtn.addActionListener(new java.awt.event.ActionListener() {
+        cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarLABtnActionPerformed(evt);
+                cancelarBtnActionPerformed(evt);
             }
         });
 
-        listaAsistenciaLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaAsistenciaLALbl.setText("Eventos seleccionados");
+        agregadosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregadosLbl.setText("Eventos seleccionados");
 
-        nota_LI_Lbl.setText("<html>Anada los eventos que el proveedor puede impartir, en la izquierda se muestran todos los eventos y en la derecha los eventos elegidos, se pueden<br>buscar eventos por medio de su nombre, para salir o cancelar el registro presione el botón \"Cancelar\"</html>");
+        listaEventosInsLbl.setText("<html>Anada los eventos que el proveedor puede impartir, en la izquierda se muestran todos los eventos y en la derecha los eventos elegidos, se pueden<br>buscar eventos por medio de su nombre, para salir o cancelar el registro presione el botón \"Cancelar\"</html>");
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText(">");
@@ -191,8 +192,8 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreLALbl.setText("Nombre del Evento:");
+        eventoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eventoLbl.setText("Nombre del Evento:");
 
         eliminarTBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         eliminarTBtn.setText("<<");
@@ -204,7 +205,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        tablaLisITbl.setModel(new javax.swing.table.DefaultTableModel(
+        candidatosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -223,18 +224,18 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tablaLisITbl);
+        candidatosSPn.setViewportView(candidatosTbl);
 
-        nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreTFd.setMaximumSize(new java.awt.Dimension(6, 23));
-        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+        eventoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        eventoTFd.setMaximumSize(new java.awt.Dimension(6, 23));
+        eventoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombreTFdKeyTyped(evt);
+                eventoTFdKeyTyped(evt);
             }
         });
 
-        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLALbl.setText("Registro");
+        listaEventosTltLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        listaEventosTltLbl.setText("Registro");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,7 +243,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(candidatosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(agregarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,13 +251,13 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
                     .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(agregadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -264,43 +265,43 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(agregarLALbl)
-                                    .addComponent(nota_LI_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(listaEventosTltLbl)
+                                    .addComponent(listaEventosInsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
-                                .addComponent(nombreLALbl)
+                                .addComponent(eventoLbl)
                                 .addGap(46, 46, 46)
-                                .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(eventoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(buscarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(148, 148, 148)
-                .addComponent(listaCandidatosLALbl)
+                .addComponent(candidatosLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(listaAsistenciaLALbl)
+                .addComponent(agregadosLbl)
                 .addGap(123, 123, 123))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(agregarLALbl)
+                .addComponent(listaEventosTltLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nota_LI_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(listaEventosInsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreLALbl)
-                    .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventoLbl)
+                    .addComponent(eventoTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listaCandidatosLALbl)
-                    .addComponent(listaAsistenciaLALbl))
+                    .addComponent(candidatosLbl)
+                    .addComponent(agregadosLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(candidatosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,63 +311,63 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
                         .addComponent(eliminarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(agregadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
-        if(nombreTFd.getText().isEmpty()){
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        if(eventoTFd.getText().isEmpty()){
             control.buscarTodos();
         }else{
-            control.buscarPorNombre(nombreTFd.getText());
+            control.buscarPorNombre(eventoTFd.getText());
         }
-    }//GEN-LAST:event_buscarLABtnActionPerformed
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void crearTablaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearTablaBtnActionPerformed
-        String[][] matriz = new String[modelTablaEvF.getRowCount()][modelTablaEvF.getColumnCount()];
-        for (int k = 0; k < modelTablaEvF.getRowCount(); k++) {
-            for (int j = 0; j < modelTablaEvF.getColumnCount(); j++) {
-                matriz[k][j] = modelTablaEvF.getValueAt(k, j) + "";
+        String[][] matriz = new String[agregadosModel.getRowCount()][agregadosModel.getColumnCount()];
+        for (int k = 0; k < agregadosModel.getRowCount(); k++) {
+            for (int j = 0; j < agregadosModel.getColumnCount(); j++) {
+                matriz[k][j] = agregadosModel.getValueAt(k, j) + "";
             }
         }
         matriz[0][0] = matriz[0][0] + "TLE1";
         com.setTabla(matriz);
-        List<String> info = new ArrayList<String>();
+        List<String> info = new ArrayList();
         info.add("Desbloquear");
         com.setInfo(info);
         this.dispose();
     }//GEN-LAST:event_crearTablaBtnActionPerformed
 
-    private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
-        if (tablaLisFTbl.getRowCount() > 0) {
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        if (agregadosTbl.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this, "¿Desea cancelar la realizacion "
                 + "de la lista de eventos?", "Precaucion",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                List<String> info = new ArrayList<String>();
+                List<String> info = new ArrayList();
                 info.add("Desbloquear");
                 com.setInfo(info);
                 this.dispose();
             }
         } else {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
         }
-    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if (tablaLisITbl.getSelectedRow() >= 0) {
-            agregarEmpleadosTabla(tablaLisITbl.getSelectedRow());
+        if (candidatosTbl.getSelectedRow() >= 0) {
+            agregarEmpleadosTabla(candidatosTbl.getSelectedRow());
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -374,10 +375,10 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
     }//GEN-LAST:event_agregarBtnActionPerformed
 
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
-        for (int i = 0; i < modelTablaEvI.getRowCount(); i++) {
+        for (int i = 0; i < candidatosModel.getRowCount(); i++) {
             agregarEmpleadosTabla(i);
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -388,33 +389,33 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar el evento de "
             + "la lista de eventos?", "Precaucion",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-        if (tablaLisFTbl.getSelectedRow() >= 0) {
+        if (agregadosTbl.getSelectedRow() >= 0) {
             int cont = 0;
-            Object[][] tableData = new Object[tablaLisFTbl.
-            getRowCount() - 1][modelTablaEvF.getColumnCount()];
-            for (int i = 0; i < tablaLisFTbl.getRowCount(); i++) {
-                if (((String) modelTablaEvF.getValueAt(i, 0)).
-                    compareTo((String) modelTablaEvF.getValueAt(
-                        tablaLisFTbl.getSelectedRow(),
+            Object[][] tableData = new Object[agregadosTbl.
+            getRowCount() - 1][agregadosModel.getColumnCount()];
+            for (int i = 0; i < agregadosTbl.getRowCount(); i++) {
+                if (((String) agregadosModel.getValueAt(i, 0)).
+                    compareTo((String) agregadosModel.getValueAt(
+                        agregadosTbl.getSelectedRow(),
                         0)) != 0) {
-                tableData[cont][0] = modelTablaEvF.getValueAt(i, 0);
-                tableData[cont][1] = modelTablaEvF.getValueAt(i, 1);
-                tableData[cont][2] = modelTablaEvF.getValueAt(i, 2);
+                tableData[cont][0] = agregadosModel.getValueAt(i, 0);
+                tableData[cont][1] = agregadosModel.getValueAt(i, 1);
+                tableData[cont][2] = agregadosModel.getValueAt(i, 2);
                 cont++;
             }
         }
-        modelTablaEvF.setDataVector(tableData, titulosTablaEv);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).
+        agregadosModel.setDataVector(tableData, titulosTabla);
+        TableColumn tc = agregadosTbl.getColumnModel().getColumn(0);
+        agregadosTbl.getColumnModel().removeColumn(tc);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        agregadosTbl.getColumnModel().getColumn(0).
         setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).
+        agregadosTbl.getColumnModel().getColumn(1).
         setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         }
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -425,51 +426,49 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar toda la lista "
             + "de eventos?", "Precaucion",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-        modelTablaEvF.setDataVector(null, titulosTablaEv);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        agregadosModel.setDataVector(null, titulosTabla);
+        TableColumn tc = agregadosTbl.getColumnModel().getColumn(0);
+        agregadosTbl.getColumnModel().removeColumn(tc);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        agregadosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        agregadosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (agregadosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
         }
     }//GEN-LAST:event_eliminarTBtnActionPerformed
 
-    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
-        if (Character.isLetter(evt.getKeyChar())
-            || Character.isISOControl(evt.getKeyChar())
-            || Character.isWhitespace(evt.getKeyChar())) {
-            evt = evt;
-        } else {
+    private void eventoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_eventoTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())
+            || !Character.isISOControl(evt.getKeyChar())
+            || !Character.isWhitespace(evt.getKeyChar())) {
             evt.consume();
         }
-    }//GEN-LAST:event_nombreTFdKeyTyped
+    }//GEN-LAST:event_eventoTFdKeyTyped
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel agregadosLbl;
+    private javax.swing.JScrollPane agregadosSPn;
+    private javax.swing.JTable agregadosTbl;
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JLabel agregarLALbl;
     private javax.swing.JButton agregarTBtn;
-    private javax.swing.JButton buscarLABtn;
-    private javax.swing.JButton cancelarLABtn;
+    private javax.swing.JButton buscarBtn;
+    private javax.swing.JButton cancelarBtn;
+    private javax.swing.JLabel candidatosLbl;
+    private javax.swing.JScrollPane candidatosSPn;
+    private javax.swing.JTable candidatosTbl;
     private javax.swing.JButton crearTablaBtn;
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JButton eliminarTBtn;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JLabel listaAsistenciaLALbl;
-    private javax.swing.JLabel listaCandidatosLALbl;
-    private javax.swing.JLabel nombreLALbl;
-    private javax.swing.JTextField nombreTFd;
-    private javax.swing.JLabel nota_LI_Lbl;
-    private javax.swing.JTable tablaLisFTbl;
-    private javax.swing.JTable tablaLisITbl;
+    private javax.swing.JLabel eventoLbl;
+    private javax.swing.JTextField eventoTFd;
+    private javax.swing.JLabel listaEventosInsLbl;
+    private javax.swing.JLabel listaEventosTltLbl;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -477,37 +476,37 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
      */
     private void agregarEmpleadosTabla(int posicionLista) {
         boolean bandera = false;
-        tablaLisFTbl.setEnabled(true);
-        for (int j = 0; j < modelTablaEvF.getRowCount(); j++) {
-            if (modelTablaEvI.getValueAt(posicionLista, 0).
-                    equals(modelTablaEvF.getValueAt(j, 0))) {
+        agregadosTbl.setEnabled(true);
+        for (int j = 0; j < agregadosModel.getRowCount(); j++) {
+            if (candidatosModel.getValueAt(posicionLista, 0).
+                    equals(agregadosModel.getValueAt(j, 0))) {
                 bandera = true;
             }
         }
         if (bandera == false) {
-            Object[][] tableData = new Object[modelTablaEvF.
-                    getRowCount() + 1][modelTablaEvF.getColumnCount()];
+            Object[][] tableData = new Object[agregadosModel.
+                    getRowCount() + 1][agregadosModel.getColumnCount()];
             //ciclo que pasa la informacion de la tabla de lista 
             //final para que al final sea agregado el nuevo empleado a 
             //esta matriz
-            for (int k = 0; k < modelTablaEvF.getRowCount(); k++) {
-                for (int j = 0; j < modelTablaEvF.getColumnCount(); j++) {
-                    tableData[k][j] = modelTablaEvF.getValueAt(k, j);
+            for (int k = 0; k < agregadosModel.getRowCount(); k++) {
+                for (int j = 0; j < agregadosModel.getColumnCount(); j++) {
+                    tableData[k][j] = agregadosModel.getValueAt(k, j);
                 }
             }
-            tableData[modelTablaEvF.getRowCount()][0] = modelTablaEvI.
+            tableData[agregadosModel.getRowCount()][0] = candidatosModel.
                     getValueAt(posicionLista, 0);
-            tableData[modelTablaEvF.getRowCount()][1] = modelTablaEvI.
+            tableData[agregadosModel.getRowCount()][1] = candidatosModel.
                     getValueAt(posicionLista, 1);
-            tableData[modelTablaEvF.getRowCount()][2] = modelTablaEvI.
+            tableData[agregadosModel.getRowCount()][2] = candidatosModel.
                     getValueAt(posicionLista, 2);
-            modelTablaEvF.setDataVector(tableData, titulosTablaEv);
-            TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-            tablaLisFTbl.getColumnModel().removeColumn(tc);
-            tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-            tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+            agregadosModel.setDataVector(tableData, titulosTabla);
+            TableColumn tc = agregadosTbl.getColumnModel().getColumn(0);
+            agregadosTbl.getColumnModel().removeColumn(tc);
+            agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            agregadosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            agregadosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+            agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         }
         visibilidadOpcT(true);
     }
@@ -535,16 +534,16 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
         //Se checa si la palabra TLE1 se encuentra dentro de la matriz
         info[0][0] = info[0][0].replaceAll("TLE1", "");
         //Se elimina la palabra TLE1 para que solo quede el id puro
-        tablaLisITbl.setEnabled(true);
-        modelTablaEvI.setDataVector(info, titulosTablaEv);
+        candidatosTbl.setEnabled(true);
+        candidatosModel.setDataVector(info, titulosTabla);
 
-        TableColumn tc = tablaLisITbl.getColumnModel().getColumn(0);
-        tablaLisITbl.getColumnModel().removeColumn(tc);
+        TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
+        candidatosTbl.getColumnModel().removeColumn(tc);
 
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisITbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisITbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         visibilidadOpcT(true);
     }
 
@@ -559,7 +558,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
     }
 
     @Override
-    public void llenarDatos(Object implementacionEvento) {
+    public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -571,12 +570,12 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
+                @Override
                 public void windowClosing(WindowEvent e) {
                     confirmarSalida();
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
     
@@ -592,7 +591,7 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
@@ -605,14 +604,14 @@ public class ListaEventos extends javax.swing.JFrame implements Comunicador {
      * @param info
      */
     public void mandarTabla(String[][] info) {
-        modelTablaEvF.setDataVector(info, titulosTablaEv);
-        TableColumn tc = tablaLisFTbl.getColumnModel().getColumn(0);
-        tablaLisFTbl.getColumnModel().removeColumn(tc);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        tablaLisFTbl.setEnabled(true);
+        agregadosModel.setDataVector(info, titulosTabla);
+        TableColumn tc = agregadosTbl.getColumnModel().getColumn(0);
+        agregadosTbl.getColumnModel().removeColumn(tc);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        agregadosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        agregadosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        agregadosTbl.setEnabled(true);
         visibilidadOpcT(true);
     }
 }

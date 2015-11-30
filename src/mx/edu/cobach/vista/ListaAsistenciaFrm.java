@@ -15,8 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import mx.edu.cobach.persistencia.entidades.Competencia;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Empleado;
@@ -29,7 +27,7 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  *
  * @author Liuts
  */
-public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
+public final class ListaAsistenciaFrm extends javax.swing.JFrame implements Comunicador {
 
     /**
      * Creates new form ListaAsistencia
@@ -37,10 +35,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     private static ImplementarEventoControlador control;
     private final DefaultComboBoxModel campoModel;
 
-    private DefaultTableModel modelTablaEmI;
-    private DefaultTableModel modelTablaEmF;
+    private final DefaultTableModel agregadosModel;
+    private final DefaultTableModel candidatosModel;
     private final DefaultComboBoxModel tipoModel;
-    private String[] titulosTablaEm = {"Numero",
+    private final String[] titulosTabla = {"Numero",
         "Nombre del Empleado"};
     private final ImageIcon imageLogo;
     //Comunicador con la interfaz grafica
@@ -53,9 +51,9 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      *
      * @param com
      */
-    public ListaAsistencia(Comunicador com) {
+    public ListaAsistenciaFrm(Comunicador com) {
         this.com = com;
-        imageLogo = new ImageIcon(Capacisoft.class.getResource("/mx/edu/cobach/"
+        imageLogo = new ImageIcon(CapacisoftFrm.class.getResource("/mx/edu/cobach/"
                 + "vista/recursos/logo.png"));
         setTitle("CapaciSoft-Lista de Asistencia");
         initComponents();
@@ -65,7 +63,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 ImplementacionEvento.class);
         campoModel = new DefaultComboBoxModel();
         tipoModel = new DefaultComboBoxModel();
-        tipoLACBx.setModel(tipoModel);
+        seleccionCBx.setModel(tipoModel);
         campoModel.addElement("");
         campoModel.addElement("Nombre");
         campoModel.addElement("Departamento");
@@ -79,15 +77,15 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         campoCBx.setModel(campoModel);
         setIconImage(imageLogo.getImage());
 
-        modelTablaEmI = new DefaultTableModel(titulosTablaEm, 0);
-        tablaLisITbl.setModel(modelTablaEmI);
-        tablaLisITbl.setColumnSelectionAllowed(false);
-        tablaLisITbl.setDragEnabled(false);
+        agregadosModel = new DefaultTableModel(titulosTabla, 0);
+        agregadosTbl.setModel(agregadosModel);
+        agregadosTbl.setColumnSelectionAllowed(false);
+        agregadosTbl.setDragEnabled(false);
 
-        modelTablaEmF = new DefaultTableModel(titulosTablaEm, 0);
-        tablaLisFTbl.setModel(modelTablaEmF);
-        tablaLisFTbl.setColumnSelectionAllowed(false);
-        tablaLisFTbl.setDragEnabled(false);
+        candidatosModel = new DefaultTableModel(titulosTabla, 0);
+        candidatosTbl.setModel(candidatosModel);
+        candidatosTbl.setColumnSelectionAllowed(false);
+        candidatosTbl.setDragEnabled(false);
         visibilidadBusNombre(false);
         visibilidadBusTipo(false);
         tabla();
@@ -103,34 +101,34 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        agregarLALbl = new javax.swing.JLabel();
-        nota_LI_Lbl = new javax.swing.JLabel();
+        listaTltLbl = new javax.swing.JLabel();
+        listaInsLbl = new javax.swing.JLabel();
         campoLbl = new javax.swing.JLabel();
         campoCBx = new javax.swing.JComboBox();
-        nombreLALbl = new javax.swing.JLabel();
-        seleccionLALbl = new javax.swing.JLabel();
-        nombreLATFd = new javax.swing.JTextField();
-        tipoLACBx = new javax.swing.JComboBox();
-        buscarLABtn = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tablaLisFTbl = new javax.swing.JTable();
-        listaAsistenciaLALbl = new javax.swing.JLabel();
+        nombreLbl = new javax.swing.JLabel();
+        seleccionLbl = new javax.swing.JLabel();
+        nombreTFd = new javax.swing.JTextField();
+        seleccionCBx = new javax.swing.JComboBox();
+        buscarBtn = new javax.swing.JButton();
+        candidatosSPn = new javax.swing.JScrollPane();
+        candidatosTbl = new javax.swing.JTable();
+        agregadosLbl = new javax.swing.JLabel();
         agregarBtn = new javax.swing.JButton();
         agregarTBtn = new javax.swing.JButton();
         eliminarBtn = new javax.swing.JButton();
         eliminarTBtn = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tablaLisITbl = new javax.swing.JTable();
-        listaCandidatosLALbl = new javax.swing.JLabel();
+        agregadosSPn = new javax.swing.JScrollPane();
+        agregadosTbl = new javax.swing.JTable();
+        candidatosLbl = new javax.swing.JLabel();
         crearTablaBtn = new javax.swing.JButton();
-        cancelarLABtn = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        agregarLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        agregarLALbl.setText("Registro");
+        listaTltLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        listaTltLbl.setText("Registro");
 
-        nota_LI_Lbl.setText("Ingrese la información a almacenar");
+        listaInsLbl.setText("Ingrese la información a almacenar");
 
         campoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campoLbl.setText("Selecciona un campo:");
@@ -143,33 +141,33 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        nombreLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreLALbl.setText("Nombre del Empleado:");
+        nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreLbl.setText("Nombre del Empleado:");
 
-        seleccionLALbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        seleccionLALbl.setText("Nombre del Departamento:");
+        seleccionLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        seleccionLbl.setText("Nombre del Departamento:");
 
-        nombreLATFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreLATFd.setMaximumSize(new java.awt.Dimension(6, 23));
-        nombreLATFd.addKeyListener(new java.awt.event.KeyAdapter() {
+        nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreTFd.setMaximumSize(new java.awt.Dimension(6, 23));
+        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombreLATFdKeyTyped(evt);
+                nombreTFdKeyTyped(evt);
             }
         });
 
-        tipoLACBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tipoLACBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Departamento", "Plantel", "Puesto" }));
-        tipoLACBx.setMaximumSize(new java.awt.Dimension(117, 23));
+        seleccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        seleccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Departamento", "Plantel", "Puesto" }));
+        seleccionCBx.setMaximumSize(new java.awt.Dimension(117, 23));
 
-        buscarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buscarLABtn.setText("Buscar");
-        buscarLABtn.addActionListener(new java.awt.event.ActionListener() {
+        buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buscarBtn.setText("Buscar");
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarLABtnActionPerformed(evt);
+                buscarBtnActionPerformed(evt);
             }
         });
 
-        tablaLisFTbl.setModel(new javax.swing.table.DefaultTableModel(
+        candidatosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -188,11 +186,11 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        tablaLisFTbl.setEnabled(false);
-        jScrollPane5.setViewportView(tablaLisFTbl);
+        candidatosTbl.setEnabled(false);
+        candidatosSPn.setViewportView(candidatosTbl);
 
-        listaAsistenciaLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaAsistenciaLALbl.setText("Lista de empleados");
+        agregadosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        agregadosLbl.setText("Lista de empleados");
 
         agregarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         agregarBtn.setText(">");
@@ -234,7 +232,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        tablaLisITbl.setModel(new javax.swing.table.DefaultTableModel(
+        agregadosTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -253,10 +251,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tablaLisITbl);
+        agregadosSPn.setViewportView(agregadosTbl);
 
-        listaCandidatosLALbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        listaCandidatosLALbl.setText("Lista de posibles candidatos");
+        candidatosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        candidatosLbl.setText("Lista de posibles candidatos");
 
         crearTablaBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         crearTablaBtn.setText("Crear Tabla");
@@ -267,11 +265,11 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             }
         });
 
-        cancelarLABtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cancelarLABtn.setText("Cancelar");
-        cancelarLABtn.addActionListener(new java.awt.event.ActionListener() {
+        cancelarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarLABtnActionPerformed(evt);
+                cancelarBtnActionPerformed(evt);
             }
         });
 
@@ -286,16 +284,16 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(207, 207, 207)
-                                .addComponent(tipoLACBx, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nombreLATFd, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(33, 33, 33)
-                        .addComponent(buscarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(agregadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(agregarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,26 +301,26 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                             .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(candidatosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(listaCandidatosLALbl)
+                        .addComponent(candidatosLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
-                        .addComponent(listaAsistenciaLALbl)
+                        .addComponent(agregadosLbl)
                         .addGap(159, 159, 159))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarLALbl)
-                    .addComponent(nota_LI_Lbl)
+                    .addComponent(listaTltLbl)
+                    .addComponent(listaInsLbl)
                     .addComponent(campoLbl)
-                    .addComponent(nombreLALbl)
-                    .addComponent(seleccionLALbl))
+                    .addComponent(nombreLbl)
+                    .addComponent(seleccionLbl))
                 .addContainerGap(764, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -331,29 +329,29 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(agregarLALbl)
+                .addComponent(listaTltLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nota_LI_Lbl)
+                .addComponent(listaInsLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoLbl)
                     .addComponent(campoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreLATFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreLALbl))
+                    .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seleccionLALbl)
-                    .addComponent(tipoLACBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(seleccionLbl)
+                    .addComponent(seleccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listaCandidatosLALbl)
-                    .addComponent(listaAsistenciaLALbl))
+                    .addComponent(candidatosLbl)
+                    .addComponent(agregadosLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(agregadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,11 +361,11 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                         .addComponent(eliminarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(eliminarTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(candidatosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(crearTablaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarLABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cancelarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -394,56 +392,56 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 visibilidadBusTipo(true);
                 control.setClass(Departamento.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Departamento:");
+                seleccionLbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
                 control.setClass(Plantel.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Plantel:");
+                seleccionLbl.setText("Nombre del Plantel:");
                 break;
             case "Puesto":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Puesto:");
+                seleccionLbl.setText("Nombre del Puesto:");
                 break;
             case "Direccion":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
                 control.setClass(Direccion.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre de la Direccion:");
+                seleccionLbl.setText("Nombre de la Direccion:");
                 break;
             case "Departamento/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Departamento.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Departamento:");
+                seleccionLbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Plantel.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Plantel:");
+                seleccionLbl.setText("Nombre del Plantel:");
                 break;
             case "Puestos/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Puesto.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre del Puesto:");
+                seleccionLbl.setText("Nombre del Puesto:");
                 break;
             case "Direccion/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
                 control.setClass(Direccion.class);
                 control.buscarTodosLista(1);
-                seleccionLALbl.setText("Nombre de la Direccion:");
+                seleccionLbl.setText("Nombre de la Direccion:");
                 break;
         }
     }//GEN-LAST:event_campoCBxItemStateChanged
@@ -453,61 +451,59 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      *
      * @param evt
      */
-    private void nombreLATFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreLATFdKeyTyped
-        if (Character.isLetter(evt.getKeyChar())
-                || Character.isISOControl(evt.getKeyChar())
-                || Character.isWhitespace(evt.getKeyChar())) {
-            evt = evt;
-        } else {
+    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())
+                || !Character.isISOControl(evt.getKeyChar())
+                || !Character.isWhitespace(evt.getKeyChar())) {
             evt.consume();
         }
-    }//GEN-LAST:event_nombreLATFdKeyTyped
+    }//GEN-LAST:event_nombreTFdKeyTyped
     /**
      * Este metodo busca todas las referencias dependiendo de como la solicita
      * el usuario
      *
      * @param evt
      */
-    private void buscarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarLABtnActionPerformed
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         control.setClass(Empleado.class);
         switch ((String) campoCBx.getSelectedItem()) {
             case "Nombre":
-                if (nombreLATFd.getText().equals("")) {
+                if (nombreTFd.getText().equals("")) {
                     control.buscarTodos();
                 } else {
-                    control.buscarEmpN(nombreLATFd.getText());
+                    control.buscarEmpN(nombreTFd.getText());
                 }
                 break;
             case "Departamento":
-                control.buscarEmpD((Departamento) tipoLACBx.getSelectedItem());
+                control.buscarEmpD((Departamento) seleccionCBx.getSelectedItem());
                 break;
             case "Plantel":
-                control.buscarEmpPl((Plantel) tipoLACBx.getSelectedItem());
+                control.buscarEmpPl((Plantel) seleccionCBx.getSelectedItem());
                 break;
             case "Puesto":
-                control.buscarEmpPu((Puesto) tipoLACBx.getSelectedItem());
+                control.buscarEmpPu((Puesto) seleccionCBx.getSelectedItem());
                 break;
             case "Direccion":
-                control.buscarEmpDi((Direccion) tipoLACBx.getSelectedItem());
+                control.buscarEmpDi((Direccion) seleccionCBx.getSelectedItem());
                 break;
             case "Departamento/Nombre empleado":
-                control.buscarEmpPorDepartamentoNEmpleado((Departamento) tipoLACBx.
-                        getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorDepartamentoNEmpleado((Departamento) seleccionCBx.
+                        getSelectedItem(), nombreTFd.getText());
                 break;
             case "Plantel/Nombre empleado":
-                control.buscarEmpPorPlantelNEmpleado((Plantel) tipoLACBx.
-                        getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorPlantelNEmpleado((Plantel) seleccionCBx.
+                        getSelectedItem(), nombreTFd.getText());
                 break;
             case "Puesto/Nombre empleado":
-                control.buscarEmpPorPuestoNEmpleado((Puesto) tipoLACBx.
-                        getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorPuestoNEmpleado((Puesto) seleccionCBx.
+                        getSelectedItem(), nombreTFd.getText());
                 break;
             case "Direccion/Nombre empleado":
-                control.buscarEmpPorDireccionEmpleado((Direccion) tipoLACBx.
-                        getSelectedItem(), nombreLATFd.getText());
+                control.buscarEmpPorDireccionEmpleado((Direccion) seleccionCBx.
+                        getSelectedItem(), nombreTFd.getText());
                 break;
         }
-    }//GEN-LAST:event_buscarLABtnActionPerformed
+    }//GEN-LAST:event_buscarBtnActionPerformed
     /**
      * Este metodo agrega a los empleados a la lista de asistencia, mandando
      * cada uno de los empleados de sus pocisiones
@@ -515,10 +511,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param evt
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if (tablaLisITbl.getSelectedRow() >= 0) {
-            agregarEmpleadosTabla(tablaLisITbl.getSelectedRow());
+        if (agregadosTbl.getSelectedRow() >= 0) {
+            agregarEmpleadosTabla(agregadosTbl.getSelectedRow());
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (candidatosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -531,10 +527,10 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param evt
      */
     private void agregarTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTBtnActionPerformed
-        for (int i = 0; i < modelTablaEmI.getRowCount(); i++) {
+        for (int i = 0; i < agregadosModel.getRowCount(); i++) {
             agregarEmpleadosTabla(i);
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (candidatosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -549,31 +545,31 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar al empleado de "
                 + "la lista de asistencia?", "Precaucion",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-            if (tablaLisFTbl.getSelectedRow() >= 0) {
+            if (candidatosTbl.getSelectedRow() >= 0) {
                 int cont = 0;
-                Object[][] tableData = new Object[tablaLisFTbl.
-                        getRowCount() - 1][modelTablaEmF.getColumnCount()];
-                for (int i = 0; i < tablaLisFTbl.getRowCount(); i++) {
-                    if (((String) modelTablaEmF.getValueAt(i, 0)).
-                            compareTo((String) modelTablaEmF.getValueAt(
-                                            tablaLisFTbl.getSelectedRow(),
+                Object[][] tableData = new Object[candidatosTbl.
+                        getRowCount() - 1][candidatosModel.getColumnCount()];
+                for (int i = 0; i < candidatosTbl.getRowCount(); i++) {
+                    if (((String) candidatosModel.getValueAt(i, 0)).
+                            compareTo((String) candidatosModel.getValueAt(
+                                            candidatosTbl.getSelectedRow(),
                                             0)) != 0) {
-                        tableData[cont][0] = modelTablaEmF.getValueAt(i, 0);
-                        tableData[cont][1] = modelTablaEmF.getValueAt(i, 1);
-                        tableData[cont][2] = modelTablaEmF.getValueAt(i, 2);
+                        tableData[cont][0] = candidatosModel.getValueAt(i, 0);
+                        tableData[cont][1] = candidatosModel.getValueAt(i, 1);
+                        tableData[cont][2] = candidatosModel.getValueAt(i, 2);
                         cont++;
                     }
                 }
-                modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-                tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-                tablaLisFTbl.getColumnModel().getColumn(0).
+                candidatosModel.setDataVector(tableData, titulosTabla);
+                candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                candidatosTbl.getColumnModel().getColumn(0).
                         setPreferredWidth(10);
-                tablaLisFTbl.getColumnModel().getColumn(1).
+                candidatosTbl.getColumnModel().getColumn(1).
                         setPreferredWidth(160);
-                tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+                candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
             }
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (candidatosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -588,13 +584,13 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         if (JOptionPane.showConfirmDialog(this, "¿Desea eliminar toda la lista "
                 + "de asistencia?", "Precaucion",
                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-            modelTablaEmF.setDataVector(null, titulosTablaEm);
-            tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-            tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+            candidatosModel.setDataVector(null, titulosTabla);
+            candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+            candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         }
-        if (tablaLisFTbl.getRowCount() > 0) {
+        if (candidatosTbl.getRowCount() > 0) {
             crearTablaBtn.setEnabled(true);
         } else {
             crearTablaBtn.setEnabled(false);
@@ -605,33 +601,33 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      */
     private void agregarEmpleadosTabla(int posicionLista) {
         boolean bandera = false;
-        tablaLisFTbl.setEnabled(true);
-        for (int j = 0; j < modelTablaEmF.getRowCount(); j++) {
-            if (modelTablaEmI.getValueAt(posicionLista, 0).
-                    equals(modelTablaEmF.getValueAt(j, 0))) {
+        candidatosTbl.setEnabled(true);
+        for (int j = 0; j < candidatosModel.getRowCount(); j++) {
+            if (agregadosModel.getValueAt(posicionLista, 0).
+                    equals(candidatosModel.getValueAt(j, 0))) {
                 bandera = true;
             }
         }
         if (bandera == false) {
-            Object[][] tableData = new Object[modelTablaEmF.
-                    getRowCount() + 1][modelTablaEmF.getColumnCount()];
+            Object[][] tableData = new Object[candidatosModel.
+                    getRowCount() + 1][candidatosModel.getColumnCount()];
             //ciclo que pasa la informacion de la tabla de lista 
             //final para que al final sea agregado el nuevo empleado a 
             //esta matriz
-            for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
-                for (int j = 0; j < modelTablaEmF.getColumnCount(); j++) {
-                    tableData[k][j] = modelTablaEmF.getValueAt(k, j);
+            for (int k = 0; k < candidatosModel.getRowCount(); k++) {
+                for (int j = 0; j < candidatosModel.getColumnCount(); j++) {
+                    tableData[k][j] = candidatosModel.getValueAt(k, j);
                 }
             }
-            tableData[modelTablaEmF.getRowCount()][0] = modelTablaEmI.
+            tableData[candidatosModel.getRowCount()][0] = agregadosModel.
                     getValueAt(posicionLista, 0);
-            tableData[modelTablaEmF.getRowCount()][1] = modelTablaEmI.
+            tableData[candidatosModel.getRowCount()][1] = agregadosModel.
                     getValueAt(posicionLista, 1);
-            modelTablaEmF.setDataVector(tableData, titulosTablaEm);
-            tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-            tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-            tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+            candidatosModel.setDataVector(tableData, titulosTabla);
+            candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+            candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         }
         visibilidadOpcT(true);
     }
@@ -643,15 +639,15 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param evt
      */
     private void crearTablaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearTablaBtnActionPerformed
-        String[][] matriz = new String[modelTablaEmF.getRowCount()][modelTablaEmF.getColumnCount()];
-        for (int k = 0; k < modelTablaEmF.getRowCount(); k++) {
-            for (int j = 0; j < modelTablaEmF.getColumnCount(); j++) {
-                matriz[k][j] = modelTablaEmF.getValueAt(k, j) + "";
+        String[][] matriz = new String[candidatosModel.getRowCount()][candidatosModel.getColumnCount()];
+        for (int k = 0; k < candidatosModel.getRowCount(); k++) {
+            for (int j = 0; j < candidatosModel.getColumnCount(); j++) {
+                matriz[k][j] = candidatosModel.getValueAt(k, j) + "";
             }
         }
         matriz[0][0] = matriz[0][0] + "TLE1";
         com.setTabla(matriz);
-        List<String> info = new ArrayList<String>();
+        List<String> info = new ArrayList();
         info.add("Desbloquear");
         com.setInfo(info);
         this.dispose();
@@ -662,48 +658,48 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      *
      * @param evt
      */
-    private void cancelarLABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarLABtnActionPerformed
-        if (tablaLisFTbl.getRowCount() > 0) {
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        if (candidatosTbl.getRowCount() > 0) {
             if (JOptionPane.showConfirmDialog(this,
                     "¿Desea cancelar la realizacion "
                     + "de la lista de asistencia?", "Precaucion",
                     JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                List<String> info = new ArrayList<String>();
+                List<String> info = new ArrayList();
                 info.add("Desbloquear");
                 com.setInfo(info);
                 this.dispose();
 
             }
         } else {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
         }
-    }//GEN-LAST:event_cancelarLABtnActionPerformed
+    }//GEN-LAST:event_cancelarBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel agregadosLbl;
+    private javax.swing.JScrollPane agregadosSPn;
+    private javax.swing.JTable agregadosTbl;
     private javax.swing.JButton agregarBtn;
-    private javax.swing.JLabel agregarLALbl;
     private javax.swing.JButton agregarTBtn;
-    private javax.swing.JButton buscarLABtn;
+    private javax.swing.JButton buscarBtn;
     private javax.swing.JComboBox campoCBx;
     private javax.swing.JLabel campoLbl;
-    private javax.swing.JButton cancelarLABtn;
+    private javax.swing.JButton cancelarBtn;
+    private javax.swing.JLabel candidatosLbl;
+    private javax.swing.JScrollPane candidatosSPn;
+    private javax.swing.JTable candidatosTbl;
     private javax.swing.JButton crearTablaBtn;
     private javax.swing.JButton eliminarBtn;
     private javax.swing.JButton eliminarTBtn;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JLabel listaAsistenciaLALbl;
-    private javax.swing.JLabel listaCandidatosLALbl;
-    private javax.swing.JLabel nombreLALbl;
-    private javax.swing.JTextField nombreLATFd;
-    private javax.swing.JLabel nota_LI_Lbl;
-    private javax.swing.JLabel seleccionLALbl;
-    private javax.swing.JTable tablaLisFTbl;
-    private javax.swing.JTable tablaLisITbl;
-    private javax.swing.JComboBox tipoLACBx;
+    private javax.swing.JLabel listaInsLbl;
+    private javax.swing.JLabel listaTltLbl;
+    private javax.swing.JLabel nombreLbl;
+    private javax.swing.JTextField nombreTFd;
+    private javax.swing.JComboBox seleccionCBx;
+    private javax.swing.JLabel seleccionLbl;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -712,8 +708,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param visibilidad
      */
     public void visibilidadBusNombre(boolean visibilidad) {
-        nombreLATFd.setEnabled(visibilidad);
-        buscarLABtn.setEnabled(visibilidad);
+        nombreTFd.setEnabled(visibilidad);
+        buscarBtn.setEnabled(visibilidad);
     }
 
     /**
@@ -723,8 +719,8 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param visibilidad
      */
     public void visibilidadBusTipo(boolean visibilidad) {
-        tipoLACBx.setEnabled(visibilidad);
-        buscarLABtn.setEnabled(visibilidad);
+        seleccionCBx.setEnabled(visibilidad);
+        buscarBtn.setEnabled(visibilidad);
     }
 
     /**
@@ -763,12 +759,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         //Se checa si la palabra TLE1 se encuentra dentro de la matriz
         info[0][0] = info[0][0].replaceAll("TLE1", "");
         //Se elimina la palabra TLE1 para que solo quede el id puro
-        tablaLisITbl.setEnabled(true);
-        modelTablaEmI.setDataVector(info, titulosTablaEm);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisITbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisITbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        agregadosTbl.setEnabled(true);
+        agregadosModel.setDataVector(info, titulosTabla);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        agregadosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        agregadosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         visibilidadOpcT(true);
 
     }
@@ -781,24 +777,23 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      */
     private void tabla() {
 
-        modelTablaEmI.setDataVector(null, titulosTablaEm);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisITbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisITbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisITbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        agregadosModel.setDataVector(null, titulosTabla);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        agregadosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        agregadosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        agregadosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 
-        modelTablaEmF.setDataVector(null, titulosTablaEm);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        candidatosModel.setDataVector(null, titulosTabla);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
     }
 
     /**
      * Metodo sobrescrito de la clase Comunicador
      *
      * @param info
-     * @param i
      */
     @Override
     public void setInfo(List info) {
@@ -810,6 +805,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * checkbox
      *
      * @param info Lista de Objeto con información de búsqueda.
+     * @param i
      */
     @Override
     public void setLista(List info, int i) {
@@ -832,7 +828,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param evento
      */
     @Override
-    public void llenarDatos(Object implementacionEvento) {
+    public void llenarDatos(Object evento) {
     }
 
     /**
@@ -843,12 +839,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
+                @Override
                 public void windowClosing(WindowEvent e) {
                     confirmarSalida();
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -864,7 +860,7 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
-            List<String> info = new ArrayList<String>();
+            List<String> info = new ArrayList();
             info.add("Desbloquear");
             com.setInfo(info);
             this.dispose();
@@ -877,12 +873,12 @@ public class ListaAsistencia extends javax.swing.JFrame implements Comunicador {
      * @param info
      */
     public void mandarTabla(String[][] info) {
-        modelTablaEmF.setDataVector(info, titulosTablaEm);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tablaLisFTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        tablaLisFTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        tablaLisFTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        tablaLisFTbl.setEnabled(true);
+        candidatosModel.setDataVector(info, titulosTabla);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+        candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        candidatosTbl.setEnabled(true);
         visibilidadOpcT(true);
     }
 

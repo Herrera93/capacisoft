@@ -57,14 +57,14 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="modificarMsjLbl" min="-2" pref="360" max="-2" attributes="0"/>
+                  <Component id="tablaMsjLbl" min="-2" pref="360" max="-2" attributes="0"/>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cursoSPn" pref="0" max="32767" attributes="0"/>
+                          <Component id="eventoSPn" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
@@ -104,9 +104,9 @@
                       <Component id="buscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="modificarMsjLbl" min="-2" max="-2" attributes="0"/>
+                  <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="cursoSPn" min="-2" pref="336" max="-2" attributes="0"/>
+                  <Component id="eventoSPn" min="-2" pref="336" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -121,14 +121,14 @@
             <Property name="text" type="java.lang.String" value="Tipo de Evento:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="cursoSPn">
+        <Container class="javax.swing.JScrollPane" name="eventoSPn">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="cursosTbl">
+            <Component class="javax.swing.JTable" name="eventosTbl">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
@@ -167,7 +167,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cursosTblMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="eventosTblMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -221,7 +221,7 @@
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Seleccione el bot&#xf3;n &quot;Agregar&quot; para habilitar la secci&#xf3;n de registro,&lt;br&gt;si desea  realizar una b&#xfa;squeda seleccione el bot&#xf3;n &quot;Buscar&quot;&lt;/html&gt;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="modificarMsjLbl">
+        <Component class="javax.swing.JLabel" name="tablaMsjLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Para Modificar seleccione un nombre de evento de la columna &lt;br&gt;&quot;Nombre&quot;, para eliminar seleccione el cuadro de la columna Eliminar del evento que desea&lt;/html&gt; "/>
           </Properties>

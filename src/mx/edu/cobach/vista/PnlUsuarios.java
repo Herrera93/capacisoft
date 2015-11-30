@@ -74,7 +74,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private void initComponents() {
 
         opcionPnl = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        usuariosSPn = new javax.swing.JScrollPane();
         usuariosTbl = new javax.swing.JTable();
         agregarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
@@ -153,7 +153,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 usuariosTblMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(usuariosTbl);
+        usuariosSPn.setViewportView(usuariosTbl);
         if (usuariosTbl.getColumnModel().getColumnCount() > 0) {
             usuariosTbl.getColumnModel().getColumn(0).setResizable(false);
             usuariosTbl.getColumnModel().getColumn(1).setResizable(false);
@@ -209,7 +209,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usuariosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -232,7 +232,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usuariosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
 
@@ -815,7 +815,6 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JPasswordField contrasenaPFd;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombreBuscarLbl;
     private javax.swing.JTextField nombreBuscarTFd;
     private javax.swing.JLabel nombreLbl;
@@ -830,6 +829,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JLabel tipoLbl;
     private javax.swing.JLabel usuarioLbl;
     private javax.swing.JTextField usuarioTFd;
+    private javax.swing.JScrollPane usuariosSPn;
     private javax.swing.JTable usuariosTbl;
     private javax.swing.JLabel validApeMatLbl;
     private javax.swing.JLabel validApePatLbl;

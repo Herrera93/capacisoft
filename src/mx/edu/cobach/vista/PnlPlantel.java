@@ -82,10 +82,10 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private void initComponents() {
 
         opcionPnl = new javax.swing.JPanel();
-        tablaPlantelSPn = new javax.swing.JScrollPane();
+        plantelesSPn = new javax.swing.JScrollPane();
         plantelesTbl = new javax.swing.JTable();
         agregarTFd = new javax.swing.JButton();
-        NombreBuscarLbl = new javax.swing.JLabel();
+        nombreBuscarLbl = new javax.swing.JLabel();
         nombreBuscarTFd = new javax.swing.JTextField();
         buscarBtn = new javax.swing.JButton();
         opcionLbl = new javax.swing.JLabel();
@@ -142,7 +142,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 plantelesTblMouseClicked(evt);
             }
         });
-        tablaPlantelSPn.setViewportView(plantelesTbl);
+        plantelesSPn.setViewportView(plantelesTbl);
         if (plantelesTbl.getColumnModel().getColumnCount() > 0) {
             plantelesTbl.getColumnModel().getColumn(0).setResizable(false);
             plantelesTbl.getColumnModel().getColumn(1).setResizable(false);
@@ -157,8 +157,8 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             }
         });
 
-        NombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        NombreBuscarLbl.setText("Nombre del plantel:");
+        nombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarLbl.setText("Nombre del plantel:");
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -194,7 +194,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                             .addComponent(opcionLbl))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(NombreBuscarLbl)
+                        .addComponent(nombreBuscarLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -205,7 +205,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                         .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 34, Short.MAX_VALUE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(tablaPlantelSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(plantelesSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         opcionPnlLayout.setVerticalGroup(
@@ -217,7 +217,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreBuscarLbl)
+                    .addComponent(nombreBuscarLbl)
                     .addComponent(nombreBuscarTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -226,7 +226,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tablaPlantelSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plantelesSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
@@ -736,7 +736,6 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel NombreBuscarLbl;
     private javax.swing.JLabel agregarLbl;
     private javax.swing.JLabel agregarMsjLbl;
     private javax.swing.JButton agregarTFd;
@@ -749,6 +748,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
     private javax.swing.JLabel nombreAgregarLbl;
+    private javax.swing.JLabel nombreBuscarLbl;
     private javax.swing.JTextField nombreBuscarTFd;
     private javax.swing.JTextField nombreTFd;
     private javax.swing.JLabel numeroLbl;
@@ -756,9 +756,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel opcionLbl;
     private javax.swing.JLabel opcionMsjLbl;
     private javax.swing.JPanel opcionPnl;
+    private javax.swing.JScrollPane plantelesSPn;
     private javax.swing.JTable plantelesTbl;
     private javax.swing.JLabel tablaMsjLbl;
-    private javax.swing.JScrollPane tablaPlantelSPn;
     private javax.swing.JLabel validCalleLbl;
     private javax.swing.JLabel validColoniaLbl;
     private javax.swing.JLabel validNomLbl;

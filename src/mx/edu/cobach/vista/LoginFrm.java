@@ -9,22 +9,22 @@ import javax.swing.JOptionPane;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.vista.controlador.UsuarioControlador;
 
-public class Login extends javax.swing.JFrame implements Comunicador{
+public class LoginFrm extends javax.swing.JFrame implements Comunicador{
     
     private UsuarioControlador control;
-    private boolean habilitar=true;
+    private boolean habilitar = true;
     private KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
     
     /**
      * Login, Se inicializan los componentes y se asigna el icono de la ventana.
      */
-    public Login() {
+    public LoginFrm() {
         initComponents();
         setTitle("CapaciSoft - Login");
         setResizable(false);
         setLocationRelativeTo(null);
         control = new UsuarioControlador(this, Usuario.class);
-        ImageIcon imageLogo = new ImageIcon(Capacisoft.class.getResource(
+        ImageIcon imageLogo = new ImageIcon(CapacisoftFrm.class.getResource(
             "/mx/edu/cobach/"+ "vista/recursos/logo.png"));
         setIconImage(imageLogo.getImage());
         
@@ -236,21 +236,23 @@ public class Login extends javax.swing.JFrame implements Comunicador{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginFrm().setVisible(true);
             }
         });
     }
@@ -291,7 +293,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
             salirBtn.setEnabled(true);
         }else{
             if(info[0][1].equals(contrasena)){      
-                new Capacisoft(info[0][2], info[0][0]).setVisible(true);
+                new CapacisoftFrm(info[0][2], info[0][0]).setVisible(true);
                 this.setVisible(false);
             }else{
                 setMensaje("Contraseña incorrecta");
@@ -312,7 +314,7 @@ public class Login extends javax.swing.JFrame implements Comunicador{
     }
 
     @Override
-    public void llenarDatos(Object implementacionEvento) {
+    public void llenarDatos(Object evento) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

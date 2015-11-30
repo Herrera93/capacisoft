@@ -60,12 +60,12 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        empleadosSPn = new javax.swing.JScrollPane();
         empleadosTbl = new javax.swing.JTable();
         antesGraficaPnl = new javax.swing.JPanel();
         despuesGraficaPnl = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        empleadosLbl = new javax.swing.JLabel();
+        empleadosMsjLbl = new javax.swing.JLabel();
         encuestaDespuesBtn = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -94,7 +94,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
                 empleadosTblMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(empleadosTbl);
+        empleadosSPn.setViewportView(empleadosTbl);
         if (empleadosTbl.getColumnModel().getColumnCount() > 0) {
             empleadosTbl.getColumnModel().getColumn(0).setResizable(false);
             empleadosTbl.getColumnModel().getColumn(1).setResizable(false);
@@ -127,10 +127,10 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
             .addGap(0, 252, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Resultado de encuestas");
+        empleadosLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        empleadosLbl.setText("Resultado de encuestas");
 
-        jLabel2.setText("Seleccionar un empleado de la tabla para mostrar sus encuestas");
+        empleadosMsjLbl.setText("Seleccionar un empleado de la tabla para mostrar sus encuestas");
 
         encuestaDespuesBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         encuestaDespuesBtn.setText("Enviar segunda encuesta");
@@ -147,7 +147,7 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                    .addComponent(empleadosSPn, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(antesGraficaPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,8 +156,8 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(empleadosMsjLbl)
+                    .addComponent(empleadosLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(encuestaDespuesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
@@ -168,12 +168,12 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(empleadosLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
+                        .addComponent(empleadosMsjLbl))
                     .addComponent(encuestaDespuesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(empleadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(despuesGraficaPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -219,11 +219,11 @@ public class PnlEncuestaResultado extends javax.swing.JPanel implements Comunica
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel antesGraficaPnl;
     private javax.swing.JPanel despuesGraficaPnl;
+    private javax.swing.JLabel empleadosLbl;
+    private javax.swing.JLabel empleadosMsjLbl;
+    private javax.swing.JScrollPane empleadosSPn;
     private javax.swing.JTable empleadosTbl;
     private javax.swing.JButton encuestaDespuesBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     /**
