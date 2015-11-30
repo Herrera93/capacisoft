@@ -83,8 +83,8 @@
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="nombreRegLbl" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="tipoRegCBx" min="-2" pref="180" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="tipoRegCBx" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="opcionesMsjLbl" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
                                   </Group>
@@ -118,7 +118,7 @@
                       <Component id="regRealizadoBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="regRealizarBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="324" max="32767" attributes="0"/>
+                      <EmptySpace pref="308" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -218,21 +218,25 @@
                                           <Component id="opcionesBusLbl" min="-2" max="-2" attributes="0"/>
                                           <Component id="sedeLbl1" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                                      <EmptySpace pref="47" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="nombreBusLbl" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="tipoBusCBx" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="tipoBusCBx" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="fechaTerminacionDCh" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fechaInicialDCh" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="buscarBtn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="fechaInicialDCh" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="fechaTerminacionDCh" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -274,8 +278,8 @@
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="tablaMsjLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="eventosSPn" min="-2" pref="290" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Component id="eventosSPn" min="-2" pref="273" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
