@@ -12,10 +12,10 @@
             <column name="evento_id" not-null="true" />
         </many-to-one>
         <many-to-one name="proveedor" class="mx.edu.cobach.persistencia.entidades.Proveedor" fetch="select" lazy="false">
-            <column name="proveedor_id" not-null="true" />
+            <column name="proveedor_id" not-null="false" />
         </many-to-one>
         <many-to-one name="sede" class="mx.edu.cobach.persistencia.entidades.Sede" fetch="select" lazy="false">
-            <column name="sede_id" not-null="true" />
+            <column name="sede_id" not-null="false" />
         </many-to-one>
         <property name="fechaInicial" type="date">
             <column name="fecha_inicial" length="10" not-null="true" />
@@ -40,7 +40,7 @@
             </key>
             <one-to-many class="mx.edu.cobach.persistencia.entidades.ImplementacionEventoEnunciadoLogistica" />
         </set>
-        <set name="alertas" table="alerta_implementacion_evento" inverse="false" lazy="true" fetch="select">
+        <set name="alertas" table="alerta_implementacion_evento" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="implementacion_evento_id" not-null="true" />
             </key>

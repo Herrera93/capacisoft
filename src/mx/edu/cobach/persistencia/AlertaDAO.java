@@ -38,6 +38,7 @@ public class AlertaDAO<T> extends BaseDAO{// class
            HibernateUtil.openSession();
            HibernateUtil.beginTransaction();
            obj = HibernateUtil.getSession().get(entityClass, id);
+           HibernateUtil.commitTransaction();
         }// try
         catch(HibernateException e){// catch
            HibernateUtil.rollbackTransaction();
@@ -79,6 +80,7 @@ public class AlertaDAO<T> extends BaseDAO{// class
             HibernateUtil.beginTransaction();
             lista = HibernateUtil.getSession().createCriteria(entityClass)
                     .add(Restrictions.eq("Alerta", alerta)).list();
+            HibernateUtil.commitTransaction();
         }// try
         catch(HibernateException e){// catch
             HibernateUtil.rollbackTransaction();

@@ -5,8 +5,6 @@
 package mx.edu.cobach.vista;
 
 import java.awt.Point;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +12,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Alerta;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
+import mx.edu.cobach.vista.controlador.AlertaControlador;
 import mx.edu.cobach.vista.controlador.EncuestaControlador;
 
 /**
@@ -46,6 +46,8 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     private CapacisoftFrm capacisoft;
     //Informacion de evento asociado a la encuesta
     private String[] evento;
+    private boolean alerta;
+    private final AlertaControlador alertaControl;
     
     /**
      * Se construye el panel, iniciando los componentes y se le da la configuracion
@@ -58,6 +60,8 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         agregar();
         this.capacisoft = capacisoft;
         control = new EncuestaControlador(this);
+        alertaControl = new AlertaControlador(this, Alerta.class);
+        alerta = false;
         
         eventosTblModel = new DefaultTableModel(titulosTabla, 0) {
             @Override
@@ -1116,6 +1120,7 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
     // End of variables declaration//GEN-END:variables
 
     public void limpiar(){
+        alerta = false;
         modelAspecto.setRowCount(0);
         modelEmpleado.setRowCount(0);
         informacionTBn.setVisible(false);
@@ -1145,6 +1150,9 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
                         "Exito", JOptionPane.INFORMATION_MESSAGE);
                 eventosTblModel.setNumRows(0);
                 limpiar();
+                if(alerta){
+                    alertaControl.eliminarAlerta(Integer.parseInt(evento[0]), 4);
+                }
             }else
                 setMensaje("Hubo problemas con la conexión a internet");
         }
@@ -1232,7 +1240,22 @@ public class PnlSeguimiento extends javax.swing.JPanel implements Comunicador{
         //aFechaDCh.setDate(((ImplementacionEvento) implementacionEvento).getFechaFinal());
         eventoCBx.setSelectedIndex(((ImplementacionEvento) implementacionEvento)
                 .getEvento().getId());
-        this.realizarEncuestaPnlComponentShown(null);
+        seguimientoTBn.setSelectedIndex(0);
+        
+        resultadoPnl.setVisible(false);
+        remove(resultadoPnl);
+        add(informacionTBn);
+        informacionTBn.setVisible(true);
+        tabIndice = 0;
+        eventosTblModel.setNumRows(0);
+        alerta = true;
+        
+        ImplementacionEvento ie = (ImplementacionEvento) implementacionEvento;
+        evento = new String[3];
+        evento[0] = String.valueOf(ie.getId());
+        evento[1] = ie.getEvento().getNombre();
+        evento[2] = ie.getFechaInicial().toString();
+        
         realizarEncuestaPnl.updateUI();
         this.updateUI();
     }

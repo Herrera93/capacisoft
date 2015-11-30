@@ -48,6 +48,7 @@ public class BaseDAO<T> implements InterfaceDAO<T> {
             HibernateUtil.commitTransaction();
             System.out.println("Guardado exitoso");
         }catch(HibernateException e){
+            e.printStackTrace();
             HibernateUtil.rollbackTransaction();
         }finally{
             HibernateUtil.closeSession();

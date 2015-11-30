@@ -25,7 +25,7 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  *
  * @author liuts
  */
-public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// class
+public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{// class
 
     private AlertaControlador control;
     // matriz con el tipo de alerta correspondiente
@@ -70,6 +70,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         alerta4Pnl.setVisible(false);
         anteriorBtn.setEnabled(false);
         siguienteBtn.setEnabled(false);
+        
+        verificarImplementaciones();
         
         consultarAlerta();
         
@@ -978,7 +980,7 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
      * alertas programas por el momento lo notifica al usuario mediante un
      * mensaje.
      */
-    private void consultarAlerta(){
+    public void consultarAlerta(){
         switch(seleccionCBx.getSelectedIndex()){//switch
             case 0:// alertas recientes
                 descripcionLbl.setText("<html>Consulta todas las alertas "
@@ -1546,7 +1548,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                 tipoAlerta1Lbl.setText("Encuesta pendiente");
                 break;
         }//switch
-        nombreSede1Lbl.setText(e1.getSede().getNombre());
+        if(e1.getSede() != null)
+            nombreSede1Lbl.setText(e1.getSede().getNombre());
         resolver1Btn.setName(pagina + "");
         alerta1Pnl.setVisible(true);
 
@@ -1570,7 +1573,8 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
                     tipoAlerta2Lbl.setText("Encuesta pendiente");
                     break;
             }//switch
-            nombreSede2Lbl.setText(e2.getSede().getNombre());
+            if(e2.getSede() != null)
+                nombreSede2Lbl.setText(e2.getSede().getNombre());
             resolver2Btn.setName(pagina + "");
             alerta2Pnl.setVisible(true);
         }//if
@@ -1812,6 +1816,10 @@ public class PnlAlertas extends javax.swing.JPanel implements Comunicador{// cla
         });
         
         return eventos;
+    }
+
+    public void verificarImplementaciones() {
+        control.verificarImplementaciones();
     }
     
 }// class

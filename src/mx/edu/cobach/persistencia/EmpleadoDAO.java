@@ -180,6 +180,9 @@ public class EmpleadoDAO extends BaseDAO {
             } else if(empleado.getAdscripcion().getId() == 2) {
                 criteria.add(Restrictions.eq("plantel", empleado.getPlantel()));
                 criteria.add(Restrictions.like("p.nombre", "Director%"));
+            } else if(empleado.getAdscripcion().getId() == 3) {
+                criteria.add(Restrictions.eq("direccion", empleado.getPlantel()));
+                criteria.add(Restrictions.like("p.nombre", "Director%"));
             }
             jefe = criteria.uniqueResult();
             HibernateUtil.commitTransaction();
