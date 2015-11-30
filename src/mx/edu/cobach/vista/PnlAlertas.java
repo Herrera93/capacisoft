@@ -79,171 +79,90 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             Date actual = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String[] fecha = sdf.format(actual).split("/");
-            System.out.println("Año: " + fecha[2]);
-            Date programacion = actual;
-//            Date programacion = sdf.parse("15/01/" + fecha[2]);
-            System.out.println("Primer parse: " + sdf.format(programacion));
+            // Linea para probar el alta de alertas de eventos programados.
+//            Date programacion = actual;
+            Date programacion = sdf.parse("15/01/" + fecha[2]);
             if(actual.equals(programacion)){//if
                 
-                System.out.println("Fecha: 14/08/" + (Integer.parseInt(fecha[2]) - 1));
                 List<Object> programar = control1.buscarTodosLista();
-//                        control1.buscarImplementacionLista(
-//                        sdf.parse("15/08/" + (Integer.parseInt(fecha[2]))),
-////                        sdf.parse("15/08/" + (Integer.parseInt(fecha[2]) - 1)),
-//                        sdf.parse("14/01/" + (Integer.parseInt(fecha[2]))));
-                System.out.println("Encontré: " + programar.size());
-                Date inicio = sdf.parse("15/08/" + (Integer.parseInt(fecha[2])));
+                List<Object> auxiliar = new ArrayList();
+                Date inicio = sdf.parse("15/08/" + (Integer.parseInt(fecha[2]) - 1));
                 Date fin = sdf.parse("14/01/" + (Integer.parseInt(fecha[2])));
                 for(Object o : programar){//for
                     ImplementacionEvento ie = (ImplementacionEvento) o;
-                    if(ie.getFechaInicial().before(inicio)
-                            && ie.getFechaFinal().after(fin)){//if
-                        programar.remove(o);
+                    if((ie.getFechaInicial().after(inicio)
+                            || ie.getFechaInicial().equals(inicio))
+                            &&(ie.getFechaFinal().after(fin)
+                            || ie.getFechaFinal().equals(fin))
+                            && !ie.isActivo()){//if
+                        auxiliar.add(o);
                     }//if
                 }//for
-                Set<ImplementacionEvento> implementado = ((Alerta)control.
-                        buscarAlerta(1)).getImplementacionEventos();
+                programar = auxiliar;
                 
-                int clave = 0;
-                List<Object> alertas = control.buscarTodas();
-                // obtener la última clave
-                for(int i = 0; i < 4; i++){//for
-                    Set<ImplementacionEvento> eventos = ((Alerta)alertas
-                            .get(i)).getImplementacionEventos();
-                    if(eventos != null){//if
-                        for(ImplementacionEvento e : eventos){//for
-                            if(e.getId() > clave){//if
-                                clave = e.getId();
-                            }//if
-                        }//for
-                    }//if
-                }//for
-                clave ++;
-                
-                if(implementado == null){//if
-                    if(programar != null){//if
-                        Set<ImplementacionEvento> eventos = new HashSet();
+                if(programar.size() > 0){//if
+                    for(Object obj : programar){//for
+                        ImplementacionEvento e = (ImplementacionEvento) obj;
+                        e.setId(null);
+                        e.setFechaInicial(actual);
+                        e.setFechaFinal(actual);
+                        e.setActivo(true);
+
+                        Set<Alerta> alertas = new HashSet();
+                        Alerta a = new Alerta();
+                        a.setId(1);
+                        alertas.add(a);
+                        e.setAlertas(alertas);
+                        control1.alta(e);
+                    }//for
+                }//if
+            }//if
+            else{//else
+                // Linea para probar el alta de alertas de eventos programados.
+//                programacion = actual;
+                programacion = sdf.parse("15/08/" + fecha[2]);
+                if(actual.equals(programacion)){//if
+                    // semestre -2
+                    List<Object> programar = control1.buscarTodosLista();
+                    List<Object> auxiliar = new ArrayList();
+                    Date inicio = sdf.parse("15/01/" + (Integer.parseInt(fecha[2])));
+                    Date fin = sdf.parse("14/08/" + (Integer.parseInt(fecha[2])));
+                    for(Object o : programar){//for
+                        ImplementacionEvento ie = (ImplementacionEvento) o;
+                        if((ie.getFechaInicial().after(inicio)
+                                || ie.getFechaInicial().equals(inicio))
+                                &&(ie.getFechaFinal().after(fin)
+                                || ie.getFechaFinal().equals(fin))
+                                && !ie.isActivo()){//if
+                            auxiliar.add(o);
+                        }//if
+                    }//for
+                    programar = auxiliar;
+
+                    if(programar.size() > 0){//if
                         for(Object obj : programar){//for
                             ImplementacionEvento e = (ImplementacionEvento) obj;
-                            e.setId(clave);
+                            e.setId(null);
                             e.setFechaInicial(actual);
                             e.setFechaFinal(actual);
                             e.setActivo(true);
+
+                            Set<Alerta> alertas = new HashSet();
+                            Alerta a = new Alerta();
+                            a.setId(1);
+                            alertas.add(a);
+                            e.setAlertas(alertas);
                             control1.alta(e);
-                            clave ++;
-                            eventos.add(e);
                         }//for
-                        ((Alerta) alertas.get(1))
-                                .setImplementacionEventos(eventos);
-                        control.modificacion(alertas.get(1));
                     }//if
                 }//if
-                else{//else
-                    if(programar != null){//if
-                        Alerta a = (Alerta)alertas.get(1);
-                        for(Object obj : programar){//for
-                            for(ImplementacionEvento ie : implementado){//for
-                                ImplementacionEvento temp 
-                                        = (ImplementacionEvento) obj;
-                                if(!temp.getEvento().equals(ie.getEvento())){//if
-                                    ie.setId(clave);
-                                    ie.setFechaInicial(actual);
-                                    ie.setFechaFinal(actual);
-                                    a.getImplementacionEventos().add(ie);
-                                    clave ++;
-                                }//if
-                            }//for
-                        }//for
-                        control.modificacion(a);
-                    }//if
-                }//else
-                
-            }//if
+            }//else
         }//try
         catch (ParseException ex) {//catch
 //            setMensaje("Ocurrió un error inesperado al convertir la fecha."
 //                    + "/Error/" + JOptionPane.ERROR_MESSAGE);
         }//catch
         
-        // Semestre -2
-//        try {//try
-//            ImplementarEventoControlador control1 = eventoPnl.control;
-//            Date actual = new Date();
-//            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//            String[] fecha = sdf.format(actual).split("/");
-//            System.out.println("Año: " + fecha[2]);
-//            Date programacion = sdf.parse("15/08/" + fecha[2]);
-//            System.out.println("Primer parse: " + sdf.format(programacion));
-//            if(actual.equals(programacion)){//if
-//                
-//                System.out.println("Fecha: 14/01/" + (Integer.parseInt(fecha[2]) - 1));
-////                List<Object> programar = control1.buscarImplementacionLista(
-////                        sdf.parse("15/01/" + (Integer.parseInt(fecha[2]) - 1)), 
-////                        sdf.parse("14/08/" + (Integer.parseInt(fecha[2]))));
-//                System.out.println("Segundo parse");
-//                Set<ImplementacionEvento> implementado = ((Alerta)control.
-//                        buscarAlerta(1)).getImplementacionEventos();
-//                
-//                int clave = 0;
-//                List<Object> alertas = control.buscarTodas();
-//                // obtener la última clave
-//                for(int i = 0; i < 4; i++){//for
-//                    Set<ImplementacionEvento> eventos = ((Alerta)alertas
-//                            .get(i)).getImplementacionEventos();
-//                    if(eventos != null){//if
-//                        for(ImplementacionEvento e : eventos){//for
-//                            if(e.getId() > clave){//if
-//                                clave = e.getId();
-//                            }//if
-//                        }//for
-//                    }//if
-//                }//for
-//                clave ++;
-//                
-//                if(implementado == null){//if
-//                    if(programar != null){//if
-//                        Set<ImplementacionEvento> eventos = new HashSet();
-//                        for(Object obj : programar){//for
-//                            ImplementacionEvento e = (ImplementacionEvento) obj;
-//                            e.setId(clave);
-//                            e.setFechaInicial(actual);
-//                            e.setFechaFinal(actual);
-//                            e.setActivo(true);
-//                            control1.alta(e);
-//                            clave ++;
-//                            eventos.add(e);
-//                        }//for
-//                        ((Alerta) alertas.get(1))
-//                                .setImplementacionEventos(eventos);
-//                        control.modificacion(alertas.get(1));
-//                    }//if
-//                }//if
-//                else{//else
-//                    if(programar != null){//if
-//                        Alerta a = (Alerta)alertas.get(1);
-//                        for(Object obj : programar){//for
-//                            for(ImplementacionEvento ie : implementado){//for
-//                                ImplementacionEvento temp 
-//                                        = (ImplementacionEvento) obj;
-//                                if(!temp.getEvento().equals(ie.getEvento())){//if
-//                                    ie.setId(clave);
-//                                    ie.setFechaInicial(actual);
-//                                    ie.setFechaFinal(actual);
-//                                    a.getImplementacionEventos().add(ie);
-//                                    clave ++;
-//                                }//if
-//                            }//for
-//                        }//for
-//                        control.modificacion(a);
-//                    }//if
-//                }//else
-//            }//if
-//        }//try
-//        catch (ParseException ex) {//catch
-////            setMensaje("Ocurrió un error inesperado al convertir la fecha."
-////                    + "/Error/" + JOptionPane.ERROR_MESSAGE);
-//        }//catch
-
         consultarAlerta();
     }// method
 
