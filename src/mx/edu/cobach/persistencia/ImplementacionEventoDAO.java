@@ -12,6 +12,7 @@ import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
+import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.util.HibernateUtil;
 import org.hibernate.Criteria;
@@ -192,6 +193,30 @@ public class ImplementacionEventoDAO<T> extends BaseDAO{
             Criteria criteria = HibernateUtil.getSession().
                     createCriteria(entityClass, "implementacion");
             criteria.add(Restrictions.eq("sede", sede));
+            ts = criteria.list(); 
+            HibernateUtil.commitTransaction();
+        }catch(HibernateException e){
+            HibernateUtil.rollbackTransaction();
+        }finally{
+            HibernateUtil.closeSession();
+        }
+        return ts;
+    }
+    
+    /**
+     * Este metodo busca en la base de datos, todos los eventos de capacitacion
+     * que se impartio un proveedor
+     * @param sede objeto de tipo entidad sede
+     * @return lista de objeto que retorna los eventos coincidentes con la direccion
+     */
+    public List<Object> buscarPorProveedor(Proveedor proveedor){
+        List<Object> ts = null;
+        try{
+            HibernateUtil.openSession();
+            HibernateUtil.beginTransaction();
+            Criteria criteria = HibernateUtil.getSession().
+                    createCriteria(entityClass, "implementacion");
+            criteria.add(Restrictions.eq("proveedor", proveedor));
             ts = criteria.list(); 
             HibernateUtil.commitTransaction();
         }catch(HibernateException e){
