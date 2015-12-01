@@ -566,7 +566,6 @@ public final class ListaAsistenciaFrm extends javax.swing.JFrame implements Comu
                                             0)) != 0) {
                         tableData[cont][0] = candidatosModel.getValueAt(i, 0);
                         tableData[cont][1] = candidatosModel.getValueAt(i, 1);
-                        tableData[cont][2] = candidatosModel.getValueAt(i, 2);
                         cont++;
                     }
                 }
