@@ -417,6 +417,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="primerNombreTFdFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="primerNombreTFdFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="primerNombreTFdKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="tipoLbl">
@@ -486,6 +487,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="correoTFdFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="correoTFdFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="correoTFdKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="siguienteBtn">
@@ -518,6 +520,9 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="segundoNombreTFdKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="segundoNombreLbl">
               <Properties>
@@ -536,6 +541,7 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoPaternoTFdFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apellidoPaternoTFdFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="apellidoPaternoTFdKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="apellidoPaternoLbl">
@@ -552,6 +558,9 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="apellidoMaternoTFdKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="apellidoMaternoLbl">
               <Properties>
