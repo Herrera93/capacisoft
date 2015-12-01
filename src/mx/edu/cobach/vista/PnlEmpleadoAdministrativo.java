@@ -689,7 +689,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 atributos.add(segApellidoTFd.getText());
             }
             atributos.add(puestoCBx.getSelectedItem());
-            atributos.add(correoTFd.getText() + "@cobachbc.edu.mx");
+            atributos.add(correoTFd.getText().toLowerCase() + "@cobachbc.edu.mx");
             atributos.add(adscCBx.getSelectedItem());
             atributos.add(plantelCBx.getSelectedItem());
             atributos.add(departamentoCBx.getSelectedItem());
@@ -935,6 +935,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         if (correoTFd.getText().length() >= 45) {
             evt.consume();
         }
+        correoTFd.setText( correoTFd.getText().toLowerCase());
     }//GEN-LAST:event_correoTFdKeyTyped
 
     /**
