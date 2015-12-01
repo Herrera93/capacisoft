@@ -1680,9 +1680,6 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 for(int y = 0; y < 4; y++){//for
                     if(z < auxiliar.size() && auxiliar.get(z) != null){//if
                         if(((Alerta) info.get(0)).getImplementacionEventos()
-                                .contains(auxiliar.get(z))
-                                && !((Alerta) info.get(0))
-                                .getImplementacionEventos()
                                 .contains(auxiliar.get(z))){//if
                             if(seleccionCBx.getSelectedIndex() == 0 
                                     || seleccionCBx.getSelectedIndex() == 1){//if
@@ -1691,32 +1688,35 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                         }//if
                         else{// else
                             if(((Alerta) info.get(1)).getImplementacionEventos()
-                                    .contains(auxiliar.get(z))
-                                    && !((Alerta) info.get(1))
-                                    .getImplementacionEventos()
-                                    .contains(auxiliar.get(z-1))){//if
-                                if(seleccionCBx.getSelectedIndex() == 0 
-                                        || seleccionCBx.getSelectedIndex() == 2)
-                                {//if
-                                    tipoAlerta[x][y] = 2;
+                                    .contains(auxiliar.get(z))){//if
+                                if(z > 0 && !((Alerta) info.get(1))
+                                        .getImplementacionEventos()
+                                        .contains(auxiliar.get(z-1))){//if
+                                    if(seleccionCBx.getSelectedIndex() == 0 
+                                    || seleccionCBx.getSelectedIndex() == 2)
+                                    {//if
+                                        tipoAlerta[x][y] = 2;
+                                    }//if
                                 }//if
                             }//if
                             else{//else
                                 if(((Alerta) info.get(2))
                                         .getImplementacionEventos()
-                                        .contains(auxiliar.get(z)) && 
-                                        !((Alerta) info.get(2))
+                                        .contains(auxiliar.get(z))){//if
+                                    if(z > 0 && !((Alerta) info.get(2))
                                         .getImplementacionEventos()
                                         .contains(auxiliar.get(z-1))){//if
-                                    if(seleccionCBx.getSelectedIndex() == 0 
+                                        if(seleccionCBx.getSelectedIndex() == 0 
                                             || seleccionCBx
-                                                    .getSelectedIndex() == 3){//if
-                                        tipoAlerta[x][y] = 3;
+                                            .getSelectedIndex() == 3){//if
+                                            tipoAlerta[x][y] = 3;
+                                        }//if
                                     }//if
                                 }//if
                                 else{//else
-                                    if(((Alerta) info.get(3)).getImplementacionEventos()
-                                .contains(auxiliar.get(z))){//if
+                                    if(((Alerta) info.get(3))
+                                            .getImplementacionEventos()
+                                            .contains(auxiliar.get(z))){//if
                                         if(seleccionCBx.getSelectedIndex() == 0 
                                                 || seleccionCBx
                                                 .getSelectedIndex() == 4){//if
