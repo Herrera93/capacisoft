@@ -296,6 +296,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                 primerNombreTFdFocusLost(evt);
             }
         });
+        primerNombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                primerNombreTFdKeyTyped(evt);
+            }
+        });
 
         tipoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipoLbl.setText("Tipo de proveedor:");
@@ -342,6 +347,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                 correoTFdFocusLost(evt);
             }
         });
+        correoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                correoTFdKeyTyped(evt);
+            }
+        });
 
         siguienteBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         siguienteBtn.setText("Siguiente");
@@ -357,6 +367,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         agregarMsjLbl.setText("<html>Ingrese la información a almacenar, para salir o cancelar el registro presione el botón \"Cancelar\"</html>");
 
         segundoNombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        segundoNombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                segundoNombreTFdKeyTyped(evt);
+            }
+        });
 
         segundoNombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         segundoNombreLbl.setText("Segundo nombre:");
@@ -370,11 +385,21 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
                 apellidoPaternoTFdFocusLost(evt);
             }
         });
+        apellidoPaternoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoPaternoTFdKeyTyped(evt);
+            }
+        });
 
         apellidoPaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoPaternoLbl.setText("Apellido paterno:");
 
         apellidoMaternoTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoMaternoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                apellidoMaternoTFdKeyTyped(evt);
+            }
+        });
 
         apellidoMaternoLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         apellidoMaternoLbl.setText("Apellido materno:");
@@ -929,6 +954,50 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             validTelefonoLbl.setForeground(new Color(255, 0, 0));
         }
     }//GEN-LAST:event_telefonoTFdFocusLost
+
+    private void primerNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerNombreTFdKeyTyped
+if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar())) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_primerNombreTFdKeyTyped
+
+    private void segundoNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_segundoNombreTFdKeyTyped
+if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar())) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_segundoNombreTFdKeyTyped
+
+    private void apellidoPaternoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdKeyTyped
+ if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar())) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_apellidoPaternoTFdKeyTyped
+
+    private void apellidoMaternoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdKeyTyped
+if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar())) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_apellidoMaternoTFdKeyTyped
+
+    private void correoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTFdKeyTyped
+
+    }//GEN-LAST:event_correoTFdKeyTyped
 
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

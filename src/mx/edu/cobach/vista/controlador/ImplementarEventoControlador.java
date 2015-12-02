@@ -73,6 +73,7 @@ public class ImplementarEventoControlador extends BaseControlador {
                 buscarPorEvento(evento);
         com.setTabla(HelperEntidad.descomponerObjetos(o));
     }
+    
     /**
      * Este metodo sirve para buscar la coincidencia del nombree de los
      * empleados para la lista de asistencia
@@ -111,8 +112,7 @@ public class ImplementarEventoControlador extends BaseControlador {
      * Este metodo sirve para buscar la coincidencia del departamento de los
      * empleados para la lista de asistencia
      *
-     * @param id
-     * @param cursoClase
+     * @param departamento
      */
     public void buscarEmpD(Departamento departamento) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().
@@ -151,8 +151,7 @@ public class ImplementarEventoControlador extends BaseControlador {
      * Este metodo sirve para buscar la coincidencia del puesto de los empleados
      * para la lista de asistencia
      *
-     * @param id
-     * @param cursoClase
+     * @param puesto
      */
     public void buscarEmpPu(Puesto puesto) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().
@@ -197,7 +196,8 @@ public class ImplementarEventoControlador extends BaseControlador {
      * implementado
      *
      * @param impleEvento
-     * @param listacalificacion
+     * @param listaCalificacion
+     * @param envio
      */
     public void guardarOModificarEventoImplementado(Object impleEvento,
             List listaCalificacion, String envio) {
@@ -333,7 +333,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         List<Object> implementaciones = ServiceLocatorDELEGATE.
                 getImplementarEvento()
                 .buscarImplementaciones(evento, de, hasta);
-        if (implementaciones== null || implementaciones.size() == 0) {
+        if (implementaciones == null || implementaciones.size() == 0) {
             com.setMensaje("No se encontro eventos de capacitacion");
         }else{
             com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
@@ -383,4 +383,17 @@ public class ImplementarEventoControlador extends BaseControlador {
         }
     }
 
+    /**
+     * Se buscan las implementacion de un evento que se encuentren en un rango
+     * de fechas dado. Se obtienen las implementacion que no cuenten con 
+     * encuesta.
+     *
+     * @param evento Objeto de evento a buscar
+     * @return Lista de objetos con las implementaciones del evento.
+     */
+    public List<Object> buscarPorEventoLista(Evento evento) {//method
+        return ServiceLocatorDELEGATE.getImplementarEvento().
+                buscarPorEvento(evento);
+    }//method
+    
 }

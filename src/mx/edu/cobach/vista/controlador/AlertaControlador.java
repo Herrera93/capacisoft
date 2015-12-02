@@ -84,6 +84,10 @@ public class AlertaControlador extends BaseControlador{// class
         ServiceLocatorDELEGATE.getInstance().saveOrUpdate(alerta, Alerta.class);
     }
 
+    /**
+     * Método que verifica si un evento ya se ha realizado, cambiando su estado
+     * de activo a no activo.
+     */
     public void verificarImplementaciones() {
         List<Object> lista = ServiceLocatorDELEGATE.getImplementarEvento()
                 .findAll(ImplementacionEvento.class);
