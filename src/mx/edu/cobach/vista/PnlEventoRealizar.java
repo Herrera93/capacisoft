@@ -7,6 +7,8 @@ package mx.edu.cobach.vista;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -804,18 +806,59 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 pendiente = true;
                 atributos.add(null);
             }else{
-                atributos.add(lisEmpleado);                
+                atributos.add(lisEmpleado);
             }
             
             control.setClass(ImplementacionEvento.class);
             if (guardarLABtn.getText().equals("Guardar")) {
-                if(pendiente){
-                    HashSet<Alerta> alertas = new HashSet();
-                    Alerta alerta = new Alerta();
-                    alerta.setId(3);
-                    alertas.add(alerta);
-                    atributos.add(alertas);
-                }
+                List<Object> ls = control.buscarPorEventoLista(evento);
+                boolean ban = false, ban1 = false;
+                for(Object o : ls){//for
+                    ImplementacionEvento ie = (ImplementacionEvento) o;
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    try{//try
+                        if(ie.getFechaFinal().equals(sdf.parse(fechaIDCh
+                                .getDateFormatString())) && ie.getFechaFinal()
+                                .equals(sdf.parse(fechaTDCh
+                                .getDateFormatString()))){//if
+                            if(ie.getAlertas().isEmpty()){//if
+                                for(Alerta a : ie.getAlertas()){//for
+                                    if(a.getId().equals(3)){//if
+                                        ban = true;
+                                    }//if
+                                    if(a.getId().equals(4)){//if
+                                        ban1 = true;
+                                    }//if
+                                }//for
+                            }//if
+                        }//if
+                    }//try
+                    catch(ParseException e){//catch
+                    }//catch
+                }//for
+                HashSet<Alerta> alertas = new HashSet();
+                if(pendiente){//if
+                    if(!ban){//if
+                        Alerta alerta = new Alerta();
+                        alerta.setId(3);
+                        alertas.add(alerta);
+                        atributos.add(alertas);
+                    }//if
+                    if(!ban1){//if
+                        Alerta alerta = new Alerta();
+                        alerta.setId(4);
+                        alertas.add(alerta);
+                        atributos.add(alertas);
+                    }//if
+                }//if
+                else{//else
+                    if(!ban1){//if
+                        Alerta alerta = new Alerta();
+                        alerta.setId(4);
+                        alertas.add(alerta);
+                        atributos.add(alertas);
+                    }//if
+                }//else
                 control.alta(HelperEntidad.
                         getImplementarEvento(atributos, "Guardar"));
             } else {

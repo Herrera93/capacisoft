@@ -29,7 +29,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
 
     private AlertaControlador control;
     // matriz con el tipo de alerta correspondiente
-    private int[][] tipoAlerta;
+    private int[][] tipoAlertas;
     // matriz en representación de páginas de alertas
     private ImplementacionEvento[][] implementaciones;
     // opción previamente seleccionada al actualizar periodo
@@ -1171,7 +1171,6 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                     "diente: " +  encuesta1 + " dias.</html>", "Confimación",
                     JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("Respuesta: " + respuesta);
             if(respuesta == 0){//if
                 Alerta evento = (Alerta) control.buscarAlerta(1);
                 Alerta evento1 = (Alerta) control.buscarAlerta(2);
@@ -1217,7 +1216,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         int alerta;
         if(evt.getSource().equals(resolver1Btn)){//if
             e = implementaciones[Integer.parseInt(resolver1Btn.getName())][0];
-            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][0];
+            alerta = tipoAlertas[Integer.parseInt(resolver1Btn.getName())][0];
             switch(alerta){//switch
                 case 0:// evento programado
                     this.setVisible(false);
@@ -1243,7 +1242,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         }//if
         if(evt.getSource().equals(resolver2Btn)){//if
             e = implementaciones[Integer.parseInt(resolver1Btn.getName())][1];
-            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][1];
+            alerta = tipoAlertas[Integer.parseInt(resolver1Btn.getName())][1];
             switch(alerta){//switch
                 case 0:// evento programado
                     this.setVisible(false);
@@ -1269,7 +1268,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         }//if
         if(evt.getSource().equals(resolver3Btn)){//if
             e = implementaciones[Integer.parseInt(resolver1Btn.getName())][2];
-            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][2];
+            alerta = tipoAlertas[Integer.parseInt(resolver1Btn.getName())][2];
             switch(alerta){//switch
                 case 0:// evento programado
                     this.setVisible(false);
@@ -1295,7 +1294,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         }//if
         if(evt.getSource().equals(resolver4Btn)){//if
             e = implementaciones[Integer.parseInt(resolver1Btn.getName())][3];
-            alerta = tipoAlerta[Integer.parseInt(resolver1Btn.getName())][3];
+            alerta = tipoAlertas[Integer.parseInt(resolver1Btn.getName())][3];
             switch(alerta){//switch
                 case 0:// evento programado
                     this.setVisible(false);
@@ -1502,13 +1501,13 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
      * 
      * @param pagina, Indica la página a la que se ha cambiado.
      */
-    public void cambioPagina(int pagina){//method
+    private void cambioPagina(int pagina){//method
         ImplementacionEvento e1,e2 = null,e3 = null,e4 = null;
         e1 = implementaciones[pagina][0];
         nombre1Lbl.setText(e1.getEvento().getNombre());
         inicio1Txf.setText(e1.getFechaInicial().toString());
         fin1Txf.setText(e1.getFechaFinal().toString());
-        switch(tipoAlerta[pagina][0]){//switch
+        switch(tipoAlertas[pagina][0]){//switch
             case 1:// evento programado
                 tipoAlerta1Lbl.setText("Evento programado");
                 break;
@@ -1522,18 +1521,21 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 tipoAlerta1Lbl.setText("Encuesta pendiente");
                 break;
         }//switch
-        if(e1.getSede() != null)
+        if(e1.getSede() != null){//if
             nombreSede1Lbl.setText(e1.getSede().getNombre());
-            resolver1Btn.setName(pagina + "");
-            alerta1Pnl.setVisible(true);
+        }//if
+        else{//else
+            nombreSede1Lbl.setText(null);
+        }//else
+        resolver1Btn.setName(pagina + "");
+        alerta1Pnl.setVisible(true);
 
-        if(implementaciones[pagina][1] != null 
-                && implementaciones[pagina][1] != e1){//if
+        if(implementaciones[pagina][1] != null){//if
             e2 = implementaciones[pagina][1];
             nombre2Lbl.setText(e2.getEvento().getNombre());
             inicio2Txf.setText(e2.getFechaInicial().toString());
             fin2Txf.setText(e2.getFechaFinal().toString());
-            switch(tipoAlerta[pagina][1]){//switch
+            switch(tipoAlertas[pagina][1]){//switch
                 case 1:// evento programado
                     tipoAlerta2Lbl.setText("Evento programado");
                     break;
@@ -1547,8 +1549,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                     tipoAlerta2Lbl.setText("Encuesta pendiente");
                     break;
             }//switch
-            if(e2.getSede() != null)
+            if(e2.getSede() != null){//if
                 nombreSede2Lbl.setText(e2.getSede().getNombre());
+            }//if
+            else{//else
+                nombreSede2Lbl.setText(null);
+            }//else
             resolver2Btn.setName(pagina + "");
             alerta2Pnl.setVisible(true);
         }//if
@@ -1556,16 +1562,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             alerta2Pnl.setVisible(false);
         }//else
 
-        System.out.println("Imp: " + implementaciones[pagina][2]
-                + "\nE1: " + e1 + "\nE2: " + e2);
-        if(implementaciones[pagina][2] != null
-                && implementaciones[pagina][2] != e1
-                && implementaciones[pagina][2] != e2){//if
+        if(implementaciones[pagina][2] != null){//if
             e3 = implementaciones[pagina][2];
             nombre3Lbl.setText(e3.getEvento().getNombre());
             inicio3Txf.setText(e3.getFechaInicial().toString());
             fin3Txf.setText(e3.getFechaFinal().toString());
-            switch(tipoAlerta[pagina][2]){//switch
+            switch(tipoAlertas[pagina][2]){//switch
                 case 1:// evento programado
                     tipoAlerta3Lbl.setText("Evento programado");
                     break;
@@ -1579,7 +1581,9 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                     tipoAlerta3Lbl.setText("Encuesta pendiente");
                     break;
             }//switch
-            nombreSede3Lbl.setText(e3.getSede().getNombre());
+            if(e3.getSede() != null){//if
+                nombreSede3Lbl.setText(e3.getSede().getNombre());
+            }//if
             resolver3Btn.setName(pagina + "");
             alerta3Pnl.setVisible(true);
         }//if
@@ -1587,21 +1591,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             alerta3Pnl.setVisible(false);
         }//else
 
-        System.out.println("Imp: " + implementaciones[pagina][2]
-                + "\nE1: " + e1 + "\nE2: " + e2 + "\nE3: " + e3);
-        if(implementaciones[pagina][3] != null
-                && implementaciones[pagina][3] != e1
-                && implementaciones[pagina][3] != e2
-                /*&& implementaciones[pagina][3] != e3*/){//if
+        if(implementaciones[pagina][3] != null){//if
             e4 = implementaciones[pagina][3];
             nombre4Lbl.setText(e4.getEvento().getNombre());
             inicio4Txf.setText(e4.getFechaInicial().toString());
             fin4Txf.setText(e4.getFechaFinal().toString());
-            for(Alerta a : e4.getAlertas()){//for
-                System.out.println("Id 4: " + a.getId());
-                break;
-            }//for
-            switch(tipoAlerta[pagina][3]){//switch
+            switch(tipoAlertas[pagina][3]){//switch
                 case 1:// evento programado
                     tipoAlerta4Lbl.setText("Evento programado");
                     break;
@@ -1615,7 +1610,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                     tipoAlerta4Lbl.setText("Encuesta pendiente");
                     break;
             }//switch
-            nombreSede4Lbl.setText(e4.getSede().getNombre());
+            if(e3.getSede() != null){//if
+                nombreSede4Lbl.setText(e4.getSede().getNombre());
+            }//if
+            else{//else
+                nombreSede4Lbl.setText(null);
+            }//else
             resolver4Btn.setName(pagina + "");
             alerta4Pnl.setVisible(true);
         }//if
@@ -1657,76 +1657,30 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
     /**
      * Método que genera los paneles de alerta consultadas.
      * 
-     * @param info, 
+     * @param info, Lista de objetos que contienen las alertas de las cuales se
+     * obtendrán las implementaciones.
      * @param recientes, Booleano que al ser verdadero indica si se generarán 
      * los paneles de Alertas recientes y al ser falso indica que se genearán
      * paneles para una alerta específica.
      */
      private void generarPanelAlerta(List<Object> info, boolean recientes){//method
         int totalPag;
-        List<ImplementacionEvento> auxiliar = ordenarImplementaciones(info);
+        List<ImplementacionEvento> eventosAux = ordenarImplementaciones(info);
+        int[][] tipoAlerta = tipoAlertas;
+        tipoAlertas = new int[tipoAlerta.length][4];
         if(recientes){//if
-            totalPag = Math.round(auxiliar.size()/4);
-
-            System.out.println("Total: " + auxiliar.size() +"\nPaginas: " + auxiliar.size()%4);
-            if((auxiliar.size()%4) != 0 || auxiliar.size() < 4){//if
+            totalPag = Math.round(eventosAux.size()/4);
+            if((eventosAux.size()%4) != 0 || eventosAux.size() < 4){//if
                 totalPag = totalPag + 1;
             }//if
-
             implementaciones = new ImplementacionEvento[totalPag][4];
-            tipoAlerta = new int[totalPag][4];
+            tipoAlertas = new int[totalPag][4];
             int z = 0;
             for(int x = 0; x < totalPag; x++){//for
                 for(int y = 0; y < 4; y++){//for
-                    if(z < auxiliar.size() && auxiliar.get(z) != null){//if
-                        if(((Alerta) info.get(0)).getImplementacionEventos()
-                                .contains(auxiliar.get(z))){//if
-                            if(seleccionCBx.getSelectedIndex() == 0 
-                                    || seleccionCBx.getSelectedIndex() == 1){//if
-                                tipoAlerta[x][y] = 1;
-                            }//if
-                        }//if
-                        else{// else
-                            if(((Alerta) info.get(1)).getImplementacionEventos()
-                                    .contains(auxiliar.get(z))){//if
-                                if(z > 0 && !((Alerta) info.get(1))
-                                        .getImplementacionEventos()
-                                        .contains(auxiliar.get(z-1))){//if
-                                    if(seleccionCBx.getSelectedIndex() == 0 
-                                    || seleccionCBx.getSelectedIndex() == 2)
-                                    {//if
-                                        tipoAlerta[x][y] = 2;
-                                    }//if
-                                }//if
-                            }//if
-                            else{//else
-                                if(((Alerta) info.get(2))
-                                        .getImplementacionEventos()
-                                        .contains(auxiliar.get(z))){//if
-                                    if(z > 0 && !((Alerta) info.get(2))
-                                        .getImplementacionEventos()
-                                        .contains(auxiliar.get(z-1))){//if
-                                        if(seleccionCBx.getSelectedIndex() == 0 
-                                            || seleccionCBx
-                                            .getSelectedIndex() == 3){//if
-                                            tipoAlerta[x][y] = 3;
-                                        }//if
-                                    }//if
-                                }//if
-                                else{//else
-                                    if(((Alerta) info.get(3))
-                                            .getImplementacionEventos()
-                                            .contains(auxiliar.get(z))){//if
-                                        if(seleccionCBx.getSelectedIndex() == 0 
-                                                || seleccionCBx
-                                                .getSelectedIndex() == 4){//if
-                                            tipoAlerta[x][y] = 4;
-                                        }//if
-                                    }//if
-                                }//else
-                            }//else
-                        }// else
-                        implementaciones[x][y] = auxiliar.get(z);
+                    if(z < eventosAux.size() && eventosAux.get(z) != null){//if
+                        implementaciones[x][y] = eventosAux.get(z);
+                        tipoAlertas[x][y] = tipoAlerta[z][0];
                         z++;
                     }//if
                     else{//else
@@ -1737,26 +1691,12 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             }//for
         }//if
         else{//else
-            totalPag = Math.round(auxiliar.size()/4);
-            if(((auxiliar.size()%4) != 0 || auxiliar.size() < 4)
-                    && auxiliar.size() > 0){//if
+            totalPag = Math.round(eventosAux.size()/4);
+            if(((eventosAux.size()%4) != 0 || eventosAux.size() < 4)
+                    && eventosAux.size() > 0){//if
                 totalPag = totalPag + 1;
             }//if
-            int z = 0;
             implementaciones = new ImplementacionEvento[totalPag][4];
-            tipoAlerta = new int[totalPag][4];
-            for(int x = 0; x < totalPag; x++){//for
-                for(int y = 0; y < 4; y++){//for
-                    if(auxiliar.get(z) != null){//if
-                        implementaciones[x][y] = auxiliar.get(z);
-                        tipoAlerta[x][y] = seleccionCBx.getSelectedIndex();
-                    }//if
-                    else{//else
-                        x = totalPag;
-                        y = 4;
-                    }//else
-                }//for
-            }//for
         }//else
         anteriorBtn.setName("0");
         siguienteBtn.setName("1");
@@ -1780,25 +1720,39 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
      * Método que ordena los eventos con respecto a la fecha de 
      * terminación de su implementación.
      * 
-     * @param info, Lista de implementaciones sin ordenar
-     * @return Lista de implementaciones de eventos ordenadas
+     * @param info, Lista de implementaciones sin ordenar.
+     * @return Lista de implementaciones de eventos ordenadas.
      */
-    public List<ImplementacionEvento> ordenarImplementaciones(List<Object> info){//method
+    private List<ImplementacionEvento> ordenarImplementaciones(List<Object> info){//method
         List<ImplementacionEvento> eventos = new ArrayList();
         List<Alerta> alertas = new ArrayList();
+        int x = 0;
+        
+        for(Object o : info){//for
+            Alerta a = (Alerta) o;
+            for(ImplementacionEvento ie : a.getImplementacionEventos()){//for
+                x ++;
+            }//for
+        }//for
+        
+        tipoAlertas = new int[x][1];
+        x = 0;
         for(int l = 0; l < info.size(); l++){// for
             Alerta a = (Alerta) info.get(l);
             if(!alertas.contains(a)){//if
                 alertas.add(a);
                 for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
                     eventos.add(obj);
+                    tipoAlertas[x][0] = a.getId();
+                    x++;
                 }// for
             }//if
         }// for
         Collections.sort(eventos, new Comparator<ImplementacionEvento>(){
 
             @Override
-            public int compare(ImplementacionEvento o1, ImplementacionEvento o2) {
+            public int compare(ImplementacionEvento o1, ImplementacionEvento o2)
+            {
                 Date primera, segunda;
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(o1.getFechaFinal());
