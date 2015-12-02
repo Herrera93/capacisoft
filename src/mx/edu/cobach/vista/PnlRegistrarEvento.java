@@ -783,10 +783,16 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         id = (int) info.get(0);
         nombreTFd.setText((String) info.get(1));
         descripcionTAa.setText((String) info.get(2));
-        if (info.get(3).equals("conferencia")) {
-            tipoCBx.setSelectedIndex(0);
-        } else {
+        if (info.get(3).equals("CONFERENCIA")) {
             tipoCBx.setSelectedIndex(1);
+        } else if (info.get(3).equals("TALLER")){
+            tipoCBx.setSelectedIndex(2);
+        }else if (info.get(3).equals("CURSO")){
+            tipoCBx.setSelectedIndex(3);
+        }else if (info.get(3).equals("CURSO/TALLER")){
+            tipoCBx.setSelectedIndex(4);
+        }else if (info.get(3).equals("PLATICA")){
+            tipoCBx.setSelectedIndex(5);
         }
         guardarBtn.setText("Modificar");
         
