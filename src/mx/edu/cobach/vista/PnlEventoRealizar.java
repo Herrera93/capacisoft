@@ -36,8 +36,8 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
  *
  * @author liuts
  */
-public class PnlEventoRealizar extends javax.swing.JPanel implements 
-        Comunicador, FocusListener {
+public class PnlEventoRealizar extends javax.swing.JPanel implements
+        Comunicador {
 
     /**
      * Creates new form PnlEventoRealizar
@@ -78,15 +78,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         informacionTBn.setEnabledAt(1, false);
         informacionTBn.setSelectedIndex(0);
 
-        fechaIDCh.addFocusListener(this);
-        fechaTDCh.addFocusListener(this);
-        tipoSedeGCBx.addFocusListener(this);
-        nombreGCBx.addFocusListener(this);
-
         validFechIniLbl.setVisible(false);
         validFechFinLbl.setVisible(false);
-        validSedeLbl.setVisible(false);
-        validProveedorLbl.setVisible(false);
     }
 
     /**
@@ -119,8 +112,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         cancelarGBtn = new javax.swing.JButton();
         validFechFinLbl = new javax.swing.JLabel();
         validFechIniLbl = new javax.swing.JLabel();
-        validSedeLbl = new javax.swing.JLabel();
-        validProveedorLbl = new javax.swing.JLabel();
         listaPnl = new javax.swing.JPanel();
         listaAsistenciaSPn = new javax.swing.JScrollPane();
         listaAsistenciaTbl = new javax.swing.JTable();
@@ -219,12 +210,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         validFechIniLbl.setForeground(new java.awt.Color(240, 0, 0));
         validFechIniLbl.setText("Este campo es obligatorio");
 
-        validSedeLbl.setForeground(new java.awt.Color(240, 0, 0));
-        validSedeLbl.setText("Este campo es obligatorio");
-
-        validProveedorLbl.setForeground(new java.awt.Color(240, 0, 0));
-        validProveedorLbl.setText("Este campo es obligatorio");
-
         javax.swing.GroupLayout generalPnlLayout = new javax.swing.GroupLayout(generalPnl);
         generalPnl.setLayout(generalPnlLayout);
         generalPnlLayout.setHorizontalGroup(
@@ -250,14 +235,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                                     .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(validProveedorLbl)
-                                        .addComponent(validSedeLbl)
-                                        .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(validFechIniLbl)
-                                            .addComponent(validFechFinLbl)
-                                            .addComponent(fechaTDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(validFechIniLbl)
+                                        .addComponent(validFechFinLbl)
+                                        .addComponent(fechaTDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(nombreGCBx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(fechaTLbl))
                         .addGap(0, 131, Short.MAX_VALUE))
@@ -302,16 +284,12 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                     .addComponent(sedeGLbl)
                     .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(validSedeLbl)
-                    .addComponent(capacidadSedeGLbl))
+                .addComponent(capacidadSedeGLbl)
                 .addGap(19, 19, 19)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePrLbl)
                     .addComponent(nombreGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(validProveedorLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelarGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(siguienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -509,7 +487,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 this.cambio = true;
                 capacidadSedeGLbl.setText("Capacidad de la sede: "
                         + ((Sede) tipoSedeGCBx.getSelectedItem()).
-                                getCapacidad());
+                        getCapacidad());
             } else {
                 capacidadSedeGLbl.setText("Capacidad de la sede: ");
             }
@@ -656,8 +634,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private javax.swing.JLabel totalEmpleadosLbl;
     private javax.swing.JLabel validFechFinLbl;
     private javax.swing.JLabel validFechIniLbl;
-    private javax.swing.JLabel validProveedorLbl;
-    private javax.swing.JLabel validSedeLbl;
     // End of variables declaration//GEN-END:variables
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
@@ -682,8 +658,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         if (info[0][0].contains("TLE1")) {
             info[0][0] = info[0][0].replaceAll("TLE1", "");
             modelTablaEmF.setDataVector(info, titulosTablaEm);
-            totalEmpleadosLbl.setText("Total de empleados en la lista: " + 
-                    listaAsistenciaTbl.getRowCount() + "");
+            totalEmpleadosLbl.setText("Total de empleados en la lista: "
+                    + listaAsistenciaTbl.getRowCount() + "");
         }
     }
 
@@ -786,73 +762,73 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 pendiente = true;
                 atributos.add(null);
             } else {
-                atributos.add(tipoSedeGCBx.getSelectedItem());                
+                atributos.add(tipoSedeGCBx.getSelectedItem());
             }
-            
+
             if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
                 pendiente = true;
                 atributos.add(null);
-            } else{
-                atributos.add(nombreGCBx.getSelectedItem());                
+            } else {
+                atributos.add(nombreGCBx.getSelectedItem());
             }
-            
+
             for (int x = 0; x < listaAsistenciaTbl.getRowCount(); x++) {
                 Empleado empleado = new Empleado();
                 empleado.setNumero((String) modelTablaEmF.getValueAt(x, 0));
                 lisEmpleado.add(empleado);
             }
-            
+
             if (listaAsistenciaTbl.getRowCount() == 0) {
                 pendiente = true;
                 atributos.add(null);
-            }else{
+            } else {
                 atributos.add(lisEmpleado);
             }
-            
+
             control.setClass(ImplementacionEvento.class);
             if (guardarLABtn.getText().equals("Guardar")) {
                 List<Object> ls = control.buscarPorEventoLista(evento);
                 boolean ban = false, ban1 = false;
-                for(Object o : ls){//for
+                for (Object o : ls) {//for
                     ImplementacionEvento ie = (ImplementacionEvento) o;
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    try{//try
-                        if(ie.getFechaFinal().equals(sdf.parse(fechaIDCh
+                    try {//try
+                        if (ie.getFechaFinal().equals(sdf.parse(fechaIDCh
                                 .getDateFormatString())) && ie.getFechaFinal()
                                 .equals(sdf.parse(fechaTDCh
-                                .getDateFormatString()))){//if
-                            if(ie.getAlertas().isEmpty()){//if
-                                for(Alerta a : ie.getAlertas()){//for
-                                    if(a.getId().equals(3)){//if
+                                                .getDateFormatString()))) {//if
+                            if (ie.getAlertas().isEmpty()) {//if
+                                for (Alerta a : ie.getAlertas()) {//for
+                                    if (a.getId().equals(3)) {//if
                                         ban = true;
                                     }//if
-                                    if(a.getId().equals(4)){//if
+                                    if (a.getId().equals(4)) {//if
                                         ban1 = true;
                                     }//if
                                 }//for
                             }//if
                         }//if
                     }//try
-                    catch(ParseException e){//catch
+                    catch (ParseException e) {//catch
                     }//catch
                 }//for
                 HashSet<Alerta> alertas = new HashSet();
-                if(pendiente){//if
-                    if(!ban){//if
+                if (pendiente) {//if
+                    if (!ban) {//if
                         Alerta alerta = new Alerta();
                         alerta.setId(3);
                         alertas.add(alerta);
                         atributos.add(alertas);
                     }//if
-                    if(!ban1){//if
+                    if (!ban1) {//if
                         Alerta alerta = new Alerta();
                         alerta.setId(4);
                         alertas.add(alerta);
                         atributos.add(alertas);
                     }//if
                 }//if
-                else{//else
-                    if(!ban1){//if
+                else {//else
+                    if (!ban1) {//if
                         Alerta alerta = new Alerta();
                         alerta.setId(4);
                         alertas.add(alerta);
@@ -869,7 +845,7 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             limpiarCampos();
         }
     }
-    
+
     /**
      * Este metodo obtiene la informacion del evento a realizar del
      * PnlProgramarEvento para que este la pueda modificar
@@ -877,19 +853,19 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
      * @param info
      * @param estado
      */
-    public void obtenerMod(List info,String estado) {
+    public void obtenerMod(List info, String estado) {
         ImplementacionEvento eventoImplementado = new ImplementacionEvento();
-        if(estado.equals("Modificar")){
+        if (estado.equals("Modificar")) {
             agregarGLbl.setText("Modificar evento a realizar");
             agregarLALbl.setText("Modificar evento a realizar");
             guardarLABtn.setText("Modificar");
             eventoProgramarId = Integer.parseInt(info.get(0).toString());
-        }else{
+        } else {
             agregarGLbl.setText("Guardar evento a realizar");
             agregarLALbl.setText("Guardar evento a realizar");
             guardarLABtn.setText("Guardar");
         }
-        
+
         eventoProgramarId = Integer.parseInt(info.get(0).toString());
         evento = (Evento) info.get(1);
         nombreGTFd.setText(info.get(2).toString());
@@ -906,15 +882,17 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         }
         fechaIDCh.setDate((Date) info.get(5));
         fechaTDCh.setDate((Date) info.get(6));
-        if(info.get(7) != null)
+        if (info.get(7) != null) {
             sedeModel.setSelectedItem(info.get(7));
-        else
+        } else {
             sedeModel.setSelectedItem(new Sede(""));
-        
-        if(info.get(8) != null)
+        }
+
+        if (info.get(8) != null) {
             proveedorModel.setSelectedItem(info.get(8));
-        else
+        } else {
             proveedorModel.setSelectedItem(new Proveedor("", "", "", ""));
+        }
 
         eventoImplementado.setEmpleados((Set<Empleado>) info.get(9));
         Iterator itr = eventoImplementado.getEmpleados().iterator();
@@ -925,15 +903,15 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             Empleado empleado = (Empleado) itr.next();
             tableData[x][0] = empleado.getNumero() + "";
             if (empleado.getSegundoNombre() == null) {
-                tableData[x][1] = empleado.getPrimerNombre() + " " + 
-                        empleado.getApellidoPaterno() + " " + empleado.
-                                getApellidoMaterno();
+                tableData[x][1] = empleado.getPrimerNombre() + " "
+                        + empleado.getApellidoPaterno() + " " + empleado.
+                        getApellidoMaterno();
 
             } else {
-                tableData[x][1] = empleado.getPrimerNombre() + " " + 
-                        empleado.getSegundoNombre() + " " + empleado.
-                                getApellidoPaterno() + " " + empleado.
-                                        getApellidoMaterno();
+                tableData[x][1] = empleado.getPrimerNombre() + " "
+                        + empleado.getSegundoNombre() + " " + empleado.
+                        getApellidoPaterno() + " " + empleado.
+                        getApellidoMaterno();
 
             }
         }
@@ -958,19 +936,24 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         } else if (fechaTDCh.getDate() == null) {
             setMensaje("No se ha ingresado la fecha de finalizacion");
             return true;
-        } else if (listaAsistenciaTbl.
-                getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).
-                        getCapacidad()) {
-            if (JOptionPane.showConfirmDialog(this, "La lista de asistencia"
-                    + " es mas grande que la capacidad que puede soportar"
-                    + " la sede ¿Desea aun así realizarla ahí ?", "Precaucion",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.
-                            WARNING_MESSAGE) == 0) {
-                return false;
-            } else {
-                return true;
+        } else if (fechaIDCh.getDate().after(fechaTDCh.getDate())) {
+            JOptionPane.showMessageDialog(this, "Error en las fechas de"
+                    + " evento. La fecha de inicio es mayor que la fecha de"
+                    + " terminacion");
+            return true;
+        } else if (!tipoSedeGCBx.getSelectedItem().toString().equals("")) {
+            if (listaAsistenciaTbl.getRowCount() > ((Sede) tipoSedeGCBx.getSelectedItem()).
+                    getCapacidad()) {
+                if (JOptionPane.showConfirmDialog(this, "La lista de asistencia"
+                        + " es mas grande que la capacidad que puede soportar"
+                        + " la sede ¿Desea aun así realizarla ahí ?", "Precaucion",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
-        } 
+        }
         return false;
     }
 
@@ -997,55 +980,13 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     public boolean isCambio() {
         return this.cambio;
     }
+
     /**
      * Metodo que regresa todos los atributos de un evento
-     * @param evento 
+     *
+     * @param evento
      */
     @Override
     public void llenarDatos(Object implementacionEvento) {
-    }
-    /**
-     * Este metodo detecta que el usuario perdio el foco de un campo y no 
-     * escribio nada en el avisandole que el campo es obligatorio
-     * @param e 
-     */
-    @Override
-    public void focusLost(FocusEvent e) {
-        Object fuente = e.getSource();
-        if (fuente == fechaIDCh) {
-            if (fechaIDCh.getDate() == null) {
-                validFechIniLbl.setVisible(true);
-            }
-        } else if (fuente == fechaTDCh) {
-            if (fechaIDCh.getDate() == null) {
-                validFechFinLbl.setVisible(true);
-            }
-        } else if (fuente == tipoSedeGCBx) {
-            if (tipoSedeGCBx.getSelectedItem().toString().equals("")) {
-                validSedeLbl.setVisible(true);
-            }
-        } else if (fuente == nombreGCBx) {
-            if (((Proveedor) nombreGCBx.getSelectedItem()).getId() == null) {
-                validProveedorLbl.setVisible(true);
-            }
-        }
-    }
-    /**
-     * Este metodo detecta que el usuario esta modificando un campo y hace el 
-     * label de recordatorio invisible
-     * @param e 
-     */
-    @Override
-    public void focusGained(FocusEvent e) {
-        Object fuente = e.getSource();
-        if (fuente == fechaIDCh) {
-            validFechIniLbl.setVisible(false);
-        } else if (fuente == fechaTDCh) {
-            validFechFinLbl.setVisible(false);
-        } else if (fuente == tipoSedeGCBx) {
-            validSedeLbl.setVisible(false);
-        } else if (fuente == nombreGCBx) {
-            validProveedorLbl.setVisible(false);
-        }
     }
 }
