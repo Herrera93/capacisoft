@@ -666,6 +666,9 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     public void setTabla(String[][] info) {
         if (info.length == 0) {
             JOptionPane.showMessageDialog(null, "No se Encontro la busqueda");
+            model.setDataVector(info, titulosTabla);
+            eventoTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(10);
         } else {
             model.setDataVector(info, titulosTabla);
             eventoTbl.getColumnModel().getColumn(0).setPreferredWidth(10);

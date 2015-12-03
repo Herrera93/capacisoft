@@ -419,6 +419,7 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
             ImplementacionEvento listaAsistencia = (ImplementacionEvento) info.get(0);
             System.out.println(listaAsistencia.getFechaFinal() + "");
             String[][] lista = new String[listaAsistencia.getEmpleados().size()][5];
+            if(lista.length>0){
             for (Iterator it = listaAsistencia.getEmpleados().iterator(); it.hasNext();) {
                 x++;
                 Empleado empleado = (Empleado) it.next();
@@ -432,6 +433,9 @@ public class PnlListaAsistencia extends javax.swing.JPanel implements Comunicado
                 lista[x][1] = nombre;
                 lista[x][2] = empleado.getPuesto().toString();
             }
+            } else {
+            JOptionPane.showMessageDialog(null, "No existen empleados asignados al evento ");
+        }
 
             modelLista.setDataVector(lista, titulosTablaLista);
             //Esconder columna ID

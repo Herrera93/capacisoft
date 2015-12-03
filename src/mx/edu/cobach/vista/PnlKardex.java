@@ -396,7 +396,10 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     @Override
     public void setTabla(String[][] info) {
         if (info.length==0) {
-            setMensaje("No se encontro la busqueda");
+            setMensaje("No se encontro la búsqueda");
+            model.setDataVector(info, titulosTabla);
+            empleadoTbl.getColumnModel().getColumn(0).setPreferredWidth(20);
+            empleadoTbl.getColumnModel().getColumn(1).setPreferredWidth(170);
         } else {
             model.setDataVector(info, titulosTabla);
             empleadoTbl.getColumnModel().getColumn(0).setPreferredWidth(20);
