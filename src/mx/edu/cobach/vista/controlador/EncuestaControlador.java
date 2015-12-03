@@ -119,7 +119,7 @@ public class EncuestaControlador extends BaseControlador {
             }
         }
         if(implementacionesActivas.isEmpty())
-            com.setMensaje("No se encontraron implementaciones con encuestas");
+            com.setMensaje("No se encontraron implementaciones sin encuestas");
         else
             com.setTabla(HelperEntidad.descomponerObjetos(implementacionesActivas));
     }

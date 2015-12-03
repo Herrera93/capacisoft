@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.edu.cobach.vista;
 
 import java.awt.Color;
@@ -25,10 +21,6 @@ import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.vista.controlador.HelperEntidad;
 import mx.edu.cobach.vista.controlador.ProveedorControlador;
 
-/**
- *
- * @author liuts
- */
 public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
 
     private final DefaultTableModel model,modelEventos;
@@ -48,7 +40,10 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
     private boolean almacenando = false;
     private CapacisoftFrm capacisoft;
     
-    
+    /**
+     * Constructor que instancia la clase ProveedorConrolador
+     * e inicializa y le da valores a la tabla
+     */
     public PnlProveedor(CapacisoftFrm capacisoft) {
         initComponents();
         titulosTabla= new String[]{"Número", "Nombre", "Eliminar"};
@@ -201,6 +196,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         });
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreBuscarTFdKeyTyped(evt);
+            }
+        });
 
         nombreLBuscarbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreLBuscarbl.setText("Nombre del Proveedor:");
@@ -320,6 +320,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 telefonoTFdFocusLost(evt);
+            }
+        });
+        telefonoTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefonoTFdKeyTyped(evt);
             }
         });
 
@@ -693,6 +698,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Evento que se acciona precionando el boton "Agregar"
+     * su funcion es habilitar el panel de informacion
+     * @param evt Evento al presionar el boton.
+     */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
         if(informacionTBn.isVisible()){
             if (JOptionPane.showConfirmDialog(this, "La información que"
@@ -708,6 +718,13 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
 
+    /**
+     * Evento que se acciona precionando el boton "Buscar"
+     * su funcion es tomar la informacion del campo de "Nombre del proveedor"
+     * y buscar datos que coincidad o realizar una busqueda general
+     * si el campo esta vacio.
+     * @param evt Evento al presionar el boton
+     */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         if(!nombreBuscarTFd.getText().equals(""))
             control.buscarPorNombre(nombreBuscarTFd.getText());
@@ -715,6 +732,11 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             control.buscarTodos();
     }//GEN-LAST:event_buscarBtnActionPerformed
 
+    /**
+     * Evento que se acciona precionando el boton "Siguiente"
+     * su funcion es habilitar la ventana "Lista de cursos"
+     * @param evt Evento al presionar el boton
+     */
     private void siguienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteBtnActionPerformed
         informacionTBn.setEnabledAt(0, false);
         informacionTBn.setEnabledAt(1, true);
@@ -961,19 +983,25 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_telefonoTFdFocusLost
 
     private void primerNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primerNombreTFdKeyTyped
-if (!Character.isLetter(evt.getKeyChar())  
+//if()
+        if (!Character.isLetter(evt.getKeyChar())  
             && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar())) {
+            && !Character.isWhitespace(evt.getKeyChar())   
+        || primerNombreTFd.getText().length() == 45
+                ) {
              evt.consume();
             
             
         }
+        
     }//GEN-LAST:event_primerNombreTFdKeyTyped
 
     private void segundoNombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_segundoNombreTFdKeyTyped
 if (!Character.isLetter(evt.getKeyChar())  
             && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar())) {
+            && !Character.isWhitespace(evt.getKeyChar())
+        || segundoNombreTFd.getText().length() == 45
+                ) {
              evt.consume();
             
             
@@ -983,7 +1011,10 @@ if (!Character.isLetter(evt.getKeyChar())
     private void apellidoPaternoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoPaternoTFdKeyTyped
  if (!Character.isLetter(evt.getKeyChar())  
             && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar())) {
+            && !Character.isWhitespace(evt.getKeyChar())
+         || apellidoPaternoTFd.getText().length() == 45
+                ) {
+         
              evt.consume();
             
             
@@ -993,7 +1024,9 @@ if (!Character.isLetter(evt.getKeyChar())
     private void apellidoMaternoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apellidoMaternoTFdKeyTyped
 if (!Character.isLetter(evt.getKeyChar())  
             && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar())) {
+            && !Character.isWhitespace(evt.getKeyChar())
+        || apellidoMaternoTFd.getText().length() == 45
+                ) {
              evt.consume();
             
             
@@ -1003,6 +1036,31 @@ if (!Character.isLetter(evt.getKeyChar())
     private void correoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoTFdKeyTyped
 
     }//GEN-LAST:event_correoTFdKeyTyped
+
+    private void nombreBuscarTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreBuscarTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || nombreBuscarTFd.getText().length() == 45
+                ) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_nombreBuscarTFdKeyTyped
+
+    private void telefonoTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefonoTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+                && !Character.isDigit(evt.getKeyChar())
+        || telefonoTFd.getText().length() == 15
+                ) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_telefonoTFdKeyTyped
 
         
     // Variables declaration - do not modify//GEN-BEGIN:variables

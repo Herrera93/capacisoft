@@ -23,9 +23,9 @@ import com.google.api.services.gmail.model.ListLabelsResponse;
 import com.google.api.services.gmail.model.Message;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -78,23 +78,16 @@ public class GmailUtil {
      * @throws IOException
      */
     public static Credential autorizar() throws IOException {
-        // Load client secrets.
-        InputStream in = GmailUtil.class.getResourceAsStream("client_secret.json");
-        GoogleClientSecrets clientSecrets =
-            GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-        // Build flow and trigger user authorization request.
-        GoogleAuthorizationCodeFlow flow =
-                new GoogleAuthorizationCodeFlow.Builder(
-                        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-                .setDataStoreFactory(DATA_STORE_FACTORY)
-                .setAccessType("offline")
-                .build();
-        Credential credential = new AuthorizationCodeInstalledApp(
-            flow, new LocalServerReceiver()).authorize("user");
-        System.out.println(
-                "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
-        return credential;
+        // load client secrets
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
+            new InputStreamReader(GmailUtil.class.getResourceAsStream("client_secret.json")));
+        // set up authorization code flow
+        GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
+            HTTP_TRANSPORT, JSON_FACTORY, clientSecrets,
+            Collections.singleton(GmailScopes.MAIL_GOOGLE_COM)).setDataStoreFactory(DATA_STORE_FACTORY)
+            .build();
+        // authorize
+        return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
     }
 
     /**
@@ -144,4 +137,35 @@ public class GmailUtil {
         System.out.println("Message id: " + message.getId());
         System.out.println(message.toPrettyString());
       }
+    
+    public static void main(String[] args) {
+         try {
+            //Se crea el correo por medio del API de Gmail
+            MimeMessage correo = GmailUtil.crearEmail("herrera.luis@uabc.edu.mx", "capacisoft@gmail.com", "PRUEBA", "PRUEBA");
+            //Se envia el correo por medio del API de Gmail
+            GmailUtil.enviarMensaje(GmailUtil.getServicioGmail(), "capacisoft@gmail.com", correo);
+        } catch (MessagingException | IOException ex) {
+        }
+        // Build a new authorized API client service.
+//        Gmail service;
+//         try {
+//             service = getServicioGmail();
+//            // Print the labels in the user's account.
+//            String user = "me";
+//            ListLabelsResponse listResponse =
+//                service.users().labels().list(user).execute();
+//            List<Label> labels = listResponse.getLabels();
+//            if (labels.size() == 0) {
+//                System.out.println("No labels found.");
+//            } else {
+//                System.out.println("Labels:");
+//                for (Label label : labels) {
+//                    System.out.printf("- %s\n", label.getName());
+//                }
+//            }
+//         } catch (IOException ex) {
+//             Logger.getLogger(GmailUtil.class.getName()).log(Level.SEVERE, null, ex);
+//         }
+
+    }
 }

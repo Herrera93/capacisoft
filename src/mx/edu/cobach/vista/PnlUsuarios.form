@@ -208,6 +208,9 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreBuscarTFdKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="nombreBuscarLbl">
           <Properties>
@@ -283,8 +286,8 @@
                                       <Component id="apellidoPaternoTFd" max="32767" attributes="0"/>
                                       <Component id="segundoNombreTFd" max="32767" attributes="0"/>
                                       <Component id="usuarioTFd" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="contrasenaPFd" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="confirmarContrasenaPFd" max="32767" attributes="0"/>
+                                      <Component id="contrasenaTFd" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="confirmarContrasenaTFd" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
                               </Group>
@@ -357,14 +360,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="contrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="contrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="contrasenaTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="validContrasenaLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="confirmarContrasenaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmarContrasenaPFd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="confirmarContrasenaTFd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="validConfirmarLbl" min="-2" max="-2" attributes="0"/>
@@ -540,16 +543,18 @@
             <Property name="text" type="java.lang.String" value="Confirmar contrase&#xf1;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="contrasenaPFd">
+        <Component class="javax.swing.JPasswordField" name="contrasenaTFd">
           <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="contrasenaPFdFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="contrasenaPFdFocusLost"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="contrasenaTFdFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="contrasenaTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="contrasenaTFdKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="confirmarContrasenaPFd">
+        <Component class="javax.swing.JPasswordField" name="confirmarContrasenaTFd">
           <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="confirmarContrasenaPFdFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="confirmarContrasenaPFdFocusLost"/>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="confirmarContrasenaTFdFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="confirmarContrasenaTFdFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="confirmarContrasenaTFdKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancelarBtn">

@@ -37,7 +37,7 @@ import org.json.JSONObject;
 public class EncuestaDELEGATE {
     
     //Correo con el que se enviaran las encuestas
-    private final String CORREO = "herrera.luis@uabc.edu.mx";
+    private final String CORREO = "capacisoft@gmail.com";
     
     //Mensaje que se agregara a los correos
     private final String MENSAJE_CORREO =

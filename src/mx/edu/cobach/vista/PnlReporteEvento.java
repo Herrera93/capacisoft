@@ -528,7 +528,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
             fechaInicioDCh.setDate(null);
             fechaHastaDCh.setDate(null);
         } else {
-            JOptionPane.showMessageDialog(null, "Tiene el Campos Vacios");
+            setMensaje("No ha seleccionado un plantel");
             plantelCBx.setSelectedIndex(0);
             departamentoCBx.setSelectedIndex(0);
             direccionCBx.setSelectedIndex(0);
@@ -551,7 +551,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
             fechaInicioDCh.setDate(null);
             fechaHastaDCh.setDate(null);
         } else {
-            JOptionPane.showMessageDialog(null, "Tiene el Campos Vacios");
+            setMensaje("No ha seleccionado un departamento");
             plantelCBx.setSelectedIndex(0);
             departamentoCBx.setSelectedIndex(0);
             direccionCBx.setSelectedIndex(0);
@@ -574,6 +574,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
             fechaInicioDCh.setDate(null);
             fechaHastaDCh.setDate(null);
         } else {
+            setMensaje("No ha seleccionado una direccion");
             plantelCBx.setSelectedIndex(0);
             departamentoCBx.setSelectedIndex(0);
             direccionCBx.setSelectedIndex(0);

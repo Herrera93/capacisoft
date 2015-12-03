@@ -85,6 +85,11 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         nombreBuscarLbl.setText("Nombre de dirección:");
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreBuscarTFdKeyTyped(evt);
+            }
+        });
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
@@ -397,25 +402,14 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el botón
      */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
-        char car = evt.getKeyChar();
-        if (nombreTFd.getText().length() >= 45) {
-            evt.consume();
-        }
-        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && car != 'á' //Minúsculas             
-                && car != 'é'
-                && car != 'í'
-                && car != 'ó'
-                && car != 'ú'
-                && car != 'Á' //Mayúsculas             
-                && car != 'É'
-                && car != 'Í'
-                && car != 'Ó'
-                && car != 'Ú'
-                && car != 'ñ'
-                && car != 'Ñ'
-                && (car != (char) KeyEvent.VK_SPACE)) {
-            evt.consume();
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || nombreTFd.getText().length() == 45
+                ) {
+             evt.consume();
+            
+            
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
 
@@ -510,6 +504,18 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         }
         }
     }//GEN-LAST:event_direccionTblMouseClicked
+
+    private void nombreBuscarTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreBuscarTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || nombreBuscarTFd.getText().length() == 45
+                ) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_nombreBuscarTFdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
