@@ -102,6 +102,8 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 programar = auxiliar;
                 
                 if(programar.size() > 0){//if
+                    Object[] objetos = new Object[programar.size()];
+                    int i = 0;
                     for(Object obj : programar){//for
                         ImplementacionEvento e = (ImplementacionEvento) obj;
                         e.setId(null);
@@ -114,8 +116,10 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                         a.setId(1);
                         alertas.add(a);
                         e.setAlertas(alertas);
-                        control1.alta(e);
+                        objetos[i] = e;
+                        i++;
                     }//for
+                    control1.alta(objetos);
                 }//if
             }//if
             else{//else
