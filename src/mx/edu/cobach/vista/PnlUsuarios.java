@@ -708,7 +708,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     private void usuarioTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuarioTFdKeyTyped
         char car = evt.getKeyChar();
-        if (usuarioTFd.getText().length() >= 45 || !Character.isLetter(car)) {
+        if (usuarioTFd.getText().length() >= 45 || !Character.isLetterOrDigit(car)) {
             evt.consume();
         }
     }//GEN-LAST:event_usuarioTFdKeyTyped
@@ -815,21 +815,16 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     }//GEN-LAST:event_confirmarContrasenaTFdFocusLost
 
     private void contrasenaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contrasenaTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())  
-            && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar()) 
-            || contrasenaTFd.getText().length() == 45
-                ) {
-             evt.consume();
-            
-            
+        char car = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(car) 
+            || contrasenaTFd.getText().length() == 45) {
+             evt.consume();    
         }
     }//GEN-LAST:event_contrasenaTFdKeyTyped
 
     private void confirmarContrasenaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmarContrasenaTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())  
-            && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar()) 
+        char car = evt.getKeyChar();
+        if (!Character.isLetterOrDigit(car) 
             || confirmarContrasenaTFd.getText().length() == 45
                 ) {
              evt.consume();
