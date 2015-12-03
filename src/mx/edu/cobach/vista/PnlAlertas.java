@@ -23,7 +23,7 @@ import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
  *
- * @author liuts
+ * @author Melissa Ferrer
  */
 public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{// class
 
@@ -1136,7 +1136,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             int evto = Integer.parseInt(eventoSpn.getValue().toString());
             int info = Integer.parseInt(informacionSpn.getValue().toString());
             int encuesta1 = Integer.parseInt(encuestaSpn.getValue().toString());
-            
+
             switch(eventoCBx.getSelectedItem().toString()){//switch
                 case "Mes":
                     evto = evto * 30;
@@ -1172,19 +1172,14 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                     JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.INFORMATION_MESSAGE);
             if(respuesta == 0){//if
-                Alerta evento = (Alerta) control.buscarAlerta(1);
-                Alerta evento1 = (Alerta) control.buscarAlerta(2);
-                Alerta informacion = (Alerta) control.buscarAlerta(3);
-                Alerta encuesta = (Alerta) control.buscarAlerta(4);
-                evento.setPeriodo(evto);
-                evento1.setPeriodo(evto);
-                informacion.setPeriodo(info);
-                encuesta.setPeriodo(encuesta1);
-
-                control.modificacion(evento);
-                control.modificacion(evento1);
-                control.modificacion(informacion);
-                control.modificacion(encuesta);
+                List<Object> periodos = control.buscarTodas();
+                
+                ((Alerta) periodos.get(0)).setPeriodo(evto);
+                ((Alerta) periodos.get(1)).setPeriodo(evto);
+                ((Alerta) periodos.get(2)).setPeriodo(info);
+                ((Alerta) periodos.get(3)).setPeriodo(encuesta1);
+                
+                control.modificar(periodos);
             }//if
             
             eventoSpn.setValue(1);
@@ -1218,17 +1213,17 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             e = implementaciones[Integer.parseInt(resolver1Btn.getName())][0];
             alerta = tipoAlertas[Integer.parseInt(resolver1Btn.getName())][0];
             switch(alerta){//switch
-                case 0:// evento programado
+                case 1:// evento programado
                     this.setVisible(false);
                     eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
-                case 1:// evento diagnosticado
+                case 2:// evento diagnosticado
                     this.setVisible(false);
                     eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
                     break;
-                case 2:// información pendiente
+                case 3:// información pendiente
                     this.setVisible(false);
                     eventoPnl.setVisible(true);
                     eventoPnl.llenarDatos(e);
@@ -1584,6 +1579,9 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             if(e3.getSede() != null){//if
                 nombreSede3Lbl.setText(e3.getSede().getNombre());
             }//if
+            else{//else
+                nombreSede3Lbl.setText(null);
+            }//else
             resolver3Btn.setName(pagina + "");
             alerta3Pnl.setVisible(true);
         }//if
@@ -1610,7 +1608,7 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                     tipoAlerta4Lbl.setText("Encuesta pendiente");
                     break;
             }//switch
-            if(e3.getSede() != null){//if
+            if(e4.getSede() != null){//if
                 nombreSede4Lbl.setText(e4.getSede().getNombre());
             }//if
             else{//else
