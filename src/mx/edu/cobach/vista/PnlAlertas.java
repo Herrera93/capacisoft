@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import mx.edu.cobach.vista.controlador.AlertaControlador;
@@ -1484,9 +1485,6 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         else{//else
             setMensaje("No hay tipo de alertas en la base de datos.", "Error", 
                     JOptionPane.ERROR_MESSAGE);
-            /*JOptionPane.showInternalInputDialog(this, 
-                "No hay tipo de alertas en la base de datos.", "Error",
-                JOptionPane.ERROR_MESSAGE);*/
         }//else
     }// method
     
@@ -1737,13 +1735,15 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         x = 0;
         for(int l = 0; l < info.size(); l++){// for
             Alerta a = (Alerta) info.get(l);
+            // if(a.getImplementaciones().size() > 0){
             if(!alertas.contains(a)){//if
                 alertas.add(a);
-                for(ImplementacionEvento obj : a.getImplementacionEventos()){//for
+                for (Iterator<ImplementacionEvento> it = a.getImplementacionEventos().iterator(); it.hasNext();) {
+                    ImplementacionEvento obj = it.next();
+                    //for
                     eventos.add(obj);
-                    tipoAlertas[x][0] = a.getId();
                     x++;
-                }// for
+                } // for
             }//if
         }// for
         Collections.sort(eventos, new Comparator<ImplementacionEvento>(){
@@ -1771,6 +1771,30 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
             }
             
         });
+        
+        boolean band = false;
+        int i = 0;
+        for(ImplementacionEvento e : eventos){//for
+            if(e.getAlertas().size() > 1){//if
+                if(!band){//if
+                    Object[] setAlertas = e.getAlertas().toArray();
+                    tipoAlertas[i][0] = ((Alerta) setAlertas[0]).getId();
+                    i ++;
+                    band = true;
+                }//if
+                else{//else
+                    Object[] setAlertas = e.getAlertas().toArray();
+                    tipoAlertas[i][0] = ((Alerta) setAlertas[1]).getId();
+                    i ++;
+                    band = false;
+                }//else
+            }//if
+            else{//else
+                Object[] setAlertas = e.getAlertas().toArray();
+                tipoAlertas[i][0] = ((Alerta) setAlertas[0]).getId();
+                i ++;
+            }//else
+        }//for
         
         return eventos;
     }// method
