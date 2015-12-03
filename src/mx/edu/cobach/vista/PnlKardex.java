@@ -321,7 +321,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                 tipoCBx.setSelectedIndex(0);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Tiene el Campos Vacios");
+            
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
