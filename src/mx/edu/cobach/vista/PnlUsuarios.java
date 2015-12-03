@@ -101,8 +101,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         apellidoMaternoTFd = new javax.swing.JTextField();
         apellidoMaternoLbl = new javax.swing.JLabel();
         confirmarContrasenaLbl = new javax.swing.JLabel();
-        contrasenaPFd = new javax.swing.JPasswordField();
-        confirmarContrasenaPFd = new javax.swing.JPasswordField();
+        contrasenaTFd = new javax.swing.JPasswordField();
+        confirmarContrasenaTFd = new javax.swing.JPasswordField();
         cancelarBtn = new javax.swing.JButton();
         validNomLbl = new javax.swing.JLabel();
         validApePatLbl = new javax.swing.JLabel();
@@ -174,6 +174,11 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         opcionMsjLbl.setText("<html>Seleccione el botón \"Agregar\" para habilitar la sección de registro,<br>si desea  realizar una búsqueda seleccione el botón \"Buscar\"</html>");
 
         nombreBuscarTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreBuscarTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreBuscarTFdKeyTyped(evt);
+            }
+        });
 
         nombreBuscarLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombreBuscarLbl.setText("Nombre del empleado:");
@@ -348,21 +353,31 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         confirmarContrasenaLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmarContrasenaLbl.setText("Confirmar contraseña:");
 
-        contrasenaPFd.addFocusListener(new java.awt.event.FocusAdapter() {
+        contrasenaTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                contrasenaPFdFocusGained(evt);
+                contrasenaTFdFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                contrasenaPFdFocusLost(evt);
+                contrasenaTFdFocusLost(evt);
+            }
+        });
+        contrasenaTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                contrasenaTFdKeyTyped(evt);
             }
         });
 
-        confirmarContrasenaPFd.addFocusListener(new java.awt.event.FocusAdapter() {
+        confirmarContrasenaTFd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                confirmarContrasenaPFdFocusGained(evt);
+                confirmarContrasenaTFdFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                confirmarContrasenaPFdFocusLost(evt);
+                confirmarContrasenaTFdFocusLost(evt);
+            }
+        });
+        confirmarContrasenaTFd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                confirmarContrasenaTFdKeyTyped(evt);
             }
         });
 
@@ -431,8 +446,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                                     .addComponent(apellidoPaternoTFd)
                                     .addComponent(segundoNombreTFd)
                                     .addComponent(usuarioTFd)
-                                    .addComponent(contrasenaPFd)
-                                    .addComponent(confirmarContrasenaPFd))
+                                    .addComponent(contrasenaTFd)
+                                    .addComponent(confirmarContrasenaTFd))
                                 .addGap(0, 44, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionPnlLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -489,13 +504,13 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contrasenaLbl)
-                    .addComponent(contrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(contrasenaTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validContrasenaLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informacionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmarContrasenaLbl)
-                    .addComponent(confirmarContrasenaPFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(confirmarContrasenaTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validConfirmarLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -531,8 +546,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
            apellidoPaternoTFd.getText().equals("")&&
            apellidoMaternoTFd.getText().equals("")&&
            usuarioTFd.getText().equals("")&&
-           contrasenaPFd.getText().equals("")&&
-           confirmarContrasenaPFd.getText().equals("") ) 
+           contrasenaTFd.getText().equals("")&&
+           confirmarContrasenaTFd.getText().equals("") ) 
             setMensaje("Debe ingresar los datos solicitados");
         else if(nombreTFd.getText().equals("")) 
             setMensaje("Debe ingresar el primer nombre del empleado");
@@ -542,12 +557,12 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             setMensaje("Debe ingresar el apellido materno del empleado");
         else if(usuarioTFd.getText().equals("")) 
             setMensaje("Debe ingresar el nombre de usuario");
-        else if(contrasenaPFd.getText().equals("")) 
+        else if(contrasenaTFd.getText().equals("")) 
             setMensaje("Debe ingresar la contraseña");
-        else if(confirmarContrasenaPFd.getText().equals("")) 
+        else if(confirmarContrasenaTFd.getText().equals("")) 
             setMensaje("Debe volver a ingresar la contraseña en\nConfirmar contraseña");
         else {
-            if( contrasenaPFd.getText().equals(confirmarContrasenaPFd.getText()) ){
+            if( contrasenaTFd.getText().equals(confirmarContrasenaTFd.getText()) ){
                 List<String> atr = new ArrayList<String>();
                 atr.add(nombreTFd.getText()); //# En lista 0
                 atr.add(segundoNombreTFd.getText());//# En lista 1
@@ -559,7 +574,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     case "Analista": atr.add("2"); break;
                     case "Secretaria": atr.add("3"); break;
                 }
-                atr.add(contrasenaPFd.getText());//# En lista 6
+                atr.add(contrasenaTFd.getText());//# En lista 6
                 buscando = true;
                 problema = 0;
                 control.buscarTodos();
@@ -764,40 +779,76 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         }
     }//GEN-LAST:event_usuarioTFdFocusLost
 
-    private void contrasenaPFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contrasenaPFdFocusGained
-        contrasenaPFd.setBorder(BORDER_ORIGINAL);
+    private void contrasenaTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contrasenaTFdFocusGained
+        contrasenaTFd.setBorder(BORDER_ORIGINAL);
         validContrasenaLbl.setForeground(new Color(213, 216, 222));
-    }//GEN-LAST:event_contrasenaPFdFocusGained
+    }//GEN-LAST:event_contrasenaTFdFocusGained
 
-    private void contrasenaPFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contrasenaPFdFocusLost
-        if (contrasenaPFd.getText().isEmpty()) {
-            contrasenaPFd.setBorder(BorderFactory.createCompoundBorder(
+    private void contrasenaTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_contrasenaTFdFocusLost
+        if (contrasenaTFd.getText().isEmpty()) {
+            contrasenaTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
             validContrasenaLbl.setForeground(new Color(255, 0, 0));
         }
-    }//GEN-LAST:event_contrasenaPFdFocusLost
+    }//GEN-LAST:event_contrasenaTFdFocusLost
 
-    private void confirmarContrasenaPFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmarContrasenaPFdFocusGained
-        confirmarContrasenaPFd.setBorder(BORDER_ORIGINAL);
+    private void confirmarContrasenaTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmarContrasenaTFdFocusGained
+        confirmarContrasenaTFd.setBorder(BORDER_ORIGINAL);
         validConfirmarLbl.setForeground(new Color(213, 216, 222));
-    }//GEN-LAST:event_confirmarContrasenaPFdFocusGained
+    }//GEN-LAST:event_confirmarContrasenaTFdFocusGained
 
-    private void confirmarContrasenaPFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmarContrasenaPFdFocusLost
-        if (confirmarContrasenaPFd.getText().isEmpty()) {
-            confirmarContrasenaPFd.setBorder(BorderFactory.createCompoundBorder(
+    private void confirmarContrasenaTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_confirmarContrasenaTFdFocusLost
+        if (confirmarContrasenaTFd.getText().isEmpty()) {
+            confirmarContrasenaTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
             validConfirmarLbl.setText("Este campo es obligatorio");
             validConfirmarLbl.setForeground(new Color(255, 0, 0));
-        } else if(!confirmarContrasenaPFd.getText().equals(contrasenaPFd.getText())){
-            confirmarContrasenaPFd.setBorder(BorderFactory.createCompoundBorder(
+        } else if(!confirmarContrasenaTFd.getText().equals(contrasenaTFd.getText())){
+            confirmarContrasenaTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
             validConfirmarLbl.setText("Las contrasenas no son iguales");
             validConfirmarLbl.setForeground(new Color(255, 0, 0));
         }
-    }//GEN-LAST:event_confirmarContrasenaPFdFocusLost
+    }//GEN-LAST:event_confirmarContrasenaTFdFocusLost
+
+    private void contrasenaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contrasenaTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || contrasenaTFd.getText().length() == 45
+                ) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_contrasenaTFdKeyTyped
+
+    private void confirmarContrasenaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmarContrasenaTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || confirmarContrasenaTFd.getText().length() == 45
+                ) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_confirmarContrasenaTFdKeyTyped
+
+    private void nombreBuscarTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreBuscarTFdKeyTyped
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar()) 
+            || nombreBuscarTFd.getText().length() == 45
+                ) {
+             evt.consume();
+            
+            
+        }
+    }//GEN-LAST:event_nombreBuscarTFdKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarBtn;
@@ -810,9 +861,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JButton buscarBtn;
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JLabel confirmarContrasenaLbl;
-    private javax.swing.JPasswordField confirmarContrasenaPFd;
+    private javax.swing.JPasswordField confirmarContrasenaTFd;
     private javax.swing.JLabel contrasenaLbl;
-    private javax.swing.JPasswordField contrasenaPFd;
+    private javax.swing.JPasswordField contrasenaTFd;
     private javax.swing.JButton guardarBtn;
     private javax.swing.JPanel informacionPnl;
     private javax.swing.JLabel nombreBuscarLbl;
@@ -851,15 +902,15 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         apellidoPaternoTFd.setText("");
         apellidoMaternoTFd.setText("");
         usuarioTFd.setText("");
-        contrasenaPFd.setText("");
-        confirmarContrasenaPFd.setText("");
+        contrasenaTFd.setText("");
+        confirmarContrasenaTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         segundoNombreTFd.setBorder(BORDER_ORIGINAL);
         apellidoPaternoTFd.setBorder(BORDER_ORIGINAL);
         apellidoMaternoTFd.setBorder(BORDER_ORIGINAL);
         usuarioTFd.setBorder(BORDER_ORIGINAL);
-        contrasenaPFd.setBorder(BORDER_ORIGINAL);
-        confirmarContrasenaPFd.setBorder(BORDER_ORIGINAL);
+        contrasenaTFd.setBorder(BORDER_ORIGINAL);
+        confirmarContrasenaTFd.setBorder(BORDER_ORIGINAL);
         validApeMatLbl.setForeground(new Color(213, 216, 222));
         validApePatLbl.setForeground(new Color(213, 216, 222));
         validContrasenaLbl.setForeground(new Color(213, 216, 222));
@@ -933,8 +984,8 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             apellidoMaternoTFd.setText(info.get(3).toString());
             usuarioTFd.setText(info.get(4).toString());
             tipoCBx.setSelectedItem(info.get(5).toString());
-            contrasenaPFd.setText(info.get(6).toString());
-            confirmarContrasenaPFd.setText(info.get(6).toString());
+            contrasenaTFd.setText(info.get(6).toString());
+            confirmarContrasenaTFd.setText(info.get(6).toString());
         }
     }
 
