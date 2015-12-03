@@ -395,5 +395,16 @@ public class ImplementarEventoControlador extends BaseControlador {
         return ServiceLocatorDELEGATE.getImplementarEvento().
                 buscarPorEvento(evento);
     }//method
+
+    /**
+     * Se verifica si la implementacion ya tiene una encuesta asignada
+     * @param id Identificacion de la implementacion
+     * @return Regresa verdadero si cuenta con encuesta y falso en caso contrario
+     */
+    public boolean buscarEncuesta(int id) {
+        ImplementacionEvento ie = (ImplementacionEvento) ServiceLocatorDELEGATE
+            .getInstance().find(id, clazz);
+        return !ie.getEncuestas().isEmpty();
+    }
     
 }

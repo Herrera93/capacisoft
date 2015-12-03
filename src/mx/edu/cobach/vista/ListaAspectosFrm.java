@@ -50,12 +50,22 @@ public class ListaAspectosFrm extends javax.swing.JFrame implements Comunicador 
         control = new EncuestaControlador(this);
         setIconImage(imageLogo.getImage());
         
-        candidatosModel = new DefaultTableModel(titulosTabla, 0);
+        candidatosModel = new DefaultTableModel(titulosTabla, 0) {
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         candidatosTbl.setModel(candidatosModel);
         candidatosTbl.setColumnSelectionAllowed(false);
         candidatosTbl.setDragEnabled(false);
 
-        agregadosModel = new DefaultTableModel(titulosTabla, 0);
+        agregadosModel = new DefaultTableModel(titulosTabla, 0) {
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         agregadosTbl.setModel(agregadosModel);
         agregadosTbl.setColumnSelectionAllowed(false);
         agregadosTbl.setDragEnabled(false);

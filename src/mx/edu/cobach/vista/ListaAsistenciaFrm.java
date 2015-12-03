@@ -77,12 +77,22 @@ public final class ListaAsistenciaFrm extends javax.swing.JFrame implements Comu
         campoCBx.setModel(campoModel);
         setIconImage(imageLogo.getImage());
 
-        agregadosModel = new DefaultTableModel(titulosTabla, 0);
+        agregadosModel = new DefaultTableModel(titulosTabla, 0) {
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         agregadosTbl.setModel(agregadosModel);
         agregadosTbl.setColumnSelectionAllowed(false);
         agregadosTbl.setDragEnabled(false);
 
-        candidatosModel = new DefaultTableModel(titulosTabla, 0);
+        candidatosModel = new DefaultTableModel(titulosTabla, 0) {
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         candidatosTbl.setModel(candidatosModel);
         candidatosTbl.setColumnSelectionAllowed(false);
         candidatosTbl.setDragEnabled(false);

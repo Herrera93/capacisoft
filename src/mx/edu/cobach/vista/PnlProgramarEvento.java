@@ -476,7 +476,12 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 2) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if((eventoRealizadoPnl.isVisible() || eventoRealizarPnl.isVisible())
+            if(control.buscarEncuesta(id)){
+                setMensaje("No se puede eliminar una implementacion que tenga"
+                        + " encuesta(s) asignada");
+                model.setValueAt(false, row, 4);
+                eventosTbl.clearSelection();
+            }else if((eventoRealizadoPnl.isVisible() || eventoRealizarPnl.isVisible())
                 && idEventoActual == id){
                 JOptionPane.showMessageDialog(this, "No se puede eliminar la implementacion que se esta"
                     + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
