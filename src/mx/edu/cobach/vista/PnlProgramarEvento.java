@@ -512,9 +512,12 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
         control.setClass(ImplementacionEvento.class);
         if (evento.getNombre().equals("") && de == null && hasta == null) {
             control.buscarTodos();
-        } else {
+        } else if(tipoBusCBx.getSelectedIndex() == 0){
+            control.buscarImplementacion(null, de, hasta);
+        }else {
             control.buscarImplementacion(evento, de, hasta);
         }
+        
     }//GEN-LAST:event_buscarBtnActionPerformed
     /**
      * Este metodo permite que cuando el usuario busque un evento que desea
