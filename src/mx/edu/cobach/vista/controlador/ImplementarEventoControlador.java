@@ -5,14 +5,12 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
-import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.EnunciadoLogistica;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.
@@ -40,6 +38,20 @@ public class ImplementarEventoControlador extends BaseControlador {
         super(com, clazz);
     }
 
+    /**
+     * Este método sirve para dar de alta varias implementaciones de evento y 
+     * mostrar un sólo mensaje.
+     * 
+     * @param obj Vector de objetos a dar de alta.
+     */
+    public void alta(Object[] obj){//method
+        for(int i = 0; i < obj.length; i++){//for
+            ServiceLocatorDELEGATE.getInstance().saveOrUpdate(obj[i], clazz);
+        }//for
+        
+        com.setMensaje("Se ha guardado existosamente");
+    }//method
+    
     /**
      * Este metodo sirve para buscar el evento implementado a modificar
      *
