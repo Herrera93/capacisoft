@@ -77,12 +77,8 @@
                                           <Component id="nombreGTFd" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
                                           <Component id="tipoGCBx" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
                                           <Component id="fechaIDCh" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="validFechIniLbl" min="-2" max="-2" attributes="0"/>
-                                              <Component id="validFechFinLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="fechaTDCh" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                              <Component id="tipoSedeGCBx" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="fechaTDCh" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                          <Component id="tipoSedeGCBx" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
                                           <Component id="nombreGCBx" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -126,16 +122,12 @@
                           <Component id="fechaIDCh" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="fechaILbl" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="validFechIniLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="fechaTLbl" min="-2" max="-2" attributes="0"/>
                           <Component id="fechaTDCh" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="validFechFinLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="sedeGLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tipoSedeGCBx" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -323,22 +315,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarGBtnActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="validFechFinLbl">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="f0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="validFechIniLbl">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="f0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Este campo es obligatorio"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

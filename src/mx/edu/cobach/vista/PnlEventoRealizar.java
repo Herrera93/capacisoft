@@ -110,8 +110,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         agregarGMsjLbl = new javax.swing.JLabel();
         capacidadSedeGLbl = new javax.swing.JLabel();
         cancelarGBtn = new javax.swing.JButton();
-        validFechFinLbl = new javax.swing.JLabel();
-        validFechIniLbl = new javax.swing.JLabel();
         listaPnl = new javax.swing.JPanel();
         listaAsistenciaSPn = new javax.swing.JScrollPane();
         listaAsistenciaTbl = new javax.swing.JTable();
@@ -204,12 +202,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
             }
         });
 
-        validFechFinLbl.setForeground(new java.awt.Color(240, 0, 0));
-        validFechFinLbl.setText("Este campo es obligatorio");
-
-        validFechIniLbl.setForeground(new java.awt.Color(240, 0, 0));
-        validFechIniLbl.setText("Este campo es obligatorio");
-
         javax.swing.GroupLayout generalPnlLayout = new javax.swing.GroupLayout(generalPnl);
         generalPnl.setLayout(generalPnlLayout);
         generalPnlLayout.setHorizontalGroup(
@@ -235,11 +227,8 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                                     .addComponent(nombreGTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tipoGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(validFechIniLbl)
-                                        .addComponent(validFechFinLbl)
-                                        .addComponent(fechaTDCh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nombreGCBx, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(fechaTLbl))
                         .addGap(0, 131, Short.MAX_VALUE))
@@ -271,15 +260,11 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fechaIDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaILbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(validFechIniLbl)
-                .addGap(19, 19, 19)
+                .addGap(39, 39, 39)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fechaTLbl)
                     .addComponent(fechaTDCh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(validFechFinLbl)
-                .addGap(19, 19, 19)
+                .addGap(39, 39, 39)
                 .addGroup(generalPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sedeGLbl)
                     .addComponent(tipoSedeGCBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -632,8 +617,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
     private javax.swing.JLabel tipoGLbl;
     private javax.swing.JComboBox tipoSedeGCBx;
     private javax.swing.JLabel totalEmpleadosLbl;
-    private javax.swing.JLabel validFechFinLbl;
-    private javax.swing.JLabel validFechIniLbl;
     // End of variables declaration//GEN-END:variables
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
