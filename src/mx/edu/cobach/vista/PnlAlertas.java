@@ -1697,6 +1697,21 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
                 totalPag = totalPag + 1;
             }//if
             implementaciones = new ImplementacionEvento[totalPag][4];
+            tipoAlertas = new int[totalPag][4];
+            int z = 0;
+            for(int x = 0; x < totalPag; x++){//for
+                for(int y = 0; y < 4; y++){//for
+                    if(z < eventosAux.size() && eventosAux.get(z) != null){//if
+                        implementaciones[x][y] = eventosAux.get(z);
+                        tipoAlertas[x][y] = tipoAlerta[z][0];
+                        z++;
+                    }//if
+                    else{//else
+                        y= 4;
+                        x= totalPag + 1;
+                    }//else
+                }//for
+            }//for
         }//else
         anteriorBtn.setName("0");
         siguienteBtn.setName("1");
@@ -1779,24 +1794,34 @@ public final class PnlAlertas extends javax.swing.JPanel implements Comunicador{
         boolean band = false;
         int i = 0;
         for(ImplementacionEvento e : eventos){//for
-            if(e.getAlertas().size() > 1){//if
-                if(!band){//if
-                    Object[] setAlertas = e.getAlertas().toArray();
-                    tipoAlertas[i][0] = ((Alerta) setAlertas[0]).getId();
-                    i ++;
-                    band = true;
+            if(seleccionCBx.getSelectedIndex() == 0){//if
+                if(e.getAlertas().size() > 1){//if
+                    if(!band){//if
+                        Object[] setAlertas = e.getAlertas().toArray();
+                        tipoAlertas[i][0] = ((Alerta) setAlertas[0]).getId();
+                        i ++;
+                        band = true;
+                    }//if
+                    else{//else
+                        Object[] setAlertas = e.getAlertas().toArray();
+                        tipoAlertas[i][0] = ((Alerta) setAlertas[1]).getId();
+                        i ++;
+                        band = false;
+                    }//else
                 }//if
                 else{//else
                     Object[] setAlertas = e.getAlertas().toArray();
-                    tipoAlertas[i][0] = ((Alerta) setAlertas[1]).getId();
+                    tipoAlertas[i][0] = ((Alerta) setAlertas[0]).getId();
                     i ++;
-                    band = false;
                 }//else
             }//if
             else{//else
-                Object[] setAlertas = e.getAlertas().toArray();
-                tipoAlertas[i][0] = ((Alerta) setAlertas[0]).getId();
-                i ++;
+                    Object[] setAlertas = e.getAlertas().toArray();
+                    int temporal = ((Alerta) setAlertas[0]).getId();
+                if(temporal == seleccionCBx.getSelectedIndex()){//if
+                    tipoAlertas[i][0] = temporal;
+                    i ++;
+                }//if
             }//else
         }//for
         
