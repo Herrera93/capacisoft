@@ -598,7 +598,8 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     /**
      * Metodo que recibe una matriz, donde se obtendran sus valores para
      * añadirlos a la modelo de la tabla, también se ocultara la columna id y se
-     * le dara se redefinira el ancho de la columna 0.
+     * le dara se redefinira el ancho de la columna 0, ademas realizar la validacion
+     * de repetición de departamentos con el mismo nombre.
      *
      * @param info Matriz String para vaciar en tabla
      */
