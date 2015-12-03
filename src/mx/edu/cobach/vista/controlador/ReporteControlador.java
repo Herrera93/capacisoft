@@ -99,6 +99,7 @@ public class ReporteControlador extends BaseControlador {
     public void generarEventosPorFecha(Date de, Date hasta) {
         String[][] reporteEvento = ServiceLocatorDELEGATE.getReporte()
                 .generarReportePorFechas(de, hasta);
+        com.setTabla(reporteEvento);
     }
 
     /**
