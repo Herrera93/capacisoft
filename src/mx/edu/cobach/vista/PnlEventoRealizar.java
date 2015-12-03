@@ -77,9 +77,6 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
         informacionTBn.setEnabledAt(0, true);
         informacionTBn.setEnabledAt(1, false);
         informacionTBn.setSelectedIndex(0);
-
-        validFechIniLbl.setVisible(false);
-        validFechFinLbl.setVisible(false);
     }
 
     /**
