@@ -24,16 +24,15 @@ import mx.edu.cobach.vista.controlador.ReporteControlador;
  */
 public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador {
 
-    
     ReporteControlador control;
     private final DefaultComboBoxModel departamentoModel, dirModel;
     private final DefaultComboBoxModel plantelModel;
     private final DefaultTableModel model;
     private final String[] titulosTabla;
-    
+
     /**
-     * Constructor del PnlRegistrarEvento e instancia la clase EventoControlador. 
-     * Se crea modelo de la tabla y se realiza la busqueda 
+     * Constructor del PnlRegistrarEvento e instancia la clase
+     * EventoControlador. Se crea modelo de la tabla y se realiza la busqueda
      */
     public PnlReporteEvento() {
         initComponents();
@@ -474,8 +473,8 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Evento ejecutado al presionar el botón, imprime en pdf la tabla que contiene
-     * la informacion de eventos
+     * Evento ejecutado al presionar el botón, imprime en pdf la tabla que
+     * contiene la informacion de eventos
      */
     private void imprimirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirBtnActionPerformed
         try {
@@ -486,23 +485,26 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     }//GEN-LAST:event_imprimirBtnActionPerformed
 
     /**
-     * Metodo que se ejecuta al cambiar la fecha del componente aFechaDCh. Se ajusta
-     * la fecha maxima del componente deFechaDCh y se ajusta si esta ya es mayor que
-     * la actual.
+     * Metodo que se ejecuta al cambiar la fecha del componente aFechaDCh. Se
+     * ajusta la fecha maxima del componente deFechaDCh y se ajusta si esta ya
+     * es mayor que la actual.
+     *
      * @param evt Evento de cambio de propiedad
      */
     private void fechaHastaDChPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaHastaDChPropertyChange
         Date hastaFecha = fechaHastaDCh.getDate();
-        if(hastaFecha != null){
+        if (hastaFecha != null) {
             fechaInicioDCh.setMaxSelectableDate(hastaFecha);
-            if(fechaInicioDCh.getDate() != null && fechaInicioDCh.getDate().after(hastaFecha))
-            fechaInicioDCh.setDate(hastaFecha);
+            if (fechaInicioDCh.getDate() != null && fechaInicioDCh.getDate().after(hastaFecha)) {
+                fechaInicioDCh.setDate(hastaFecha);
+            }
         }
     }//GEN-LAST:event_fechaHastaDChPropertyChange
 
     /**
-     * Metodo que se ejecuta al presionar el botón. obteniendo la fecha inicial y
-     * final.
+     * Metodo que se ejecuta al presionar el botón. obteniendo la fecha inicial
+     * y final.
+     *
      * @param evt Evento de cambio de propiedad
      */
     private void buscarFechaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFechaBtnActionPerformed
@@ -512,56 +514,86 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
     }//GEN-LAST:event_buscarFechaBtnActionPerformed
 
     /**
-     * Metodo que se ejecuta al presionar el botón. obteniendo la fecha inicial y
-     * final.
+     * Metodo que se ejecuta al presionar el botón. obteniendo la fecha inicial
+     * y final.
+     *
      * @param evt Evento de cambio de propiedad
      */
     private void buscarPlantelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPlantelBtnActionPerformed
-        control.generarReportePorPlantel((Plantel) plantelCBx.getSelectedItem());
-        plantelCBx.setSelectedIndex(0);
-        departamentoCBx.setSelectedIndex(0);
-        direccionCBx.setSelectedIndex(0);
-        fechaInicioDCh.setDate(null);
-        fechaHastaDCh.setDate(null);
+        if (plantelCBx.getSelectedIndex() != 0) {
+            control.generarReportePorPlantel((Plantel) plantelCBx.getSelectedItem());
+            plantelCBx.setSelectedIndex(0);
+            departamentoCBx.setSelectedIndex(0);
+            direccionCBx.setSelectedIndex(0);
+            fechaInicioDCh.setDate(null);
+            fechaHastaDCh.setDate(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Tiene el Campos Vacios");
+            plantelCBx.setSelectedIndex(0);
+            departamentoCBx.setSelectedIndex(0);
+            direccionCBx.setSelectedIndex(0);
+            fechaInicioDCh.setDate(null);
+            fechaHastaDCh.setDate(null);
+        }
     }//GEN-LAST:event_buscarPlantelBtnActionPerformed
 
     /**
      * Metodo que se ejecuta al presionar el botón. obteniendo el departamento.
+     *
      * @param evt Evento que obtiene el deparamento
      */
     private void buscarDepartamentoBtnlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDepartamentoBtnlActionPerformed
-        control.generarReportePorDepartamento((Departamento) departamentoCBx.getSelectedItem());
-        plantelCBx.setSelectedIndex(0);
-        departamentoCBx.setSelectedIndex(0);
-        direccionCBx.setSelectedIndex(0);
-        fechaInicioDCh.setDate(null);
-        fechaHastaDCh.setDate(null);
+        if (departamentoCBx.getSelectedIndex() != 0) {
+            control.generarReportePorDepartamento((Departamento) departamentoCBx.getSelectedItem());
+            plantelCBx.setSelectedIndex(0);
+            departamentoCBx.setSelectedIndex(0);
+            direccionCBx.setSelectedIndex(0);
+            fechaInicioDCh.setDate(null);
+            fechaHastaDCh.setDate(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Tiene el Campos Vacios");
+            plantelCBx.setSelectedIndex(0);
+            departamentoCBx.setSelectedIndex(0);
+            direccionCBx.setSelectedIndex(0);
+            fechaInicioDCh.setDate(null);
+            fechaHastaDCh.setDate(null);
+        }
     }//GEN-LAST:event_buscarDepartamentoBtnlActionPerformed
 
     /**
      * Metodo que se ejecuta al presionar el botón. obteniendo el direccion.
+     *
      * @param evt Evento que obtiene el deparamento
      */
     private void buscarDirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarDirBtnActionPerformed
-        control.generarReportePorDireccion((Direccion) direccionCBx.getSelectedItem());
-        plantelCBx.setSelectedIndex(0);
-        departamentoCBx.setSelectedIndex(0);
-        direccionCBx.setSelectedIndex(0);
-        fechaInicioDCh.setDate(null);
-        fechaHastaDCh.setDate(null);
+        if (direccionCBx.getSelectedIndex() != 0) {
+            control.generarReportePorDireccion((Direccion) direccionCBx.getSelectedItem());
+            plantelCBx.setSelectedIndex(0);
+            departamentoCBx.setSelectedIndex(0);
+            direccionCBx.setSelectedIndex(0);
+            fechaInicioDCh.setDate(null);
+            fechaHastaDCh.setDate(null);
+        } else {
+            plantelCBx.setSelectedIndex(0);
+            departamentoCBx.setSelectedIndex(0);
+            direccionCBx.setSelectedIndex(0);
+            fechaInicioDCh.setDate(null);
+            fechaHastaDCh.setDate(null);
+        }
     }//GEN-LAST:event_buscarDirBtnActionPerformed
 
     /**
-     * Metodo que se ejecuta al cambiar la fecha del componente deFechaDCh. Se ajusta
-     * la fecha minima del componente aFechaDCh y se ajusta si esta ya es menor que
-     * la actual.
+     * Metodo que se ejecuta al cambiar la fecha del componente deFechaDCh. Se
+     * ajusta la fecha minima del componente aFechaDCh y se ajusta si esta ya es
+     * menor que la actual.
+     *
      * @param evt Evento de cambio de propiedad
      */
     private void fechaInicioDChPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaInicioDChPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaInicioDChPropertyChange
-   
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarDepartamentoBtnl;
     private javax.swing.JButton buscarDirBtn;
@@ -612,7 +644,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
         control.setClass(Direccion.class);
         control.buscarTodosLista(3);
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
      * los resultados de una busqueda especifica, que no tiene ninguna
@@ -620,7 +652,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
      */
     @Override
     public void setMensaje(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(null, "No tiene eventos Implementados");
     }
 
     /**
@@ -632,12 +664,15 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
      */
     @Override
     public void setTabla(String[][] info) {
-        if (info.length==0) {
+        if (info.length == 0) {
             JOptionPane.showMessageDialog(null, "No se Encontro la busqueda");
+            model.setDataVector(info, titulosTabla);
+            eventoTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(10);
         } else {
-        model.setDataVector(info, titulosTabla);
-        eventoTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(10);
+            model.setDataVector(info, titulosTabla);
+            eventoTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            eventoTbl.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
     }
 
@@ -675,7 +710,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
                 departamentoModel.insertElementAt(new Departamento(), 0);
                 departamentoCBx.setSelectedIndex(0);
                 break;
-            case 2: 
+            case 2:
                 plantelModel.removeAllElements();
                 for (int j = 0; j < info.size(); j++) {
                     plantelModel.addElement(info.get(j));
