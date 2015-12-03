@@ -652,7 +652,7 @@ public class PnlReporteEvento extends javax.swing.JPanel implements Comunicador 
      */
     @Override
     public void setMensaje(String mensaje) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(null, "No tiene eventos Implementados");
     }
 
     /**

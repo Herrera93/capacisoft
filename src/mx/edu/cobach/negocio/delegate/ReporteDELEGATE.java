@@ -117,9 +117,7 @@ public class ReporteDELEGATE {
             ImplementacionEvento eD = (ImplementacionEvento) eventosPorFechas.get(i);
             evento[i][0] = eD.getFechaInicial() + "";
             evento[i][1] = eD.getFechaFinal() + "";
-            evento[i][2] = eD.getEvento().toString();
-            evento[i][3] = eD.getSede().toString();
-            evento[i][4] = eD.getProveedor().toString();
+            evento[i][2] = eD.getEvento().toString(); 
         }
         return evento;
     }
