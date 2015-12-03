@@ -45,7 +45,12 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
                 ImplementacionEvento.class);
         initComponents();
         agregar();
-        model = new DefaultTableModel(titulosTabla, 4);
+        model = new DefaultTableModel(titulosTabla, 4) {
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return col == 3;
+            }
+        };
         eventosTbl.setModel(model);
         TableColumn tc = eventosTbl.getColumnModel().getColumn(0);
         eventosTbl.getColumnModel().removeColumn(tc);
@@ -345,8 +350,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(eventosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addComponent(eventosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         opcionesTBn.addTab("Buscar Evento", buscarPnl);
@@ -418,6 +423,8 @@ public class PnlProgramarEvento extends javax.swing.JPanel implements
                 eventoRealizarPnl.visibilidad(true);
             }
         } else {
+            eventoRealizadoPnl.limpiarCampos();
+            eventoRealizarPnl.limpiarCampos();
             eventoRealizadoPnl.setVisible(false);
             eventoRealizarPnl.setVisible(true);
             eventoRealizarPnl.llenarEvento((Evento) tipoRegCBx
