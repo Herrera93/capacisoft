@@ -407,14 +407,15 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
         almacenando = true;
         if (nombreTFd.getText().isEmpty()
-                    || descripcionLbl.getText().isEmpty()) {
+                || descripcionLbl.getText().isEmpty()
+                || tipoCBx.getSelectedIndex() == 0) {
                 //Mensaje de Campos vacíos.
-                JOptionPane.showMessageDialog(this, "Dejo Campos Vacíos");
+                setMensaje("Debe ingresar los datos solicitados.");
                 /*Se agregan los valores de los campos a la Lista, 
                  se mandan al metodo control.alta.*/
         }else {
             List<Object> atr = new ArrayList<>();
-            atr.add(tipoCBx.getSelectedIndex() + 1);
+            atr.add(tipoCBx.getSelectedIndex());
             atr.add(nombreTFd.getText());
             atr.add(descripcionTAa.getText());
             buscando = true;
@@ -760,7 +761,6 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     public void setLista(List info, int i) {
         tipoModel.removeAllElements();
         tipoBuscarModel.removeAllElements();
-        tipoBuscarModel.addElement(new TipoEvento());
         for (int j = 0; j < info.size(); j++) {
             tipoModel.addElement(info.get(j));
             tipoBuscarModel.addElement(info.get(j));

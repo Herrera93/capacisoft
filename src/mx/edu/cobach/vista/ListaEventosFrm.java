@@ -49,12 +49,22 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
         control = new EventoControlador(this);
         setIconImage(imageLogo.getImage());
 
-        candidatosModel = new DefaultTableModel(titulosTabla, 0);
+        candidatosModel = new DefaultTableModel(titulosTabla, 0){
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         candidatosTbl.setModel(candidatosModel);
         candidatosTbl.setColumnSelectionAllowed(false);
         candidatosTbl.setDragEnabled(false);
 
-        agregadosModel = new DefaultTableModel(titulosTabla, 0);
+        agregadosModel = new DefaultTableModel(titulosTabla, 0){
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return false;
+            }
+        };
         agregadosTbl.setModel(agregadosModel);
         agregadosTbl.setColumnSelectionAllowed(false);
         agregadosTbl.setDragEnabled(false);
@@ -542,20 +552,24 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
 
     @Override
     public void setTabla(String[][] info) {
-        //Se checa si la palabra TLE1 se encuentra dentro de la matriz
-        info[0][0] = info[0][0].replaceAll("TLE1", "");
-        //Se elimina la palabra TLE1 para que solo quede el id puro
-        candidatosTbl.setEnabled(true);
-        candidatosModel.setDataVector(info, titulosTabla);
+        if(info == null){
+            setMensaje("No se encontraron coincidencias");
+        }else{
+            //Se checa si la palabra TLE1 se encuentra dentro de la matriz
+            info[0][0] = info[0][0].replaceAll("TLE1", "");
+            //Se elimina la palabra TLE1 para que solo quede el id puro
+            candidatosTbl.setEnabled(true);
+            candidatosModel.setDataVector(info, titulosTabla);
 
-        TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
-        candidatosTbl.getColumnModel().removeColumn(tc);
+            TableColumn tc = candidatosTbl.getColumnModel().getColumn(0);
+            candidatosTbl.getColumnModel().removeColumn(tc);
 
-        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
-        candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
-        candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        visibilidadOpcT(true);
+            candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            candidatosTbl.getColumnModel().getColumn(0).setPreferredWidth(10);
+            candidatosTbl.getColumnModel().getColumn(1).setPreferredWidth(160);
+            candidatosTbl.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+            visibilidadOpcT(true);
+        }
     }
 
     @Override

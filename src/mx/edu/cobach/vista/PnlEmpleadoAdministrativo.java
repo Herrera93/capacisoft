@@ -1136,6 +1136,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         informacionTBn.setEnabledAt(1, false);
         informacionTBn.setSelectedIndex(0);
         numeroTFd.setText("");
+        numeroTFd.setEnabled(true);
         primerNombreTFd.setText("");
         segNombreTFd.setText("");
         primerApellidoTFd.setText("");
@@ -1199,7 +1200,8 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             buscando = false;
             if(info != null){
                 for(int x = 0; x < info.length; x++){
-                    if(info[x][0].equals(idEmpleadoActual)){
+                    if(guardarBtn.getText().equals("Modificar") &&
+                        info[x][0].equals(idEmpleadoActual)){
                         continue;
                     }
                     if(info[x][0].equals(numeroTFd.getText())){
@@ -1318,6 +1320,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
     public void setInfo(List info) {
         idEmpleadoActual = (String) info.get(0);
         numeroTFd.setText(idEmpleadoActual);
+        numeroTFd.setEnabled(false);
         primerNombreTFd.setText((String) info.get(1));
         segNombreTFd.setText((String) info.get(2));
         primerApellidoTFd.setText((String) info.get(3));

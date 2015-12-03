@@ -452,9 +452,10 @@ public final class ListaAsistenciaFrm extends javax.swing.JFrame implements Comu
      * @param evt
      */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())
-                || !Character.isWhitespace(evt.getKeyChar())) {
-            evt.consume();
+        if (!Character.isLetter(evt.getKeyChar())  
+            && !Character.isISOControl(evt.getKeyChar())
+            && !Character.isWhitespace(evt.getKeyChar())) {
+             evt.consume();
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
     /**

@@ -55,7 +55,12 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
         titulosEventos= new String[]{"Número","Evento","Tipo"};
         this.capacisoft = capacisoft;
         
-        model = new DefaultTableModel(titulosTabla, 3);
+        model = new DefaultTableModel(titulosTabla, 3){            
+            @Override
+            public boolean isCellEditable(int row, int col){
+                return col == 2;
+            }
+        };
         proveedoresTbl.setModel(model);
         proveedoresTbl.setColumnSelectionAllowed(false);
         proveedoresTbl.setDragEnabled(false);
