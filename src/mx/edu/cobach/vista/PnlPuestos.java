@@ -7,6 +7,7 @@ package mx.edu.cobach.vista;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -331,7 +332,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    control.alta(HelperEntidad.getPuesto(atr, "Guardar"));
+                    control.alta("puesto",HelperEntidad.getPuesto(atr));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
@@ -339,7 +340,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     List<String> atr = new ArrayList<String>();
                     atr.add(idPuesto + "");
                     atr.add(nombreTFd.getText());
-                    control.modificacion(HelperEntidad.getPuesto(atr, "Mod/Eli"));
+                    control.modificacion("puesto", HelperEntidad.getPuesto(atr),
+                            new HashMap<>());
                 }
                 limpiar();
                 control.buscarTodos();
