@@ -32,6 +32,7 @@ public class HibernateUtil {
      * Inicializacion de la fabrica de sesiones
      */
     static {
+        try {
         Configuration config = new Configuration();
         config.configure();
         StandardServiceRegistry sr = new StandardServiceRegistryBuilder().
@@ -49,6 +50,9 @@ public class HibernateUtil {
             
         });
         sessionFactory = config.buildSessionFactory(sr);        
+        } catch (Exception ex) {
+            System.out.println("HibernateUtil Exception: " + ex);
+        }
     }
     
     /**

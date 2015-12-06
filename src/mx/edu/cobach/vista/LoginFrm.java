@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.vista.controlador.UsuarioControlador;
+import persistencia.Enlace;
 
 public class LoginFrm extends javax.swing.JFrame implements Comunicador{
     
@@ -42,6 +43,12 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
                 return false;
             }
         });
+        
+        //Agregar la interface de persistencia para utilizar el servicio local
+        //Luego cambiar a campos de texto si se desea
+        Enlace.ip = "127.0.0.1";
+        Enlace.puerto = 11977;
+        Enlace.nombreServicio = "PersistInt";
     }
     
     

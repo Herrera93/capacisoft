@@ -5,9 +5,16 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import modelo.dto.DataTable;
 import mx.edu.cobach.vista.Comunicador;
+import persistencia.Enlace;
 
 /**
  * Clase con los metodos comunes en la entidades y realiza los cambios en la
@@ -40,6 +47,19 @@ public class BaseControlador{
         com.setMensaje("Se ha guardado existosamente");
     }
 
+    public void alta(String tabla, DataTable dt) {
+        try {
+            System.out.println("Alta!");
+            //Insertar los datos...
+            //Te regresa falso o verdadero en caso de que funcione pero no se
+            //utiliza en el sistema...
+            Enlace.getPersistencia().insert(new String[]{tabla}, dt);
+            
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * Metodo para dar de baja un objeto de un registro
      * @param id Indentificador del objeto que se eliminara
@@ -58,6 +78,9 @@ public class BaseControlador{
         com.setMensaje("Se ha modificado existosamente");
     }
 
+    public void modificacion(String tabla, DataTable dt, Map<String, ?> attrWhere) {
+        System.out.println("Modificacion!");
+    }
     /**
      * Metodo para buscar un registro especifico a traves de un identificador
      * @param id Identificador de registro

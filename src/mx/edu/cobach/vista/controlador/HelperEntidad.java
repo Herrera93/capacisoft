@@ -7,7 +7,6 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
@@ -28,6 +27,7 @@ import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.persistencia.entidades.TipoProveedor;
 import mx.edu.cobach.persistencia.entidades.Alerta;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 
@@ -217,17 +217,41 @@ public class HelperEntidad {
         return s;
     }
 
-    public static Object getEvento(List<Object> atributos) {
-        TipoEvento tc = new TipoEvento();
-        tc.setId((Integer) atributos.get(0));
-        Evento c = new Evento();
-        c.setTipoEvento(tc);
-        c.setNombre((String)atributos.get(1));
-        c.setDescripcion((String)atributos.get(2));
-        if(atributos.size()>3){
-            c.setId((Integer) atributos.get(3));
-        }
-        return c;
+//    public static Object getEvento(List<Object> atributos) {
+//        TipoEvento tc = new TipoEvento();
+//        tc.setId((Integer) atributos.get(0));
+//        Evento c = new Evento();
+//        c.setTipoEvento(tc);
+//        c.setNombre((String)atributos.get(1));
+//        c.setDescripcion((String)atributos.get(2));
+//        if(atributos.size()>3){
+//            c.setId((Integer) atributos.get(3));
+//        }
+//        return c;
+//    }
+    
+    public static DataTable getEvento(List<Object> atributos) {
+        //Sólo para que no haya errores de dedo, no son necesarios
+        final String TIPO_EVENTO_ID = "tipo_evento_id";
+        final String NOMBRE = "nombre";
+        final String DESCRIPCION = "descripcion";
+        
+        String[] columnas = {NOMBRE, DESCRIPCION, TIPO_EVENTO_ID};
+        
+        DataTable dtEvento = new DataTable(columnas, 1, columnas.length);
+        
+        //posicionarse en el registro 1
+        dtEvento.next();
+        
+        //Guardar los datos
+        dtEvento.setObject(TIPO_EVENTO_ID, atributos.get(0));
+        dtEvento.setObject(NOMBRE, atributos.get(1));
+        dtEvento.setObject(DESCRIPCION, atributos.get(2));
+        
+        //Reiniciar para lectura desde la primera posición.
+        dtEvento.rewind();
+        
+        return dtEvento;
     }
     
     //Descomposicion de un solo objeto

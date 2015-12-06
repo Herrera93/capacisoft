@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -423,13 +424,14 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             control.buscarTodos();
             if(!problema){
                 if (guardarBtn.getText().equals("Guardar")) {
-                    control.alta(HelperEntidad.getEvento(atr));
+                    control.alta("evento", HelperEntidad.getEvento(atr));
                 /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
                  /*Se agregan los valores de los campos a la Lista,se mandan 
                  al metodo control.modificacion*/
                 } else {
                     atr.add(id);
-                    control.modificacion(HelperEntidad.getEvento(atr));
+                    control.modificacion("evento", HelperEntidad.getEvento(atr),
+                            new HashMap<>());
                 }
                 limpiar();
                 control.buscarTodos();
