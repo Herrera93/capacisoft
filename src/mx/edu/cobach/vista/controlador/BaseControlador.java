@@ -20,27 +20,30 @@ import persistencia.Enlace;
 /**
  * Clase con los metodos comunes en la entidades y realiza los cambios en la
  * interfaz grafica a traves de la interfaz de comunicacion Comunicador
+ *
  * @author Alex
  */
-public class BaseControlador{
+public class BaseControlador {
 
     //Comunicador con la interfaz grafica
     protected final Comunicador com;
     //Clase con la que estara trabajando la base de datos
     protected Class clazz;
-    
+
     /**
      * Inicializa el controlador y asigna los atributos
+     *
      * @param com Comunicador con la interfaz grafica
      * @param clazz Clase con la que estara trabajando la base de datos
      */
-    public BaseControlador(Comunicador com, Class clazz){
+    public BaseControlador(Comunicador com, Class clazz) {
         this.com = com;
         this.clazz = clazz;
     }
-    
+
     /**
      * Metodo para dar de alta un objeto de un registro
+     *
      * @param obj Objeto del registro a dar de alta
      */
     public void alta(Object obj) {
@@ -54,15 +57,16 @@ public class BaseControlador{
             //Insertar los datos...
             //Te regresa falso o verdadero en caso de que funcione pero no se
             //utiliza en el sistema...
-            Enlace.getPersistencia().insert(new String[]{tabla}, dt);
-            
+            Enlace.getPersistencia().insert(tabla, dt);
+
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Metodo para dar de baja un objeto de un registro
+     *
      * @param id Indentificador del objeto que se eliminara
      */
     public void baja(int id) {
@@ -72,6 +76,7 @@ public class BaseControlador{
 
     /**
      * Metodo para actualizar un objeto de un registro
+     *
      * @param obj Objeto del registro a actualizar
      */
     public void modificacion(Object obj) {
@@ -82,47 +87,50 @@ public class BaseControlador{
     public void modificacion(String tabla, DataTable dt, Map<String, ?> attrWhere) {
         System.out.println("Modificacion!");
     }
+
     /**
      * Metodo para buscar un registro especifico a traves de un identificador
+     *
      * @param id Identificador de registro
      */
     public void buscar(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
         com.setInfo(DataHelper.descomponerRegistro(o));
     }
-    
+
     public void buscar(String nombreTabla, String columnaPK, Object valorPK) {
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put(columnaPK, valorPK);
-        
+
         DataTable dt = DataHelper.buscar(nombreTabla, null, null, condicion);
         com.setInfo(DataHelper.descomponerRegistro(nombreTabla, dt));
     }
-    
+
     public void buscarPor(String nombreTabla, Map<String, ?> attrWhere) {
-        
+
         try {
             System.out.println("Consulta Por Atributos!");
             //Consulta los datos, regresando un DataTable
             DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null,
                     attrWhere);
-            
+
             //set la tabla...
             com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
-            
+
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
-     * Metodo para buscar todos los registros y escribirlos en la tabla de 
+     * Metodo para buscar todos los registros y escribirlos en la tabla de
      * Comunicador
      */
     public void buscarTodos() {
         List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
         com.setTabla(DataHelper.descomponerRegistros(ls));
     }
-    
+
     public void buscarTodos(String nombreTabla) {
         try {
             System.out.println("Consulta General!");
@@ -130,25 +138,38 @@ public class BaseControlador{
             DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
             //set la tabla...
             com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
-            
+
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * Metodo para buscar todos los registros y escribirlos en la lista de 
+     * Metodo para buscar todos los registros y escribirlos en la lista de
      * Comunicador
+     *
      * @param lista Numero de identificador de lista donde se escribiran los
      * registros
      */
-    public void buscarTodosLista(int lista){
+    public void buscarTodosLista(int lista) {
         List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
         com.setLista(ls, lista);
     }
-    
-    public void setClass(Class clazz){
+
+    public void buscarTodosLista(String nombreTabla, int lista) {
+        try {
+            System.out.println("Consulta especifica!");
+            //Consulta los datos, regresando un DataTable
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
+            com.setLista(DataHelper.descomponerRegistrosAObjetos(nombreTabla, dt), lista);
+
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void setClass(Class clazz) {
         this.clazz = clazz;
     }
-        
+
 }

@@ -426,9 +426,8 @@ public class DataHelper {
     public static List<Object> descomponerRegistro(String tablaFuente,
             DataTable registro) {
         List registroDescompuesto = null;
-
+        
         if (registro != null && registro.getRowCount() > 0) {
-
             if (tablaFuente.equalsIgnoreCase("evento")) {
                 registroDescompuesto = descomponerEvento(registro);
             } else if (tablaFuente.equalsIgnoreCase("puesto")) {
@@ -534,12 +533,11 @@ public class DataHelper {
 
         attrWhere.put("id", evento.getInt("tipo_evento_id"));
 
-        DataTable tipoEvento = buscar("tipo_evento",
-                new String[]{"descripcion"}, new String[]{null}, attrWhere);
+        DataTable tipoEvento = buscar("tipo_evento", null, null, attrWhere);
 
         tipoEvento.next();
 
-        info.add(tipoEvento.getString("descripcion"));
+        info.add(descomponerTipoEventos(tipoEvento).get(0));
 
         return info;
     }
@@ -690,6 +688,19 @@ public class DataHelper {
 //            }
         }
         return null;
+    }
+    
+    public static List<Object> descomponerRegistrosAObjetos(String tablaFuente,
+            DataTable dataTable) {
+        List<Object> datosDescompuestos = null;
+
+        if (dataTable != null && dataTable.getRowCount() > 0) {
+             if (tablaFuente.equalsIgnoreCase("tipo_evento")) {
+                datosDescompuestos = descomponerTipoEventos(dataTable);
+            }
+        }
+        
+        return datosDescompuestos;
     }
 
     public static String[][] descomponerRegistros(String tablaFuente,
@@ -1079,5 +1090,20 @@ public class DataHelper {
             Logger.getLogger(DataHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dt;
+    }
+
+    private static List descomponerTipoEventos(DataTable tipoEventos) {
+        List<Object> lista = new ArrayList();
+        
+        //Iterar en los registros
+        tipoEventos.rewind();
+        int i = 0;
+        while (tipoEventos.next()) {
+            TipoEvento tipo = new TipoEvento(tipoEventos.getString("descripcion"));
+            tipo.setId(tipoEventos.getInt("id"));
+            lista.add(tipo);
+        }
+
+        return lista;
     }
 }
