@@ -63,7 +63,7 @@ public class DataHelper {
         //Sólo para que no haya errores de dedo, no son necesarios
         final String ID = "id";
         final String NOMBRE = "nombre";
-        
+
         String[] columnas = {ID, NOMBRE};
         DataTable dtDepartamento = new DataTable(columnas, 1, columnas.length);
 
@@ -85,21 +85,22 @@ public class DataHelper {
      * @param List<String> atributos
      * @return Plantel
      *//*
-    public static Plantel getPlantel(List<String> atributos) {
-        Plantel plantel = new Plantel();
-        Zona z = new Zona();
-        plantel.setNombre(atributos.get(0));
-        plantel.setCalle(atributos.get(1));
-        plantel.setColonia(atributos.get(2));
-        plantel.setNumeroDireccion(atributos.get(3));
-        z.setId(Integer.parseInt(atributos.get(4)));
-        plantel.setZona(z);
-        if (atributos.size() > 5) {
-            plantel.setId(Integer.parseInt(atributos.get(5)));
-        }
-        return plantel;
-    }
+     public static Plantel getPlantel(List<String> atributos) {
+     Plantel plantel = new Plantel();
+     Zona z = new Zona();
+     plantel.setNombre(atributos.get(0));
+     plantel.setCalle(atributos.get(1));
+     plantel.setColonia(atributos.get(2));
+     plantel.setNumeroDireccion(atributos.get(3));
+     z.setId(Integer.parseInt(atributos.get(4)));
+     plantel.setZona(z);
+     if (atributos.size() > 5) {
+     plantel.setId(Integer.parseInt(atributos.get(5)));
+     }
+     return plantel;
+     }
      */
+
     /**
      * getProveedor
      *
@@ -227,28 +228,28 @@ public class DataHelper {
     }
 
     /*public static Object getEmpleado(List<Object> atributos) {
-        Empleado e = new Empleado();
-        e.setNumero((String) atributos.get(0));
-        e.setPrimerNombre((String) atributos.get(1));
-        if (!((String) atributos.get(2)).isEmpty()) {
-            e.setSegundoNombre((String) atributos.get(2));
-        }
-        e.setApellidoPaterno((String) atributos.get(3));
-        e.setApellidoMaterno((String) atributos.get(4));
-        e.setPuesto((Puesto) atributos.get(5));
-        e.setCorreo((String) atributos.get(6));
-        e.setAdscripcion((Adscripcion) atributos.get(7));
-        Adscripcion ads = ((Adscripcion) atributos.get(7));
-        System.out.println(ads.getDescripcion());
-        if (ads.getDescripcion().equalsIgnoreCase("Plantel")) {
-            e.setPlantel((Plantel) atributos.get(8));
-        } else if (ads.getDescripcion().equalsIgnoreCase("departamento")) {
-            e.setDepartamento((Departamento) atributos.get(9));
-        } else {
-            e.setDireccion((Direccion) atributos.get(10));
-        }
-        return e;
-    }*/
+     Empleado e = new Empleado();
+     e.setNumero((String) atributos.get(0));
+     e.setPrimerNombre((String) atributos.get(1));
+     if (!((String) atributos.get(2)).isEmpty()) {
+     e.setSegundoNombre((String) atributos.get(2));
+     }
+     e.setApellidoPaterno((String) atributos.get(3));
+     e.setApellidoMaterno((String) atributos.get(4));
+     e.setPuesto((Puesto) atributos.get(5));
+     e.setCorreo((String) atributos.get(6));
+     e.setAdscripcion((Adscripcion) atributos.get(7));
+     Adscripcion ads = ((Adscripcion) atributos.get(7));
+     System.out.println(ads.getDescripcion());
+     if (ads.getDescripcion().equalsIgnoreCase("Plantel")) {
+     e.setPlantel((Plantel) atributos.get(8));
+     } else if (ads.getDescripcion().equalsIgnoreCase("departamento")) {
+     e.setDepartamento((Departamento) atributos.get(9));
+     } else {
+     e.setDireccion((Direccion) atributos.get(10));
+     }
+     return e;
+     }*/
     public static DataTable getEmpleado(List<Object> atributos) {
         //Sólo para que no haya errores de dedo, no son necesarios
         final String NUMERO = "numero";
@@ -392,11 +393,12 @@ public class DataHelper {
 
     //Descomposicion de un solo objeto
     public static List<Object> descomponerRegistro(Object obj) {
-        if (obj instanceof Puesto) {
-            return descomponerPuesto((Puesto) obj);
-        } /*else if (obj instanceof Evento) {
-            return descomponerEvento((Evento) obj);
-        } */else if (obj instanceof Empleado) {
+        /*if (obj instanceof Puesto) {
+         //return descomponerPuesto((Puesto) obj);
+         } else if (obj instanceof Evento) {
+         return descomponerEvento((Evento) obj);
+         } else */
+        if (obj instanceof Empleado) {
             return descomponerEmpleado((Empleado) obj);
         } else if (obj instanceof Usuario) {
             return descomponerUsuario((Usuario) obj);
@@ -427,6 +429,8 @@ public class DataHelper {
 
             if (tablaFuente.equalsIgnoreCase("evento")) {
                 registroDescompuesto = descomponerEvento(registro);
+            } else if (tablaFuente.equalsIgnoreCase("puesto")) {
+                registroDescompuesto = descomponerEvento (registro);
             }
         }
 
@@ -479,10 +483,14 @@ public class DataHelper {
         return info;
     }
 
-    private static List<Object> descomponerPuesto(Puesto puesto) {
+    private static List<Object> descomponerPuesto(DataTable puesto) {
         List<Object> info = new ArrayList<>();
-        info.add(puesto.getNombre());
-        info.add(puesto.getId());
+
+        //Iterar en los registros 
+        puesto.rewind();
+        puesto.next();
+        info.add(puesto.getInt("id"));
+        info.add(puesto.getString("nombre"));
         return info;
     }
 
@@ -508,7 +516,7 @@ public class DataHelper {
         evento.rewind();
 
         evento.next();
-        
+
         info.add(evento.getInt("id"));
         info.add(evento.getString("nombre"));
         info.add(evento.getString("descripcion"));
@@ -590,25 +598,26 @@ public class DataHelper {
     public static String[][] descomponerRegistros(List<Object> objetos) {
         System.out.println("Lista: " + objetos);
         if (objetos.size() > 0) {
-            if (objetos.get(0) instanceof Puesto) {
-                List<Puesto> ps = new ArrayList<>();
-                for (int i = 0; i < objetos.size(); i++) {
-                    ps.add((Puesto) objetos.get(i));
-                }
-                return descomponerPuestos(ps);
-            } else if (objetos.get(0) instanceof Empleado) {
+            /*if (objetos.get(0) instanceof Puesto) {
+             List<Puesto> ps = new ArrayList<>();
+             for (int i = 0; i < objetos.size(); i++) {
+             ps.add((Puesto) objetos.get(i));
+             }
+             return descomponerPuestos(ps);
+             } else */
+            if (objetos.get(0) instanceof Empleado) {
                 List<Empleado> emps = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     emps.add((Empleado) objetos.get(i));
                 }
                 return descomponerEmpleados(emps);
             } /*else if (objetos.get(0) instanceof Evento) {
-                List<Evento> cr = new ArrayList();
-                for (int i = 0; i < objetos.size(); i++) {
-                    cr.add((Evento) objetos.get(i));
-                }
-                return descomponerEventos(cr);
-            } */ else if (objetos.get(0) instanceof Usuario) {
+             List<Evento> cr = new ArrayList();
+             for (int i = 0; i < objetos.size(); i++) {
+             cr.add((Evento) objetos.get(i));
+             }
+             return descomponerEventos(cr);
+             } */ else if (objetos.get(0) instanceof Usuario) {
                 List<Usuario> us = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     us.add((Usuario) objetos.get(i));
@@ -683,7 +692,10 @@ public class DataHelper {
 
             if (tablaFuente.equalsIgnoreCase("evento")) {
                 datosDescompuestos = descomponerEventos(dataTable);
+            } else if (tablaFuente.equalsIgnoreCase("puesto")) {
+                datosDescompuestos = descomponerPuestos(dataTable);
             }
+
         }
 //        System.out.println("Lista: " + objetos);
 //        if (objetos.size() > 0) {
@@ -858,13 +870,18 @@ public class DataHelper {
         return info;
     }
 
-    private static String[][] descomponerPuestos(List<Puesto> ps) {
-        String[][] info = new String[ps.size()][2];
-        for (int i = 0; i < ps.size(); i++) {
-            Puesto p = ps.get(i);
-            info[i][0] = p.getId() + "";
-            info[i][1] = p.getNombre();
+    private static String[][] descomponerPuestos(DataTable puesto) {
+        String[][] info = new String[puesto.getRowCount()][3];
+
+        //Iterar en los registros
+        puesto.rewind();
+        int i = 0;
+        while (puesto.next()) {
+            info[i][0] = puesto.getObject("id").toString();
+            info[i][1] = puesto.getString("nombre");
+            i++;
         }
+
         return info;
     }
 
