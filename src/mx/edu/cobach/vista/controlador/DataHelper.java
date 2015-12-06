@@ -414,11 +414,13 @@ public class DataHelper {
             return descomponerPlantel((Plantel) obj);
         } else if (obj instanceof Alerta) {
             return descomponerAlerta((Alerta) obj);
-        } else if (obj instanceof Direccion) {
-            return descomponerDireccion((Direccion) obj);
-        } else {
-            return null;
+//        } else if (obj instanceof Direccion) {
+//            return descomponerDireccion((Direccion) obj);
+//        } else {
+//            return null;
+//        }
         }
+        return null;
     }
 
     public static List<Object> descomponerRegistro(String tablaFuente,
@@ -430,7 +432,9 @@ public class DataHelper {
             if (tablaFuente.equalsIgnoreCase("evento")) {
                 registroDescompuesto = descomponerEvento(registro);
             } else if (tablaFuente.equalsIgnoreCase("puesto")) {
-                registroDescompuesto = descomponerEvento (registro);
+                registroDescompuesto = descomponerPuesto(registro);
+            } else if (tablaFuente.equalsIgnoreCase("direccion")){
+                registroDescompuesto = descomponerDireccion(registro);
             }
         }
 
@@ -494,10 +498,14 @@ public class DataHelper {
         return info;
     }
 
-    private static List<Object> descomponerDireccion(Direccion direccion) {
+    private static List<Object> descomponerDireccion(DataTable direccion) {
         List<Object> info = new ArrayList<>();
-        info.add(direccion.getNombre());
-        info.add(direccion.getId());
+
+        //Iterar en los registros 
+        direccion.rewind();
+        direccion.next();
+        info.add(direccion.getInt("id"));
+        info.add(direccion.getString("nombre"));
         return info;
     }
 
@@ -672,13 +680,14 @@ public class DataHelper {
                     pl.add((Plantel) objetos.get(i));
                 }
                 return descomponerPlanteles(pl);
-            } else if (objetos.get(0) instanceof Direccion) {
-                List<Direccion> di = new ArrayList();
-                for (int i = 0; i < objetos.size(); i++) {
-                    di.add((Direccion) objetos.get(i));
-                }
-                return descomponerDirecciones(di);
             }
+//            } else if (objetos.get(0) instanceof Direccion) {
+//                List<Direccion> di = new ArrayList();
+//                for (int i = 0; i < objetos.size(); i++) {
+//                    di.add((Direccion) objetos.get(i));
+//                }
+//                return descomponerDirecciones(di);
+//            }
         }
         return null;
     }
@@ -694,7 +703,9 @@ public class DataHelper {
                 datosDescompuestos = descomponerEventos(dataTable);
             } else if (tablaFuente.equalsIgnoreCase("puesto")) {
                 datosDescompuestos = descomponerPuestos(dataTable);
-            }
+            } else if (tablaFuente.equalsIgnoreCase("direccion")) {
+                datosDescompuestos = descomponerDirecciones(dataTable);
+            } 
 
         }
 //        System.out.println("Lista: " + objetos);
@@ -884,14 +895,19 @@ public class DataHelper {
 
         return info;
     }
+    
+    private static String[][] descomponerDirecciones(DataTable direccion) {
+        String[][] info = new String[direccion.getRowCount()][3];
 
-    private static String[][] descomponerDirecciones(List<Direccion> di) {
-        String[][] info = new String[di.size()][2];
-        for (int i = 0; i < di.size(); i++) {
-            Direccion d = di.get(i);
-            info[i][0] = d.getId() + "";
-            info[i][1] = d.getNombre();
+        //Iterar en los registros
+        direccion.rewind();
+        int i = 0;
+        while (direccion.next()) {
+            info[i][0] = direccion.getObject("id").toString();
+            info[i][1] = direccion.getString("nombre");
+            i++;
         }
+
         return info;
     }
 
