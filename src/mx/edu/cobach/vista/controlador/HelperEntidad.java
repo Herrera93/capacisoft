@@ -232,11 +232,12 @@ public class HelperEntidad {
     
     public static DataTable getEvento(List<Object> atributos) {
         //Sólo para que no haya errores de dedo, no son necesarios
+        final String ID = "id";
         final String TIPO_EVENTO_ID = "tipo_evento_id";
         final String NOMBRE = "nombre";
         final String DESCRIPCION = "descripcion";
         
-        String[] columnas = {NOMBRE, DESCRIPCION, TIPO_EVENTO_ID};
+        String[] columnas = {ID, NOMBRE, DESCRIPCION, TIPO_EVENTO_ID};
         
         DataTable dtEvento = new DataTable(columnas, 1, columnas.length);
         
