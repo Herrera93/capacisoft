@@ -27,7 +27,8 @@ public class PlantelControlador extends BaseControlador{
         }
         atr.add("0");
         atr.add(String.valueOf(id));
-        return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorPlantel(HelperEntidad.getPlantel(atr)).size() > 0;
+        //return ServiceLocatorDELEGATE.getImplementarEvento()
+        //    .buscarEmPorPlantel(HelperEntidad.getPlantel(atr)).size() > 0;
+        return false;
     }
 }

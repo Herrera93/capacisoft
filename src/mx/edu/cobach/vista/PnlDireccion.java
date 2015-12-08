@@ -325,7 +325,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    control.alta(HelperEntidad.getDireccion(atr, "Guardar"));
+                    control.alta("direccion",HelperEntidad.getDireccion(atr));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecuta en el caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
@@ -333,7 +333,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                     List<String> atr = new ArrayList<String>();
                     atr.add(idDireccion + "");
                     atr.add(nombreTFd.getText());
-                    control.modificacion(HelperEntidad.getDireccion(atr, "Mod/Eli"));
+                    control.modificacion(HelperEntidad.getDireccion(atr));
                 }
                 limpiar();
                 control.buscarTodos();
