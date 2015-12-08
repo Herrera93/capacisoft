@@ -71,7 +71,16 @@ public class BaseControlador {
      */
     public void baja(int id) {
         String mensaje = ServiceLocatorDELEGATE.getInstance().delete(id, clazz);
-        com.setMensaje(mensaje);
+        com.setMensaje(mensaje); 
+    }
+    
+    public void baja(String tabla, Map<String, ?> attrWhere) {
+        try {
+            System.out.println("Baja!");
+            Enlace.getPersistencia().delete(tabla, attrWhere);
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -85,7 +94,16 @@ public class BaseControlador {
     }
 
     public void modificacion(String tabla, DataTable dt, Map<String, ?> attrWhere) {
-        System.out.println("Modificacion!");
+        try {
+            System.out.println("Modificación!");
+            //Modificar los datos los datos...
+            //Te regresa falso o verdadero en caso de que funcione pero no se
+            //utiliza en el sistema...
+            Enlace.getPersistencia().update(tabla, dt, attrWhere);
+
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
