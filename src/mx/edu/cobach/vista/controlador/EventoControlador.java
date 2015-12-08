@@ -7,7 +7,6 @@ package mx.edu.cobach.vista.controlador;
 
 import java.util.HashMap;
 import modelo.dto.DataTable;
-import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.vista.Comunicador;
 
@@ -48,7 +47,8 @@ public class EventoControlador extends BaseControlador{
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put("evento_id", id);
         
-        DataTable dt = DataHelper.buscar("implementacion_evento", null, condicion);
+        DataTable dt = DataHelper.buscar("implementacion_evento", null, null,
+                condicion);
         
         return dt != null && dt.getRowCount() > 0;
     }

@@ -95,7 +95,7 @@ public class BaseControlador{
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put(columnaPK, valorPK);
         
-        DataTable dt = DataHelper.buscar(nombreTabla, null, condicion);
+        DataTable dt = DataHelper.buscar(nombreTabla, null, null, condicion);
         com.setInfo(DataHelper.descomponerRegistro(nombreTabla, dt));
     }
     
@@ -104,7 +104,8 @@ public class BaseControlador{
         try {
             System.out.println("Consulta Por Atributos!");
             //Consulta los datos, regresando un DataTable
-            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, attrWhere);
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null,
+                    attrWhere);
             
             //set la tabla...
             com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
@@ -126,7 +127,7 @@ public class BaseControlador{
         try {
             System.out.println("Consulta General!");
             //Consulta los datos, regresando un DataTable
-            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null);
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
             //set la tabla...
             com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
             

@@ -797,7 +797,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             tipoCBx.setSelectedIndex(2);
         }else if (info.get(3).equals("CURSO")){
             tipoCBx.setSelectedIndex(3);
-        }else if (info.get(3).equals("CURSO/TALLER")){
+        }else if (info.get(3).equals("CURSO / TALLER")){
             tipoCBx.setSelectedIndex(4);
         }else if (info.get(3).equals("PLATICA")){
             tipoCBx.setSelectedIndex(5);

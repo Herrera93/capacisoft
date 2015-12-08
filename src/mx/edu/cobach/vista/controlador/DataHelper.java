@@ -502,7 +502,7 @@ public class DataHelper {
         attrWhere.put("id", evento.getInt("tipo_evento_id"));
 
         DataTable tipoEvento = buscar("tipo_evento",
-                new String[]{"descripcion"}, attrWhere);
+                new String[]{"descripcion"}, new String[]{null}, attrWhere);
 
         tipoEvento.next();
 
@@ -887,7 +887,7 @@ public class DataHelper {
             attrWhere.put("id", eventos.getInt("tipo_evento_id"));
 
             DataTable tipoEvento = buscar("tipo_evento",
-                    new String[]{"descripcion"}, attrWhere);
+                    new String[]{"descripcion"}, new String[]{null}, attrWhere);
 
             tipoEvento.next();
 
@@ -1021,10 +1021,10 @@ public class DataHelper {
     }
 
     public static DataTable buscar(String tabla, String[] columnas,
-            Map<String, ?> attrWhere) {
+            String[] aliases, Map<String, ?> attrWhere) {
         DataTable dt = null;
         try {
-            dt = Enlace.getPersistencia().get(tabla, columnas, attrWhere);
+            dt = Enlace.getPersistencia().get(tabla, columnas, aliases, attrWhere);
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(DataHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
