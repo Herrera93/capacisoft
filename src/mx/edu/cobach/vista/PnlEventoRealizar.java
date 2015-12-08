@@ -26,7 +26,7 @@ import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Sede;
 import mx.edu.cobach.vista.controlador.AlertaControlador;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
@@ -815,10 +815,10 @@ public class PnlEventoRealizar extends javax.swing.JPanel implements
                         atributos.add(alertas);
                     }//if
                 }//else
-                control.alta(HelperEntidad.
+                control.alta(DataHelper.
                         getImplementarEvento(atributos, "Guardar"));
             } else {
-                control.alta(HelperEntidad.
+                control.alta(DataHelper.
                         getImplementarEvento(atributos, "Modificar"));
             }
             this.cambio = false;

@@ -17,7 +17,7 @@ public class PlantelControlador extends BaseControlador{
     
     public void buscarPorNombre(String nombre){
         List<Object> list = ServiceLocatorDELEGATE.getPlantelDelegate().buscarPorNombre(nombre);
-       com.setTabla(HelperEntidad.descomponerObjetos(list));
+       com.setTabla(DataHelper.descomponerRegistros(list));
     }
     
     public boolean buscarEmpleados(int id){
@@ -27,7 +27,8 @@ public class PlantelControlador extends BaseControlador{
         }
         atr.add("0");
         atr.add(String.valueOf(id));
-        return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorPlantel(HelperEntidad.getPlantel(atr)).size() > 0;
+        //return ServiceLocatorDELEGATE.getImplementarEvento()
+        //    .buscarEmPorPlantel(HelperEntidad.getPlantel(atr)).size() > 0;
+        return false;
     }
 }

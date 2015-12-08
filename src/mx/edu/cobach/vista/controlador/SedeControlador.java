@@ -21,7 +21,7 @@ public class SedeControlador extends BaseControlador{
     
     public void buscarPorNombre(String nombre){
         List<Object> list = ServiceLocatorDELEGATE.getSede().findByNombre(nombre);
-       com.setTabla(HelperEntidad.descomponerObjetos(list));
+       com.setTabla(DataHelper.descomponerRegistros(list));
     }
     
     public boolean buscarImplementaciones(int id){

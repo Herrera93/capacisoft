@@ -45,7 +45,7 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarPorNombre(String nombre){
         List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorNombre(nombre);
-        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+        com.setTabla(DataHelper.descomponerRegistros(empleados));
     }
     
     /**
@@ -57,7 +57,7 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarPorPuesto(Object puesto){
         List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorPuesto((Puesto) puesto);
-        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+        com.setTabla(DataHelper.descomponerRegistros(empleados));
     }
     
     /**
@@ -69,7 +69,7 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarPorDepartamento(Object departamento){
         List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorDepartamento((Departamento) departamento);
-        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+        com.setTabla(DataHelper.descomponerRegistros(empleados));
     }
     
     /**
@@ -81,7 +81,7 @@ public class EncuestaControlador extends BaseControlador {
     public void buscarPorPlantel(Object plantel){
         List<Object> empleados = ServiceLocatorDELEGATE.getImplementarEvento()
                 .buscarEmPorPlantel((Plantel) plantel);
-        com.setTabla(HelperEntidad.descomponerObjetos(empleados));
+        com.setTabla(DataHelper.descomponerRegistros(empleados));
     }
         
     /**
@@ -95,7 +95,7 @@ public class EncuestaControlador extends BaseControlador {
         setClass(Aspecto.class);
         List<Object> aspectos = ServiceLocatorDELEGATE.getEncuesta()
                 .buscarAspectosPorCompetencia(competencia);
-        com.setTabla(HelperEntidad.descomponerObjetos(aspectos));
+        com.setTabla(DataHelper.descomponerRegistros(aspectos));
     }
     
     /**
@@ -121,7 +121,7 @@ public class EncuestaControlador extends BaseControlador {
         if(implementacionesActivas.isEmpty())
             com.setMensaje("No se encontraron implementaciones sin encuestas");
         else
-            com.setTabla(HelperEntidad.descomponerObjetos(implementacionesActivas));
+            com.setTabla(DataHelper.descomponerRegistros(implementacionesActivas));
     }
     
     /**
@@ -174,7 +174,7 @@ public class EncuestaControlador extends BaseControlador {
         if(implementaciones.isEmpty())
             com.setMensaje("No se encontraron implementaciones con encuestas");
         else
-            com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+            com.setTabla(DataHelper.descomponerRegistros(implementaciones));
     }
 
     /**
@@ -189,7 +189,7 @@ public class EncuestaControlador extends BaseControlador {
             com.setInfo(null);
         }
         List<Object> empleados = new ArrayList(implementacion.getEmpleados());
-        String[][] info = HelperEntidad.descomponerObjetos(empleados);
+        String[][] info = DataHelper.descomponerRegistros(empleados);
         if(info != null) {
             info[0][0] = info[0][0] + "TLE1";
             com.setTabla(info);

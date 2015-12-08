@@ -35,7 +35,7 @@ public class DepartamentoControlador extends BaseControlador {
     public void buscarPorNombre(String nombre, int a) {
         if (a == 1) {
             List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
-            com.setTabla(HelperEntidad.descomponerObjetos(o));
+            com.setTabla(DataHelper.descomponerRegistros(o));
         } else {
             List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
             if (!o.isEmpty()) {

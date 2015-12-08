@@ -5,8 +5,8 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.vista.Comunicador;
@@ -27,24 +27,29 @@ public class EventoControlador extends BaseControlador{
         super(com, Evento.class);
     }
     
-    public void buscarEventoPorTipo(int id) {
-        List<Object> o = ServiceLocatorDELEGATE.getEvento().buscarPorTipoEvento(id);
-        com.setTabla(HelperEntidad.descomponerObjetos(o));
-    }
+//    public void buscarEventoPorTipo(int id) {
+//        List<Object> o = ServiceLocatorDELEGATE.getEvento().buscarPorTipoEvento(id);
+//        com.setTabla(DataHelper.descomponerDataTable(o));
+//    }
     
     /**
      * Metodo para buscar un registro especifico a traves de un nombre para validar
      * si existe un curso ya en la base de datos
      * @param nombre Nombre del puesto a buscar
     */
-    public void buscarPorNombre(String nombre){
-        List<Object> list = ServiceLocatorDELEGATE.getEvento().buscarPorNombre(nombre);
-        com.setTabla(HelperEntidad.descomponerObjetos(list));
-    }
+//    public void buscarPorNombre(String nombre){
+//        List<Object> list = ServiceLocatorDELEGATE.getEvento().buscarPorNombre(nombre);
+//        com.setTabla(DataHelper.descomponerDataTable(list));
+//    }
     
-    public boolean buscarImplementaciones(int id){
-        Evento e = (Evento) ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarPorEvento(e).size() > 0;
+    public boolean buscarImplementaciones(int id) {
+        System.out.println("Buscando implementaciones de evento!!");
+        
+        HashMap<String, Object> condicion = new HashMap<>();
+        condicion.put("evento_id", id);
+        
+        DataTable dt = DataHelper.buscar("implementacion_evento", null, condicion);
+        
+        return dt != null && dt.getRowCount() > 0;
     }
 }
