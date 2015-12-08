@@ -484,7 +484,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         }else if(numeroTFd.getText().equals("")){
             setMensaje("Debe ingresar el numero del plantel");
         }else{
-            List<String> atr = new ArrayList<String>();
+            List<Object> atr = new ArrayList<Object>();
             atr.add(nombreTFd.getText());
             atr.add(calleTFd.getText());
             atr.add(coloniaTFd.getText());            
@@ -500,10 +500,10 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             control.buscarTodos();
             if(!problema){
                 if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
-                    control.alta(HelperEntidad.getPlantel(atr));  
+                    control.alta("plantel",HelperEntidad.getPlantel(atr));  
                 }else{
                     atr.add(String.valueOf(idPlantelActual));
-                    control.modificacion(HelperEntidad.getPlantel(atr));
+                    //control.modificacion(HelperEntidad.getPlantel(atr));
                 }
                 limpiar();
                 guardarBtn.setText("Guardar");
