@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.vista.controlador.DepartamentoControlador;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 
 /**
  *
@@ -342,10 +342,10 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             control.buscarTodos();
             if(!problema){
                 if(guardarBtn.getText().equals("Guardar")){
-                    control.alta(HelperEntidad.getDepartamento(atr));
+                    control.alta(DataHelper.getDepartamento(atr));
                 }else{
                     atr.add(id);
-                    control.modificacion(HelperEntidad.getDepartamento(atr));
+                    control.modificacion(DataHelper.getDepartamento(atr));
                 }
                 limpiar();
                 control.buscarTodos();            

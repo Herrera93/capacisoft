@@ -16,7 +16,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.PlantelControlador;
 
 
@@ -500,7 +500,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             control.buscarTodos();
             if(!problema){
                 if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
-                    control.alta("plantel",HelperEntidad.getPlantel(atr));  
+                    control.alta("plantel",DataHelper.getPlantel(atr));  
                 }else{
                     atr.add(String.valueOf(idPlantelActual));
                     //control.modificacion(HelperEntidad.getPlantel(atr));

@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -87,17 +88,51 @@ public class BaseControlador{
      */
     public void buscar(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        com.setInfo(HelperEntidad.descomponerObjeto(o));
+        com.setInfo(DataHelper.descomponerRegistro(o));
     }
     
-
+    public void buscar(String nombreTabla, String columnaPK, Object valorPK) {
+        HashMap<String, Object> condicion = new HashMap<>();
+        condicion.put(columnaPK, valorPK);
+        
+        DataTable dt = DataHelper.buscar(nombreTabla, null, condicion);
+        com.setInfo(DataHelper.descomponerRegistro(nombreTabla, dt));
+    }
+    
+    public void buscarPor(String nombreTabla, Map<String, ?> attrWhere) {
+        
+        try {
+            System.out.println("Consulta Por Atributos!");
+            //Consulta los datos, regresando un DataTable
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, attrWhere);
+            
+            //set la tabla...
+            com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
+            
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Metodo para buscar todos los registros y escribirlos en la tabla de 
      * Comunicador
      */
     public void buscarTodos() {
         List<Object> ls = ServiceLocatorDELEGATE.getInstance().findAll(clazz);
-        com.setTabla(HelperEntidad.descomponerObjetos(ls));
+        com.setTabla(DataHelper.descomponerRegistros(ls));
+    }
+    
+    public void buscarTodos(String nombreTabla) {
+        try {
+            System.out.println("Consulta General!");
+            //Consulta los datos, regresando un DataTable
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null);
+            //set la tabla...
+            com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
+            
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**

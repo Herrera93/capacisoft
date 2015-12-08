@@ -24,12 +24,12 @@ public class UsuarioControlador extends BaseControlador{
     public void buscarPorUsuario (String usuario){
         List<Object> list = ServiceLocatorDELEGATE.getUsuario()
                 .findByUsuario(usuario);
-        com.setTabla(HelperEntidad.descomponerLogin(list));
+        com.setTabla(DataHelper.descomponerLogin(list));
     }
     
     public void buscarPorNombre(String nombre){
         List<Object> list = ServiceLocatorDELEGATE.getUsuario().findByNombre(nombre);
-       com.setTabla(HelperEntidad.descomponerObjetos(list));
+       com.setTabla(DataHelper.descomponerRegistros(list));
     }
     
 }

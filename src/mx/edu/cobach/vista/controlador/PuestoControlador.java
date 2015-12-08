@@ -33,7 +33,7 @@ public class PuestoControlador extends BaseControlador{
     */
     public void buscar(String nombre) {
         List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre);
-        com.setTabla(HelperEntidad.descomponerObjetos(o));
+        com.setTabla(DataHelper.descomponerRegistros(o));
     }
     
     /**
@@ -42,7 +42,7 @@ public class PuestoControlador extends BaseControlador{
     */
     public void buscarMod(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        com.setInfo(HelperEntidad.descomponerObjeto(o));
+        com.setInfo(DataHelper.descomponerRegistro(o));
     }
     
     /**
@@ -56,6 +56,6 @@ public class PuestoControlador extends BaseControlador{
         atr.add(String.valueOf(id));
         atr.add("");
         return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorPuesto(HelperEntidad.getPuesto(atr, "")).size() > 0;
+            .buscarEmPorPuesto(DataHelper.getPuesto(atr, "")).size() > 0;
     }
 }

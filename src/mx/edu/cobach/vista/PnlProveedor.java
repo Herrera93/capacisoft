@@ -18,7 +18,7 @@ import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.ProveedorControlador;
 
 public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
@@ -864,10 +864,10 @@ public class PnlProveedor extends javax.swing.JPanel implements Comunicador{
             control.buscarTodos();
             if(!problema){
                 if (guardarBtn.getText().equals("Guardar")) {
-                    control.alta(HelperEntidad.getProveedor(atributos));
+                    control.alta(DataHelper.getProveedor(atributos));
                 } else {
                     atributos.add(String.valueOf(idProveedorActual));
-                    control.modificacion(HelperEntidad.getProveedor(atributos));
+                    control.modificacion(DataHelper.getProveedor(atributos));
                 }
                 limpiar();
                 control.buscarTodos();
@@ -1233,7 +1233,7 @@ if (!Character.isLetter(evt.getKeyChar())
             Set<Evento> ev=(Set<Evento>) info.get(6);
             List<Object> eventos = new ArrayList();
             eventos.addAll(ev);
-            String[][] matrizEventos = HelperEntidad.descomponerObjetos(eventos);
+            String[][] matrizEventos = DataHelper.descomponerRegistros(eventos);
             modelEventos.setDataVector(matrizEventos, titulosEventos);
             totalEventosLbl.setText("Total de eventos en la lista: " + 
                     eventosTbl.getRowCount() + "");

@@ -28,7 +28,7 @@ public class DireccionControlador extends BaseControlador{
     */
     public void buscar(String nombre) {
         List<Object> o = ServiceLocatorDELEGATE.getDireccion().find(nombre);
-        com.setTabla(HelperEntidad.descomponerObjetos(o));
+        com.setTabla(DataHelper.descomponerRegistros(o));
     }
     
     /**
@@ -37,7 +37,7 @@ public class DireccionControlador extends BaseControlador{
     */
     public void buscarMod(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        com.setInfo(HelperEntidad.descomponerObjeto(o));
+        com.setInfo(DataHelper.descomponerRegistro(o));
     }
     
     /**
@@ -51,6 +51,6 @@ public class DireccionControlador extends BaseControlador{
         atr.add(String.valueOf(id));
         atr.add("");
         return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorDireccion(HelperEntidad.getDireccion(atr, "")).size() > 0;
+            .buscarEmPorDireccion(DataHelper.getDireccion(atr, "")).size() > 0;
     }
 }

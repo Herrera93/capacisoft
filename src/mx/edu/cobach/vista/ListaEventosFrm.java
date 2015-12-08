@@ -8,6 +8,7 @@ package mx.edu.cobach.vista;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -341,7 +342,10 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
         if(eventoTFd.getText().equals("")){
             control.buscarTodos();
         }else{
-            control.buscarPorNombre(eventoTFd.getText());
+            HashMap<String, Object> condiciones = new HashMap<>();
+            condiciones.put("nombre", eventoTFd.getText());
+            
+            control.buscarPor("evento", condiciones);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 

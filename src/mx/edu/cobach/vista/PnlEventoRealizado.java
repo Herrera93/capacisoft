@@ -32,7 +32,7 @@ import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Proveedor;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.persistencia.entidades.Sede;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.ImplementarEventoControlador;
 
 /**
@@ -1067,12 +1067,12 @@ public class PnlEventoRealizado extends javax.swing.JPanel implements
             }
             control.setClass(ImplementacionEvento.class);
             if (guardarCBtn.getText().equals("Guardar")) {
-                implementacionEvento = HelperEntidad.
+                implementacionEvento = DataHelper.
                         getImplementarEvento(eventoImplementar, "Guardar");
                 control.guardarOModificarEventoImplementado(implementacionEvento,
                         calificacion, "Guardar");
             } else {
-                implementacionEvento = HelperEntidad.
+                implementacionEvento = DataHelper.
                         getImplementarEvento(eventoImplementar, "Modificar");
                 control.guardarOModificarEventoImplementado(implementacionEvento,
                         calificacion, "Modificar");

@@ -12,7 +12,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Usuario;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.UsuarioControlador;
 
 public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
@@ -580,10 +580,10 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                 control.buscarTodos();
                 if(problema == 0){
                     if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
-                        control.alta(HelperEntidad.getUsuario(atr));  
+                        control.alta(DataHelper.getUsuario(atr));  
                     }else{
                         atr.add(String.valueOf(idUsuarioActual));
-                        control.modificacion(HelperEntidad.getUsuario(atr));
+                        control.modificacion(DataHelper.getUsuario(atr));
                     }
                     limpiar();
                     guardarBtn.setText("Guardar");

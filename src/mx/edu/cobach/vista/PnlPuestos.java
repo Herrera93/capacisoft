@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.PuestoControlador;
 
 /**
@@ -332,7 +332,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    control.alta("puesto",HelperEntidad.getPuesto(atr));
+                    control.alta("puesto",DataHelper.getPuesto(atr));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
@@ -340,7 +340,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     List<String> atr = new ArrayList<String>();
                     atr.add(idPuesto + "");
                     atr.add(nombreTFd.getText());
-                    control.modificacion("puesto", HelperEntidad.getPuesto(atr),
+                    control.modificacion("puesto", DataHelper.getPuesto(atr),
                             new HashMap<>());
                 }
                 limpiar();

@@ -19,7 +19,7 @@ import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.TipoEvento;
 import mx.edu.cobach.vista.controlador.EventoControlador;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 
 /**
  *
@@ -424,13 +424,13 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             control.buscarTodos();
             if(!problema){
                 if (guardarBtn.getText().equals("Guardar")) {
-                    control.alta("evento", HelperEntidad.getEvento(atr));
+                    control.alta("evento", DataHelper.getEvento(atr));
                 /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
                  /*Se agregan los valores de los campos a la Lista,se mandan 
                  al metodo control.modificacion*/
                 } else {
                     atr.add(id);
-                    control.modificacion("evento", HelperEntidad.getEvento(atr),
+                    control.modificacion("evento", DataHelper.getEvento(atr),
                             new HashMap<>());
                 }
                 limpiar();
@@ -447,11 +447,17 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
      * @param evt Evento al presionar el boton
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        int idTipo = tipoBuscarCBx.getSelectedIndex() - 1;
+        int idTipo = tipoBuscarCBx.getSelectedIndex();
         if (idTipo <= 0) {
-            control.buscarTodos();
+            control.buscarTodos("evento");
         } else {
-            control.buscarEventoPorTipo(idTipo);
+            //Obtemer el id del tipo de evento
+            HashMap<String, Object> condiciones = new HashMap<>();
+            
+            condiciones.put("tipo_evento_id", ((TipoEvento)tipoBuscarCBx
+                    .getSelectedItem()).getId());
+            
+            control.buscarPor("evento", condiciones);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -604,7 +610,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                     JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
                     limpiar();
-                    control.buscar(id);
+                    control.buscar("evento", "id", id);
                     this.id = id;
                     guardarBtn.setText("Modificar");
                     eventosTbl.clearSelection();
@@ -613,7 +619,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 limpiar();
-                control.buscar(id);
+                control.buscar("evento", "id", id);
                 this.id = id;
                 guardarBtn.setText("Modificar");
                 eventosTbl.clearSelection();

@@ -23,7 +23,7 @@ import mx.edu.cobach.persistencia.entidades.Empleado;
 import mx.edu.cobach.persistencia.entidades.Plantel;
  import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.controlador.EmpleadoControlador;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 
 /**
  *
@@ -702,10 +702,10 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
                 //contenido en el boton.
                 if (!guardarBtn.getText().equalsIgnoreCase("modificar")) {
-                    control.alta("empleado",HelperEntidad.getEmpleado(atributos));
+                    control.alta("empleado",DataHelper.getEmpleado(atributos));
                 } else {
                     atributos.add(idEmpleadoActual);
-                    control.modificacion(HelperEntidad.getEmpleado(atributos));
+                    control.modificacion(DataHelper.getEmpleado(atributos));
                 }
                 limpiar();
                 control.buscarTodos();

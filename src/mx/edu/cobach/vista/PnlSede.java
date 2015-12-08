@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.entidades.Sede;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.SedeControlador;
 import mx.edu.cobach.vista.controlador.PlantelControlador;
 
@@ -594,10 +594,10 @@ public class PnlSede extends javax.swing.JPanel implements Comunicador{
             control.buscarTodos();
             if(!problema){
                 if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
-                    control.alta(HelperEntidad.getSede(atr));  
+                    control.alta(DataHelper.getSede(atr));  
                 }else{
                     atr.add(String.valueOf(idSedeActual));
-                    control.modificacion(HelperEntidad.getSede(atr));
+                    control.modificacion(DataHelper.getSede(atr));
                 }
                 limpiar();
                 guardarBtn.setText("Guardar");

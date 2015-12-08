@@ -59,7 +59,7 @@ public class ImplementarEventoControlador extends BaseControlador {
      */
     public void buscarMod(int id) {
         Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        com.setInfo(HelperEntidad.descomponerObjeto(o));
+        com.setInfo(DataHelper.descomponerRegistro(o));
     }
 
     /**
@@ -72,7 +72,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     public void buscarCurId(Integer id, Class<Evento> eventoClase) {
         Object o = ServiceLocatorDELEGATE.getImplementarEvento().find(id,
                 eventoClase);
-        com.setInfo(HelperEntidad.descomponerObjeto(o));
+        com.setInfo(DataHelper.descomponerRegistro(o));
     }
 
     /**
@@ -83,7 +83,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     public void buscarPorEvento(Evento evento) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().
                 buscarPorEvento(evento);
-        com.setTabla(HelperEntidad.descomponerObjetos(o));
+        com.setTabla(DataHelper.descomponerRegistros(o));
     }
     
     /**
@@ -98,7 +98,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 
             //3 tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1";
@@ -113,7 +113,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().
                 findAll(EnunciadoLogistica.class);
         System.out.println(o.size());
-        String matriz[][] = HelperEntidad.descomponerObjetos(o);
+        String matriz[][] = DataHelper.descomponerRegistros(o);
         //se agrega un string para hubicar a que direccion de las 3
         //tablas se dirigira
         matriz[0][0] = matriz[0][0] + "TLE3"; 
@@ -132,7 +132,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 3
             //tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1"; 
@@ -154,7 +154,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         } else {
             //se agrega un string para hubicar a que direccion de las 3 tablas
             //se dirigira
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             matriz[0][0] = matriz[0][0] + "TLE1"; com.setTabla(matriz);
         }
     }
@@ -171,7 +171,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 3 tablas
             //se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1"; 
@@ -200,7 +200,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         List<Object> implementaciones = ServiceLocatorDELEGATE.
                 getImplementarEvento()
                 .buscarEventoPorFechas(null, de, hasta);
-        com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+        com.setTabla(DataHelper.descomponerRegistros(implementaciones));
     }
 
     /**
@@ -256,7 +256,7 @@ public class ImplementarEventoControlador extends BaseControlador {
     public void bucarCalificacionMod(ImplementacionEvento impleEvento) {
         List<Object> o = ServiceLocatorDELEGATE.getImplementarEvento().
                 buscarPorEncuesta(impleEvento);
-        String matriz[][] = HelperEntidad.descomponerObjetos(o);
+        String matriz[][] = DataHelper.descomponerRegistros(o);
         //se agrega un string para hubicar a que direccion de las 3
         //tablas se dirigira
         if(matriz != null){
@@ -279,7 +279,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 
             //3 tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1";
@@ -300,7 +300,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 
             //3 tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1";
@@ -321,7 +321,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 
             //3 tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1";
@@ -348,7 +348,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (implementaciones == null || implementaciones.size() == 0) {
             com.setMensaje("No se encontro eventos de capacitacion");
         }else{
-            com.setTabla(HelperEntidad.descomponerObjetos(implementaciones));
+            com.setTabla(DataHelper.descomponerRegistros(implementaciones));
         }
         
     }
@@ -367,7 +367,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 
             //3 tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1";
@@ -387,7 +387,7 @@ public class ImplementarEventoControlador extends BaseControlador {
         if (o.size() == 0) {
             com.setMensaje("No se encontro el empleado");
         } else {
-            String matriz[][] = HelperEntidad.descomponerObjetos(o);
+            String matriz[][] = DataHelper.descomponerRegistros(o);
             //se agrega un string para hubicar a que direccion de las 3
             //tablas se dirigira
             matriz[0][0] = matriz[0][0] + "TLE1"; 

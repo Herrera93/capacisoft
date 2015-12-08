@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import mx.edu.cobach.vista.controlador.HelperEntidad;
+import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.DireccionControlador;
 
 
@@ -325,7 +325,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    control.alta("direccion",HelperEntidad.getDireccion(atr));
+                    control.alta("direccion",DataHelper.getDireccion(atr));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecuta en el caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
@@ -333,7 +333,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                     List<String> atr = new ArrayList<String>();
                     atr.add(idDireccion + "");
                     atr.add(nombreTFd.getText());
-                    control.modificacion(HelperEntidad.getDireccion(atr));
+                    control.modificacion(DataHelper.getDireccion(atr));
                 }
                 limpiar();
                 control.buscarTodos();

@@ -45,7 +45,7 @@ public class EmpleadoControlador extends BaseControlador {
      */
     public void buscar(String id){
         Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
-        com.setInfo(HelperEntidad.descomponerObjeto(empleado));
+        com.setInfo(DataHelper.descomponerRegistro(empleado));
     }
     
     /**
@@ -55,7 +55,7 @@ public class EmpleadoControlador extends BaseControlador {
     public void buscarPorNombre (String nombre){
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado()
                 .buscarPorNombre(nombre);
-        com.setTabla(HelperEntidad.descomponerObjetos(list));
+        com.setTabla(DataHelper.descomponerRegistros(list));
     }
     
     /**
@@ -64,7 +64,7 @@ public class EmpleadoControlador extends BaseControlador {
     */
     public void buscarPorAdscripcion (Adscripcion adscripcion){
         List<Object> list = ServiceLocatorDELEGATE.getEmpleado().buscarPorAdscripcion(adscripcion);
-        com.setTabla(HelperEntidad.descomponerObjetos(list));
+        com.setTabla(DataHelper.descomponerRegistros(list));
     }    
     
     /**
