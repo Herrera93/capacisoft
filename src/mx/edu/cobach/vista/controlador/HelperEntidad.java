@@ -181,6 +181,26 @@ public class HelperEntidad {
             return direccion;
         }
     }
+    
+    public static DataTable getDireccion(List<String> atributos) {
+        final String ID = "id";
+        final String NOMBRE = "nombre";
+        
+        String[] columnas = {ID, NOMBRE};
+        
+        DataTable dtDireccion = new DataTable(columnas, 1, columnas.length);
+        
+        //posicionarse en el registro 1
+        dtDireccion.next();
+
+        //Guardar los datos
+        dtDireccion.setObject(NOMBRE, atributos.get(0));
+
+        //Reiniciar para lectura desde la primera posición.
+        dtDireccion.rewind();
+
+        return dtDireccion;
+    }
 
     public static Object getEmpleado(List<Object> atributos) {
         Empleado e = new Empleado();
