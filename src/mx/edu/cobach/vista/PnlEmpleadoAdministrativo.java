@@ -688,11 +688,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             } else {
                 atributos.add(segApellidoTFd.getText());
             }
-            atributos.add(puestoCBx.getSelectedItem());
             atributos.add(correoTFd.getText().toLowerCase() + "@cobachbc.edu.mx");
             atributos.add(adscCBx.getSelectedItem());
-            atributos.add(plantelCBx.getSelectedItem());
+            atributos.add(puestoCBx.getSelectedItem());
             atributos.add(departamentoCBx.getSelectedItem());
+            atributos.add(plantelCBx.getSelectedItem());
             atributos.add(direccionCBx.getSelectedItem());
 
             buscando = true;
@@ -702,7 +702,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
                 //contenido en el boton.
                 if (!guardarBtn.getText().equalsIgnoreCase("modificar")) {
-                    control.alta(HelperEntidad.getEmpleado(atributos));
+                    control.alta("empleado",HelperEntidad.getEmpleado(atributos));
                 } else {
                     atributos.add(idEmpleadoActual);
                     control.modificacion(HelperEntidad.getEmpleado(atributos));

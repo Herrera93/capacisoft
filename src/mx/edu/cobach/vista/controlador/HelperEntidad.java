@@ -182,7 +182,7 @@ public class HelperEntidad {
         }
     }
 
-    public static Object getEmpleado(List<Object> atributos) {
+    /*public static Object getEmpleado(List<Object> atributos) {
         Empleado e = new Empleado();
         e.setNumero((String) atributos.get(0));
         e.setPrimerNombre((String) atributos.get(1));
@@ -204,6 +204,47 @@ public class HelperEntidad {
             e.setDireccion((Direccion) atributos.get(10));
         }
         return e;
+    }*/
+    
+    public static DataTable getEmpleado(List<Object> atributos) {
+        //Sólo para que no haya errores de dedo, no son necesarios
+        final String NUMERO = "numero";
+        final String PRIMER_NOMBRE = "primer_nombre";
+        final String SEGUNDO_NOMBRE = "segundo_nombre";
+        final String APELLIDO_PATERNO = "apellido_paterno";
+        final String APELLIDO_MATERNO = "apellido_materno";
+        final String CORREO = "correo";
+        final String ADSCRIPCION_ID = "adscripcion_id";
+        final String PUESTO_ID = "puesto_id";
+        final String DEPARTAMENTO_ID = "departamento_id";
+        final String PLANTEL_ID = "plantel_id";
+        final String DIRECCION_ID = "direccion_id";
+
+        String[] columnas = {NUMERO, PRIMER_NOMBRE, SEGUNDO_NOMBRE, APELLIDO_PATERNO,
+        APELLIDO_MATERNO, CORREO, ADSCRIPCION_ID, PUESTO_ID, DEPARTAMENTO_ID,
+        PLANTEL_ID, DIRECCION_ID};
+        DataTable dtEmpleado = new DataTable(columnas, 1, columnas.length);
+
+        //posicionarse en el registro 1
+        dtEmpleado.next();
+
+        //Guardar los datos
+        dtEmpleado.setObject(NUMERO, atributos.get(0));
+        dtEmpleado.setObject(PRIMER_NOMBRE, atributos.get(1));
+        dtEmpleado.setObject(SEGUNDO_NOMBRE, atributos.get(2));
+        dtEmpleado.setObject(APELLIDO_PATERNO, atributos.get(3));
+        dtEmpleado.setObject(APELLIDO_MATERNO, atributos.get(4));
+        dtEmpleado.setObject(CORREO, atributos.get(5));
+        dtEmpleado.setObject(ADSCRIPCION_ID, ((Adscripcion)atributos.get(6)).getId());
+        dtEmpleado.setObject(PUESTO_ID, ((Puesto)atributos.get(7)).getId());
+        dtEmpleado.setObject(DEPARTAMENTO_ID, ((Departamento)atributos.get(8)).getId());
+        dtEmpleado.setObject(PLANTEL_ID, ((Plantel)atributos.get(9)).getId());
+        dtEmpleado.setObject(DIRECCION_ID, ((Direccion)atributos.get(10)).getId());
+
+        //Reiniciar para lectura desde la primera posición.
+        dtEmpleado.rewind();
+
+        return dtEmpleado;
     }
 
     public static Usuario getUsuario(List<String> atributos) {
