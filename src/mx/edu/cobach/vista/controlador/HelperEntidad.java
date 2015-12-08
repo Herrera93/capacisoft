@@ -60,7 +60,7 @@ public class HelperEntidad {
      *
      * @param List<String> atributos
      * @return Plantel
-     */
+     *//*
     public static Plantel getPlantel(List<String> atributos) {
         Plantel plantel = new Plantel();
         Zona z = new Zona();
@@ -75,7 +75,7 @@ public class HelperEntidad {
         }
         return plantel;
     }
-
+*/
     /**
      * getProveedor
      *
@@ -298,6 +298,34 @@ public class HelperEntidad {
         return dtEvento;
     }
 
+    public static DataTable getPlantel(List<Object> atributos) {
+        //Sólo para que no haya errores de dedo, no son necesarios
+        final String ID = "id";
+        final String NOMBRE = "nombre";
+        final String CALLE= "calle";
+        final String COLONIA = "colonia";
+        final String NUMERO_DIRECCION= "numero_direccion";
+        final String ZONA_ID = "zona_id";
+        
+        String[] columnas = {ID, NOMBRE, CALLE, COLONIA,NUMERO_DIRECCION,ZONA_ID};
+        DataTable dtPlantel = new DataTable(columnas, 1, columnas.length);
+
+        //posicionarse en el registro 1
+        dtPlantel.next();
+
+        //Guardar los datos
+        dtPlantel.setObject(NOMBRE, atributos.get(0));
+        dtPlantel.setObject(CALLE, atributos.get(1));
+        dtPlantel.setObject(COLONIA, atributos.get(2));
+        dtPlantel.setObject(NUMERO_DIRECCION, atributos.get(3));
+        dtPlantel.setObject(ZONA_ID, atributos.get(4));
+
+        //Reiniciar para lectura desde la primera posición.
+        dtPlantel.rewind();
+
+        return dtPlantel;
+    }
+    
     //Descomposicion de un solo objeto
     public static List<Object> descomponerObjeto(Object obj) {
         if (obj instanceof Puesto) {
