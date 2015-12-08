@@ -52,10 +52,11 @@ public class DepartamentoControlador extends BaseControlador {
      * @return Booleano que indica si existe un departamento
      */
     public boolean buscarEmpleados(int id) {
-        List<Object> atr = new ArrayList();
-        atr.add("");
-        atr.add(id);
-        return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)).size() > 0;
+//        List<Object> atr = new ArrayList();
+//        atr.add("");
+//        atr.add(id);
+//        return ServiceLocatorDELEGATE.getImplementarEvento()
+//            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)).size() > 0;
+        return false;
     }
 }

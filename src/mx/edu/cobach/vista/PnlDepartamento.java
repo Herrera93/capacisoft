@@ -342,7 +342,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             control.buscarTodos();
             if(!problema){
                 if(guardarBtn.getText().equals("Guardar")){
-                    control.alta(HelperEntidad.getDepartamento(atr));
+                    control.alta("departamento", HelperEntidad.getDepartamento(atr));
                 }else{
                     atr.add(id);
                     control.modificacion(HelperEntidad.getDepartamento(atr));

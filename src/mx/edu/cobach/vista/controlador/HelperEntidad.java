@@ -46,13 +46,30 @@ public class HelperEntidad {
         return enunciado;
     }
 
-    public static Departamento getDepartamento(List<Object> atributos) {
-        Departamento depto = new Departamento();
-        depto.setNombre((String) atributos.get(0));
-        if (atributos.size() > 1) {
-            depto.setId((Integer) atributos.get(1));
-        }
-        return depto;
+    public static DataTable getDepartamento(List<Object> atributos) {
+        //Sólo para que no haya errores de dedo, no son necesarios
+        final String ID = "id";
+        final String NOMBRE = "nombre";
+
+        String[] columnas = {ID, NOMBRE};
+        DataTable dtDepartamento = new DataTable(columnas, 1, columnas.length);
+
+        //posicionarse en el registro 1
+        dtDepartamento.next();
+
+        //Guardar los datos
+        dtDepartamento.setObject(NOMBRE, atributos.get(0));
+
+        //Reiniciar para lectura desde la primera posición.
+        dtDepartamento.rewind();
+
+        return dtDepartamento;
+//        Departamento depto = new Departamento();
+//        depto.setNombre((String) atributos.get(0));
+//        if (atributos.size() > 1) {
+//            depto.setId((Integer) atributos.get(1));
+//        }
+//        return depto;
     }
 
     /**
