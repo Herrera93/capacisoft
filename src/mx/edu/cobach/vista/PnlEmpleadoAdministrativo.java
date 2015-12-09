@@ -9,6 +9,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -823,13 +824,16 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se limpian los campos
-        
+        HashMap<String, Object> condiciones = new HashMap<>();
         if (!nombreBuscarTFd.getText().isEmpty()) {
-            control.buscarPorNombre(nombreBuscarTFd.getText());
+            condiciones.put("primer_nombre", nombreBuscarTFd.getText());
+            control.buscarPor("empleado", condiciones);
         } else if (adscBuscarCBx.getSelectedIndex() == 0) {
-            control.buscarTodos();
+            control.buscarTodos("empleado");
         } else {
-            control.buscarPorAdscripcion((Adscripcion) adscBuscarCBx.getSelectedItem());
+            condiciones.put("adscripcion_id", ((Adscripcion) adscBuscarCBx
+                    .getSelectedItem()).getId());
+            control.buscarPor("empleado", condiciones);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
