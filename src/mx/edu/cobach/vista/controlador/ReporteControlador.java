@@ -50,11 +50,12 @@ public class ReporteControlador extends BaseControlador {
 //                .buscarPorNumero(numero);
         
 //        com.setTabla(empleado);
-        
+        String[] fragDatos = {"numero", "primer_nombre", "segundo_nombre",
+            "apellido_paterno", "apellido_materno", "puesto_id"};
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put("numero", numero);
 
-        DataTable dt = DataHelper.buscar("empleado", null, null, condicion);
+        DataTable dt = DataHelper.buscar("empleado", fragDatos, null, condicion);
         com.setTabla(DataHelper.descomponerRegistros("empleado", dt));
     }
 

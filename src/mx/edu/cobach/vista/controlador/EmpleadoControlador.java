@@ -5,7 +5,10 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.Comunicador;
@@ -44,8 +47,57 @@ public class EmpleadoControlador extends BaseControlador {
      * @param id Identificador del empleado
      */
     public void buscar(String id){
-        Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
-        com.setInfo(DataHelper.descomponerRegistro(empleado));
+//        Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
+//        com.setInfo(DataHelper.descomponerRegistro(empleado));
+        HashMap<String, Object> condicion = new HashMap<>();
+        condicion.put("numero", id);
+
+        DataTable dt = DataHelper.buscar("empleado", null, null, condicion);
+        List<Object> info = new ArrayList();
+        
+        info.add(dt.getString("numero"));
+        info.add(dt.getString("primer_nombre"));
+        info.add(dt.getString("segundo_nombre"));
+        info.add(dt.getString("apellido_paterno"));
+        info.add(dt.getString("apellido_materno"));
+        
+        condicion.clear();
+        condicion.put("id", dt.getInt("puesto_id"));
+        dt = DataHelper.buscar("puesto", null, null, condicion);
+        info.add(DataHelper.descomponerRegistrosAObjetos("puesto", dt).get(0));
+        
+        info.add(dt.getString("correo"));
+        
+        condicion.clear();
+        condicion.put("id", dt.getInt("plantel_id"));
+        dt = DataHelper.buscar("plantel", null, null, condicion);
+        if(dt != null)
+            info.add(DataHelper.descomponerRegistrosAObjetos("plantel", dt).get(0));
+        else
+            info.add(null);
+        
+        condicion.clear();
+        condicion.put("id", dt.getInt("adscripcion_id"));
+        dt = DataHelper.buscar("adscripcion", null, null, condicion);
+        info.add(DataHelper.descomponerRegistrosAObjetos("adscripcion", dt).get(0));
+        
+        condicion.clear();
+        condicion.put("id", dt.getInt("departamento_id"));
+        dt = DataHelper.buscar("departamento", null, null, condicion);
+        if(dt != null)
+            info.add(DataHelper.descomponerRegistrosAObjetos("departamento", dt).get(0));
+        else
+            info.add(null);
+        
+        condicion.clear();
+        condicion.put("id", dt.getInt("direccion_id"));
+        dt = DataHelper.buscar("direccion", null, null, condicion);
+        if(dt != null)
+            info.add(DataHelper.descomponerRegistrosAObjetos("direccion", dt).get(0));
+        else
+            info.add(null);
+        
+        com.setInfo(info);
     }
     
     /**
