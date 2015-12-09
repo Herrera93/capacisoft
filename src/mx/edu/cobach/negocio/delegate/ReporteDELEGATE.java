@@ -78,7 +78,6 @@ public class ReporteDELEGATE {
                         + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
             }
             info[i][2] = e.getPuesto().toString();
-            info[i][3] = e.getCorreo();
         }
         return info;
     }

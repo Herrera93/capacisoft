@@ -24,7 +24,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     private Empleado controlEmpleado;
     private DefaultTableModel model;
     private String id;
-    private String[] titulosTabla = {"Numero", "Nombre", "Puesto", "Correo Electronico"};
+    private String[] titulosTabla = {"Numero", "Nombre", "Puesto"};
 
     /**
      * Constructor de PnlKardex
@@ -311,7 +311,7 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         if (!numeroTFd.getText().isEmpty() || !nombreTFd.getText().isEmpty()) {
             if (!numeroTFd.getText().isEmpty()) {
-                control.buscarPorNumero(Integer.parseInt(numeroTFd.getText()));
+                control.buscarPorNumero(numeroTFd.getText());
                 numeroTFd.setText("");
                 tipoCBx.setSelectedIndex(0);
             }

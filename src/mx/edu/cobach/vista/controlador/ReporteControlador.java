@@ -8,7 +8,9 @@ package mx.edu.cobach.vista.controlador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
@@ -43,10 +45,17 @@ public class ReporteControlador extends BaseControlador {
      *
      * @param numero
      */
-    public void buscarPorNumero(int numero) {
-        String[][] empleado = ServiceLocatorDELEGATE.getReporte()
-                .buscarPorNumero(numero);
-        com.setTabla(empleado);
+    public void buscarPorNumero(String numero) {
+//        String[][] empleado = ServiceLocatorDELEGATE.getReporte()
+//                .buscarPorNumero(numero);
+        
+//        com.setTabla(empleado);
+        
+        HashMap<String, Object> condicion = new HashMap<>();
+        condicion.put("numero", numero);
+
+        DataTable dt = DataHelper.buscar("empleado", null, null, condicion);
+        com.setTabla(DataHelper.descomponerRegistros("empleado", dt));
     }
 
     /**
