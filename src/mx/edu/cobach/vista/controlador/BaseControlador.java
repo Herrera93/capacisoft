@@ -176,7 +176,7 @@ public class BaseControlador {
 
     public void buscarTodosLista(String nombreTabla, int lista) {
         try {
-            System.out.println("Consulta especifica!");
+            System.out.println("Consulta general combobox!");
             //Consulta los datos, regresando un DataTable
             DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
             com.setLista(DataHelper.descomponerRegistrosAObjetos(nombreTabla, dt), lista);
