@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.DireccionControlador;
 
@@ -501,7 +502,9 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                 direccionTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                 "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-            control.baja(id);
+                HashMap<String, Object> condiciones = new HashMap<>();
+                condiciones.put("id", id);
+            control.baja("direccion", condiciones);
             control.buscarTodos();
         } else {
             model.setValueAt(false, row, 2);
