@@ -3,6 +3,7 @@ package mx.edu.cobach.vista;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -351,10 +352,14 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se verifica que el campo este vacio, de ser así se realiza una 
         //busqueda general.
-        if(!nombreBuscarTFd.getText().equals(""))
-            control.buscar(nombreBuscarTFd.getText());
-        else
-            control.buscarTodos();
+        if (!nombreBuscarTFd.getText().equals("")) {
+            HashMap<String, Object> condiciones = new HashMap<>();
+            condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
+            
+            control.buscarPor("direccion",condiciones);
+        } else {
+            control.buscarTodos("direccion");
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**

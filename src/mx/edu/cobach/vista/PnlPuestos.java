@@ -33,8 +33,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private boolean buscando = false;
 
     /**
-     * Constructor del PnlPuesto e instancia la clase PuestoControlador. 
-     * Se crea modelo de la tabla y se realiza la busqueda 
+     * Constructor del PnlPuesto e instancia la clase PuestoControlador. Se crea
+     * modelo de la tabla y se realiza la busqueda
      */
     public PnlPuestos() {
         initComponents();
@@ -52,7 +52,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         puestosTbl.setColumnSelectionAllowed(false);
         puestosTbl.setDragEnabled(false);
         control = new PuestoControlador(this);
-        
+
         BORDER_ORIGINAL = nombreTFd.getBorder();
     }
 
@@ -326,13 +326,13 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             buscando = true;
             problema = false;
             control.buscarTodos();
-            if(!problema){
+            if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     /*Se agregan los valores de los campos a la Lista, 
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    control.alta("puesto",DataHelper.getPuesto(atr));
+                    control.alta("puesto", DataHelper.getPuesto(atr));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
@@ -359,10 +359,14 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se verifica que el campo este vacio, de ser así se realiza una 
         //busqueda general.
-        if(!nombreBuscarTFd.getText().equals(""))
-            control.buscar(nombreBuscarTFd.getText());
-        else
-            control.buscarTodos();
+        if (!nombreBuscarTFd.getText().equals("")) {
+            HashMap<String, Object> condiciones = new HashMap<>();
+            condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
+            
+            control.buscarPor("puesto",condiciones);
+        } else {
+            control.buscarTodos("puesto");
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
@@ -372,7 +376,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el botón
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if(informacionPnl.isVisible()){
+        if (informacionPnl.isVisible()) {
             if (JOptionPane.showConfirmDialog(this, "La información que"
                     + " esta modificando se perdera,¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
@@ -381,7 +385,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 informacionPnl.setVisible(true);
                 guardarBtn.setText("Guardar");
             }
-        } else { 
+        } else {
             limpiar();
             guardarBtn.setText("Guardar");
             informacionPnl.setVisible(true);
@@ -390,23 +394,25 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_agregarBtnActionPerformed
 
     /**
-     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el mensaje
-     * de confirmacion para cancelar el registro o modificación. Se manda a llamar 
-     * el metódo Limpiar.
+     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el
+     * mensaje de confirmacion para cancelar el registro o modificación. Se
+     * manda a llamar el metódo Limpiar.
+     *
      * @param evt Evento al presionar el botón
      */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
-            + " esta modificando se perdera,¿Aun así desea cancelarla?",
-            "Precaucion", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE) == 0) {
+                + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == 0) {
             limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**
-     * Evento ejecutado cuando se escribe sobre un campo, validando que no se 
+     * Evento ejecutado cuando se escribe sobre un campo, validando que no se
      * permita el ingreso del número. Limitando el número de caracteres a $5.
+     *
      * @param evt Evento al presionar el botón
      */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
@@ -432,10 +438,10 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
 
-    
     /**
      * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
      * a la configuracion inicial.
+     *
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
@@ -445,8 +451,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
 
     /**
      * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
-     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * de color a rojo y colocando un mensaje para indicando que el campo es
      * obligatorio
+     *
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
@@ -459,7 +466,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     BORDER_ORIGINAL));
             validNomLbl.setText("Este campo es obligatorio");
             validNomLbl.setForeground(new Color(255, 0, 0));
-        }else if(problema){
+        } else if (problema) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
@@ -479,12 +486,12 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private void puestosTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puestosTblMouseClicked
         int row = puestosTbl.rowAtPoint(evt.getPoint());
         int col = puestosTbl.columnAtPoint(evt.getPoint());
-        if (col == 0){
-            if(informacionPnl.isVisible()){
+        if (col == 0) {
+            if (informacionPnl.isVisible()) {
                 if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
+                        + " esta modificando se perdera ¿Aun así desea cancelarla?",
+                        "Precaucion", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
                     limpiar();
                     control.buscar(id);
@@ -502,25 +509,25 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 puestosTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-        }else if(col == 1) {
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(control.buscarEmpleados(id)){
+        } else if (col == 1) {
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            if (control.buscarEmpleados(id)) {
                 setMensaje("No se puede eliminar un puesto que contenga empleados");
                 model.setValueAt(false, row, 2);
                 puestosTbl.clearSelection();
-            }else if(guardarBtn.getText().equals("Modificar") && idPuesto == id){
+            } else if (guardarBtn.getText().equals("Modificar") && idPuesto == id) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el puesto que esta"
-                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                        + " modificando actualmente.", "Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 2);
                 puestosTbl.clearSelection();
-            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-            control.baja(id);
-            control.buscarTodos();
-        } else {
-            model.setValueAt(false, row, 2);
-            puestosTbl.clearSelection();
-        }
+            } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+                control.baja(id);
+                control.buscarTodos();
+            } else {
+                model.setValueAt(false, row, 2);
+                puestosTbl.clearSelection();
+            }
         }
     }//GEN-LAST:event_puestosTblMouseClicked
 
@@ -546,28 +553,27 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 
-    
     /**
      * Metodo que limpa los campos y realiza la busqueda general de los puestos
      */
-    public void llenarTodo(){
+    public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
         control.buscarTodos();
     }
-    
-     /**
-     * Metódo que se utiliza para limpiar el campo del panel direccionPnl,
-     * deja la configuración inicial del panel mencionado anteriormente.
+
+    /**
+     * Metódo que se utiliza para limpiar el campo del panel direccionPnl, deja
+     * la configuración inicial del panel mencionado anteriormente.
      */
-    private void limpiar(){
-        nombreTFd.setText("");        
+    private void limpiar() {
+        nombreTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
         guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
      * registro exitoso.
@@ -588,24 +594,24 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setTabla(String[][] info) {
-        if(buscando){
+        if (buscando) {
             buscando = false;
-            if(info != null){
-                for(int x=0;x<info.length;x++){
-                    if(info[x][1].equals(nombreTFd.getText())){
-                        if(almacenando){
+            if (info != null) {
+                for (int x = 0; x < info.length; x++) {
+                    if (info[x][1].equals(nombreTFd.getText())) {
+                        if (almacenando) {
                             setMensaje("Ya existe un puesto con ese nombre.\n"
-                                + info[x][1]);
+                                    + info[x][1]);
                         }
                         problema = true;
                         break;
                     }
                 }
             }
-        }else if(info == null){
+        } else if (info == null) {
             model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
-        }else{
+        } else {
             model.setRowCount(0);
             model.setDataVector(info, titulosTabla);
             TableColumn tc = puestosTbl.getColumnModel().getColumn(2);
