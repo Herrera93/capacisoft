@@ -417,7 +417,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
              se mandan al metodo control.alta.*/
         } else {
             List<Object> atr = new ArrayList<>();
-            atr.add(tipoCBx.getSelectedIndex());
+            atr.add(((TipoEvento)tipoModel.getSelectedItem()).getId());
             atr.add(nombreTFd.getText());
             atr.add(descripcionTAa.getText());
             buscando = true;
@@ -806,6 +806,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         nombreTFd.setText((String) info.get(1));
         descripcionTAa.setText((String) info.get(2));
         tipoModel.setSelectedItem(info.get(3));
+        System.out.println(info.get(3).toString());
         guardarBtn.setText("Modificar");
 
     }
