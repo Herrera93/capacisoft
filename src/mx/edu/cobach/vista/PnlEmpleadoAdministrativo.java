@@ -1298,18 +1298,18 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      */
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
-        control.buscarTodos();
-        control.setClass(Puesto.class);
+        control.buscarTodos("empleado");
+        
         control.buscarTodosLista("puesto", 1);
-        control.setClass(Plantel.class);
+        
         control.buscarTodosLista("plantel", 2);
-        control.setClass(Departamento.class);
+
         control.buscarTodosLista("departamento", 3);
-        control.setClass(Adscripcion.class);
+
         control.buscarTodosLista("adscripcion", 4);
-        control.setClass(Direccion.class);
+
         control.buscarTodosLista("direccion", 5);
-        control.setClass(Empleado.class);
+
         limpiar();
     }
 
