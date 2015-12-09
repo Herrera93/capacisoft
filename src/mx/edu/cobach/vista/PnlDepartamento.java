@@ -339,7 +339,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             atr.add(nombreTFd.getText());
             buscando = true;
             problema = false;
-            control.buscarTodos();
+            control.buscarTodos("departamento");
             if(!problema){
                 if(guardarBtn.getText().equals("Guardar")){
                     control.alta("departamento", DataHelper.getDepartamento(atr));
@@ -348,7 +348,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                     control.modificacion(DataHelper.getDepartamento(atr));
                 }
                 limpiar();
-                control.buscarTodos();            
+                control.buscarTodos("departamento");            
             }
         }
         almacenando = false;
@@ -364,7 +364,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         if (!nombreBuscarTFd.getText().equals("")) {
             control.buscarPorNombre(nombreBuscarTFd.getText(), 1);
         } else {
-            control.buscarTodos();
+            control.buscarTodos("departamento");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -419,7 +419,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 //Obtenemos ID de la columna escondida
                 control.baja(id);
-                control.buscarTodos();
+                control.buscarTodos("departamento");
             } else {
                 model.setValueAt(false, row, 2);
                 departamentoTbl.clearSelection();
@@ -460,7 +460,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos();
+        control.buscarTodos("departamento");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -560,7 +560,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos();
+        control.buscarTodos("departamento");
     }
 
     /**
