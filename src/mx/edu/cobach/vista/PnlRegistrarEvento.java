@@ -432,13 +432,13 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                 } else {
                     HashMap<String, Object> condicion = new HashMap<>();
                     condicion.put("id", id);
-                    DataTable dtEvento = DataHelper.getEmpleado(atr);
                     
-                    //dtEvento.fragmentarVertical(new String[] {"id"},
-                    //        new String[] {});
+                    DataTable dtEvento = DataHelper.getEvento(atr);
                     
-                    control.modificacion("evento", DataHelper.getEvento(atr),
-                            condicion);
+                    //Quitar la columna de id
+                    dtEvento = dtEvento.removerColumnas(new String[]{"id"});
+                    
+                    control.modificacion("evento", dtEvento, condicion);
                 }
                 limpiar();
                 control.buscarTodos("evento");
