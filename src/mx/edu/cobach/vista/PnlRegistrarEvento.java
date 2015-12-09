@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.TipoEvento;
 import mx.edu.cobach.vista.controlador.EventoControlador;
@@ -429,9 +430,15 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                  /*Se agregan los valores de los campos a la Lista,se mandan 
                  al metodo control.modificacion*/
                 } else {
-                    atr.add(id);
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", id);
+                    DataTable dtEvento = DataHelper.getEmpleado(atr);
+                    
+                    //dtEvento.fragmentarVertical(new String[] {"id"},
+                    //        new String[] {});
+                    
                     control.modificacion("evento", DataHelper.getEvento(atr),
-                            new HashMap<>());
+                            condicion);
                 }
                 limpiar();
                 control.buscarTodos("evento");
