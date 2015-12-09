@@ -147,6 +147,18 @@ public class BaseControlador{
         com.setLista(ls, lista);
     }
     
+    public void buscarTodosLista(String nombreTabla, int lista){
+        try {
+            System.out.println("Consulta especifica!");
+            //Consulta los datos, regresando un DataTable
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
+            com.setLista(DataHelper.descomponerRegistrosAObjetos(nombreTabla, dt), lista);
+            
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void setClass(Class clazz){
         this.clazz = clazz;
     }

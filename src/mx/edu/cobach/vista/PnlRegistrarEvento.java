@@ -421,7 +421,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             atr.add(descripcionTAa.getText());
             buscando = true;
             problema = false;
-            control.buscarTodos();
+            control.buscarTodos("evento");
             if(!problema){
                 if (guardarBtn.getText().equals("Guardar")) {
                     control.alta("evento", DataHelper.getEvento(atr));
@@ -434,7 +434,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                             new HashMap<>());
                 }
                 limpiar();
-                control.buscarTodos();
+                control.buscarTodos("evento");
             }
         }
         almacenando = false;
@@ -522,7 +522,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos();
+        control.buscarTodos("evento");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -640,7 +640,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
                 control.baja(id);
-                control.buscarTodos();
+                control.buscarTodos("evento");
             } else {
                 model.setValueAt(false, row, 3);
                 eventosTbl.clearSelection();
@@ -677,9 +677,9 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     // End of variables declaration//GEN-END:variables
 
     public void llenarTodo(){
-        control.buscarTodos();
+        control.buscarTodos("evento");
         control.setClass(TipoEvento.class);
-        control.buscarTodosLista(1);
+        control.buscarTodosLista("tipo_evento", 1);
         limpiar();
         tipoBuscarCBx.setSelectedIndex(0);
         control.setClass(Evento.class);
@@ -791,17 +791,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         id = (int) info.get(0);
         nombreTFd.setText((String) info.get(1));
         descripcionTAa.setText((String) info.get(2));
-        if (info.get(3).equals("CONFERENCIA")) {
-            tipoCBx.setSelectedIndex(1);
-        } else if (info.get(3).equals("TALLER")){
-            tipoCBx.setSelectedIndex(2);
-        }else if (info.get(3).equals("CURSO")){
-            tipoCBx.setSelectedIndex(3);
-        }else if (info.get(3).equals("CURSO / TALLER")){
-            tipoCBx.setSelectedIndex(4);
-        }else if (info.get(3).equals("PLATICA")){
-            tipoCBx.setSelectedIndex(5);
-        }
+        tipoModel.setSelectedItem(info.get(3));
         guardarBtn.setText("Modificar");
         
     }
