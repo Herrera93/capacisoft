@@ -71,7 +71,18 @@ public class BaseControlador {
      */
     public void baja(int id) {
         String mensaje = ServiceLocatorDELEGATE.getInstance().delete(id, clazz);
-        com.setMensaje(mensaje);
+        com.setMensaje(mensaje); 
+    }
+    
+    public void baja(String tabla, Map<String, ?> attrWhere) {
+        try {
+            System.out.println("Baja!");
+            Enlace.getPersistencia().delete(tabla, attrWhere);
+        } catch (RemoteException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(BaseControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
