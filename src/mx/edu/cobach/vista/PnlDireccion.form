@@ -75,7 +75,7 @@
                           <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="opcionInsLbl" max="32767" attributes="0"/>
+                                  <Component id="opcionInsLbl" pref="0" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -257,7 +257,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="validNomLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreTFd" pref="380" max="32767" attributes="0"/>
+                              <Component id="nombreTFd" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

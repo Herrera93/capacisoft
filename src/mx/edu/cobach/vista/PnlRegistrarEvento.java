@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.TipoEvento;
 import mx.edu.cobach.vista.controlador.EventoControlador;
@@ -41,8 +42,8 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private boolean almacenando = false;
 
     /**
-     * Constructor del PnlRegistrarEvento e instancia la clase EventoControlador. 
-     * Se crea modelo de la tabla y se realiza la busqueda 
+     * Constructor del PnlRegistrarEvento e instancia la clase
+     * EventoControlador. Se crea modelo de la tabla y se realiza la busqueda
      */
     public PnlRegistrarEvento() {
         initComponents();
@@ -410,28 +411,34 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         if (nombreTFd.getText().isEmpty()
                 || descripcionLbl.getText().isEmpty()
                 || tipoCBx.getSelectedIndex() == 0) {
-                //Mensaje de Campos vacíos.
-                setMensaje("Debe ingresar los datos solicitados.");
-                /*Se agregan los valores de los campos a la Lista, 
-                 se mandan al metodo control.alta.*/
-        }else {
+            //Mensaje de Campos vacíos.
+            setMensaje("Debe ingresar los datos solicitados.");
+            /*Se agregan los valores de los campos a la Lista, 
+             se mandan al metodo control.alta.*/
+        } else {
             List<Object> atr = new ArrayList<>();
-            atr.add(tipoCBx.getSelectedIndex());
+            atr.add(((TipoEvento)tipoModel.getSelectedItem()).getId());
             atr.add(nombreTFd.getText());
             atr.add(descripcionTAa.getText());
             buscando = true;
             problema = false;
             control.buscarTodos("evento");
-            if(!problema){
+            if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     control.alta("evento", DataHelper.getEvento(atr));
-                /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
-                 /*Se agregan los valores de los campos a la Lista,se mandan 
-                 al metodo control.modificacion*/
+                    /*Se ejecute el en caso de que no tenga el boton el texto "Guardar"
+                     /*Se agregan los valores de los campos a la Lista,se mandan 
+                     al metodo control.modificacion*/
                 } else {
-                    atr.add(id);
-                    control.modificacion("evento", DataHelper.getEvento(atr),
-                            new HashMap<>());
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", id);
+
+                    DataTable dtEvento = DataHelper.getEvento(atr);
+
+                    //Quitar la columna de id
+                    dtEvento = dtEvento.removerColumnas(new String[]{"id"});
+
+                    control.modificacion("evento", dtEvento, condicion);
                 }
                 limpiar();
                 control.buscarTodos("evento");
@@ -453,10 +460,10 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         } else {
             //Obtemer el id del tipo de evento
             HashMap<String, Object> condiciones = new HashMap<>();
-            
-            condiciones.put("tipo_evento_id", ((TipoEvento)tipoBuscarCBx
+
+            condiciones.put("tipo_evento_id", ((TipoEvento) tipoBuscarCBx
                     .getSelectedItem()).getId());
-            
+
             control.buscarPor("evento", condiciones);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
@@ -468,7 +475,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
      * @param evt Evento al presionar el botón
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if(informacionPnl.isVisible()){
+        if (informacionPnl.isVisible()) {
             if (JOptionPane.showConfirmDialog(this, "La información que"
                     + " esta modificando se perdera,¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
@@ -476,7 +483,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                 limpiar();
                 informacionPnl.setVisible(true);
             }
-        } else { 
+        } else {
             limpiar();
             informacionPnl.setVisible(true);
         }
@@ -515,8 +522,9 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
 
     /**
      * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
-     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * de color a rojo y colocando un mensaje para indicando que el campo es
      * obligatorio
+     *
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
@@ -529,7 +537,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                     BORDER_ORIGINAL_NOMBRE));
             validNombLbl.setForeground(new Color(240, 0, 0));
             validNombLbl.setText("Este campo es obligatorio");
-        } else if(problema){
+        } else if (problema) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL_NOMBRE));
@@ -539,16 +547,17 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     }//GEN-LAST:event_nombreTFdFocusLost
 
     /**
-     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el mensaje
-     * de confirmacion para cancelar el registro o modificación. Se manda a llamar 
-     * el metódo Limpiar.
+     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el
+     * mensaje de confirmacion para cancelar el registro o modificación. Se
+     * manda a llamar el metódo Limpiar.
+     *
      * @param evt Evento al presionar el botón
      */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
-            + " esta modificando se perdera,¿Aun así desea cancelarla?",
-            "Precaucion", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE) == 0) {
+                + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == 0) {
             limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
@@ -556,6 +565,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     /**
      * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
      * a la configuracion inicial.
+     *
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
@@ -566,6 +576,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     /**
      * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
      * a la configuracion inicial.
+     *
      * @param evt Evento al perder foco
      */
     private void descripcionTAaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descripcionTAaFocusGained
@@ -575,8 +586,9 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
 
     /**
      * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
-     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * de color a rojo y colocando un mensaje para indicando que el campo es
      * obligatorio
+     *
      * @param evt Evento al perder foco
      */
     private void descripcionTAaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descripcionTAaFocusLost
@@ -603,11 +615,11 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         if (col == 0) {
             //Se obtiene el id de la columna no visible para realizar una 
             //busqueda especifica.
-            if(informacionPnl.isVisible()){
+            if (informacionPnl.isVisible()) {
                 if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
+                        + " esta modificando se perdera ¿Aun así desea cancelarla?",
+                        "Precaucion", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
                     limpiar();
                     control.buscar("evento", "id", id);
@@ -627,19 +639,21 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             }
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 2) {
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(control.buscarImplementaciones(id)){
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            if (control.buscarImplementaciones(id)) {
                 setMensaje("No se puede eliminar un evento que tenga implementaciones");
                 model.setValueAt(false, row, 3);
                 eventosTbl.clearSelection();
-            }else if(guardarBtn.getText().equals("Modificar") && this.id == id){
+            } else if (guardarBtn.getText().equals("Modificar") && this.id == id) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el evento que esta"
-                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                        + " modificando actualmente.", "Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 3);
                 eventosTbl.clearSelection();
-            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-                control.baja(id);
+            } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+                HashMap<String, Object> condiciones = new HashMap<>();
+                condiciones.put("id", id);
+                control.baja("evento", condiciones);
                 control.buscarTodos("evento");
             } else {
                 model.setValueAt(false, row, 3);
@@ -676,7 +690,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private javax.swing.JLabel validNombLbl;
     // End of variables declaration//GEN-END:variables
 
-    public void llenarTodo(){
+    public void llenarTodo() {
         control.buscarTodos("evento");
         control.setClass(TipoEvento.class);
         control.buscarTodosLista("tipo_evento", 1);
@@ -684,8 +698,8 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         tipoBuscarCBx.setSelectedIndex(0);
         control.setClass(Evento.class);
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         nombreTFd.setText("");
         descripcionTAa.setText("");
         tipoCBx.setSelectedIndex(0);
@@ -697,7 +711,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
      * registro exitoso, modificacion o eliminación.
@@ -726,28 +740,28 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
      */
     @Override
     public void setTabla(String[][] info) {
-        if(buscando){
+        if (buscando) {
             buscando = false;
-            if(info != null){
-                for(int x=0;x<info.length;x++){
-                    if(guardarBtn.getText().equals("Modificar") &&
-                        info[x][0].equals(String.valueOf(id))){
+            if (info != null) {
+                for (int x = 0; x < info.length; x++) {
+                    if (guardarBtn.getText().equals("Modificar")
+                            && info[x][0].equals(String.valueOf(id))) {
                         continue;
                     }
-                    if(info[x][1].equals(nombreTFd.getText())){
-                        if(almacenando){
+                    if (info[x][1].equals(nombreTFd.getText())) {
+                        if (almacenando) {
                             setMensaje("Ya existe un evento con ese nombre.\n"
-                                + info[x][1]);
+                                    + info[x][1]);
                         }
                         problema = true;
                         break;
                     }
                 }
             }
-        }else if(info == null){
+        } else if (info == null) {
             model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
-        }else{
+        } else {
             model.setDataVector(info, titulosTabla);
             //Esconder columna ID
             TableColumn idTbc = eventosTbl.getColumnModel().getColumn(0);
@@ -792,10 +806,11 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
         nombreTFd.setText((String) info.get(1));
         descripcionTAa.setText((String) info.get(2));
         tipoModel.setSelectedItem(info.get(3));
+        System.out.println(info.get(3).toString());
         guardarBtn.setText("Modificar");
-        
+
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador que recibe un objeto con la
      * los resultados de una busqueda especifica, que no tiene ninguna
