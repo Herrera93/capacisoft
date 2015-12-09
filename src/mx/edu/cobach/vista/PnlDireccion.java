@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.DireccionControlador;
-
 
 public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
 
@@ -27,8 +27,8 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private boolean buscando = false;
 
     /**
-     * Constructor del PnlDireccion e instancia la clase DireccionControlador. 
-     * Se crea modelo de la tabla y se realiza la busqueda 
+     * Constructor del PnlDireccion e instancia la clase DireccionControlador.
+     * Se crea modelo de la tabla y se realiza la busqueda
      */
     public PnlDireccion() {
         initComponents();
@@ -42,7 +42,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         direccionTbl.setColumnSelectionAllowed(false);
         direccionTbl.setDragEnabled(false);
         control = new DireccionControlador(this);
-        
+
         BORDER_ORIGINAL = nombreTFd.getBorder();
     }
 
@@ -321,20 +321,31 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
             buscando = true;
             problema = false;
             control.buscarTodos();
-            if(!problema){
+            if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     /*Se agregan los valores de los campos a la Lista, 
                      se mandan al metodo control.alta.*/
                     List<String> atr = new ArrayList<String>();
                     atr.add(nombreTFd.getText());
-                    control.alta("direccion",DataHelper.getDireccion(atr));
+                    control.alta("direccion", DataHelper.getDireccion(atr));
                 } else if (guardarBtn.getText().equals("Modificar")) {
                     /*Se ejecuta en el caso de que no tenga el boton el texto "Guardar"
                      /*Se agregan los valores de los campos a la Lista,se mandan 
                      al metodo control.modificacion*/
+
                     List<String> atr = new ArrayList<String>();
-                    atr.add(idDireccion + "");
                     atr.add(nombreTFd.getText());
+
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", idDireccion);
+
+                    DataTable dtDireccion = DataHelper.getDireccion(atr);
+
+                    //Quitar la columna de id
+                    dtDireccion = dtDireccion.removerColumnas(new String[]{"id"});
+
+                    control.modificacion("direccion", dtDireccion, condicion);
+
                     control.modificacion(DataHelper.getDireccion(atr));
                 }
                 limpiar();
@@ -356,8 +367,8 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         if (!nombreBuscarTFd.getText().equals("")) {
             HashMap<String, Object> condiciones = new HashMap<>();
             condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
-            
-            control.buscarPor("direccion",condiciones);
+
+            control.buscarPor("direccion", condiciones);
         } else {
             control.buscarTodos("direccion");
         }
@@ -370,7 +381,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
      * @param evt Evento al presionar el botón
      */
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if(informacionPnl.isVisible()){
+        if (informacionPnl.isVisible()) {
             if (JOptionPane.showConfirmDialog(this, "La información que"
                     + " esta modificando se perdera,¿Aun así desea cancelarla?",
                     "Precaucion", JOptionPane.YES_NO_OPTION,
@@ -379,7 +390,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                 informacionPnl.setVisible(true);
                 guardarBtn.setText("Guardar");
             }
-        } else { 
+        } else {
             limpiar();
             guardarBtn.setText("Guardar");
             informacionPnl.setVisible(true);
@@ -388,41 +399,41 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_agregarBtnActionPerformed
 
     /**
-     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el mensaje
-     * de confirmacion para cancelar el registro o modificación. Se manda a llamar 
-     * el metódo Limpiar.
+     * Evento ejecutado cuando se presiona el botón ejecutar, mandando el
+     * mensaje de confirmacion para cancelar el registro o modificación. Se
+     * manda a llamar el metódo Limpiar.
+     *
      * @param evt Evento al presionar el botón
      */
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
-            + " esta modificando se perdera,¿Aun así desea cancelarla?",
-            "Precaucion", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE) == 0) {
+                + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == 0) {
             limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     /**
-     * Evento ejecutado cuando se escribe sobre un campo, validando que no se 
+     * Evento ejecutado cuando se escribe sobre un campo, validando que no se
      * permita el ingreso del número. Limitando el número de caracteres a 45.
+     *
      * @param evt Evento al presionar el botón
      */
     private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())  
-            && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar()) 
-            || nombreTFd.getText().length() == 45
-                ) {
-             evt.consume();
-            
-            
+        if (!Character.isLetter(evt.getKeyChar())
+                && !Character.isISOControl(evt.getKeyChar())
+                && !Character.isWhitespace(evt.getKeyChar())
+                || nombreTFd.getText().length() == 45) {
+            evt.consume();
+
         }
     }//GEN-LAST:event_nombreTFdKeyTyped
 
-    
     /**
      * Evento ejecutado al ganar un campo el foco, donde manda cambiar el borde
      * a la configuracion inicial.
+     *
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
@@ -432,8 +443,9 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
 
     /**
      * Evento ejecutado al perder un campo el foco, donde manda cambiar el borde
-     * de color a rojo y colocando un mensaje para indicando que el campo es 
+     * de color a rojo y colocando un mensaje para indicando que el campo es
      * obligatorio
+     *
      * @param evt Evento al perder foco
      */
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
@@ -446,7 +458,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                     BORDER_ORIGINAL));
             validNomLbl.setText("Este campo es obligatorio");
             validNomLbl.setForeground(new Color(255, 0, 0));
-        }else if(problema){
+        } else if (problema) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
@@ -466,16 +478,16 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private void direccionTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_direccionTblMouseClicked
         int row = direccionTbl.rowAtPoint(evt.getPoint());
         int col = direccionTbl.columnAtPoint(evt.getPoint());
-        if (col == 0){
-            if(informacionPnl.isVisible()){
+        if (col == 0) {
+            if (informacionPnl.isVisible()) {
                 if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
+                        + " esta modificando se perdera ¿Aun así desea cancelarla?",
+                        "Precaucion", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
                     limpiar();
-                    control.buscar(id);
-                    idDireccion = id;
+                    control.buscar("direccion", "id", id);
+                    this.idDireccion = id;
                     guardarBtn.setText("Modificar");
                     direccionTbl.clearSelection();
                     informacionPnl.setVisible(true);
@@ -483,45 +495,43 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 limpiar();
-                control.buscar(id);
-                idDireccion = id;
+                control.buscar("direccion", "id", id);
+                this.idDireccion = id;
                 guardarBtn.setText("Modificar");
                 direccionTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-        }else if(col == 1) {
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(control.buscarEmpleados(id)){
+        } else if (col == 1) {
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            if (control.buscarEmpleados(id)) {
                 setMensaje("No se puede eliminar una dirección que contenga empleados");
                 model.setValueAt(false, row, 2);
                 direccionTbl.clearSelection();
-            }else if(guardarBtn.getText().equals("Modificar") && idDireccion == id){
+            } else if (guardarBtn.getText().equals("Modificar") && idDireccion == id) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar la dirección que esta"
-                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                        + " modificando actualmente.", "Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 2);
                 direccionTbl.clearSelection();
-            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
+            } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
-            control.baja("direccion", condiciones);
-            control.buscarTodos();
-        } else {
-            model.setValueAt(false, row, 2);
-            direccionTbl.clearSelection();
-        }
+                control.baja("direccion", condiciones);
+                control.buscarTodos();
+            } else {
+                model.setValueAt(false, row, 2);
+                direccionTbl.clearSelection();
+            }
         }
     }//GEN-LAST:event_direccionTblMouseClicked
 
     private void nombreBuscarTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreBuscarTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())  
-            && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar()) 
-            || nombreBuscarTFd.getText().length() == 45
-                ) {
-             evt.consume();
-            
-            
+        if (!Character.isLetter(evt.getKeyChar())
+                && !Character.isISOControl(evt.getKeyChar())
+                && !Character.isWhitespace(evt.getKeyChar())
+                || nombreBuscarTFd.getText().length() == 45) {
+            evt.consume();
+
         }
     }//GEN-LAST:event_nombreBuscarTFdKeyTyped
 
@@ -547,28 +557,28 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel validNomLbl;
     // End of variables declaration//GEN-END:variables
 
-    
     /**
-     * Metodo que limpa los campos y realiza la busqueda general de las direcciónes
+     * Metodo que limpa los campos y realiza la busqueda general de las
+     * direcciónes
      */
-    public void llenarTodo(){
+    public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
         control.buscarTodos();
     }
-    
-     /**
-     * Metódo que se utiliza para limpiar el campo del panel direccionPnl,
-     * deja la configuración inicial del panel mencionado anteriormente.
+
+    /**
+     * Metódo que se utiliza para limpiar el campo del panel direccionPnl, deja
+     * la configuración inicial del panel mencionado anteriormente.
      */
-    private void limpiar(){
-        nombreTFd.setText("");        
+    private void limpiar() {
+        nombreTFd.setText("");
         nombreTFd.setBorder(BORDER_ORIGINAL);
         validNomLbl.setForeground(new Color(213, 216, 222));
         guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
-    
+
     /**
      * Metodo sobrescrito de la clase comunicador mensaje de confirmación de
      * registro exitoso.
@@ -589,24 +599,24 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setTabla(String[][] info) {
-        if(buscando){
+        if (buscando) {
             buscando = false;
-            if(info != null){
-                for(int x=0;x<info.length;x++){
-                    if(info[x][1].equals(nombreTFd.getText())){
-                        if(almacenando){
+            if (info != null) {
+                for (int x = 0; x < info.length; x++) {
+                    if (info[x][1].equals(nombreTFd.getText())) {
+                        if (almacenando) {
                             setMensaje("Ya existe una direccion con ese nombre.\n"
-                                + info[x][1]);
+                                    + info[x][1]);
                         }
                         problema = true;
                         break;
                     }
                 }
             }
-        }else if(info == null){
+        } else if (info == null) {
             model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
-        }else{
+        } else {
             model.setRowCount(0);
             model.setDataVector(info, titulosTabla);
             TableColumn tc = direccionTbl.getColumnModel().getColumn(2);
@@ -637,15 +647,15 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setInfo(List info) {
-        nombreTFd.setText(info.get(0).toString());
-        idDireccion = Integer.parseInt(info.get(1).toString());
+        nombreTFd.setText(info.get(1).toString());
+        idDireccion = Integer.parseInt(info.get(0).toString());
         guardarBtn.setText("Modificar");
     }
 
     /**
-     * Metodo sobrescrito de la clase comunicador que recibe un objeto con
-     * los resultados de una busqueda especifica, que no tiene ninguna
-     * funcionalidad en este componente.
+     * Metodo sobrescrito de la clase comunicador que recibe un objeto con los
+     * resultados de una busqueda especifica, que no tiene ninguna funcionalidad
+     * en este componente.
      *
      * @param evento Objecto de la entidad de tipo evento
      */
