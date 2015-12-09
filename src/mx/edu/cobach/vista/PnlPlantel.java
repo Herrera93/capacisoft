@@ -9,6 +9,7 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import mx.edu.cobach.persistencia.entidades.Plantel;
+import mx.edu.cobach.persistencia.entidades.TipoEvento;
 import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.PlantelControlador;
 
@@ -459,10 +461,16 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      *de lo contrario activara el campo de nombre.
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(!nombreBuscarTFd.getText().equals(""))
-            control.buscarPorNombre(nombreBuscarTFd.getText());
-        else
-            control.buscarTodos();
+        if (nombreBuscarTFd.getText().equals("")) {
+            control.buscarTodos("plantel");
+        } else {
+            //Obtemer el id del tipo de evento
+            HashMap<String, Object> condiciones = new HashMap<>();
+            
+            condiciones.put("nombre", nombreBuscarTFd.getText());
+            
+            control.buscarPor("plantel", condiciones);
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
@@ -490,9 +498,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             atr.add(coloniaTFd.getText());            
             atr.add(numeroTFd.getText());
             switch(String.valueOf(zonaCBx.getSelectedItem())){
-                case "Valle": atr.add("1"); break;
-                case "Costa Norte": atr.add("3"); break;
-                case "Costa Sur": atr.add("2"); break;
+                case "Valle": atr.add(1); break;
+                case "Costa Norte": atr.add(3); break;
+                case "Costa Sur": atr.add(2); break;
                 default: break;
             }
             buscando = true;
