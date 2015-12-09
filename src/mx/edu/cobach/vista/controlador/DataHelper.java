@@ -612,11 +612,11 @@ public class DataHelper {
              return descomponerPuestos(ps);
              } else */
             if (objetos.get(0) instanceof Empleado) {
-                List<Empleado> emps = new ArrayList();
+                /*List<Empleado> emps = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     emps.add((Empleado) objetos.get(i));
                 }
-                return descomponerEmpleados(emps);
+                return descomponerEmpleados(emps);*/
             } /*else if (objetos.get(0) instanceof Evento) {
              List<Evento> cr = new ArrayList();
              for (int i = 0; i < objetos.size(); i++) {
@@ -716,7 +716,9 @@ public class DataHelper {
                 datosDescompuestos = descomponerPuestos(dataTable);
             } else if (tablaFuente.equalsIgnoreCase("direccion")) {
                 datosDescompuestos = descomponerDirecciones(dataTable);
-            } 
+            } else if (tablaFuente.equalsIgnoreCase("empleado")) {
+                datosDescompuestos = descomponerEmpleados(dataTable);
+            }
 
         }
 //        System.out.println("Lista: " + objetos);
@@ -960,19 +962,21 @@ public class DataHelper {
         return info;
     }
 
-    private static String[][] descomponerEmpleados(List<Empleado> emps) {
-        String[][] info = new String[emps.size()][3];
-        for (int i = 0; i < emps.size(); i++) {
-            Empleado e = emps.get(i);
-            info[i][0] = e.getNumero();
-            if (e.getSegundoNombre() == null) {
-                info[i][1] = e.getPrimerNombre() + " "
-                        + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-            } else {
-                info[i][1] = e.getPrimerNombre() + " " + e.getSegundoNombre() + " "
-                        + e.getApellidoPaterno() + " " + e.getApellidoMaterno();
-            }
+    private static String[][] descomponerEmpleados(DataTable emps) {
+        String[][] info = new String[emps.getRowCount()][2];
+        
+        //Iterar en los registros
+        emps.rewind();
+        int i = 0;
+        while (emps.next()) {
+            info[i][0] = emps.getString("numero");
+            info[i][1] = emps.getString("primer_nombre") + " " + 
+                    emps.getString("segundo_nombre") + " " + 
+                    emps.getString("apellido_paterno") + " " + 
+                    emps.getString("apellido_materno");
+            i++;
         }
+
         return info;
     }
 
