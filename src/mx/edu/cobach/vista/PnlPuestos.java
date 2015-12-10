@@ -326,7 +326,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         } else {
             buscando = true;
             problema = false;
-            control.buscarTodos();
+            control.buscarTodos("puesto");
             if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     /*Se agregan los valores de los campos a la Lista, 
@@ -352,7 +352,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                     control.modificacion("puesto", dtPuesto, condicion);
                 }
                 limpiar();
-                control.buscarTodos();
+                control.buscarTodos("puesto");
             }
         }
         almacenando = false;
@@ -467,7 +467,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos();
+        control.buscarTodos("puesto");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -519,7 +519,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             }
         } else if (col == 1) {
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            if (control.buscarEmpleados(id)) {
+            if (control.buscarEmpleadosByPuesto(id)) {
                 setMensaje("No se puede eliminar un puesto que contenga empleados");
                 model.setValueAt(false, row, 2);
                 puestosTbl.clearSelection();
@@ -533,7 +533,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
                 control.baja("puesto", condiciones);
-                control.buscarTodos();
+                control.buscarTodos("puesto");
             } else {
                 model.setValueAt(false, row, 2);
                 puestosTbl.clearSelection();
@@ -569,7 +569,7 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos();
+        control.buscarTodos("puesto");
     }
 
     /**

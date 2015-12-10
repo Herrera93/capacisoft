@@ -3,6 +3,7 @@ package mx.edu.cobach.vista;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -83,6 +84,7 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
         });
 
         contrasenaPFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        contrasenaPFd.setText("1234");
         contrasenaPFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 contrasenaPFdKeyPressed(evt);
@@ -104,6 +106,7 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
         usuarioLbl.setText("Usuario:");
 
         usuarioTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usuarioTFd.setText("FVIS");
         usuarioTFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 usuarioTFdKeyPressed(evt);
@@ -222,7 +225,10 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
             ingresarBtn.setEnabled(false);
             salirBtn.setEnabled(false);  
             String usuario=usuarioTFd.getText();
-            control.buscarPorUsuario(usuario);        
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("usuario", usuario);
+            
+            control.buscarPor("usuario", condicion);
         }
     }
 

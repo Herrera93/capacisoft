@@ -5,10 +5,16 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-import java.util.ArrayList;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
+import persistencia.Enlace;
 
 /**
  *
@@ -34,11 +40,21 @@ public class DepartamentoControlador extends BaseControlador {
      */
     public void buscarPorNombre(String nombre, int a) {
         if (a == 1) {
-            List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
-            com.setTabla(DataHelper.descomponerRegistros(o));
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("nombre LIKE", "%" + nombre + "%");
+            
+            DataTable departamentos = DataHelper.buscar("departamento", null,
+                    null, condicion);
+            
+            com.setTabla(DataHelper.descomponerRegistros(nombre, departamentos));
         } else {
-            List<Object> o = ServiceLocatorDELEGATE.getDepartamento().find(nombre);
-            if (!o.isEmpty()) {
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("nombre LIKE", "%" + nombre + "%");
+            
+            DataTable departamentos = DataHelper.buscar("departamento", null,
+                    null, condicion);
+            
+            if (departamentos != null && !departamentos.isEmpty()) {
                 com.setMensaje("Este departamento ya esta registrado");
             }
         }
@@ -51,12 +67,15 @@ public class DepartamentoControlador extends BaseControlador {
      * @param id Contiene el id de un departamento
      * @return Booleano que indica si existe un departamento
      */
-    public boolean buscarEmpleados(int id) {
-//        List<Object> atr = new ArrayList();
-//        atr.add("");
-//        atr.add(id);
-//        return ServiceLocatorDELEGATE.getImplementarEvento()
-//            .buscarEmPorDepartamento(HelperEntidad.getDepartamento(atr)).size() > 0;
-        return false;
+    public boolean buscarEmpleadosByDepartamento(int id) {
+        DataTable empleados = null;
+        try {
+            empleados = Enlace.getPersistencia()
+                    .getEmpleadosByDepartamento(id);
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(DepartamentoControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return (empleados != null && !empleados.isEmpty());
     }
 }

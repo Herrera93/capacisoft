@@ -5,17 +5,19 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Usuario;
 import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.UsuarioControlador;
 
-public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
+public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
 
     private final DefaultTableModel model;
     private final String[] titulosTabla;
@@ -27,12 +29,12 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private int problema = 0;
     private String usuarioConectado;
     private final Border BORDER_ORIGINAL;
-    
+
     public PnlUsuarios(String usuario) {
         initComponents();
-        titulosTabla= new String[]{"Número","Usuario","Nombre", "Eliminar"};
+        titulosTabla = new String[]{"Número", "Usuario", "Nombre", "Eliminar"};
         usuarioConectado = usuario;
-        model = new DefaultTableModel(titulosTabla, 4)  {
+        model = new DefaultTableModel(titulosTabla, 4) {
             @Override
             public boolean isCellEditable(int row, int col) {
                 if (col == 3) {
@@ -46,17 +48,17 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         usuariosTbl.setModel(model);
         usuariosTbl.setColumnSelectionAllowed(false);
         usuariosTbl.setDragEnabled(false);
-        control = new UsuarioControlador(this,Usuario.class);;
-        
+        control = new UsuarioControlador(this, Usuario.class);;
+
         /**
          * Metodo que sirve para validar que solo se admitan letras mayusculas
          * en los campos de texto.
          */
-        manager.addKeyEventDispatcher(new KeyEventDispatcher(){
+        manager.addKeyEventDispatcher(new KeyEventDispatcher() {
             public boolean dispatchKeyEvent(KeyEvent e) {
-                if(e.getID() == KeyEvent.KEY_TYPED){
-                    if(e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z'){
-                        e.setKeyChar((char)(((int)e.getKeyChar()) - 32));
+                if (e.getID() == KeyEvent.KEY_TYPED) {
+                    if (e.getKeyChar() >= 'a' && e.getKeyChar() <= 'z') {
+                        e.setKeyChar((char) (((int) e.getKeyChar()) - 32));
                     }
                 }
                 return false;
@@ -542,86 +544,101 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     private void guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarBtnActionPerformed
         almacenando = true;
-        if(nombreTFd.getText().equals("") &&
-           apellidoPaternoTFd.getText().equals("")&&
-           apellidoMaternoTFd.getText().equals("")&&
-           usuarioTFd.getText().equals("")&&
-           contrasenaTFd.getText().equals("")&&
-           confirmarContrasenaTFd.getText().equals("") ) 
+        if (nombreTFd.getText().equals("")
+                && apellidoPaternoTFd.getText().equals("")
+                && apellidoMaternoTFd.getText().equals("")
+                && usuarioTFd.getText().equals("")
+                && contrasenaTFd.getText().equals("")
+                && confirmarContrasenaTFd.getText().equals("")) {
             setMensaje("Debe ingresar los datos solicitados");
-        else if(nombreTFd.getText().equals("")) 
+        } else if (nombreTFd.getText().equals("")) {
             setMensaje("Debe ingresar el primer nombre del empleado");
-        else if(apellidoPaternoTFd.getText().equals("")) 
+        } else if (apellidoPaternoTFd.getText().equals("")) {
             setMensaje("Debe ingresar el apellido paterno del empleado");
-        else if(apellidoMaternoTFd.getText().equals("")) 
+        } else if (apellidoMaternoTFd.getText().equals("")) {
             setMensaje("Debe ingresar el apellido materno del empleado");
-        else if(usuarioTFd.getText().equals("")) 
+        } else if (usuarioTFd.getText().equals("")) {
             setMensaje("Debe ingresar el nombre de usuario");
-        else if(contrasenaTFd.getText().equals("")) 
+        } else if (contrasenaTFd.getText().equals("")) {
             setMensaje("Debe ingresar la contraseña");
-        else if(confirmarContrasenaTFd.getText().equals("")) 
+        } else if (confirmarContrasenaTFd.getText().equals("")) {
             setMensaje("Debe volver a ingresar la contraseña en\nConfirmar contraseña");
-        else {
-            if( contrasenaTFd.getText().equals(confirmarContrasenaTFd.getText()) ){
-                List<String> atr = new ArrayList<String>();
-                atr.add(nombreTFd.getText()); //# En lista 0
-                atr.add(segundoNombreTFd.getText());//# En lista 1
-                atr.add(apellidoPaternoTFd.getText());//# En lista 2
-                atr.add(apellidoMaternoTFd.getText());//# En lista 3
-                atr.add(usuarioTFd.getText());//# En lista 4
-                switch(String.valueOf(tipoCBx.getSelectedItem())){
-                    case "Administrador": atr.add("1"); break;
-                    case "Analista": atr.add("2"); break;
-                    case "Secretaria": atr.add("3"); break;
-                }
-                atr.add(contrasenaTFd.getText());//# En lista 6
-                buscando = true;
-                problema = 0;
-                control.buscarTodos();
-                if(problema == 0){
-                    if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
-                        control.alta(DataHelper.getUsuario(atr));  
-                    }else{
-                        atr.add(String.valueOf(idUsuarioActual));
-                        control.modificacion(DataHelper.getUsuario(atr));
-                    }
-                    limpiar();
-                    guardarBtn.setText("Guardar");
-                    control.buscarTodos();
-                }
-            }else{
-                setMensaje("Usuario o Contraseña incorrectas");
+        } else if (contrasenaTFd.getText().equals(confirmarContrasenaTFd.getText())) {
+            List<String> atr = new ArrayList<String>();
+            atr.add(nombreTFd.getText()); //# En lista 0
+            atr.add(segundoNombreTFd.getText());//# En lista 1
+            atr.add(apellidoPaternoTFd.getText());//# En lista 2
+            atr.add(apellidoMaternoTFd.getText());//# En lista 3
+            atr.add(usuarioTFd.getText());//# En lista 4
+            switch (String.valueOf(tipoCBx.getSelectedItem())) {
+                case "Administrador":
+                    atr.add("1");
+                    break;
+                case "Analista":
+                    atr.add("2");
+                    break;
+                case "Secretaria":
+                    atr.add("3");
+                    break;
             }
+            atr.add(contrasenaTFd.getText());//# En lista 6
+            buscando = true;
+            problema = 0;
+            control.buscarTodos("usuario");
+            if (problema == 0) {
+                if (!guardarBtn.getText().equalsIgnoreCase("Modificar")) {
+                    control.alta("usuario", DataHelper.getUsuario(atr));
+                } else {
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", idUsuarioActual);
+
+                    DataTable dtUsuario = DataHelper.getUsuario(atr);
+
+                    //Quitar la columna de id
+                    dtUsuario = dtUsuario.removerColumnas(new String[]{"id"});
+
+                    control.modificacion("usuario", dtUsuario, condicion);
+                }
+                limpiar();
+                guardarBtn.setText("Guardar");
+                control.buscarTodos("usuario");
+            }
+        } else {
+            setMensaje("Usuario o Contraseña incorrectas");
         }
         almacenando = false;
     }//GEN-LAST:event_guardarBtnActionPerformed
 
     private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
         if (JOptionPane.showConfirmDialog(this, "La información que"
-            + " esta modificando se perdera,¿Aun así desea cancelarla?",
-            "Precaucion", JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE) == 0) {
+                + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                "Precaucion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE) == 0) {
             limpiar();
         }
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if(nombreBuscarTFd.getText().equals("")==false)
-        control.buscarPorNombre(nombreBuscarTFd.getText());        // TODO add your handling code here:
-        else
-        control.buscarTodos();
+        if (nombreBuscarTFd.getText().equals("") == false) {
+            HashMap<String, Object> condiciones = new HashMap<>();
+            condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
+
+            control.buscarPor("usuario", condiciones);
+        } else {
+            control.buscarTodos("usuario");
+        }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
-        if(informacionPnl.isVisible()){
+        if (informacionPnl.isVisible()) {
             if (JOptionPane.showConfirmDialog(this, "La información que"
-                + " esta modificando se perdera,¿Aun así desea cancelarla?",
-                "Precaucion", JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE) == 0) {
-            limpiar();
-            informacionPnl.setVisible(true);
-            guardarBtn.setText("Guardar");
-        }
+                    + " esta modificando se perdera,¿Aun así desea cancelarla?",
+                    "Precaucion", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE) == 0) {
+                limpiar();
+                informacionPnl.setVisible(true);
+                guardarBtn.setText("Guardar");
+            }
         } else {
             limpiar();
             guardarBtn.setText("Guardar");
@@ -633,14 +650,14 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         int row = usuariosTbl.rowAtPoint(evt.getPoint());
         int col = usuariosTbl.columnAtPoint(evt.getPoint());
         if (col == 0) {
-            if(informacionPnl.isVisible()){
+            if (informacionPnl.isVisible()) {
                 if (JOptionPane.showConfirmDialog(this, "La información que"
-                    + " esta modificando se perdera ¿Aun así desea cancelarla?",
-                    "Precaucion", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE) == 0) {
+                        + " esta modificando se perdera ¿Aun así desea cancelarla?",
+                        "Precaucion", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE) == 0) {
                     limpiar();
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                    control.buscar(id);
+                    control.buscar("usuario", "id", id);
                     idUsuarioActual = id;
                     guardarBtn.setText("Modificar");
                     usuariosTbl.clearSelection();
@@ -649,28 +666,32 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
             } else {
                 limpiar();
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                control.buscar(id);
+                control.buscar("usuario", "id", id);
                 idUsuarioActual = id;
                 guardarBtn.setText("Modificar");
                 usuariosTbl.clearSelection();
                 informacionPnl.setVisible(true);
             }
-        }else if(col == 2) {
-            int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(((String)model.getValueAt(row, 1)).equals(usuarioConectado)) {
+        } else if (col == 2) {
+            int id = Integer.parseInt((String) model.getValueAt(row, 0));
+            if (((String) model.getValueAt(row, 1)).equals(usuarioConectado)) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
-                    + " conectado actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                        + " conectado actualmente.", "Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 3);
                 usuariosTbl.clearSelection();
-            }else if(guardarBtn.getText().equals("Modificar") && idUsuarioActual == id){
+            } else if (guardarBtn.getText().equals("Modificar") && idUsuarioActual == id) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar el usuario que esta"
-                    + " modificando actualmente.","Precaución", JOptionPane.ERROR_MESSAGE);
+                        + " modificando actualmente.", "Precaución", JOptionPane.ERROR_MESSAGE);
                 model.setValueAt(false, row, 3);
                 usuariosTbl.clearSelection();
-            }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
-                "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-                control.baja(id);
-                control.buscarTodos();
+            } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
+                    "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
+                
+                HashMap<String, Object> condiciones = new HashMap<>();
+                condiciones.put("id", id);
+                control.baja("usuario", condiciones);
+                
+                control.buscarTodos("usuario");
             } else {
                 model.setValueAt(false, row, 3);
                 usuariosTbl.clearSelection();
@@ -719,7 +740,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
             validNomLbl.setForeground(new Color(255, 0, 0));
-        } 
+        }
     }//GEN-LAST:event_nombreTFdFocusLost
 
     private void nombreTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusGained
@@ -763,14 +784,14 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private void usuarioTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioTFdFocusLost
         buscando = true;
         problema = 0;
-        control.buscarTodos();
+        control.buscarTodos("usuario");
         if (usuarioTFd.getText().isEmpty()) {
             usuarioTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
             validUsuarioLbl.setText("Este campo es obligatorio");
             validUsuarioLbl.setForeground(new Color(255, 0, 0));
-        }else if(problema == 1){
+        } else if (problema == 1) {
             usuarioTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
@@ -805,7 +826,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
                     BORDER_ORIGINAL));
             validConfirmarLbl.setText("Este campo es obligatorio");
             validConfirmarLbl.setForeground(new Color(255, 0, 0));
-        } else if(!confirmarContrasenaTFd.getText().equals(contrasenaTFd.getText())){
+        } else if (!confirmarContrasenaTFd.getText().equals(contrasenaTFd.getText())) {
             confirmarContrasenaTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
                     BORDER_ORIGINAL));
@@ -816,32 +837,28 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     private void contrasenaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contrasenaTFdKeyTyped
         char car = evt.getKeyChar();
-        if (!Character.isLetterOrDigit(car) 
-            || contrasenaTFd.getText().length() == 45) {
-             evt.consume();    
+        if (!Character.isLetterOrDigit(car)
+                || contrasenaTFd.getText().length() == 45) {
+            evt.consume();
         }
     }//GEN-LAST:event_contrasenaTFdKeyTyped
 
     private void confirmarContrasenaTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmarContrasenaTFdKeyTyped
         char car = evt.getKeyChar();
-        if (!Character.isLetterOrDigit(car) 
-            || confirmarContrasenaTFd.getText().length() == 45
-                ) {
-             evt.consume();
-            
-            
+        if (!Character.isLetterOrDigit(car)
+                || confirmarContrasenaTFd.getText().length() == 45) {
+            evt.consume();
+
         }
     }//GEN-LAST:event_confirmarContrasenaTFdKeyTyped
 
     private void nombreBuscarTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreBuscarTFdKeyTyped
-        if (!Character.isLetter(evt.getKeyChar())  
-            && !Character.isISOControl(evt.getKeyChar())
-            && !Character.isWhitespace(evt.getKeyChar()) 
-            || nombreBuscarTFd.getText().length() == 45
-                ) {
-             evt.consume();
-            
-            
+        if (!Character.isLetter(evt.getKeyChar())
+                && !Character.isISOControl(evt.getKeyChar())
+                && !Character.isWhitespace(evt.getKeyChar())
+                || nombreBuscarTFd.getText().length() == 45) {
+            evt.consume();
+
         }
     }//GEN-LAST:event_nombreBuscarTFdKeyTyped
 
@@ -885,13 +902,13 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
     private javax.swing.JLabel validUsuarioLbl;
     // End of variables declaration//GEN-END:variables
 
-    public void llenarTodo(){
+    public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos();
+        control.buscarTodos("usuario");
     }
-    
-    private void limpiar(){
+
+    private void limpiar() {
         nombreTFd.setText("");
         segundoNombreTFd.setText("");
         apellidoPaternoTFd.setText("");
@@ -915,7 +932,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
         guardarBtn.setText("Guardar");
         informacionPnl.setVisible(false);
     }
-    
+
     @Override
     public void setMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
@@ -923,36 +940,36 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setTabla(String[][] info) {
-        if(buscando){
+        if (buscando) {
             buscando = false;
-            if(info!=null){
-                for(int i=0; i < info.length; i++){
-                    if(guardarBtn.getText().equals("Modificar") &&
-                        info[i][0].equals(String.valueOf(idUsuarioActual))){
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (guardarBtn.getText().equals("Modificar")
+                            && info[i][0].equals(String.valueOf(idUsuarioActual))) {
                         continue;
                     }
                     String nombreAIngresar = String.join(" ", nombreTFd.getText(),
-                        segundoNombreTFd.getText(), apellidoPaternoTFd.getText(),
-                        apellidoMaternoTFd.getText());
-                    if(info[i][1].equals(usuarioTFd.getText())){
-                        if(almacenando){
-                            setMensaje("Ya existe el nombre de usuario\n"+info[i][1]);
+                            segundoNombreTFd.getText(), apellidoPaternoTFd.getText(),
+                            apellidoMaternoTFd.getText());
+                    if (info[i][1].equals(usuarioTFd.getText())) {
+                        if (almacenando) {
+                            setMensaje("Ya existe el nombre de usuario\n" + info[i][1]);
                         }
                         problema = 1;
                         break;
-                    }else if(info[i][2].equalsIgnoreCase(nombreAIngresar)){
-                        if(almacenando){
-                            setMensaje("Ya existe un usuario con ese nombre\n"+nombreAIngresar);
+                    } else if (info[i][2].equalsIgnoreCase(nombreAIngresar)) {
+                        if (almacenando) {
+                            setMensaje("Ya existe un usuario con ese nombre\n" + nombreAIngresar);
                         }
                         problema = 2;
                         break;
                     }
                 }
             }
-        }else if(info == null){
+        } else if (info == null) {
             model.setRowCount(0);
             setMensaje("No se encontraron coincidencias");
-        }else{
+        } else {
             model.setRowCount(0);
             model.setDataVector(info, titulosTabla);
             TableColumn tc = usuariosTbl.getColumnModel().getColumn(3);
@@ -966,13 +983,13 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador{
 
     @Override
     public void setInfo(List info) {
-        if(info==null)
+        if (info == null) {
             setMensaje("No se encontraron coincidencias");
-        else{
+        } else {
             nombreTFd.setText(info.get(0).toString());
-            if(info.get(1) != null){
+            if (info.get(1) != null) {
                 segundoNombreTFd.setText(info.get(1).toString());
-            }else{
+            } else {
                 segundoNombreTFd.setText("");
             }
             apellidoPaternoTFd.setText(info.get(2).toString());

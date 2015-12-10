@@ -340,10 +340,10 @@ public class ListaEventosFrm extends javax.swing.JFrame implements Comunicador {
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         if(eventoTFd.getText().equals("")){
-            control.buscarTodos();
+            control.buscarTodos("evento");
         }else{
             HashMap<String, Object> condiciones = new HashMap<>();
-            condiciones.put("nombre", eventoTFd.getText());
+            condiciones.put("nombre LIKE", "%" + eventoTFd.getText() + "%");
             
             control.buscarPor("evento", condiciones);
         }

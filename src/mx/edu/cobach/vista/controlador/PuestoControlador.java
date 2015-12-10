@@ -5,11 +5,14 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-import java.util.ArrayList;
-import java.util.List;
-import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.Comunicador;
+import persistencia.Enlace;
 
 /**
  * Clase con los metodos de busqueda especifica en la entidades 
@@ -25,24 +28,6 @@ public class PuestoControlador extends BaseControlador{
      */
     public PuestoControlador(Comunicador com){
         super(com, Puesto.class);
-    } 
-    
-    /**
-     * Metodo para buscar un registro especifico a traves de un nombre
-     * @param nombre Nombre del puesto a buscar
-    */
-    public void buscar(String nombre) {
-        List<Object> o = ServiceLocatorDELEGATE.getPuesto().find(nombre);
-        com.setTabla(DataHelper.descomponerRegistros(o));
-    }
-    
-    /**
-     * Metodo para buscar un registro especifico a traves de un id entero
-     * @param id del puesto
-    */
-    public void buscarMod(int id) {
-        Object o = ServiceLocatorDELEGATE.getInstance().find(id, clazz);
-        com.setInfo(DataHelper.descomponerRegistro(o));
     }
     
     /**
@@ -51,11 +36,15 @@ public class PuestoControlador extends BaseControlador{
      * @param id Puesto que se encuentra en la tabla de empleados
      * @return booleano que indica si puesto es utilizado o no
     */
-    public boolean buscarEmpleados(int id){
-        List<String> atr = new ArrayList();
-        atr.add(String.valueOf(id));
-        atr.add("");
-        return ServiceLocatorDELEGATE.getImplementarEvento()
-            .buscarEmPorPuesto(DataHelper.getPuesto(atr, "")).size() > 0;
+    public boolean buscarEmpleadosByPuesto(int id) {
+        DataTable empleados = null;
+        
+        try {
+            empleados = Enlace.getPersistencia().getEmpleadosByPuesto(id);
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(PuestoControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return (empleados != null && !empleados.isEmpty());
     }
 }

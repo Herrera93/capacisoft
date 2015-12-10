@@ -346,8 +346,6 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 if(guardarBtn.getText().equals("Guardar")){
                     control.alta("departamento", DataHelper.getDepartamento(atr));
                 }else{
-                    atr.add(nombreTFd.getText());
-
                     HashMap<String, Object> condicion = new HashMap<>();
                     condicion.put("id", id);
 
@@ -419,7 +417,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             //Manda un mensaje de Confirmación sobre la eliminacion
         } else if (col == 1) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(control.buscarEmpleados(id)){
+            if(control.buscarEmpleadosByDepartamento(id)){
                 setMensaje("No se puede eliminar un departamento que contenga empleados");
                 model.setValueAt(false, row, 2);
                 departamentoTbl.clearSelection();
@@ -434,7 +432,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
                 control.baja("departamento", condiciones);
-                control.buscarTodos();
+                control.buscarTodos("departamento");
             } else {
                 model.setValueAt(false, row, 2);
                 departamentoTbl.clearSelection();

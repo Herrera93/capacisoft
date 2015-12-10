@@ -320,7 +320,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         } else {
             buscando = true;
             problema = false;
-            control.buscarTodos();
+            control.buscarTodos("direccion");
             if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     /*Se agregan los valores de los campos a la Lista, 
@@ -349,7 +349,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                     control.modificacion(DataHelper.getDireccion(atr));
                 }
                 limpiar();
-                control.buscarTodos();
+                control.buscarTodos("direccion");
             }
         }
         almacenando = false;
@@ -451,7 +451,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos();
+        control.buscarTodos("direccion");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -503,7 +503,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
             }
         } else if (col == 1) {
             int id = Integer.parseInt((String) model.getValueAt(row, 0));
-            if (control.buscarEmpleados(id)) {
+            if (control.buscarEmpleadosByDireccion(id)) {
                 setMensaje("No se puede eliminar una dirección que contenga empleados");
                 model.setValueAt(false, row, 2);
                 direccionTbl.clearSelection();
@@ -517,7 +517,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
                 control.baja("direccion", condiciones);
-                control.buscarTodos();
+                control.buscarTodos("direccion");
             } else {
                 model.setValueAt(false, row, 2);
                 direccionTbl.clearSelection();
@@ -564,7 +564,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos();
+        control.buscarTodos("direccion");
     }
 
     /**

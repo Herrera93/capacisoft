@@ -238,23 +238,39 @@ public class DataHelper {
 
         return dtEmpleado;
     }
+    
+    public static DataTable getUsuario(List<String> atributos) {
+        //Sólo para que no haya errores de dedo, no son necesarios
+        final String ID = "id";
+        final String PRIMER_NOMBRE = "primer_nombre";
+        final String SEGUNDO_NOMBRE = "segundo_nombre";
+        final String APELLIDO_PATERNO = "apellido_paterno";
+        final String APELLIDO_MATERNO = "apellido_materno";
+        final String USUARIO = "usuario";
+        final String CONTRASENA = "contrasena";
+        final String TIPO_CUENTA_ID = "tipo_cuenta_id";
 
-    public static Usuario getUsuario(List<String> atributos) {
-        TipoCuenta t = new TipoCuenta();
-        Usuario u = new Usuario();
+        String[] columnas = {ID, PRIMER_NOMBRE, SEGUNDO_NOMBRE, APELLIDO_PATERNO,
+        APELLIDO_MATERNO, USUARIO, CONTRASENA, TIPO_CUENTA_ID};
+        
+        DataTable dtUsuario = new DataTable(columnas, 1, columnas.length);
 
-        u.setPrimerNombre(atributos.get(0));
-        u.setSegundoNombre(atributos.get(1));
-        u.setApellidoPaterno(atributos.get(2));
-        u.setApellidoMaterno(atributos.get(3));
-        u.setUsuario(atributos.get(4));
-        t.setId(Integer.parseInt(atributos.get(5)));
-        u.setTipoCuenta(t);
-        u.setContrasena(atributos.get(6));
-        if (atributos.size() > 7) {
-            u.setId(Integer.parseInt(atributos.get(7)));
-        }
-        return u;
+        //posicionarse en el registro 1
+        dtUsuario.next();
+
+        //Guardar los datos
+        dtUsuario.setObject(PRIMER_NOMBRE, atributos.get(0));
+        dtUsuario.setObject(SEGUNDO_NOMBRE, atributos.get(1));
+        dtUsuario.setObject(APELLIDO_PATERNO, atributos.get(2));
+        dtUsuario.setObject(APELLIDO_MATERNO, atributos.get(3));
+        dtUsuario.setObject(USUARIO, atributos.get(4));
+        dtUsuario.setObject(TIPO_CUENTA_ID, atributos.get(5));
+        dtUsuario.setObject(CONTRASENA, atributos.get(6));
+        
+        //Reiniciar para lectura desde la primera posición.
+        dtUsuario.rewind();
+
+        return dtUsuario;
     }
 
     public static Sede getSede(List<String> atributos) {
@@ -520,6 +536,35 @@ public class DataHelper {
         info.add(usuario.getContrasena());
         return info;
     }
+    
+    private static List<Object> descomponerUsuario(DataTable usuario) {
+        List<Object> info = new ArrayList<>();
+
+        //Iterar en los registros
+        usuario.rewind();
+
+        usuario.next();
+
+        info.add(usuario.getString("primer_nombre"));
+        info.add(usuario.getString("segundo_nombre"));
+        info.add(usuario.getString("apellido_paterno"));
+        info.add(usuario.getString("apellido_materno"));
+        info.add(usuario.getString("usuario"));
+        
+        //Obtener el nombre del tipo_cuenta
+        Map<String, Object> attrWhere = new HashMap<>();
+
+        attrWhere.put("id", usuario.getInt("tipo_cuenta_id"));
+
+        DataTable tipoCuenta = buscar("tipo_cuenta", null, null, attrWhere);
+
+        tipoCuenta.next();
+
+        info.add(descomponerTiposCuentaAObjectos(tipoCuenta).get(0));
+        info.add(usuario.getString("contrasena"));
+
+        return info;
+    }
 
     private static List<Object> descomponerProEvento(ImplementacionEvento eventoImplementado) {
         List<Object> info = new ArrayList<>();
@@ -558,8 +603,8 @@ public class DataHelper {
              ps.add((Puesto) objetos.get(i));
              }
              return descomponerPuestos(ps);
-             } else */
-            /*if (objetos.get(0) instanceof Empleado) {
+             } else
+            if (objetos.get(0) instanceof Empleado) {
                 List<Empleado> emps = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     emps.add((Empleado) objetos.get(i));
@@ -571,19 +616,19 @@ public class DataHelper {
              cr.add((Evento) objetos.get(i));
              }
              return descomponerEventos(cr);
-             }  else */ if (objetos.get(0) instanceof Usuario) {
+             }  else if (objetos.get(0) instanceof Usuario) {
                 List<Usuario> us = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     us.add((Usuario) objetos.get(i));
                 }
                 return descomponerUsuarios(us);
-            } /*else if (objetos.get(0) instanceof Departamento) {
+            } else if (objetos.get(0) instanceof Departamento) {
                 List<Departamento> dp = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     dp.add((Departamento) objetos.get(i));
                 }
                 return descomponerDepartamentos(dp);
-            } */else if (objetos.get(0) instanceof Sede) {
+            } else */if (objetos.get(0) instanceof Sede) {
                 List<Sede> se = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     se.add((Sede) objetos.get(i));
@@ -680,6 +725,8 @@ public class DataHelper {
                 datosDescompuestos = descomponerDepartamentos(dataTable);
             } else if (tablaFuente.equalsIgnoreCase("plantel")) {
                 datosDescompuestos = descomponerPlanteles(dataTable);
+            } else if (tablaFuente.equalsIgnoreCase("usuario")) {
+                datosDescompuestos = descomponerUsuarios(dataTable);
             }
 
         }
@@ -868,22 +915,27 @@ public class DataHelper {
 
         return info;
     }
+    
+    private static String[][] descomponerUsuarios(DataTable usuarios) {
+        String[][] info = new String[usuarios.getRowCount()][3];
 
-    private static String[][] descomponerUsuarios(List<Usuario> us) {
-        String[][] info = new String[us.size()][3];
-        for (int i = 0; i < us.size(); i++) {
-            Usuario u = us.get(i);
-            TipoCuenta t;
-            t = u.getTipoCuenta();
-            info[i][0] = String.valueOf(u.getId());
-            info[i][1] = u.getUsuario();
-            info[i][2] = u.getPrimerNombre();
-            if (u.getSegundoNombre() != null
-                    && u.getSegundoNombre().equals("") == false) {
-                info[i][2] += " " + u.getSegundoNombre();
+        //Iterar en los registros
+        usuarios.rewind();
+        int i = 0;
+        while (usuarios.next()) {
+            info[i][0] = usuarios.getObject("id").toString();
+            info[i][1] = usuarios.getString("usuario");
+            info[i][2] = usuarios.getString("primer_nombre");
+            if (usuarios.getString("segundo_nombre") != null
+                    && usuarios.getString("segundo_nombre").equals("") == false) {
+                info[i][2] += " " + usuarios.getString("segundo_nombre");
             }
-            info[i][2] += " " + u.getApellidoPaterno() + " " + u.getApellidoMaterno();
+            info[i][2] += " " + usuarios.getString("apellido_paterno")
+                    + " " + usuarios.getString("apellido_materno");
+            
+            i++;
         }
+
         return info;
     }
 
@@ -1055,6 +1107,24 @@ public class DataHelper {
             Adscripcion ads = new Adscripcion(adscripciones.getString("descripcion"));
             ads.setId(adscripciones.getInt("id"));
             lista.add(ads);
+        }
+
+        return lista;
+    }
+    
+    private static List descomponerTiposCuentaAObjectos(DataTable tiposCuenta) {
+        List<Object> lista = new ArrayList();
+        
+        //Iterar en los registros
+        tiposCuenta.rewind();
+        
+        int i = 0;
+        while (tiposCuenta.next()) {
+            TipoCuenta tipoCuenta = new TipoCuenta(tiposCuenta
+                    .getString("descripcion"));
+            
+            tipoCuenta.setId(tiposCuenta.getInt("id"));
+            lista.add(tipoCuenta);
         }
 
         return lista;
