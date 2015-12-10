@@ -462,8 +462,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         if (nombreBuscarTFd.getText().equals("")) {
-            control.buscarTodos("plantel");
+            control.buscarPorNombre(nombreBuscarTFd.getText());
         } else {
+            control.buscarTodos();
             //Obtemer el id del tipo de evento
             HashMap<String, Object> condiciones = new HashMap<>();
             
