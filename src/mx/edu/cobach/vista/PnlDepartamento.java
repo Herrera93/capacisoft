@@ -7,12 +7,14 @@ package mx.edu.cobach.vista;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.vista.controlador.DepartamentoControlador;
 import mx.edu.cobach.vista.controlador.DataHelper;
@@ -344,8 +346,17 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 if(guardarBtn.getText().equals("Guardar")){
                     control.alta("departamento", DataHelper.getDepartamento(atr));
                 }else{
-                    atr.add(id);
-                    control.modificacion(DataHelper.getDepartamento(atr));
+                    atr.add(nombreTFd.getText());
+
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", id);
+
+                    DataTable dtDepartamento = DataHelper.getDepartamento(atr);
+
+                    //Quitar la columna de id
+                    dtDepartamento = dtDepartamento.removerColumnas(new String[]{"id"});
+
+                    control.modificacion("departamento", dtDepartamento, condicion);
                 }
                 limpiar();
                 control.buscarTodos("departamento");            
@@ -389,16 +400,18 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                     //Se obtiene el id de la columna no visible para realizar una 
                     //busqueda especifica.
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
-                    limpiar();
-                    control.buscar(id);
-                    guardarBtn.setText("Modificar");
-                    departamentoTbl.clearSelection();
-                    informacionPnl.setVisible(true);
+                limpiar();
+                control.buscar("departamento", "id", id);
+                this.id = id;
+                guardarBtn.setText("Modificar");
+                departamentoTbl.clearSelection();
+                informacionPnl.setVisible(true);
                 }
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 limpiar();
-                control.buscar(id);
+                control.buscar("departamento", "id", id);
+                this.id = id;
                 guardarBtn.setText("Modificar");
                 departamentoTbl.clearSelection();
                 informacionPnl.setVisible(true);
@@ -418,8 +431,10 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
                 //Obtenemos ID de la columna escondida
-                control.baja(id);
-                control.buscarTodos("departamento");
+                HashMap<String, Object> condiciones = new HashMap<>();
+                condiciones.put("id", id);
+                control.baja("departamento", condiciones);
+                control.buscarTodos();
             } else {
                 model.setValueAt(false, row, 2);
                 departamentoTbl.clearSelection();
