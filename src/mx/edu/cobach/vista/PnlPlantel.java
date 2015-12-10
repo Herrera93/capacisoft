@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Plantel;
-import mx.edu.cobach.persistencia.entidades.TipoEvento;
 import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.PlantelControlador;
 
@@ -462,15 +462,19 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         if (nombreBuscarTFd.getText().equals("")) {
-            control.buscarPorNombre(nombreBuscarTFd.getText());
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
+            
+            control.buscarPor("plantel", condicion);
         } else {
-            control.buscarTodos();
-            //Obtemer el id del tipo de evento
-            HashMap<String, Object> condiciones = new HashMap<>();
+            control.buscarTodos("plantel");
             
-            condiciones.put("nombre", nombreBuscarTFd.getText());
-            
-            control.buscarPor("plantel", condiciones);
+            //Obtener el id del tipo de evento
+//            HashMap<String, Object> condiciones = new HashMap<>();
+//            
+//            condiciones.put("nombre", nombreBuscarTFd.getText());
+//            
+//            control.buscarPor("plantel", condiciones);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -506,17 +510,26 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             }
             buscando = true;
             problema = false;
-            control.buscarTodos();
+            control.buscarTodos("plantel");
+            
             if(!problema){
                 if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
                     control.alta("plantel",DataHelper.getPlantel(atr));  
                 }else{
-                    atr.add(String.valueOf(idPlantelActual));
-                    //control.modificacion(HelperEntidad.getPlantel(atr));
+                    //Modificacion
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", idPlantelActual);
+
+                    DataTable dtPlantel = DataHelper.getPlantel(atr);
+
+                    //Quitar la columna de id
+                    dtPlantel = dtPlantel.removerColumnas(new String[]{"id"});
+
+                    control.modificacion("plantel", dtPlantel, condicion);
                 }
                 limpiar();
                 guardarBtn.setText("Guardar");
-                control.buscarTodos();
+                control.buscarTodos("plantel");
             }
         }
         almacenando = false;
@@ -559,7 +572,8 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                     JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
                     limpiar();
-                    control.buscar(id);
+                    control.buscar("plantel", "id", id);
+                    
                     idPlantelActual = id;
                     guardarBtn.setText("Modificar");
                     plantelesTbl.clearSelection();
@@ -568,7 +582,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 limpiar();
-                control.buscar(id);
+                control.buscar("plantel", "id", id);
                 idPlantelActual = id;
                 guardarBtn.setText("Modificar");
                 plantelesTbl.clearSelection();
@@ -576,7 +590,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             }
         }else if(col == 2) {
             int id = Integer.parseInt((String)model.getValueAt(row, 0));
-            if(control.buscarEmpleados(id)){
+            if(control.buscarEmpleadosByPlantel(id)){
                 setMensaje("No se puede eliminar un plantel que contenga empleados");
                 model.setValueAt(false, row, 3);
                 plantelesTbl.clearSelection();
@@ -587,8 +601,12 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 plantelesTbl.clearSelection();
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
-                control.baja(id);
-                control.buscarTodos();
+                
+                HashMap<String, Object> condicion = new HashMap<>();
+                condicion.put("id", id);
+                
+                control.baja("plantel", condicion);
+                control.buscarTodos("plantel");
             } else {
                 model.setValueAt(false, row, 3);
                 plantelesTbl.clearSelection();
@@ -626,7 +644,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos();
+        control.buscarTodos("plantel");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -767,7 +785,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo(){
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos();
+        control.buscarTodos("plantel");
     }
     
     private void limpiar(){

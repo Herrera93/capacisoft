@@ -344,9 +344,9 @@ public class DataHelper {
             return descomponerProEvento((ImplementacionEvento) obj);
         } else if (obj instanceof Proveedor) {
             return descomponerProveedor((Proveedor) obj);
-        } else if (obj instanceof Plantel) {
+        } /*else if (obj instanceof Plantel) {
             return descomponerPlantel((Plantel) obj);
-        } else if (obj instanceof Alerta) {
+        } */else if (obj instanceof Alerta) {
             return descomponerAlerta((Alerta) obj);
 //        } else if (obj instanceof Direccion) {
 //            return descomponerDireccion((Direccion) obj);
@@ -370,6 +370,8 @@ public class DataHelper {
                 registroDescompuesto = descomponerDireccion(registro);
             }else if (tablaFuente.equalsIgnoreCase("departamento")){
                 registroDescompuesto = descomponerDepartamento(registro);
+            } else if (tablaFuente.equalsIgnoreCase("plantel")){
+                registroDescompuesto = descomponerPlantel(registro);
             }
         }
 
@@ -604,13 +606,13 @@ public class DataHelper {
                     pr.add((Proveedor) objetos.get(i));
                 }
                 return descomponerProveedores(pr);
-            } else if (objetos.get(0) instanceof Plantel) {
+            } /*else if (objetos.get(0) instanceof Plantel) {
                 List<Plantel> pl = new ArrayList();
                 for (int i = 0; i < objetos.size(); i++) {
                     pl.add((Plantel) objetos.get(i));
                 }
                 return descomponerPlanteles(pl);
-            }
+            }*/
 //            } else if (objetos.get(0) instanceof Direccion) {
 //                List<Direccion> di = new ArrayList();
 //                for (int i = 0; i < objetos.size(); i++) {
@@ -662,6 +664,8 @@ public class DataHelper {
                 datosDescompuestos = descomponerEmpleados(dataTable);
             } else if (tablaFuente.equalsIgnoreCase("departamento")) {
                 datosDescompuestos = descomponerDepartamentos(dataTable);
+            } else if (tablaFuente.equalsIgnoreCase("plantel")) {
+                datosDescompuestos = descomponerPlanteles(dataTable);
             }
 
         }
@@ -792,42 +796,55 @@ public class DataHelper {
         }
         return info;
     }
-
-    /**
-     *
-     * @param plantel
-     * @return
-     */
-    private static List<Object> descomponerPlantel(Plantel plantel) {
+    
+    private static List<Object> descomponerPlantel(DataTable plantel) {
         List<Object> info = new ArrayList<>();
-        Zona z;
-        info.add(plantel.getNombre());
-        info.add(plantel.getCalle());
-        info.add(plantel.getColonia());
-        info.add(plantel.getNumeroDireccion());
-        z = plantel.getZona();
-        info.add(z.getNombre());
+
+        //Iterar en los registros
+        plantel.rewind();
+
+        plantel.next();
+
+        //a lo mejor va la llave primaria aqui
+        info.add(plantel.getString("nombre"));
+        info.add(plantel.getString("calle"));
+        info.add(plantel.getString("colonia"));
+        info.add(plantel.getString("numero_direccion"));
+
+        //Obtener el nombre de la zona
+        Map<String, Object> condicion = new HashMap<>();
+
+        condicion.put("id", plantel.getInt("zona_id"));
+
+        DataTable zona = buscar("zona", null, null, condicion);
+
+        zona.next();
+
+        info.add(descomponerZonas(zona).get(0));
+
         return info;
     }
 
-    /**
-     *
-     * @param pl
-     * @return
-     */
-    private static String[][] descomponerPlanteles(List<Plantel> pl) {
-        String[][] info = new String[pl.size()][3];
-        for (int i = 0; i < pl.size(); i++) {
-            Plantel p = pl.get(i);
-            info[i][0] = String.valueOf(p.getId());
-            info[i][1] = p.getNombre();
-            info[i][2] = p.getCalle() + " ";
-            info[i][2] += p.getColonia() + " ";
-            info[i][2] += p.getNumeroDireccion();
+    private static String[][] descomponerPlanteles(DataTable planteles) {
+        String[][] info = new String[planteles.getRowCount()][3];
+
+        //Iterar en los registros
+        planteles.rewind();
+        
+        int i = 0;
+        while (planteles.next()) {
+            info[i][0] = planteles.getObject("id").toString();
+            info[i][1] = planteles.getString("nombre");
+            info[i][2] = planteles.getString("calle") + " ";
+            info[i][2] += planteles.getString("colonia") + " ";
+            info[i][2] += planteles.getString("numero_direccion");
+            
+            i++;
         }
+
         return info;
     }
-
+    
     private static String[][] descomponerDepartamentos(List<Departamento> dp) {
         String[][] info = new String[dp.size()][3];
         for (int i = 0; i < dp.size(); i++) {

@@ -5,30 +5,29 @@
  */
 package mx.edu.cobach.vista.controlador;
 
-import java.util.ArrayList;
-import java.util.List;
-import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.dto.DataTable;
 import mx.edu.cobach.vista.Comunicador;
+import persistencia.Enlace;
 
 public class PlantelControlador extends BaseControlador{
     public PlantelControlador(Comunicador com, Class clazz) {
         super(com, clazz);
     }
     
-    public void buscarPorNombre(String nombre){
-        List<Object> list = ServiceLocatorDELEGATE.getPlantelDelegate().buscarPorNombre(nombre);
-       com.setTabla(DataHelper.descomponerRegistros(list));
-    }
-    
-    public boolean buscarEmpleados(int id){
-        List<String> atr = new ArrayList();
-        for(int i = 0; i < 4; i++){
-            atr.add("");
+    public boolean buscarEmpleadosByPlantel(int id) {
+        DataTable empleados = null;
+        
+        try {
+            //Buscar empleados del plantel...
+            empleados = Enlace.getPersistencia().getEmpleadosByPlantel(id);
+        } catch (RemoteException | NotBoundException ex) {
+            Logger.getLogger(PlantelControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        atr.add("0");
-        atr.add(String.valueOf(id));
-        //return ServiceLocatorDELEGATE.getImplementarEvento()
-        //    .buscarEmPorPlantel(HelperEntidad.getPlantel(atr)).size() > 0;
-        return false;
+        
+        return (empleados != null && !empleados.isEmpty());
     }
 }

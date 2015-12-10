@@ -317,8 +317,10 @@ public class DataTable extends AbstractTableModel {
      * @throws ClassCastException en caso de que el valor en la columna con el
      * nombre especificado no sea de tipo int
      */
-    public int getInt(String columnName) {
-        return (int) getObject(columnName);
+    public Integer getInt(String columnName) {
+        Object column = getObject(columnName);
+        
+        return (column != null) ? (int) column : null;
     }
 
     /**
@@ -336,7 +338,9 @@ public class DataTable extends AbstractTableModel {
      * nombre especificado no sea de tipo String
      */
     public String getString(String columnName) {
-        return (String) getObject(columnName);
+        Object column = getObject(columnName);
+        
+        return (column != null) ? (String) column : null;
     }
 
     /**
@@ -353,8 +357,10 @@ public class DataTable extends AbstractTableModel {
      * @throws ClassCastException en caso de que el valor en la columna con el
      * nombre especificado no sea de tipo double
      */
-    public double getDouble(String columnName) {
-        return (double) getObject(columnName);
+    public Double getDouble(String columnName) {
+        Object column = getObject(columnName);
+        
+        return (column != null) ? (double) column : null;
     }
 
     /**
@@ -371,8 +377,10 @@ public class DataTable extends AbstractTableModel {
      * @throws ClassCastException en caso de que el valor en la columna con el
      * nombre especificado no sea de tipo boolean
      */
-    public boolean getBoolean(String columnName) {
-        return (boolean) getObject(columnName);
+    public Boolean getBoolean(String columnName) {
+        Object column = getObject(columnName);
+        
+        return (column != null) ? (boolean) column : null;
     }
 
     /**
@@ -390,7 +398,9 @@ public class DataTable extends AbstractTableModel {
      * nombre especificado no sea de tipo Date
      */
     public Date getDate(String columnName) {
-        return (Date) getObject(columnName);
+        Object column = getObject(columnName);
+        
+        return (column != null) ? (Date) column : null;
     }
 
     /**
@@ -611,5 +621,9 @@ public class DataTable extends AbstractTableModel {
 
         return new DataTable(columns, datos);
 
+    }
+    
+    public boolean isEmpty() {
+        return getRowCount() == 0;
     }
 }
