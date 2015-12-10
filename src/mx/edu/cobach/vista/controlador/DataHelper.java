@@ -478,7 +478,6 @@ public class DataHelper {
 
     private static List<Object> descomponerEmpleado(Empleado empleado) {
         List<Object> info = new ArrayList<>();
-        System.out.println(empleado.getPrimerNombre());
         info.add(empleado.getNumero());
         info.add(empleado.getPrimerNombre());
         info.add(empleado.getSegundoNombre());

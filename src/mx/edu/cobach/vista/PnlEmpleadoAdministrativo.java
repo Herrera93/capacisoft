@@ -261,9 +261,9 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(opcionLbl)
                                     .addComponent(opcionMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 2, Short.MAX_VALUE))))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
-                        .addComponent(empleadosSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(empleadosSPn, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(tablaMsjLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)))
         );
@@ -499,7 +499,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         plantelCBx.setEnabled(false);
 
         adscCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        adscCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plantel", "Departamento" }));
+        adscCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Departamento", "Plantel", "Direccion" }));
         adscCBx.setToolTipText("Seleccioné la  adscripción que esta asigando el empleado");
         adscCBx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -536,7 +536,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         });
 
         direccionLbl1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        direccionLbl1.setText("Dirección");
+        direccionLbl1.setText("Departamento:");
 
         direccionCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         direccionCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -591,7 +591,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                             .addComponent(direccionLbl)
                             .addComponent(adscLbl)
                             .addComponent(direccionLbl1))
-                        .addGap(101, 101, 101)
+                        .addGap(74, 74, 74)
                         .addGroup(informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(validDptoLbl)
                             .addComponent(departamentoCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -603,7 +603,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                             .addComponent(plantelCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(validDirLbl)
                             .addComponent(direccionCBx, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         informacion2PnlLayout.setVerticalGroup(
             informacion2PnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,7 +663,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addComponent(opcionPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
             .addComponent(informacionTBn, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents

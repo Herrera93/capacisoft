@@ -5,7 +5,10 @@
  */
 package mx.edu.cobach.vista.controlador;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.vista.Comunicador;
@@ -44,8 +47,58 @@ public class EmpleadoControlador extends BaseControlador {
      * @param id Identificador del empleado
      */
     public void buscar(String id){
-        Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
-        com.setInfo(DataHelper.descomponerRegistro(empleado));
+//        Object empleado = ServiceLocatorDELEGATE.getEmpleado().buscar(id);
+//        com.setInfo(DataHelper.descomponerRegistro(empleado));
+        HashMap<String, Object> condicion = new HashMap<>();
+        condicion.put("numero", id);
+
+        DataTable empleado = DataHelper.buscar("empleado", null, null, condicion);
+        List<Object> info = new ArrayList();
+        empleado.next();
+      
+        info.add(empleado.getString("numero"));
+        info.add(empleado.getString("primer_nombre"));
+        info.add(empleado.getString("segundo_nombre"));
+        info.add(empleado.getString("apellido_paterno"));
+        info.add(empleado.getString("apellido_materno"));
+        
+        condicion.clear();
+        condicion.put("id", empleado.getInt("puesto_id"));
+        DataTable auxiliar = DataHelper.buscar("puesto", null, null, condicion);
+        info.add(DataHelper.descomponerRegistrosAObjetos("puesto", auxiliar).get(0));
+        
+        info.add(empleado.getString("correo"));
+        
+        if(empleado.getObject("plantel_id") != null){
+            condicion.clear();
+            condicion.put("id", empleado.getInt("plantel_id"));
+            auxiliar = DataHelper.buscar("plantel", null, null, condicion);
+            info.add(DataHelper.descomponerRegistrosAObjetos("plantel", auxiliar).get(0));
+        }else
+            info.add(null);
+        
+        condicion.clear();
+        condicion.put("id", empleado.getInt("adscripcion_id"));
+        auxiliar = DataHelper.buscar("adscripcion", null, null, condicion);
+        info.add(DataHelper.descomponerRegistrosAObjetos("adscripcion", auxiliar).get(0));
+        
+        if(empleado.getObject("departamento_id") != null){
+            condicion.clear();
+            condicion.put("id", empleado.getInt("departamento_id"));
+            auxiliar = DataHelper.buscar("departamento", null, null, condicion);
+            info.add(DataHelper.descomponerRegistrosAObjetos("departamento", auxiliar).get(0));
+        }else
+            info.add(null);
+        
+        if(empleado.getObject("direccion_id") != null){
+            condicion.clear();
+            condicion.put("id", empleado.getInt("direccion_id"));
+            auxiliar = DataHelper.buscar("direccion", null, null, condicion);
+            info.add(DataHelper.descomponerRegistrosAObjetos("direccion", auxiliar).get(0));
+        }else
+            info.add(null);
+        
+        com.setInfo(info);
     }
     
     /**
