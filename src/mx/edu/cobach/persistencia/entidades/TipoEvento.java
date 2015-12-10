@@ -49,6 +49,7 @@ public class TipoEvento  implements java.io.Serializable {
         this.eventos = eventos;
     }
 
+    @Override
     public String toString(){
         return this.descripcion;
     }

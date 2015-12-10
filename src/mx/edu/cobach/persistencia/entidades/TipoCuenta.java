@@ -49,8 +49,10 @@ public class TipoCuenta  implements java.io.Serializable {
         this.usuarios = usuarios;
     }
 
-
-
+    @Override
+    public String toString() {
+        return descripcion;
+    }
 
 }
 

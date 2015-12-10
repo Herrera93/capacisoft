@@ -210,7 +210,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addComponent(tablaMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 34, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(opcionPnlLayout.createSequentialGroup()
                         .addComponent(plantelesSPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -263,7 +263,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
         });
 
         zonaCBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Valle", "Costa Norte", "Costa Sur" }));
+        zonaCBx.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VALLE", "COSTA NORTE", "COSTA SUR" }));
         zonaCBx.setToolTipText("Seleccioné la zona del plantel");
 
         calleTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -461,7 +461,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
      *de lo contrario activara el campo de nombre.
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if (nombreBuscarTFd.getText().equals("")) {
+        if (!nombreBuscarTFd.getText().isEmpty()) {
             HashMap<String, Object> condicion = new HashMap<>();
             condicion.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
             

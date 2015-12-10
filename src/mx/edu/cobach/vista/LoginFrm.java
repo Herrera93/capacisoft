@@ -48,7 +48,8 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
         //Agregar la interface de persistencia para utilizar el servicio local
         //Luego cambiar a campos de texto si se desea
         Enlace.ip = "127.0.0.1";
-        Enlace.puerto = 11977;
+        //Cambiar por tu puerto localhost
+        Enlace.puerto = 12006;
         Enlace.nombreServicio = "PersistInt";
     }
     

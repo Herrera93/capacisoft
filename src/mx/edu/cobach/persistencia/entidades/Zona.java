@@ -48,10 +48,11 @@ public class Zona  implements java.io.Serializable {
     public void setPlantels(Set<Plantel> plantels) {
         this.plantels = plantels;
     }
-
-
-
-
+    
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
 
 

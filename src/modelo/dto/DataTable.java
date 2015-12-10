@@ -479,6 +479,13 @@ public class DataTable extends AbstractTableModel {
         return dts;
     }
 
+    /**
+     * Remover columnas del dataTable
+     * 
+     * @param columnasRemover un arreglo con los nombres de las columnas a remover
+     * 
+     * @return la nueva DataTable con las columnas removidas
+     */
     public DataTable removerColumnas(String[] columnasRemover) {
         //Columnas actuales
         List<String> columnasActuales = new ArrayList<>(Arrays.asList(columns));
@@ -533,9 +540,17 @@ public class DataTable extends AbstractTableModel {
 
         int filas = 0;
         for (DataTable tabla : tablas) {
+            //Con una que sea null que se salga
+            if (tabla == null) {
+                return null;
+            }
             filas += tabla.getRowCount();
         }
 
+        if (filas == 0) {
+            return new DataTable();
+        }
+        
         String nombreColumas[] = tablas[0].getColumns();
         for (int i = 1; i < tablas.length; i++) {
             if (tablas[i] != null && Arrays.equals(nombreColumas, tablas[i].getColumns())) {
@@ -581,10 +596,12 @@ public class DataTable extends AbstractTableModel {
         
         int filas = tabla1.getRowCount();
         int columnas = tabla1.getColumnCount() + tabla2.getColumnCount() - 1;
-
-        if (filas % 2 != 0 && filas != 1) {
+        
+        
+        if (tabla1.getRowCount() != tabla2.getRowCount()) {
             return null;
         }
+        
         boolean ok;
         tabla1.rewind();
         tabla2.rewind();
@@ -623,6 +640,13 @@ public class DataTable extends AbstractTableModel {
 
     }
     
+    /**
+     * Verificar si esta tabla se encuentra vacía, es decir, sin registros.
+     * @return true si la tabla no tiene registros. Regresa false si esta tabla
+     * contiene filas.
+     * Nota: la tabla se considera con contenido sólo con que tenga filas, no
+     * importa si estas filas no tienen contenido alguno.
+     */
     public boolean isEmpty() {
         return getRowCount() == 0;
     }
