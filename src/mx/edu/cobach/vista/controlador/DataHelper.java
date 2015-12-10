@@ -338,8 +338,6 @@ public class DataHelper {
             return descomponerEmpleado((Empleado) obj);
         } else if (obj instanceof Usuario) {
             return descomponerUsuario((Usuario) obj);
-        } else if (obj instanceof Departamento) {
-            return descomponerDepartamento((Departamento) obj);
         } else if (obj instanceof Sede) {
             return descomponerSede((Sede) obj);
         } else if (obj instanceof ImplementacionEvento) {
@@ -370,6 +368,8 @@ public class DataHelper {
                 registroDescompuesto = descomponerPuesto(registro);
             } else if (tablaFuente.equalsIgnoreCase("direccion")){
                 registroDescompuesto = descomponerDireccion(registro);
+            }else if (tablaFuente.equalsIgnoreCase("departamento")){
+                registroDescompuesto = descomponerDepartamento(registro);
             }
         }
 
@@ -415,10 +415,14 @@ public class DataHelper {
         return null;
     }
 
-    private static List<Object> descomponerDepartamento(Departamento departamento) {
+    private static List<Object> descomponerDepartamento(DataTable departamento) {
         List<Object> info = new ArrayList<>();
-        info.add(departamento.getId());
-        info.add(departamento.getNombre());
+
+        //Iterar en los registros 
+        departamento.rewind();
+        departamento.next();
+        info.add(departamento.getInt("id"));
+        info.add(departamento.getString("nombre"));
         return info;
     }
 

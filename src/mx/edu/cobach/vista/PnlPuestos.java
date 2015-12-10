@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.vista.controlador.DataHelper;
 import mx.edu.cobach.vista.controlador.PuestoControlador;
 
@@ -338,10 +339,17 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                      /*Se agregan los valores de los campos a la Lista,se mandan 
                      al metodo control.modificacion*/
                     List<String> atr = new ArrayList<String>();
-                    atr.add(idPuesto + "");
+                    
                     atr.add(nombreTFd.getText());
-                    control.modificacion("puesto", DataHelper.getPuesto(atr),
-                            new HashMap<>());
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("id", idPuesto);
+
+                    DataTable dtPuesto = DataHelper.getPuesto(atr);
+
+                    //Quitar la columna de id
+                    dtPuesto = dtPuesto.removerColumnas(new String[]{"id"});
+
+                    control.modificacion("puesto", dtPuesto, condicion);
                 }
                 limpiar();
                 control.buscarTodos();
@@ -362,8 +370,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
         if (!nombreBuscarTFd.getText().equals("")) {
             HashMap<String, Object> condiciones = new HashMap<>();
             condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
-            
-            control.buscarPor("puesto",condiciones);
+
+            control.buscarPor("puesto", condiciones);
         } else {
             control.buscarTodos("puesto");
         }
@@ -494,8 +502,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                         JOptionPane.WARNING_MESSAGE) == 0) {
                     int id = Integer.parseInt((String) model.getValueAt(row, 0));
                     limpiar();
-                    control.buscar(id);
-                    idPuesto = id;
+                    control.buscar("puesto", "id", id);
+                    this.idPuesto = id;
                     guardarBtn.setText("Modificar");
                     puestosTbl.clearSelection();
                     informacionPnl.setVisible(true);
@@ -503,8 +511,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
             } else {
                 int id = Integer.parseInt((String) model.getValueAt(row, 0));
                 limpiar();
-                control.buscar(id);
-                idPuesto = id;
+                control.buscar("puesto", "id", id);
+                this.idPuesto = id;
                 guardarBtn.setText("Modificar");
                 puestosTbl.clearSelection();
                 informacionPnl.setVisible(true);
@@ -522,7 +530,9 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
                 puestosTbl.clearSelection();
             } else if (JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0) {
-                control.baja(id);
+                HashMap<String, Object> condiciones = new HashMap<>();
+                condiciones.put("id", id);
+                control.baja("puesto", condiciones);
                 control.buscarTodos();
             } else {
                 model.setValueAt(false, row, 2);
@@ -642,8 +652,8 @@ public class PnlPuestos extends javax.swing.JPanel implements Comunicador {
      */
     @Override
     public void setInfo(List info) {
-        nombreTFd.setText(info.get(0).toString());
-        idPuesto = Integer.parseInt(info.get(1).toString());
+        nombreTFd.setText(info.get(1).toString());
+        idPuesto = Integer.parseInt(info.get(0).toString());
         guardarBtn.setText("Modificar");
     }
 
