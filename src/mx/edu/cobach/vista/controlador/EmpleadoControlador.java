@@ -54,7 +54,8 @@ public class EmpleadoControlador extends BaseControlador {
 
         DataTable dt = DataHelper.buscar("empleado", null, null, condicion);
         List<Object> info = new ArrayList();
-        
+        dt.next();
+      
         info.add(dt.getString("numero"));
         info.add(dt.getString("primer_nombre"));
         info.add(dt.getString("segundo_nombre"));
