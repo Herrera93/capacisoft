@@ -565,18 +565,22 @@ public class DataTable extends AbstractTableModel {
      */
     public static DataTable combinarFragV(DataTable tabla1, DataTable tabla2, String nombreColumnaID) {
 
-        if (tabla1 == null && tabla2 == null) {
+        if (tabla1 == null || tabla2 == null) {
             return null;
         }
         
         int filas = tabla1.getRowCount();
         int columnas = tabla1.getColumnCount() + tabla2.getColumnCount() - 1;
 
-        if (filas % 2 != 0) {
+        if (filas % 2 != 0 && filas != 1) {
             return null;
         }
         boolean ok;
+        tabla1.rewind();
+        tabla2.rewind();
         for (int i = 0; i < tabla1.getRowCount(); i++) {
+            tabla1.next();
+            tabla2.next();
             ok = tabla1.getObject(nombreColumnaID).equals(tabla2.getObject(nombreColumnaID));
             if (!ok) {
                 return null;
