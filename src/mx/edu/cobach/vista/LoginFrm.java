@@ -106,7 +106,7 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
         usuarioLbl.setText("Usuario:");
 
         usuarioTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        usuarioTFd.setText("FVIS");
+        usuarioTFd.setText("fvis");
         usuarioTFd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 usuarioTFdKeyPressed(evt);
@@ -305,8 +305,8 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
             ingresarBtn.setEnabled(true);
             salirBtn.setEnabled(true);
         }else{
-            if(info[0][1].equals(contrasena)){      
-                new CapacisoftFrm(info[0][2], info[0][0]).setVisible(true);
+            if(info[0][3].equals(contrasena)){      
+                new CapacisoftFrm(info[0][4], info[0][1]).setVisible(true);
                 this.setVisible(false);
             }else{
                 setMensaje("Contraseña incorrecta");

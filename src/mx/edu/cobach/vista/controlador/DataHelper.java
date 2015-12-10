@@ -917,7 +917,7 @@ public class DataHelper {
     }
     
     private static String[][] descomponerUsuarios(DataTable usuarios) {
-        String[][] info = new String[usuarios.getRowCount()][3];
+        String[][] info = new String[usuarios.getRowCount()][5];
 
         //Iterar en los registros
         usuarios.rewind();
@@ -932,6 +932,19 @@ public class DataHelper {
             }
             info[i][2] += " " + usuarios.getString("apellido_paterno")
                     + " " + usuarios.getString("apellido_materno");
+            
+            info[i][3] = usuarios.getString("contrasena");
+            
+            //Obtener nombre del tipo usuario
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("id", usuarios.getInt("tipo_cuenta_id"));
+            
+            DataTable tipoCuenta = buscar("tipo_cuenta", new String[]{"descripcion"},
+                    new String[]{null}, condicion);
+            
+            tipoCuenta.next();
+            
+            info[i][4] = tipoCuenta.getString("descripcion");
             
             i++;
         }
