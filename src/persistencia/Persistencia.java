@@ -105,4 +105,7 @@ public interface Persistencia extends Remote {
     
     public DataTable getEmpleadosByPlantel(int idPlantel)
             throws RemoteException;
+    
+    public DataTable getImplementacionesByEmpleado(String numeroEmpleado)
+            throws RemoteException;
 }

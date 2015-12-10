@@ -333,10 +333,10 @@ public class DataHelper {
          //return descomponerPuesto((Puesto) obj);
          } else if (obj instanceof Evento) {
          return descomponerEvento((Evento) obj);
-         } else */
+         } else
         if (obj instanceof Empleado) {
             return descomponerEmpleado((Empleado) obj);
-        } else if (obj instanceof Usuario) {
+        } else */if (obj instanceof Usuario) {
             return descomponerUsuario((Usuario) obj);
         } else if (obj instanceof Sede) {
             return descomponerSede((Sede) obj);
@@ -372,34 +372,11 @@ public class DataHelper {
                 registroDescompuesto = descomponerDepartamento(registro);
             } else if (tablaFuente.equalsIgnoreCase("plantel")){
                 registroDescompuesto = descomponerPlantel(registro);
+            } else if (tablaFuente.equalsIgnoreCase("empleado")){
+                registroDescompuesto = descomponerEmpleado(registro);
             }
         }
 
-//        if (obj instanceof Puesto) {
-//            return descomponerPuesto((Puesto) obj);
-//        } else if (obj instanceof Evento) {
-//            return descomponerEvento((Evento) obj);
-//        } else if (obj instanceof Empleado) {
-//            return descomponerEmpleado((Empleado) obj);
-//        } else if (obj instanceof Usuario) {
-//            return descomponerUsuario((Usuario) obj);
-//        } else if (obj instanceof Departamento) {
-//            return descomponerDepartamento((Departamento) obj);
-//        } else if (obj instanceof Sede) {
-//            return descomponerSede((Sede) obj);
-//        } else if (obj instanceof ImplementacionEvento) {
-//            return descomponerProEvento((ImplementacionEvento) obj);
-//        } else if (obj instanceof Proveedor) {
-//            return descomponerProveedor((Proveedor) obj);
-//        } else if (obj instanceof Plantel) {
-//            return descomponerPlantel((Plantel) obj);
-//        } else if (obj instanceof Alerta) {
-//            return descomponerAlerta((Alerta) obj);
-//        } else if (obj instanceof Direccion) {
-//            return descomponerDireccion((Direccion) obj);
-//        } else {
-//            return null;
-//        }
         return registroDescompuesto;
     }
 
@@ -471,24 +448,62 @@ public class DataHelper {
 
         tipoEvento.next();
 
-        info.add(descomponerTipoEventos(tipoEvento).get(0));
+        info.add(descomponerTiposEventosAObjetos(tipoEvento).get(0));
 
         return info;
     }
+    
+    private static List<Object> descomponerEmpleado(DataTable empleado) {
+        HashMap<String, Object> condicion = new HashMap<>();
+        List<Object> info = new ArrayList();
+        
+        empleado.rewind();
+        empleado.next();
+      
+        info.add(empleado.getString("numero"));
+        info.add(empleado.getString("primer_nombre"));
+        info.add(empleado.getString("segundo_nombre"));
+        info.add(empleado.getString("apellido_paterno"));
+        info.add(empleado.getString("apellido_materno"));
 
-    private static List<Object> descomponerEmpleado(Empleado empleado) {
-        List<Object> info = new ArrayList<>();
-        info.add(empleado.getNumero());
-        info.add(empleado.getPrimerNombre());
-        info.add(empleado.getSegundoNombre());
-        info.add(empleado.getApellidoPaterno());
-        info.add(empleado.getApellidoMaterno());
-        info.add(empleado.getPuesto());
-        info.add(empleado.getCorreo());
-        info.add(empleado.getPlantel());
-        info.add(empleado.getAdscripcion());
-        info.add(empleado.getDepartamento());
-        info.add(empleado.getDireccion());
+        condicion.put("id", empleado.getInt("puesto_id"));
+        DataTable auxiliar = DataHelper.buscar("puesto", null, null, condicion);
+        info.add(DataHelper.descomponerRegistrosAObjetos("puesto", auxiliar).get(0));
+        
+        info.add(empleado.getString("correo"));
+        
+        if(empleado.getObject("plantel_id") != null){
+            condicion.clear();
+            condicion.put("id", empleado.getInt("plantel_id"));
+            auxiliar = DataHelper.buscar("plantel", null, null, condicion);
+            info.add(DataHelper.descomponerRegistrosAObjetos("plantel", auxiliar).get(0));
+        }else {
+            info.add(null);
+        }
+        
+        condicion.clear();
+        condicion.put("id", empleado.getInt("adscripcion_id"));
+        auxiliar = DataHelper.buscar("adscripcion", null, null, condicion);
+        info.add(DataHelper.descomponerRegistrosAObjetos("adscripcion", auxiliar).get(0));
+        
+        if(empleado.getObject("departamento_id") != null){
+            condicion.clear();
+            condicion.put("id", empleado.getInt("departamento_id"));
+            auxiliar = DataHelper.buscar("departamento", null, null, condicion);
+            info.add(DataHelper.descomponerRegistrosAObjetos("departamento", auxiliar).get(0));
+        }else {
+            info.add(null);
+        }
+        
+        if(empleado.getObject("direccion_id") != null){
+            condicion.clear();
+            condicion.put("id", empleado.getInt("direccion_id"));
+            auxiliar = DataHelper.buscar("direccion", null, null, condicion);
+            info.add(DataHelper.descomponerRegistrosAObjetos("direccion", auxiliar).get(0));
+        }else {
+            info.add(null);
+        }
+        
         return info;
     }
 
@@ -629,7 +644,7 @@ public class DataHelper {
 
         if (dataTable != null && dataTable.getRowCount() > 0) {
              if (tablaFuente.equalsIgnoreCase("tipo_evento")) {
-                datosDescompuestos = descomponerTipoEventos(dataTable);
+                datosDescompuestos = descomponerTiposEventosAObjetos(dataTable);
             } else if(tablaFuente.equalsIgnoreCase("puesto")) {
                 datosDescompuestos = descomponerPuestosAObjetos(dataTable);
             } else if(tablaFuente.equalsIgnoreCase("plantel")) {
@@ -668,89 +683,7 @@ public class DataHelper {
             }
 
         }
-//        System.out.println("Lista: " + objetos);
-//        if (objetos.size() > 0) {
-//            if (objetos.get(0) instanceof Puesto) {
-//                List<Puesto> ps = new ArrayList<>();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    ps.add((Puesto) objetos.get(i));
-//                }
-//                return descomponerPuestos(ps);
-//            } else if (objetos.get(0) instanceof Empleado) {
-//                List<Empleado> emps = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    emps.add((Empleado) objetos.get(i));
-//                }
-//                return descomponerEmpleados(emps);
-//            } else if (objetos.get(0) instanceof Evento) {
-//                List<Evento> cr = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    cr.add((Evento) objetos.get(i));
-//                }
-//                return descomponerEventos(cr);
-//            } else if (objetos.get(0) instanceof Usuario) {
-//                List<Usuario> us = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    us.add((Usuario) objetos.get(i));
-//                }
-//                return descomponerUsuarios(us);
-//            } else if (objetos.get(0) instanceof Departamento) {
-//                List<Departamento> dp = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    dp.add((Departamento) objetos.get(i));
-//                }
-//                return descomponerDepartamentos(dp);
-//            } else if (objetos.get(0) instanceof Sede) {
-//                List<Sede> se = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    se.add((Sede) objetos.get(i));
-//                }
-//                return descomponerSedes(se);
-//            } else if (objetos.get(0) instanceof Aspecto) {
-//                List<Aspecto> aspectos = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    aspectos.add((Aspecto) objetos.get(i));
-//                }
-//                return descomponerAspectos(aspectos);
-//            } else if (objetos.get(0) instanceof EnunciadoLogistica) {
-//                List<EnunciadoLogistica> enunciado = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    enunciado.add((EnunciadoLogistica) objetos.get(i));
-//                }
-//                return descomponerEnunciados(enunciado);
-//            } else if (objetos.get(0) instanceof ImplementacionEvento) {
-//                List<ImplementacionEvento> eventoImplementado = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    eventoImplementado.
-//                            add((ImplementacionEvento) objetos.get(i));
-//                }
-//                return descomponerProEventos(eventoImplementado);
-//            } else if (objetos.get(0) instanceof ImplementacionEventoEnunciadoLogistica) {
-//                List<ImplementacionEventoEnunciadoLogistica> calificacion = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    calificacion.add((ImplementacionEventoEnunciadoLogistica) objetos.get(i));
-//                }
-//                return descomponerCalificacion(calificacion);
-//            } else if (objetos.get(0) instanceof Proveedor) {
-//                List<Proveedor> pr = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    pr.add((Proveedor) objetos.get(i));
-//                }
-//                return descomponerProveedores(pr);
-//            } else if (objetos.get(0) instanceof Plantel) {
-//                List<Plantel> pl = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    pl.add((Plantel) objetos.get(i));
-//                }
-//                return descomponerPlanteles(pl);
-//            } else if (objetos.get(0) instanceof Direccion) {
-//                List<Direccion> di = new ArrayList();
-//                for (int i = 0; i < objetos.size(); i++) {
-//                    di.add((Direccion) objetos.get(i));
-//                }
-//                return descomponerDirecciones(di);
-//            }
-//        }
+        
         return datosDescompuestos;
     }
 
@@ -819,7 +752,7 @@ public class DataHelper {
 
         zona.next();
 
-        info.add(descomponerZonas(zona).get(0));
+        info.add(descomponerZonasAObjetos(zona).get(0));
 
         return info;
     }
@@ -841,16 +774,6 @@ public class DataHelper {
             i++;
         }
 
-        return info;
-    }
-    
-    private static String[][] descomponerDepartamentos(List<Departamento> dp) {
-        String[][] info = new String[dp.size()][3];
-        for (int i = 0; i < dp.size(); i++) {
-            Departamento d = dp.get(i);
-            info[i][0] = d.getId() + "";
-            info[i][1] = d.getNombre();
-        }
         return info;
     }
 
@@ -1062,7 +985,7 @@ public class DataHelper {
         return dt;
     }
 
-    private static List descomponerTipoEventos(DataTable tipoEventos) {
+    private static List descomponerTiposEventosAObjetos(DataTable tipoEventos) {
         List<Object> lista = new ArrayList();
         
         //Iterar en los registros
@@ -1160,7 +1083,7 @@ public class DataHelper {
 
             zona.next();
             
-            plantel.setZona((Zona) descomponerZonas(zona).get(0));
+            plantel.setZona((Zona) descomponerZonasAObjetos(zona).get(0));
             
             lista.add(plantel);
         }
@@ -1168,7 +1091,7 @@ public class DataHelper {
         return lista;
     }
     
-    public static List descomponerZonas(DataTable zonas){
+    public static List descomponerZonasAObjetos(DataTable zonas){
         List<Object> lista = new ArrayList();
         
         //Iterar en los registros

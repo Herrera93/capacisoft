@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Adscripcion;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
@@ -698,18 +699,26 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
             buscando = true;
             problema = false;
-            control.buscarTodos();
+            control.buscarTodos("empleado");
             if(!problema){
                 //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
                 //contenido en el boton.
                 if (!guardarBtn.getText().equalsIgnoreCase("modificar")) {
                     control.alta("empleado",DataHelper.getEmpleado(atributos));
                 } else {
-                    atributos.add(idEmpleadoActual);
-                    control.modificacion(DataHelper.getEmpleado(atributos));
+                    //Modificacion
+                    HashMap<String, Object> condicion = new HashMap<>();
+                    condicion.put("numero", idEmpleadoActual);
+
+                    DataTable dtEmpleado = DataHelper.getEmpleado(atributos);
+
+                    //Quitar la columna de id
+                    dtEmpleado = dtEmpleado.removerColumnas(new String[]{"numero"});
+                    
+                    control.modificacion("empleado", dtEmpleado, condicion);
                 }
                 limpiar();
-                control.buscarTodos();
+                control.buscarTodos("empleado");
             }
         }
         almacenando = false;
@@ -778,14 +787,14 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     "Precaucion", JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE) == 0) {
                     limpiar();
-                    control.buscar(id);
+                    control.buscar("empleado", "numero", id);
                     guardarBtn.setText("Modificar");
                     empleadosTbl.clearSelection();
                     informacionTBn.setVisible(true);
                 }
             } else {
                 limpiar();
-                control.buscar(id);
+                control.buscar("empleado", "numero", id);
                 guardarBtn.setText("Modificar");
                 empleadosTbl.clearSelection();
                 informacionTBn.setVisible(true);
@@ -806,8 +815,11 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
             }else if(JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar este registro?",
                     "Precaución", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == 0){
                 //Obtenemos ID de la columna escondidaFV
-                control.baja(id);
-                control.buscarTodos();
+                HashMap<String, Object> condicion = new HashMap<>();
+                condicion.put("numero", id);
+                control.baja("empleado", condicion);
+                
+                control.buscarTodos("empleado");
             } else {
                 model.setValueAt(false, row, 2);
                 empleadosTbl.clearSelection();
@@ -824,16 +836,19 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      */
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         //Se limpian los campos
-        HashMap<String, Object> condiciones = new HashMap<>();
+        HashMap<String, Object> condicion = new HashMap<>();
         if (!nombreBuscarTFd.getText().isEmpty()) {
-            condiciones.put("primer_nombre", nombreBuscarTFd.getText());
-            control.buscarPor("empleado", condiciones);
+            condicion.put("primer_nombre LIKE", "%"
+                    + nombreBuscarTFd.getText() + "%");
+
+            control.buscarPor("empleado", condicion);
         } else if (adscBuscarCBx.getSelectedIndex() == 0) {
             control.buscarTodos("empleado");
         } else {
-            condiciones.put("adscripcion_id", ((Adscripcion) adscBuscarCBx
+            condicion.clear();
+            condicion.put("adscripcion_id", ((Adscripcion) adscBuscarCBx
                     .getSelectedItem()).getId());
-            control.buscarPor("empleado", condiciones);
+            control.buscarPor("empleado", condicion);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -1298,7 +1313,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      */
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
-        //control.buscarTodos("empleado");
+        control.buscarTodos("empleado");
         
         control.buscarTodosLista("puesto", 1);
         
@@ -1404,7 +1419,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 validNumLbl.setText("Este campo es obligatorio");
                 validNumLbl.setForeground(new Color(240, 0, 0));
             } else {
-                control.validarPorNumero(Integer.parseInt(numeroTFd.getText()));
+                control.validarPorNumero(numeroTFd.getText());
 //                numeroTFd.setBorder(BORDER_ORIGINAL);
 //                validNumLbl.setForeground(new Color(213, 216, 222));
 
