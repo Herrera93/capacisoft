@@ -49,8 +49,8 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
         //Luego cambiar a campos de texto si se desea
         Enlace.ip = "127.0.0.1";
         //Cambiar por tu puerto localhost
-        Enlace.puerto = 12006;
-        //Enlace.puerto = 11977;
+        //Enlace.puerto = 12006;
+        Enlace.puerto = 11977;
         Enlace.nombreServicio = "PersistInt";
     }
     
