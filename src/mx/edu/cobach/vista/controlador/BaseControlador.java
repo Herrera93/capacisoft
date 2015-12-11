@@ -74,7 +74,7 @@ public class BaseControlador {
         com.setMensaje(mensaje); 
     }
     
-    public void baja(String tabla, Map<String, ?> attrWhere) {
+    public void baja(String tabla, Map<String, Object> attrWhere) {
         try {
             System.out.println("Baja!");
             Enlace.getPersistencia().delete(tabla, attrWhere);
