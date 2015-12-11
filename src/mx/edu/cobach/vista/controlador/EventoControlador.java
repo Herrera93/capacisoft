@@ -48,7 +48,7 @@ public class EventoControlador extends BaseControlador{
         condicion.put("evento_id", id);
         
         DataTable dt = DataHelper.buscar("implementacion_evento", null, null,
-                condicion);
+                condicion, "id");
         
         return dt != null && dt.getRowCount() > 0;
     }

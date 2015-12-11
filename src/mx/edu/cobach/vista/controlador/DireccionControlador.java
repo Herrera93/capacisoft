@@ -40,7 +40,7 @@ public class DireccionControlador extends BaseControlador{
             condicion.put("direccion_id", id);
             
             empleados = Enlace.getPersistencia().get("empleado", null, null,
-            condicion);
+            condicion, "numero");
             
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(DireccionControlador.class.getName()).log(Level.SEVERE, null, ex);

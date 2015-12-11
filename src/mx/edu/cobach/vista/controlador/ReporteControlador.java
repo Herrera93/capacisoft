@@ -55,7 +55,8 @@ public class ReporteControlador extends BaseControlador {
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put("numero", numero);
 
-        DataTable dt = DataHelper.buscar("empleado", fragDatos, null, condicion);
+        DataTable dt = DataHelper.buscar("empleado", fragDatos, null, condicion,
+                "numero");
         com.setTabla(DataHelper.descomponerRegistros("empleado", dt));
     }
 

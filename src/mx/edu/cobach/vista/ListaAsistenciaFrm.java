@@ -400,49 +400,49 @@ public final class ListaAsistenciaFrm extends javax.swing.JFrame implements Comu
             case "Departamento":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("departamento", 1);
+                control.buscarTodosLista("departamento", 1, "id");
                 seleccionLbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("plantel", 1);
+                control.buscarTodosLista("plantel", 1, "id");
                 seleccionLbl.setText("Nombre del Plantel:");
                 break;
             case "Puesto":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("puesto", 1);
+                control.buscarTodosLista("puesto", 1, "id");
                 seleccionLbl.setText("Nombre del Puesto:");
                 break;
             case "Direccion":
                 visibilidadBusNombre(false);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("direccion", 1);
+                control.buscarTodosLista("direccion", 1, "id");
                 seleccionLbl.setText("Nombre de la Direccion:");
                 break;
             case "Departamento/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("departamento", 1);
+                control.buscarTodosLista("departamento", 1, "id");
                 seleccionLbl.setText("Nombre del Departamento:");
                 break;
             case "Plantel/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("plantel", 1);
+                control.buscarTodosLista("plantel", 1, "id");
                 seleccionLbl.setText("Nombre del Plantel:");
                 break;
             case "Puestos/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("puesto", 1);
+                control.buscarTodosLista("puesto", 1, "id");
                 seleccionLbl.setText("Nombre del Puesto:");
                 break;
             case "Direccion/Nombre empleado":
                 visibilidadBusNombre(true);
                 visibilidadBusTipo(true);
-                control.buscarTodosLista("direccion", 1);
+                control.buscarTodosLista("direccion", 1, "id");
                 seleccionLbl.setText("Nombre de la Direccion:");
                 break;
         }
@@ -471,7 +471,7 @@ public final class ListaAsistenciaFrm extends javax.swing.JFrame implements Comu
         switch ((String) campoCBx.getSelectedItem()) {
             case "Nombre":
                 if (nombreTFd.getText().equals("")) {
-                    control.buscarTodos("empleado");
+                    control.buscarTodos("empleado", "numero");
                 } else {
                     control.buscarEmpN(nombreTFd.getText());
                 }

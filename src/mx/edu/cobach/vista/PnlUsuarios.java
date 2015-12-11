@@ -584,7 +584,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
             atr.add(contrasenaTFd.getText());//# En lista 6
             buscando = true;
             problema = 0;
-            control.buscarTodos("usuario");
+            control.buscarTodos("usuario", "id");
             if (problema == 0) {
                 if (!guardarBtn.getText().equalsIgnoreCase("Modificar")) {
                     control.alta("usuario", DataHelper.getUsuario(atr));
@@ -601,7 +601,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
                 }
                 limpiar();
                 guardarBtn.setText("Guardar");
-                control.buscarTodos("usuario");
+                control.buscarTodos("usuario", "id");
             }
         } else {
             setMensaje("Usuario o Contraseña incorrectas");
@@ -623,9 +623,9 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
             HashMap<String, Object> condiciones = new HashMap<>();
             condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
 
-            control.buscarPor("usuario", condiciones);
+            control.buscarPor("usuario", condiciones, "id");
         } else {
-            control.buscarTodos("usuario");
+            control.buscarTodos("usuario", "id");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -691,7 +691,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
                 condiciones.put("id", id);
                 control.baja("usuario", condiciones);
                 
-                control.buscarTodos("usuario");
+                control.buscarTodos("usuario", "id");
             } else {
                 model.setValueAt(false, row, 3);
                 usuariosTbl.clearSelection();
@@ -784,7 +784,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
     private void usuarioTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioTFdFocusLost
         buscando = true;
         problema = 0;
-        control.buscarTodos("usuario");
+        control.buscarTodos("usuario", "id");
         if (usuarioTFd.getText().isEmpty()) {
             usuarioTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -905,7 +905,7 @@ public class PnlUsuarios extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos("usuario");
+        control.buscarTodos("usuario", "id");
     }
 
     private void limpiar() {

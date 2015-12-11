@@ -41,7 +41,7 @@ public class EmpleadoControlador extends BaseControlador {
         condicion.put("numero", numero);
         
         DataTable empleado = DataHelper.buscar("empleado", new String[]{"numero"},
-                new String[]{null}, condicion);
+                new String[]{null}, condicion, "numero");
         
         if (empleado != null && !empleado.isEmpty()) {
             com.setMensaje("El numero de empleado ya existe");

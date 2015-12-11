@@ -460,7 +460,7 @@ public class DataHelper {
 
         attrWhere.put("id", evento.getInt("tipo_evento_id"));
 
-        DataTable tipoEvento = buscar("tipo_evento", null, null, attrWhere);
+        DataTable tipoEvento = buscar("tipo_evento", null, null, attrWhere, "id");
 
         tipoEvento.next();
 
@@ -483,7 +483,7 @@ public class DataHelper {
         info.add(empleado.getString("apellido_materno"));
 
         condicion.put("id", empleado.getInt("puesto_id"));
-        DataTable auxiliar = DataHelper.buscar("puesto", null, null, condicion);
+        DataTable auxiliar = DataHelper.buscar("puesto", null, null, condicion, "id");
         info.add(DataHelper.descomponerRegistrosAObjetos("puesto", auxiliar).get(0));
         
         info.add(empleado.getString("correo"));
@@ -491,7 +491,7 @@ public class DataHelper {
         if(empleado.getObject("plantel_id") != null){
             condicion.clear();
             condicion.put("id", empleado.getInt("plantel_id"));
-            auxiliar = DataHelper.buscar("plantel", null, null, condicion);
+            auxiliar = DataHelper.buscar("plantel", null, null, condicion, "id");
             info.add(DataHelper.descomponerRegistrosAObjetos("plantel", auxiliar).get(0));
         }else {
             info.add(null);
@@ -499,13 +499,13 @@ public class DataHelper {
         
         condicion.clear();
         condicion.put("id", empleado.getInt("adscripcion_id"));
-        auxiliar = DataHelper.buscar("adscripcion", null, null, condicion);
+        auxiliar = DataHelper.buscar("adscripcion", null, null, condicion, "id");
         info.add(DataHelper.descomponerRegistrosAObjetos("adscripcion", auxiliar).get(0));
         
         if(empleado.getObject("departamento_id") != null){
             condicion.clear();
             condicion.put("id", empleado.getInt("departamento_id"));
-            auxiliar = DataHelper.buscar("departamento", null, null, condicion);
+            auxiliar = DataHelper.buscar("departamento", null, null, condicion, "id");
             info.add(DataHelper.descomponerRegistrosAObjetos("departamento", auxiliar).get(0));
         }else {
             info.add(null);
@@ -514,7 +514,7 @@ public class DataHelper {
         if(empleado.getObject("direccion_id") != null){
             condicion.clear();
             condicion.put("id", empleado.getInt("direccion_id"));
-            auxiliar = DataHelper.buscar("direccion", null, null, condicion);
+            auxiliar = DataHelper.buscar("direccion", null, null, condicion, "id");
             info.add(DataHelper.descomponerRegistrosAObjetos("direccion", auxiliar).get(0));
         }else {
             info.add(null);
@@ -556,7 +556,7 @@ public class DataHelper {
 
         attrWhere.put("id", usuario.getInt("tipo_cuenta_id"));
 
-        DataTable tipoCuenta = buscar("tipo_cuenta", null, null, attrWhere);
+        DataTable tipoCuenta = buscar("tipo_cuenta", null, null, attrWhere, "id");
 
         tipoCuenta.next();
 
@@ -795,7 +795,7 @@ public class DataHelper {
 
         condicion.put("id", plantel.getInt("zona_id"));
 
-        DataTable zona = buscar("zona", null, null, condicion);
+        DataTable zona = buscar("zona", null, null, condicion, "id");
 
         zona.next();
 
@@ -870,7 +870,8 @@ public class DataHelper {
             attrWhere.put("id", eventos.getInt("tipo_evento_id"));
 
             DataTable tipoEvento = buscar("tipo_evento",
-                    new String[]{"descripcion"}, new String[]{null}, attrWhere);
+                    new String[]{"descripcion"}, new String[]{null}, attrWhere,
+                    "id");
 
             tipoEvento.next();
 
@@ -905,9 +906,11 @@ public class DataHelper {
         emps.rewind();
         int i = 0;
         while (emps.next()) {
+            String segundoNombre = emps.getString("segundo_nombre");
+            
             info[i][0] = emps.getString("numero");
             info[i][1] = emps.getString("primer_nombre") + " " + 
-                    emps.getString("segundo_nombre") + " " + 
+                    ((segundoNombre == null) ? "" : segundoNombre) + " " + 
                     emps.getString("apellido_paterno") + " " + 
                     emps.getString("apellido_materno");
             i++;
@@ -940,7 +943,7 @@ public class DataHelper {
             condicion.put("id", usuarios.getInt("tipo_cuenta_id"));
             
             DataTable tipoCuenta = buscar("tipo_cuenta", new String[]{"descripcion"},
-                    new String[]{null}, condicion);
+                    new String[]{null}, condicion, "id");
             
             tipoCuenta.next();
             
@@ -1040,10 +1043,11 @@ public class DataHelper {
     }
 
     public static DataTable buscar(String tabla, String[] columnas,
-            String[] aliases, Map<String, ?> attrWhere) {
+            String[] aliases, Map<String, Object> attrWhere, String orderColumn) {
         DataTable dt = null;
         try {
-            dt = Enlace.getPersistencia().get(tabla, columnas, aliases, attrWhere);
+            dt = Enlace.getPersistencia().get(tabla, columnas, aliases, attrWhere,
+                    orderColumn);
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(DataHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1162,7 +1166,7 @@ public class DataHelper {
 
             attrWhere.put("id", planteles.getInt("zona_id"));
 
-            DataTable zona = buscar("zona", null, null, attrWhere);
+            DataTable zona = buscar("zona", null, null, attrWhere, "id");
 
             zona.next();
             
