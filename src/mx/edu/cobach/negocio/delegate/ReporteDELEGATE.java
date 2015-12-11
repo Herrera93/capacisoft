@@ -272,11 +272,11 @@ public class ReporteDELEGATE {
                     condicion.clear();
                     condicion.put("id", implementaciones.getInt("implementacion_evento_id"));
                     im = Enlace.getPersistencia().get("implementacion_evento",
-                            null, null, condicion);
+                            null, null, condicion, "implementacion_evento_id");
                     condicion.clear();
                     condicion.put("id", im.getInt("evento_id"));
                     ev = Enlace.getPersistencia().get("evento",
-                        null, null, condicion);
+                        null, null, condicion, "evento_id");
                 } catch (RemoteException ex) {
                     Logger.getLogger(ReporteDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (NotBoundException ex) {
