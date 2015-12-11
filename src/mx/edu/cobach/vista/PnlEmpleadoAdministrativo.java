@@ -713,7 +713,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     DataTable dtEmpleado = DataHelper.getEmpleado(atributos);
 
                     //Quitar la columna de id
-                    dtEmpleado = dtEmpleado.removerColumnas(new String[]{"numero"});
+//                    dtEmpleado = dtEmpleado.removerColumnas(new String[]{"numero"});
                     
                     control.modificacion("empleado", dtEmpleado, condicion);
                 }
