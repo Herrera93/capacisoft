@@ -53,15 +53,12 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
 
         opcionPnl = new javax.swing.JPanel();
         numeroLbl = new javax.swing.JLabel();
-        nombreLbl = new javax.swing.JLabel();
         buscarBtn = new javax.swing.JButton();
         numeroTFd = new javax.swing.JTextField();
-        nombreTFd = new javax.swing.JTextField();
         opcionesLbl = new javax.swing.JLabel();
         opcionMsjLbl = new javax.swing.JLabel();
         tipoLbl = new javax.swing.JLabel();
         tipoCBx = new javax.swing.JComboBox();
-        nombreMsjLbl = new javax.swing.JLabel();
         numeroMsjLbl = new javax.swing.JLabel();
         informacionPnl = new javax.swing.JPanel();
         empleadoSPn = new javax.swing.JScrollPane();
@@ -77,9 +74,6 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
 
         numeroLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numeroLbl.setText("Numero del Empleado:");
-
-        nombreLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreLbl.setText("Nombre:");
 
         buscarBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buscarBtn.setText("Buscar");
@@ -102,14 +96,6 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
             }
         });
 
-        nombreTFd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nombreTFd.setEnabled(false);
-        nombreTFd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nombreTFdKeyTyped(evt);
-            }
-        });
-
         opcionesLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         opcionesLbl.setText("Opciones ");
 
@@ -125,8 +111,6 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                 tipoCBxActionPerformed(evt);
             }
         });
-
-        nombreMsjLbl.setText("<html>Ingrese un nombre para devolver las coincidencias del nombre<br> con algún empleado</html>");
 
         numeroMsjLbl.setText("Ingrese el numero del empleado ");
 
@@ -154,13 +138,8 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                             .addGroup(opcionPnlLayout.createSequentialGroup()
                                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(numeroMsjLbl)
-                                    .addComponent(nombreMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(opcionesLbl))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(opcionPnlLayout.createSequentialGroup()
-                                .addComponent(nombreLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         opcionPnlLayout.setVerticalGroup(
@@ -180,12 +159,6 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
                 .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroLbl)
                     .addComponent(numeroTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(nombreMsjLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(opcionPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreLbl)
-                    .addComponent(nombreTFd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -285,39 +258,11 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
         }
     }//GEN-LAST:event_numeroTFdKeyTyped
 
-    private void nombreTFdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTFdKeyTyped
-        char car = evt.getKeyChar();
-        if (nombreTFd.getText().length() >= 20) {
-            evt.consume();
-        }
-        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && car != 'á' //Minúsculas             
-                && car != 'é'
-                && car != 'í'
-                && car != 'ó'
-                && car != 'ú'
-                && car != 'Á' //Mayúsculas             
-                && car != 'É'
-                && car != 'Í'
-                && car != 'Ó'
-                && car != 'Ú'
-                && car != 'ñ'
-                && car != 'Ñ'
-                && (car != (char) KeyEvent.VK_SPACE)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_nombreTFdKeyTyped
-
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        if (!numeroTFd.getText().isEmpty() || !nombreTFd.getText().isEmpty()) {
+        if (!numeroTFd.getText().isEmpty()) {
             if (!numeroTFd.getText().isEmpty()) {
                 control.buscarPorNumero(numeroTFd.getText());
                 numeroTFd.setText("");
-                tipoCBx.setSelectedIndex(0);
-            }
-            if (!nombreTFd.getText().isEmpty()) {
-                control.buscarPorNombre(nombreTFd.getText());
-                nombreTFd.setText("");
                 tipoCBx.setSelectedIndex(0);
             }
         } else {
@@ -333,7 +278,11 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
 
     private void generarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarBtnActionPerformed
         try {
-            control.generarKardex(id);
+            String[] empleadoInfo = new String[3];
+            empleadoInfo[0] = (String) model.getValueAt(0, 0);
+            empleadoInfo[1] = (String) model.getValueAt(1, 0);
+            empleadoInfo[2] = (String) model.getValueAt(2, 0);
+            control.generarKardex(empleadoInfo);
         } catch (IOException ex) {
             Logger.getLogger(PnlKardex.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -343,25 +292,18 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     }//GEN-LAST:event_generarBtnActionPerformed
 
     private void numeroTFdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_numeroTFdFocusGained
-        nombreTFd.setEnabled(false);
-        nombreTFd.setText("");
         numeroTFd.setEnabled(true);
     }//GEN-LAST:event_numeroTFdFocusGained
 
     private void tipoCBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCBxActionPerformed
         if(tipoCBx.getSelectedIndex()==1){
             numeroTFd.setEnabled(true);
-            nombreTFd.setEnabled(false);
-            nombreTFd.setText("");
         }else if(tipoCBx.getSelectedIndex()==2){
-            nombreTFd.setEnabled(true);
             numeroTFd.setEnabled(false);
             numeroTFd.setText("");
         }else{
-            nombreTFd.setEnabled(false);
             numeroTFd.setEnabled(false);
             numeroTFd.setText("");
-            nombreTFd.setText("");
         }
     }//GEN-LAST:event_tipoCBxActionPerformed
 
@@ -374,9 +316,6 @@ public class PnlKardex extends javax.swing.JPanel implements Comunicador {
     private javax.swing.JLabel informacionLbl;
     private javax.swing.JPanel informacionPnl;
     private javax.swing.JLabel kardexMsjLbl;
-    private javax.swing.JLabel nombreLbl;
-    private javax.swing.JLabel nombreMsjLbl;
-    private javax.swing.JTextField nombreTFd;
     private javax.swing.JLabel numeroLbl;
     private javax.swing.JLabel numeroMsjLbl;
     private javax.swing.JTextField numeroTFd;

@@ -6,12 +6,17 @@
 package mx.edu.cobach.negocio.delegate;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.facade.ServiceLocatorFACADE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
@@ -20,6 +25,7 @@ import mx.edu.cobach.persistencia.entidades.Evento;
 import mx.edu.cobach.persistencia.entidades.ImplementacionEvento;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.persistencia.util.ApachePoiUtil;
+import persistencia.Enlace;
 
 /**
  *
@@ -230,38 +236,63 @@ public class ReporteDELEGATE {
      * @param numero
      * @throws IOException
      */
-    public void generarKardex(String numero) throws IOException {
+    public void generarKardex(String[] empleadoInfo) throws IOException {
 
         int numEvento = 0;
         //instancia de la clase ApachePoiUtil
         ApachePoiUtil word;
         List<String> lista = new ArrayList();
-        Empleado empleadoInfo = (Empleado) ServiceLocatorFACADE
-            .getEmpleado().find(numero);
+//        Empleado empleadoInfo = (Empleado) ServiceLocatorFACADE
+//            .getEmpleado().find(numero);
+        HashMap<String, Object> condicion = new HashMap();
+        DataTable implementaciones = null;
+        try {
+            implementaciones = Enlace.getPersistencia()
+                    .getImplementacionesByEmpleado(empleadoInfo[0]);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ReporteDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ReporteDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Map<String, String> agregarInfo = new HashMap();
-        String segundoNombre = (empleadoInfo.getSegundoNombre() == null) ? 
-            "" : empleadoInfo.getSegundoNombre();
-        String apellidoMaterno = (empleadoInfo.getApellidoMaterno()== null) ? 
-            "" : empleadoInfo.getApellidoMaterno();
-        String nombre = String.join(" ", empleadoInfo.getPrimerNombre(),
-            segundoNombre, empleadoInfo.getApellidoPaterno(), apellidoMaterno);
-        word = new ApachePoiUtil(nombre);
+        word = new ApachePoiUtil(empleadoInfo[1]);
         //Se agregan los valores del empleado.
-        agregarInfo.put("<@nombre>", nombre);
-        agregarInfo.put("<@numero>", empleadoInfo.getNumero());
-        agregarInfo.put("<@puesto>", empleadoInfo.getPuesto().toString());
+        agregarInfo.put("<@nombre>", empleadoInfo[1]);
+        agregarInfo.put("<@numero>", empleadoInfo[0]);
+        agregarInfo.put("<@puesto>", empleadoInfo[2]);
         agregarInfo.put("", "");
         word.reemplazarValores(agregarInfo);
 
-        for (Iterator it = empleadoInfo.getImplementacionEventos().iterator(); it.hasNext();) {
-            numEvento++;
-            ImplementacionEvento impEvento = (ImplementacionEvento) it.next();
-            Evento evento = impEvento.getEvento();
-            lista.add(evento.toString());
-            lista.add(impEvento.getFechaInicial() + "");
-            lista.add(impEvento.getFechaFinal() + "");
+        if(implementaciones != null){
+            while(implementaciones.next()){
+                DataTable im = null;
+                DataTable ev = null;
+                try {
+                    condicion.clear();
+                    condicion.put("id", implementaciones.getInt("implementacion_evento_id"));
+                    im = Enlace.getPersistencia().get("implementacion_evento",
+                            null, null, condicion);
+                    condicion.clear();
+                    condicion.put("id", im.getInt("evento_id"));
+                    ev = Enlace.getPersistencia().get("evento",
+                        null, null, condicion);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(ReporteDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NotBoundException ex) {
+                    Logger.getLogger(ReporteDELEGATE.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(ev != null){
+                    lista.add(ev.getString("nombre"));
+                }
+                
+                if(im != null){
+                    lista.add(((Date) im.getObject("fecha_inicial")).toString());
+                    lista.add(((Date) im.getObject("fecha_final")).toString());
+                }
+            }
         }
+        
         word.crearTabla(lista, numEvento);
         word.cerrarSesion();
     }

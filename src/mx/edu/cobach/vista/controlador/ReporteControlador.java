@@ -6,16 +6,21 @@
 package mx.edu.cobach.vista.controlador;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.dto.DataTable;
 import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.persistencia.entidades.Departamento;
 import mx.edu.cobach.persistencia.entidades.Direccion;
 import mx.edu.cobach.persistencia.entidades.Plantel;
 import mx.edu.cobach.vista.Comunicador;
+import persistencia.Enlace;
 
 /**
  *
@@ -66,8 +71,8 @@ public class ReporteControlador extends BaseControlador {
      * @param numero
      * @throws IOException
      */
-    public void generarKardex(String numero) throws IOException {
-        ServiceLocatorDELEGATE.getReporte().generarKardex(numero);
+    public void generarKardex(String[] empleadoInfo) throws IOException {
+        ServiceLocatorDELEGATE.getReporte().generarKardex(empleadoInfo);
         com.setMensaje("El Kardex fue generado exitosamente");
     }
 
