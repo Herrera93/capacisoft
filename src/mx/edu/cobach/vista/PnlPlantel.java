@@ -465,9 +465,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             HashMap<String, Object> condicion = new HashMap<>();
             condicion.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
             
-            control.buscarPor("plantel", condicion);
+            control.buscarPor("plantel", condicion, "id");
         } else {
-            control.buscarTodos("plantel");
+            control.buscarTodos("plantel", "id");
             
             //Obtener el id del tipo de evento
 //            HashMap<String, Object> condiciones = new HashMap<>();
@@ -510,7 +510,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             }
             buscando = true;
             problema = false;
-            control.buscarTodos("plantel");
+            control.buscarTodos("plantel", "id");
             
             if(!problema){
                 if(!guardarBtn.getText().equalsIgnoreCase("Modificar")){
@@ -529,7 +529,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 }
                 limpiar();
                 guardarBtn.setText("Guardar");
-                control.buscarTodos("plantel");
+                control.buscarTodos("plantel", "id");
             }
         }
         almacenando = false;
@@ -549,6 +549,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 limpiar();
                 informacionPnl.setVisible(true);
                 guardarBtn.setText("Guardar");
+                zonaCBx.setEnabled(true);
             }
         } else { 
             limpiar();
@@ -606,7 +607,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
                 condicion.put("id", id);
                 
                 control.baja("plantel", condicion);
-                control.buscarTodos("plantel");
+                control.buscarTodos("plantel", "id");
             } else {
                 model.setValueAt(false, row, 3);
                 plantelesTbl.clearSelection();
@@ -644,7 +645,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos("plantel");
+        control.buscarTodos("plantel", "id");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -785,7 +786,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo(){
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos("plantel");
+        control.buscarTodos("plantel", "id");
     }
     
     private void limpiar(){
@@ -863,6 +864,7 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             coloniaTFd.setText(info.get(2).toString());
             numeroTFd.setText(info.get(3).toString());
             zonaCBx.setSelectedItem(info.get(4).toString());
+            zonaCBx.setEnabled(false);
         }
     }
 

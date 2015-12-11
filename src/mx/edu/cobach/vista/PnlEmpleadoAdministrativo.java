@@ -699,7 +699,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
 
             buscando = true;
             problema = false;
-            control.buscarTodos("empleado");
+            control.buscarTodos("empleado", "numero");
             if(!problema){
                 //Se selecciona el metodo que se va manadar llamar, obteniendo el texto 
                 //contenido en el boton.
@@ -718,7 +718,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                     control.modificacion("empleado", dtEmpleado, condicion);
                 }
                 limpiar();
-                control.buscarTodos("empleado");
+                control.buscarTodos("empleado", "numero");
             }
         }
         almacenando = false;
@@ -819,7 +819,7 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
                 condicion.put("numero", id);
                 control.baja("empleado", condicion);
                 
-                control.buscarTodos("empleado");
+                control.buscarTodos("empleado", "numero");
             } else {
                 model.setValueAt(false, row, 2);
                 empleadosTbl.clearSelection();
@@ -838,17 +838,22 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
         //Se limpian los campos
         HashMap<String, Object> condicion = new HashMap<>();
         if (!nombreBuscarTFd.getText().isEmpty()) {
+            System.out.println("Buscar empleados por nombre");
             condicion.put("primer_nombre LIKE", "%"
                     + nombreBuscarTFd.getText() + "%");
 
-            control.buscarPor("empleado", condicion);
+            control.buscarPor("empleado", condicion, "numero");
         } else if (adscBuscarCBx.getSelectedIndex() == 0) {
-            control.buscarTodos("empleado");
+            System.out.println("Buscar todos los empleados");
+            control.buscarTodos("empleado", "numero");
         } else {
+            System.out.println("Buscar por adscripcion");
             condicion.clear();
             condicion.put("adscripcion_id", ((Adscripcion) adscBuscarCBx
                     .getSelectedItem()).getId());
-            control.buscarPor("empleado", condicion);
+            System.out.println(condicion);
+            
+            control.buscarPor("empleado", condicion, "numero");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -1313,17 +1318,17 @@ public class PnlEmpleadoAdministrativo extends javax.swing.JPanel implements
      */
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
-        control.buscarTodos("empleado");
+        control.buscarTodos("empleado", "numero");
         
-        control.buscarTodosLista("puesto", 1);
+        control.buscarTodosLista("puesto", 1, "id");
         
-        control.buscarTodosLista("plantel", 2);
+        control.buscarTodosLista("plantel", 2, "id");
 
-        control.buscarTodosLista("departamento", 3);
+        control.buscarTodosLista("departamento", 3, "id");
 
-        control.buscarTodosLista("adscripcion", 4);
+        control.buscarTodosLista("adscripcion", 4, "id");
 
-        control.buscarTodosLista("direccion", 5);
+        control.buscarTodosLista("direccion", 5, "id");
 
         limpiar();
     }

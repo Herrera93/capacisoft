@@ -40,8 +40,8 @@ public class EmpleadoControlador extends BaseControlador {
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put("numero", numero);
         
-        DataTable empleado = DataHelper.buscar("empleado", new String[]{"numero"},
-                new String[]{null}, condicion);
+        DataTable empleado = DataHelper.buscar("empleado", null, null,
+                condicion, "numero");
         
         if (empleado != null && !empleado.isEmpty()) {
             com.setMensaje("El numero de empleado ya existe");

@@ -230,7 +230,7 @@ public class LoginFrm extends javax.swing.JFrame implements Comunicador{
             HashMap<String, Object> condicion = new HashMap<>();
             condicion.put("usuario", usuario);
             
-            control.buscarPor("usuario", condicion);
+            control.buscarPor("usuario", condicion, "id");
         }
     }
 

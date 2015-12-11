@@ -46,7 +46,7 @@ public class PuestoControlador extends BaseControlador{
             condicion.put("puesto_id", id);
             
             empleados = Enlace.getPersistencia().get("empleado", null, null,
-                    condicion);
+                    condicion, "numero");
             
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(PuestoControlador.class.getName()).log(Level.SEVERE, null, ex);

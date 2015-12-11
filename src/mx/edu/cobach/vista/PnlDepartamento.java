@@ -341,7 +341,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
             atr.add(nombreTFd.getText());
             buscando = true;
             problema = false;
-            control.buscarTodos("departamento");
+            control.buscarTodos("departamento", "id");
             if(!problema){
                 if(guardarBtn.getText().equals("Guardar")){
                     control.alta("departamento", DataHelper.getDepartamento(atr));
@@ -357,7 +357,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                     control.modificacion("departamento", dtDepartamento, condicion);
                 }
                 limpiar();
-                control.buscarTodos("departamento");            
+                control.buscarTodos("departamento", "id");            
             }
         }
         almacenando = false;
@@ -373,7 +373,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
         if (!nombreBuscarTFd.getText().equals("")) {
             control.buscarPorNombre(nombreBuscarTFd.getText(), 1);
         } else {
-            control.buscarTodos("departamento");
+            control.buscarTodos("departamento", "id");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -432,7 +432,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
                 control.baja("departamento", condiciones);
-                control.buscarTodos("departamento");
+                control.buscarTodos("departamento", "id");
             } else {
                 model.setValueAt(false, row, 2);
                 departamentoTbl.clearSelection();
@@ -473,7 +473,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos("departamento");
+        control.buscarTodos("departamento", "id");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -573,7 +573,7 @@ public class PnlDepartamento extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos("departamento");
+        control.buscarTodos("departamento", "id");
     }
 
     /**

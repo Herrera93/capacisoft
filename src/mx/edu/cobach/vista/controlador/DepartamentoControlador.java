@@ -42,7 +42,7 @@ public class DepartamentoControlador extends BaseControlador {
             condicion.put("nombre LIKE", "%" + nombre + "%");
             
             DataTable departamentos = DataHelper.buscar("departamento", null,
-                    null, condicion);
+                    null, condicion, "id");
             
             com.setTabla(DataHelper.descomponerRegistros(nombre, departamentos));
         } else {
@@ -50,7 +50,7 @@ public class DepartamentoControlador extends BaseControlador {
             condicion.put("nombre LIKE", "%" + nombre + "%");
             
             DataTable departamentos = DataHelper.buscar("departamento", null,
-                    null, condicion);
+                    null, condicion, "id");
             
             if (departamentos != null && !departamentos.isEmpty()) {
                 com.setMensaje("Este departamento ya esta registrado");
@@ -73,7 +73,7 @@ public class DepartamentoControlador extends BaseControlador {
             condicion.put("departamento_id", id);
             
             empleados = Enlace.getPersistencia().get("empleado", null, null,
-                    condicion);
+                    condicion, "numero");
             
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(DepartamentoControlador.class.getName()).log(Level.SEVERE, null, ex);

@@ -28,7 +28,7 @@ public class PlantelControlador extends BaseControlador{
             
             //Buscar empleados del plantel...
             empleados = Enlace.getPersistencia().get("empleado", null, null,
-                    condicion);
+                    condicion, "numero");
             
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(PlantelControlador.class.getName()).log(Level.SEVERE, null, ex);

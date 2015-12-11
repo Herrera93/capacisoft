@@ -74,7 +74,7 @@ public class BaseControlador {
         com.setMensaje(mensaje); 
     }
     
-    public void baja(String tabla, Map<String, ?> attrWhere) {
+    public void baja(String tabla, Map<String, Object> attrWhere) {
         try {
             System.out.println("Baja!");
             Enlace.getPersistencia().delete(tabla, attrWhere);
@@ -120,17 +120,19 @@ public class BaseControlador {
         HashMap<String, Object> condicion = new HashMap<>();
         condicion.put(columnaPK, valorPK);
 
-        DataTable dt = DataHelper.buscar(nombreTabla, null, null, condicion);
+        DataTable dt = DataHelper.buscar(nombreTabla, null, null, condicion,
+                columnaPK);
         com.setInfo(DataHelper.descomponerRegistro(nombreTabla, dt));
     }
 
-    public void buscarPor(String nombreTabla, Map<String, ?> attrWhere) {
+    public void buscarPor(String nombreTabla, Map<String, Object> attrWhere,
+            String orderColumn) {
 
         try {
             System.out.println("Consulta Por Atributos!");
             //Consulta los datos, regresando un DataTable
             DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null,
-                    attrWhere);
+                    attrWhere, orderColumn);
 
             //set la tabla...
             com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
@@ -149,11 +151,12 @@ public class BaseControlador {
         com.setTabla(DataHelper.descomponerRegistros(ls));
     }
 
-    public void buscarTodos(String nombreTabla) {
+    public void buscarTodos(String nombreTabla, String orderColumn) {
         try {
             System.out.println("Consulta General!");
             //Consulta los datos, regresando un DataTable
-            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null,
+                    orderColumn);
             //set la tabla...
             com.setTabla(DataHelper.descomponerRegistros(nombreTabla, dt));
 
@@ -174,11 +177,12 @@ public class BaseControlador {
         com.setLista(ls, lista);
     }
 
-    public void buscarTodosLista(String nombreTabla, int lista) {
+    public void buscarTodosLista(String nombreTabla, int lista, String orderColumn) {
         try {
             System.out.println("Consulta general combobox!");
             //Consulta los datos, regresando un DataTable
-            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null);
+            DataTable dt = Enlace.getPersistencia().get(nombreTabla, null, null, null,
+                    orderColumn);
             com.setLista(DataHelper.descomponerRegistrosAObjetos(nombreTabla, dt), lista);
 
         } catch (RemoteException | NotBoundException ex) {

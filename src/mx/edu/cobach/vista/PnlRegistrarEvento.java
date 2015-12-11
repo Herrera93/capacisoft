@@ -422,7 +422,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             atr.add(descripcionTAa.getText());
             buscando = true;
             problema = false;
-            control.buscarTodos("evento");
+            control.buscarTodos("evento", "id");
             if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     control.alta("evento", DataHelper.getEvento(atr));
@@ -441,7 +441,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                     control.modificacion("evento", dtEvento, condicion);
                 }
                 limpiar();
-                control.buscarTodos("evento");
+                control.buscarTodos("evento", "id");
             }
         }
         almacenando = false;
@@ -456,7 +456,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         int idTipo = tipoBuscarCBx.getSelectedIndex();
         if (idTipo <= 0) {
-            control.buscarTodos("evento");
+            control.buscarTodos("evento", "id");
         } else {
             //Obtemer el id del tipo de evento
             HashMap<String, Object> condiciones = new HashMap<>();
@@ -464,7 +464,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
             condiciones.put("tipo_evento_id", ((TipoEvento) tipoBuscarCBx
                     .getSelectedItem()).getId());
 
-            control.buscarPor("evento", condiciones);
+            control.buscarPor("evento", condiciones, "id");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -530,7 +530,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos("evento");
+        control.buscarTodos("evento", "id");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -654,7 +654,7 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
                 control.baja("evento", condiciones);
-                control.buscarTodos("evento");
+                control.buscarTodos("evento", "id");
             } else {
                 model.setValueAt(false, row, 3);
                 eventosTbl.clearSelection();
@@ -691,9 +691,9 @@ public class PnlRegistrarEvento extends javax.swing.JPanel implements Comunicado
     // End of variables declaration//GEN-END:variables
 
     public void llenarTodo() {
-        control.buscarTodos("evento");
+        control.buscarTodos("evento", "id");
         control.setClass(TipoEvento.class);
-        control.buscarTodosLista("tipo_evento", 1);
+        control.buscarTodosLista("tipo_evento", 1, "id");
         limpiar();
         tipoBuscarCBx.setSelectedIndex(0);
         control.setClass(Evento.class);

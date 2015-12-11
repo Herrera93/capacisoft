@@ -320,7 +320,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
         } else {
             buscando = true;
             problema = false;
-            control.buscarTodos("direccion");
+            control.buscarTodos("direccion", "id");
             if (!problema) {
                 if (guardarBtn.getText().equals("Guardar")) {
                     /*Se agregan los valores de los campos a la Lista, 
@@ -349,7 +349,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                     control.modificacion(DataHelper.getDireccion(atr));
                 }
                 limpiar();
-                control.buscarTodos("direccion");
+                control.buscarTodos("direccion", "id");
             }
         }
         almacenando = false;
@@ -368,9 +368,9 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
             HashMap<String, Object> condiciones = new HashMap<>();
             condiciones.put("nombre LIKE", "%" + nombreBuscarTFd.getText() + "%");
 
-            control.buscarPor("direccion", condiciones);
+            control.buscarPor("direccion", condiciones, "id");
         } else {
-            control.buscarTodos("direccion");
+            control.buscarTodos("direccion", "id");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
@@ -451,7 +451,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     private void nombreTFdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreTFdFocusLost
         buscando = true;
         problema = false;
-        control.buscarTodos("direccion");
+        control.buscarTodos("direccion", "id");
         if (nombreTFd.getText().isEmpty()) {
             nombreTFd.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(255, 106, 106)),
@@ -517,7 +517,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
                 HashMap<String, Object> condiciones = new HashMap<>();
                 condiciones.put("id", id);
                 control.baja("direccion", condiciones);
-                control.buscarTodos("direccion");
+                control.buscarTodos("direccion", "id");
             } else {
                 model.setValueAt(false, row, 2);
                 direccionTbl.clearSelection();
@@ -564,7 +564,7 @@ public class PnlDireccion extends javax.swing.JPanel implements Comunicador {
     public void llenarTodo() {
         nombreBuscarTFd.setText("");
         limpiar();
-        control.buscarTodos("direccion");
+        control.buscarTodos("direccion", "id");
     }
 
     /**
