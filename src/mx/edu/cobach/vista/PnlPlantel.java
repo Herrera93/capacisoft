@@ -503,9 +503,9 @@ public class PnlPlantel extends javax.swing.JPanel implements Comunicador {
             atr.add(coloniaTFd.getText());            
             atr.add(numeroTFd.getText());
             switch(String.valueOf(zonaCBx.getSelectedItem())){
-                case "Valle": atr.add(1); break;
-                case "Costa Norte": atr.add(3); break;
-                case "Costa Sur": atr.add(2); break;
+                case "VALLE": atr.add(1); break;
+                case "COSTA NORTE": atr.add(3); break;
+                case "COSTA SUR": atr.add(2); break;
                 default: break;
             }
             buscando = true;

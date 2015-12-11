@@ -8,11 +8,9 @@ package mx.edu.cobach.vista.controlador;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.dto.DataTable;
-import mx.edu.cobach.negocio.delegate.ServiceLocatorDELEGATE;
 import mx.edu.cobach.vista.Comunicador;
 import persistencia.Enlace;
 
@@ -70,8 +68,13 @@ public class DepartamentoControlador extends BaseControlador {
     public boolean buscarEmpleadosByDepartamento(int id) {
         DataTable empleados = null;
         try {
-            empleados = Enlace.getPersistencia()
-                    .getEmpleadosByDepartamento(id);
+            
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("departamento_id", id);
+            
+            empleados = Enlace.getPersistencia().get("empleado", null, null,
+                    condicion);
+            
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(DepartamentoControlador.class.getName()).log(Level.SEVERE, null, ex);
         }

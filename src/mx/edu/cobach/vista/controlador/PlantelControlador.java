@@ -7,6 +7,7 @@ package mx.edu.cobach.vista.controlador;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.dto.DataTable;
@@ -22,8 +23,13 @@ public class PlantelControlador extends BaseControlador{
         DataTable empleados = null;
         
         try {
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("plantel_id", id);
+            
             //Buscar empleados del plantel...
-            empleados = Enlace.getPersistencia().getEmpleadosByPlantel(id);
+            empleados = Enlace.getPersistencia().get("empleado", null, null,
+                    condicion);
+            
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(PlantelControlador.class.getName()).log(Level.SEVERE, null, ex);
         }

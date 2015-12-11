@@ -7,11 +7,13 @@ package mx.edu.cobach.vista.controlador;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.dto.DataTable;
 import mx.edu.cobach.persistencia.entidades.Puesto;
 import mx.edu.cobach.vista.Comunicador;
+import org.apache.poi.poifs.crypt.HashAlgorithm;
 import persistencia.Enlace;
 
 /**
@@ -40,7 +42,12 @@ public class PuestoControlador extends BaseControlador{
         DataTable empleados = null;
         
         try {
-            empleados = Enlace.getPersistencia().getEmpleadosByPuesto(id);
+            HashMap<String, Object> condicion = new HashMap<>();
+            condicion.put("puesto_id", id);
+            
+            empleados = Enlace.getPersistencia().get("empleado", null, null,
+                    condicion);
+            
         } catch (RemoteException | NotBoundException ex) {
             Logger.getLogger(PuestoControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
